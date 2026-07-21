@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategic Management: A Bilingual Study Guide</title>
+<meta name="description" content="A bilingual study guide to strategic management: external and internal analysis, vision and mission, strategic choice matrices, and implementation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">Strategic Management &middot; Study Guide</span><span data-lang="ar">الإدارة الاستراتيجية &middot; دليل دراسي</span></div>
+    <h1><span data-lang="en">Strategic Management: A Bilingual Study Guide</span><span data-lang="ar">الإدارة الاستراتيجية: دليل دراسي</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="concept"><span data-lang="en">Concept &amp; Benefits</span><span data-lang="ar">المفهوم والمزايا</span></a>
+    <a data-id="external"><span data-lang="en">External Analysis</span><span data-lang="ar">البيئة الخارجية</span></a>
+    <a data-id="internal"><span data-lang="en">Internal Analysis</span><span data-lang="ar">البيئة الداخلية</span></a>
+    <a data-id="formulation"><span data-lang="en">Formulation</span><span data-lang="ar">الصياغة</span></a>
+    <a data-id="choice"><span data-lang="en">Strategic Choice</span><span data-lang="ar">الاختيار الاستراتيجي</span></a>
+    <a data-id="implementation"><span data-lang="en">Implementation</span><span data-lang="ar">التطبيق</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways &amp; References</span><span data-lang="ar">الخلاصة والمراجع</span></a>
+  </nav>
+
+  <!-- 1. OVERVIEW -->
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Strategic Management</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">This bilingual study guide covers strategic management, the discipline of analyzing an organization's environments, choosing where and how to compete, and executing that choice to win and keep a competitive advantage.</p>
+        <p>It follows the strategic-management process itself: understanding the concept and its benefits, scanning the <strong>external</strong> environment for opportunities and threats, auditing the <strong>internal</strong> environment for strengths and weaknesses, <strong>formulating</strong> vision, mission, and goals, <strong>choosing</strong> among alternatives with portfolio matrices, and finally <strong>implementing</strong> the strategy, where most strategies actually succeed or fail.</p>
+        <h3>The six topics at a glance</h3>
+        <ol>
+          <li><strong>Concept and benefits</strong> of strategic management.</li>
+          <li><strong>External analysis:</strong> macro forces and Porter's five forces.</li>
+          <li><strong>Internal analysis:</strong> resources, capabilities, and the value chain.</li>
+          <li><strong>Formulation:</strong> vision, mission, goals, and objectives.</li>
+          <li><strong>Strategic choice:</strong> BCG, GE, and Shell matrices.</li>
+          <li><strong>Implementation:</strong> turning the plan into results.</li>
+        </ol>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الإدارة الاستراتيجية</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">يغطّي هذا الدليل الدراسي ثنائي اللغة الإدارة الاستراتيجية: علم تحليل بيئات المنظمة، واختيار أين وكيف تنافس، وتنفيذ ذلك الاختيار لكسب ميزة تنافسية والحفاظ عليها.</p>
+        <p>ويتبع عملية الإدارة الاستراتيجية نفسها: فهم المفهوم ومزاياه، ومسح البيئة <strong>الخارجية</strong> بحثًا عن الفرص والتهديدات، وفحص البيئة <strong>الداخلية</strong> لنقاط القوة والضعف، و<strong>صياغة</strong> الرؤية والرسالة والأهداف، و<strong>الاختيار</strong> بين البدائل بمصفوفات المحفظة، وأخيرًا <strong>تطبيق</strong> الاستراتيجية، حيث تنجح معظم الاستراتيجيات فعليًا أو تفشل.</p>
+        <h3>الموضوعات الستة في لمحة</h3>
+        <ol>
+          <li><strong>مفهوم</strong> الإدارة الاستراتيجية <strong>ومزاياها</strong>.</li>
+          <li><strong>التحليل الخارجي:</strong> القوى الكلية وقوى بورتر الخمس.</li>
+          <li><strong>التحليل الداخلي:</strong> الموارد والقدرات وسلسلة القيمة.</li>
+          <li><strong>الصياغة:</strong> الرؤية والرسالة والغايات والأهداف.</li>
+          <li><strong>الاختيار الاستراتيجي:</strong> مصفوفات بوسطن وجنرال إلكتريك وشل.</li>
+          <li><strong>التطبيق:</strong> تحويل الخطة إلى نتائج.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. CONCEPT -->
+  <section class="page" id="concept">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Concept &amp; Benefits of Strategic Management</h2>
+        <p><strong>Strategic management</strong> is the continuous process of analyzing the organization and its industry, making the strategic decisions that build and sustain competitive advantage, and adapting the organization to a complex global economy. It joins three phases into one cycle: <strong>analysis</strong> (environments), <strong>formulation and choice</strong> (direction and alternatives), and <strong>implementation and evaluation</strong> (execution and correction).</p>
+        <h3>The benefits, explained</h3>
+        <ol>
+          <li><strong>Clarity of future vision and strategic decisions:</strong> drafting a strategic plan demands accurate anticipation of future events, forcing the organization to think hard about what its environment will look like tomorrow.</li>
+          <li><strong>Long-run environmental interaction:</strong> through far-reaching strategic decisions, the organization can influence its surrounding environment and reduce environmental risks, not merely react to them.</li>
+          <li><strong>Strengthening the competitive position:</strong> organizations that embrace strategic thinking build competitive advantages grounded in understanding the external environment's opportunities and in developing the internal resources to exploit them better than rivals.</li>
+          <li><strong>Effective allocation of resources:</strong> strategic management steers resources to the right long-term uses instead of scattering them on the urgent.</li>
+          <li><strong>Capacity to create change:</strong> it relies on capable human resources and prepares the organization to lead change rather than suffer it.</li>
+        </ol>
+        <h3>The three levels of strategy</h3>
+        <ul>
+          <li><strong>Corporate-level strategy:</strong> which businesses should we be in? Growth, stability, retrenchment, diversification, and portfolio decisions.</li>
+          <li><strong>Business-level (competitive) strategy:</strong> how do we compete in each business? The generic choices are <em>cost leadership</em>, <em>differentiation</em>, and <em>focus</em> on a niche.</li>
+          <li><strong>Functional-level strategy:</strong> how does each function (marketing, operations, HR, finance) support the business strategy?</li>
+        </ul>
+        <p>The three levels must align: a functional plan that contradicts the business strategy, or a business strategy outside the corporate scope, wastes resources and confuses execution.</p>
+        <div class="note"><strong>Why it is indispensable now:</strong> in fast-moving, globally connected markets, intuitive, ad-hoc management no longer suffices; any organization that wants to stay in the market needs a well-built strategic plan and the discipline to update it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>مفهوم الإدارة الاستراتيجية ومزاياها</h2>
+        <p><strong>الإدارة الاستراتيجية</strong> هي العملية المستمرة لتحليل المنظمة وصناعتها، واتخاذ القرارات الاستراتيجية التي تبني الميزة التنافسية وتديمها، وتكييف المنظمة مع اقتصاد عالمي معقّد. وتجمع ثلاث مراحل في دورة واحدة: <strong>التحليل</strong> (البيئات)، و<strong>الصياغة والاختيار</strong> (الاتجاه والبدائل)، و<strong>التطبيق والتقويم</strong> (التنفيذ والتصحيح).</p>
+        <h3>المزايا موضَّحة</h3>
+        <ol>
+          <li><strong>وضوح الرؤية المستقبلية واتخاذ القرارات الاستراتيجية:</strong> تتطلب صياغة الخطة الاستراتيجية قدرًا كبيرًا من دقة توقّع الأحداث المستقبلية، فتُجبر المنظمة على التفكير الجاد في ما ستكون عليه بيئتها غدًا.</li>
+          <li><strong>تحقيق التفاعل البيئي في المدى الطويل:</strong> عبر القرارات الاستراتيجية بعيدة المدى تستطيع المنظمة التأثير في البيئة المحيطة والحد من المخاطر البيئية، لا مجرد ردّ الفعل عليها.</li>
+          <li><strong>تدعيم المركز التنافسي:</strong> تنجح المنظمات التي تعتنق الفكر الاستراتيجي في بناء مزايا تنافسية تستند إلى فهم بيئتها الخارجية وما تفرزه من فرص، وتنمية مواردها الداخلية التي تمكّنها من استغلال هذه الفرص بطريقة تفوق منافسيها.</li>
+          <li><strong>التخصيص الفعّال للموارد والإمكانيات:</strong> تساعد الإدارة الاستراتيجية المنظمة على توجيه مواردها التوجيه الصحيح في المدى البعيد بدل تبديدها على العاجل.</li>
+          <li><strong>القدرة على إحداث التغيير:</strong> تعتمد على موارد بشرية قادرة وتُهيّئ المنظمة لقيادة التغيير لا معاناته.</li>
+        </ol>
+        <h3>مستويات الاستراتيجية الثلاثة</h3>
+        <ul>
+          <li><strong>استراتيجية مستوى الشركة:</strong> في أي أعمال ينبغي أن نكون؟ قرارات النمو والاستقرار والانكماش والتنويع والمحفظة.</li>
+          <li><strong>استراتيجية مستوى الأعمال (التنافسية):</strong> كيف ننافس في كل عمل؟ والخيارات العامة: <em>قيادة التكلفة</em>، و<em>التمايز</em>، و<em>التركيز</em> على شريحة.</li>
+          <li><strong>استراتيجية المستوى الوظيفي:</strong> كيف تدعم كل وظيفة (تسويق، عمليات، موارد بشرية، مالية) استراتيجيةَ الأعمال؟</li>
+        </ul>
+        <p>ويجب أن تتوائم المستويات الثلاثة: فالخطة الوظيفية المناقضة لاستراتيجية الأعمال، أو استراتيجية الأعمال الخارجة عن نطاق الشركة، تبدّد الموارد وتربك التنفيذ.</p>
+        <div class="note"><strong>لماذا لا غنى عنها الآن:</strong> في أسواق سريعة الحركة مترابطة عالميًا، لم تعد الإدارة البديهية الفورية تكفي؛ فأي منظمة تريد البقاء في السوق تحتاج خطة إدارة استراتيجية جيدة البناء وانضباطًا في تحديثها.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. EXTERNAL -->
+  <section class="page" id="external">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>External Environment Analysis</h2>
+        <p>External analysis identifies the <strong>opportunities and threats</strong> in the environment where the organization operates or intends to compete. Its aim is to isolate the key variables that allow actionable responses: firms must be able to respond <em>offensively</em> (strategies that exploit external opportunities) or <em>defensively</em> (strategies that minimize the impact of threats).</p>
+        <h3>The macro (general) environment</h3>
+        <p>The broad forces that affect every organization in the economy: <strong>political and legal</strong> conditions (stability, regulation, taxes), <strong>economic</strong> conditions (growth, inflation, interest rates, purchasing power), <strong>social and cultural</strong> trends (demographics, values, lifestyles), and <strong>technological</strong> change, the familiar PESTEL lens.</p>
+        <h3>The micro (industry) environment: Porter's five forces</h3>
+        <p>The industry-specific forces that determine the intensity of competition and the profit potential:</p>
+        <ol>
+          <li><strong>Threat of new entrants:</strong> weak when barriers to entry (capital, brands, scale, regulation) are high.</li>
+          <li><strong>Bargaining power of suppliers:</strong> strong when suppliers are few or their input is critical.</li>
+          <li><strong>Bargaining power of buyers:</strong> strong when buyers are concentrated or switching is cheap.</li>
+          <li><strong>Threat of substitutes:</strong> products from other industries that meet the same need.</li>
+          <li><strong>Rivalry among existing competitors:</strong> intensified by many equal rivals, slow growth, and low differentiation.</li>
+        </ol>
+        <div class="note"><strong>From analysis to action:</strong> the output of external analysis is a ranked list of opportunities and threats that feeds directly into SWOT and into the strategy the organization formulates; analysis that does not change a decision is decoration.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>تحليل البيئة الخارجية</h2>
+        <p>يحدّد التحليل الخارجي <strong>الفرص والتهديدات</strong> في البيئة التي تعمل فيها المنظمة أو تستهدفها. وهدفه عزل المتغيرات الرئيسية التي تقدّم استجابات قابلة للتنفيذ: فيجب أن تكون الشركات قادرة على الاستجابة <em>هجوميًا</em> (استراتيجيات تستفيد من الفرص الخارجية) أو <em>دفاعيًا</em> (استراتيجيات تقلّل أثر التهديدات).</p>
+        <h3>البيئة الكلية (العامة)</h3>
+        <p>القوى الواسعة المؤثرة على كل منظمة في الاقتصاد: الظروف <strong>السياسية والقانونية</strong> (الاستقرار، التنظيم، الضرائب)، والظروف <strong>الاقتصادية</strong> (النمو، التضخم، الفائدة، القوة الشرائية)، والاتجاهات <strong>الاجتماعية والثقافية</strong> (الديموغرافيا، القيم، أنماط الحياة)، والتغيّر <strong>التقني</strong>، وهي عدسة PESTEL المألوفة.</p>
+        <h3>البيئة الجزئية (الصناعة): قوى بورتر الخمس</h3>
+        <p>القوى الخاصة بالصناعة التي تحدّد شدة المنافسة وإمكانات الربح:</p>
+        <ol>
+          <li><strong>تهديد الداخلين الجدد:</strong> يضعف حين ترتفع حواجز الدخول (رأس المال، العلامات، الحجم، التنظيم).</li>
+          <li><strong>القوة التفاوضية للموردين:</strong> تقوى حين يقلّ الموردون أو يكون مُدخَلهم حرجًا.</li>
+          <li><strong>القوة التفاوضية للمشترين:</strong> تقوى حين يتركّز المشترون أو يرخص التحوّل.</li>
+          <li><strong>تهديد البدائل:</strong> منتجات من صناعات أخرى تلبّي الحاجة نفسها.</li>
+          <li><strong>التنافس بين المنافسين القائمين:</strong> يشتد بكثرة المنافسين المتقاربين وبطء النمو وقلة التمايز.</li>
+        </ol>
+        <div class="note"><strong>من التحليل إلى الفعل:</strong> مخرج التحليل الخارجي قائمة مرتَّبة بالفرص والتهديدات تغذّي مباشرةً تحليل SWOT والاستراتيجية التي تصوغها المنظمة؛ فالتحليل الذي لا يغيّر قرارًا زينةٌ لا أكثر.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. INTERNAL -->
+  <section class="page" id="internal">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Internal Environment Analysis</h2>
+        <p>Internal analysis evaluates the factors inside the organization that shape its performance, answering three comparative questions: what are our <strong>strengths</strong>, what are our <strong>weaknesses</strong>, and how do both compare with competitors? It covers human resources, financial resources, and the inputs of the production process, and it seeks to convert weaknesses into strengths.</p>
+        <h3>Why it matters</h3>
+        <p>Internal analysis tells the organization whether its resources and capabilities are potential <strong>sources of competitive advantage</strong>, and guides strategies that exploit those sources. Without it, a firm may chase opportunities it cannot serve, or defend positions it cannot hold.</p>
+        <h3>The main tools</h3>
+        <ul>
+          <li><strong>Resources and capabilities analysis:</strong> resources are what the firm owns or controls (physical, financial, human, technological, reputational); capabilities are what it can do proficiently with them.</li>
+          <li><strong>Value-chain analysis:</strong> breaks the firm into the activities that create value, primary activities (inbound logistics, operations, outbound logistics, marketing and sales, service) and support activities (infrastructure, HR, technology, procurement), to locate exactly where value and cost arise, and which links deserve investment or outsourcing.</li>
+        </ul>
+
+        <h3>The VRIO framework, in full</h3>
+        <p><strong>VRIO</strong> (developed by Jay Barney) is the standard test of whether a resource or capability can be a source of sustained competitive advantage. It asks four questions <em>in order</em>, and the answer at each step determines the competitive consequence:</p>
+
+        <h4>V &mdash; Value: is the resource valuable?</h4>
+        <p>Does it enable the firm to exploit an opportunity or neutralize a threat, by raising customer value or cutting cost? If <strong>no</strong>, the resource is a source of <em>competitive disadvantage</em>: it costs money without helping the strategy. If <strong>yes</strong>, move to the next question. <em>Example:</em> a prime retail location that draws foot traffic is valuable; an idle warehouse is not.</p>
+
+        <h4>R &mdash; Rarity: is it rare?</h4>
+        <p>Is the resource controlled by only one or a few firms in the industry? A valuable but <strong>common</strong> resource yields only <em>competitive parity</em>: it is necessary to compete (like point-of-sale systems in retail) but distinguishes no one. If it is valuable <strong>and rare</strong>, the firm has at least a <em>temporary competitive advantage</em>, and moves to the next question.</p>
+
+        <h4>I &mdash; Imitability: is it costly to imitate?</h4>
+        <p>Can competitors obtain or copy it only at a significant cost disadvantage? Imitation is hard when the resource rests on: <strong>unique historical conditions</strong> (a location or reputation built over decades), <strong>causal ambiguity</strong> (rivals cannot tell exactly what produces the advantage), <strong>social complexity</strong> (culture, trust, and relationships that cannot be bought), or <strong>legal protection</strong> (patents and trademarks). If the resource is easy to imitate, the advantage is only <em>temporary</em>, rivals will copy it. If costly to imitate, move to the final question.</p>
+
+        <h4>O &mdash; Organization: is the firm organized to capture the value?</h4>
+        <p>Do the firm's structure, systems, processes, incentives, and culture allow it to actually exploit the resource? A valuable, rare, hard-to-imitate resource that the organization is not arranged to use yields <em>unused advantage</em>, potential wasted. Only when all four answers are yes does the firm hold a <strong>sustained competitive advantage</strong>.</p>
+
+        <h4>The VRIO decision ladder</h4>
+        <ul>
+          <li>Not valuable &rarr; competitive <strong>disadvantage</strong>.</li>
+          <li>Valuable, not rare &rarr; competitive <strong>parity</strong>.</li>
+          <li>Valuable and rare, easy to imitate &rarr; <strong>temporary</strong> advantage.</li>
+          <li>Valuable, rare, costly to imitate, not organized &rarr; <strong>unexploited</strong> advantage.</li>
+          <li>All four &rarr; <strong>sustained competitive advantage</strong>.</li>
+        </ul>
+        <div class="note"><strong>Using VRIO in practice:</strong> list the firm's main resources and capabilities, run each down the four questions, and sort them onto the ladder. Strategy should then be built on the sustained-advantage resources, fix the "O" for unexploited ones, and avoid betting on resources that only deliver parity. VRIO also explains <em>why</em> two firms in the same industry earn different profits with similar assets, the difference lies in rarity, imitability, and organization, not value alone.</div>
+
+        <div class="note"><strong>The pairing:</strong> external analysis yields opportunities and threats; internal analysis yields strengths and weaknesses; together they complete the SWOT picture from which strategy is formulated.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>تحليل البيئة الداخلية</h2>
+        <p>يقيّم التحليل الداخلي العوامل داخل المنظمة المؤثرة في أدائها، مجيبًا عن ثلاثة أسئلة مقارنة: ما نقاط <strong>قوتنا</strong>؟ وما نقاط <strong>ضعفنا</strong>؟ وكيف تُقارنان بالمنافسين؟ ويغطي الموارد البشرية والمالية ومدخلات العملية الإنتاجية، ساعيًا إلى تحويل نقاط الضعف إلى قوة.</p>
+        <h3>لماذا يهم</h3>
+        <p>يخبر التحليل الداخلي المنظمةَ هل تشكّل مواردها وقدراتها <strong>مصادر محتملة للميزة التنافسية</strong>، ويوجّه الاستراتيجيات التي تستغل تلك المصادر. ومن دونه قد تطارد المنشأة فرصًا لا تستطيع خدمتها، أو تدافع عن مواقع لا تستطيع الاحتفاظ بها.</p>
+        <h3>الأدوات الرئيسية</h3>
+        <ul>
+          <li><strong>تحليل الموارد والقدرات:</strong> الموارد ما تملكه المنشأة أو تسيطر عليه (مادية، مالية، بشرية، تقنية، سمعة)؛ والقدرات ما تستطيع أداءه بإتقان بها.</li>
+          <li><strong>تحليل سلسلة القيمة:</strong> يفكّك المنشأة إلى الأنشطة الخالقة للقيمة: أنشطة أساسية (الإمداد الداخلي، العمليات، الإمداد الخارجي، التسويق والمبيعات، الخدمة) وأنشطة داعمة (البنية، الموارد البشرية، التقنية، المشتريات)، لتحديد أين تنشأ القيمة والكلفة بالضبط، وأي الحلقات تستحق الاستثمار أو الإسناد الخارجي.</li>
+        </ul>
+
+        <h3>إطار VRIO بالتفصيل الكامل</h3>
+        <p><strong>VRIO</strong> (طوّره جاي بارني) هو الاختبار المعياري لما إذا كان مورد أو قدرة يمكن أن تكون مصدرًا لميزة تنافسية مستدامة. يطرح أربعة أسئلة <em>بالترتيب</em>، وتحدّد الإجابة عند كل خطوة النتيجة التنافسية:</p>
+
+        <h4>V &mdash; القيمة: هل المورد قيّم؟</h4>
+        <p>هل يمكّن المنشأة من استغلال فرصة أو تحييد تهديد، برفع قيمة العميل أو خفض الكلفة؟ إن كانت الإجابة <strong>لا</strong>، فالمورد مصدر <em>عيب تنافسي</em>: يكلّف مالًا دون أن يخدم الاستراتيجية. وإن كانت <strong>نعم</strong>، انتقل للسؤال التالي. <em>مثال:</em> موقع تجزئة ممتاز يجذب المارّة قيّم؛ ومستودع معطَّل ليس كذلك.</p>
+
+        <h4>R &mdash; الندرة: هل هو نادر؟</h4>
+        <p>هل يسيطر على المورد منشأة واحدة أو قلّة في الصناعة؟ المورد القيّم <strong>الشائع</strong> لا يعطي إلا <em>تعادلًا تنافسيًا</em>: ضروري للمنافسة (كأنظمة نقاط البيع في التجزئة) لكنه لا يميّز أحدًا. وإن كان قيّمًا <strong>ونادرًا</strong>، فللمنشأة على الأقل <em>ميزة تنافسية مؤقتة</em>، وانتقل للسؤال التالي.</p>
+
+        <h4>I &mdash; قابلية التقليد: هل تقليده مكلف؟</h4>
+        <p>هل يستطيع المنافسون الحصول عليه أو نسخه إلا بعيب كلفة كبير؟ يصعب التقليد حين يقوم المورد على: <strong>ظروف تاريخية فريدة</strong> (موقع أو سمعة بُنيت عبر عقود)، أو <strong>غموض سببي</strong> (لا يستطيع المنافسون تحديد ما الذي يُنتج الميزة بالضبط)، أو <strong>تعقيد اجتماعي</strong> (ثقافة وثقة وعلاقات لا تُشترى)، أو <strong>حماية قانونية</strong> (براءات وعلامات). فإن سهُل التقليد كانت الميزة <em>مؤقتة</em> فحسب، سينسخها المنافسون. وإن كان مكلفًا، انتقل للسؤال الأخير.</p>
+
+        <h4>O &mdash; التنظيم: هل المنشأة منظَّمة لتحصيل القيمة؟</h4>
+        <p>هل يسمح هيكل المنشأة وأنظمتها وعملياتها وحوافزها وثقافتها باستغلال المورد فعلًا؟ فالمورد القيّم النادر الصعب التقليد الذي لم تُرتَّب المنظمة لاستخدامه يعطي <em>ميزة غير مستغلة</em>، إمكاناتٍ مهدورة. وفقط حين تكون الإجابات الأربع نعم، تملك المنشأة <strong>ميزة تنافسية مستدامة</strong>.</p>
+
+        <h4>سلّم قرار VRIO</h4>
+        <ul>
+          <li>غير قيّم &larr; <strong>عيب</strong> تنافسي.</li>
+          <li>قيّم وغير نادر &larr; <strong>تعادل</strong> تنافسي.</li>
+          <li>قيّم ونادر وسهل التقليد &larr; ميزة <strong>مؤقتة</strong>.</li>
+          <li>قيّم ونادر ومكلف التقليد وغير منظَّم &larr; ميزة <strong>غير مستغلة</strong>.</li>
+          <li>الأربعة معًا &larr; <strong>ميزة تنافسية مستدامة</strong>.</li>
+        </ul>
+        <div class="note"><strong>استخدام VRIO عمليًا:</strong> اجرد موارد المنشأة وقدراتها الرئيسية، ومرّر كلًّا منها على الأسئلة الأربعة، وصنّفها على السلّم. ثم ابنِ الاستراتيجية على موارد الميزة المستدامة، وأصلح «التنظيم O» للموارد غير المستغلة، وتجنّب الرهان على موارد لا تعطي إلا التعادل. ويفسّر VRIO أيضًا <em>لماذا</em> تربح منشأتان في الصناعة نفسها أرباحًا مختلفة بأصول متشابهة، فالفارق في الندرة وقابلية التقليد والتنظيم، لا في القيمة وحدها.</div>
+
+        <div class="note"><strong>الاقتران:</strong> يعطي التحليل الخارجي الفرص والتهديدات؛ ويعطي الداخلي القوة والضعف؛ ومعًا يكتمل مشهد SWOT الذي تُصاغ منه الاستراتيجية.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FORMULATION -->
+  <section class="page" id="formulation">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Strategy Formulation: Vision, Mission &amp; Goals</h2>
+        <p>Formulation converts analysis into direction through three linked elements: the vision, the mission, and the goals and objectives.</p>
+        <h3>The vision</h3>
+        <p>The <strong>vision</strong> embodies what the organization ultimately aims for and directly shapes strategy. It expresses the organization's ideal purpose, describes the clear long-term change resulting from its work, and paints a picture of the ideal future it seeks, for the world, a country, a community, or a specific problem. Good vision drafting is <strong>brief, clear, comprehensive, directional, and logical</strong>. It is built in steps: identify the key problems to address (recognizing the organization's values), imagine the ideal state, then compress it into a memorable statement.</p>
+        <h3>The mission</h3>
+        <p>The <strong>mission</strong> states why the organization exists today: whom it serves, what it provides, and how, the bridge between the far-off vision and daily work. Vision says <em>where we are going</em>; mission says <em>what we do and for whom</em>.</p>
+        <h3>Goals and objectives</h3>
+        <p><strong>Goals</strong> are the broad long-term ends flowing from the mission; <strong>objectives</strong> are the specific, measurable, time-bound targets that operationalize them. The hierarchy runs vision &rarr; mission &rarr; goals &rarr; objectives &rarr; strategy, each level constraining and giving meaning to the next.</p>
+        <p>Good objectives follow the <strong>SMART</strong> pattern: <em>Specific</em> (one clear result), <em>Measurable</em> (a number and a source for it), <em>Achievable</em> (stretching but possible), <em>Relevant</em> (traceable to a goal), and <em>Time-bound</em> (a deadline). "Raise market share" is a wish; "raise market share from 12% to 15% within 18 months" is an objective.</p>
+        <div class="note"><strong>The test of a good formulation:</strong> every employee can connect their daily task to an objective, the objective to a goal, and the goal to the mission; when that chain breaks, strategy stays on paper.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>صياغة الاستراتيجية: الرؤية والرسالة والأهداف</h2>
+        <p>تحوّل الصياغة التحليلَ إلى اتجاه عبر ثلاثة عناصر مترابطة: الرؤية، والرسالة، والغايات والأهداف.</p>
+        <h3>الرؤية</h3>
+        <p>تجسّد <strong>الرؤية</strong> ما تهدف إليه المنظمة في النهاية وتساهم في تشكيل الاستراتيجية مباشرة. فهي تعبّر عن الهدف الأمثل للمنظمة، وتصف التغيير الواضح طويل الأجل الناتج عن عملها، وترسم صورة المستقبل المثالي الذي تسعى إليه، للعالم أو بلد أو مجتمع أو مشكلة محددة. وصياغتها الجيدة تتسم بـ<strong>الاختصار والوضوح والشمول والاتجاه والمنطق</strong>. وتُبنى بخطوات: تحديد المشاكل الرئيسية المراد معالجتها (التعرف على قيم المنظمة)، ثم تخيّل الحالة المثالية، ثم ضغطها في عبارة تُحفَظ.</p>
+        <h3>الرسالة</h3>
+        <p>تنصّ <strong>الرسالة</strong> على سبب وجود المنظمة اليوم: من تخدم، وماذا تقدّم، وكيف، وهي الجسر بين الرؤية البعيدة والعمل اليومي. الرؤية تقول <em>إلى أين نمضي</em>؛ والرسالة تقول <em>ماذا نفعل ولمن</em>.</p>
+        <h3>الغايات والأهداف</h3>
+        <p><strong>الغايات</strong> هي المقاصد العامة طويلة الأجل المنبثقة من الرسالة؛ و<strong>الأهداف</strong> هي المستهدفات المحددة القابلة للقياس والمقيدة زمنيًا التي تُشغّلها. والتسلسل: رؤية &larr; رسالة &larr; غايات &larr; أهداف &larr; استراتيجية، وكل مستوى يقيّد ما يليه ويمنحه المعنى.</p>
+        <p>وتتبع الأهداف الجيدة نمط <strong>SMART</strong>: <em>محددة</em> (نتيجة واحدة واضحة)، و<em>قابلة للقياس</em> (رقم ومصدره)، و<em>قابلة للتحقيق</em> (طموحة لكن ممكنة)، و<em>ذات صلة</em> (تُتتبَّع إلى غاية)، و<em>مقيدة زمنيًا</em> (موعد نهائي). فـ«رفع الحصة السوقية» أمنية؛ أما «رفع الحصة السوقية من 12% إلى 15% خلال 18 شهرًا» فهدف.</p>
+        <div class="note"><strong>اختبار الصياغة الجيدة:</strong> أن يستطيع كل موظف ربط مهمته اليومية بهدف، والهدف بغاية، والغاية بالرسالة؛ فإذا انقطعت السلسلة بقيت الاستراتيجية حبرًا على ورق.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CHOICE -->
+  <section class="page" id="choice">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Strategic Choice: Portfolio Matrices</h2>
+        <p><strong>Strategic choice</strong> is the decision to select one alternative from among the strategic options, the one that best represents the organization's mission and strategic goals. It requires focusing on selected alternatives, evaluating them with analytical tools, and narrowing the options until the most suitable remains.</p>
+        <h3>The BCG (Boston) matrix</h3>
+        <p>Positions each business unit on two axes, <strong>relative market share</strong> and <strong>market growth</strong>, yielding four cells:</p>
+        <ul>
+          <li><strong>Stars:</strong> high share, high growth, invest to hold leadership.</li>
+          <li><strong>Cash cows:</strong> high share, low growth, harvest the cash to fund others.</li>
+          <li><strong>Question marks:</strong> low share, high growth, invest selectively or exit.</li>
+          <li><strong>Dogs:</strong> low share, low growth, divest unless strategically necessary.</li>
+        </ul>
+        <h3>The GE (General Electric) matrix</h3>
+        <p>A richer nine-cell grid rating each unit on <strong>industry attractiveness</strong> and <strong>business strength</strong>, each a weighted composite of several factors, prescribing invest/grow, hold/select, or harvest/divest for each zone. It corrects BCG's two-variable simplicity.</p>
+        <h3>The Shell directional-policy matrix</h3>
+        <p>A similar nine-cell tool rating <strong>sector prospects</strong> against the firm's <strong>competitive position</strong>, guiding units from "leader" and "growth" through "custodial" to "phased withdrawal" and "disinvest."</p>
+        <h3>The TOWS (SWOT-strategy) matrix</h3>
+        <p>Beyond portfolio matrices, the <strong>TOWS matrix</strong> crosses the internal and external analyses to generate four families of strategy:</p>
+        <ul>
+          <li><strong>SO (strengths-opportunities):</strong> offensive strategies that use strengths to seize opportunities.</li>
+          <li><strong>WO (weaknesses-opportunities):</strong> improvement strategies that fix weaknesses in order to reach opportunities.</li>
+          <li><strong>ST (strengths-threats):</strong> defensive strategies that use strengths to blunt threats.</li>
+          <li><strong>WT (weaknesses-threats):</strong> survival strategies that minimize weaknesses and avoid threats, retrench, partner, or exit.</li>
+        </ul>
+        <div class="note"><strong>Using the matrices well:</strong> they organize judgment, not replace it; the scores rest on assumptions about markets and shares that must themselves be examined, and the matrices work best as a shared language for debating where to invest, hold, and exit.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الاختيار الاستراتيجي: مصفوفات المحفظة</h2>
+        <p><strong>الاختيار الاستراتيجي</strong> هو قرار اختيار بديل من بين البدائل الاستراتيجية، البديل الأفضل تمثيلًا لرسالة المنظمة وأهدافها الاستراتيجية. ويتضمن التركيز على بدائل منتقاة، وتقويمها بأدوات تحليلية، وتضييق الخيارات حتى يبقى الأنسب.</p>
+        <h3>مصفوفة بوسطن (BCG)</h3>
+        <p>تموضع كل وحدة أعمال على محورين: <strong>الحصة السوقية النسبية</strong> و<strong>نمو السوق</strong>، فتنتج أربع خلايا:</p>
+        <ul>
+          <li><strong>النجوم:</strong> حصة عالية ونمو عالٍ، استثمر للحفاظ على الريادة.</li>
+          <li><strong>البقرات الحلوب:</strong> حصة عالية ونمو منخفض، احصد النقد لتمويل غيرها.</li>
+          <li><strong>علامات الاستفهام:</strong> حصة منخفضة ونمو عالٍ، استثمر بانتقائية أو اخرج.</li>
+          <li><strong>الكلاب:</strong> حصة ونمو منخفضان، تخلّص منها ما لم تكن ضرورة استراتيجية.</li>
+        </ul>
+        <h3>مصفوفة جنرال إلكتريك (GE)</h3>
+        <p>شبكة أغنى من تسع خلايا تقيّم كل وحدة على <strong>جاذبية الصناعة</strong> و<strong>قوة الأعمال</strong>، وكلٌّ مركّب مرجّح من عدة عوامل، وتصف لكل منطقة: استثمر/انمُ، أو احتفظ/انتقِ، أو احصد/تخارج. وهي تصحّح بساطة بوسطن ذات المتغيرين.</p>
+        <h3>مصفوفة شل للسياسة الاتجاهية</h3>
+        <p>أداة مشابهة من تسع خلايا تقيّم <strong>آفاق القطاع</strong> مقابل <strong>المركز التنافسي</strong> للمنشأة، موجّهةً الوحدات من «القيادة» و«النمو» عبر «الرعاية» إلى «الانسحاب المتدرج» و«التخارج».</p>
+        <h3>مصفوفة TOWS (استراتيجيات SWOT)</h3>
+        <p>إلى جانب مصفوفات المحفظة، تُقاطع <strong>مصفوفة TOWS</strong> التحليلين الداخلي والخارجي لتوليد أربع عائلات من الاستراتيجيات:</p>
+        <ul>
+          <li><strong>SO (قوة-فرص):</strong> استراتيجيات هجومية تستخدم القوة لاقتناص الفرص.</li>
+          <li><strong>WO (ضعف-فرص):</strong> استراتيجيات تحسين تعالج الضعف للوصول إلى الفرص.</li>
+          <li><strong>ST (قوة-تهديدات):</strong> استراتيجيات دفاعية تستخدم القوة لتخفيف التهديدات.</li>
+          <li><strong>WT (ضعف-تهديدات):</strong> استراتيجيات بقاء تقلّل الضعف وتتجنب التهديدات: انكماش أو شراكة أو خروج.</li>
+        </ul>
+        <div class="note"><strong>حسن استخدام المصفوفات:</strong> هي تنظّم الحكم ولا تستبدله؛ فالدرجات تقوم على افتراضات عن الأسواق والحصص يجب فحصها هي نفسها، وتعمل المصفوفات في أفضل حالاتها لغةً مشتركة للنقاش حول أين نستثمر ونحتفظ ونخرج.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. IMPLEMENTATION -->
+  <section class="page" id="implementation">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Strategy Implementation</h2>
+        <p><strong>Implementation</strong> is the series of interlinked activities that carry out the requirements of the chosen strategy. It is where strategy meets reality.</p>
+        <h3>Why implementation decides everything</h3>
+        <p>Success in planning or formulating a strategy does not guarantee success in applying it: many a good strategy has failed because of implementation, and execution can turn a good plan into a failure, or a doubtful plan into a success. Implementation is usually <strong>harder than formulation</strong>, because it consists of actual processes and activities, people, budgets, structures, and deadlines, not concepts.</p>
+        <h3>Formulation and implementation cannot be separated</h3>
+        <p>In theory the two can be distinguished; in practice they cannot be separated. During execution, deviations occur and conditions arise that the plan did not foresee, which requires <strong>re-planning</strong>. Planning does not end where execution begins: it is a continuous process that accompanies implementation, adjusting the strategy as reality answers back.</p>
+        <h3>What implementation requires</h3>
+        <ul>
+          <li>An <strong>organizational structure</strong> aligned with the strategy, and clear assignment of responsibilities.</li>
+          <li><strong>Resources</strong> budgeted to the priorities the strategy set.</li>
+          <li><strong>Leadership and culture</strong> that carry people through the change the strategy demands.</li>
+          <li><strong>Monitoring and evaluation:</strong> performance measures that compare results to the plan and trigger correction, closing the strategic-management cycle.</li>
+        </ul>
+        <h3>Why implementations fail</h3>
+        <p>The recurring causes are well documented: strategy not communicated below top management, resources not reallocated to the new priorities, incentives still rewarding the old behavior, structures left unchanged, no milestones or owners for the key actions, and leadership attention drifting after the launch. Each is preventable, and each is a checklist item for the implementation plan.</p>
+        <div class="note"><strong>The closing loop:</strong> evaluation feeds back into analysis, today's results are tomorrow's data, which is why strategic management is a wheel that keeps turning, not a document that gets filed.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>تطبيق الاستراتيجية</h2>
+        <p><strong>التطبيق</strong> سلسلة من الأنشطة المترابطة التي تنفّذ متطلبات الاستراتيجية المختارة. وهو حيث تلتقي الاستراتيجية بالواقع.</p>
+        <h3>لماذا يحسم التطبيق كل شيء</h3>
+        <p>النجاح في تخطيط الاستراتيجية أو صياغتها لا يضمن بالضرورة النجاح في تطبيقها: فكم من استراتيجية جيدة كُتب لها الفشل بسبب التطبيق، والتنفيذ قد يحوّل خطة جيدة إلى فاشلة، أو خطة مشكوكًا فيها إلى ناجحة. والتطبيق عادةً <strong>أصعب من الصياغة</strong> لأنه يحتوي على عمليات وأنشطة فعلية، أشخاص وميزانيات وهياكل ومواعيد، لا مفاهيم.</p>
+        <h3>الصياغة والتنفيذ لا ينفصلان</h3>
+        <p>يمكن فصلهما نظريًا، لكن واقعيًا لا يمكن. فأثناء التنفيذ تحدث انحرافات وتطرأ ظروف وتغيّرات لم تكن في الخطة، مما يتطلب <strong>إعادة التخطيط</strong>. فلن ينتهي التخطيط حيث يبدأ التنفيذ: بل هو عملية مستمرة ترافق التطبيق وتعدّل الاستراتيجية كلما ردّ الواقع.</p>
+        <h3>ماذا يتطلب التطبيق</h3>
+        <ul>
+          <li><strong>هيكل تنظيمي</strong> متوائم مع الاستراتيجية، وإسناد واضح للمسؤوليات.</li>
+          <li><strong>موارد</strong> مرصودة وفق الأولويات التي حددتها الاستراتيجية.</li>
+          <li><strong>قيادة وثقافة</strong> تحملان الناس عبر التغيير الذي تستلزمه الاستراتيجية.</li>
+          <li><strong>متابعة وتقويم:</strong> مقاييس أداء تقارن النتائج بالخطة وتُطلق التصحيح، فتُغلق دورة الإدارة الاستراتيجية.</li>
+        </ul>
+        <h3>لماذا تفشل التطبيقات</h3>
+        <p>الأسباب المتكررة موثّقة جيدًا: استراتيجية لا تُبلَّغ لمن هم دون الإدارة العليا، وموارد لا يُعاد تخصيصها للأولويات الجديدة، وحوافز ما زالت تكافئ السلوك القديم، وهياكل تُترك دون تغيير، وغياب المعالم والمسؤولين عن الإجراءات الرئيسية، وانصراف انتباه القيادة بعد الإطلاق. وكلٌّ منها قابل للمنع، وكلٌّ بند في قائمة فحص خطة التطبيق.</p>
+        <div class="note"><strong>إغلاق الحلقة:</strong> يرتد التقويم إلى التحليل، فنتائج اليوم بيانات الغد، ولهذا فالإدارة الاستراتيجية عجلة تدور باستمرار لا وثيقة تُحفَظ.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. TAKEAWAYS -->
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <ul>
+          <li>Strategic management is a continuous cycle of analysis, formulation and choice, and implementation and evaluation, aimed at building and keeping competitive advantage.</li>
+          <li>External analysis (macro forces and Porter's five forces) surfaces opportunities and threats; internal analysis (resources, capabilities, value chain) surfaces strengths and weaknesses.</li>
+          <li>Vision, mission, goals, and objectives form a hierarchy that turns analysis into direction, and every employee should be able to trace their work up that chain.</li>
+          <li>Portfolio matrices (BCG, GE, Shell) discipline the choice among alternatives, as shared languages for judgment, not substitutes for it.</li>
+          <li>Implementation is harder than formulation and decides the outcome; planning continues through execution, and evaluation feeds the next cycle.</li>
+        </ul>
+        <div class="conclusion-final"><strong>Bottom line:</strong> strategy is a wheel: analyze honestly, choose deliberately, execute with structure and resources, measure, and turn the wheel again.</div>
+        <h3>References</h3>
+        <ul class="refs">
+          <li>David, F. R. &amp; David, F. R. <a href="https://www.pearson.com/en-us/subject-catalog/p/David-Strategic-Management-A-Competitive-Advantage-Approach-Concepts-and-Cases-Subscription-17th-Edition/P200000005870/9780135203699" target="_blank" rel="noopener"><em>Strategic Management: A Competitive Advantage Approach, Concepts and Cases</em></a>. Pearson.</li>
+          <li>Porter, M. E. <a href="https://hbr.org/2008/01/the-five-competitive-forces-that-shape-strategy" target="_blank" rel="noopener">The Five Competitive Forces That Shape Strategy</a>. Harvard Business Review.</li>
+          <li>Boston Consulting Group. <a href="https://www.bcg.com/about/overview/our-history/growth-share-matrix" target="_blank" rel="noopener">The Growth-Share (BCG) Matrix</a>.</li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>الخلاصة والمراجع</h2>
+        <ul>
+          <li>الإدارة الاستراتيجية دورة مستمرة من التحليل، والصياغة والاختيار، والتطبيق والتقويم، هدفها بناء الميزة التنافسية والحفاظ عليها.</li>
+          <li>يكشف التحليل الخارجي (القوى الكلية وقوى بورتر الخمس) الفرصَ والتهديدات؛ ويكشف الداخلي (الموارد والقدرات وسلسلة القيمة) القوةَ والضعف.</li>
+          <li>تشكّل الرؤية والرسالة والغايات والأهداف تسلسلًا يحوّل التحليل إلى اتجاه، وينبغي أن يستطيع كل موظف تتبّع عمله صعودًا في تلك السلسلة.</li>
+          <li>تضبط مصفوفات المحفظة (بوسطن، جنرال إلكتريك، شل) الاختيارَ بين البدائل، بوصفها لغات مشتركة للحكم لا بدائل عنه.</li>
+          <li>التطبيق أصعب من الصياغة وهو الحاسم؛ والتخطيط يستمر عبر التنفيذ، والتقويم يغذّي الدورة التالية.</li>
+        </ul>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الاستراتيجية عجلة: حلّل بصدق، واختر بقصد، ونفّذ بهيكل وموارد، وقِس، ثم أدر العجلة من جديد.</div>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li>David, F. R. &amp; David, F. R. <a href="https://www.pearson.com/en-us/subject-catalog/p/David-Strategic-Management-A-Competitive-Advantage-Approach-Concepts-and-Cases-Subscription-17th-Edition/P200000005870/9780135203699" target="_blank" rel="noopener"><em>Strategic Management: A Competitive Advantage Approach, Concepts and Cases</em></a>. Pearson.</li>
+          <li>Porter, M. E. <a href="https://hbr.org/2008/01/the-five-competitive-forces-that-shape-strategy" target="_blank" rel="noopener">القوى التنافسية الخمس التي تشكّل الاستراتيجية</a>. Harvard Business Review.</li>
+          <li>Boston Consulting Group. <a href="https://www.bcg.com/about/overview/our-history/growth-share-matrix" target="_blank" rel="noopener">مصفوفة النمو والحصة (BCG)</a>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","concept","external","internal","formulation","choice","implementation","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Managing Innovation &amp; Change: A Bilingual Study Guide</title>
+<meta name="description" content="A bilingual study guide to managing innovation and change: innovation models, culture, organizational change, idea evaluation, and the congruence model.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.22em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">Innovation &amp; Change &middot; Study Guide</span><span data-lang="ar">الابتكار والتغيير &middot; دليل دراسي</span></div>
+    <h1><span data-lang="en">Managing Innovation &amp; Change: A Bilingual Study Guide</span><span data-lang="ar">إدارة الابتكار والتغيير: دليل دراسي</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="innovation"><span data-lang="en">Innovation</span><span data-lang="ar">الابتكار</span></a>
+    <a data-id="change"><span data-lang="en">Organizational Change</span><span data-lang="ar">التغيير التنظيمي</span></a>
+    <a data-id="relationship"><span data-lang="en">Innovation &amp; Change</span><span data-lang="ar">العلاقة بينهما</span></a>
+    <a data-id="models"><span data-lang="en">Innovation Models</span><span data-lang="ar">نماذج الابتكار</span></a>
+    <a data-id="evaluation"><span data-lang="en">Idea Evaluation</span><span data-lang="ar">تقييم الأفكار</span></a>
+    <a data-id="congruence"><span data-lang="en">Congruence Model</span><span data-lang="ar">نموذج التوافق</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways &amp; References</span><span data-lang="ar">الخلاصة والمراجع</span></a>
+  </nav>
+
+  <!-- 1. OVERVIEW -->
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Innovation &amp; Change Management</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">This bilingual study guide covers managing innovation and organizational change, the knowledge, skills, and mindset needed to lead innovation and manage change effectively, and to contribute to an organization's sustainable growth and success.</p>
+        <p>Its arc runs from understanding what innovation is and why it is inevitable, through the nature of organizational change, to the tight relationship between the two, and then to the practical instruments: models that organize innovation, a structured tool for scoring ideas, and the Nadler-Tushman model for diagnosing whether an organization's parts fit together.</p>
+        <h3>The six topics at a glance</h3>
+        <ol>
+          <li><strong>Innovation:</strong> concept, characteristics, and why organizations need it.</li>
+          <li><strong>Organizational change:</strong> meaning, drivers, and importance.</li>
+          <li><strong>The innovation-change relationship</strong> and the culture that feeds both.</li>
+          <li><strong>Innovation models:</strong> linear, open, and others.</li>
+          <li><strong>Idea evaluation:</strong> a five-part scoring tool.</li>
+          <li><strong>The congruence model:</strong> diagnosing organizational fit.</li>
+        </ol>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> إدارة الابتكار والتغيير</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">يغطّي هذا الدليل الدراسي ثنائي اللغة إدارة الابتكار والتغيير التنظيمي: المعرفة والمهارات والعقلية اللازمة لقيادة الابتكار وإدارة التغيير بفعالية، والمساهمة في النمو المستدام للمنظمة ونجاحها.</p>
+        <p>ويمتد مساره من فهم ماهية الابتكار ولماذا هو حتمي، مرورًا بطبيعة التغيير التنظيمي، إلى العلاقة الوثيقة بينهما، ثم إلى الأدوات العملية: نماذج تنظّم الابتكار، وأداة منهجية لتقييم الأفكار بالدرجات، ونموذج نادلر-توشمان لتشخيص مدى توافق مكونات المنظمة.</p>
+        <h3>الموضوعات الستة في لمحة</h3>
+        <ol>
+          <li><strong>الابتكار:</strong> المفهوم والخصائص وحاجة المنظمات إليه.</li>
+          <li><strong>التغيير التنظيمي:</strong> المعنى والمحفّزات والأهمية.</li>
+          <li><strong>العلاقة بين الابتكار والتغيير</strong> والثقافة التي تغذّيهما.</li>
+          <li><strong>نماذج الابتكار:</strong> الخطي والمفتوح وغيرهما.</li>
+          <li><strong>تقييم الأفكار:</strong> أداة تقييم من خمسة أجزاء.</li>
+          <li><strong>نموذج التوافق:</strong> تشخيص الملاءمة التنظيمية.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. INNOVATION -->
+  <section class="page" id="innovation">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Innovation: Concept &amp; Imperative</h2>
+        <p>Definitions of innovation vary across schools of thought, but they converge on a few readings:</p>
+        <ul>
+          <li>By <strong>personal traits</strong> (Simpson): the capacity a person shows to break free of ordinary thinking and follow a new approach.</li>
+          <li>By <strong>orientation:</strong> innovation faces the future; the innovative subject is a genuinely new appearance, not a retreat to the past.</li>
+          <li>By <strong>application:</strong> the practical implementation of a new idea in a way that yields a distinctive advantage for the organization and the user.</li>
+          <li>By <strong>process:</strong> a person using their thinking and mental abilities, with the influences and people around them, to produce something new to them or their environment, useful to their society.</li>
+        </ul>
+        <h3>Innovation and creativity</h3>
+        <p><strong>Creativity</strong> is thinking in new ways, seeing what others do not see, approaching the familiar unfamiliarly, thinking outside the box. <strong>Innovation</strong> is converting those creative ideas into implemented reality that adds value. Creativity supplies the idea; innovation delivers the result.</p>
+        <h3>Characteristics of innovation</h3>
+        <ol>
+          <li>Innovation represents everything that is <strong>new</strong>.</li>
+          <li>Innovation is <strong>differentiation</strong>, standing apart.</li>
+          <li>Innovation is the ability to <strong>discover opportunities</strong>.</li>
+          <li>Innovation is the ability to be the <strong>first mover</strong> in the market.</li>
+        </ol>
+        <h3>Why organizations need innovation</h3>
+        <ul>
+          <li><strong>Surviving competition:</strong> those who do not renew fall behind.</li>
+          <li><strong>Sustainable growth:</strong> new products and markets keep growth alive.</li>
+          <li><strong>Improved efficiency:</strong> better processes cut cost and time.</li>
+          <li><strong>Higher job satisfaction:</strong> people engage more in creative environments.</li>
+          <li><strong>Adapting to change,</strong> especially in the age of digital transformation.</li>
+        </ul>
+        <h3>Types of innovation</h3>
+        <p>Innovation is classified along two axes:</p>
+        <ul>
+          <li><strong>By object:</strong> <em>product</em> innovation (a new good or service), <em>process</em> innovation (a new way of producing or delivering), <em>marketing</em> innovation (new positioning, pricing, or channels), and <em>business-model</em> innovation (a new way of creating and capturing value).</li>
+          <li><strong>By depth:</strong> <em>incremental</em> innovation (continuous small improvements to what exists) versus <em>radical</em> innovation (breakthroughs that create new markets or displace old ones). Most successful organizations run a portfolio of both.</li>
+        </ul>
+        <h3>The stages of innovation</h3>
+        <p>Innovation matures through recognizable stages: sensing an <strong>opportunity</strong> or problem, <strong>generating</strong> creative ideas, <strong>selecting</strong> the most promising, <strong>developing and testing</strong> a prototype, <strong>implementing</strong> at scale, and finally <strong>capturing value</strong> and learning from the outcome, including the failures.</p>
+        <h3>Barriers to innovation, and learning from failure</h3>
+        <p>Common obstacles include fear of failure, short-term financial pressure, rigid hierarchies, "we have always done it this way" cultures, and lack of time or resources for experimentation. The counterweight is treating failure as data: reviewing what was assumed, what proved wrong, and feeding the lesson into the next attempt, so each failure lowers the cost of the following success.</p>
+        <div class="note"><strong>How organizations encourage it:</strong> by building an innovation culture, investing in research and development, empowering employees to experiment, rewarding initiative, opening channels for ideas from every level, and tolerating intelligent failure as a source of learning.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الابتكار: المفهوم والحتمية</h2>
+        <p>تتعدد تعريفات الابتكار بحسب المدارس الفكرية، لكنها تلتقي عند قراءات قليلة:</p>
+        <ul>
+          <li>بحسب <strong>السمات الشخصية</strong> (سيمبسون): ما يبديه المرء من قدرات للتخلص من نمط التفكير العادي واتباع نهج جديد في التفكير.</li>
+          <li>بحسب <strong>التوجّه:</strong> الابتكار توجّه للمستقبل لا ابتعاد عن الماضي؛ والموضوع المبتكَر يمثّل ظهورًا جديدًا حقًا.</li>
+          <li>بحسب <strong>التطبيق:</strong> التطبيق الفعلي لفكرة جديدة في مجال ما بشكل يؤدي إلى قيمة مميزة للمؤسسة والمستخدم.</li>
+          <li>بحسب <strong>العملية:</strong> أن يستخدم الإنسان تفكيره وقدراته العقلية وما يحيط به من مؤثرات وأفراد لينتج نتاجًا جديدًا بالنسبة له أو لبيئته، نافعًا للمجتمع الذي يعيش فيه.</li>
+        </ul>
+        <h3>الابتكار والإبداع</h3>
+        <p><strong>الإبداع</strong> هو التفكير بطرق جديدة: أن ترى ما لا يراه الآخرون، وأن تتناول المألوف بطريقة غير مألوفة، والتفكير خارج الصندوق. و<strong>الابتكار</strong> هو تحويل تلك الأفكار الإبداعية إلى واقع منفَّذ يضيف قيمة. فالإبداع يقدّم الفكرة، والابتكار يسلّم النتيجة.</p>
+        <h3>خصائص الابتكار</h3>
+        <ol>
+          <li>الابتكار يمثّل كل ما هو <strong>جديد</strong>.</li>
+          <li>الابتكار هو <strong>التمايز</strong> والتفرّد.</li>
+          <li>الابتكار قدرة المرء على <strong>اكتشاف الفرص</strong>.</li>
+          <li>الابتكار قدرة المرء على أن يكون <strong>المتحرك الأول</strong> في السوق.</li>
+        </ol>
+        <h3>لماذا تحتاج المنظمات الابتكار</h3>
+        <ul>
+          <li><strong>البقاء في المنافسة:</strong> من لا يتجدّد يتخلّف.</li>
+          <li><strong>النمو المستدام:</strong> المنتجات والأسواق الجديدة تُبقي النمو حيًا.</li>
+          <li><strong>تحسين الكفاءة:</strong> العمليات الأفضل تخفض الكلفة والوقت.</li>
+          <li><strong>زيادة الرضا الوظيفي:</strong> ينخرط الناس أكثر في البيئات الإبداعية.</li>
+          <li><strong>التكيّف مع التغيرات،</strong> خصوصًا في عصر التحول الرقمي.</li>
+        </ul>
+        <h3>أنواع الابتكار</h3>
+        <p>يُصنَّف الابتكار على محورين:</p>
+        <ul>
+          <li><strong>بحسب الموضوع:</strong> ابتكار <em>المنتج</em> (سلعة أو خدمة جديدة)، وابتكار <em>العملية</em> (طريقة جديدة للإنتاج أو التسليم)، وابتكار <em>التسويق</em> (تموضع أو تسعير أو قنوات جديدة)، وابتكار <em>نموذج الأعمال</em> (طريقة جديدة لخلق القيمة وتحصيلها).</li>
+          <li><strong>بحسب العمق:</strong> ابتكار <em>تدريجي</em> (تحسينات صغيرة مستمرة للقائم) مقابل ابتكار <em>جذري</em> (اختراقات تخلق أسواقًا جديدة أو تزيح القديمة). وأنجح المنظمات تدير محفظة من الاثنين.</li>
+        </ul>
+        <h3>مراحل الابتكار</h3>
+        <p>ينضج الابتكار عبر مراحل واضحة: استشعار <strong>فرصة</strong> أو مشكلة، ثم <strong>توليد</strong> الأفكار الإبداعية، ثم <strong>اختيار</strong> الأكثر وعدًا، ثم <strong>تطوير واختبار</strong> نموذج أولي، ثم <strong>التنفيذ</strong> على نطاق واسع، وأخيرًا <strong>تحصيل القيمة</strong> والتعلّم من النتيجة، بما فيها الإخفاقات.</p>
+        <h3>عوائق الابتكار والتعلّم من الفشل</h3>
+        <p>من العقبات الشائعة: الخوف من الفشل، وضغط المدى القصير المالي، والهرميات الجامدة، وثقافة «هكذا عملنا دائمًا»، ونقص الوقت أو الموارد للتجريب. والموازن هو معاملة الفشل كبيانات: مراجعة ما افتُرض وما ثبت خطؤه، وتغذية الدرس في المحاولة التالية، فيخفض كلُّ فشلٍ كلفةَ النجاح الذي يليه.</p>
+        <div class="note"><strong>كيف تشجّعه المنظمات:</strong> ببناء ثقافة ابتكار، والاستثمار في البحث والتطوير، وتمكين الموظفين من التجريب، ومكافأة المبادرة، وفتح قنوات للأفكار من كل المستويات، والتسامح مع الفشل الذكي بوصفه مصدرًا للتعلّم.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. CHANGE -->
+  <section class="page" id="change">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Organizational Change</h2>
+        <p><strong>Organizational change</strong> is the making of adjustments to the organization's goals and policies, or to any element of its structure, whether by creating new organizational arrangements or modifying existing ones, so the organization can reach its goals better. It is also known by several names: the <strong>strategic plan</strong>, <strong>total quality</strong>, <strong>restructuring</strong>, and <strong>reengineering</strong>.</p>
+        <h3>What drives change</h3>
+        <ul>
+          <li>The spread of <strong>strategic planning</strong>, which requires defining new organizational positions and modernizing management tools.</li>
+          <li>The spread of <strong>education and training</strong>, which raises employees' capabilities, skills, and expectations.</li>
+          <li>Changes in <strong>regulations and laws</strong> that oblige new alignments.</li>
+          <li>The spread of <strong>organizational development activities</strong> that improve and diversify how work is done.</li>
+        </ul>
+        <h3>Why change matters: the evidence</h3>
+        <p>A Harris Interactive survey of about 23,000 full-time US employees in core industries found striking gaps:</p>
+        <ul>
+          <li>Only <strong>37%</strong> said they clearly understood their organization's goals and why they were chosen.</li>
+          <li>Only <strong>one in five</strong> was enthusiastic about their organization's and team's goals.</li>
+          <li>Only <strong>one in five</strong> saw a clear link between their tasks and those goals.</li>
+          <li>Only <strong>15%</strong> felt their organization fully enables them to execute the core goals.</li>
+        </ul>
+        <p>Studies also identify gaps between employees and current structures: employees in jobs below their capacity, dull routine work, long hierarchical structures that stifle initiative, all symptoms of organizations that need deliberate change.</p>
+        <h3>How change is led: two classic frameworks</h3>
+        <ul>
+          <li><strong>Lewin's three steps:</strong> <em>unfreeze</em> the current state (create awareness that change is needed), <em>move</em> to the new way of working, then <em>refreeze</em> (stabilize the new state so the organization does not slide back).</li>
+          <li><strong>Kotter's eight steps:</strong> create urgency, build a guiding coalition, form a vision, communicate it, empower action, generate quick wins, consolidate gains, and anchor the change in the culture.</li>
+        </ul>
+        <h3>Managing resistance to change</h3>
+        <p>People resist change for understandable reasons: fear of losing position or competence, uncertainty about the future, habit, and distrust of management. Effective responses, in rising order of cost, are <strong>communication and education</strong>, <strong>participation</strong> (involving people in designing the change), <strong>facilitation and support</strong> (training and time), <strong>negotiation</strong>, and, only when unavoidable, managerial authority. The earlier and more honest the communication, the weaker the resistance.</p>
+        <div class="note"><strong>The takeaway:</strong> change is not a luxury; the data show most organizations run with employees who neither understand nor connect with the goals, and closing that gap is exactly what managed change is for.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>التغيير التنظيمي</h2>
+        <p><strong>التغيير التنظيمي</strong> هو إحداث تعديلات في أهداف وسياسات المنظمة أو في أي عنصر من عناصر هيكلها التنظيمي، سواء باستحداث أوضاع تنظيمية جديدة أو تعديل أوضاع قائمة، بما يمكّن المنظمة من تحقيق أهدافها بشكل أفضل. ويُطلق عليه تسميات عدة: <strong>الخطة الاستراتيجية</strong>، و<strong>الجودة الشاملة</strong>، و<strong>إعادة الهيكلة</strong>، و<strong>الهندرة (Reengineering)</strong>.</p>
+        <h3>محفّزات التغيير</h3>
+        <ul>
+          <li>انتشار <strong>التخطيط الاستراتيجي</strong> الذي يتطلّب تحديد أوضاع تنظيمية جديدة وتحديث أدوات الإدارة.</li>
+          <li>انتشار <strong>التعليم والتدريب</strong> الذي يرفع قدرات الموظفين ومهاراتهم وتوقعاتهم.</li>
+          <li>التغيّرات في <strong>اللوائح والقوانين</strong> التي تُلزم بمواءمات جديدة.</li>
+          <li>انتشار <strong>أنشطة التطوير التنظيمي</strong> التي تحسّن وتنوّع طرق أداء العمل.</li>
+        </ul>
+        <h3>لماذا يهم التغيير: الدليل</h3>
+        <p>وجدت دراسة لمؤسسة هاريس إنتراكتف شملت نحو 23 ألف موظف أمريكي بدوام كامل في الصناعات الأساسية فجوات لافتة:</p>
+        <ul>
+          <li><strong>37%</strong> فقط قالوا إن لديهم فهمًا واضحًا لأهداف منظماتهم وأسباب اختيارها.</li>
+          <li><strong>واحد من خمسة</strong> فقط متحمّس لأهداف منظمته وفريقه.</li>
+          <li><strong>واحد من خمسة</strong> فقط يرى صلة واضحة بين مهامه وتلك الأهداف.</li>
+          <li><strong>15%</strong> فقط شعروا أن منظمتهم تمكّنهم فعلًا من تنفيذ الأهداف الأساسية.</li>
+        </ul>
+        <p>كما تحدّد الدراسات فجوات بين الموظفين والهياكل القائمة: موظفون في وظائف تتحدّى قدراتهم نزولًا، وأعمال روتينية مملة، وهياكل هرمية طويلة تخنق المبادرة، وكلها أعراض منظمات تحتاج تغييرًا مقصودًا.</p>
+        <h3>كيف يُقاد التغيير: إطاران كلاسيكيان</h3>
+        <ul>
+          <li><strong>خطوات لوين الثلاث:</strong> <em>إذابة</em> الوضع الحالي (خلق الوعي بالحاجة للتغيير)، ثم <em>الانتقال</em> إلى طريقة العمل الجديدة، ثم <em>إعادة التجميد</em> (تثبيت الوضع الجديد حتى لا ترتدّ المنظمة).</li>
+          <li><strong>خطوات كوتر الثماني:</strong> خلق الإلحاح، وبناء تحالف قائد، وصياغة رؤية، وإيصالها، وتمكين الفعل، وتحقيق مكاسب سريعة، وترسيخ المكاسب، وتثبيت التغيير في الثقافة.</li>
+        </ul>
+        <h3>إدارة مقاومة التغيير</h3>
+        <p>يقاوم الناس التغيير لأسباب مفهومة: الخوف من فقدان المكانة أو الكفاءة، وعدم اليقين بالمستقبل، والعادة، وانعدام الثقة بالإدارة. والاستجابات الفعّالة، بترتيب كلفة متصاعد: <strong>التواصل والتثقيف</strong>، و<strong>المشاركة</strong> (إشراك الناس في تصميم التغيير)، و<strong>التسهيل والدعم</strong> (تدريب ووقت)، و<strong>التفاوض</strong>، وعند الاضطرار فقط، السلطة الإدارية. وكلما بكّر التواصل وصدق، ضعفت المقاومة.</p>
+        <div class="note"><strong>الخلاصة:</strong> التغيير ليس ترفًا؛ فالبيانات تُظهر أن معظم المنظمات تعمل بموظفين لا يفهمون الأهداف ولا يتصلون بها، وسدّ هذه الفجوة هو بالضبط ما وُجد التغيير المُدار لأجله.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. RELATIONSHIP -->
+  <section class="page" id="relationship">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>The Innovation-Change Relationship</h2>
+        <p>Innovation and change are <strong>two sides of one coin</strong>. Change is the basic engine of life, necessary for development and growth, and innovation is the driving force that leads that change.</p>
+        <h3>An interlocking relationship</h3>
+        <ul>
+          <li><strong>Innovation</strong> is the introduction of new ideas, products, or services.</li>
+          <li><strong>Change</strong> is the process of transforming from one state to another.</li>
+          <li><strong>Change opens the way for innovation:</strong> an adaptable environment makes new ideas easier to adopt.</li>
+          <li><strong>Innovation requires change:</strong> introducing new ideas demands changes in structure, processes, and culture.</li>
+          <li><strong>Innovation drives change and change creates opportunities for innovation:</strong> every shift is a chance to think outside the box, and every genuinely new idea disturbs the status quo.</li>
+        </ul>
+        <h3>Why understanding this link matters</h3>
+        <ul>
+          <li><strong>Adapting to the future:</strong> it helps us cope with accelerating change.</li>
+          <li><strong>Building innovative organizations</strong> that are flexible and able to face challenges.</li>
+          <li><strong>Developing innovation skills</strong> in individuals.</li>
+        </ul>
+        <h3>Challenges and success factors</h3>
+        <p>The main challenges are <strong>resistance to change</strong> and <strong>managing that resistance</strong>. The success factors that answer them are wise leadership, strategic planning, effective communication, managing resistance, and strengthening the culture of innovation.</p>
+        <h3>The ten traits of an innovation-and-change culture, explained</h3>
+        <p>A motivating environment that encourages creative thinking and accepts new ideas shows ten characteristics:</p>
+        <ol>
+          <li><strong>Acceptance of risk:</strong> calculated risks are permitted, and intelligent failure is not punished.</li>
+          <li><strong>Customer focus:</strong> ideas start from real customer problems, not internal preferences.</li>
+          <li><strong>Collaboration:</strong> ideas cross departmental walls and are built jointly.</li>
+          <li><strong>Continuous learning:</strong> training, reading the market, and reviewing every outcome.</li>
+          <li><strong>Measurement:</strong> innovation activity and results are tracked with indicators, not impressions.</li>
+          <li><strong>Systems and processes:</strong> clear channels exist for submitting, screening, and funding ideas.</li>
+          <li><strong>Leadership:</strong> managers model curiosity and protect experiments.</li>
+          <li><strong>Rewards:</strong> recognition and incentives attach to initiative, not only to outcomes.</li>
+          <li><strong>Communication:</strong> goals, priorities, and lessons circulate openly.</li>
+          <li><strong>Celebrating success:</strong> wins are made visible, which fuels the next round of ideas.</li>
+        </ol>
+        <div class="note"><strong>The decisive nuance:</strong> change built on innovation creates added value and competitive advantage; change without innovation merely keeps pace. A telling example is "hidden innovation" in developing an existing product, such as adding a qibla compass to a prayer rug: nothing wholly new was invented, yet an added feature created a new business model and market value.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>العلاقة بين الابتكار والتغيير</h2>
+        <p>الابتكار والتغيير <strong>وجهان لعملة واحدة</strong>. فالتغيير هو المحرك الأساسي للحياة، وهو ضروري للتطور والنمو، والابتكار هو القوة الدافعة التي تقود هذا التغيير.</p>
+        <h3>علاقة مترابطة</h3>
+        <ul>
+          <li><strong>الابتكار:</strong> إدخال أفكار أو منتجات أو خدمات جديدة.</li>
+          <li><strong>التغيير:</strong> عملية تحويل من حالة إلى أخرى.</li>
+          <li><strong>التغيير يفتح المجال للابتكار:</strong> البيئة القابلة للتكيّف تسهّل تبنّي الأفكار الجديدة.</li>
+          <li><strong>الابتكار يتطلب التغيير:</strong> إدخال أفكار جديدة يتطلب تغييرات في الهيكل والعمليات والثقافة.</li>
+          <li><strong>الابتكار محرّك التغيير والتغيير يخلق فرصًا للابتكار:</strong> كل تحوّل فرصة للتفكير خارج الصندوق، وكل فكرة جديدة حقًا تُخِلّ بالوضع القائم.</li>
+        </ul>
+        <h3>لماذا يهم فهم هذه العلاقة</h3>
+        <ul>
+          <li><strong>التكيّف مع المستقبل:</strong> يساعدنا على مواكبة التغيرات المتسارعة.</li>
+          <li><strong>بناء منظمات مبتكرة</strong> مرنة قادرة على مواجهة التحديات.</li>
+          <li><strong>تطوير مهارات الابتكار</strong> لدى الأفراد.</li>
+        </ul>
+        <h3>التحديات وعوامل النجاح</h3>
+        <p>أبرز التحديات <strong>مقاومة التغيير</strong> و<strong>إدارة تلك المقاومة</strong>. وعوامل النجاح التي تجيب عنها: القيادة الرشيدة، والتخطيط الاستراتيجي، والتواصل الفعال، وإدارة المقاومة، وتعزيز ثقافة الابتكار.</p>
+        <h3>خصائص ثقافة الابتكار والتغيير العشر موضَّحة</h3>
+        <p>البيئة المحفّزة التي تشجّع التفكير الإبداعي وتتقبّل الأفكار الجديدة تتّسم بعشر خصائص:</p>
+        <ol>
+          <li><strong>القبول بالمخاطرة:</strong> تُسمَح المخاطر المحسوبة، ولا يُعاقَب الفشل الذكي.</li>
+          <li><strong>التركيز على العملاء:</strong> تبدأ الأفكار من مشكلات العملاء الحقيقية لا من التفضيلات الداخلية.</li>
+          <li><strong>التعاون:</strong> تعبر الأفكار جدران الأقسام وتُبنى بشكل مشترك.</li>
+          <li><strong>التعلّم المستمر:</strong> تدريب، وقراءة للسوق، ومراجعة لكل نتيجة.</li>
+          <li><strong>القياس:</strong> يُتتبَّع نشاط الابتكار ونتائجه بمؤشرات لا انطباعات.</li>
+          <li><strong>الأنظمة والعمليات:</strong> قنوات واضحة لتقديم الأفكار وفرزها وتمويلها.</li>
+          <li><strong>القيادة:</strong> يجسّد المدراء الفضول ويحمون التجارب.</li>
+          <li><strong>المكافآت:</strong> يرتبط التقدير والحوافز بالمبادرة لا بالنتائج وحدها.</li>
+          <li><strong>التواصل:</strong> تتداول الأهداف والأولويات والدروس بانفتاح.</li>
+          <li><strong>الاحتفال بالنجاح:</strong> تُبرَز الانتصارات، فتغذّي الجولة التالية من الأفكار.</li>
+        </ol>
+        <div class="note"><strong>الفارق الحاسم:</strong> التغيير المبني على الابتكار يخلق قيمة مضافة وميزة تنافسية؛ أما التغيير بلا ابتكار فيواكب فقط. ومثال معبّر «الابتكار المبطّن» بتطوير منتج قائم، كإضافة بوصلة قِبلة إلى سجادة صلاة: لم يُخترَع شيء جديد كليًا، لكن ميزة مضافة خلقت نموذج أعمال جديدًا وقيمة سوقية.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. MODELS -->
+  <section class="page" id="models">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Innovation Models</h2>
+        <p><strong>Innovation models</strong> are methodical tools and frameworks that help organizations organize and direct their innovation efforts. They give practical guidance on generating, evaluating, and implementing new ideas, a road map from creative thinking to practical application.</p>
+        <h3>Why organizations need them</h3>
+        <ol>
+          <li><strong>Organization:</strong> a structured approach through the complex landscape of innovation.</li>
+          <li><strong>Focus:</strong> directing effort toward the right opportunities.</li>
+          <li><strong>Collaboration:</strong> aligning people around one process.</li>
+          <li><strong>Success:</strong> raising the odds that creative projects deliver.</li>
+        </ol>
+        <h3>The generic innovation process</h3>
+        <ol>
+          <li><strong>Define the problem</strong> the innovation seeks to solve.</li>
+          <li><strong>Generate ideas</strong> using varied techniques to produce as many as possible.</li>
+          <li><strong>Evaluate ideas</strong> and select the best.</li>
+          <li><strong>Implement:</strong> develop and test the prototype.</li>
+          <li><strong>Market and distribute</strong> the new product or service, and market the idea itself.</li>
+        </ol>
+        <h3>The main model types</h3>
+        <ul>
+          <li><strong>The linear model:</strong> a step-by-step sequence from research to production to marketing. <em>Strengths:</em> simple, easy to apply, suits linear projects with fixed specifications. <em>Weakness:</em> can be slow and unresponsive to market feedback. <em>Example:</em> developing a new drug through sequential trials before approval and launch.</li>
+          <li><strong>The open innovation model:</strong> relies on collaboration with external parties, suppliers, customers, universities, and partners, to generate new ideas, letting knowledge flow in and out of the organization. <em>Strengths:</em> a far wider pool of ideas and shared risk; <em>weakness:</em> demands strong coordination and intellectual-property care.</li>
+        </ul>
+        <h3>Further model types</h3>
+        <ul>
+          <li><strong>The interactive (coupled) model:</strong> replaces the one-way pipeline with feedback loops between research, development, and the market, so market signals reshape the idea along the way.</li>
+          <li><strong>Design thinking:</strong> a human-centered cycle of <em>empathize, define, ideate, prototype, test</em>, powerful when the real problem is understanding the user.</li>
+          <li><strong>The stage-gate model:</strong> ideas pass through defined stages separated by "gates" where they are reviewed against criteria and either advanced, reworked, or killed, disciplining the portfolio.</li>
+        </ul>
+        <h3>Idea-generation techniques</h3>
+        <p>Step two of the process draws on practical tools: <strong>brainstorming</strong> (quantity first, judgment later), <strong>SCAMPER</strong> (substitute, combine, adapt, modify, put to other uses, eliminate, reverse), <strong>mind mapping</strong>, and structured listening to customers and front-line staff.</p>
+        <div class="note"><strong>Choosing a model:</strong> the linear model fits stable, regulated, specification-driven work; open innovation fits fast-moving fields where the best ideas may live outside the organization; stage-gate suits firms managing many ideas at once; design thinking suits user-experience problems. Many organizations blend several.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>نماذج الابتكار</h2>
+        <p><strong>نماذج الابتكار</strong> أدوات وأطر عمل منهجية تساعد المنظمات على تنظيم وتوجيه جهودها الابتكارية. وتقدّم إرشادات عملية لتوليد الأفكار الجديدة وتقييمها وتنفيذها، فهي خارطة طريق من التفكير الإبداعي إلى التطبيق العملي.</p>
+        <h3>لماذا تحتاجها المنظمات</h3>
+        <ol>
+          <li><strong>التنظيم:</strong> نهج منظّم عبر مشهد الابتكار المعقّد.</li>
+          <li><strong>التركيز:</strong> توجيه الجهد نحو الفرص الصحيحة.</li>
+          <li><strong>التعاون:</strong> اصطفاف الأفراد حول عملية واحدة.</li>
+          <li><strong>النجاح:</strong> رفع احتمال أن تُثمر المشاريع الإبداعية.</li>
+        </ol>
+        <h3>عملية الابتكار العامة</h3>
+        <ol>
+          <li><strong>تحديد المشكلة</strong> التي يسعى الابتكار لحلّها.</li>
+          <li><strong>توليد الأفكار</strong> بتقنيات متنوعة لإنتاج أكبر عدد ممكن.</li>
+          <li><strong>تقييم الأفكار</strong> وتحديد أفضلها.</li>
+          <li><strong>تنفيذ الفكرة:</strong> تطوير النموذج الأولي واختباره.</li>
+          <li><strong>التسويق والتوزيع</strong> للمنتج أو الخدمة الجديدة، وتسويق الفكرة ذاتها.</li>
+        </ol>
+        <h3>أنواع النماذج الرئيسية</h3>
+        <ul>
+          <li><strong>النموذج الخطي:</strong> تسلسل متدرّج من البحث إلى الإنتاج إلى التسويق. <em>مزاياه:</em> بسيط وسهل التطبيق ومناسب للمشاريع الخطية ذات المواصفات الثابتة. <em>عيبه:</em> قد يكون بطيئًا وغير مستجيب لملاحظات السوق. <em>مثال:</em> تطوير دواء جديد عبر تجارب متتابعة قبل الإجازة والإطلاق.</li>
+          <li><strong>نموذج الابتكار المفتوح:</strong> يقوم على التعاون مع أطراف خارجية، الموردين والعملاء والجامعات والشركاء، لتوليد أفكار جديدة، فتتدفق المعرفة من المنظمة وإليها. <em>مزاياه:</em> بركة أفكار أوسع بكثير ومخاطرة مشتركة؛ <em>وعيبه:</em> يتطلب تنسيقًا قويًا وعناية بالملكية الفكرية.</li>
+        </ul>
+        <h3>أنواع نماذج أخرى</h3>
+        <ul>
+          <li><strong>النموذج التفاعلي (المزدوج):</strong> يستبدل بالمسار أحادي الاتجاه حلقاتِ تغذية راجعة بين البحث والتطوير والسوق، فتعيد إشارات السوق تشكيل الفكرة في منتصف الطريق.</li>
+          <li><strong>التفكير التصميمي:</strong> دورة متمحورة حول الإنسان: <em>التعاطف، التعريف، توليد الأفكار، النمذجة، الاختبار</em>، وهي قوية حين تكون المشكلة الحقيقية فهم المستخدم.</li>
+          <li><strong>نموذج المراحل والبوابات (Stage-Gate):</strong> تمر الأفكار بمراحل محددة تفصلها «بوابات» تُراجَع عندها وفق معايير فتتقدّم أو تُعاد صياغتها أو تُوقَف، بما يضبط المحفظة.</li>
+        </ul>
+        <h3>تقنيات توليد الأفكار</h3>
+        <p>تستند الخطوة الثانية من العملية إلى أدوات عملية: <strong>العصف الذهني</strong> (الكمية أولًا والحكم لاحقًا)، و<strong>سكامبر SCAMPER</strong> (استبدل، ادمج، كيّف، عدّل، استخدم لغرض آخر، احذف، اعكس)، و<strong>الخرائط الذهنية</strong>، والإصغاء المنظّم للعملاء وموظفي الخط الأمامي.</p>
+        <div class="note"><strong>اختيار النموذج:</strong> يناسب النموذج الخطي الأعمالَ المستقرة المنظَّمة المحكومة بالمواصفات؛ ويناسب الابتكار المفتوح المجالاتِ سريعة الحركة حيث قد تسكن أفضل الأفكار خارج المنظمة؛ ويناسب نموذج المراحل والبوابات المنشآت التي تدير أفكارًا كثيرة معًا؛ ويناسب التفكير التصميمي مشكلات تجربة المستخدم. وتمزج منظمات كثيرة بين عدة نماذج.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. EVALUATION -->
+  <section class="page" id="evaluation">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Evaluating Ideas: A Five-Part Scoring Tool</h2>
+        <p>Before committing resources, an idea is scored systematically. Each item is rated <strong>+1 (high potential), 0 (moderate), or &minus;1 (low)</strong>, and the totals across five parts show whether the idea deserves to proceed.</p>
+        <h3>Part 1: Strength of the business idea</h3>
+        <ul>
+          <li>Does the idea ride an environmental trend, solve a problem, or fill a market gap?</li>
+          <li>Is the timing of market entry right?</li>
+          <li>How much value does it add for the buyer or end user?</li>
+          <li>How satisfied are customers with the competing products already available? (Dissatisfaction is opportunity.)</li>
+          <li>How much must customers change their habits to adopt it? (The less, the better.)</li>
+        </ul>
+        <h3>Part 2: Industry issues</h3>
+        <ul>
+          <li>Number of competitors (fewer is better).</li>
+          <li>Stage of the industry life cycle (emergence and growth beat maturity and decline).</li>
+          <li>Industry growth rate.</li>
+          <li>How essential the industry's products are to customers ("must have" beats "nice to have").</li>
+          <li>Industry operating margins.</li>
+        </ul>
+        <h3>Part 3: Target market and customers</h3>
+        <ul>
+          <li>Can a clear target market be identified for the proposed venture?</li>
+          <li>Can barriers against potential competitors be created?</li>
+          <li>Customers' purchasing power.</li>
+          <li>Ease of making customers aware of the new product.</li>
+          <li>Growth potential of the target market.</li>
+        </ul>
+        <h3>Part 4: Founder-related issues</h3>
+        <ul>
+          <li>The founders' experience in the industry.</li>
+          <li>Their skills as they relate to the product or service.</li>
+          <li>The breadth of their professional and social networks in the industry.</li>
+          <li>How well the venture meets their personal goals and aspirations.</li>
+          <li>The likelihood a capable launch team can be formed.</li>
+        </ul>
+        <h3>Part 5: Financial issues</h3>
+        <ul>
+          <li>Initial capital required, break-even timing, and expected margins, scored on the same scale.</li>
+        </ul>
+        <h3>Reading the scores in practice</h3>
+        <p>With 25 items across the five parts, the total ranges from &minus;25 to +25. As a working rule: a total in the <strong>high positive teens or above</strong> signals a strong candidate for a full feasibility study; a total <strong>around zero</strong> means the idea has promise but weak parts, rework the lowest-scoring section before spending more; a <strong>clearly negative</strong> total argues for setting the idea aside. Just as important as the total is the <em>pattern</em>: a brilliant idea (part 1) can still fail on founder fit (part 4) or financials (part 5), and the scorecard shows exactly where.</p>
+        <h3>Why a structured tool beats intuition</h3>
+        <p>Founders systematically overrate their own ideas, optimism bias, sunk emotional investment, and confirmation seeking all push the same way. A fixed scorecard forces every dimension to be examined, makes assumptions explicit and discussable, and creates a paper trail that improves the <em>next</em> evaluation too.</p>
+        <div class="note"><strong>How to use it:</strong> sum the scores; strongly positive totals justify a full feasibility study, near-zero totals call for reworking the weak parts, and negative totals argue for setting the idea aside, evidence over enthusiasm.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>تقييم الأفكار: أداة من خمسة أجزاء</h2>
+        <p>قبل الالتزام بالموارد، تُقيَّم الفكرة منهجيًا. يُعطى كل بند درجة <strong>+1 (إمكانية عالية) أو 0 (متوسطة) أو &minus;1 (منخفضة)</strong>، ويبيّن مجموع الأجزاء الخمسة هل تستحق الفكرة المتابعة.</p>
+        <h3>الجزء 1: قوة فكرة العمل</h3>
+        <ul>
+          <li>هل تستفيد الفكرة من توجّه بيئي، أو تحل مشكلة، أو تعالج فجوة شاغرة في السوق؟</li>
+          <li>هل توقيت دخول السوق مناسب؟</li>
+          <li>ما القيمة المضافة لمشتريها أو مستخدمها النهائي؟</li>
+          <li>ما مدى رضا العملاء عن المنتجات المنافسة المتوفرة؟ (عدم الرضا فرصة.)</li>
+          <li>ما درجة تغيير الممارسات التي تتطلبها من العملاء؟ (الأقل أفضل.)</li>
+        </ul>
+        <h3>الجزء 2: قضايا الصناعة</h3>
+        <ul>
+          <li>عدد المنافسين (الأقل أفضل).</li>
+          <li>مرحلة دورة حياة الصناعة (الظهور والنمو أفضل من النضج والانحدار).</li>
+          <li>معدل نمو الصناعة.</li>
+          <li>أهمية منتجات الصناعة للعملاء («لابد أن أملك» أفضل من «أود أن يكون»).</li>
+          <li>هوامش تشغيل الصناعة.</li>
+        </ul>
+        <h3>الجزء 3: السوق المستهدف والعملاء</h3>
+        <ul>
+          <li>هل يمكن تحديد سوق مستهدف واضح للمشروع المقترح؟</li>
+          <li>هل يمكن إيجاد حواجز أمام دخول المنافسين المحتملين؟</li>
+          <li>القوة الشرائية للعملاء.</li>
+          <li>سهولة توعية العملاء بالمنتج أو الخدمة الجديدة.</li>
+          <li>إمكانات نمو السوق المستهدفة.</li>
+        </ul>
+        <h3>الجزء 4: قضايا المؤسسين</h3>
+        <ul>
+          <li>خبرة المؤسس أو المؤسسين في الصناعة.</li>
+          <li>مهاراتهم من حيث صلتها بالمنتج أو الخدمة.</li>
+          <li>مدى شبكاتهم المهنية والاجتماعية في الصناعة ذات الصلة.</li>
+          <li>مدى تلبية المشروع للأهداف والتطلعات الشخصية للمؤسسين.</li>
+          <li>إمكانية تكوين فريق لإطلاق المشروع وتنميته.</li>
+        </ul>
+        <h3>الجزء 5: القضايا المالية</h3>
+        <ul>
+          <li>رأس المال الأولي المطلوب، وتوقيت التعادل، والهوامش المتوقعة، على المقياس نفسه.</li>
+        </ul>
+        <h3>قراءة الدرجات عمليًا</h3>
+        <p>مع 25 بندًا عبر الأجزاء الخمسة، يتراوح المجموع من &minus;25 إلى +25. وكقاعدة عملية: المجموع في <strong>العشرات الموجبة العالية فأعلى</strong> يشير إلى مرشح قوي لدراسة جدوى كاملة؛ والمجموع <strong>حول الصفر</strong> يعني فكرة واعدة بأجزاء ضعيفة، فعالج القسم الأدنى درجةً قبل إنفاق المزيد؛ والمجموع <strong>السالب بوضوح</strong> يرجّح ترك الفكرة. ولا يقلّ عن المجموع أهميةً <em>النمط</em>: فالفكرة اللامعة (الجزء 1) قد تفشل رغم ذلك في ملاءمة المؤسسين (الجزء 4) أو المالية (الجزء 5)، والبطاقة تُظهر الموضع بدقة.</p>
+        <h3>لماذا تتفوّق الأداة المنظمة على الحدس</h3>
+        <p>يبالغ المؤسسون منهجيًا في تقدير أفكارهم: انحياز التفاؤل، والاستثمار العاطفي الغارق، والبحث عن التأكيد، كلها تدفع في الاتجاه نفسه. والبطاقة الثابتة تُجبر على فحص كل بُعد، وتجعل الافتراضات صريحة وقابلة للنقاش، وتُنشئ سجلًا يحسّن التقييم <em>التالي</em> أيضًا.</p>
+        <div class="note"><strong>كيفية الاستخدام:</strong> اجمع الدرجات؛ فالمجاميع الموجبة بقوة تبرّر دراسة جدوى كاملة، والقريبة من الصفر تستدعي معالجة الأجزاء الضعيفة، والسالبة ترجّح ترك الفكرة، الدليل قبل الحماس.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CONGRUENCE -->
+  <section class="page" id="congruence">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>The Nadler-Tushman Congruence Model</h2>
+        <p>The <strong>congruence model</strong> is used in change management and organizational-performance analysis. It focuses on the <em>fit</em> between the different elements inside an organization, on the premise that effectiveness comes from alignment.</p>
+        <h3>Objectives of the model</h3>
+        <ul>
+          <li>Analyze how well the organization's components fit one another.</li>
+          <li>Identify the causes of weak organizational performance.</li>
+          <li>Help leaders take effective decisions to improve performance.</li>
+        </ul>
+        <h3>The four components</h3>
+        <ol>
+          <li><strong>Tasks:</strong> the work and activities the organization performs to reach its goals (production operations, services delivered).</li>
+          <li><strong>People:</strong> employees and their abilities, motives, and experience (skills, morale).</li>
+          <li><strong>Structure:</strong> how departments and teams are organized (hierarchy, roles).</li>
+          <li><strong>Culture:</strong> the values, beliefs, and norms prevailing in the organization (innovation, routine, collaboration).</li>
+        </ol>
+        <h3>The congruence principle</h3>
+        <p>Effectiveness is achieved when the four elements are <strong>aligned and consistent</strong>. Misalignment shows up as falling productivity, internal conflict, and resistance to change.</p>
+        <h3>How the model is applied</h3>
+        <ul>
+          <li><strong>The congruence matrix:</strong> a four-by-four grid asking, for each pair, questions such as: do people have the skills the tasks need? does the structure support the tasks and clarify roles? does the culture support the kind of work required, and match the distribution of authority? is the incentive system suitable? Answers are gathered through observation, interviews, and questionnaires.</li>
+          <li><strong>The congruence gap map:</strong> records where fit is missing, for example, "the available skills do not match the required tasks."</li>
+          <li><strong>Before-and-after comparison:</strong> tracks each element through the change (tasks redesigned, internal training delivered, hierarchy simplified) and rates the degree of improvement.</li>
+        </ul>
+        <h3>The six critical pairings</h3>
+        <p>With four components there are six pairwise fits to check, and each has its own diagnostic question:</p>
+        <ol>
+          <li><strong>Tasks-People:</strong> do people have the skills, motivation, and capacity the tasks demand?</li>
+          <li><strong>Tasks-Structure:</strong> does the structure support executing the tasks, or does it slow them with layers and handoffs?</li>
+          <li><strong>Tasks-Culture:</strong> does the culture value the kind of work required (speed, precision, creativity)?</li>
+          <li><strong>People-Structure:</strong> does the structure clarify roles and responsibilities, and give people appropriate authority?</li>
+          <li><strong>People-Culture:</strong> does the incentive and value system fit what actually motivates the people?</li>
+          <li><strong>Structure-Culture:</strong> does the culture match the distribution of authority (a flat culture under a rigid hierarchy will grind)?</li>
+        </ol>
+        <h3>Using the model in a change program</h3>
+        <p>Applied to change, the model works in four moves: <strong>diagnose</strong> the current fit with the matrix (observation, interviews, questionnaires, several methods, since no single one suffices), <strong>map the gaps</strong> on the gap map, <strong>design interventions</strong> aimed at the specific misfits (redesign tasks, train people, simplify the hierarchy, adjust incentives), then <strong>compare before and after</strong> and rate the degree of improvement for each element, repeating until the fits hold.</p>
+        <div class="note"><strong>Why it is powerful:</strong> the model stops leaders from fixing one element in isolation; a new structure fails if the culture opposes it, and trained people underperform if tasks are unclear. Diagnose the <em>fit</em>, not just the parts, and remember that every innovation you introduce is itself a new "task" that must be re-fitted to people, structure, and culture.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>نموذج نادلر-توشمان للتوافق</h2>
+        <p>يُستخدم <strong>نموذج التوافق</strong> في إدارة التغيير وتحليل الأداء التنظيمي. ويركّز على <em>التوافق</em> بين العناصر المختلفة داخل المنظمة، على أساس أن الفعالية تأتي من الاصطفاف.</p>
+        <h3>أهداف النموذج</h3>
+        <ul>
+          <li>تحليل مدى توافق مكونات المنظمة مع بعضها البعض.</li>
+          <li>تحديد أسباب ضعف الأداء التنظيمي.</li>
+          <li>مساعدة القادة على اتخاذ قرارات فعالة لتحسين الأداء.</li>
+        </ul>
+        <h3>المكونات الأربعة</h3>
+        <ol>
+          <li><strong>المهام:</strong> الأعمال والأنشطة التي تقوم بها المنظمة لتحقيق أهدافها (العمليات الإنتاجية، الخدمات المقدمة).</li>
+          <li><strong>الأفراد:</strong> الموظفون وقدراتهم ودوافعهم وخبراتهم (المهارات، الروح المعنوية).</li>
+          <li><strong>الهيكل التنظيمي:</strong> طريقة تنظيم الإدارات والفرق (الهرمية، الأدوار).</li>
+          <li><strong>الثقافة التنظيمية:</strong> القيم والمعتقدات والأعراف السائدة (الابتكار، الروتين، التعاون).</li>
+        </ol>
+        <h3>مبدأ التوافق</h3>
+        <p>تتحقق الفعالية حين تكون العناصر الأربعة <strong>متوافقة ومتناسقة</strong>. ويظهر عدم التوافق في انخفاض الإنتاجية، والصراعات الداخلية، ومقاومة التغيير.</p>
+        <h3>كيفية تطبيق النموذج</h3>
+        <ul>
+          <li><strong>جدول تحليل التوافق الرباعي:</strong> شبكة أربعة في أربعة تسأل لكل زوج أسئلة مثل: هل لدى الأفراد المهارات المناسبة للمهام؟ هل يدعم الهيكل تنفيذ المهام ويوضّح الأدوار؟ هل تدعم الثقافة نوع العمل المطلوب وتتماشى مع توزيع الصلاحيات؟ هل النظام التحفيزي مناسب؟ وتُجمع الإجابات بالمشاهدة والمقابلات والاستبيانات.</li>
+          <li><strong>خريطة فجوات التوافق:</strong> تسجّل مواضع غياب الملاءمة، مثل: «لا يوجد توافق بين المهارات الموجودة والمهام المطلوبة».</li>
+          <li><strong>التحليل المقارن (قبل/بعد):</strong> يتتبّع كل عنصر عبر التغيير (إعادة تصميم المهام، تدريب داخلي، تبسيط التسلسل الإداري) ويقيّم درجة التحسّن.</li>
+        </ul>
+        <h3>الأزواج الستة الحرجة</h3>
+        <p>مع أربعة مكونات هناك ستة توافقات ثنائية يجب فحصها، ولكلٍّ سؤاله التشخيصي:</p>
+        <ol>
+          <li><strong>المهام-الأفراد:</strong> هل لدى الأفراد المهارات والدافعية والطاقة التي تتطلبها المهام؟</li>
+          <li><strong>المهام-الهيكل:</strong> هل يدعم الهيكل تنفيذ المهام أم يبطئها بالطبقات والتسليمات؟</li>
+          <li><strong>المهام-الثقافة:</strong> هل تُثمّن الثقافة نوعَ العمل المطلوب (سرعة، دقة، إبداع)؟</li>
+          <li><strong>الأفراد-الهيكل:</strong> هل يوضّح الهيكل الأدوار والمسؤوليات ويمنح الأفراد صلاحيات مناسبة؟</li>
+          <li><strong>الأفراد-الثقافة:</strong> هل يلائم نظام الحوافز والقيم ما يحفّز الأفراد فعلًا؟</li>
+          <li><strong>الهيكل-الثقافة:</strong> هل تتماشى الثقافة مع توزيع الصلاحيات (ثقافة مسطّحة تحت هرمية جامدة ستتعطّل)؟</li>
+        </ol>
+        <h3>استخدام النموذج في برنامج تغيير</h3>
+        <p>مطبَّقًا على التغيير، يعمل النموذج بأربع حركات: <strong>شخّص</strong> التوافق الحالي بالجدول (مشاهدة ومقابلات واستبيانات، عدة طرق لأن الواحدة لا تكفي)، ثم <strong>ارسم الفجوات</strong> على خريطة الفجوات، ثم <strong>صمّم التدخلات</strong> الموجّهة لمواضع عدم الملاءمة بعينها (إعادة تصميم المهام، تدريب الأفراد، تبسيط التسلسل، تعديل الحوافز)، ثم <strong>قارن قبل وبعد</strong> وقيّم درجة تحسّن كل عنصر، مكرّرًا حتى تثبت التوافقات.</p>
+        <div class="note"><strong>لماذا هو قوي:</strong> يمنع النموذج القادة من إصلاح عنصر واحد بمعزل عن غيره؛ فالهيكل الجديد يفشل إذا عارضته الثقافة، والأفراد المدرَّبون يقصّرون إذا غمُضت المهام. شخّص <em>التوافق</em> لا الأجزاء فقط، وتذكّر أن كل ابتكار تُدخله هو نفسه «مهمة» جديدة يجب إعادة موافقتها مع الأفراد والهيكل والثقافة.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. TAKEAWAYS -->
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <ul>
+          <li>Creativity supplies new thinking; innovation turns it into implemented value, and organizations need it to survive competition, grow sustainably, and adapt.</li>
+          <li>Organizational change adjusts goals, structures, and behavior; the survey evidence shows most employees are disconnected from goals, which is what managed change exists to fix.</li>
+          <li>Innovation and change are two sides of one coin: change built on innovation creates advantage, change without it merely keeps pace.</li>
+          <li>Innovation models (linear, open) give the road map, and a structured five-part scorecard filters ideas before resources are committed.</li>
+          <li>The Nadler-Tushman model diagnoses the fit among tasks, people, structure, and culture, because performance fails at the misaligned joints, not in the parts.</li>
+        </ul>
+        <div class="conclusion-final"><strong>Bottom line:</strong> leading innovation is managing change, and both succeed when culture, structure, people, and tasks pull in the same direction behind ideas that have been tested, not just admired.</div>
+        <h3>References</h3>
+        <ul class="refs">
+          <li>Tidd, J. &amp; Bessant, J. <a href="https://www.wiley.com/en-us/Managing+Innovation%3A+Integrating+Technological%2C+Market+and+Organizational+Change%2C+7th+Edition-p-9781119713302" target="_blank" rel="noopener"><em>Managing Innovation: Integrating Technological, Market and Organizational Change</em></a>. Wiley.</li>
+          <li>Chesbrough, H. <a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=15403" target="_blank" rel="noopener"><em>Open Innovation</em></a>. Harvard Business School Press.</li>
+          <li>Mind Tools. <a href="https://www.mindtools.com/ai36jomb/the-nadler-tushman-congruence-model" target="_blank" rel="noopener">The Nadler-Tushman Congruence Model</a>.</li>
+          <li>Barringer, B. R. &amp; Ireland, R. D. <a href="https://www.pearson.com/en-us/subject-catalog/p/entrepreneurship-successfully-launching-new-ventures/P200000005948" target="_blank" rel="noopener"><em>Entrepreneurship: Successfully Launching New Ventures</em></a>. Pearson. (Idea-evaluation scorecard.)</li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>الخلاصة والمراجع</h2>
+        <ul>
+          <li>يقدّم الإبداع التفكير الجديد؛ ويحوّله الابتكار إلى قيمة منفَّذة، وتحتاجه المنظمات للبقاء في المنافسة والنمو المستدام والتكيّف.</li>
+          <li>يعدّل التغيير التنظيمي الأهداف والهياكل والسلوك؛ وتُظهر أدلة المسوح أن معظم الموظفين منفصلون عن الأهداف، وهذا ما وُجد التغيير المُدار لإصلاحه.</li>
+          <li>الابتكار والتغيير وجهان لعملة واحدة: التغيير المبني على الابتكار يخلق ميزة، ومن دونه يواكب فقط.</li>
+          <li>تمنح نماذج الابتكار (الخطي، المفتوح) خارطة الطريق، وتصفّي بطاقة التقييم الخماسية الأفكار قبل الالتزام بالموارد.</li>
+          <li>يشخّص نموذج نادلر-توشمان التوافق بين المهام والأفراد والهيكل والثقافة، لأن الأداء يفشل عند المفاصل غير المتوافقة لا في الأجزاء.</li>
+        </ul>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> قيادة الابتكار هي إدارة تغيير، وكلاهما ينجح حين تشدّ الثقافة والهيكل والأفراد والمهام في اتجاه واحد خلف أفكار اختُبرت لا أُعجب بها فحسب.</div>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li>Tidd, J. &amp; Bessant, J. <a href="https://www.wiley.com/en-us/Managing+Innovation%3A+Integrating+Technological%2C+Market+and+Organizational+Change%2C+7th+Edition-p-9781119713302" target="_blank" rel="noopener"><em>Managing Innovation: Integrating Technological, Market and Organizational Change</em></a>. Wiley.</li>
+          <li>Chesbrough, H. <a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=15403" target="_blank" rel="noopener"><em>Open Innovation (الابتكار المفتوح)</em></a>. Harvard Business School Press.</li>
+          <li>Mind Tools. <a href="https://www.mindtools.com/ai36jomb/the-nadler-tushman-congruence-model" target="_blank" rel="noopener">نموذج نادلر-توشمان للتوافق</a>.</li>
+          <li>Barringer, B. R. &amp; Ireland, R. D. <a href="https://www.pearson.com/en-us/subject-catalog/p/entrepreneurship-successfully-launching-new-ventures/P200000005948" target="_blank" rel="noopener"><em>Entrepreneurship: Successfully Launching New Ventures</em></a>. Pearson. (بطاقة تقييم الأفكار.)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","innovation","change","relationship","models","evaluation","congruence","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

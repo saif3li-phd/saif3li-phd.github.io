@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NADEC in Iran: A Two-Phase Market-Entry Strategy</title>
+<meta name="description" content="Feasibility study of NADEC's phased entry into Iran's food market: opportunities, sanctions, cultural fit, and a two-phase export-then-manufacture plan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#2E1A47;
+    --offwhite:#F7F4EF;
+    --khuzama:#7A4E9E;
+    --lavender:#C9B8E8;
+    --platinum:#C9CBD1;
+    --card-radius:12px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--purple);
+    color:var(--offwhite);
+    font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;
+    font-weight:400;
+    font-size:16px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  /* Sadu diamond band */
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  /* Cover */
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.28em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:34px;line-height:1.3;color:var(--offwhite);max-width:780px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  /* Navigation */
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  /* Section cards */
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card ul{margin:0 0 14px 20px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;}
+  .note strong{color:var(--khuzama);}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+
+  /* Pager */
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  /* Footer */
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  /* Bilingual */
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul{margin:0 20px 14px 0;}
+  body.lang-ar .note{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){
+    header.cover h1{font-size:26px;}
+    .card{padding:26px 22px;}
+    .card h2{font-size:22px;}
+  }
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">Global Management &middot; Market Entry Study</span><span data-lang="ar">الإدارة العالمية &middot; دراسة دخول السوق</span></div>
+    <h1><span data-lang="en">NADEC in Iran: A Two-Phase Strategy to Enter the Middle East's Second-Largest Economy</span><span data-lang="ar">نادك في إيران: استراتيجية من مرحلتين لدخول ثاني أكبر اقتصاد في الشرق الأوسط</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="introduction"><span data-lang="en">Introduction</span><span data-lang="ar">المقدمة</span></a>
+    <a data-id="analysis"><span data-lang="en">Analysis</span><span data-lang="ar">التحليل</span></a>
+    <a data-id="figures"><span data-lang="en">Key Figures</span><span data-lang="ar">أرقام رئيسية</span></a>
+    <a data-id="conclusion"><span data-lang="en">Conclusion</span><span data-lang="ar">الخلاصة</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">أبرز النقاط</span></a>
+    <a data-id="sources"><span data-lang="en">Sources</span><span data-lang="ar">المصادر</span></a>
+  </nav>
+
+  <!-- OVERVIEW -->
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Global Management</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p>This project evaluates whether NADEC, one of Saudi Arabia's leading food companies, should expand into Iran, the second-largest economy in the Middle East. It analyses Iran's political, economic, social, technological, environmental, and legal environment, maps the competitive landscape and cultural specifics, and weighs NADEC's internal strengths against the risks of the market.</p>
+        <p>The study concludes with a recommended path: a gradual two-phase entry that begins with direct export through trusted local agents and later moves to a joint factory in Mashhad, supported by practical recommendations on partnership, pricing, marketing, and risk management.</p>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الإدارة العالمية</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p>يقيّم هذا المشروع ما إذا كان ينبغي لشركة نادك، إحدى كبرى شركات الأغذية في المملكة العربية السعودية، أن تتوسع إلى إيران، ثاني أكبر اقتصاد في الشرق الأوسط. ويحلل البيئة السياسية والاقتصادية والاجتماعية والتقنية والبيئية والقانونية في إيران، ويرسم صورة للمشهد التنافسي والخصوصيات الثقافية، ويوازن نقاط قوة نادك الداخلية مقابل مخاطر السوق.</p>
+        <p>وتخلص الدراسة إلى مسار موصى به: دخول تدريجي على مرحلتين يبدأ بالتصدير المباشر عبر وكلاء محليين موثوقين، ثم ينتقل إلى مصنع مشترك في مشهد، مدعومًا بتوصيات عملية حول الشراكة والتسعير والتسويق وإدارة المخاطر.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRODUCTION -->
+  <section class="page" id="introduction">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Introduction</h2>
+        <p>Founded in 1981 to strengthen food security and diversify the economy, NADEC has grown into one of Saudi Arabia's core food producers across canned goods, grains, and dairy. As the Saudi market saturates and regional competition intensifies, NADEC is looking to widen its footprint by entering Iran, the second-largest economy in the Middle East after Saudi Arabia and home to a fast-growing food sector.</p>
+        <p>This report frames a full feasibility study of that move. It analyses the external and internal environment, weighs opportunities against risks, and closes with strategic recommendations that respect Iran's cultural and economic particularities.</p>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>المقدمة</h2>
+        <p>تأسست نادك عام 1981 لتعزيز الأمن الغذائي وتنويع الاقتصاد، ونمت لتصبح إحدى ركائز إنتاج الأغذية في السعودية عبر المعلبات والحبوب ومنتجات الألبان. ومع تشبع السوق السعودي واشتداد المنافسة الإقليمية، تتطلع نادك إلى توسيع حضورها بالدخول إلى إيران، ثاني أكبر اقتصاد في الشرق الأوسط بعد السعودية، وصاحبة قطاع غذائي سريع النمو.</p>
+        <p>يأتي هذا التقرير في إطار دراسة متكاملة لجدوى هذا الدخول، فيحلل البيئة الخارجية والداخلية، ويوازن الفرص بالمخاطر، ويختم بتوصيات استراتيجية تراعي الخصوصيات الثقافية والاقتصادية لإيران.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANALYSIS -->
+  <section class="page" id="analysis">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Analysis</h2>
+        <h3>1. External environment (PESTEL)</h3>
+        <p>Politically, Iran is an Islamic republic where the Revolutionary Guard controls vital economic sectors, which can reduce transparency for foreign investors; long-standing US and European sanctions block dealings with Iranian banks and complicate money transfers. Economically, GDP stands at about 401.5 billion USD with roughly 2.5% expected annual growth led by oil and agriculture, though a steadily depreciating rial and high inflation weaken consumer purchasing power. Socially, a population of 86 million, 60% under age 30 and about 75% urban, forms a promising market for processed and convenient foods, alongside rising demand for fresh, halal, and organic products. Technologically, e-commerce is growing around 20% a year on platforms such as Digikala. Environmentally, severe water scarcity and plastic-use restrictions push toward recyclable packaging. Legally, foreign investment generally requires a 51% local partner, profit taxes reach 25%, and imported food must carry Iranian halal certification.</p>
+        <h3>2. Market and competitive landscape</h3>
+        <p>Local suppliers offer raw materials such as dates and almonds but with variable quality; sanctions make direct importing hard and force reliance on intermediaries in countries like Turkey. Domestic players Kalleh (dairy) and Pegah (meat) control about 40% of the market, while international brands like Nestle have only limited presence through local agents. Older consumers prefer local brands for cultural closeness; younger, urban consumers are more open to imports. Traditional markets still dominate, though large retailers such as Hyperme are gaining ground. Entry realistically demands a politically connected local partner to navigate bureaucracy.</p>
+        <h3>3. NADEC's internal strengths</h3>
+        <p>NADEC brings around 40 years of regional experience, a strong distribution network tied to major retail chains, and products certified to global standards including Halal and ISO 22000. Financials are solid: 2024 revenue of about 1.2 billion USD, a healthy 15% net margin, and roughly 50 million USD in cash reserves to fund expansion. The company has modern high-capacity facilities, an efficient supply chain, active R&D, a diversified product portfolio, strong brand trust, and a capable management team experienced in international growth.</p>
+        <h3>4. Why enter Iran now</h3>
+        <p>The strategic case rests on diversifying revenue away from a slowing Saudi market, filling a gap where no leading Arab brand exists against European and Turkish incumbents, responding to rapid urbanisation, and tapping a very large consumer base with rising future purchasing power. A Muslim-majority country creates strong demand for halal products, cultural and religious ties ease acceptance of Arab brands, and success in Iran could open the door to Central Asia and the Caucasus.</p>
+        <h3>5. Risks and constraints</h3>
+        <p>Key risks are political (new sanctions, weak IP protection, administrative corruption), operational (managing local partners, high transport costs, weak infrastructure), cultural (adapting flavours to local taste), economic (exchange-rate volatility, high inflation, transfer restrictions, intense price competition), legal and regulatory (complex licensing, ambiguous law interpretation), and commercial (heavy marketing investment, distribution challenges, possible informal boycotts). Partnership risks around misaligned goals and reputation also apply.</p>
+        <h3>6. Cultural environment</h3>
+        <p>Iran's population skews young: about 40% are aged 18 to 35, with roughly 70 million internet users and wide social-media use. Family drives purchasing decisions, religion shapes consumption with Ramadan and Nowruz as peak seasons, and national pride rewards quality and authenticity. Consumers tend to shop collectively as families, look for quality at a fair price, and place greater trust in established brands. Respect and hospitality are expected in business dealings, Persian is essential for marketing, and local dialects matter when targeting specific regions. Television and satellite channels, growing e-commerce, and digital influencers all shape opinion.</p>
+        <h3>7. Aligning NADEC with Iranian culture</h3>
+        <p>NADEC can align by launching a "Ramadaniyat" line with gold-toned packaging, dates, and natural juices, and by reducing artificial colours in favour of healthier products; marketing through popular apps such as Instagram and Telegram; integrating the Persian language respectfully into materials and slogans while honouring religious and cultural values; developing family-sized, health-oriented products built on local flavours and ingredients; supporting local initiatives and hiring local talent; producing culturally attractive digital content with local influencers; and staying flexible, monitoring reactions and adjusting strategy with patience.</p>
+        <h3>8. Organizational readiness and phased roll-out</h3>
+        <p>NADEC's research and development team can design products suited to Iranian culture, supported by cooperation with Saudi universities to train staff for complex international environments. The roll-out runs in two phases: phase one (2025 to 2027) exports dairy and grain products through local agents, with a focus on dairy and cereals; phase two (2028 onward) establishes a joint factory in Mashhad in partnership with the local firm Sanaye Ghazayi Mashhad to strengthen presence and cut costs.</p>
+        <h3>9. Leadership and talent requirements</h3>
+        <p>Executives leading the entry need Persian fluency, or Iranian managers, to avoid communication gaps; a deep understanding of the Islamic laws that govern business; and strong negotiation skills to manage relations with local authorities. Dedicated training should cover Iranian culture and the fundamentals of operating in a sanctioned environment.</p>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>التحليل</h2>
+        <h3>1. البيئة الخارجية (PESTEL)</h3>
+        <p>سياسيًا، إيران جمهورية إسلامية يسيطر الحرس الثوري فيها على قطاعات اقتصادية حيوية، مما قد يقلل شفافية التعامل مع المستثمرين الأجانب؛ كما تعيق العقوبات الأمريكية والأوروبية طويلة الأمد التعامل مع البنوك الإيرانية وتعقّد تحويل الأموال. اقتصاديًا، يبلغ الناتج المحلي الإجمالي نحو 401.5 مليار دولار بنمو متوقع يقارب 2.5% سنويًا مدفوعًا بالنفط والزراعة، لكن تدهور الريال وارتفاع التضخم يضعفان القوة الشرائية للمستهلكين. اجتماعيًا، يشكّل عدد سكان يبلغ 86 مليون نسمة، 60% منهم تحت سن الثلاثين ونحو 75% حضر، سوقًا واعدة للمنتجات المصنعة والسريعة، مع طلب متزايد على المنتجات الطازجة والحلال والعضوية. تقنيًا، تنمو التجارة الإلكترونية نحو 20% سنويًا عبر منصات مثل Digikala. بيئيًا، تدفع ندرة المياه والقيود على البلاستيك نحو تغليف قابل لإعادة التدوير. قانونيًا، يشترط الاستثمار الأجنبي عادةً شريكًا محليًا بنسبة 51%، وتصل الضرائب على الأرباح إلى 25%، ويجب أن تحمل الأغذية المستوردة شهادة حلال إيرانية.</p>
+        <h3>2. المشهد السوقي والتنافسي</h3>
+        <p>يوفر الموردون المحليون مواد خام مثل التمور واللوز لكن بجودة متغيرة؛ وتصعّب العقوبات الاستيراد المباشر وتفرض الاعتماد على وسطاء من دول مثل تركيا. وتسيطر الشركتان المحليتان كاله (ألبان) وپگاه (لحوم) على نحو 40% من السوق، بينما لا تحضر العلامات العالمية مثل نستله إلا حضورًا محدودًا عبر وكلاء محليين. يفضّل الجيل الأكبر العلامات المحلية لقربها الثقافي، بينما الجيل الأصغر في المدن أكثر انفتاحًا على المستورد. ولا تزال الأسواق التقليدية مسيطرة، مع صعود متاجر كبرى مثل هايبرمي. ويتطلب الدخول واقعيًا شريكًا محليًا ذا نفوذ سياسي لتجاوز البيروقراطية.</p>
+        <h3>3. نقاط قوة نادك الداخلية</h3>
+        <p>تمتلك نادك نحو 40 عامًا من الخبرة الإقليمية، وشبكة توزيع قوية مرتبطة بكبرى سلاسل التجزئة، ومنتجات معتمدة بمعايير عالمية تشمل الحلال وISO 22000. وأوضاعها المالية متينة: إيرادات 2024 نحو 1.2 مليار دولار، وهامش ربح صافٍ صحي 15%، واحتياطيات نقدية تقارب 50 مليون دولار لتمويل التوسع. ولديها مرافق حديثة عالية الطاقة، وسلسلة إمداد فعّالة، واستثمار في البحث والتطوير، ومحفظة منتجات متنوعة، وثقة قوية بالعلامة، وفريق إدارة كفء ذو خبرة دولية.</p>
+        <h3>4. لماذا الدخول إلى إيران الآن</h3>
+        <p>تقوم الحجة الاستراتيجية على تنويع مصادر الدخل بعيدًا عن سوق سعودي متباطئ، وسد فجوة تسويقية لا توجد فيها علامة عربية رائدة أمام منافسين أوروبيين وأتراك، والاستجابة للتحضر السريع، والوصول إلى قاعدة مستهلكين ضخمة ذات قوة شرائية متنامية. فكونها دولة ذات أغلبية مسلمة يخلق طلبًا قويًا على المنتجات الحلال، وتسهّل الروابط الثقافية والدينية قبول العلامات العربية، وقد يفتح النجاح في إيران الباب للتوسع إلى آسيا الوسطى والقوقاز.</p>
+        <h3>5. المخاطر والمحددات</h3>
+        <p>أبرز المخاطر سياسية (عقوبات جديدة، ضعف حماية الملكية الفكرية، الفساد الإداري)، وتشغيلية (إدارة الشركاء المحليين، ارتفاع تكاليف النقل، ضعف البنية التحتية)، وثقافية (تعديل النكهات لتناسب الذوق المحلي)، واقتصادية (تقلب سعر الصرف، ارتفاع التضخم، قيود التحويل، شدة المنافسة السعرية)، وقانونية وتنظيمية (تعقّد التراخيص وغموض تفسير القوانين)، وتجارية (الحاجة لاستثمارات تسويقية كبيرة، تحديات التوزيع، احتمال مقاطعة غير رسمية). كما تنطبق مخاطر الشراكة المتعلقة باختلاف الأهداف والسمعة.</p>
+        <h3>6. البيئة الثقافية</h3>
+        <p>يميل تكوين سكان إيران إلى الشباب: نحو 40% في الفئة العمرية 18 إلى 35، مع قرابة 70 مليون مستخدم للإنترنت واستخدام واسع لوسائل التواصل. تقود العائلة قرارات الشراء، ويشكّل الدين نمط الاستهلاك مع رمضان والنوروز كموسمي ذروة، ويكافئ الفخر الوطني الجودة والأصالة. ويميل المستهلكون إلى التسوق الجماعي كعائلة، ويبحثون عن جودة بسعر مناسب، ويمنحون ثقة أكبر للعلامات الراسخة. والاحترام والضيافة قيمتان متوقعتان في التعاملات التجارية، والفارسية ضرورية للتسويق، وتهم اللهجات المحلية عند استهداف مناطق بعينها. ويشكّل التلفزيون والقنوات الفضائية والتجارة الإلكترونية المتنامية والمؤثرون الرقميون الرأي العام.</p>
+        <h3>7. المواءمة بين نادك والثقافة الإيرانية</h3>
+        <p>يمكن لنادك أن تتواءم عبر إطلاق خط "رمضانيات" بتغليف ذهبي وتمر وعصائر طبيعية، وتقليل الألوان الصناعية لصالح منتجات صحية؛ والتسويق عبر تطبيقات رائجة مثل Instagram وTelegram؛ ودمج اللغة الفارسية باحترام في المواد والشعارات مع مراعاة القيم الدينية والثقافية؛ وتطوير منتجات صحية بأحجام عائلية مبنية على نكهات ومكونات محلية؛ ودعم المبادرات المحلية وتوظيف الكفاءات المحلية؛ وإنتاج محتوى رقمي جذاب ثقافيًا مع مؤثرين محليين؛ والتحلي بالمرونة عبر مراقبة ردود الفعل وتعديل الاستراتيجية بصبر.</p>
+        <h3>8. الجاهزية التنظيمية والدخول المرحلي</h3>
+        <p>يستطيع فريق البحث والتطوير في نادك تصميم منتجات ملائمة للثقافة الإيرانية، مدعومًا بتعاون مع جامعات سعودية لتدريب الكوادر على التعامل مع البيئات الدولية المعقدة. ويجري الدخول على مرحلتين: المرحلة الأولى (2025 إلى 2027) تصدّر منتجات الألبان والحبوب عبر وكلاء محليين مع التركيز على الألبان والحبوب؛ والمرحلة الثانية (2028 وما بعد) تنشئ مصنعًا مشتركًا في مشهد بالشراكة مع شركة "صنایع غذایی مشهد" المحلية لتعزيز الحضور وخفض التكاليف.</p>
+        <h3>9. متطلبات القيادة والكوادر</h3>
+        <p>يحتاج المدراء التنفيذيون المسؤولون عن الدخول إلى إتقان الفارسية أو توظيف مدراء إيرانيين لتفادي فجوات التواصل؛ وفهم عميق للقوانين الإسلامية المنظمة للأعمال؛ ومهارات تفاوض عالية لإدارة العلاقات مع السلطات المحلية. وينبغي توفير تدريب مخصص يغطي الثقافة الإيرانية وأساسيات العمل في بيئة خاضعة للعقوبات.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY FIGURES -->
+  <section class="page" id="figures">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Figures &amp; Insights</h2>
+        <ul>
+          <li>GDP about 401.5 billion USD, expected annual growth around 2.5%.</li>
+          <li>Population 86 million, 60% under 30, urbanisation about 75%, roughly 70 million internet users.</li>
+          <li>About 40% of the population is aged 18 to 35.</li>
+          <li>E-commerce growing around 20% per year.</li>
+          <li>The rial depreciated to roughly 420,000 per USD in 2024.</li>
+          <li>Kalleh and Pegah together control about 40% of the market.</li>
+          <li>NADEC 2024 revenue about 1.2 billion USD, 15% net margin, about 50 million USD cash reserves.</li>
+          <li>Foreign investment: 51% local partnership required, up to 25% profit tax.</li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>أرقام ورؤى رئيسية</h2>
+        <ul>
+          <li>الناتج المحلي الإجمالي نحو 401.5 مليار دولار، بنمو سنوي متوقع نحو 2.5%.</li>
+          <li>عدد السكان 86 مليون، 60% تحت الثلاثين، التحضر نحو 75%، وقرابة 70 مليون مستخدم للإنترنت.</li>
+          <li>نحو 40% من السكان في الفئة العمرية 18 إلى 35.</li>
+          <li>التجارة الإلكترونية تنمو نحو 20% سنويًا.</li>
+          <li>تراجع الريال إلى نحو 420,000 مقابل الدولار في 2024.</li>
+          <li>كاله وپگاه تسيطران معًا على نحو 40% من السوق.</li>
+          <li>إيرادات نادك 2024 نحو 1.2 مليار دولار، هامش صافٍ 15%، واحتياطيات نقدية نحو 50 مليون دولار.</li>
+          <li>الاستثمار الأجنبي: شراكة محلية بنسبة 51% مطلوبة، وضريبة أرباح تصل إلى 25%.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCLUSION -->
+  <section class="page" id="conclusion">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Conclusion &amp; Recommendations</h2>
+        <p>The recommended decision is a gradual, two-phase entry.</p>
+        <h4>Phase one (2025 to 2027)</h4>
+        <p>Direct export of dairy and grain products through trusted local agents.</p>
+        <h4>Phase two (2028 onward)</h4>
+        <p>Invest in a joint factory in Mashhad with the local partner Sanaye Ghazayi Mashhad to strengthen presence and cut costs.</p>
+        <div class="note"><strong>Priority recommendations.</strong> Form a joint team with the Iranian partner for legal and cultural compliance; run quality-awareness campaigns using about 10% of the marketing budget; monitor political risk with specialist advisers; build strong government relations to ease licensing; develop products tuned to Iranian taste; set flexible pricing that accounts for currency swings; and maintain contingency plans for political and economic shocks.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الخلاصة والتوصيات</h2>
+        <p>القرار الموصى به هو دخول تدريجي على مرحلتين.</p>
+        <h4>المرحلة الأولى (2025 إلى 2027)</h4>
+        <p>تصدير مباشر لمنتجات الألبان والحبوب عبر وكلاء محليين موثوقين.</p>
+        <h4>المرحلة الثانية (2028 وما بعد)</h4>
+        <p>الاستثمار في مصنع مشترك في مشهد مع الشريك المحلي "صنایع غذایی مشهد" لتعزيز الحضور وخفض التكاليف.</p>
+        <div class="note"><strong>أبرز التوصيات.</strong> تشكيل فريق مشترك مع الشريك الإيراني لضمان الامتثال القانوني والثقافي؛ وإطلاق حملات توعية بالجودة بنحو 10% من ميزانية التسويق؛ ومراقبة المخاطر السياسية عبر مستشارين متخصصين؛ وبناء علاقات حكومية قوية لتسهيل التراخيص؛ وتطوير منتجات مضبوطة على الذوق الإيراني؛ ووضع تسعير مرن يراعي تقلبات العملة؛ والحفاظ على خطط طوارئ للمخاطر السياسية والاقتصادية.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAKEAWAYS -->
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Key Takeaways</h2>
+        <ul>
+          <li>Iran is a large, young, fast-growing food market where no leading Arab brand yet dominates.</li>
+          <li>NADEC's finances, certifications, and regional experience make expansion feasible.</li>
+          <li>Sanctions, currency instability, and a mandatory local partner are the defining constraints.</li>
+          <li>A phased entry, export first and local manufacturing later, manages risk while building presence.</li>
+          <li>Cultural and religious alignment, especially halal and family-oriented products, is a real competitive edge.</li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>أبرز النقاط</h2>
+        <ul>
+          <li>إيران سوق غذائية كبيرة وشابة وسريعة النمو ولا تهيمن عليها علامة عربية رائدة بعد.</li>
+          <li>تجعل أوضاع نادك المالية وشهاداتها وخبرتها الإقليمية التوسع ممكنًا.</li>
+          <li>العقوبات وعدم استقرار العملة واشتراط شريك محلي هي المحددات الأبرز.</li>
+          <li>الدخول المرحلي، تصدير أولًا ثم تصنيع محلي، يدير المخاطر مع بناء الحضور.</li>
+          <li>المواءمة الثقافية والدينية، خصوصًا الحلال والمنتجات العائلية، ميزة تنافسية حقيقية.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOURCES -->
+  <section class="page" id="sources">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Sources</h2>
+        <ul>
+          <li>World Bank (2023). Iran Economic Outlook. <a href="https://www.worldbank.org/en/country/iran/publication/iran-economic-monitor" target="_blank" rel="noopener">worldbank.org</a></li>
+          <li>International Trade Centre (2024). Food Industry in Iran: Market Analysis. <a href="https://www.intracen.org/resources/tools/trade-map" target="_blank" rel="noopener">intracen.org</a></li>
+          <li>NADEC Annual Report 2024. <a href="https://www.nadec.com/en/investors" target="_blank" rel="noopener">nadec.com</a></li>
+          <li>Statista (2024). Consumer Behaviour in Iran: Food Sector. <a href="https://www.statista.com/outlook/cmo/food/iran" target="_blank" rel="noopener">statista.com</a></li>
+          <li>International Monetary Fund (2023). Exchange Rate Volatility and Its Effect on International Trade. <a href="https://www.imf.org/en/Publications/Occasional-Papers/Issues/2016/12/30/Exchange-Rate-Volatility-and-World-Trade-195" target="_blank" rel="noopener">imf.org</a></li>
+          <li>Observatory of Economic Complexity (OEC). Food Exports from Iran. <a href="https://oec.world/en/profile/country/irn" target="_blank" rel="noopener">oec.world</a></li>
+          <li>Argaam. NADEC Financial Results. <a href="https://www.argaam.com/en/tadawul/tasi/nadec" target="_blank" rel="noopener">argaam.com</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>المصادر</h2>
+        <ul>
+          <li>البنك الدولي (2023). التوقعات الاقتصادية لإيران. <a href="https://www.worldbank.org/en/country/iran/publication/iran-economic-monitor" target="_blank" rel="noopener">worldbank.org</a></li>
+          <li>مركز التجارة الدولية (2024). صناعة الأغذية في إيران: تحليل السوق. <a href="https://www.intracen.org/resources/tools/trade-map" target="_blank" rel="noopener">intracen.org</a></li>
+          <li>تقرير نادك السنوي 2024. <a href="https://www.nadec.com/en/investors" target="_blank" rel="noopener">nadec.com</a></li>
+          <li>ستاتيستا (2024). سلوك المستهلك في إيران: قطاع الأغذية. <a href="https://www.statista.com/outlook/cmo/food/iran" target="_blank" rel="noopener">statista.com</a></li>
+          <li>صندوق النقد الدولي (2023). تقلبات أسعار العملات وأثرها على التجارة الدولية. <a href="https://www.imf.org/en/Publications/Occasional-Papers/Issues/2016/12/30/Exchange-Rate-Volatility-and-World-Trade-195" target="_blank" rel="noopener">imf.org</a></li>
+          <li>مرصد التعقيد الاقتصادي (OEC). صادرات الأغذية من إيران. <a href="https://oec.world/en/profile/country/irn" target="_blank" rel="noopener">oec.world</a></li>
+          <li>أرقام. النتائج المالية لنادك. <a href="https://www.argaam.com/en/tadawul/tasi/nadec" target="_blank" rel="noopener">argaam.com</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","introduction","analysis","figures","conclusion","takeaways","sources"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){
+        var sec = document.getElementById(sid);
+        if(sec){ sec.classList.toggle("active", sid === id); }
+      });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0);
+      nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i > 0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i < order.length - 1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); }
+      else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){
+      p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); });
+    });
+
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){
+        b.classList.toggle("active", b.getAttribute("data-set") === l);
+      });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){
+      b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); });
+    });
+
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

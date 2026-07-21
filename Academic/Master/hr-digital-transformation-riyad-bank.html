@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Impact of Digital Transformation on Internal HR Practices at Riyad Bank</title>
+<meta name="description" content="An environmental analysis of how digital transformation reshapes internal HR practices at Riyad Bank: culture, leadership, resources, and structure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.28em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:34px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:30px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:22px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">Human Resources &amp; Digital Transformation</span><span data-lang="ar">الموارد البشرية والتحول الرقمي</span></div>
+    <h1><span data-lang="en">The Impact of Digital Transformation on Internal HR Practices at Riyad Bank</span><span data-lang="ar">تأثير التحول الرقمي على ممارسات الموارد البشرية الداخلية في بنك الرياض</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="factors"><span data-lang="en">Internal Factors</span><span data-lang="ar">العوامل الداخلية</span></a>
+    <a data-id="culture"><span data-lang="en">Culture</span><span data-lang="ar">الثقافة</span></a>
+    <a data-id="leadership"><span data-lang="en">Digital Leadership</span><span data-lang="ar">القيادة الرقمية</span></a>
+    <a data-id="resources"><span data-lang="en">Resources</span><span data-lang="ar">الموارد</span></a>
+    <a data-id="structure"><span data-lang="en">Structure</span><span data-lang="ar">الهيكل التنظيمي</span></a>
+    <a data-id="conclusion"><span data-lang="en">Conclusion</span><span data-lang="ar">الخاتمة</span></a>
+    <a data-id="sources"><span data-lang="en">Sources &amp; Notes</span><span data-lang="ar">المصادر</span></a>
+  </nav>
+
+  <!-- 1. OVERVIEW -->
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Human Resources &amp; Digital Transformation</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">This environmental analysis examines how digital transformation reshapes internal human resources practices at Riyad Bank, viewed through four internal factors: organizational culture, digital leadership, available resources, and organizational structure.</p>
+        <p>Each factor is analyzed both in itself and in terms of how it changes HR practices, from flexible-work policies and reskilling to data-driven decisions and redesigned roles. The picture that emerges is that digital transformation is not merely the adoption of new tools, but a deeper shift in culture, leadership, and structure that HR policy must keep pace with.</p>
+        <div class="note"><strong>Note on scope:</strong> This is an individual course assignment. The specific systems and figures cited illustrate the analysis and reflect the assignment's framing; they are not independently verified official disclosures by Riyad Bank.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الموارد البشرية والتحول الرقمي</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">يتناول هذا التحليل البيئي كيف يعيد التحول الرقمي تشكيل ممارسات الموارد البشرية الداخلية في بنك الرياض، من خلال أربعة عوامل داخلية: الثقافة التنظيمية، والقيادة الرقمية، والموارد المتاحة، والهيكل التنظيمي.</p>
+        <p>يُحلَّل كل عامل في ذاته، ومن حيث كيفية تغييره لممارسات الموارد البشرية، من سياسات العمل المرن وإعادة التأهيل، إلى القرارات المستندة إلى البيانات وإعادة تصميم الأدوار. والصورة التي تتضح هي أن التحول الرقمي ليس مجرد تبنٍّ لأدوات جديدة، بل تحوّل أعمق في الثقافة والقيادة والهيكل، يجب أن تواكبه سياسات الموارد البشرية.</p>
+        <div class="note"><strong>ملاحظة حول النطاق:</strong> هذا واجب فردي ضمن مقرر دراسي. الأنظمة والأرقام المذكورة تُوضّح التحليل وتعكس إطاره، وليست إفصاحات رسمية موثّقة ومستقلة من بنك الرياض.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. FACTORS -->
+  <section class="page" id="factors">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Internal Factors Shaping Digital Transformation</h2>
+        <p>Four internal factors form the system that determines the success of digital transformation in HR at Riyad Bank.</p>
+        <h3>Organizational culture</h3>
+        <p>The shared values and beliefs that guide behavior in the bank. A culture of innovation and continuous learning makes employees more willing to adopt new technology and adapt to change.</p>
+        <h3>Digital leadership</h3>
+        <p>Senior management sets the direction and strategy of transformation, creates an environment that motivates innovation, manages resistance to change, and reduces the obstacles to technological integration.</p>
+        <h3>Available resources</h3>
+        <p>The material, technical, and human capacities the bank holds. Advanced digital infrastructure and information systems ease the adoption of smart solutions such as AI and data analytics, while qualified, trained people sustain the effort.</p>
+        <h3>Organizational structure</h3>
+        <p>The framework that distributes authority and responsibility. Flexible, adaptable structures speed up team integration and decision-making, which matters in a fast-changing digital environment.</p>
+        <div class="note"><strong>How they connect:</strong> Leadership support for an innovative culture drives adoption of new tools, technological resources enable flexible internal structures, and an adaptable culture with trained leaders provides fertile ground for sustainable growth.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>العوامل الداخلية المؤثرة في التحول الرقمي</h2>
+        <p>تُشكّل أربعة عوامل داخلية النظام الذي يحدّد نجاح التحول الرقمي في الموارد البشرية ببنك الرياض.</p>
+        <h3>الثقافة التنظيمية</h3>
+        <p>القيم والمعتقدات المشتركة التي توجّه السلوك داخل البنك. وثقافة الابتكار والتعلّم المستمر تجعل الموظفين أكثر تقبّلًا للتقنية الحديثة وأقدر على التكيّف مع التغيير.</p>
+        <h3>القيادة الرقمية</h3>
+        <p>تحدّد الإدارة العليا اتجاه التحول واستراتيجيته، وتخلق بيئة محفّزة للابتكار، وتدير مقاومة التغيير، وتقلّل العقبات أمام الدمج التكنولوجي.</p>
+        <h3>الموارد المتاحة</h3>
+        <p>الإمكانات المادية والتقنية والبشرية التي يملكها البنك. فالبنية التحتية الرقمية المتطورة وأنظمة المعلومات المتقدمة تُسهّل تبنّي الحلول الذكية مثل الذكاء الاصطناعي وتحليل البيانات، بينما تُديم الكوادر المؤهّلة والمدرَّبة هذا الجهد.</p>
+        <h3>الهيكل التنظيمي</h3>
+        <p>الإطار الذي يوزّع السلطات والمسؤوليات. والهياكل المرنة القابلة للتكيّف تُسرّع التكامل بين الفرق واتخاذ القرارات، وهو أمر مهم في بيئة رقمية سريعة التغيّر.</p>
+        <div class="note"><strong>كيف تترابط:</strong> يدفع دعم القيادة لثقافة الابتكار إلى تبنّي أدوات جديدة، وتتيح الموارد التكنولوجية هياكل داخلية مرنة، وتوفّر الثقافة القابلة للتكيّف مع قيادات مدرَّبة أرضية خصبة لنموٍّ مستدام.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. CULTURE -->
+  <section class="page" id="culture">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Organizational Culture and Its HR Impact</h2>
+        <p>Culture plays a central role in easing digital transformation by encouraging employees to use new technology and supporting innovation. Riyad Bank works to build a change-ready environment through modern digital tools that aid collaboration and information sharing, alongside transparency and open communication and continuous training that raises satisfaction.</p>
+        <h3>Effect on HR practices</h3>
+        <ul>
+          <li><strong>Flexible-work policies:</strong> support for remote work and continuous learning to raise flexibility and efficiency.</li>
+          <li><strong>Updated training:</strong> programs focused on the digital skills the transformation requires.</li>
+          <li><strong>Encouraging innovation:</strong> rewards for employees who use technology and create digital solutions.</li>
+          <li><strong>Digital communication:</strong> stronger digital channels and modern collaborative tools.</li>
+        </ul>
+        <p>A challenge remains in changing old habits, which is why continuous training and awareness are needed to secure acceptance of change.</p>
+        <div class="note"><strong>Illustrative digital tools cited:</strong> Oracle ME for employee experience, Oracle Talent Management, Microsoft communication tools, and an Oracle Chatbot within Oracle Cloud HCM for smart-chat collaboration.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الثقافة التنظيمية وأثرها على الموارد البشرية</h2>
+        <p>تلعب الثقافة دورًا محوريًا في تسهيل التحول الرقمي عبر تشجيع الموظفين على استخدام التقنيات الجديدة ودعم الابتكار. ويعمل بنك الرياض على بناء بيئة داعمة للتغيير من خلال أدوات رقمية حديثة تساعد على التعاون وتبادل المعلومات، مع تعزيز الشفافية والتواصل المفتوح، وبرامج تدريب مستمرة ترفع رضا الموظفين.</p>
+        <h3>الأثر على ممارسات الموارد البشرية</h3>
+        <ul>
+          <li><strong>سياسات العمل المرن:</strong> دعم العمل من المنزل والتعلّم المستمر لزيادة المرونة والكفاءة.</li>
+          <li><strong>تحديث التدريب:</strong> برامج تركّز على المهارات الرقمية التي يتطلّبها التحول.</li>
+          <li><strong>تشجيع الابتكار:</strong> مكافآت للموظفين الذين يستخدمون التقنية ويبتكرون حلولًا رقمية.</li>
+          <li><strong>التواصل الرقمي:</strong> تعزيز القنوات الرقمية والأدوات التعاونية الحديثة.</li>
+        </ul>
+        <p>ويبقى التحدي في تغيير العادات القديمة، ولذلك يلزم تدريب وتوعية مستمران لضمان قبول الموظفين للتغيير.</p>
+        <div class="note"><strong>أدوات رقمية توضيحية مذكورة:</strong> منصة Oracle ME لتجربة الموظفين، ونظام Oracle Talent Management، وأدوات مايكروسوفت للتواصل، وأداة Oracle Chatbot المدمجة في Oracle Cloud HCM للتعاون عبر الدردشة الذكية.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. LEADERSHIP -->
+  <section class="page" id="leadership">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Digital Leadership and Its HR Impact</h2>
+        <p>Digital leadership is a cornerstone of transformation at Riyad Bank, coordinating effort and organizing operations in line with the digital age.</p>
+        <ul>
+          <li><strong>Strategic vision:</strong> a clear direction for transformation that steers effort and resources toward the bank's future goals and competitiveness.</li>
+          <li><strong>Data-driven decisions:</strong> advanced analytics and AI turn large data into smart, considered decisions.</li>
+          <li><strong>Leading teams:</strong> effective leadership that motivates, supports innovation and collaboration, and develops team skills.</li>
+        </ul>
+        <h3>Effect on HR practices</h3>
+        <ul>
+          <li><strong>Leader-selection policies:</strong> criteria that favor advanced digital skills and the ability to lead change.</li>
+          <li><strong>Specialized training:</strong> intensive programs to deepen leaders' grasp of emerging technologies.</li>
+          <li><strong>Leading by data:</strong> a data-led approach to decisions that strengthens transparency and accuracy in evaluation and career planning.</li>
+        </ul>
+        <p>This shift in leadership style focuses HR strategy on building employee capability and empowerment, which strengthens organizational commitment and lifts performance.</p>
+        <div class="note"><strong>Illustrative tools cited:</strong> Oracle Analytics Cloud for advanced performance analysis and workforce planning, and Oracle Fusion HCM dashboards for real-time performance indicators.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>القيادة الرقمية وأثرها على الموارد البشرية</h2>
+        <p>تُعدّ القيادة الرقمية ركيزة أساسية للتحول في بنك الرياض، إذ تنسّق الجهود وتنظّم العمليات بما يتماشى مع العصر الرقمي.</p>
+        <ul>
+          <li><strong>الرؤية الاستراتيجية:</strong> اتجاه واضح للتحول يوجّه الجهود والموارد نحو أهداف البنك المستقبلية وقدرته التنافسية.</li>
+          <li><strong>القرارات المستندة إلى البيانات:</strong> تحوّل التحليلات المتقدمة والذكاء الاصطناعي البيانات الضخمة إلى قرارات ذكية مدروسة.</li>
+          <li><strong>قيادة فرق العمل:</strong> قيادة فعّالة تحفّز وتدعم الابتكار والتعاون وتطوّر مهارات الفرق.</li>
+        </ul>
+        <h3>الأثر على ممارسات الموارد البشرية</h3>
+        <ul>
+          <li><strong>سياسات اختيار القيادات:</strong> معايير تفضّل المهارات الرقمية المتقدمة والقدرة على قيادة التغيير.</li>
+          <li><strong>برامج تدريبية متخصصة:</strong> برامج مكثّفة لتعميق فهم القادة للتقنيات الناشئة.</li>
+          <li><strong>القيادة بالبيانات:</strong> منهجية قائمة على البيانات في اتخاذ القرار تعزّز الشفافية والدقة في التقييم وتخطيط المسارات الوظيفية.</li>
+        </ul>
+        <p>هذا التحوّل في نمط القيادة يجعل استراتيجية الموارد البشرية تركّز على بناء قدرات الموظفين وتمكينهم، بما يعزّز الالتزام التنظيمي ويحسّن الأداء.</p>
+        <div class="note"><strong>أدوات توضيحية مذكورة:</strong> Oracle Analytics Cloud للتحليل المتقدم للأداء وتخطيط القوى العاملة، ولوحات تحكم Oracle Fusion HCM لمتابعة مؤشرات الأداء بشكل مباشر.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. RESOURCES -->
+  <section class="page" id="resources">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Available Resources and Their HR Impact</h2>
+        <p>Riyad Bank invests heavily in technical and human resources to support transformation, resting on four pillars.</p>
+        <ul>
+          <li><strong>Digital infrastructure:</strong> investment in advanced systems and technologies for HR operations.</li>
+          <li><strong>Human talent:</strong> attracting and developing specialists in digital technologies.</li>
+          <li><strong>Cloud solutions:</strong> reliance on cloud platforms for flexibility and scalability.</li>
+          <li><strong>Technical integration:</strong> linking HR systems with financial and operational processes.</li>
+        </ul>
+        <h3>Estimated effect on HR work</h3>
+        <p>The analysis estimates the following gains from digital resources in HR:</p>
+        <div class="stats">
+          <div class="stat"><div class="num">48%</div><div class="lbl">less time on routine tasks</div></div>
+          <div class="stat"><div class="num">30%</div><div class="lbl">cost savings via remote work</div></div>
+          <div class="stat"><div class="num">32%</div><div class="lbl">improved training efficiency</div></div>
+        </div>
+        <p>Automating processes such as attendance and performance management reduces errors and speeds decisions, while continuous analysis of employee data improves training and career growth, making HR more flexible and focused on satisfaction and productivity.</p>
+        <div class="note"><strong>Illustrative tools cited:</strong> Oracle Workforce Management, Oracle Financials Cloud, and Oracle cloud platforms. The percentages above are illustrative figures from the assignment and are not sourced disclosures.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الموارد المتاحة وأثرها على الموارد البشرية</h2>
+        <p>يستثمر بنك الرياض بشكل كبير في الموارد التقنية والبشرية لدعم التحول، بالاستناد إلى أربع ركائز.</p>
+        <ul>
+          <li><strong>البنية التحتية الرقمية:</strong> استثمار في الأنظمة والتقنيات المتطورة لعمليات الموارد البشرية.</li>
+          <li><strong>المواهب البشرية:</strong> استقطاب وتطوير الكفاءات المتخصصة في التقنيات الرقمية.</li>
+          <li><strong>الحلول السحابية:</strong> الاعتماد على المنصات السحابية لتعزيز المرونة وإمكانية التوسّع.</li>
+          <li><strong>التكامل التقني:</strong> ربط أنظمة الموارد البشرية بالعمليات المالية والتشغيلية.</li>
+        </ul>
+        <h3>الأثر المقدَّر على عمل الموارد البشرية</h3>
+        <p>يقدّر التحليل المكاسب التالية من الموارد الرقمية في الموارد البشرية:</p>
+        <div class="stats">
+          <div class="stat"><div class="num">48%</div><div class="lbl">تقليل وقت المهام الروتينية</div></div>
+          <div class="stat"><div class="num">30%</div><div class="lbl">توفير التكاليف عبر العمل عن بُعد</div></div>
+          <div class="stat"><div class="num">32%</div><div class="lbl">تحسين كفاءة التدريب</div></div>
+        </div>
+        <p>تُقلّل أتمتة الإجراءات مثل متابعة الحضور وإدارة الأداء من الأخطاء وتُسرّع القرارات، بينما يُحسّن التحليل المستمر لبيانات الموظفين برامج التدريب والنمو الوظيفي، بما يجعل الموارد البشرية أكثر مرونة وتركيزًا على الرضا والإنتاجية.</p>
+        <div class="note"><strong>أدوات توضيحية مذكورة:</strong> Oracle Workforce Management، وOracle Financials Cloud، ومنصات Oracle السحابية. والنسب أعلاه أرقام توضيحية من الواجب وليست إفصاحات موثّقة بمصدر.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. STRUCTURE -->
+  <section class="page" id="structure">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Organizational Structure and Its HR Impact</h2>
+        <p>Digital transformation calls for flexible structures that support cross-department collaboration. Structures move along a spectrum:</p>
+        <ul>
+          <li><strong>Traditional structures:</strong> hierarchical and fixed.</li>
+          <li><strong>Network structures:</strong> strengthen collaboration between departments.</li>
+          <li><strong>Flexible structures:</strong> encourage innovation and rapid adaptation.</li>
+        </ul>
+        <h3>Effect on HR practices</h3>
+        <ul>
+          <li><strong>Hybrid work model:</strong> policies blending office and remote work to raise flexibility and productivity.</li>
+          <li><strong>Job redesign:</strong> updated job descriptions to match new digital tasks and an advanced technological environment.</li>
+          <li><strong>Stronger communication:</strong> unified platforms that ease exchange of information and expertise across departments.</li>
+        </ul>
+        <p>A change in structure reshapes HR roles and strengthens HR's ability to support the bank's strategy against future challenges.</p>
+        <div class="note"><strong>Illustrative tools cited:</strong> Oracle Project Management Cloud for cross-functional projects, Oracle Visual Builder for internal apps, and Oracle Web Conferencing with live translation for virtual meetings across branches.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الهيكل التنظيمي وأثره على الموارد البشرية</h2>
+        <p>يتطلّب التحول الرقمي هياكل مرنة تدعم التعاون بين الأقسام. وتتحرّك الهياكل على متصل:</p>
+        <ul>
+          <li><strong>الهياكل التقليدية:</strong> هرمية وثابتة.</li>
+          <li><strong>الهياكل الشبكية:</strong> تعزّز التعاون بين الأقسام.</li>
+          <li><strong>الهياكل المرنة:</strong> تشجّع الابتكار والتكيّف السريع.</li>
+        </ul>
+        <h3>الأثر على ممارسات الموارد البشرية</h3>
+        <ul>
+          <li><strong>نموذج العمل الهجين:</strong> سياسات تمزج العمل المكتبي والعمل عن بُعد لتعزيز المرونة والإنتاجية.</li>
+          <li><strong>إعادة تصميم الوظائف:</strong> تحديث التوصيفات الوظيفية لتناسب المهام الرقمية الجديدة وبيئة تكنولوجية متطورة.</li>
+          <li><strong>تعزيز التواصل:</strong> منصات موحّدة تُسهّل تبادل المعلومات والخبرات بين الإدارات.</li>
+        </ul>
+        <p>ويؤدي التغيير في الهيكل إلى إعادة تشكيل أدوار الموارد البشرية وتعزيز قدرتها على دعم استراتيجية البنك في مواجهة تحديات المستقبل.</p>
+        <div class="note"><strong>أدوات توضيحية مذكورة:</strong> Oracle Project Management Cloud لإدارة المشاريع متعددة التخصصات، وOracle Visual Builder لتصميم التطبيقات الداخلية، وOracle Web Conferencing مع الترجمة الفورية للاجتماعات الافتراضية بين الفروع.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CONCLUSION -->
+  <section class="page" id="conclusion">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Conclusion: The Future of Digital Transformation</h2>
+        <ul>
+          <li><strong>A radical change:</strong> digital transformation is not only using new technology but a significant shift in the bank's culture, leadership, and internal structure, demanding new ideas and the flexibility to adapt quickly.</li>
+          <li><strong>Updating policies:</strong> as technology advances, HR policies must be updated to fit digital requirements, improving recruitment, training staff in digital skills, and building a technology-supportive work environment.</li>
+          <li><strong>Staying competitive:</strong> amid strong competition in digital banking, the bank must invest in modern technologies, adopt flexible ways of working, and build advanced employee skills to remain a competitive force and achieve sustainable growth.</li>
+        </ul>
+        <div class="conclusion-final"><strong>Bottom line:</strong> At Riyad Bank, digital transformation reshapes HR roles across culture, leadership, resources, and structure. Sustaining a competitive edge depends on continuously updating HR policy to keep pace with that change.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>الخاتمة: مستقبل التحول الرقمي</h2>
+        <ul>
+          <li><strong>التغيّر الجذري:</strong> التحول الرقمي ليس فقط استخدام تقنيات جديدة، بل تحوّل مهم في ثقافة البنك وقيادته وبنيته الداخلية، يتطلّب أفكارًا جديدة والمرونة للتكيّف بسرعة.</li>
+          <li><strong>تحديث السياسات:</strong> مع تسارع التطور التقني، يجب تحديث سياسات الموارد البشرية لتناسب المتطلبات الرقمية، بتحسين التوظيف، وتدريب الموظفين على المهارات الرقمية، وبناء بيئة عمل داعمة للتكنولوجيا.</li>
+          <li><strong>الاستمرار في المنافسة:</strong> في ظل المنافسة القوية في القطاع المصرفي الرقمي، على البنك أن يستثمر في التقنيات الحديثة، ويتبنّى أساليب عمل مرنة، ويبني مهارات موظفين متقدمة ليبقى قوة تنافسية ويحقّق نموًا مستدامًا.</li>
+        </ul>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> في بنك الرياض، يعيد التحول الرقمي تشكيل أدوار الموارد البشرية عبر الثقافة والقيادة والموارد والهيكل. ويتوقف الحفاظ على الميزة التنافسية على التحديث المستمر لسياسات الموارد البشرية لمواكبة هذا التغيير.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. SOURCES -->
+  <section class="page" id="sources">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>Sources &amp; Notes</h2>
+        <p>The bank-specific system deployments and the percentage figures illustrate the analysis and are not independently verified disclosures by Riyad Bank. The references below point to the official pages of the organizations and technologies discussed.</p>
+        <ul class="refs">
+          <li><a href="https://www.riyadbank.com/" target="_blank" rel="noopener">Riyad Bank, official website</a></li>
+          <li><a href="https://www.oracle.com/human-capital-management/" target="_blank" rel="noopener">Oracle Fusion Cloud HCM, product overview</a></li>
+          <li><a href="https://www.oracle.com/human-capital-management/hcm-analytics/" target="_blank" rel="noopener">Oracle Analytics for HCM</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>المصادر والملاحظات</h2>
+        <p>الأنظمة المنسوبة للبنك والنسب المئوية تُوضّح التحليل وليست إفصاحات موثّقة ومستقلة من بنك الرياض. وتشير المراجع أدناه إلى الصفحات الرسمية للجهات والتقنيات المذكورة.</p>
+        <ul class="refs">
+          <li><a href="https://www.riyadbank.com/" target="_blank" rel="noopener">بنك الرياض، الموقع الرسمي</a></li>
+          <li><a href="https://www.oracle.com/human-capital-management/" target="_blank" rel="noopener">Oracle Fusion Cloud HCM، نظرة عامة على المنتج</a></li>
+          <li><a href="https://www.oracle.com/human-capital-management/hcm-analytics/" target="_blank" rel="noopener">Oracle Analytics for HCM</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","factors","culture","leadership","resources","structure","conclusion","sources"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Managerial Economics: A Bilingual Study Guide</title>
+<meta name="description" content="A bilingual study guide to managerial economics: firm objectives, economic profit, elasticity, demand estimation, cost theory, and market structures.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">Managerial Economics &middot; Study Guide</span><span data-lang="ar">الاقتصاد الإداري &middot; دليل دراسي</span></div>
+    <h1><span data-lang="en">Managerial Economics: A Bilingual Study Guide</span><span data-lang="ar">الاقتصاد الإداري: دليل دراسي</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="foundations"><span data-lang="en">Firm Objectives</span><span data-lang="ar">أهداف المنشأة</span></a>
+    <a data-id="profit"><span data-lang="en">Economic Profit</span><span data-lang="ar">الربح الاقتصادي</span></a>
+    <a data-id="elasticity"><span data-lang="en">Elasticity</span><span data-lang="ar">المرونة</span></a>
+    <a data-id="estimation"><span data-lang="en">Demand Estimation</span><span data-lang="ar">تقدير الطلب</span></a>
+    <a data-id="cost"><span data-lang="en">Cost Theory</span><span data-lang="ar">التكاليف</span></a>
+    <a data-id="markets"><span data-lang="en">Market Structures</span><span data-lang="ar">الأسواق</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways &amp; References</span><span data-lang="ar">الخلاصة والمراجع</span></a>
+  </nav>
+
+  <!-- 1. OVERVIEW -->
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Economics (Managerial)</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">This bilingual study guide covers managerial economics, the branch of applied economics that turns economic theory into practical tools for business decisions.</p>
+        <p>Where basic economics explains how markets work, managerial economics asks a sharper question: given demand, cost, and the market it faces, how should a firm decide on price, output, and investment to reach its goal? The guide moves from the firm's objectives and the true meaning of profit, through elasticity and demand estimation, to the theory of cost and the structure of markets.</p>
+        <h3>The seven topics at a glance</h3>
+        <ol>
+          <li><strong>Firm objectives</strong> and the managerial decision.</li>
+          <li><strong>Economic versus accounting profit.</strong></li>
+          <li><strong>Elasticity</strong> of demand and supply.</li>
+          <li><strong>Demand estimation</strong> and forecasting.</li>
+          <li><strong>Cost theory</strong> in the short and long run.</li>
+          <li><strong>Market structures</strong> and patterns of profit.</li>
+        </ol>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الاقتصاد (الإداري)</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">يغطّي هذا الدليل الدراسي ثنائي اللغة الاقتصاد الإداري، فرع الاقتصاد التطبيقي الذي يحوّل النظرية الاقتصادية إلى أدوات عملية لقرارات الأعمال.</p>
+        <p>فبينما يشرح الاقتصاد الأساسي كيف تعمل الأسواق، يطرح الاقتصاد الإداري سؤالًا أدقّ: بمعلومية الطلب والتكلفة والسوق التي تواجهها، كيف ينبغي للمنشأة أن تقرّر السعر والكمية والاستثمار لبلوغ هدفها؟ وينتقل الدليل من أهداف المنشأة والمعنى الحقيقي للربح، مرورًا بالمرونة وتقدير الطلب، إلى نظرية التكاليف وبنية الأسواق.</p>
+        <h3>الموضوعات الستة في لمحة</h3>
+        <ol>
+          <li><strong>أهداف المنشأة</strong> والقرار الإداري.</li>
+          <li><strong>الربح الاقتصادي مقابل المحاسبي.</strong></li>
+          <li><strong>مرونة</strong> الطلب والعرض.</li>
+          <li><strong>تقدير الطلب</strong> والتنبؤ.</li>
+          <li><strong>نظرية التكاليف</strong> في المدى القصير والطويل.</li>
+          <li><strong>هياكل الأسواق</strong> وأنماط الربح.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. FOUNDATIONS -->
+  <section class="page" id="foundations">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Firm Objectives &amp; the Managerial Decision</h2>
+        <p><strong>Managerial economics</strong> is the science concerned with how economic concepts and analytical tools are used to make managerial decisions in business firms, whether profit-seeking or not, and in government agencies.</p>
+        <h3>The firm and its ownership</h3>
+        <p>A firm may be <strong>privately owned</strong> (a small business run by its owners, where ownership and management merge) or a <strong>partnership or public company</strong> (a large firm where ownership is separated from management).</p>
+        <h3>Ultimate and intermediate goals</h3>
+        <p>The firm's <strong>ultimate goal</strong> is to earn the greatest possible profit or the smallest possible loss. Along the way it pursues <strong>intermediate goals</strong>, signposts that guide it and change with circumstances. These can look as if they conflict with profit, yet they serve long-run value:</p>
+        <ul>
+          <li>Cutting price to win market share (which lowers current profit).</li>
+          <li>Spending on research and development to gain a future technical edge.</li>
+          <li>Long-range planning during stable periods, investing heavily for later returns.</li>
+          <li>Social goals, such as donating a school or joining environmental programs.</li>
+        </ul>
+        <p>Stated more precisely, the modern objective is to <strong>maximize the firm's net worth</strong>, the present value of its expected future profits.</p>
+        <h3>The principal-agent problem</h3>
+        <p>When ownership and management separate in large firms, the owners (principals) hire managers (agents) whose personal interests, salary, prestige, growth of their division, may diverge from maximizing the firm's value. This is contained through incentive pay tied to performance, monitoring by boards and auditors, and the discipline of the market itself.</p>
+        <h3>How managerial economics relates to other fields</h3>
+        <p>It sits at the crossroads of three disciplines: it takes its <strong>theory</strong> from microeconomics (demand, cost, markets), its <strong>methods</strong> from decision sciences (optimization, regression, forecasting), and its <strong>problems</strong> from the functional areas of business (marketing, finance, production). Its value is joining the three into one decision framework.</p>
+        <h3>Decision making under constraints</h3>
+        <p>Real decisions are made under <strong>constraints</strong>, limited capital, capacity, labor, and legal rules, so the manager's task is <em>constrained optimization</em>: getting the best attainable outcome given the limits, not the best imaginable one.</p>
+        <div class="note"><strong>The marginal principle:</strong> the core decision rule of managerial economics is that a firm should expand any activity as long as its <strong>marginal benefit exceeds its marginal cost</strong>, and stop at the point where marginal benefit equals marginal cost, which is where profit is maximized. Every later chapter, pricing, output, and investment, is an application of this one rule.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>أهداف المنشأة والقرار الإداري</h2>
+        <p><strong>الاقتصاد الإداري</strong> هو العلم الذي يهتم بكيفية استخدام المفاهيم والأدوات التحليلية في اتخاذ القرارات الإدارية في منشآت الأعمال، سواء كانت ساعية للربح أو غير ساعية له، وفي الإدارات الحكومية.</p>
+        <h3>المنشأة وملكيتها</h3>
+        <p>قد تكون المنشأة <strong>ذات ملكية خاصة</strong> (منشأة صغيرة يديرها مالكوها، حيث تندمج الملكية والإدارة) أو <strong>شراكة أو شركة عامة</strong> (منشأة كبيرة تُفصَل فيها الملكية عن الإدارة).</p>
+        <h3>الأهداف النهائية والوسيطة</h3>
+        <p><strong>الهدف النهائي</strong> للمنشأة تحقيق أقصى ربح ممكن أو أقل خسارة ممكنة. وفي الطريق تسعى إلى <strong>أهداف وسيطة</strong> تهتدي بها وتتغيّر بحسب الظروف. وقد تبدو متعارضة مع الربح، لكنها تخدم القيمة على المدى الطويل:</p>
+        <ul>
+          <li>تخفيض السعر لانتزاع حصة سوقية (يخفض الربح الآني).</li>
+          <li>الإنفاق على البحث والتطوير لتحقيق سبق تقني مستقبلي.</li>
+          <li>التخطيط بعيد المدى في فترات الاستقرار، بضخّ استثمارات ضخمة لعوائد لاحقة.</li>
+          <li>الأهداف الاجتماعية، كالتبرع ببناء مدرسة أو المشاركة في برامج بيئية.</li>
+        </ul>
+        <p>وبصياغة أدقّ، الهدف الحديث هو <strong>تعظيم القيمة الصافية للمنشأة</strong>، أي القيمة الحالية لأرباحها المستقبلية المتوقعة.</p>
+        <h3>مشكلة الوكالة (الموكِّل والوكيل)</h3>
+        <p>حين تنفصل الملكية عن الإدارة في المنشآت الكبيرة، يعيّن الملّاك (الموكِّلون) مديرين (وكلاء) قد تنحرف مصالحهم الشخصية، من راتب ومكانة ونموّ إداراتهم، عن تعظيم قيمة المنشأة. ويُحتوى ذلك بالأجر التحفيزي المرتبط بالأداء، ورقابة المجالس والمدققين، وانضباط السوق نفسه.</p>
+        <h3>علاقة الاقتصاد الإداري بالحقول الأخرى</h3>
+        <p>يقع عند تقاطع ثلاثة تخصصات: يأخذ <strong>نظريته</strong> من الاقتصاد الجزئي (الطلب والتكلفة والأسواق)، و<strong>أساليبه</strong> من علوم القرار (الأمثَلة والانحدار والتنبؤ)، و<strong>مشكلاته</strong> من مجالات الأعمال الوظيفية (التسويق والمالية والإنتاج). وقيمته في جمع الثلاثة في إطار قرار واحد.</p>
+        <h3>القرار في ظل القيود</h3>
+        <p>تُتَّخذ القرارات الحقيقية في ظل <strong>قيود</strong>: رأس مال وطاقة وعمالة محدودة وقواعد قانونية، فمهمة المدير هي <em>الأمثَلة المقيّدة</em>: بلوغ أفضل نتيجة ممكنة في حدود القيود، لا أفضل نتيجة مُتخيَّلة.</p>
+        <div class="note"><strong>مبدأ الحدّية:</strong> قاعدة القرار الجوهرية في الاقتصاد الإداري أن على المنشأة التوسّع في أي نشاط ما دامت <strong>منفعته الحدية تفوق كلفته الحدية</strong>، والتوقف عند النقطة التي تتساوى فيها المنفعة الحدية مع الكلفة الحدية، وهي حيث يتعظّم الربح. وكل فصل لاحق، في التسعير والإنتاج والاستثمار، تطبيق لهذه القاعدة الواحدة.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. PROFIT -->
+  <section class="page" id="profit">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Economic versus Accounting Profit</h2>
+        <p>The difference between economic and accounting profit lies entirely in how costs are counted.</p>
+        <h3>Explicit and implicit costs</h3>
+        <ul>
+          <li><strong>Explicit (accounting) costs:</strong> direct money payments, such as wages, raw materials, and rent.</li>
+          <li><strong>Implicit costs:</strong> the opportunity cost of resources the firm or its owner already own but are not paid for directly, such as the owner working without a salary, or using their own capital or premises.</li>
+        </ul>
+        <p>So <strong>economic cost = explicit + implicit</strong>, while <strong>accounting cost = explicit only</strong>. Economic cost is therefore always greater than accounting cost.</p>
+        <h3>The two measures of profit</h3>
+        <ul>
+          <li><strong>Economic profit</strong> = total revenue &minus; economic cost = (price &times; quantity) &minus; (explicit + implicit costs).</li>
+          <li><strong>Accounting profit</strong> = total revenue &minus; accounting cost = (price &times; quantity) &minus; explicit costs.</li>
+        </ul>
+        <p>Economic profit is therefore always smaller than accounting profit.</p>
+        <h3>Normal profit</h3>
+        <p><strong>Normal profit</strong> is the return to the entrepreneurship (organization) factor under perfect competition; it measures the opportunity cost of that factor, the average return the entrepreneur could earn in the best alternative. It is counted as part of the firm's implicit costs.</p>
+        <h3>A worked example</h3>
+        <p>Suppose an owner runs their own shop: revenue is 500,000, explicit costs (goods, rent, staff) are 400,000, so <strong>accounting profit = 100,000</strong>. But the owner gave up a job paying 80,000 and tied up savings that could have earned 30,000 elsewhere, implicit costs of 110,000. So <strong>economic profit = 100,000 &minus; 110,000 = &minus;10,000</strong>: the shop looks profitable to an accountant but is actually destroying value, because the owner would be better off in the alternative.</p>
+        <h3>Why the distinction drives decisions</h3>
+        <ul>
+          <li><strong>Positive economic profit</strong> means the firm earns more than all its resources could earn elsewhere, keep going and expand.</li>
+          <li><strong>Zero economic profit</strong> means the resources earn exactly their opportunity cost, the firm is viable but no better than the alternative.</li>
+          <li><strong>Negative economic profit</strong> means the resources would earn more elsewhere, exit or restructure, even if accounting profit is positive.</li>
+        </ul>
+        <div class="note"><strong>Zero economic profit:</strong> a firm that earns only a normal accounting profit has an <strong>economic profit of zero</strong>, and zero economic profit is the sign of perfect competition. In the short run, though, a firm can still earn positive economic profit before entry by rivals competes it away.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الربح الاقتصادي مقابل المحاسبي</h2>
+        <p>يكمن الفرق بين الربح الاقتصادي والمحاسبي كليًا في كيفية حساب التكاليف.</p>
+        <h3>التكاليف الصريحة والضمنية</h3>
+        <ul>
+          <li><strong>التكاليف الصريحة (المحاسبية):</strong> مدفوعات مالية مباشرة، كالأجور والمواد الخام والإيجار.</li>
+          <li><strong>التكاليف الضمنية:</strong> تكلفة الفرصة البديلة للموارد التي يملكها المنشأة أو مالكها ولا تُدفع مباشرة، كعمل المالك بلا أجر، أو استخدام رأسماله أو مبانيه.</li>
+        </ul>
+        <p>إذًا <strong>التكاليف الاقتصادية = الصريحة + الضمنية</strong>، بينما <strong>التكاليف المحاسبية = الصريحة فقط</strong>. ولذا فالتكاليف الاقتصادية أكبر دائمًا من المحاسبية.</p>
+        <h3>مقياسا الربح</h3>
+        <ul>
+          <li><strong>الربح الاقتصادي</strong> = الإيراد الكلي &minus; التكاليف الاقتصادية = (السعر &times; الكمية) &minus; (الصريحة + الضمنية).</li>
+          <li><strong>الربح المحاسبي</strong> = الإيراد الكلي &minus; التكاليف المحاسبية = (السعر &times; الكمية) &minus; الصريحة.</li>
+        </ul>
+        <p>ولذا فالربح الاقتصادي أصغر دائمًا من المحاسبي.</p>
+        <h3>الربح العادي</h3>
+        <p><strong>الربح العادي</strong> هو العائد على عنصر التنظيم في ظل المنافسة الكاملة؛ ويقيس تكلفة الفرصة البديلة لهذا العنصر، أي متوسط العائد الذي يمكن للمنظّم تحقيقه في أفضل بديل. ويُحتسَب جزءًا من التكاليف الضمنية للمنشأة.</p>
+        <h3>مثال محلول</h3>
+        <p>افترض مالكًا يدير متجره بنفسه: الإيراد 500,000، والتكاليف الصريحة (بضاعة وإيجار وموظفون) 400,000، إذًا <strong>الربح المحاسبي = 100,000</strong>. لكن المالك ترك وظيفة براتب 80,000 وجمّد مدخرات كانت ستكسب 30,000 في بديل آخر، أي تكاليف ضمنية قدرها 110,000. إذًا <strong>الربح الاقتصادي = 100,000 &minus; 110,000 = &minus;10,000</strong>: يبدو المتجر مربحًا للمحاسب لكنه يدمّر القيمة فعليًا، لأن المالك كان سيكون أفضل حالًا في البديل.</p>
+        <h3>لماذا يقود هذا التمييز القرارات</h3>
+        <ul>
+          <li><strong>ربح اقتصادي موجب</strong> يعني أن المنشأة تكسب أكثر مما تكسبه مواردها في أي بديل، فاستمر وتوسّع.</li>
+          <li><strong>ربح اقتصادي صفري</strong> يعني أن الموارد تكسب تكلفة فرصتها بالضبط، فالمنشأة قابلة للاستمرار لكنها ليست أفضل من البديل.</li>
+          <li><strong>ربح اقتصادي سالب</strong> يعني أن الموارد ستكسب أكثر في مكان آخر، فاخرج أو أعد الهيكلة، حتى لو كان الربح المحاسبي موجبًا.</li>
+        </ul>
+        <div class="note"><strong>الربح الاقتصادي الصفري:</strong> المنشأة التي تحقّق ربحًا محاسبيًا عاديًا فقط يكون <strong>ربحها الاقتصادي صفرًا</strong>، والربح الاقتصادي الصفري دليل على المنافسة الكاملة. ومع ذلك يمكن للمنشأة في المدى القصير أن تحقّق ربحًا اقتصاديًا موجبًا قبل أن يُنافسه دخولُ منافسين حتى يتلاشى.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. ELASTICITY -->
+  <section class="page" id="elasticity">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Elasticity of Demand &amp; Supply</h2>
+        <p>Managers need to know not just the <em>direction</em> in which quantity moves with price, but the <em>size</em> of that response. The slope of the demand curve is a poor measure because it changes with the units used, so economists use <strong>elasticity</strong>, the ratio of the percentage change in quantity to the percentage change in the cause.</p>
+        <h3>Price elasticity of demand (PED)</h3>
+        <p><strong>PED = %&Delta; quantity demanded &divide; %&Delta; price.</strong> By its size, demand is:</p>
+        <ul>
+          <li><strong>Elastic</strong> (|E| &gt; 1): quantity responds more than proportionally to price.</li>
+          <li><strong>Inelastic</strong> (|E| &lt; 1): quantity responds less than proportionally.</li>
+          <li><strong>Unit elastic</strong> (|E| = 1): quantity responds proportionally.</li>
+        </ul>
+        <p>It can be measured at a point (<em>point elasticity</em>) or over a range (<em>arc elasticity</em>). Its main determinants are the availability of substitutes, the good's share of the budget, whether it is a necessity or a luxury, and the time allowed to adjust.</p>
+        <h3>Elasticity and total revenue</h3>
+        <p>This is the manager's payoff: if demand is <strong>elastic</strong>, cutting the price <em>raises</em> total revenue (the bookstore sells enough extra to more than offset the lower price); if demand is <strong>inelastic</strong>, cutting the price <em>lowers</em> total revenue.</p>
+        <h3>Other elasticities</h3>
+        <ul>
+          <li><strong>Cross-price elasticity:</strong> %&Delta;Qd of one good &divide; %&Delta;price of another. Positive means the goods are <em>substitutes</em>; negative means they are <em>complements</em>.</li>
+          <li><strong>Income elasticity:</strong> %&Delta;Qd &divide; %&Delta;income. Positive means a normal good; greater than 1 means a luxury; negative means an inferior good.</li>
+          <li><strong>Price elasticity of supply:</strong> %&Delta;Qs &divide; %&Delta;price; it is higher when producers have more time and spare capacity.</li>
+        </ul>
+        <h3>The formulas, made concrete</h3>
+        <p><strong>Point elasticity</strong> uses the slope at one point: E = (&Delta;Q &divide; &Delta;P) &times; (P &divide; Q). <strong>Arc elasticity</strong> averages over a range, using midpoints: E = (&Delta;Q &divide; &Delta;P) &times; ((P&#8321;+P&#8322;) &divide; (Q&#8321;+Q&#8322;)). Example: if a 10% price cut raises sales by 20%, PED = 20 &divide; 10 = 2, demand is elastic, and revenue will rise with the cut.</p>
+        <h3>The extreme cases</h3>
+        <ul>
+          <li><strong>Perfectly inelastic</strong> (E = 0): quantity does not respond at all, a vertical demand curve (life-saving medicine, in the limit).</li>
+          <li><strong>Perfectly elastic</strong> (E = &infin;): any price rise loses all buyers, a horizontal curve (a single farmer in a perfectly competitive market).</li>
+        </ul>
+        <h3>Elasticity along a straight-line demand curve</h3>
+        <p>Even on one straight demand curve, elasticity is not constant: it is <em>elastic</em> on the upper half, <em>unit</em> at the midpoint, and <em>inelastic</em> on the lower half. Total revenue therefore peaks exactly at the midpoint, which is why "where are we on the curve" matters as much as the curve itself.</p>
+        <div class="note"><strong>Why it matters:</strong> elasticity turns a vague sense of "demand will fall" into a number, letting a manager predict how a price change, a rival's move, or a rise in incomes will hit sales, revenue, and profit. It also guides tax and subsidy policy, since a tax on an inelastic good falls mostly on the buyer.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>مرونة الطلب والعرض</h2>
+        <p>يحتاج المدراء إلى معرفة لا <em>اتجاه</em> تحرّك الكمية مع السعر فحسب، بل <em>حجم</em> تلك الاستجابة. وميل منحنى الطلب مقياس ضعيف لأنه يتغيّر بحسب الوحدات المستخدمة، لذا يستخدم الاقتصاديون <strong>المرونة</strong>، وهي نسبة التغيّر النسبي في الكمية إلى التغيّر النسبي في المسبّب.</p>
+        <h3>المرونة السعرية للطلب (PED)</h3>
+        <p><strong>PED = التغيّر النسبي في الكمية المطلوبة &divide; التغيّر النسبي في السعر.</strong> وبحسب حجمها يكون الطلب:</p>
+        <ul>
+          <li><strong>مرنًا</strong> (|E| &gt; 1): تستجيب الكمية أكثر من نسبة تغيّر السعر.</li>
+          <li><strong>غير مرن</strong> (|E| &lt; 1): تستجيب الكمية أقل من نسبة تغيّر السعر.</li>
+          <li><strong>أحادي المرونة</strong> (|E| = 1): تستجيب الكمية بالنسبة نفسها.</li>
+        </ul>
+        <p>ويمكن قياسها عند نقطة (<em>المرونة النقطية</em>) أو على مدى (<em>المرونة القوسية</em>). وأهم محدّداتها توافر البدائل، وحصة السلعة من الميزانية، وكونها ضرورية أو كمالية، والزمن المتاح للتكيّف.</p>
+        <h3>المرونة والإيراد الكلي</h3>
+        <p>وهنا مكسب المدير: إذا كان الطلب <strong>مرنًا</strong>، فتخفيض السعر <em>يرفع</em> الإيراد الكلي (تبيع المكتبة زيادةً تكفي لتعويض انخفاض السعر وأكثر)؛ وإذا كان <strong>غير مرن</strong>، فتخفيض السعر <em>يخفض</em> الإيراد الكلي.</p>
+        <h3>مرونات أخرى</h3>
+        <ul>
+          <li><strong>المرونة التقاطعية:</strong> التغيّر النسبي في كمية سلعة &divide; التغيّر النسبي في سعر أخرى. الموجب يعني أن السلعتين <em>بديلتان</em>؛ والسالب يعني أنهما <em>مكمّلتان</em>.</li>
+          <li><strong>المرونة الدخلية:</strong> التغيّر النسبي في الكمية &divide; التغيّر النسبي في الدخل. الموجب سلعة عادية؛ وأكبر من 1 سلعة كمالية؛ والسالب سلعة دنيا.</li>
+          <li><strong>المرونة السعرية للعرض:</strong> التغيّر النسبي في الكمية المعروضة &divide; التغيّر النسبي في السعر؛ وترتفع كلما توفّر للمنتجين وقت وطاقة فائضة.</li>
+        </ul>
+        <h3>الصيغ بشكل ملموس</h3>
+        <p><strong>المرونة النقطية</strong> تستخدم الميل عند نقطة: E = (&Delta;ك &divide; &Delta;ث) &times; (ث &divide; ك). و<strong>المرونة القوسية</strong> تُوسِّط على مدى باستخدام نقاط المنتصف: E = (&Delta;ك &divide; &Delta;ث) &times; ((ث&#8321;+ث&#8322;) &divide; (ك&#8321;+ك&#8322;)). مثال: إذا رفع تخفيضُ سعرٍ بنسبة 10% المبيعاتِ بنسبة 20%، فالمرونة = 20 &divide; 10 = 2، أي طلب مرن، وسيرتفع الإيراد مع التخفيض.</p>
+        <h3>الحالتان المتطرفتان</h3>
+        <ul>
+          <li><strong>عديم المرونة تمامًا</strong> (E = 0): لا تستجيب الكمية إطلاقًا، منحنى طلب رأسي (دواء منقذ للحياة، في الحد الأقصى).</li>
+          <li><strong>كامل المرونة</strong> (E = &infin;): أي رفع للسعر يفقد كل المشترين، منحنى أفقي (مزارع واحد في سوق منافسة تامة).</li>
+        </ul>
+        <h3>المرونة على منحنى طلب مستقيم</h3>
+        <p>حتى على منحنى طلب مستقيم واحد، ليست المرونة ثابتة: فهي <em>مرنة</em> في النصف الأعلى، و<em>أحادية</em> عند المنتصف، و<em>غير مرنة</em> في النصف الأدنى. ولذلك يبلغ الإيراد الكلي ذروته عند المنتصف بالضبط، ولهذا يهمّ «أين نحن على المنحنى» بقدر ما يهمّ المنحنى نفسه.</p>
+        <div class="note"><strong>لماذا تهم:</strong> تحوّل المرونة الإحساس الغامض بأن «الطلب سينخفض» إلى رقم، فتتيح للمدير التنبؤ بكيفية تأثير تغيّر السعر أو تحرّك منافس أو ارتفاع الدخول على المبيعات والإيراد والربح. كما توجّه سياسة الضرائب والدعم، فالضريبة على سلعة غير مرنة يتحمّلها المشتري غالبًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. ESTIMATION -->
+  <section class="page" id="estimation">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Demand Estimation</h2>
+        <p>Estimating the demand equation means estimating the <strong>parameters</strong> of the demand function, its intercept and the coefficient (slope) attached to each independent variable, known as the <strong>regression coefficient</strong>. In effect, it defines the relationship between the <em>dependent</em> variable (quantity demanded) and the <em>independent</em> variables (price and the other determinants of demand).</p>
+        <h3>Estimation, not calculation</h3>
+        <p>We speak of <em>estimating</em>, not <em>calculating</em>. Calculating the true parameters would need data on the entire population, which is often unavailable or very costly. Estimation instead uses partial data from a <strong>representative random sample</strong>, giving estimated values that differ from the true population values by a known margin of error.</p>
+        <h3>The method: regression</h3>
+        <p>Regression analysis fits a line to the sample data so that each estimated coefficient measures the separate effect of its variable on quantity demanded, while the residual captures random error. From the estimated equation, the analyst can predict quantity demanded for any set of values of the independent variables.</p>
+        <h3>Why managers estimate demand</h3>
+        <ul>
+          <li>It is the starting point of a <strong>feasibility study</strong>: expected revenue is built on estimated demand.</li>
+          <li>It sets the <strong>optimal capacity</strong> and the investment the project needs.</li>
+          <li>Tracking changes in market demand guides the optimal level of output and the best mix of variable inputs.</li>
+          <li>It underpins the <strong>competitive strategy</strong> that protects the firm's markets from rivals.</li>
+        </ul>
+        <h3>Judging the quality of an estimate</h3>
+        <p>An estimated equation is only useful if it is statistically sound. Three checks matter most:</p>
+        <ul>
+          <li><strong>R&sup2; (coefficient of determination):</strong> the share of the variation in quantity demanded that the equation explains; closer to 1 is better.</li>
+          <li><strong>Significance tests (t-tests):</strong> whether each estimated coefficient is reliably different from zero, or could be mere chance.</li>
+          <li><strong>The signs of the coefficients:</strong> they should match theory, a negative sign on own price, a positive sign on income for a normal good; a wrong sign warns of a flawed model or data.</li>
+        </ul>
+        <h3>Other data sources</h3>
+        <p>Besides regression on market data, firms estimate demand through <strong>consumer surveys</strong> (asking buyers directly), <strong>market experiments</strong> (testing prices in selected stores or regions), and <strong>test marketing</strong> of new products, each trading realism against cost and control.</p>
+        <div class="note"><strong>The link to elasticity:</strong> once the demand equation is estimated, its coefficients yield the elasticities directly, so estimation and elasticity together turn raw market data into a forecast a manager can act on.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>تقدير معادلة الطلب</h2>
+        <p>يعني تقدير معادلة الطلب تقدير <strong>معاملات</strong> دالة الطلب: الحدّ المطلق ومعامل (ميل) كل متغير مستقل، المسمّى <strong>معامل الانحدار</strong>. وهو عمليًا تعريف العلاقة بين المتغير <em>التابع</em> (الكمية المطلوبة) والمتغيرات <em>المستقلة</em> (السعر وبقية محدّدات الطلب).</p>
+        <h3>تقدير لا حساب</h3>
+        <p>نتحدث عن <em>تقدير</em> لا <em>حساب</em>. فحساب المعاملات الفعلية يحتاج إلى بيانات المجتمع كله، وهي غالبًا غير متاحة أو باهظة. أما التقدير فيستخدم بيانات جزئية من <strong>عينة عشوائية ممثِّلة</strong>، فيعطي قيمًا تقديرية تختلف عن القيم الفعلية للمجتمع بهامش خطأ معلوم.</p>
+        <h3>الأسلوب: الانحدار</h3>
+        <p>يوائم تحليل الانحدار خطًا مع بيانات العينة بحيث يقيس كل معامل مقدَّر الأثرَ المنفصل لمتغيّره على الكمية المطلوبة، بينما يلتقط البواقي الخطأ العشوائي. ومن المعادلة المقدَّرة يمكن للباحث التنبؤ بالكمية المطلوبة لأي مجموعة من قيم المتغيرات المستقلة.</p>
+        <h3>لماذا يقدّر المدراء الطلب</h3>
+        <ul>
+          <li>هو نقطة انطلاق <strong>دراسة الجدوى</strong>: فالإيراد المتوقع يُبنى على الطلب المقدَّر.</li>
+          <li>يحدّد <strong>الطاقة الإنتاجية المثلى</strong> والاستثمار اللازم للمشروع.</li>
+          <li>متابعة تغيّرات طلب السوق توجّه المستوى الأمثل للإنتاج وأفضل مزيج من المدخلات المتغيرة.</li>
+          <li>يدعم <strong>الاستراتيجية التنافسية</strong> التي تحمي أسواق المنشأة من المنافسين.</li>
+        </ul>
+        <h3>الحكم على جودة التقدير</h3>
+        <p>لا تكون المعادلة المقدَّرة مفيدة إلا إذا كانت سليمة إحصائيًا. وأهم ثلاثة فحوص:</p>
+        <ul>
+          <li><strong>معامل التحديد R&sup2;:</strong> نسبة التباين في الكمية المطلوبة التي تفسّرها المعادلة؛ وكلما اقترب من 1 كان أفضل.</li>
+          <li><strong>اختبارات المعنوية (t):</strong> هل كل معامل مقدَّر مختلف عن الصفر بثقة، أم قد يكون محض صدفة.</li>
+          <li><strong>إشارات المعاملات:</strong> يجب أن توافق النظرية، إشارة سالبة لسعر السلعة نفسها، وموجبة للدخل في السلعة العادية؛ والإشارة الخاطئة تنذر بخلل في النموذج أو البيانات.</li>
+        </ul>
+        <h3>مصادر بيانات أخرى</h3>
+        <p>إلى جانب الانحدار على بيانات السوق، تقدّر المنشآت الطلب عبر <strong>مسوح المستهلكين</strong> (سؤال المشترين مباشرة)، و<strong>تجارب السوق</strong> (اختبار أسعار في متاجر أو مناطق مختارة)، و<strong>التسويق التجريبي</strong> للمنتجات الجديدة، وكلٌّ يوازن بين الواقعية والكلفة والتحكّم.</p>
+        <div class="note"><strong>الصلة بالمرونة:</strong> بمجرد تقدير معادلة الطلب، تعطي معاملاتها المرونات مباشرةً، فيتضافر التقدير والمرونة لتحويل بيانات السوق الخام إلى تنبؤ يتصرّف المدير على أساسه.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. COST -->
+  <section class="page" id="cost">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Cost Theory</h2>
+        <p>The <strong>economic cost</strong> of production is the total cost of the factors used, and, as in the profit section, it combines <strong>explicit costs</strong> (direct payments for wages, materials, and energy) with <strong>implicit costs</strong> (the opportunity cost of the firm's own land, buildings, capital, and the owner's own time and skill, valued as normal profit).</p>
+        <h3>Short run and long run</h3>
+        <p>Managers care about the link between production and cost in both horizons. In the <strong>short run</strong>, at least one factor is fixed, so the focus is the efficient use of variable inputs and the optimal level of output. In the <strong>long run</strong>, all factors are variable, so the focus is the optimal <em>size</em> of the firm and the best mix of all inputs.</p>
+        <h3>The short-run cost curves</h3>
+        <ul>
+          <li><strong>Fixed cost (FC):</strong> does not change with output.</li>
+          <li><strong>Variable cost (VC):</strong> rises with output.</li>
+          <li><strong>Total cost (TC) = FC + VC.</strong></li>
+          <li><strong>Average cost (AC) = TC &divide; Q,</strong> and <strong>marginal cost (MC) = &Delta;TC &divide; &Delta;Q.</strong></li>
+        </ul>
+        <p>Average and marginal cost curves are U-shaped because of diminishing returns, and the marginal cost curve cuts the average cost curve at its lowest point.</p>
+        <h3>The long run and cost management</h3>
+        <p>In the long run, expanding scale can bring <strong>economies of scale</strong> (falling long-run average cost), then constant returns, then <strong>diseconomies of scale</strong> (rising cost). Because global competition has narrowed the room for traditional price cutting, firms increasingly turn to <strong>cost management</strong>: reducing headcount, <em>outsourcing</em> parts of production, and <em>offshoring</em> to lower-wage countries.</p>
+        <h3>Why the curves are U-shaped</h3>
+        <p>In the short run, average cost first falls (fixed cost is spread over more units and the variable factor is used more efficiently) and then rises (diminishing returns set in, so each extra unit needs ever more of the variable input). Marginal cost mirrors this: it falls while marginal product rises and climbs once marginal product falls, and it always crosses average cost at its minimum, because when the marginal unit costs less than the average it pulls the average down, and when it costs more it pushes it up.</p>
+        <h3>Where economies of scale come from</h3>
+        <ul>
+          <li><strong>Economies:</strong> specialization of labor and machines, indivisible equipment used at full capacity, bulk buying, and spreading R&amp;D and management over more output.</li>
+          <li><strong>Diseconomies:</strong> the growing complexity of managing a very large organization, slower communication, and weaker control.</li>
+        </ul>
+        <h3>Sunk costs and decisions</h3>
+        <p>A <strong>sunk cost</strong> is one already paid and unrecoverable. Rational decisions ignore sunk costs and compare only <em>future</em> marginal costs and benefits, which is why "we have already spent so much" is never by itself a reason to continue.</p>
+        <div class="note"><strong>The bridge to pricing:</strong> cost curves, especially marginal cost, are one half of every pricing and output decision; the other half is demand, which is why cost theory sits between production and the market.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>نظرية التكاليف</h2>
+        <p><strong>التكلفة الاقتصادية</strong> للإنتاج هي مجموع تكاليف العناصر المستخدمة، وكما في قسم الربح، تجمع بين <strong>التكاليف الصريحة</strong> (المدفوعات المباشرة للأجور والمواد والطاقة) و<strong>التكاليف الضمنية</strong> (تكلفة الفرصة البديلة لأراضي المنشأة ومبانيها ورأسمالها ووقت المالك وجهده، مقدَّرةً كربح عادي).</p>
+        <h3>المدى القصير والطويل</h3>
+        <p>يهتم المدراء بالعلاقة بين الإنتاج والتكلفة في المديين. ففي <strong>المدى القصير</strong>، يكون عنصر واحد على الأقل ثابتًا، فالتركيز على الاستخدام الكفء للمدخلات المتغيرة والمستوى الأمثل للإنتاج. وفي <strong>المدى الطويل</strong>، تكون كل العناصر متغيّرة، فالتركيز على <em>الحجم</em> الأمثل للمنشأة وأفضل مزيج من المدخلات.</p>
+        <h3>منحنيات التكلفة في المدى القصير</h3>
+        <ul>
+          <li><strong>التكلفة الثابتة (FC):</strong> لا تتغيّر مع الإنتاج.</li>
+          <li><strong>التكلفة المتغيرة (VC):</strong> ترتفع مع الإنتاج.</li>
+          <li><strong>التكلفة الكلية (TC) = FC + VC.</strong></li>
+          <li><strong>التكلفة المتوسطة (AC) = TC &divide; Q،</strong> و<strong>التكلفة الحدية (MC) = &Delta;TC &divide; &Delta;Q.</strong></li>
+        </ul>
+        <p>ومنحنيا التكلفة المتوسطة والحدية على شكل حرف U بسبب تناقص الغلّة، ويقطع منحنى التكلفة الحدية منحنى المتوسطة عند أدنى نقطة فيه.</p>
+        <h3>المدى الطويل وإدارة التكاليف</h3>
+        <p>في المدى الطويل، قد يجلب توسّع الحجم <strong>اقتصاديات الحجم</strong> (انخفاض التكلفة المتوسطة طويلة الأجل)، ثم غلّة ثابتة، ثم <strong>لا اقتصاديات الحجم</strong> (ارتفاع التكلفة). ولأن المنافسة العالمية ضيّقت مجال التخفيض السعري التقليدي، تتّجه المنشآت بشكل متزايد إلى <strong>إدارة التكاليف</strong>: تقليص العمالة، و<em>المقاولات الخارجية (Outsourcing)</em> لبعض عمليات الإنتاج، ونقلها إلى دول أقل أجورًا.</p>
+        <h3>لماذا المنحنيات على شكل U</h3>
+        <p>في المدى القصير، تنخفض التكلفة المتوسطة أولًا (تُوزَّع التكلفة الثابتة على وحدات أكثر ويُستخدم العنصر المتغيّر بكفاءة أعلى) ثم ترتفع (يبدأ تناقص الغلّة، فتحتاج كل وحدة إضافية مزيدًا متصاعدًا من المدخل المتغيّر). وتعكس التكلفة الحدية ذلك: تنخفض ما دام الناتج الحدي يرتفع وتصعد حين ينخفض، وتقطع دائمًا التكلفة المتوسطة عند أدناها، لأن الوحدة الحدية حين تكلّف أقل من المتوسط تسحبه نزولًا، وحين تكلّف أكثر تدفعه صعودًا.</p>
+        <h3>من أين تأتي اقتصاديات الحجم</h3>
+        <ul>
+          <li><strong>الاقتصاديات:</strong> تخصّص العمل والآلات، والمعدات غير القابلة للتجزئة عند استخدامها بكامل طاقتها، والشراء بالجملة، وتوزيع البحث والتطوير والإدارة على ناتج أكبر.</li>
+          <li><strong>اللااقتصاديات:</strong> تعقّد إدارة منظمة ضخمة جدًا، وبطء الاتصال، وضعف الرقابة.</li>
+        </ul>
+        <h3>التكاليف الغارقة والقرارات</h3>
+        <p><strong>التكلفة الغارقة</strong> هي ما دُفع ولا يُسترَد. والقرارات الرشيدة تتجاهل التكاليف الغارقة وتقارن فقط الكلف والمنافع الحدية <em>المستقبلية</em>، ولهذا لا يكون «أنفقنا كثيرًا بالفعل» وحده سببًا للاستمرار أبدًا.</p>
+        <div class="note"><strong>الجسر إلى التسعير:</strong> منحنيات التكلفة، وخاصة التكلفة الحدية، نصف كل قرار تسعير وإنتاج؛ والنصف الآخر هو الطلب، ولهذا تقع نظرية التكاليف بين الإنتاج والسوق.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. MARKETS -->
+  <section class="page" id="markets">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Market Structures &amp; Patterns of Profit</h2>
+        <p>A firm's profit cannot be judged without knowing the <strong>market</strong> it belongs to, because the type of market shapes prices, output, and therefore profits and losses. There are four basic structures.</p>
+        <h3>1. Perfect competition</h3>
+        <p>Defined by four conditions: a <strong>large number of buyers and sellers</strong> (each too small to affect the price), a <strong>perfectly homogeneous product</strong>, <strong>free entry and exit</strong> from the market, and <strong>full information</strong>. The firm is a <em>price taker</em>: it accepts the market price and cannot set it. In the long run, economic profit is competed down to zero.</p>
+        <h3>2. Monopoly</h3>
+        <p>A <strong>single seller</strong> of a product with no close substitute, protected by barriers to entry. The firm is a <em>price maker</em> and can earn positive economic profit even in the long run.</p>
+        <h3>3. Monopolistic competition</h3>
+        <p>Many sellers offering <strong>differentiated</strong> products, with fairly free entry. Each firm has some power over its own price through differentiation, but free entry drives long-run economic profit toward zero.</p>
+        <h3>4. Oligopoly</h3>
+        <p>A <strong>few large firms</strong> dominate, and because each is big enough to affect the others, their decisions are <strong>interdependent</strong>. Entry is difficult, and firms behave strategically, sometimes competing hard, sometimes colluding.</p>
+        <h3>Where barriers to entry come from</h3>
+        <p>Monopoly and oligopoly rest on <strong>barriers to entry</strong>: legal barriers (patents, licenses, exclusive franchises), control of a key resource, large economies of scale that make one big producer cheapest (a <em>natural monopoly</em>, as in utilities), and high capital requirements or strong brand loyalty.</p>
+        <h3>Pricing in each market</h3>
+        <ul>
+          <li><strong>Perfect competition:</strong> the firm takes the market price; it chooses only its quantity, producing where marginal cost equals price.</li>
+          <li><strong>Monopoly:</strong> the firm chooses output where marginal revenue equals marginal cost and sets the price from the demand curve, higher price, lower output than competition.</li>
+          <li><strong>Monopolistic competition:</strong> some mark-up over cost, sustained by differentiation, advertising, and branding.</li>
+          <li><strong>Oligopoly:</strong> pricing is strategic; firms weigh rivals' reactions, which can produce price rigidity, price leadership by the largest firm, or collusion (usually illegal).</li>
+        </ul>
+        <h3>A quick comparison</h3>
+        <p>From most to least competitive: perfect competition (many sellers, identical product, no pricing power), monopolistic competition (many sellers, differentiated product, little power), oligopoly (few sellers, much power, interdependent), monopoly (one seller, most power). Efficiency and consumer benefit generally fall, and long-run profit rises, as one moves down the list.</p>
+        <div class="note"><strong>The takeaway for pricing:</strong> the more competitive the market, the less power a firm has over price and the thinner its long-run economic profit; the more concentrated the market, the more pricing power and potential profit, which is exactly why market structure is the frame for every pricing decision.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>هياكل الأسواق وأنماط الربح</h2>
+        <p>لا يمكن الحكم على ربح المنشأة دون معرفة <strong>السوق</strong> التي تنتمي إليها، لأن نوع السوق يشكّل الأسعار والكميات ومن ثمّ الأرباح والخسائر. وهناك أربعة هياكل أساسية.</p>
+        <h3>1. المنافسة التامة</h3>
+        <p>تتحدّد بأربعة شروط: <strong>عدد كبير من البائعين والمشترين</strong> (كلٌّ أصغر من أن يؤثر في السعر)، و<strong>سلعة متجانسة تمامًا</strong>، و<strong>حرية الدخول والخروج</strong> من السوق، و<strong>علم تام</strong> بأحوال السوق. والمنشأة <em>متلقٍّ للسعر</em>: تقبل سعر السوق ولا تستطيع تحديده. وفي المدى الطويل يُنافَس الربح الاقتصادي حتى يبلغ الصفر.</p>
+        <h3>2. الاحتكار</h3>
+        <p><strong>بائع واحد</strong> لسلعة لا بديل قريب لها، محميّ بحواجز دخول. والمنشأة <em>صانعة للسعر</em> ويمكنها تحقيق ربح اقتصادي موجب حتى في المدى الطويل.</p>
+        <h3>3. المنافسة الاحتكارية</h3>
+        <p>بائعون كثر يقدّمون منتجات <strong>متمايزة</strong>، مع حرية دخول معقولة. ولكل منشأة بعض السلطة على سعرها عبر التمايز، لكن حرية الدخول تدفع الربح الاقتصادي طويل الأجل نحو الصفر.</p>
+        <h3>4. احتكار القلّة</h3>
+        <p><strong>عدد قليل من المنشآت الكبيرة</strong> تسيطر، ولأن كلًّا منها كبير بما يكفي للتأثير في الأخرى، تكون قراراتها <strong>مترابطة</strong>. والدخول صعب، وتتصرّف المنشآت استراتيجيًا، أحيانًا بمنافسة حادة وأحيانًا بتواطؤ.</p>
+        <h3>من أين تأتي حواجز الدخول</h3>
+        <p>يقوم الاحتكار واحتكار القلّة على <strong>حواجز الدخول</strong>: حواجز قانونية (براءات، تراخيص، امتيازات حصرية)، والسيطرة على مورد أساسي، واقتصاديات حجم كبيرة تجعل المنتج الواحد الكبير هو الأرخص (<em>احتكار طبيعي</em>، كالمرافق العامة)، ومتطلبات رأسمالية عالية أو ولاء قوي للعلامة.</p>
+        <h3>التسعير في كل سوق</h3>
+        <ul>
+          <li><strong>المنافسة التامة:</strong> تتلقّى المنشأة سعر السوق؛ وتختار كميتها فقط، منتجةً حيث تساوي التكلفة الحدية السعر.</li>
+          <li><strong>الاحتكار:</strong> تختار المنشأة الكمية حيث يساوي الإيراد الحدي التكلفة الحدية وتحدّد السعر من منحنى الطلب، سعر أعلى وكمية أقل من المنافسة.</li>
+          <li><strong>المنافسة الاحتكارية:</strong> هامش فوق التكلفة يدوم بالتمايز والإعلان والعلامة.</li>
+          <li><strong>احتكار القلّة:</strong> التسعير استراتيجي؛ تزن المنشآت ردود المنافسين، مما قد يُنتج جمودًا سعريًا، أو قيادة سعرية من الأكبر، أو تواطؤًا (غير قانوني غالبًا).</li>
+        </ul>
+        <h3>مقارنة سريعة</h3>
+        <p>من الأكثر تنافسية إلى الأقل: المنافسة التامة (بائعون كثر، سلعة متطابقة، لا سلطة تسعير)، المنافسة الاحتكارية (كثر، سلعة متمايزة، سلطة قليلة)، احتكار القلّة (قلّة، سلطة كبيرة، ترابط)، الاحتكار (بائع واحد، أكبر سلطة). وتنخفض الكفاءة ومنفعة المستهلك عمومًا، ويرتفع الربح طويل الأجل، كلما نزلنا في القائمة.</p>
+        <div class="note"><strong>خلاصة التسعير:</strong> كلما زادت تنافسية السوق قلّت سلطة المنشأة على السعر وضعُف ربحها الاقتصادي طويل الأجل؛ وكلما زاد تركّز السوق زادت سلطة التسعير والربح المحتمل، ولهذا يكون هيكل السوق هو إطار كل قرار تسعير.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. TAKEAWAYS -->
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <ul>
+          <li>Managerial economics applies economic tools to business decisions; the firm's goal is to maximize its net worth, deciding by the marginal principle (act while marginal benefit exceeds marginal cost).</li>
+          <li>Economic profit subtracts implicit as well as explicit costs, so it is smaller than accounting profit; zero economic profit signals perfect competition.</li>
+          <li>Elasticity measures how strongly quantity responds to price, income, or a related price, and it tells a manager whether a price cut will raise or lower revenue.</li>
+          <li>Demand is estimated from a sample by regression, and the estimate drives feasibility, capacity, and strategy decisions.</li>
+          <li>Cost theory (short-run curves, long-run scale, and cost management) meets demand and market structure to determine price, output, and profit.</li>
+        </ul>
+        <div class="conclusion-final"><strong>Bottom line:</strong> managerial economics is the discipline of turning demand, cost, and market structure into a single, defensible decision about price, output, and investment.</div>
+        <h3>References</h3>
+        <ul class="refs">
+          <li>Salvatore, D. <a href="https://global.oup.com/ushe/product/managerial-economics-in-a-global-economy-9780190848255" target="_blank" rel="noopener"><em>Managerial Economics in a Global Economy</em></a>. Oxford University Press.</li>
+          <li>Mankiw, N. G. <a href="https://www.cengage.com/c/principles-of-economics-10e-mankiw/9780357722718/" target="_blank" rel="noopener"><em>Principles of Economics</em></a>. Cengage. (Elasticity, cost, and market structure.)</li>
+          <li>Khan Academy. <a href="https://www.khanacademy.org/economics-finance-domain/microeconomics" target="_blank" rel="noopener">Microeconomics</a>.</li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>الخلاصة والمراجع</h2>
+        <ul>
+          <li>يطبّق الاقتصاد الإداري أدوات الاقتصاد على قرارات الأعمال؛ وهدف المنشأة تعظيم قيمتها الصافية، بالقرار وفق مبدأ الحدّية (التصرّف ما دامت المنفعة الحدية تفوق الكلفة الحدية).</li>
+          <li>يطرح الربح الاقتصادي التكاليف الضمنية إضافةً إلى الصريحة، فيكون أصغر من المحاسبي؛ والربح الاقتصادي الصفري دليل على المنافسة الكاملة.</li>
+          <li>تقيس المرونة قوة استجابة الكمية للسعر أو الدخل أو سعر سلعة مرتبطة، وتخبر المدير هل يرفع تخفيض السعر الإيراد أم يخفضه.</li>
+          <li>يُقدَّر الطلب من عينة بالانحدار، ويقود التقدير قرارات الجدوى والطاقة والاستراتيجية.</li>
+          <li>تلتقي نظرية التكاليف (منحنيات المدى القصير، وحجم المدى الطويل، وإدارة التكاليف) بالطلب وهيكل السوق لتحديد السعر والكمية والربح.</li>
+        </ul>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الاقتصاد الإداري هو فنّ تحويل الطلب والتكلفة وهيكل السوق إلى قرار واحد قابل للدفاع بشأن السعر والكمية والاستثمار.</div>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li>Salvatore, D. <a href="https://global.oup.com/ushe/product/managerial-economics-in-a-global-economy-9780190848255" target="_blank" rel="noopener"><em>Managerial Economics in a Global Economy</em></a>. Oxford University Press.</li>
+          <li>Mankiw, N. G. <a href="https://www.cengage.com/c/principles-of-economics-10e-mankiw/9780357722718/" target="_blank" rel="noopener"><em>Principles of Economics</em></a>. Cengage. (المرونة والتكاليف وهيكل السوق.)</li>
+          <li>Khan Academy. <a href="https://www.khanacademy.org/economics-finance-domain/microeconomics" target="_blank" rel="noopener">الاقتصاد الجزئي (Microeconomics)</a>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","foundations","profit","elasticity","estimation","cost","markets","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

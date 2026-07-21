@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Resource Management: A Bilingual Study Guide</title>
+<meta name="description" content="A detailed bilingual study guide to HR management: strategy, environment, job analysis, planning, recruitment, training, performance, and compensation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.22em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">Human Resource Management &middot; Study Guide</span><span data-lang="ar">إدارة الموارد البشرية &middot; دليل دراسي</span></div>
+    <h1><span data-lang="en">Human Resource Management: A Bilingual Study Guide</span><span data-lang="ar">إدارة الموارد البشرية: دليل دراسي</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="intro"><span data-lang="en">Strategic HRM</span><span data-lang="ar">مدخل استراتيجي</span></a>
+    <a data-id="environment"><span data-lang="en">Environment</span><span data-lang="ar">البيئة</span></a>
+    <a data-id="jobs"><span data-lang="en">Job Analysis</span><span data-lang="ar">تحليل الوظائف</span></a>
+    <a data-id="planning"><span data-lang="en">HR Planning</span><span data-lang="ar">التخطيط</span></a>
+    <a data-id="recruitment"><span data-lang="en">Recruitment</span><span data-lang="ar">الاستقطاب</span></a>
+    <a data-id="training"><span data-lang="en">Training</span><span data-lang="ar">التدريب</span></a>
+    <a data-id="performance"><span data-lang="en">Performance</span><span data-lang="ar">الأداء</span></a>
+    <a data-id="compensation"><span data-lang="en">Compensation</span><span data-lang="ar">التعويضات</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways &amp; References</span><span data-lang="ar">الخلاصة والمراجع</span></a>
+  </nav>
+
+  <!-- 1. OVERVIEW -->
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Human Resource Management</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">This detailed bilingual study guide covers human resource management end to end, following the employee life cycle from planning a workforce to paying and motivating it.</p>
+        <p>The thread that runs through every unit is a single shift in thinking: people are no longer treated as a cost to be controlled but as talent, a strategic asset to be attracted, developed, and retained. Each function below serves that goal.</p>
+        <h3>The eight units at a glance</h3>
+        <ol>
+          <li><strong>Strategic HRM:</strong> what HR is and how its role evolved.</li>
+          <li><strong>Environment:</strong> internal and external factors that shape HR.</li>
+          <li><strong>Job analysis and design.</strong></li>
+          <li><strong>HR planning:</strong> balancing supply and demand.</li>
+          <li><strong>Recruitment and selection.</strong></li>
+          <li><strong>Training and development.</strong></li>
+          <li><strong>Performance appraisal and management.</strong></li>
+          <li><strong>Compensation, rewards, and motivation.</strong></li>
+        </ol>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> إدارة الموارد البشرية</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">يغطّي هذا الدليل الدراسي المفصّل ثنائي اللغة إدارة الموارد البشرية من أولها إلى آخرها، متتبّعًا دورة حياة الموظف من تخطيط القوى العاملة إلى تعويضها وتحفيزها.</p>
+        <p>والخيط الذي يسري في كل وحدة تحوّل واحد في التفكير: لم يعد الأفراد يُعامَلون ككلفة تُضبَط، بل كموهبة، أي أصل استراتيجي يُستقطَب ويُطوَّر ويُحتفَظ به. وكل وظيفة أدناه تخدم هذا الهدف.</p>
+        <h3>الوحدات الثماني في لمحة</h3>
+        <ol>
+          <li><strong>مدخل استراتيجي:</strong> ما الموارد البشرية وكيف تطوّر دورها.</li>
+          <li><strong>البيئة:</strong> العوامل الداخلية والخارجية المؤثرة.</li>
+          <li><strong>تحليل وتصميم الوظائف.</strong></li>
+          <li><strong>تخطيط الموارد البشرية:</strong> الموازنة بين العرض والطلب.</li>
+          <li><strong>الاستقطاب والاختيار.</strong></li>
+          <li><strong>التدريب والتطوير.</strong></li>
+          <li><strong>تقييم الأداء وإدارته.</strong></li>
+          <li><strong>التعويضات والمكافآت والتحفيز.</strong></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. STRATEGIC HRM -->
+  <section class="page" id="intro">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>A Strategic Introduction to HRM</h2>
+        <p><strong>Human resource management (HRM)</strong> is the function that manages people inside an organization as one of its most important assets. It works to attract the right employees, develop their abilities, motivate them, and retain them so the organization can reach its goals. It covers recruitment, training and development, performance management, compensation and benefits, and labor relations, and it drives organizational excellence and a healthy culture, not just paperwork.</p>
+        <h3>From personnel administration to strategic HRM</h3>
+        <ul>
+          <li><strong>Focus:</strong> from administrative and operational (payroll, attendance, leave) to a strategic partner in achieving the organization's goals.</li>
+          <li><strong>Role:</strong> from mere compliance with rules to developing and empowering human capital.</li>
+          <li><strong>Nature of work:</strong> from routine procedures and documentation to performance development, talent management, and future planning.</li>
+          <li><strong>Relation to top management:</strong> from marginal to a participant in decision-making.</li>
+          <li><strong>Value added:</strong> from low to high, affecting performance and competitive advantage.</li>
+        </ul>
+        <h3>The core HR functions</h3>
+        <ol>
+          <li><strong>HR planning:</strong> forecasting future workforce needs and analyzing skill gaps.</li>
+          <li><strong>Recruitment and selection:</strong> attracting the best and ensuring person-job and person-culture fit.</li>
+          <li><strong>Training and development:</strong> developing current skills and preparing future leaders.</li>
+          <li><strong>Performance management:</strong> setting goals, measuring performance, and giving feedback.</li>
+          <li><strong>Compensation and benefits:</strong> fair, motivating pay and incentive systems.</li>
+          <li><strong>Labor relations:</strong> managing the employee-management relationship, resolving conflict, and building a healthy workplace.</li>
+        </ol>
+        <h3>Resource or talent?</h3>
+        <p>The old view saw the employee as a replaceable resource, focused on cost and productivity and managed by orders. The modern view sees the employee as talent, a strategic asset that is hard to replace, focused on innovation and growth, and managed through empowerment, motivation, and continuous development, with value that is long-term and sustainable.</p>
+        <h3>How HRM evolved</h3>
+        <ol>
+          <li><strong>Administrative stage (before 1950):</strong> payroll, discipline, and employee files.</li>
+          <li><strong>Industrial-relations stage (1950 to 1970):</strong> managing conflict and labor law.</li>
+          <li><strong>HR stage (1970 to 1990):</strong> recruitment, training, and organizational development.</li>
+          <li><strong>Strategic stage (1990 to now):</strong> linking HR to performance, leadership, change, and culture.</li>
+        </ol>
+        <h3>Hard HRM versus soft HRM</h3>
+        <p>Two philosophies sit behind the practice. <strong>Hard HRM</strong> treats people as a resource to be used efficiently, like any other input, and focuses on cost, control, and headcount. <strong>Soft HRM</strong> treats people as valued assets whose commitment and development create value, and focuses on trust, communication, and involvement. Most modern organizations lean toward soft HRM while still managing cost carefully.</p>
+        <h3>Strategic alignment (fit)</h3>
+        <p>For HR to be truly strategic, its practices must be aligned in two directions. <strong>Vertical fit</strong> means HR strategy supports the wider business strategy (for example, a growth strategy needs aggressive recruitment and development). <strong>Horizontal fit</strong> means the HR practices reinforce each other (recruitment, training, appraisal, and pay all pointing the same way). When both hold, HR adds the most value.</p>
+        <h3>Line managers and HR</h3>
+        <p>HR is not delivered by the HR department alone. It is a shared responsibility: HR designs the systems and policies (a <em>staff</em> role), while <strong>line managers</strong> apply them day to day by hiring, coaching, appraising, and motivating their own teams (a <em>line</em> role). HR succeeds only when line managers own their part of it.</p>
+        <div class="note"><strong>The contemporary roles of HR (Ulrich):</strong> HR acts as a <strong>strategic partner</strong> (aligning HR with business goals), a <strong>change agent</strong> (leading transformation), an <strong>administrative and operations expert</strong> (running efficient systems), and an <strong>employee champion</strong> (listening to and developing people).</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>مدخل استراتيجي إلى إدارة الموارد البشرية</h2>
+        <p><strong>إدارة الموارد البشرية</strong> هي الوظيفة التي تُعنى بإدارة الأفراد داخل المؤسسة باعتبارهم أحد أهم أصولها. تعمل على جذب الموظفين المناسبين وتطوير قدراتهم وتحفيزهم والحفاظ عليهم لتحقيق أهداف المنظمة. وتشمل التوظيف والتدريب والتطوير وإدارة الأداء والتعويضات والمزايا وعلاقات العمل، وتقود التميّز المؤسسي والثقافة الصحية، لا مجرد العمل الإداري.</p>
+        <h3>من شؤون الموظفين إلى الموارد البشرية الاستراتيجية</h3>
+        <ul>
+          <li><strong>التركيز:</strong> من الإداري التشغيلي (رواتب، حضور، إجازات) إلى شريك استراتيجي في تحقيق أهداف المنظمة.</li>
+          <li><strong>الدور:</strong> من الالتزام بالقوانين إلى تنمية رأس المال البشري وتمكينه.</li>
+          <li><strong>طبيعة العمل:</strong> من إجراءات روتينية وتوثيق إلى تطوير الأداء وإدارة الموهبة والتخطيط للمستقبل.</li>
+          <li><strong>العلاقة بالإدارة العليا:</strong> من هامشية إلى تشاركية في اتخاذ القرار.</li>
+          <li><strong>القيمة المضافة:</strong> من منخفضة إلى عالية، تؤثر على الأداء والميزة التنافسية.</li>
+        </ul>
+        <h3>الوظائف الأساسية للموارد البشرية</h3>
+        <ol>
+          <li><strong>تخطيط الموارد البشرية:</strong> التنبؤ بالاحتياجات المستقبلية وتحليل الفجوات في المهارات.</li>
+          <li><strong>الاستقطاب والاختيار:</strong> جذب أفضل الكفاءات وضمان توافق الشخص مع الوظيفة والثقافة.</li>
+          <li><strong>التدريب والتطوير:</strong> تطوير المهارات الحالية وإعداد قيادات مستقبلية.</li>
+          <li><strong>إدارة الأداء:</strong> تحديد الأهداف وقياس الأداء وتقديم التغذية الراجعة.</li>
+          <li><strong>التعويضات والمزايا:</strong> أنظمة رواتب وحوافز عادلة ومحفزة.</li>
+          <li><strong>علاقات العمل:</strong> إدارة العلاقة بين الموظفين والإدارة وحل النزاعات وبناء بيئة عمل صحية.</li>
+        </ol>
+        <h3>المورد أم الموهبة؟</h3>
+        <p>كانت النظرة القديمة ترى الموظف موردًا يمكن استبداله، تركّز على الكلفة والإنتاجية وتُدار بالأوامر. أما النظرة الحديثة فترى الموظف موهبةً، أصلًا استراتيجيًا يصعب تعويضه، تركّز على الابتكار والنمو وتُدار بالتمكين والتحفيز والتطوير المستمر، بقيمة طويلة المدى ومستدامة.</p>
+        <h3>مراحل تطوّر الموارد البشرية</h3>
+        <ol>
+          <li><strong>المرحلة الإدارية (قبل 1950):</strong> الرواتب والانضباط وملفات الموظفين.</li>
+          <li><strong>مرحلة العلاقات الصناعية (1950 إلى 1970):</strong> إدارة النزاعات وقوانين العمل.</li>
+          <li><strong>مرحلة الموارد البشرية (1970 إلى 1990):</strong> التوظيف والتدريب والتطوير التنظيمي.</li>
+          <li><strong>المرحلة الاستراتيجية (1990 إلى الآن):</strong> ربط الموارد البشرية بالأداء والقيادة والتغيير والثقافة.</li>
+        </ol>
+        <h3>الموارد البشرية «الصلبة» مقابل «الناعمة»</h3>
+        <p>وراء الممارسة فلسفتان. <strong>الموارد البشرية الصلبة</strong> تعامل الأفراد كمورد يُستخدَم بكفاءة مثل أي مُدخَل آخر، وتركّز على الكلفة والسيطرة والعدد. و<strong>الموارد البشرية الناعمة</strong> تعاملهم كأصول قيّمة يخلق التزامها وتطويرها القيمة، وتركّز على الثقة والتواصل والإشراك. ومعظم المنظمات الحديثة تميل إلى الناعمة مع إدارة الكلفة بعناية.</p>
+        <h3>التوافق الاستراتيجي (المواءمة)</h3>
+        <p>لكي تكون الموارد البشرية استراتيجية فعلًا، يجب أن تتوائم ممارساتها في اتجاهين. <strong>التوافق الرأسي</strong> يعني أن تدعم استراتيجية الموارد البشرية استراتيجية العمل الأوسع (فاستراتيجية النمو تحتاج استقطابًا وتطويرًا مكثّفين). و<strong>التوافق الأفقي</strong> يعني أن تعزّز ممارسات الموارد البشرية بعضها بعضًا (الاستقطاب والتدريب والتقييم والأجر جميعها في اتجاه واحد). وحين يتحقق الاثنان تضيف الموارد البشرية أقصى قيمة.</p>
+        <h3>المديرون التنفيذيون والموارد البشرية</h3>
+        <p>لا تُنفَّذ الموارد البشرية بواسطة إدارتها وحدها. فهي مسؤولية مشتركة: تصمّم الموارد البشرية الأنظمة والسياسات (دور <em>استشاري/ساند</em>)، بينما يطبّقها <strong>المديرون التنفيذيون</strong> يوميًا بالتوظيف والإرشاد والتقييم والتحفيز لفرقهم (دور <em>تنفيذي</em>). ولا تنجح الموارد البشرية إلا حين يتبنّى المديرون التنفيذيون جزءهم منها.</p>
+        <div class="note"><strong>الأدوار المعاصرة للموارد البشرية (أولريش):</strong> تعمل الموارد البشرية <strong>شريكًا استراتيجيًا</strong> (مواءمة الموارد البشرية مع أهداف العمل)، و<strong>وكيل تغيير</strong> (قيادة التحوّل)، و<strong>خبيرًا إداريًا وتشغيليًا</strong> (تشغيل أنظمة فعّالة)، و<strong>داعمًا للموظفين</strong> (الإصغاء إليهم وتطويرهم).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. ENVIRONMENT -->
+  <section class="page" id="environment">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Internal &amp; External Factors</h2>
+        <p>The <strong>environment</strong> is the general frame an organization works within, and it shapes HR decisions and policies directly and indirectly. It has two parts: the <strong>external environment</strong> the organization cannot control (laws, the economy, the labor market) and the <strong>internal environment</strong> that arises inside it (culture, structure, leadership, resources).</p>
+        <h3>Why analyzing the environment matters</h3>
+        <ul>
+          <li>To make realistic decisions that respond to surrounding conditions.</li>
+          <li>To design flexible strategies that can adapt to change.</li>
+          <li>To avoid risks and seize opportunities.</li>
+          <li>To strengthen HR's ability to support the organization's goals in changing conditions.</li>
+        </ul>
+        <h3>The external environment: the PESTEL model</h3>
+        <ul>
+          <li><strong>Political:</strong> government policy, political stability, taxes, and labor laws.</li>
+          <li><strong>Economic:</strong> inflation, unemployment, wages, and labor-market supply and demand.</li>
+          <li><strong>Social:</strong> social values, demographics, and cultural trends.</li>
+          <li><strong>Technological:</strong> digital transformation, artificial intelligence, and electronic HR systems.</li>
+          <li><strong>Environmental:</strong> sustainability requirements, environmental law, and occupational safety.</li>
+          <li><strong>Legal:</strong> labor regulations, employee rights, and employment rules.</li>
+        </ul>
+        <h3>How external factors reach HR (with examples)</h3>
+        <ul>
+          <li><strong>Legal:</strong> a law requiring a quota of national employees reshapes hiring policy, qualification programs, and contracts.</li>
+          <li><strong>Technological:</strong> remote work and AI in hiring drive digital-tool training, job redesign, and remote performance management.</li>
+          <li><strong>Social:</strong> the expectations of new generations (such as Gen Z) for flexibility and empowerment push a better employee experience, inclusive workplaces, and participative leadership.</li>
+          <li><strong>Environmental:</strong> tighter workplace-safety oversight forces a review of health and safety policies and mandatory training.</li>
+          <li><strong>Economic:</strong> a rise in the cost of living prompts a review of pay systems.</li>
+        </ul>
+        <h3>The labor market</h3>
+        <p>A key external force is the <strong>labor market</strong>, the supply of and demand for the skills the firm needs. When talent is scarce, the firm must compete harder on pay, brand, and flexibility to attract it; when talent is plentiful, it can be more selective. HR studies the market to set realistic pay and hiring plans.</p>
+        <h3>The internal environment, explained</h3>
+        <p>Inside the firm, four forces shape how well HR policies actually work:</p>
+        <ul>
+          <li><strong>Organizational culture:</strong> the shared values and norms that decide whether people accept change, share knowledge, and trust leadership.</li>
+          <li><strong>Administrative structure:</strong> how centralized or flat the organization is, which affects decision speed, spans of control, and career paths.</li>
+          <li><strong>Leadership:</strong> the style and support of managers, which either enables or blocks HR initiatives.</li>
+          <li><strong>Available resources:</strong> the budget, technology, and HR capabilities the firm can devote to its people.</li>
+        </ul>
+        <div class="note"><strong>The analytical tools:</strong> HR uses <strong>PESTEL</strong> to scan the six external forces and <strong>SWOT</strong> to turn that scan into strategy, matching internal <em>strengths</em> and <em>weaknesses</em> against external <em>opportunities</em> and <em>threats</em>, so that HR policy responds to the real context rather than guesswork.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>العوامل الداخلية والخارجية</h2>
+        <p><strong>البيئة</strong> هي الإطار العام الذي تعمل فيه المنظمة، وتؤثر مباشرةً وغير مباشرة على قرارات الموارد البشرية وسياساتها. ولها جزءان: <strong>بيئة خارجية</strong> لا تتحكم فيها المنظمة (القوانين، الاقتصاد، سوق العمل)، و<strong>بيئة داخلية</strong> تنبع من داخلها (الثقافة، الهيكل، القيادة، الموارد).</p>
+        <h3>لماذا يهم تحليل البيئة</h3>
+        <ul>
+          <li>لاتخاذ قرارات واقعية تتجاوب مع الظروف المحيطة.</li>
+          <li>لتصميم استراتيجيات مرنة قابلة للتكيّف مع التغيّر.</li>
+          <li>لتفادي المخاطر واغتنام الفرص.</li>
+          <li>لتعزيز قدرة الموارد البشرية على دعم أهداف المنظمة في ظروف متغيّرة.</li>
+        </ul>
+        <h3>البيئة الخارجية: نموذج PESTEL</h3>
+        <ul>
+          <li><strong>سياسية:</strong> السياسات الحكومية، الاستقرار السياسي، الضرائب، قوانين العمل.</li>
+          <li><strong>اقتصادية:</strong> التضخم، البطالة، الأجور، العرض والطلب في سوق العمل.</li>
+          <li><strong>اجتماعية:</strong> القيم الاجتماعية، التركيبة السكانية، الاتجاهات الثقافية.</li>
+          <li><strong>تكنولوجية:</strong> التحول الرقمي، الذكاء الاصطناعي، أنظمة الموارد البشرية الإلكترونية.</li>
+          <li><strong>بيئية:</strong> متطلبات الاستدامة، قوانين البيئة، السلامة المهنية.</li>
+          <li><strong>قانونية:</strong> الأنظمة العمالية، حقوق الموظفين، قواعد التوظيف.</li>
+        </ul>
+        <h3>كيف تصل العوامل الخارجية إلى الموارد البشرية (بأمثلة)</h3>
+        <ul>
+          <li><strong>قانونية:</strong> قانون يُلزم بنسبة من المواطنين يُعيد تشكيل سياسة التوظيف وبرامج التأهيل والعقود.</li>
+          <li><strong>تكنولوجية:</strong> العمل عن بُعد والذكاء الاصطناعي في التوظيف يدفعان لتدريب الأدوات الرقمية وإعادة تصميم الوظائف وإدارة الأداء عن بُعد.</li>
+          <li><strong>اجتماعية:</strong> توقعات الأجيال الجديدة (كجيل Z) نحو المرونة والتمكين تدفع لتحسين تجربة الموظف وبيئة عمل شاملة وقيادة تشاركية.</li>
+          <li><strong>بيئية:</strong> تشديد الرقابة على السلامة المهنية يفرض مراجعة سياسات الصحة والسلامة والتدريب الإلزامي.</li>
+          <li><strong>اقتصادية:</strong> ارتفاع تكاليف المعيشة يستدعي مراجعة أنظمة الأجور.</li>
+        </ul>
+        <h3>سوق العمل</h3>
+        <p>من أهم القوى الخارجية <strong>سوق العمل</strong>، أي العرض والطلب على المهارات التي تحتاجها المنشأة. فحين تندر المواهب، على المنشأة أن تنافس أكثر على الأجر والعلامة والمرونة لاستقطابها؛ وحين تتوفّر، يمكنها أن تكون أكثر انتقائية. وتدرس الموارد البشرية السوق لوضع خطط أجر وتوظيف واقعية.</p>
+        <h3>البيئة الداخلية موضَّحة</h3>
+        <p>داخل المنشأة، أربع قوى تشكّل مدى نجاح سياسات الموارد البشرية فعليًا:</p>
+        <ul>
+          <li><strong>الثقافة التنظيمية:</strong> القيم والأعراف المشتركة التي تقرّر هل يتقبّل الناس التغيير ويتشاركون المعرفة ويثقون بالقيادة.</li>
+          <li><strong>الهيكل الإداري:</strong> مدى مركزية المنظمة أو تسطّحها، بما يؤثر على سرعة القرار ونطاق الإشراف والمسارات المهنية.</li>
+          <li><strong>القيادة:</strong> نمط المديرين ودعمهم، الذي يُمكّن مبادرات الموارد البشرية أو يعيقها.</li>
+          <li><strong>الموارد المتاحة:</strong> الميزانية والتكنولوجيا وقدرات الموارد البشرية التي يمكن للمنشأة تخصيصها لأفرادها.</li>
+        </ul>
+        <div class="note"><strong>أدوات التحليل:</strong> تستخدم الموارد البشرية <strong>PESTEL</strong> لمسح القوى الخارجية الست و<strong>SWOT</strong> لتحويل المسح إلى استراتيجية، بمطابقة <em>القوة</em> و<em>الضعف</em> الداخليَّين مع <em>الفرص</em> و<em>التهديدات</em> الخارجية، فتستجيب سياسة الموارد البشرية للسياق الحقيقي لا للتخمين.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. JOB ANALYSIS -->
+  <section class="page" id="jobs">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Job Analysis &amp; Design</h2>
+        <p><strong>Job analysis</strong> is the systematic process of collecting, organizing, and documenting information about each job: its daily tasks and responsibilities, the skills, knowledge, and experience it requires, the environment it is performed in, and the outputs expected from the person who holds it. It is the foundation on which recruitment, development, and appraisal systems are built.</p>
+        <h3>Objectives of job analysis</h3>
+        <ol>
+          <li>Build an accurate <strong>job description</strong> of duties and outputs.</li>
+          <li>Define the <strong>job specification</strong> (competencies, qualifications, experience) the holder needs.</li>
+          <li>Improve recruitment and selection through clear criteria.</li>
+          <li>Identify the skill gaps that training must address.</li>
+          <li>Design a more efficient structure and reduce overlap between tasks.</li>
+          <li>Support fair performance appraisal and compensation.</li>
+          <li>Ensure regulatory and legal compliance through formal documentation.</li>
+        </ol>
+        <h3>Tools and methods</h3>
+        <ul>
+          <li><strong>Interviews:</strong> with the jobholder or supervisor; give deep information but can be subjective.</li>
+          <li><strong>Questionnaires:</strong> cover many jobs quickly but need skill to design and can be read differently.</li>
+          <li><strong>Direct observation:</strong> good for routine or manual jobs, ineffective for intellectual ones.</li>
+          <li><strong>Document and records analysis:</strong> uses existing descriptions, plans, and reports to update jobs without starting from scratch.</li>
+          <li><strong>Job-analysis workshops:</strong> gather multiple views from employees, supervisors, and managers; interactive and good for complex, multi-task jobs.</li>
+        </ul>
+        <p>Relying on a single tool gives an incomplete picture, so a multi-tool approach (<em>triangulation</em>) is recommended.</p>
+        <h3>Job design and the Job Characteristics Model</h3>
+        <p><strong>Job design</strong> reshapes a job's content and structure to balance the organization's needs with the employee's, and to motivate strong performance. The <strong>Job Characteristics Model</strong> (Hackman and Oldham) rests on five core dimensions that drive internal motivation: <strong>skill variety</strong>, <strong>task identity</strong>, <strong>task significance</strong>, <strong>autonomy</strong>, and <strong>feedback</strong>.</p>
+        <p>The five dimensions work through three <em>psychological states</em>: variety, identity, and significance create a sense of <strong>meaningfulness</strong>; autonomy creates felt <strong>responsibility</strong>; and feedback creates <strong>knowledge of results</strong>. Together these raise internal motivation, satisfaction, and performance.</p>
+        <h3>Approaches to job design</h3>
+        <ul>
+          <li><strong>Job rotation:</strong> moving employees between tasks to reduce boredom and broaden skills.</li>
+          <li><strong>Job enlargement:</strong> adding more tasks at the same level to widen the role (horizontal).</li>
+          <li><strong>Job enrichment:</strong> adding responsibility, autonomy, and decision-making to deepen the role (vertical), the approach most tied to the Job Characteristics Model.</li>
+        </ul>
+        <h3>What each document contains</h3>
+        <ul>
+          <li><strong>Job description</strong> (the job): title, purpose, duties and responsibilities, reporting relationships, and working conditions.</li>
+          <li><strong>Job specification</strong> (the person): required qualifications, experience, and competencies, usually framed as <strong>KSAO</strong>, knowledge, skills, abilities, and other attributes.</li>
+        </ul>
+        <div class="note"><strong>Description versus specification:</strong> the <strong>job description</strong> states the tasks, responsibilities, and outputs of the job, while the <strong>job specification</strong> states the competencies the person needs. The first describes the work; the second describes the worker.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>تحليل وتصميم الوظائف</h2>
+        <p><strong>تحليل الوظائف</strong> عملية منهجية لجمع وتنظيم وتوثيق المعلومات المرتبطة بكل وظيفة: مهامها ومسؤولياتها اليومية، والمهارات والمعارف والخبرات المطلوبة، والبيئة التي تُمارَس فيها، والمخرجات المتوقعة من شاغلها. وهو الأساس الذي تُبنى عليه أنظمة التوظيف والتطوير والتقييم.</p>
+        <h3>أهداف تحليل الوظائف</h3>
+        <ol>
+          <li>بناء <strong>وصف وظيفي</strong> دقيق للمسؤوليات والمخرجات.</li>
+          <li>تحديد <strong>المواصفات الوظيفية</strong> (جدارات، مؤهلات، خبرات) المطلوبة في الشاغل.</li>
+          <li>تحسين التوظيف والاختيار عبر معايير واضحة.</li>
+          <li>تحديد الفجوات المهارية التي يعالجها التدريب.</li>
+          <li>تصميم هيكل أكثر كفاءة وتقليل التداخل بين المهام.</li>
+          <li>دعم التقييم العادل للأداء والتعويضات.</li>
+          <li>ضمان الامتثال التنظيمي والقانوني عبر التوثيق الرسمي.</li>
+        </ol>
+        <h3>الأدوات والأساليب</h3>
+        <ul>
+          <li><strong>المقابلات:</strong> مع شاغل الوظيفة أو مشرفه؛ تعطي معلومات عميقة لكنها قد تكون ذاتية.</li>
+          <li><strong>الاستبيانات:</strong> تغطي وظائف كثيرة بسرعة لكنها تتطلّب مهارة في التصميم وقد تُفهَم بشكل مختلف.</li>
+          <li><strong>الملاحظة المباشرة:</strong> مناسبة للوظائف الروتينية أو الحركية، غير فعّالة للفكرية.</li>
+          <li><strong>تحليل الوثائق والسجلات:</strong> يستخدم الأوصاف والخطط والتقارير الموجودة لتحديث الوظائف دون البدء من الصفر.</li>
+          <li><strong>ورش تحليل الوظائف:</strong> تجمع رؤى متعددة من الموظفين والمشرفين والمديرين؛ تفاعلية ومناسبة للوظائف المعقدة متعددة المهام.</li>
+        </ul>
+        <p>الاعتماد على أداة واحدة يعطي صورة غير مكتملة، لذا يُنصح بمنهجية متعددة الأدوات (<em>التثليث</em>).</p>
+        <h3>تصميم الوظيفة ونموذج خصائص الوظيفة</h3>
+        <p><strong>تصميم الوظيفة</strong> يعيد تشكيل محتوى الوظيفة وهيكلها لتحقيق التوازن بين حاجات المنظمة وحاجات الموظف، وتحفيز الأداء. ويرتكز <strong>نموذج خصائص الوظيفة</strong> (هاكمان وأولدهام) على خمسة أبعاد جوهرية تدفع الدافعية الداخلية: <strong>تنوّع المهارات</strong>، و<strong>وحدة المهمة (هويتها)</strong>، و<strong>أهمية المهمة</strong>، و<strong>الاستقلالية</strong>، و<strong>التغذية الراجعة</strong>.</p>
+        <p>وتعمل الأبعاد الخمسة عبر ثلاث <em>حالات نفسية</em>: التنوّع والهوية والأهمية تخلق شعورًا بـ<strong>المعنى</strong>؛ والاستقلالية تخلق شعورًا بـ<strong>المسؤولية</strong>؛ والتغذية الراجعة تخلق <strong>معرفة النتائج</strong>. ومعًا ترفع الدافعية الداخلية والرضا والأداء.</p>
+        <h3>مداخل تصميم الوظيفة</h3>
+        <ul>
+          <li><strong>التدوير الوظيفي:</strong> نقل الموظفين بين المهام لتقليل الملل وتوسيع المهارات.</li>
+          <li><strong>توسيع الوظيفة:</strong> إضافة مهام في المستوى نفسه لتوسيع الدور (أفقيًا).</li>
+          <li><strong>إثراء الوظيفة:</strong> إضافة مسؤولية واستقلالية واتخاذ قرار لتعميق الدور (رأسيًا)، وهو المدخل الأوثق صلةً بنموذج خصائص الوظيفة.</li>
+        </ul>
+        <h3>ماذا تتضمّن كل وثيقة</h3>
+        <ul>
+          <li><strong>الوصف الوظيفي</strong> (الوظيفة): المسمّى، والغرض، والمهام والمسؤوليات، وعلاقات التبعية، وظروف العمل.</li>
+          <li><strong>المواصفات الوظيفية</strong> (الشخص): المؤهلات والخبرات والجدارات المطلوبة، وتُصاغ عادةً بنموذج <strong>KSAO</strong>: المعرفة والمهارات والقدرات والسمات الأخرى.</li>
+        </ul>
+        <div class="note"><strong>الوصف مقابل المواصفات:</strong> يذكر <strong>الوصف الوظيفي</strong> مهام الوظيفة ومسؤولياتها ومخرجاتها، بينما تذكر <strong>المواصفات الوظيفية</strong> الجدارات المطلوبة في الشخص. فالأول يصف العمل، والثاني يصف العامل.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. PLANNING -->
+  <section class="page" id="planning">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Human Resource Planning</h2>
+        <p><strong>HR planning</strong> is the systematic estimation of future workforce needs in number, skills, and location, compared with the resources available, followed by action to meet those needs effectively. Its main goal is to balance <strong>supply</strong> (what is or will be available) with <strong>demand</strong> (what will be needed) so the organization keeps performing and stays competitive.</p>
+        <h3>Why plan the workforce?</h3>
+        <ul>
+          <li>To avoid shortages or surpluses of employees.</li>
+          <li>To support growth and expansion.</li>
+          <li>To define training and succession programs.</li>
+          <li>To align the workforce with technological and organizational change.</li>
+          <li>To reduce random hiring or downsizing decisions.</li>
+        </ul>
+        <h3>The four stages of planning</h3>
+        <ol>
+          <li><strong>Analyze the current workforce:</strong> headcount, available skills and experience, performance, turnover, and absence.</li>
+          <li><strong>Forecast future demand:</strong> which skills and how many people will be needed, based on expansion, new projects, or digital change.</li>
+          <li><strong>Analyze expected supply:</strong> who will stay, who will retire, and the scope for internal promotion or transfer.</li>
+          <li><strong>Gap analysis and plans:</strong> compare supply with demand to find a shortage or surplus, then decide on external hiring, internal training, succession, or task redistribution. The plan must be flexible, revisable, and data-based.</li>
+        </ol>
+        <h3>Forecasting methods</h3>
+        <ul>
+          <li><strong>Quantitative:</strong> <em>trend analysis</em> (projecting past hiring growth), <em>ratio analysis</em> (for example one manager per 50 staff), and <em>regression</em> (linking headcount to drivers such as sales or customer numbers).</li>
+          <li><strong>Qualitative:</strong> managerial judgment and expert methods such as the Delphi technique, chosen to suit the organization and its environment.</li>
+        </ul>
+        <h3>Responding to the gap</h3>
+        <p>The plan's action depends on which way the gap runs:</p>
+        <ul>
+          <li><strong>If demand exceeds supply (a shortage):</strong> recruit externally, train and promote from within, use overtime or temporary staff, or improve retention to keep the people already there.</li>
+          <li><strong>If supply exceeds demand (a surplus):</strong> freeze hiring, redeploy people to other units, retrain them for new roles, reduce hours, or, as a last resort, downsize.</li>
+        </ul>
+        <h3>Succession planning</h3>
+        <p>A core output of planning is <strong>succession planning</strong>: identifying and preparing internal candidates to fill critical and leadership roles before they fall vacant, so the organization is never caught without ready talent. It is closely tied to internal recruitment and development.</p>
+        <div class="note"><strong>Key idea:</strong> HR cannot be strategic without effective workforce planning; it turns the organization's goals into a concrete people plan, and increasingly relies on an <strong>HR information system (HRIS)</strong> to hold accurate data for forecasting.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>تخطيط الموارد البشرية</h2>
+        <p><strong>تخطيط الموارد البشرية</strong> هو التقدير المنهجي للاحتياجات المستقبلية من القوى العاملة من حيث العدد والمهارات والموقع، ومقارنتها بالموارد المتاحة، ثم اتخاذ الإجراءات لتلبيتها بفعالية. وهدفه الرئيسي الموازنة بين <strong>العرض</strong> (المتوفر حاليًا أو المتوقع) و<strong>الطلب</strong> (المطلوب مستقبلًا) لضمان استمرار الأداء والقدرة التنافسية.</p>
+        <h3>لماذا نخطّط للقوى العاملة؟</h3>
+        <ul>
+          <li>لتفادي نقص أو فائض في الموظفين.</li>
+          <li>لدعم النمو والتوسّع.</li>
+          <li>لتحديد برامج التدريب والإحلال.</li>
+          <li>لمواءمة القوى العاملة مع التحولات التكنولوجية والتنظيمية.</li>
+          <li>لتقليل القرارات العشوائية في التوظيف أو التقليص.</li>
+        </ul>
+        <h3>مراحل التخطيط الأربع</h3>
+        <ol>
+          <li><strong>تحليل الوضع الحالي للقوى العاملة:</strong> عدد الموظفين، المهارات والخبرات المتوفرة، الأداء، معدل الدوران، الغياب.</li>
+          <li><strong>التنبؤ بالطلب المستقبلي:</strong> ما المهارات وعدد الأفراد المطلوبين، بناءً على التوسّع أو المشاريع الجديدة أو التحول الرقمي.</li>
+          <li><strong>تحليل العرض المتوقع:</strong> من سيبقى، ومن سيتقاعد، وإمكانية الترقّي أو النقل الداخلي.</li>
+          <li><strong>تحليل الفجوة ووضع الخطط:</strong> مقارنة العرض بالطلب لتحديد عجز أو فائض، ثم القرار بشأن التوظيف الخارجي أو التدريب الداخلي أو الإحلال أو إعادة توزيع المهام. ويجب أن تكون الخطة مرنة وقابلة للمراجعة ومبنية على بيانات دقيقة.</li>
+        </ol>
+        <h3>أساليب التنبؤ</h3>
+        <ul>
+          <li><strong>كمية:</strong> <em>تحليل الاتجاهات</em> (إسقاط نمو التوظيف السابق)، و<em>تحليل النِّسب</em> (مثلًا مدير واحد لكل 50 موظفًا)، و<em>الانحدار</em> (ربط عدد الموظفين بعوامل كالمبيعات أو عدد العملاء).</li>
+          <li><strong>نوعية:</strong> الحكم الإداري وأساليب الخبراء مثل تقنية دلفي، تُختار بما يناسب المنظمة وبيئتها.</li>
+        </ul>
+        <h3>الاستجابة للفجوة</h3>
+        <p>يعتمد إجراء الخطة على اتجاه الفجوة:</p>
+        <ul>
+          <li><strong>إذا فاق الطلب العرض (عجز):</strong> التوظيف الخارجي، والتدريب والترقية من الداخل، والعمل الإضافي أو التوظيف المؤقت، أو تحسين الاستبقاء للحفاظ على الموجودين.</li>
+          <li><strong>إذا فاق العرض الطلب (فائض):</strong> تجميد التوظيف، وإعادة توزيع الأفراد على وحدات أخرى، وإعادة تأهيلهم لأدوار جديدة، وتقليل الساعات، وكحلٍّ أخير التقليص.</li>
+        </ul>
+        <h3>تخطيط الإحلال (التعاقب)</h3>
+        <p>من أهم مخرجات التخطيط <strong>تخطيط الإحلال</strong>: تحديد وإعداد مرشحين داخليين لشغل الأدوار الحرجة والقيادية قبل شغورها، حتى لا تُفاجأ المنظمة بلا مواهب جاهزة. وهو وثيق الصلة بالاستقطاب الداخلي والتطوير.</p>
+        <div class="note"><strong>الفكرة المحورية:</strong> لا يمكن للموارد البشرية أن تكون استراتيجية دون تخطيط فعّال للقوى العاملة؛ فهو يحوّل أهداف المنظمة إلى خطة أفراد ملموسة، ويعتمد بشكل متزايد على <strong>نظام معلومات الموارد البشرية (HRIS)</strong> لحفظ بيانات دقيقة للتنبؤ.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. RECRUITMENT -->
+  <section class="page" id="recruitment">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Recruitment &amp; Selection</h2>
+        <p><strong>Recruitment</strong> is the process of attracting as many qualified applicants as possible for a vacancy, to create a suitable candidate pool; it is "marketing the job." <strong>Selection</strong> is the process of choosing the most suitable applicant against pre-set criteria (skills, behavior, experience); it is "making the right hiring decision." Recruitment widens the pool, selection narrows it.</p>
+        <h3>Internal sources of recruitment</h3>
+        <p>Filling a vacancy from within, through <strong>promotions</strong>, <strong>horizontal transfers</strong>, <strong>succession planning</strong>, and <strong>internal referrals</strong>.</p>
+        <ul>
+          <li><strong>Advantages:</strong> the candidate is already known, current staff are motivated, and cost and time are lower.</li>
+          <li><strong>Limits:</strong> it reduces diversity, may move a gap rather than fill it, and can create tension within the team.</li>
+        </ul>
+        <h3>External sources of recruitment</h3>
+        <ul>
+          <li><strong>Job advertisements:</strong> for a wide audience and widely known roles.</li>
+          <li><strong>Online job sites (LinkedIn, Bayt):</strong> for specialists and mid-to-senior roles, and for regional or international hiring.</li>
+          <li><strong>Recruitment agencies:</strong> for specialized or leadership roles, or when speed is needed without draining internal time.</li>
+          <li><strong>Fairs and universities:</strong> to attract new graduates and build a future talent pool, ideal for entry-level and co-op programs.</li>
+          <li><strong>Social media (Twitter, Instagram, TikTok):</strong> to reach younger audiences and promote the employer brand.</li>
+        </ul>
+        <h3>The selection process, step by step</h3>
+        <p>Selection is a funnel that filters applicants down to the best fit:</p>
+        <ol>
+          <li><strong>Receive and screen applications:</strong> match CVs against the job specification to shortlist.</li>
+          <li><strong>Testing:</strong> ability and aptitude tests, personality tests, and work-sample or job-knowledge tests.</li>
+          <li><strong>Interviews:</strong> which can be <em>structured</em> (same questions, scored) or <em>unstructured</em>, and <em>behavioral</em> ("tell me about a time...") or <em>situational</em> ("what would you do if...").</li>
+          <li><strong>Assessment centers:</strong> for senior roles, combining exercises, simulations, and group tasks.</li>
+          <li><strong>Reference and background checks,</strong> then the <strong>hiring decision and offer</strong>.</li>
+        </ol>
+        <h3>What makes a selection tool good</h3>
+        <p>A sound tool must be <strong>reliable</strong> (it gives consistent results) and <strong>valid</strong> (it actually predicts job performance). Structured interviews and work samples tend to predict performance far better than unstructured chats.</p>
+        <div class="note"><strong>Common hiring errors:</strong> personal bias, the <em>halo effect</em>, stereotyping, and reliance on a first impression all weaken decisions. Clear criteria, structured behavioral interviews, valid tests, and multiple assessors improve the quality and fairness of the choice. A <strong>realistic job preview</strong> (an honest picture of the role) also reduces early turnover.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الاستقطاب والاختيار</h2>
+        <p><strong>الاستقطاب</strong> عملية جذب أكبر عدد ممكن من المتقدمين المؤهلين لوظيفة شاغرة لإنشاء مجموعة مرشحين مناسبة؛ وهو «تسويق الوظيفة». و<strong>الاختيار</strong> عملية مفاضلة المتقدمين لاختيار الأنسب وفق معايير محددة مسبقًا (المهارات، السلوك، الخبرة)؛ وهو «اتخاذ القرار الصحيح». فالاستقطاب يوسّع القاعدة والاختيار يضيّقها.</p>
+        <h3>مصادر الاستقطاب الداخلية</h3>
+        <p>شغل الوظيفة من الداخل، عبر <strong>الترقيات</strong> و<strong>النقل الأفقي</strong> و<strong>الإحلال (Succession Planning)</strong> و<strong>التوصية الداخلية</strong>.</p>
+        <ul>
+          <li><strong>المزايا:</strong> المرشح معروف مسبقًا، وتحفيز الموظفين الحاليين، وتقليل الكلفة والوقت.</li>
+          <li><strong>القيود:</strong> تقليل فرص التنوع، ونقل الفجوة بدل سدّها، وقد يُحدث حساسية داخل الفريق.</li>
+        </ul>
+        <h3>مصادر الاستقطاب الخارجية</h3>
+        <ul>
+          <li><strong>إعلانات التوظيف:</strong> لشريحة واسعة وللوظائف العامة المنتشرة.</li>
+          <li><strong>مواقع التوظيف الإلكترونية (LinkedIn، Bayt):</strong> للمتخصصين والوظائف المتوسطة والعليا، وللتوظيف الإقليمي والدولي.</li>
+          <li><strong>شركات التوظيف:</strong> للوظائف المتخصصة أو القيادية، أو عند الحاجة للسرعة دون استنزاف الوقت الداخلي.</li>
+          <li><strong>المعارض والجامعات:</strong> لاستقطاب الخريجين الجدد وبناء قاعدة مواهب مستقبلية، مثالية للوظائف المبتدئة وبرامج التدريب التعاوني.</li>
+          <li><strong>وسائل التواصل الاجتماعي (Twitter، Instagram، TikTok):</strong> للوصول إلى الفئات الشبابية والترويج لعلامة التوظيف.</li>
+        </ul>
+        <h3>عملية الاختيار خطوةً بخطوة</h3>
+        <p>الاختيار قُمع يُصفّي المتقدمين وصولًا إلى الأنسب:</p>
+        <ol>
+          <li><strong>استقبال الطلبات وتصفيتها:</strong> مطابقة السير الذاتية مع المواصفات الوظيفية للقائمة المختصرة.</li>
+          <li><strong>الاختبارات:</strong> اختبارات القدرات والاستعداد، واختبارات الشخصية، واختبارات عيّنة العمل أو المعرفة الوظيفية.</li>
+          <li><strong>المقابلات:</strong> وقد تكون <em>منظمة</em> (أسئلة موحّدة تُقيَّم) أو <em>غير منظمة</em>، و<em>سلوكية</em> («حدّثني عن موقف...») أو <em>موقفية</em> («ماذا ستفعل لو...»).</li>
+          <li><strong>مراكز التقييم:</strong> للوظائف العليا، بجمع تمارين ومحاكاة ومهام جماعية.</li>
+          <li><strong>التحقق من المراجع والخلفية،</strong> ثم <strong>قرار التوظيف والعرض</strong>.</li>
+        </ol>
+        <h3>ما الذي يجعل أداة الاختيار جيدة</h3>
+        <p>يجب أن تكون الأداة السليمة <strong>ثابتة (Reliable)</strong> (تعطي نتائج متسقة) و<strong>صادقة (Valid)</strong> (تتنبّأ فعلًا بالأداء الوظيفي). والمقابلات المنظمة وعيّنات العمل تتنبّأ بالأداء أفضل بكثير من المحادثات غير المنظمة.</p>
+        <div class="note"><strong>أخطاء التوظيف الشائعة:</strong> التحيّز الشخصي و<em>أثر الهالة</em> والتنميط والاعتماد على الانطباع الأول تُضعف القرار. والمعايير الواضحة والمقابلات السلوكية المنظمة والاختبارات الصادقة وتعدّد المقيّمين تُحسّن جودة الاختيار وعدالته. كما يقلّل <strong>العرض الواقعي للوظيفة</strong> (صورة صادقة عن الدور) من الدوران المبكر.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. TRAINING -->
+  <section class="page" id="training">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Training &amp; Development</h2>
+        <p><strong>Training</strong> is a short-term, focused, educational process aimed at gaining specific skills and knowledge to improve performance in the current job; it targets new or operational employees. <strong>Development</strong> is a long-term, broad process aimed at growing personal and professional potential, including future capabilities for promotion and leadership; it targets leaders, managers, and high-potential staff. Training meets a current need; development prepares people for future demands.</p>
+        <h3>Why organizations invest in it</h3>
+        <ol>
+          <li>Improve job performance and reduce errors, especially in technical or service roles.</li>
+          <li>Close skill gaps that hold back efficient work.</li>
+          <li>Support readiness for change (digital transformation, restructuring).</li>
+          <li>Raise satisfaction and engagement, because people feel invested in.</li>
+          <li>Build future leadership ranks by preparing high-potential staff.</li>
+          <li>Reduce employee turnover.</li>
+          <li>Achieve competitive advantage through superior human capability.</li>
+        </ol>
+        <p>Training and development are not an added cost but a strategic investment in human capital.</p>
+        <h3>The five steps of training</h3>
+        <ol>
+          <li><strong>Needs analysis:</strong> identify the gap between required and actual performance.</li>
+          <li><strong>Design:</strong> set objectives, content, and audience.</li>
+          <li><strong>Delivery:</strong> run the program using suitable methods.</li>
+          <li><strong>Application:</strong> support transfer of learning to the job.</li>
+          <li><strong>Evaluation:</strong> measure the program's real effect.</li>
+        </ol>
+        <h3>Training needs analysis at three levels</h3>
+        <p>Step one is done carefully at three levels, so training solves the right problem:</p>
+        <ul>
+          <li><strong>Organizational analysis:</strong> where does the business strategy require new skills?</li>
+          <li><strong>Task analysis:</strong> which tasks in the job need improvement, and what knowledge and skills do they demand?</li>
+          <li><strong>Person analysis:</strong> which employees have a gap, and are they able and willing to learn?</li>
+        </ul>
+        <h3>Training methods</h3>
+        <ul>
+          <li><strong>On-the-job:</strong> coaching, mentoring, job rotation, and apprenticeship, learning by doing in the real role.</li>
+          <li><strong>Off-the-job:</strong> classroom courses, workshops, simulations, and case studies, away from daily pressure.</li>
+          <li><strong>Technology-based:</strong> e-learning, learning management systems, smart learning, and remote training, flexible and scalable.</li>
+        </ul>
+        <p>Good design also respects how adults learn: they need relevance, respect for their experience, active practice, and immediate feedback, and the real test is <strong>transfer of training</strong>, whether the learning is actually used back on the job.</p>
+        <h3>Kirkpatrick's four levels of evaluation</h3>
+        <ol>
+          <li><strong>Reaction:</strong> how participants received the training.</li>
+          <li><strong>Learning:</strong> the knowledge, skills, and attitudes gained.</li>
+          <li><strong>Behavior:</strong> how far the learning is applied on the job.</li>
+          <li><strong>Results:</strong> the targeted organizational outcomes achieved.</li>
+        </ol>
+        <div class="note"><strong>Measuring the payoff:</strong> beyond Kirkpatrick, firms track the <strong>return on training investment (ROTI)</strong> and run <strong>leadership-development</strong> programs to prepare people for greater responsibility and drive organizational transformation.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>التدريب والتطوير</h2>
+        <p><strong>التدريب</strong> عملية تعليمية قصيرة الأجل موجّهة، تهدف إلى اكتساب مهارات ومعارف محددة لتحسين الأداء في الوظيفة الحالية؛ وتستهدف الموظفين الجدد أو العاملين في وظائف تشغيلية. و<strong>التطوير</strong> عملية طويلة الأجل واسعة النطاق تهدف إلى تنمية الإمكانات الشخصية والمهنية، وتشمل القدرات المستقبلية للترقّي والقيادة؛ وتستهدف القادة والمديرين وذوي الإمكانات العالية. فالتدريب يعالج حاجة حالية، والتطوير يُجهّز الأفراد لمتطلبات مستقبلية.</p>
+        <h3>لماذا تستثمر المنظمات فيه</h3>
+        <ol>
+          <li>تحسين الأداء الوظيفي وتقليل الأخطاء، خصوصًا في الوظائف الفنية أو الخدمية.</li>
+          <li>سدّ فجوات المهارات التي تعيق العمل بكفاءة.</li>
+          <li>دعم الجاهزية للتغيير (التحول الرقمي، إعادة الهيكلة).</li>
+          <li>رفع الرضا والاندماج، إذ يشعر الموظف بأنه مستثمَر فيه.</li>
+          <li>بناء صفوف قيادية مستقبلية بإعداد ذوي الإمكانات العالية.</li>
+          <li>تقليل معدل دوران الموظفين.</li>
+          <li>تحقيق ميزة تنافسية عبر قدرات بشرية متفوقة.</li>
+        </ol>
+        <p>التدريب والتطوير ليسا كلفة إضافية بل استثمار استراتيجي في رأس المال البشري.</p>
+        <h3>خطوات التدريب الخمس</h3>
+        <ol>
+          <li><strong>تحليل الاحتياج:</strong> تحديد الفجوة بين الأداء المطلوب والفعلي.</li>
+          <li><strong>التصميم:</strong> وضع الأهداف والمحتوى والفئة المستهدفة.</li>
+          <li><strong>التنفيذ:</strong> تقديم البرنامج بالأساليب المناسبة.</li>
+          <li><strong>التطبيق:</strong> دعم نقل التعلّم إلى العمل.</li>
+          <li><strong>التقييم:</strong> قياس الأثر الحقيقي للبرنامج.</li>
+        </ol>
+        <h3>تحليل الاحتياج التدريبي على ثلاثة مستويات</h3>
+        <p>تُنفَّذ الخطوة الأولى بعناية على ثلاثة مستويات، حتى يحلّ التدريب المشكلة الصحيحة:</p>
+        <ul>
+          <li><strong>التحليل التنظيمي:</strong> أين تتطلّب استراتيجية العمل مهارات جديدة؟</li>
+          <li><strong>تحليل المهام:</strong> أي مهام الوظيفة تحتاج تحسينًا، وما المعارف والمهارات التي تتطلّبها؟</li>
+          <li><strong>تحليل الأفراد:</strong> أي موظفين لديهم فجوة، وهل هم قادرون وراغبون في التعلّم؟</li>
+        </ul>
+        <h3>أساليب التدريب</h3>
+        <ul>
+          <li><strong>في موقع العمل:</strong> الإرشاد والتوجيه والتدوير الوظيفي والتلمذة، بالتعلّم عبر الممارسة في الدور الحقيقي.</li>
+          <li><strong>خارج موقع العمل:</strong> الدورات الصفية وورش العمل والمحاكاة ودراسات الحالة، بعيدًا عن ضغط اليوم.</li>
+          <li><strong>المعتمدة على التكنولوجيا:</strong> التعلّم الإلكتروني وأنظمة إدارة التعلّم والتعلّم الذكي والتدريب عن بُعد، مرنة وقابلة للتوسّع.</li>
+        </ul>
+        <p>ويراعي التصميم الجيد كيف يتعلّم الكبار: يحتاجون إلى الصلة، واحترام خبرتهم، والممارسة النشطة، والتغذية الراجعة الفورية، والاختبار الحقيقي هو <strong>نقل أثر التدريب</strong>، أي هل استُخدم التعلّم فعلًا في العمل.</p>
+        <h3>مستويات كيركباتريك الأربعة للتقييم</h3>
+        <ol>
+          <li><strong>ردة الفعل:</strong> كيف تلقّى المشاركون التدريب.</li>
+          <li><strong>التعلّم:</strong> ما اكتُسب من معرفة ومهارات واتجاهات.</li>
+          <li><strong>السلوك:</strong> مدى تطبيق التعلّم في العمل.</li>
+          <li><strong>النتائج:</strong> المخرجات التنظيمية المستهدفة المتحققة.</li>
+        </ol>
+        <div class="note"><strong>قياس العائد:</strong> إلى جانب كيركباتريك، تتتبّع المنظمات <strong>عائد الاستثمار في التدريب (ROTI)</strong> وتُنفّذ برامج <strong>تطوير القيادة</strong> لإعداد الأفراد لمسؤوليات أكبر ودفع التحوّل المؤسسي.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. PERFORMANCE -->
+  <section class="page" id="performance">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>Performance Appraisal &amp; Management</h2>
+        <p><strong>Performance appraisal</strong> is the periodic measurement of an employee against set goals and standards, focused on the past, done once or twice a year through formal forms and an annual interview, with a limited development role. <strong>Performance management</strong> is the wider, continuous process of planning, directing, appraising, and developing performance, focused on the present and future, with frequent reviews and instant feedback and a strong link to the organization's goals. Appraisal is one tool inside the broader frame of performance management.</p>
+        <h3>Developmental versus administrative appraisal</h3>
+        <ul>
+          <li><strong>Developmental:</strong> to learn strengths and weaknesses, feeding training, development plans, and succession.</li>
+          <li><strong>Administrative:</strong> to make formal decisions on rewards, promotions, transfers, and terminations.</li>
+        </ul>
+        <p>The two purposes should be separated or clearly balanced to avoid conflicting goals.</p>
+        <h3>The manager's role</h3>
+        <p>The direct manager is not just the person who fills the form; they are a coach through the year, a direct observer of behavior, and a partner in the employee's development. Successful organizations train managers in constructive communication, giving feedback, and building trust.</p>
+        <h3>The performance-management cycle</h3>
+        <ol>
+          <li><strong>Performance planning:</strong> set goals and expectations.</li>
+          <li><strong>Monitoring and coaching:</strong> follow up and guide through the year.</li>
+          <li><strong>Final appraisal:</strong> measure results against the plan.</li>
+          <li><strong>Feedback and development:</strong> discuss results and set improvement plans.</li>
+        </ol>
+        <p>Goals are set with <strong>KPIs</strong> (key performance indicators) or <strong>OKRs</strong> (objectives and key results), and appraisal blends <em>competency</em> (how the work is done) with <em>achievement</em> (what is delivered).</p>
+        <h3>Tools, biases, and feedback</h3>
+        <ul>
+          <li><strong>Tools:</strong> digital forms, behavioral appraisal, self-assessment, and 360-degree feedback.</li>
+          <li><strong>Common biases:</strong> the <em>halo effect</em>, <em>leniency</em>, and <em>central tendency</em> (rating everyone in the middle).</li>
+          <li><strong>Feedback models:</strong> <em>SBI</em> (situation, behavior, impact) and <em>feedforward</em> (focusing on future improvement rather than past blame).</li>
+        </ul>
+        <h3>Common appraisal methods</h3>
+        <ul>
+          <li><strong>Graphic rating scale:</strong> rating traits or behaviors on a fixed scale; simple but can be vague.</li>
+          <li><strong>Behaviorally anchored rating scale (BARS):</strong> anchors each score to a concrete example of behavior, making ratings clearer.</li>
+          <li><strong>Management by objectives (MBO):</strong> appraising against agreed, measurable goals.</li>
+          <li><strong>Ranking and forced distribution:</strong> comparing employees against each other or fitting them to a curve; powerful but can harm teamwork.</li>
+          <li><strong>360-degree feedback:</strong> gathering views from manager, peers, subordinates, and self for a rounded picture.</li>
+        </ul>
+        <h3>Setting good goals (SMART)</h3>
+        <p>Effective goals are <strong>Specific, Measurable, Achievable, Relevant, and Time-bound</strong>, which is what turns a vague expectation into something a manager and employee can actually track and discuss.</p>
+        <div class="note"><strong>Closing the loop:</strong> appraisal results connect to incentives and professional development, through <strong>performance-improvement plans</strong> for those who fall short, and recognition, raises, or promotion for strong performers, increasingly supported by smart digital performance systems.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>تقييم الأداء وإدارته</h2>
+        <p><strong>تقييم الأداء</strong> قياس دوري لأداء الموظف مقابل أهداف ومعايير محددة، يركّز على الماضي، ويتم مرة أو مرتين في السنة عبر نماذج رسمية ومقابلة سنوية، بدور تطويري محدود. و<strong>إدارة الأداء</strong> عملية أوسع مستمرة للتخطيط والتوجيه والتقييم والتطوير، تركّز على الحاضر والمستقبل، بمراجعات متكررة وتغذية راجعة فورية وارتباط قوي بأهداف المنظمة. فالتقييم أداة ضمن إطار أوسع هو إدارة الأداء.</p>
+        <h3>التقييم التطويري مقابل الإداري</h3>
+        <ul>
+          <li><strong>تطويري:</strong> لمعرفة نقاط القوة والضعف، ويغذّي التدريب وخطط التطوير والإحلال.</li>
+          <li><strong>إداري:</strong> لاتخاذ قرارات رسمية بشأن المكافآت والترقيات والنقل وإنهاء الخدمات.</li>
+        </ul>
+        <p>ويجب الفصل بين الغرضين أو الموازنة بينهما بوضوح لتجنّب تضارب الأهداف.</p>
+        <h3>دور المدير المباشر</h3>
+        <p>المدير المباشر ليس فقط من يملأ النموذج؛ بل هو مرشد خلال العام، وملاحظ مباشر للسلوك، وشريك في تطوير الموظف. والمنظمات الناجحة تدرّب المديرين على التواصل البنّاء وتقديم التغذية الراجعة وبناء الثقة.</p>
+        <h3>دورة إدارة الأداء</h3>
+        <ol>
+          <li><strong>التخطيط للأداء:</strong> تحديد الأهداف والتوقعات.</li>
+          <li><strong>المتابعة والتوجيه:</strong> المتابعة والإرشاد طوال العام.</li>
+          <li><strong>التقييم النهائي:</strong> قياس النتائج مقابل الخطة.</li>
+          <li><strong>التغذية الراجعة والتطوير:</strong> مناقشة النتائج ووضع خطط تحسين.</li>
+        </ol>
+        <p>وتُحدَّد الأهداف بـ<strong>مؤشرات الأداء (KPIs)</strong> أو <strong>الأهداف والنتائج المفتاحية (OKRs)</strong>، ويمزج التقييم بين <em>الكفاءة</em> (كيف يُؤدّى العمل) و<em>الإنجاز</em> (ما يُنجَز).</p>
+        <h3>الأدوات والتحيّزات والتغذية الراجعة</h3>
+        <ul>
+          <li><strong>الأدوات:</strong> النماذج الرقمية، والتقييم السلوكي، والتقييم الذاتي، وتقييم 360 درجة.</li>
+          <li><strong>التحيّزات الشائعة:</strong> <em>الهالة</em>، و<em>التساهل</em>، و<em>الميل إلى المركز</em> (تقييم الجميع في الوسط).</li>
+          <li><strong>نماذج التغذية الراجعة:</strong> <em>SBI</em> (الموقف، السلوك، الأثر) و<em>Feedforward</em> (التركيز على تحسين المستقبل لا لوم الماضي).</li>
+        </ul>
+        <h3>أساليب التقييم الشائعة</h3>
+        <ul>
+          <li><strong>مقياس التقدير البياني:</strong> تقييم سمات أو سلوكيات على مقياس ثابت؛ بسيط لكنه قد يكون غامضًا.</li>
+          <li><strong>مقياس التقدير المرتكز على السلوك (BARS):</strong> يربط كل درجة بمثال سلوكي ملموس، فيجعل التقييم أوضح.</li>
+          <li><strong>الإدارة بالأهداف (MBO):</strong> التقييم مقابل أهداف متفق عليها وقابلة للقياس.</li>
+          <li><strong>الترتيب والتوزيع الإجباري:</strong> مقارنة الموظفين ببعضهم أو توزيعهم على منحنى؛ قوي لكنه قد يضرّ بروح الفريق.</li>
+          <li><strong>تقييم 360 درجة:</strong> جمع آراء المدير والزملاء والمرؤوسين والذات لصورة متكاملة.</li>
+        </ul>
+        <h3>وضع أهداف جيدة (SMART)</h3>
+        <p>الأهداف الفعّالة <strong>محددة، وقابلة للقياس، وقابلة للتحقيق، وذات صلة، ومحدَّدة زمنيًا</strong>، وهذا ما يحوّل التوقّع الغامض إلى شيء يمكن للمدير والموظف تتبّعه ومناقشته فعلًا.</p>
+        <div class="note"><strong>إغلاق الدائرة:</strong> تتصل نتائج التقييم بالحوافز والتطوير المهني، عبر <strong>خطط تحسين الأداء</strong> لمن يقصّر، والتقدير أو الزيادة أو الترقية للمتميزين، وبدعم متزايد من أنظمة أداء رقمية ذكية.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. COMPENSATION -->
+  <section class="page" id="compensation">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Nine</span>
+        <h2>Compensation, Rewards &amp; Motivation</h2>
+        <p><strong>Compensation</strong> is everything an employee receives in return for their work. It is <strong>direct</strong> (base salary, incentives, allowances, performance bonuses) and <strong>indirect</strong> (benefits such as health insurance, retirement, leave, training courses, and flexibility). <strong>Rewards</strong> are part of compensation but usually conditional or variable, given for performance, achievement, or loyalty, such as a year-end bonus, sales commission, best-employee award, or a raise for outstanding performance. Compensation is a continuous system; rewards are additional, targeted incentives.</p>
+        <h3>Why compensation systems matter</h3>
+        <ul>
+          <li><strong>Attraction and recruitment:</strong> they draw talent and raise competitiveness in the labor market.</li>
+          <li><strong>Retention and loyalty:</strong> they lower turnover and deepen belonging.</li>
+          <li><strong>Motivation and performance:</strong> they push people toward higher goals.</li>
+          <li><strong>Fairness and transparency:</strong> they build trust and a positive culture.</li>
+          <li><strong>Organizational excellence:</strong> they make the firm an "employer of choice."</li>
+        </ul>
+        <h3>The total compensation package</h3>
+        <p>The package is more than a salary. It combines <strong>direct cash</strong> (base salary; allowances such as transport, housing, and nature-of-work), <strong>indirect benefits</strong>, and <strong>rewards</strong>. Pay comes in <em>fixed</em> and <em>variable</em> forms, and rewards can be <em>individual</em> or <em>group</em>.</p>
+        <h3>Internal equity and external competitiveness</h3>
+        <p>A fair, sustainable system balances two demands. <strong>Internal equity</strong> means pay is fair relative to other jobs inside the firm, and it is set through <em>job evaluation</em>, ranking or scoring jobs by their responsibility, skill, and effort to build a pay structure. <strong>External competitiveness</strong> means pay keeps up with the market, and it is set through <em>salary surveys</em> that benchmark against comparable employers.</p>
+        <h3>Pay for performance</h3>
+        <p>Variable pay links reward to results, and comes in several forms:</p>
+        <ul>
+          <li><strong>Individual:</strong> piece rate, sales commission, and merit raises.</li>
+          <li><strong>Group and organizational:</strong> team bonuses, profit sharing, gain sharing, and, for executives, stock options.</li>
+        </ul>
+        <p>Well-designed variable pay motivates, but poorly designed schemes can encourage the wrong behavior or unfair comparisons, which is why fairness and clear measures matter.</p>
+        <h3>Theories of motivation</h3>
+        <ul>
+          <li><strong>Maslow's hierarchy of needs:</strong> people are motivated by a ladder of needs, from physiological and safety, through belonging and esteem, up to self-actualization; a satisfied need no longer motivates.</li>
+          <li><strong>Herzberg's two-factor theory:</strong> <em>hygiene factors</em> (pay, job security, conditions) only prevent dissatisfaction, while true <em>motivators</em> (achievement, recognition, responsibility, growth) are what create real satisfaction; you must address both.</li>
+          <li><strong>Equity theory (Adams):</strong> people compare their own effort-to-reward ratio with that of others, and perceived unfairness demotivates them even when their absolute pay is good.</li>
+          <li><strong>Expectancy theory (Vroom):</strong> effort depends on believing that effort leads to performance, that performance leads to a reward, and that the reward is valued; if any link is broken, motivation falls.</li>
+        </ul>
+        <div class="note"><strong>Modern challenges:</strong> generational diversity, flexible work patterns, and budget pressure all test compensation systems, and call for strategic, well-designed responses rather than across-the-board pay alone.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">التاسع</span>
+        <h2>التعويضات والمكافآت والتحفيز</h2>
+        <p><strong>التعويضات</strong> هي كل ما يحصل عليه الموظف مقابل عمله. وهي <strong>مباشرة</strong> (راتب أساسي، حوافز، بدلات، مكافآت أداء) و<strong>غير مباشرة</strong> (مزايا كالتأمين الصحي والتقاعد والإجازات والدورات والمرونة). و<strong>المكافآت</strong> جزء من التعويضات لكنها غالبًا مشروطة أو متغيرة، تُمنح بناءً على الأداء أو الإنجاز أو الولاء، مثل مكافأة نهاية العام وعمولة المبيعات وجائزة أفضل موظف والزيادة للأداء المتميز. فالتعويضات نظام مستمر، والمكافآت حوافز إضافية موجّهة.</p>
+        <h3>لماذا تهم أنظمة التعويض</h3>
+        <ul>
+          <li><strong>الجذب والتوظيف:</strong> تستقطب الكفاءات وترفع التنافسية في سوق العمل.</li>
+          <li><strong>الاستبقاء والولاء:</strong> تقلّل الدوران وتعمّق الانتماء.</li>
+          <li><strong>التحفيز والأداء:</strong> تدفع الأفراد نحو أهداف أعلى.</li>
+          <li><strong>العدالة والشفافية:</strong> تبني الثقة وثقافة إيجابية.</li>
+          <li><strong>التميّز المؤسسي:</strong> تجعل المنشأة «جهة عمل مفضّلة».</li>
+        </ul>
+        <h3>الحزمة التعويضية الشاملة</h3>
+        <p>الحزمة أكثر من راتب. فهي تجمع <strong>التعويضات النقدية المباشرة</strong> (الراتب الأساسي؛ وبدلات كالنقل والسكن وطبيعة العمل)، و<strong>المزايا غير المباشرة</strong>، و<strong>المكافآت</strong>. والأجر يأتي بصورتين <em>ثابتة</em> و<em>متغيرة</em>، والمكافآت قد تكون <em>فردية</em> أو <em>جماعية</em>.</p>
+        <h3>العدالة الداخلية والتنافسية الخارجية</h3>
+        <p>النظام العادل المستدام يوازن بين مطلبين. <strong>العدالة الداخلية</strong> تعني أن يكون الأجر عادلًا نسبةً إلى الوظائف الأخرى داخل المنشأة، وتُحدَّد عبر <em>تقييم الوظائف</em>، أي ترتيبها أو تسجيلها بحسب مسؤوليتها ومهارتها وجهدها لبناء سلّم أجور. و<strong>التنافسية الخارجية</strong> تعني أن يواكب الأجر السوق، وتُحدَّد عبر <em>مسوح الرواتب</em> التي تقارن بأصحاب عمل مماثلين.</p>
+        <h3>الأجر مقابل الأداء</h3>
+        <p>يربط الأجر المتغيّر المكافأة بالنتائج، ويأتي بصور عدة:</p>
+        <ul>
+          <li><strong>فردي:</strong> أجر القطعة، وعمولة المبيعات، وزيادات الجدارة.</li>
+          <li><strong>جماعي وتنظيمي:</strong> مكافآت الفريق، ومشاركة الأرباح، ومشاركة الوفورات، وللقادة خيارات الأسهم.</li>
+        </ul>
+        <p>والأجر المتغيّر المصمَّم جيدًا يحفّز، لكن الأنظمة السيئة التصميم قد تشجّع سلوكًا خاطئًا أو مقارنات غير عادلة، ولهذا تهمّ العدالة والمقاييس الواضحة.</p>
+        <h3>نظريات التحفيز</h3>
+        <ul>
+          <li><strong>هرم ماسلو للحاجات:</strong> يُحفَّز الناس بسلّم حاجات، من الفسيولوجية والأمان، مرورًا بالانتماء والتقدير، وصولًا إلى تحقيق الذات؛ والحاجة المُشبَعة لم تعد تحفّز.</li>
+          <li><strong>نظرية العاملين لهيرزبرغ:</strong> <em>العوامل الوقائية</em> (الأجر، الأمان الوظيفي، الظروف) تمنع عدم الرضا فقط، بينما <em>العوامل المحفِّزة</em> الحقيقية (الإنجاز، التقدير، المسؤولية، النمو) هي ما يخلق الرضا الحقيقي؛ ويجب معالجة الاثنين.</li>
+          <li><strong>نظرية العدالة (آدامز):</strong> يقارن الناس نسبة جهدهم إلى مكافأتهم بغيرهم، ويُثبّطهم الشعور بعدم الإنصاف حتى لو كان أجرهم المطلق جيدًا.</li>
+          <li><strong>نظرية التوقّع (فروم):</strong> يعتمد الجهد على الاعتقاد بأن الجهد يؤدي إلى الأداء، وأن الأداء يؤدي إلى مكافأة، وأن المكافأة ذات قيمة؛ فإن انكسر أي رابط انخفض التحفيز.</li>
+        </ul>
+        <div class="note"><strong>التحديات الحديثة:</strong> تنوّع الأجيال وأنماط العمل المرنة وضغوط الميزانيات تختبر أنظمة التعويض، وتستدعي استجابات استراتيجية مصمَّمة جيدًا لا مجرد زيادة أجور شاملة.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. TAKEAWAYS -->
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Ten</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <ul>
+          <li>HRM has shifted from personnel administration to a strategic partner that treats people as talent, not a replaceable cost.</li>
+          <li>HR reads its environment with PESTEL and SWOT, then designs job analysis, planning, recruitment, training, appraisal, and pay to fit it.</li>
+          <li>Job analysis is the foundation: it produces the job description and specification that every other function relies on.</li>
+          <li>Planning balances supply and demand; recruitment widens the pool and selection narrows it; training and development build capability.</li>
+          <li>Performance management is a continuous cycle, not an annual form, and compensation must be internally fair and externally competitive while motivating through more than money.</li>
+        </ul>
+        <div class="conclusion-final"><strong>Bottom line:</strong> the functions form one integrated system across the employee life cycle. Done well, they turn people into the organization's clearest source of competitive advantage.</div>
+        <h3>References</h3>
+        <ul class="refs">
+          <li>Dessler, G. <em>Human Resource Management</em>. Pearson.</li>
+          <li>Noe, R., Hollenbeck, J., Gerhart, B. &amp; Wright, P. <em>Human Resource Management: Gaining a Competitive Advantage</em>. McGraw-Hill.</li>
+          <li>Kirkpatrick Partners. <a href="https://www.kirkpatrickpartners.com/the-kirkpatrick-model/" target="_blank" rel="noopener">The Kirkpatrick Model (four levels of training evaluation)</a>.</li>
+          <li>Society for Human Resource Management (SHRM). <a href="https://www.shrm.org/" target="_blank" rel="noopener">shrm.org</a>. (Professional HR resource.)</li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">العاشر</span>
+        <h2>الخلاصة والمراجع</h2>
+        <ul>
+          <li>انتقلت الموارد البشرية من شؤون الموظفين إلى شريك استراتيجي يعامل الأفراد كموهبة لا ككلفة قابلة للاستبدال.</li>
+          <li>تقرأ الموارد البشرية بيئتها بـPESTEL وSWOT، ثم تصمّم تحليل الوظائف والتخطيط والاستقطاب والتدريب والتقييم والأجر بما يلائمها.</li>
+          <li>تحليل الوظائف هو الأساس: فهو يُنتج الوصف والمواصفات اللذين تعتمد عليهما كل الوظائف الأخرى.</li>
+          <li>يوازن التخطيط بين العرض والطلب؛ ويوسّع الاستقطاب القاعدة ويضيّقها الاختيار؛ ويبني التدريب والتطوير القدرات.</li>
+          <li>إدارة الأداء دورة مستمرة لا نموذج سنوي، وينبغي أن يكون التعويض عادلًا داخليًا وتنافسيًا خارجيًا مع التحفيز بأكثر من المال.</li>
+        </ul>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> تُشكّل الوظائف نظامًا متكاملًا واحدًا عبر دورة حياة الموظف. وحين تُؤدّى جيدًا، تُحوّل الأفراد إلى أوضح مصدر للميزة التنافسية للمنظمة.</div>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li>Dessler, G. <em>Human Resource Management</em>. Pearson.</li>
+          <li>Noe, R., Hollenbeck, J., Gerhart, B. &amp; Wright, P. <em>Human Resource Management: Gaining a Competitive Advantage</em>. McGraw-Hill.</li>
+          <li>Kirkpatrick Partners. <a href="https://www.kirkpatrickpartners.com/the-kirkpatrick-model/" target="_blank" rel="noopener">نموذج كيركباتريك (مستويات تقييم التدريب الأربعة)</a>.</li>
+          <li>جمعية إدارة الموارد البشرية (SHRM). <a href="https://www.shrm.org/" target="_blank" rel="noopener">shrm.org</a>. (مرجع مهني في الموارد البشرية.)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","intro","environment","jobs","planning","recruitment","training","performance","compensation","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Principles of Financial Management: A Bilingual Study Guide</title>
+<meta name="description" content="A bilingual study guide to financial management: capital budgeting, capital structure, dividends, risk, options, and mergers and acquisitions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">Financial Management &middot; Study Guide</span><span data-lang="ar">الإدارة المالية &middot; دليل دراسي</span></div>
+    <h1><span data-lang="en">Principles of Financial Management: A Bilingual Study Guide</span><span data-lang="ar">مبادئ الإدارة المالية: دليل دراسي</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="intro"><span data-lang="en">Financial Management</span><span data-lang="ar">الإدارة المالية</span></a>
+    <a data-id="budgeting"><span data-lang="en">Capital Budgeting</span><span data-lang="ar">الموازنة الرأسمالية</span></a>
+    <a data-id="structure"><span data-lang="en">Capital Structure</span><span data-lang="ar">هيكل رأس المال</span></a>
+    <a data-id="dividend"><span data-lang="en">Dividends</span><span data-lang="ar">توزيع الأرباح</span></a>
+    <a data-id="risk"><span data-lang="en">Risk</span><span data-lang="ar">المخاطر</span></a>
+    <a data-id="options"><span data-lang="en">Options</span><span data-lang="ar">الخيارات</span></a>
+    <a data-id="ma"><span data-lang="en">M&amp;A</span><span data-lang="ar">الاندماج والاستحواذ</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways &amp; Source</span><span data-lang="ar">الخلاصة والمصدر</span></a>
+  </nav>
+
+  <!-- 1. OVERVIEW -->
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Corporate Finance &amp; Financial Management</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">This bilingual study guide covers the principles of financial management, from the manager's core role to the tools used to invest, finance, and manage risk.</p>
+        <p>Its central thread is a single goal: <strong>maximizing the owners' wealth</strong>. Every topic, whether choosing projects, mixing debt and equity, paying dividends, managing risk, or using options and acquisitions, serves that objective by weighing return against risk and the time value of money.</p>
+        <h3>The seven units at a glance</h3>
+        <ol>
+          <li><strong>Financial management</strong>: its nature, evolution, and goals.</li>
+          <li><strong>Capital budgeting</strong>: choosing long-term investments.</li>
+          <li><strong>Capital structure</strong>: mixing debt and equity.</li>
+          <li><strong>Dividend policy</strong>: distributing profits.</li>
+          <li><strong>Risk management</strong>: measuring and controlling risk.</li>
+          <li><strong>Options</strong>: calls, puts, and hedging.</li>
+          <li><strong>Mergers and acquisitions.</strong></li>
+        </ol>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> التمويل والإدارة المالية</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">يغطّي هذا الدليل الدراسي ثنائي اللغة مبادئ الإدارة المالية، من الدور الجوهري للمدير المالي إلى الأدوات المستخدمة في الاستثمار والتمويل وإدارة المخاطر.</p>
+        <p>وخيطه المحوري هدف واحد: <strong>تعظيم ثروة الملّاك</strong>. وكل موضوع، سواء اختيار المشاريع، أو المزج بين الدَّين وحقوق الملكية، أو توزيع الأرباح، أو إدارة المخاطر، أو استخدام الخيارات والاستحواذات، يخدم هذا الهدف عبر الموازنة بين العائد والمخاطرة والقيمة الزمنية للنقود.</p>
+        <h3>الوحدات السبع في لمحة</h3>
+        <ol>
+          <li><strong>الإدارة المالية</strong>: طبيعتها وتطوّرها وأهدافها.</li>
+          <li><strong>الموازنة الرأسمالية</strong>: اختيار الاستثمارات طويلة الأجل.</li>
+          <li><strong>هيكل رأس المال</strong>: المزج بين الدَّين وحقوق الملكية.</li>
+          <li><strong>سياسة توزيع الأرباح</strong>: توزيع الأرباح.</li>
+          <li><strong>إدارة المخاطر</strong>: قياس المخاطر والتحكّم فيها.</li>
+          <li><strong>الخيارات</strong>: خيارات الشراء والبيع والتحوّط.</li>
+          <li><strong>الاندماج والاستحواذ</strong>.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. INTRO -->
+  <section class="page" id="intro">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Introduction to Financial Management</h2>
+        <p><strong>Financial management</strong> is the process of deciding how to estimate the firm's need for funds, source them on the best terms at the lowest possible cost, and use them optimally in line with the firm's goals, so as to maximize the owners' wealth and achieve growth and stability.</p>
+        <h3>The evolving role of the financial manager</h3>
+        <p>Traditionally the financial manager kept records and prepared reports. As firms grew larger and more complex, the role expanded to studying the problems and decisions of managing assets, sourcing funds, and investing them.</p>
+        <h3>Two goals compared</h3>
+        <ul>
+          <li><strong>Profit maximization:</strong> a narrow goal that ignores the timing of returns, risk, and cash flow.</li>
+          <li><strong>Wealth maximization:</strong> the accepted goal, maximizing the owners' wealth (the firm's value or share price), because it accounts for timing, risk, and cash flow.</li>
+        </ul>
+        <h3>Finance versus accounting and economics</h3>
+        <p>The two neighboring disciplines feed finance but differ from it:</p>
+        <ul>
+          <li><strong>Accounting</strong> gathers and records past and expected data and produces the financial statements. Finance then <em>uses</em> that information to make forward-looking decisions. A key difference is that accounting recognizes revenue when earned (accrual basis), while finance focuses on actual <em>cash flows</em> and their timing.</li>
+          <li><strong>Economics</strong> analyzes how resources are allocated and studies indicators such as interest rates, inflation, gross national product, and unemployment. Finance draws on these signals, because a decision that is sound in a low-rate, low-inflation environment can be wrong when conditions change.</li>
+        </ul>
+        <h3>The main areas of finance</h3>
+        <p>Finance is a family of specialized fields in which a manager puts money to work:</p>
+        <ul>
+          <li><strong>Public finance:</strong> how the state raises public revenue, spends it, and distributes the burden across society.</li>
+          <li><strong>Investment and securities analysis:</strong> studying why prices in the securities market rise and fall over time as economic, social, and political factors interact.</li>
+          <li><strong>Corporate (business) finance:</strong> managing a single firm's assets and its sources of funds, the focus of this course.</li>
+          <li><strong>Banking and international finance:</strong> intermediation, credit, and cross-border money.</li>
+        </ul>
+        <h3>The time value of money</h3>
+        <p>Underlying almost every topic is one idea: a riyal today is worth more than a riyal tomorrow, because today's riyal can be invested to earn a return. Future cash flows are therefore <strong>discounted</strong> back to their <em>present value</em> before they can be compared, which is why present-value tables and discount rates appear throughout the course.</p>
+        <h3>The agency problem</h3>
+        <p>Because owners (shareholders) and managers are often different people, managers may pursue their own interests rather than the owners' wealth. This <em>agency problem</em> is contained through incentives (such as performance pay), monitoring (audits and boards), and governance, so that management's decisions stay aligned with maximizing owner wealth.</p>
+        <div class="note"><strong>The three core decisions:</strong> financial management centers on the <strong>investment</strong> decision (which assets to hold, for example whether to build a plant), the <strong>financing</strong> decision (how to fund them, with debt or equity), and the <strong>dividend</strong> decision (how much profit to return to owners versus reinvest). Every later unit is one of these three in more detail.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>مقدمة في الإدارة المالية</h2>
+        <p><strong>الإدارة المالية</strong> هي عملية اتخاذ القرارات المتعلقة بتقدير احتياجات المنظمة من الأموال، وكيفية توفيرها بأنسب الشروط وبأقل تكلفة ممكنة، واستخدامها الاستخدام الأمثل وفق أهداف المنظمة، بما يكفل تعظيم ثروة الملّاك وتحقيق النمو والاستقرار.</p>
+        <h3>الدور المتطوّر للمدير المالي</h3>
+        <p>كان المدير المالي تقليديًا يحتفظ بالسجلات ويُعدّ التقارير. ومع كبر حجم المنشآت وتعقّدها، توسّع دوره ليشمل دراسة المشاكل والقرارات المرتبطة بإدارة الأصول، وتوفير الأموال، واستثمارها.</p>
+        <h3>مقارنة بين هدفين</h3>
+        <ul>
+          <li><strong>تعظيم الربح:</strong> هدف ضيّق يتجاهل توقيت العوائد والمخاطرة والتدفق النقدي.</li>
+          <li><strong>تعظيم الثروة:</strong> الهدف المعتمد، أي تعظيم ثروة الملّاك (قيمة الشركة أو سعر السهم)، لأنه يراعي التوقيت والمخاطرة والتدفق النقدي.</li>
+        </ul>
+        <h3>المالية مقابل المحاسبة والاقتصاد</h3>
+        <p>يغذّي هذان المجالان المجاوران المالية، لكنهما يختلفان عنها:</p>
+        <ul>
+          <li><strong>المحاسبة</strong> تجمع وتسجّل البيانات الماضية والمتوقعة وتُعدّ القوائم المالية. ثم <em>تستخدم</em> المالية هذه المعلومات لاتخاذ قرارات مستقبلية. ومن الفروق الجوهرية أن المحاسبة تعترف بالإيراد عند تحقّقه (أساس الاستحقاق)، بينما تركّز المالية على <em>التدفقات النقدية</em> الفعلية وتوقيتها.</li>
+          <li><strong>الاقتصاد</strong> يحلّل توزيع الموارد ويدرس مؤشرات مثل أسعار الفائدة والتضخم والناتج القومي والبطالة. وتستند المالية إلى هذه الإشارات، فالقرار السليم في بيئة فائدة وتضخم منخفضين قد يكون خاطئًا حين تتغيّر الظروف.</li>
+        </ul>
+        <h3>مجالات المالية الرئيسية</h3>
+        <p>المالية أسرة من الحقول المتخصصة يوظّف فيها المدير المال:</p>
+        <ul>
+          <li><strong>المالية العامة:</strong> كيف تحصّل الدولة الإيرادات العامة وتنفقها وتوزّع العبء على المجتمع.</li>
+          <li><strong>تحليل الاستثمار والأوراق المالية:</strong> دراسة أسباب ارتفاع الأسعار وانخفاضها في السوق المالية عبر الزمن بتفاعل عوامل اقتصادية واجتماعية وسياسية.</li>
+          <li><strong>تمويل الشركات (مالية الأعمال):</strong> إدارة أصول الشركة الواحدة ومصادر أموالها، وهو محور هذا المقرر.</li>
+          <li><strong>الصيرفة والتمويل الدولي:</strong> الوساطة والائتمان والأموال عبر الحدود.</li>
+        </ul>
+        <h3>القيمة الزمنية للنقود</h3>
+        <p>تكمن خلف معظم الموضوعات فكرة واحدة: ريال اليوم أثمن من ريال الغد، لأن ريال اليوم يمكن استثماره ليحقّق عائدًا. لذا تُخصَم التدفقات النقدية المستقبلية إلى <em>قيمتها الحالية</em> قبل أن تُقارَن، ولهذا تظهر جداول القيمة الحالية ومعدلات الخصم في المقرر كله.</p>
+        <h3>مشكلة الوكالة</h3>
+        <p>لأن الملّاك (المساهمين) والمديرين غالبًا أشخاص مختلفون، قد يسعى المديرون لمصالحهم بدل ثروة الملّاك. وتُحتوى هذه <em>مشكلة الوكالة</em> عبر الحوافز (كالأجر المرتبط بالأداء) والرقابة (التدقيق ومجالس الإدارة) والحوكمة، بحيث تبقى قرارات الإدارة متوائمة مع تعظيم ثروة الملّاك.</p>
+        <div class="note"><strong>القرارات الثلاثة الجوهرية:</strong> تتمحور الإدارة المالية حول قرار <strong>الاستثمار</strong> (أي الأصول نقتني، مثل بناء مصنع)، وقرار <strong>التمويل</strong> (كيف نموّلها بالدَّين أو حقوق الملكية)، وقرار <strong>توزيع الأرباح</strong> (كم نعيد للملّاك مقابل إعادة الاستثمار). وكل وحدة لاحقة هي واحد من هذه القرارات الثلاثة بتفصيل أكبر.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. CAPITAL BUDGETING -->
+  <section class="page" id="budgeting">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Capital Budgeting</h2>
+        <p><strong>Capital budgeting</strong> is a long-term planning process used to evaluate major investment projects and decide how financial resources will be allocated over several years, for example building a new plant, buying large equipment, or developing a new product. Its objectives are value maximization, sustainable growth, and risk management.</p>
+        <h3>Types of projects</h3>
+        <ul>
+          <li><strong>Independent:</strong> can be undertaken separately from one another.</li>
+          <li><strong>Dependent (contingent):</strong> require another project to be effective.</li>
+          <li><strong>Mutually exclusive:</strong> choosing one rules out the other.</li>
+        </ul>
+        <h3>The four steps of the process</h3>
+        <ol>
+          <li><strong>Identify investment opportunities</strong> using market research, competitor analysis, and SWOT.</li>
+          <li><strong>Estimate the expected cash flows,</strong> the future revenues and expenses over the project's life. Only <em>incremental</em> cash flows count; sunk costs already spent are ignored, and opportunity costs are included. Accuracy here directly drives the quality of the decision.</li>
+          <li><strong>Compute the cost of capital,</strong> the return the funds must earn.</li>
+          <li><strong>Select the projects</strong> using the criteria below.</li>
+        </ol>
+        <h3>The cost of capital (WACC)</h3>
+        <p>The <strong>weighted average cost of capital (WACC)</strong> blends the <em>cost of equity</em> (the return shareholders expect) and the <em>cost of debt</em> (the after-tax interest on borrowing), each weighted by its share of total financing. WACC is the <strong>discount rate</strong> used to bring future cash flows back to today: a project must earn more than the WACC to add value.</p>
+        <h3>Decision criteria, explained in depth</h3>
+
+        <h4>1. Payback period</h4>
+        <p>The payback period is the time needed to recover the initial investment from the project's cash flows. With even annual cash flows it is simply the <em>initial investment divided by the annual cash flow</em>; with uneven flows you accumulate each year's cash until the original outlay is recovered. For example, a project costing 100,000 that returns 25,000 a year pays back in 4 years.</p>
+        <ul>
+          <li><strong>Strengths:</strong> simple and intuitive, and it highlights liquidity and risk, which matters for firms that are cash-constrained or operate in fast-changing markets.</li>
+          <li><strong>Weaknesses:</strong> it ignores the time value of money, ignores every cash flow that arrives <em>after</em> the payback point, and relies on an arbitrary cut-off, so it measures speed of recovery, not profitability or value.</li>
+          <li><strong>Refinement (discounted payback):</strong> discounts the cash flows first, which fixes the time-value flaw, but it still ignores flows after the cut-off.</li>
+          <li><em>Rule:</em> accept if the payback is shorter than a set maximum.</li>
+        </ul>
+
+        <h4>2. Net present value (NPV)</h4>
+        <p>NPV is the present value of all of a project's future cash flows minus the initial investment, with each future flow discounted at the WACC: <strong>NPV = &Sigma; [ cash flow<sub>t</sub> &divide; (1 + r)<sup>t</sup> ] &minus; initial investment</strong>. It expresses, in today's money, the wealth the project adds for the owners.</p>
+        <ul>
+          <li><strong>Strengths:</strong> it uses <em>all</em> cash flows and the time value of money, measures value directly, and is additive (the NPV of a set of projects is the sum of their NPVs).</li>
+          <li><strong>Weaknesses:</strong> it depends on accurate cash-flow forecasts and a correct discount rate, and as an absolute amount it does not by itself show value <em>per riyal invested</em>.</li>
+          <li><em>Rule:</em> accept if NPV is positive. NPV above zero means the project earns more than its cost of capital and raises firm value; NPV of zero means it earns exactly the cost of capital; a negative NPV destroys value.</li>
+        </ul>
+
+        <h4>3. Internal rate of return (IRR)</h4>
+        <p>The IRR is the discount rate that makes a project's NPV exactly zero, so it is effectively the project's own annual rate of return. It is compared against the WACC, which serves as the <em>hurdle rate</em>.</p>
+        <ul>
+          <li><strong>Strengths:</strong> it is intuitive, a single percentage that managers and investors grasp quickly, and it can be judged without first choosing a target return.</li>
+          <li><strong>Weaknesses:</strong> a project with unconventional cash flows (sign changes) can have <em>several</em> IRRs or none; IRR assumes cash flows are reinvested at the IRR itself, which is often unrealistic; and for mutually exclusive projects that differ in size or timing it can rank them differently from NPV.</li>
+          <li><strong>Refinement (MIRR):</strong> the modified IRR assumes reinvestment at the WACC instead, giving a more realistic single rate.</li>
+          <li><em>Rule:</em> accept if IRR exceeds the WACC.</li>
+        </ul>
+
+        <h4>A supporting measure: the profitability index (PI)</h4>
+        <p>The profitability index scales NPV to project size: <strong>PI = present value of future cash flows &divide; initial investment</strong>. A PI above 1 is equivalent to a positive NPV, and PI is especially useful for ranking projects when capital is limited.</p>
+
+        <div class="note"><strong>Which rule wins:</strong> when the methods disagree, <strong>NPV is the most reliable</strong> because it measures added value directly and assumes reinvestment at the WACC. So accept a project when its NPV is positive and its IRR exceeds the WACC, and among mutually exclusive projects choose the one with the highest NPV.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الموازنة الرأسمالية</h2>
+        <p><strong>الموازنة الرأسمالية</strong> عملية تخطيط طويلة الأجل تُستخدم لتقييم المشاريع الاستثمارية الرئيسية وتحديد كيفية تخصيص الموارد المالية على مدى عدة سنوات، مثل بناء مصنع جديد أو شراء معدات كبيرة أو تطوير منتج جديد. وأهدافها تعظيم القيمة، والنمو المستدام، وإدارة المخاطر.</p>
+        <h3>أنواع المشاريع</h3>
+        <ul>
+          <li><strong>مستقلة:</strong> يمكن تنفيذها بمعزل عن بعضها.</li>
+          <li><strong>معتمدة (مشروطة):</strong> تتطلّب تنفيذ مشروع آخر لتكون فعّالة.</li>
+          <li><strong>بديلة (متعارضة):</strong> اختيار أحدها يستبعد الآخر.</li>
+        </ul>
+        <h3>خطوات العملية الأربع</h3>
+        <ol>
+          <li><strong>تحديد الفرص الاستثمارية</strong> عبر بحوث السوق وتحليل المنافسين وتحليل SWOT.</li>
+          <li><strong>تقدير التدفقات النقدية المتوقعة،</strong> أي الإيرادات والنفقات المستقبلية على مدى عمر المشروع. ولا تُحتسب إلا التدفقات <em>الإضافية</em>؛ فالتكاليف الغارقة المنفَقة سلفًا تُهمَل، وتُدرَج تكاليف الفرصة البديلة. ودقة هذه الخطوة تحدّد مباشرةً جودة القرار.</li>
+          <li><strong>حساب تكلفة رأس المال،</strong> أي العائد الذي يجب أن تحقّقه الأموال.</li>
+          <li><strong>اختيار المشاريع</strong> بالمعايير أدناه.</li>
+        </ol>
+        <h3>تكلفة رأس المال (WACC)</h3>
+        <p><strong>المتوسط المرجّح لتكلفة رأس المال (WACC)</strong> يمزج <em>تكلفة حقوق الملكية</em> (العائد الذي يتوقّعه المساهمون) و<em>تكلفة الدَّين</em> (فائدة الاقتراض بعد الضريبة)، كلٌّ مرجّحًا بحصته من إجمالي التمويل. وهو <strong>معدل الخصم</strong> المستخدم لردّ التدفقات المستقبلية إلى اليوم: فعلى المشروع أن يحقّق أكثر من WACC ليضيف قيمة.</p>
+        <h3>معايير القرار موضَّحة بعمق</h3>
+
+        <h4>1. فترة الاسترداد</h4>
+        <p>فترة الاسترداد هي الزمن اللازم لاسترداد الاستثمار الأولي من تدفقات المشروع. فمع تدفقات سنوية متساوية تساوي ببساطة <em>الاستثمار الأولي مقسومًا على التدفق السنوي</em>؛ ومع تدفقات غير متساوية تُراكِم تدفق كل سنة حتى يُسترَد المبلغ الأصلي. مثال: مشروع بتكلفة 100,000 يعيد 25,000 سنويًا يُسترَد في 4 سنوات.</p>
+        <ul>
+          <li><strong>مواطن القوة:</strong> بسيطة وحدسية، وتُبرز السيولة والمخاطر، وهو ما يهمّ الشركات المقيَّدة نقديًا أو العاملة في أسواق سريعة التغيّر.</li>
+          <li><strong>مواطن الضعف:</strong> تتجاهل القيمة الزمنية للنقود، وتتجاهل كل تدفق يأتي <em>بعد</em> نقطة الاسترداد، وتعتمد على حدّ اعتباطي، فهي تقيس سرعة الاسترداد لا الربحية أو القيمة.</li>
+          <li><strong>تحسين (فترة الاسترداد المخصومة):</strong> تخصم التدفقات أولًا فتعالج عيب القيمة الزمنية، لكنها تظل تتجاهل التدفقات بعد الحدّ.</li>
+          <li><em>القاعدة:</em> يُقبل إذا كانت الفترة أقصر من حدّ أقصى محدد.</li>
+        </ul>
+
+        <h4>2. صافي القيمة الحالية (NPV)</h4>
+        <p>صافي القيمة الحالية هو القيمة الحالية لكل تدفقات المشروع المستقبلية ناقص الاستثمار الأولي، بخصم كل تدفق مستقبلي بمعدل WACC: <strong>NPV = &Sigma; [ التدفق<sub>t</sub> &divide; (1 + r)<sup>t</sup> ] &minus; الاستثمار الأولي</strong>. ويعبّر بنقود اليوم عن الثروة التي يضيفها المشروع للملّاك.</p>
+        <ul>
+          <li><strong>مواطن القوة:</strong> يستخدم <em>كل</em> التدفقات والقيمة الزمنية للنقود، ويقيس القيمة مباشرةً، وهو قابل للجمع (صافي القيمة الحالية لمجموعة مشاريع هو مجموع صوافيها).</li>
+          <li><strong>مواطن الضعف:</strong> يعتمد على دقة توقّع التدفقات وصحة معدل الخصم، وبوصفه مبلغًا مطلقًا لا يُظهر وحده القيمة <em>لكل ريال مستثمَر</em>.</li>
+          <li><em>القاعدة:</em> يُقبل إذا كان موجبًا. فالموجب يعني أن المشروع يحقّق أكثر من تكلفة رأس ماله ويرفع قيمة الشركة؛ والصفر يعني أنه يحقّق تكلفة رأس المال بالضبط؛ والسالب يدمّر القيمة.</li>
+        </ul>
+
+        <h4>3. معدل العائد الداخلي (IRR)</h4>
+        <p>معدل العائد الداخلي هو معدل الخصم الذي يجعل صافي القيمة الحالية صفرًا تمامًا، فهو عمليًا معدل عائد المشروع السنوي ذاته. ويُقارَن بـWACC الذي يعمل <em>حدًّا أدنى مطلوبًا (hurdle rate)</em>.</p>
+        <ul>
+          <li><strong>مواطن القوة:</strong> حدسي لأنه نسبة مئوية واحدة يستوعبها المدراء والمستثمرون بسرعة، ويمكن الحكم عليه دون اختيار عائد مستهدف أولًا.</li>
+          <li><strong>مواطن الضعف:</strong> المشروع ذو التدفقات غير المعتادة (تغيّر الإشارة) قد يكون له <em>عدة</em> معدلات عائد داخلي أو لا شيء؛ ويفترض إعادة استثمار التدفقات بمعدله نفسه، وهو غالبًا غير واقعي؛ وللمشاريع المتعارضة المختلفة في الحجم أو التوقيت قد يرتّبها خلافًا لـNPV.</li>
+          <li><strong>تحسين (MIRR):</strong> يفترض معدل العائد الداخلي المعدَّل إعادة الاستثمار بمعدل WACC بدلًا من ذلك، فيعطي معدلًا واحدًا أكثر واقعية.</li>
+          <li><em>القاعدة:</em> يُقبل إذا تجاوز WACC.</li>
+        </ul>
+
+        <h4>مقياس مساند: دليل الربحية (PI)</h4>
+        <p>يقيس دليل الربحية صافي القيمة الحالية منسوبًا إلى حجم المشروع: <strong>PI = القيمة الحالية للتدفقات المستقبلية &divide; الاستثمار الأولي</strong>. ودليل ربحية أكبر من 1 يعادل صافي قيمة حالية موجبًا، وهو مفيد بخاصة لترتيب المشاريع حين يكون رأس المال محدودًا.</p>
+
+        <div class="note"><strong>أي قاعدة تُرجَّح:</strong> عند اختلاف الطرق، تكون <strong>NPV الأوثق</strong> لأنها تقيس القيمة المضافة مباشرةً وتفترض إعادة الاستثمار بمعدل WACC. فاقبل المشروع حين تكون NPV موجبة وتتجاوز IRR تكلفة رأس المال WACC، وبين المشاريع المتعارضة اختر الأعلى NPV.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CAPITAL STRUCTURE -->
+  <section class="page" id="structure">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Capital Structure &amp; Leverage</h2>
+        <p><strong>Capital structure</strong> is how a firm distributes its long-term financing between <strong>debt</strong> and <strong>equity</strong>. An optimal structure gives financial stability, lowers bankruptcy risk, strengthens investor confidence, and raises the firm's market value.</p>
+        <h3>Sources of financing</h3>
+        <ul>
+          <li><strong>Internal:</strong> retained earnings reinvested instead of paid out, which supports sustainable growth but may displease shareholders who prefer dividends.</li>
+          <li><strong>External:</strong> issuing common and preferred stock, and long-term debt such as bonds and bank loans.</li>
+        </ul>
+        <h3>Cost of debt versus equity</h3>
+        <p>Debt is usually <strong>cheaper</strong> than equity: interest is tax-deductible and often fixed, which eases planning. Equity is <strong>more expensive</strong>: dividends are not tax-deductible and carry the higher risk that shareholders bear.</p>
+        <h3>Two kinds of leverage</h3>
+        <ul>
+          <li><strong>Operating leverage:</strong> the use of fixed operating costs (such as plant and equipment); it magnifies how a change in sales affects operating profit.</li>
+          <li><strong>Financial leverage:</strong> the use of debt (fixed financing costs); it magnifies how a change in operating profit affects earnings per share.</li>
+        </ul>
+        <p>Financial leverage benefits shareholders when the firm earns more on borrowed money than the interest it pays, lifting the return on equity and giving a tax shield. But it cuts both ways: in a weak year the fixed interest still must be paid, so losses are magnified and the risk of financial distress rises.</p>
+        <h3>Theories of capital structure</h3>
+        <ul>
+          <li><strong>Modigliani and Miller (MM):</strong> in a perfect market with no taxes, capital structure does not affect firm value; once corporate taxes are added, debt adds value through its tax shield.</li>
+          <li><strong>Trade-off theory:</strong> firms balance the tax benefit of debt against the rising costs of financial distress, giving an optimal debt level.</li>
+          <li><strong>Pecking-order theory:</strong> firms prefer internal funds first, then debt, and issue new equity only as a last resort, to avoid negative signals.</li>
+        </ul>
+        <div class="note"><strong>The trade-off in one line:</strong> more debt lowers the cost of capital up to a point, but beyond it the rising risk of financial distress outweighs the tax benefit, so firms seek a balanced, optimal structure that minimizes WACC and maximizes firm value.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>هيكل رأس المال والرافعة المالية</h2>
+        <p><strong>هيكل رأس المال</strong> هو كيفية توزيع الشركة لتمويلها طويل الأجل بين <strong>الدَّين</strong> و<strong>حقوق الملكية</strong>. والهيكل الأمثل يمنح استقرارًا ماليًا، ويقلّل مخاطر الإفلاس، ويعزّز ثقة المستثمرين، ويرفع قيمة الشركة السوقية.</p>
+        <h3>مصادر التمويل</h3>
+        <ul>
+          <li><strong>داخلي:</strong> الأرباح المحتجزة المُعاد استثمارها بدل توزيعها، وهو يدعم النمو المستدام لكنه قد يُغضب المساهمين الذين يفضّلون التوزيعات.</li>
+          <li><strong>خارجي:</strong> إصدار الأسهم العادية والممتازة، والدَّين طويل الأجل كالسندات وقروض البنوك.</li>
+        </ul>
+        <h3>تكلفة الدَّين مقابل حقوق الملكية</h3>
+        <p>الدَّين عادةً <strong>أرخص</strong> من حقوق الملكية: فالفوائد قابلة للخصم الضريبي وغالبًا ثابتة، مما يسهّل التخطيط. وحقوق الملكية <strong>أغلى</strong>: فالتوزيعات غير قابلة للخصم الضريبي وتحمل مخاطرة أعلى يتحمّلها المساهمون.</p>
+        <h3>نوعان من الرافعة</h3>
+        <ul>
+          <li><strong>الرافعة التشغيلية:</strong> استخدام التكاليف التشغيلية الثابتة (كالمصانع والمعدات)؛ وتضخّم أثر تغيّر المبيعات على الربح التشغيلي.</li>
+          <li><strong>الرافعة المالية:</strong> استخدام الدَّين (تكاليف تمويل ثابتة)؛ وتضخّم أثر تغيّر الربح التشغيلي على ربحية السهم.</li>
+        </ul>
+        <p>تفيد الرافعة المالية المساهمين حين تكسب الشركة من المال المقترَض أكثر من الفائدة التي تدفعها، فترفع العائد على حقوق الملكية وتمنح وفرًا ضريبيًا. لكنها سلاح ذو حدّين: ففي سنة ضعيفة تبقى الفائدة الثابتة واجبة السداد، فتتضخّم الخسائر وترتفع مخاطر التعثّر المالي.</p>
+        <h3>نظريات هيكل رأس المال</h3>
+        <ul>
+          <li><strong>موديلياني وميلر (MM):</strong> في سوق مثالية بلا ضرائب، لا يؤثر هيكل رأس المال في قيمة الشركة؛ ومع إضافة ضرائب الشركات، يضيف الدَّين قيمة عبر وفره الضريبي.</li>
+          <li><strong>نظرية المفاضلة:</strong> توازن الشركات بين الوفر الضريبي للدَّين وتكاليف التعثّر المتصاعدة، فيتحدّد مستوى دَين أمثل.</li>
+          <li><strong>نظرية الترتيب الهرمي:</strong> تفضّل الشركات التمويل الداخلي أولًا، ثم الدَّين، ولا تُصدر أسهمًا جديدة إلا كملاذ أخير، تجنّبًا للإشارات السلبية.</li>
+        </ul>
+        <div class="note"><strong>المفاضلة في سطر:</strong> يخفّض المزيد من الدَّين تكلفة رأس المال إلى حدّ معيّن، لكن بعده تفوق مخاطرُ التعثّر المتصاعدة الوفرَ الضريبي، لذا تسعى الشركات إلى هيكل متوازن أمثل يقلّل WACC ويعظّم قيمة الشركة.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. DIVIDEND -->
+  <section class="page" id="dividend">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Dividend Policy</h2>
+        <p><strong>Dividend policy</strong> is the set of strategies a firm uses to distribute its profits to shareholders, mainly through cash dividends and share buybacks. It directly affects the capital structure and is watched closely by investors because it can move the share price.</p>
+        <h3>The signal it sends</h3>
+        <p>Stable or rising dividends signal a healthy, profitable firm, while starting a buyback often signals confidence in future cash flows. Retaining profits instead gives the firm flexibility to invest in growth, reduce debt, or weather a downturn.</p>
+        <h3>Types of distribution</h3>
+        <ul>
+          <li><strong>Cash dividends:</strong> cash payments from profits, paid quarterly, annually, or on another schedule.</li>
+          <li><strong>Share buybacks:</strong> repurchasing shares from the market, which reduces shares outstanding and raises earnings per share (EPS).</li>
+        </ul>
+        <h3>Cash-dividend policies</h3>
+        <ul>
+          <li><strong>Constant payout ratio:</strong> a fixed percentage of profit each year, so the amount rises and falls with earnings.</li>
+          <li><strong>Regular (stable) dividend:</strong> a steady amount that reassures investors.</li>
+          <li><strong>Target payout ratio:</strong> a long-run target the firm moves toward gradually.</li>
+        </ul>
+        <h3>Other forms of distribution</h3>
+        <ul>
+          <li><strong>Stock dividends:</strong> extra shares given instead of cash, which conserve cash while rewarding shareholders.</li>
+          <li><strong>Stock splits:</strong> dividing existing shares into more shares to lower the price per share and improve liquidity, without changing total value.</li>
+        </ul>
+        <h3>The key dividend dates</h3>
+        <p>A cash dividend follows a set calendar: the <strong>declaration date</strong> (the board announces it), the <strong>ex-dividend date</strong> (buy on or after this and you do not receive the dividend), the <strong>record date</strong> (holders on the books qualify), and the <strong>payment date</strong> (cash is paid).</p>
+        <h3>Factors that shape the policy</h3>
+        <p>A firm's payout is shaped by its <strong>growth opportunities</strong> (fast-growing firms retain more), its <strong>cash flow and stability</strong>, its <strong>debt covenants and legal limits</strong>, <strong>tax considerations</strong> for shareholders, and the desire to send a <strong>consistent signal</strong> that avoids a later cut.</p>
+        <div class="note"><strong>Trade-off:</strong> a fixed payout helps investors set expectations, but locking into a rate can force a painful cut in a weak year and limits reinvestment in new opportunities. This is why many firms keep the regular dividend modest and add occasional special dividends or buybacks.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>سياسة توزيع الأرباح</h2>
+        <p><strong>سياسة توزيع الأرباح</strong> مجموعة الاستراتيجيات التي تستخدمها الشركة لتوزيع أرباحها على المساهمين، أساسًا عبر الأرباح النقدية وإعادة شراء الأسهم. وهي تؤثر مباشرةً في هيكل رأس المال، ويتابعها المستثمرون عن كثب لأنها قد تحرّك سعر السهم.</p>
+        <h3>الإشارة التي ترسلها</h3>
+        <p>التوزيعات المستقرة أو المتزايدة تشير إلى شركة صحية ومربحة، وبدء إعادة الشراء يشير غالبًا إلى الثقة في التدفقات النقدية المستقبلية. أما الاحتفاظ بالأرباح فيمنح الشركة مرونة للاستثمار في النمو أو تقليل الديون أو مواجهة الركود.</p>
+        <h3>أنواع التوزيعات</h3>
+        <ul>
+          <li><strong>الأرباح النقدية:</strong> مدفوعات نقدية من الأرباح، تُدفع ربع سنوية أو سنوية أو بجدول آخر.</li>
+          <li><strong>إعادة شراء الأسهم:</strong> شراء الشركة أسهمها من السوق، مما يقلّل الأسهم القائمة ويرفع ربحية السهم (EPS).</li>
+        </ul>
+        <h3>سياسات التوزيع النقدي</h3>
+        <ul>
+          <li><strong>نسبة ثابتة:</strong> نسبة ثابتة من الربح كل عام، فترتفع القيمة وتنخفض مع الأرباح.</li>
+          <li><strong>توزيع منتظم (مستقر):</strong> مبلغ ثابت يطمئن المستثمرين.</li>
+          <li><strong>نسبة توزيع مستهدفة:</strong> نسبة طويلة الأجل تتحرّك الشركة نحوها تدريجيًا.</li>
+        </ul>
+        <h3>أشكال أخرى للتوزيع</h3>
+        <ul>
+          <li><strong>توزيعات الأسهم (المنحة):</strong> أسهم إضافية بدل النقد، تحافظ على النقد مع مكافأة المساهمين.</li>
+          <li><strong>تجزئة السهم:</strong> تقسيم الأسهم القائمة إلى عدد أكبر لخفض سعر السهم وتحسين السيولة، دون تغيير القيمة الإجمالية.</li>
+        </ul>
+        <h3>تواريخ التوزيع الرئيسية</h3>
+        <p>يتبع التوزيع النقدي تقويمًا محددًا: <strong>تاريخ الإعلان</strong> (يعلنه المجلس)، و<strong>تاريخ عدم الاستحقاق (Ex-dividend)</strong> (من يشتري في هذا التاريخ أو بعده لا يحصل على التوزيع)، و<strong>تاريخ التسجيل</strong> (يستحق المُقيَّدون في السجل)، و<strong>تاريخ الدفع</strong> (يُدفع النقد).</p>
+        <h3>العوامل التي تشكّل السياسة</h3>
+        <p>يتشكّل توزيع الشركة بحسب <strong>فرص النمو</strong> (الشركات سريعة النمو تحتجز أكثر)، و<strong>تدفقها النقدي واستقراره</strong>، و<strong>قيود الدَّين والحدود القانونية</strong>، و<strong>الاعتبارات الضريبية</strong> للمساهمين، والرغبة في إرسال <strong>إشارة متسقة</strong> تتجنّب خفضًا لاحقًا.</p>
+        <div class="note"><strong>المفاضلة:</strong> النسبة الثابتة تساعد المستثمرين على ضبط توقعاتهم، لكن الالتزام بنسبة قد يفرض خفضًا مؤلمًا في سنة ضعيفة ويحدّ من إعادة الاستثمار في الفرص الجديدة. ولهذا تُبقي شركات كثيرة التوزيع المنتظم متواضعًا وتضيف توزيعات خاصة أو إعادة شراء من حين لآخر.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. RISK -->
+  <section class="page" id="risk">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Fundamentals of Risk Management</h2>
+        <p><strong>Risk</strong> in finance is the probability of a financial loss, measured by the variance of the expected returns on an asset; it is the uncertainty around an expected return. Some assets are treated as <strong>risk-free</strong>, such as US Treasury issues. The core principle is the <strong>risk-return trade-off</strong>: a higher expected return demands accepting higher risk.</p>
+        <h3>The risk-management process</h3>
+        <ol>
+          <li><strong>Identify</strong> the risks (market, operational, environmental, and others).</li>
+          <li><strong>Assess</strong> their impact and likelihood, often with a risk matrix.</li>
+          <li><strong>Mitigate</strong> them by avoiding, reducing, sharing (for example through insurance), or accepting them.</li>
+          <li><strong>Monitor</strong> the risk environment and update the plan.</li>
+          <li><strong>Communicate and report</strong> to keep stakeholders informed.</li>
+        </ol>
+        <h3>Measuring return and risk</h3>
+        <p>The <strong>expected return</strong> of an asset is the probability-weighted average of its possible returns. Its <strong>risk</strong> is how far actual returns tend to stray from that average, measured by the <strong>variance</strong> and its square root, the <strong>standard deviation</strong>: a larger standard deviation means a wider spread of outcomes and more risk.</p>
+        <h3>Two kinds of risk</h3>
+        <ul>
+          <li><strong>Unsystematic (specific) risk:</strong> unique to a firm or industry (a strike, a product recall). It can be <em>diversified away</em> by holding many different assets.</li>
+          <li><strong>Systematic (market) risk:</strong> affects the whole market (recessions, interest-rate moves). It <em>cannot</em> be diversified away, so investors are rewarded only for bearing it.</li>
+        </ul>
+        <h3>Portfolios and diversification</h3>
+        <p>Combining assets into a <strong>portfolio</strong> whose returns do not move perfectly together lets diversification cut the unsystematic risk without giving up all return. The portfolio's expected return is the weighted average of its assets' returns, but its risk is usually <em>lower</em> than that average because the assets partly offset each other.</p>
+        <h3>The capital asset pricing model (CAPM)</h3>
+        <p>CAPM prices the remaining systematic risk. It says an asset's <strong>required return = the risk-free rate + beta &times; (the market return minus the risk-free rate)</strong>. Here <strong>beta</strong> measures how sensitive the asset is to market moves: a beta above 1 is more volatile than the market, below 1 is less. The model gives the minimum return investors should demand for the risk they bear.</p>
+        <div class="note"><strong>The core lesson:</strong> return and risk move together. Diversification removes the risk you are not paid for (unsystematic), and CAPM tells you the fair return for the risk you cannot avoid (systematic).</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>أساسيات إدارة المخاطر</h2>
+        <p><strong>المخاطرة</strong> في المالية هي احتمال حدوث خسارة مالية، وتُقاس بتباين العوائد المتوقعة على أصل ما؛ وهي حالة عدم اليقين المحيطة بالعائد المتوقع. وتُعدّ بعض الأصول <strong>خالية من المخاطر</strong>، مثل إصدارات الخزانة الأمريكية. والمبدأ الجوهري هو <strong>مفاضلة العائد والمخاطرة</strong>: العائد الأعلى يتطلّب قبول مخاطرة أعلى.</p>
+        <h3>عملية إدارة المخاطر</h3>
+        <ol>
+          <li><strong>تحديد</strong> المخاطر (سوقية، تشغيلية، بيئية، وغيرها).</li>
+          <li><strong>تقييم</strong> أثرها واحتمال حدوثها، غالبًا بمصفوفة مخاطر.</li>
+          <li><strong>التخفيف</strong> منها بالتجنّب أو التقليل أو التقاسم (مثلًا عبر التأمين) أو القبول.</li>
+          <li><strong>مراقبة</strong> بيئة المخاطر وتحديث الخطة.</li>
+          <li><strong>الاتصال والتقرير</strong> لإبقاء الأطراف المعنية على اطلاع.</li>
+        </ol>
+        <h3>قياس العائد والمخاطرة</h3>
+        <p><strong>العائد المتوقع</strong> لأصل هو المتوسط المرجّح باحتمالات عوائده الممكنة. و<strong>مخاطرته</strong> هي مدى ابتعاد العوائد الفعلية عن هذا المتوسط، وتُقاس بـ<strong>التباين</strong> وجذره <strong>الانحراف المعياري</strong>: فكلما كبر الانحراف اتّسع تشتّت النتائج وزادت المخاطرة.</p>
+        <h3>نوعان من المخاطر</h3>
+        <ul>
+          <li><strong>المخاطر غير النظامية (الخاصة):</strong> تخصّ شركة أو صناعة (إضراب، سحب منتج). ويمكن <em>تنويعها والتخلص منها</em> بحيازة أصول متعددة.</li>
+          <li><strong>المخاطر النظامية (السوقية):</strong> تصيب السوق كلها (الركود، تحرّكات الفائدة). و<em>لا</em> يمكن التخلص منها بالتنويع، لذا يُكافأ المستثمرون على تحمّلها فقط.</li>
+        </ul>
+        <h3>المحافظ والتنويع</h3>
+        <p>دمج الأصول في <strong>محفظة</strong> لا تتحرّك عوائدها معًا تمامًا يتيح للتنويع أن يقلّص المخاطر غير النظامية دون التخلي عن كل العائد. والعائد المتوقع للمحفظة هو المتوسط المرجّح لعوائد أصولها، لكن مخاطرتها عادةً <em>أقل</em> من ذلك المتوسط لأن الأصول يعوّض بعضها بعضًا جزئيًا.</p>
+        <h3>نموذج تسعير الأصول الرأسمالية (CAPM)</h3>
+        <p>يسعّر النموذج المخاطرَ النظامية المتبقية. ويقول إن <strong>العائد المطلوب للأصل = المعدل الخالي من المخاطر + بيتا &times; (عائد السوق ناقص المعدل الخالي من المخاطر)</strong>. و<strong>بيتا</strong> تقيس حساسية الأصل لتحرّكات السوق: فبيتا أكبر من 1 أكثر تقلّبًا من السوق، وأقل من 1 أقل تقلّبًا. ويعطي النموذج الحدّ الأدنى للعائد الذي ينبغي أن يطلبه المستثمرون مقابل ما يتحمّلونه.</p>
+        <div class="note"><strong>الدرس الجوهري:</strong> العائد والمخاطرة يسيران معًا. والتنويع يزيل المخاطر التي لا تُكافأ عليها (غير النظامية)، وCAPM يخبرك بالعائد العادل مقابل المخاطر التي لا يمكن تجنّبها (النظامية).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. OPTIONS -->
+  <section class="page" id="options">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Options Contracts</h2>
+        <p>An <strong>option</strong> gives its holder a right, not an obligation, to trade an agreed quantity at a set price by a future date, in return for a <strong>premium</strong> paid to the seller (the writer).</p>
+        <h3>Calls and puts</h3>
+        <ul>
+          <li><strong>Call option:</strong> the right to <em>buy</em> the agreed quantity at the set price. A buyer of a call profits when the price rises; the writer must sell if the buyer exercises.</li>
+          <li><strong>Put option:</strong> the right to <em>sell</em> the agreed quantity at the set price. A buyer of a put profits when the price falls; the writer must buy if the buyer exercises.</li>
+        </ul>
+        <h3>How gains and losses work</h3>
+        <p>The buyer always holds the choice to exercise or not, while the writer must honor the buyer's decision. The holder's gains are the writer's losses, and vice versa. Buying both a call and a put lets an investor benefit from moves up or down, for the price of the premiums.</p>
+        <h3>The value of an option</h3>
+        <p>An option's premium has two parts: <strong>intrinsic value</strong> (what it would be worth if exercised now) and <strong>time value</strong> (the extra worth from the chance that price moves further before expiry). By "moneyness," an option is:</p>
+        <ul>
+          <li><strong>In the money:</strong> exercising now would profit (a call when the price is above the strike).</li>
+          <li><strong>At the money:</strong> price equals the strike.</li>
+          <li><strong>Out of the money:</strong> exercising now would not profit, so only time value remains.</li>
+        </ul>
+        <h3>What moves the price</h3>
+        <p>Five factors drive an option's premium: the <strong>price of the underlying</strong>, the <strong>strike price</strong>, the <strong>time to expiry</strong> (more time is worth more), the <strong>volatility</strong> of the underlying (more volatility raises the premium), and the <strong>risk-free interest rate</strong>. The maximum a buyer can lose is the premium, while the seller's risk can be much larger.</p>
+        <div class="note"><strong>Why they are used:</strong> options are a tool for <strong>hedging</strong>, limiting the downside on a position (for example a put acts like insurance on a stock you own), as well as for <strong>speculation</strong> and generating income by writing options.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>عقود الخيارات</h2>
+        <p><strong>الخيار</strong> يمنح حامله حقًا، لا التزامًا، في تداول كمية متفق عليها بسعر محدد حتى تاريخ مستقبلي، مقابل <strong>علاوة</strong> تُدفع للبائع (مُحرِّر الخيار).</p>
+        <h3>خيارات الشراء والبيع</h3>
+        <ul>
+          <li><strong>خيار الشراء (Call):</strong> الحق في <em>شراء</em> الكمية المتفق عليها بالسعر المحدد. ويربح مشتري خيار الشراء عند ارتفاع السعر؛ وعلى البائع أن يبيع إذا مارس المشتري حقه.</li>
+          <li><strong>خيار البيع (Put):</strong> الحق في <em>بيع</em> الكمية المتفق عليها بالسعر المحدد. ويربح مشتري خيار البيع عند انخفاض السعر؛ وعلى البائع أن يشتري إذا مارس المشتري حقه.</li>
+        </ul>
+        <h3>كيف تتحقّق الأرباح والخسائر</h3>
+        <p>يملك المشتري دائمًا خيار الممارسة من عدمها، بينما على البائع أن يلتزم بقرار المشتري. وأرباح الحامل هي خسائر البائع والعكس. وشراء خيار شراء وخيار بيع معًا يتيح للمستثمر الاستفادة من الصعود أو الهبوط مقابل ثمن العلاوتين.</p>
+        <h3>قيمة الخيار</h3>
+        <p>تتكوّن علاوة الخيار من جزأين: <strong>القيمة الجوهرية</strong> (ما يساويه لو مُورس الآن) و<strong>القيمة الزمنية</strong> (القيمة الإضافية من احتمال تحرّك السعر أكثر قبل الاستحقاق). وبحسب موقع السعر يكون الخيار:</p>
+        <ul>
+          <li><strong>في المال (In the money):</strong> ممارسته الآن تحقّق ربحًا (خيار شراء والسعر أعلى من سعر التنفيذ).</li>
+          <li><strong>عند المال (At the money):</strong> السعر يساوي سعر التنفيذ.</li>
+          <li><strong>خارج المال (Out of the money):</strong> ممارسته الآن لا تربح، فلا يبقى إلا القيمة الزمنية.</li>
+        </ul>
+        <h3>ما الذي يحرّك السعر</h3>
+        <p>خمسة عوامل تحرّك علاوة الخيار: <strong>سعر الأصل</strong>، و<strong>سعر التنفيذ</strong>، و<strong>الزمن حتى الاستحقاق</strong> (المزيد من الوقت أثمن)، و<strong>تقلّب</strong> الأصل (المزيد من التقلّب يرفع العلاوة)، و<strong>المعدل الخالي من المخاطر</strong>. وأقصى ما يخسره المشتري هو العلاوة، بينما قد تكون مخاطرة البائع أكبر بكثير.</p>
+        <div class="note"><strong>لماذا تُستخدم:</strong> الخيارات أداة <strong>للتحوّط</strong>، أي الحدّ من الهبوط على مركز ما (فخيار البيع يشبه تأمينًا على سهم تملكه)، وكذلك <strong>للمضاربة</strong> ولتوليد دخل عبر تحرير الخيارات.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. M&A -->
+  <section class="page" id="ma">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>Mergers &amp; Acquisitions</h2>
+        <p>Mergers and acquisitions are among the most important tools firms use to expand, raise profits, and reach strategic goals.</p>
+        <ul>
+          <li><strong>Merger:</strong> two firms unite to form a new company, usually between firms of roughly equal size and value.</li>
+          <li><strong>Acquisition:</strong> one firm buys another; the buyer survives and absorbs the target.</li>
+        </ul>
+        <h3>Why firms do it</h3>
+        <p>The core economic motive is to raise the combined economic value of the firms, through financial and operational <strong>synergy</strong>, acquiring assets below their fair value, and improving efficiency by replacing weak management.</p>
+        <h3>Types</h3>
+        <ul>
+          <li><strong>Horizontal:</strong> two firms in the same industry with similar products, seeking economies of scale, less competition, and more market share.</li>
+          <li><strong>Vertical:</strong> two firms at different stages of the same supply chain, such as a manufacturer and a supplier, seeking efficiency and control.</li>
+        </ul>
+        <h3>Friendly versus hostile</h3>
+        <p>A deal can be <strong>friendly</strong> (the target's board agrees and recommends it) or <strong>hostile</strong> (the acquirer goes directly to shareholders against the board's wishes, for example through a tender offer).</p>
+        <h3>Valuation methods</h3>
+        <ul>
+          <li><strong>Market value:</strong> share price multiplied by shares outstanding, used for listed firms.</li>
+          <li><strong>Price / earnings (P/E) multiple:</strong> share price divided by earnings per share, compared with peers to gauge value.</li>
+          <li><strong>Discounted cash flow (DCF):</strong> the present value of the target's expected future cash flows, discounted at an appropriate rate, the most fundamental measure.</li>
+        </ul>
+        <h3>Financing and risks</h3>
+        <p>Deals are paid for with <strong>cash</strong>, <strong>stock</strong>, or a mix. Despite the promise of synergy, many mergers underperform because the expected synergies are overestimated, the price paid is too high, or the two cultures fail to integrate. Careful <strong>due diligence</strong>, a realistic valuation, and a clear integration plan are what separate value-creating deals from value-destroying ones.</p>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>الاندماج والاستحواذ</h2>
+        <p>يُعدّ الاندماج والاستحواذ من أهم الأدوات التي تستخدمها الشركات للتوسّع وزيادة الأرباح وتحقيق أهدافها الاستراتيجية.</p>
+        <ul>
+          <li><strong>الاندماج (Merger):</strong> اتحاد شركتين لتكوين شركة جديدة، وعادةً بين شركتين متقاربتين في الحجم والقيمة.</li>
+          <li><strong>الاستحواذ (Acquisition):</strong> شراء شركة لأخرى؛ فتبقى المشترية قائمة وتضمّ المُستحوَذ عليها.</li>
+        </ul>
+        <h3>لماذا تقوم به الشركات</h3>
+        <p>الدافع الاقتصادي الجوهري هو زيادة القيمة الاقتصادية المجمّعة للشركات، عبر <strong>التآزر</strong> المالي والتشغيلي، واكتساب أصول بأقل من قيمتها العادلة، وتحسين الكفاءة باستبدال الإدارة الضعيفة.</p>
+        <h3>الأنواع</h3>
+        <ul>
+          <li><strong>أفقي:</strong> شركتان في الصناعة نفسها بمنتجات متماثلة، سعيًا لوفورات الحجم وتقليل المنافسة وزيادة الحصة السوقية.</li>
+          <li><strong>عمودي (رأسي):</strong> شركتان في مرحلتين مختلفتين من سلسلة التوريد نفسها، كالمصنّع والمورّد، سعيًا للكفاءة والسيطرة.</li>
+        </ul>
+        <h3>ودّي مقابل عدائي</h3>
+        <p>قد تكون الصفقة <strong>ودّية</strong> (يوافق مجلس الشركة المستهدفة ويوصي بها) أو <strong>عدائية</strong> (يتوجّه المستحوذ مباشرةً إلى المساهمين خلافًا لرغبة المجلس، مثلًا عبر عرض شراء علني).</p>
+        <h3>طرق التقييم</h3>
+        <ul>
+          <li><strong>القيمة السوقية:</strong> سعر السهم مضروبًا في عدد الأسهم القائمة، للشركات المدرجة.</li>
+          <li><strong>مضاعف الأرباح (P/E):</strong> سعر السهم مقسومًا على ربحية السهم، ويُقارَن بالنظراء لقياس القيمة.</li>
+          <li><strong>التدفقات النقدية المخصومة (DCF):</strong> القيمة الحالية للتدفقات النقدية المستقبلية المتوقعة للشركة المستهدفة مخصومةً بمعدل مناسب، وهي المقياس الأكثر جوهرية.</li>
+        </ul>
+        <h3>التمويل والمخاطر</h3>
+        <p>تُموَّل الصفقات بـ<strong>النقد</strong> أو <strong>الأسهم</strong> أو مزيج منهما. ورغم وعد التآزر، تتعثّر كثير من عمليات الاندماج لأن التآزر المتوقع مبالَغ فيه، أو السعر المدفوع مرتفع جدًا، أو الثقافتين لا تندمجان. و<strong>العناية الواجبة</strong> الدقيقة، والتقييم الواقعي، وخطة الدمج الواضحة، هي ما يفصل الصفقات المُنشئة للقيمة عن المدمّرة لها.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. TAKEAWAYS -->
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Nine</span>
+        <h2>Key Takeaways &amp; Source</h2>
+        <ul>
+          <li>The goal of financial management is to maximize the owners' wealth, weighing return, risk, and the time value of money.</li>
+          <li>Capital budgeting selects long-term projects using payback, NPV, and IRR against the WACC.</li>
+          <li>Capital structure balances cheaper but riskier debt against costlier equity to find an optimal, stable mix.</li>
+          <li>Dividend policy signals financial health and trades payout against reinvestment flexibility.</li>
+          <li>Risk management identifies, measures, and controls risk, while options and M&amp;A are tools to hedge risk and create strategic value.</li>
+        </ul>
+        <div class="conclusion-final"><strong>Bottom line:</strong> Every financial decision, investing, financing, distributing, and managing risk, is a balance of return against risk in the service of one goal: a more valuable firm.</div>
+        <h3>Source</h3>
+        <ul class="refs">
+          <li>Gitman, L. J. &amp; Zutter, C. J. <em>Principles of Managerial Finance</em>. Pearson.</li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">التاسع</span>
+        <h2>الخلاصة والمصدر</h2>
+        <ul>
+          <li>هدف الإدارة المالية تعظيم ثروة الملّاك، بالموازنة بين العائد والمخاطرة والقيمة الزمنية للنقود.</li>
+          <li>تختار الموازنة الرأسمالية المشاريع طويلة الأجل باستخدام فترة الاسترداد وNPV وIRR مقابل WACC.</li>
+          <li>يوازن هيكل رأس المال بين الدَّين الأرخص الأعلى مخاطرةً وحقوق الملكية الأغلى، بحثًا عن مزيج أمثل ومستقر.</li>
+          <li>تشير سياسة التوزيع إلى الصحة المالية وتفاضل بين التوزيع ومرونة إعادة الاستثمار.</li>
+          <li>تحدّد إدارة المخاطر المخاطرَ وتقيسها وتتحكّم فيها، بينما تُعدّ الخيارات والاندماج والاستحواذ أدواتٍ للتحوّط وخلق قيمة استراتيجية.</li>
+        </ul>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> كل قرار مالي، استثمارًا وتمويلًا وتوزيعًا وإدارةً للمخاطر، هو موازنة بين العائد والمخاطرة في خدمة هدف واحد: شركة أعلى قيمة.</div>
+        <h3>المصدر</h3>
+        <ul class="refs">
+          <li>Gitman, L. J. &amp; Zutter, C. J. <em>Principles of Managerial Finance</em>. Pearson.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","intro","budgeting","structure","dividend","risk","options","ma","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

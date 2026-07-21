@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Almarai: A Strategic Evaluation Using SWOT, BCG &amp; GE Matrices</title>
+<meta name="description" content="A bilingual strategic evaluation of Almarai using PESTEL, Porter, SWOT, TOWS, BCG, GE and Shell matrices, with KPIs and an execution roadmap.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:32px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:26px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:23px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">Strategic Management &middot; Company Evaluation</span><span data-lang="ar">الإدارة الاستراتيجية &middot; تقييم شركة</span></div>
+    <h1><span data-lang="en">Almarai: A Strategic Evaluation Using SWOT, BCG &amp; GE Matrices</span><span data-lang="ar">المراعي: تقييم استراتيجي بمصفوفات SWOT وBCG وGE</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="profile"><span data-lang="en">Profile &amp; Vision</span><span data-lang="ar">التعريف والرؤية</span></a>
+    <a data-id="structure"><span data-lang="en">Structure &amp; SBUs</span><span data-lang="ar">الهيكل والوحدات</span></a>
+    <a data-id="strategies"><span data-lang="en">Current Strategies</span><span data-lang="ar">الاستراتيجيات</span></a>
+    <a data-id="external"><span data-lang="en">External Analysis</span><span data-lang="ar">البيئة الخارجية</span></a>
+    <a data-id="swot"><span data-lang="en">SWOT &amp; TOWS</span><span data-lang="ar">SWOT وTOWS</span></a>
+    <a data-id="matrices"><span data-lang="en">BCG, GE &amp; Shell</span><span data-lang="ar">المصفوفات</span></a>
+    <a data-id="execution"><span data-lang="en">Execution &amp; KPIs</span><span data-lang="ar">التنفيذ والمؤشرات</span></a>
+    <a data-id="sustainability"><span data-lang="en">Sustainability &amp; Risk</span><span data-lang="ar">الاستدامة والمخاطر</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways &amp; References</span><span data-lang="ar">الخلاصة والمراجع</span></a>
+  </nav>
+
+  <!-- 1. OVERVIEW -->
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Strategic Management</div>
+          <div><span>Company:</span> Almarai (Saudi Arabia)</div>
+          <div><span>Analytical tools:</span> PESTEL, Porter's Five Forces, SWOT, TOWS, BCG, GE/McKinsey, Shell DPM</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">This bilingual evaluation applies the full toolkit of strategic analysis to Almarai, the Middle East's largest food and beverage manufacturer and the world's largest vertically integrated dairy company.</p>
+        <p>The study moves through seven integrated layers: the company's identity (vision, mission, values, and strategic objectives), its matrix organizational structure and strategic business units, its current strategies at the corporate, business, and functional levels, its external environment (PESTEL and Porter's Five Forces), its internal-external position (SWOT converted into actionable TOWS strategies), its portfolio position (BCG, GE/McKinsey, and Shell directional-policy matrices), and finally a concrete execution plan with KPIs, sustainability commitments, risk governance, and recommendations.</p>
+        <div class="note"><strong>Note on figures and years of record:</strong> the most recent full-year results are for fiscal year 2025, revenue of 22.06 billion riyals (up 5.2%) and net profit of 2.46 billion riyals (up 6.2%), with earnings per share of 2.48 riyals and shareholders' equity of 20.53 billion riyals (2025 records, announced 18 January 2026). The prior year 2024 showed revenue of 20.98 billion and net profit of 2.31 billion, up 13% from 2.04 billion in 2023. The original portfolio study was built on the 2024 results; both years are shown here so the trend is visible. Other dated figures carry their own year of record throughout: the 18 billion riyal five-year investment plan (2023 to 2028), sustainability targets set against 2020 baselines for 2030, women's workforce participation above 15% (2024 record), and 10 million donated product packages (2023 record). Figures change over time and should be checked against the latest disclosures on <a href="https://www.almarai.com/en/" target="_blank" rel="noopener">almarai.com</a>.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الإدارة الاستراتيجية</div>
+          <div><span>الشركة:</span> المراعي (السعودية)</div>
+          <div><span>الأدوات التحليلية:</span> PESTEL، قوى بورتر الخمس، SWOT، TOWS، BCG، GE/ماكينزي، مصفوفة شِل</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">يطبّق هذا التقييم ثنائي اللغة العُدّة الكاملة للتحليل الاستراتيجي على المراعي، أكبر شركة أغذية ومشروبات في الشرق الأوسط وأكبر شركة ألبان متكاملة رأسيًا في العالم.</p>
+        <p>تنتقل الدراسة عبر سبع طبقات متكاملة: هوية الشركة (الرؤية والرسالة والقيم والأهداف الاستراتيجية)، وهيكلها التنظيمي المصفوفي ووحدات أعمالها الاستراتيجية، واستراتيجياتها الحالية على مستويات الشركة والأعمال والوظائف، وبيئتها الخارجية (PESTEL وقوى بورتر الخمس)، وموقفها الداخلي-الخارجي (SWOT محوَّلًا إلى استراتيجيات TOWS عملية)، وموقع محفظتها (مصفوفات BCG وGE/ماكينزي وشِل)، وأخيرًا خطة تنفيذ ملموسة بمؤشرات أداء والتزامات استدامة وحوكمة مخاطر وتوصيات.</p>
+        <div class="note"><strong>ملاحظة حول الأرقام وسنوات التسجيل:</strong> أحدث نتائج سنوية كاملة هي للسنة المالية 2025: إيرادات 22.06 مليار ريال (بارتفاع 5.2%) وصافي ربح 2.46 مليار ريال (بارتفاع 6.2%)، بربحية سهم 2.48 ريال وحقوق مساهمين 20.53 مليار ريال (سجلات 2025، أُعلنت في 18 يناير 2026). أما العام السابق 2024 فسجّل إيرادات 20.98 مليار وصافي ربح 2.31 مليار، بارتفاع 13% عن 2.04 مليار في 2023. وبُنيت دراسة المحفظة الأصلية على نتائج 2024، والعامان معروضان هنا ليظهر الاتجاه. وتحمل بقية الأرقام المؤرخة سنوات تسجيلها في مواضعها: خطة الاستثمار الخمسية بـ18 مليار ريال (2023 إلى 2028)، وأهداف الاستدامة المقاسة على خط أساس 2020 حتى 2030، ومشاركة النساء في القوى العاملة فوق 15% (سجل 2024)، و10 ملايين عبوة تبرعات (سجل 2023). وتتغيّر الأرقام بمرور الوقت وينبغي مراجعتها مع أحدث الإفصاحات على <a href="https://www.almarai.com/en/" target="_blank" rel="noopener">almarai.com</a>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. PROFILE -->
+  <section class="page" id="profile">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Company Profile, Vision &amp; Mission</h2>
+        <p><strong>Almarai</strong> is a Saudi public joint-stock company and one of the largest integrated food and beverage companies in the Middle East. It was founded in 1977 by Prince Sultan bin Mohammed bin Saud Al Kabeer in Riyadh, beginning as a project to produce and distribute fresh dairy locally. Over the following decades it grew into the world's largest vertically integrated dairy producer, spanning dairy and juices, bakery, poultry, and agriculture and logistics, with products distributed across all GCC states plus Egypt and Jordan under flagship brands Almarai, L'usine, Alyoum, and 7Days. The company employs thousands and operates a distribution network covering more than 100,000 retail outlets in the region.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">1977</div><div class="lbl">founded in Riyadh</div></div>
+          <div class="stat"><div class="num">22.06bn</div><div class="lbl">SAR revenue, +5.2% (2025 record)</div></div>
+          <div class="stat"><div class="num">2.46bn</div><div class="lbl">SAR net profit, +6.2% (2025 record)</div></div>
+          <div class="stat"><div class="num">2.48</div><div class="lbl">SAR earnings per share (2025 record)</div></div>
+          <div class="stat"><div class="num">100k+</div><div class="lbl">retail outlets served</div></div>
+          <div class="stat"><div class="num">18bn</div><div class="lbl">SAR investment plan (2023 to 2028)</div></div>
+        </div>
+        <h3>Vision</h3>
+        <p>"To grow our leading position as the trusted choice for food and beverages in the region, reinforcing confidence in our products and quality every day."</p>
+        <h3>Mission</h3>
+        <p>"To provide high-quality, nutritious food and beverages that enrich consumers' lives every day."</p>
+        <h3>Core values</h3>
+        <ul>
+          <li><strong>Integrity:</strong> commitment to the highest standards of ethics and transparency in all dealings.</li>
+          <li><strong>Excellence:</strong> continuous pursuit of better products and processes to guarantee quality.</li>
+          <li><strong>Respect:</strong> valuing customers, employees, and the community.</li>
+          <li><strong>Innovation:</strong> developing new products that meet consumers' changing needs.</li>
+          <li><strong>Responsibility:</strong> commitment to sustainability and protecting the environment.</li>
+        </ul>
+        <h3>Strategic objectives</h3>
+        <ul>
+          <li>Maintain market leadership in the Gulf food and beverage sector.</li>
+          <li>Strengthen operational efficiency and vertical integration to control costs.</li>
+          <li>Expand regionally into new markets (North Africa and Asia).</li>
+          <li>Invest in modern technology and smart supply chains.</li>
+          <li>Improve customer experience and deepen brand loyalty.</li>
+          <li>Support environmental sustainability and reduce the carbon footprint of manufacturing and transport.</li>
+        </ul>
+        <div class="note"><strong>Why the statements work:</strong> the vision anchors on trust, the single attribute hardest for rivals to copy; the mission ties every product decision to daily consumer benefit; and the objectives translate both into measurable directions (leadership, efficiency, expansion, technology, loyalty, sustainability) that reappear as KPIs later in this evaluation.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>تعريف الشركة والرؤية والرسالة</h2>
+        <p><strong>المراعي</strong> شركة سعودية مساهمة عامة وواحدة من أكبر شركات الأغذية والمشروبات المتكاملة في الشرق الأوسط. تأسست عام 1977 على يد الأمير سلطان بن محمد بن سعود الكبير في الرياض، وبدأت كمشروع لإنتاج الألبان الطازجة وتوزيعها محليًا. وخلال العقود التالية أصبحت أكبر منتج متكامل رأسيًا للألبان في العالم، وتضم اليوم قطاعات الألبان والعصائر، والمخبوزات، والدواجن، والزراعة والإمداد، وتُوزَّع منتجاتها في جميع دول مجلس التعاون إضافة إلى مصر والأردن تحت علاماتها الرائدة: المراعي، لوزين، اليوم، و7Days. وتوظّف الشركة آلاف العاملين وتمتلك شبكة توزيع تغطي أكثر من 100 ألف منفذ بيع في المنطقة.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">1977</div><div class="lbl">التأسيس في الرياض</div></div>
+          <div class="stat"><div class="num">22.06 مليار</div><div class="lbl">ريال إيرادات، +5.2% (سجل 2025)</div></div>
+          <div class="stat"><div class="num">2.46 مليار</div><div class="lbl">ريال صافي الربح، +6.2% (سجل 2025)</div></div>
+          <div class="stat"><div class="num">2.48</div><div class="lbl">ريال ربحية السهم (سجل 2025)</div></div>
+          <div class="stat"><div class="num">+100 ألف</div><div class="lbl">منفذ بيع تخدمه الشبكة</div></div>
+          <div class="stat"><div class="num">18 مليار</div><div class="lbl">ريال خطة استثمار (2023 إلى 2028)</div></div>
+        </div>
+        <h3>الرؤية</h3>
+        <p>«تنمية موقعنا القيادي كخيار موثوق للأغذية والمشروبات في المنطقة، وتعزيز الثقة بمنتجاتنا وجودتنا كل يوم».</p>
+        <h3>الرسالة</h3>
+        <p>«تقديم أغذية ومشروبات عالية الجودة ومغذية تُثري حياة المستهلكين يوميًا».</p>
+        <h3>القيم الجوهرية</h3>
+        <ul>
+          <li><strong>النزاهة:</strong> الالتزام بأعلى معايير الأخلاق والشفافية في جميع التعاملات.</li>
+          <li><strong>التميز:</strong> السعي المستمر لتحسين المنتجات والعمليات لضمان الجودة.</li>
+          <li><strong>الاحترام:</strong> تقدير العملاء والموظفين والمجتمع.</li>
+          <li><strong>الابتكار:</strong> تطوير منتجات جديدة تلبي احتياجات المستهلكين المتغيرة.</li>
+          <li><strong>المسؤولية:</strong> الالتزام بالاستدامة وحماية البيئة.</li>
+        </ul>
+        <h3>الأهداف الاستراتيجية</h3>
+        <ul>
+          <li>الحفاظ على الريادة السوقية في قطاع الأغذية والمشروبات في الخليج.</li>
+          <li>تعزيز الكفاءة التشغيلية والتكامل الرأسي لضبط التكاليف.</li>
+          <li>التوسع الإقليمي في أسواق جديدة (شمال أفريقيا وآسيا).</li>
+          <li>الاستثمار في التقنيات الحديثة وسلاسل الإمداد الذكية.</li>
+          <li>تحسين تجربة العملاء وزيادة الولاء للعلامة التجارية.</li>
+          <li>دعم الاستدامة البيئية وتقليل البصمة الكربونية في التصنيع والنقل.</li>
+        </ul>
+        <div class="note"><strong>لماذا تنجح هذه البيانات:</strong> ترتكز الرؤية على الثقة، وهي الصفة الأصعب على المنافسين تقليدها؛ وتربط الرسالة كل قرار منتج بمنفعة المستهلك اليومية؛ وتترجم الأهدافُ الاثنين إلى اتجاهات قابلة للقياس (الريادة، الكفاءة، التوسع، التقنية، الولاء، الاستدامة) ستعود لاحقًا كمؤشرات أداء في هذا التقييم.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. STRUCTURE -->
+  <section class="page" id="structure">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Organizational Structure &amp; Strategic Business Units</h2>
+        <p>Almarai adopts a <strong>matrix structure</strong> that balances centralized functions with independent strategic business units (SBUs), giving it operational flexibility and the capacity to manage multiple product lines efficiently. The structure has three principal layers:</p>
+        <h3>1. Corporate level</h3>
+        <p>Led by the board of directors and the CEO, this layer sets general policy, defines long-term strategic direction, and ensures every segment adheres to quality and governance standards. Strategy is steered centrally from headquarters in Riyadh while units execute locally.</p>
+        <h3>2. Strategic business units</h3>
+        <ul>
+          <li><strong>Dairy and juices:</strong> the largest share of revenue and the backbone of the company's growth, the segment on which brand equity was originally built.</li>
+          <li><strong>Bakery:</strong> the L'usine and 7Days brands, focused on regional expansion and widening product variety into ready sandwiches and confectionery.</li>
+          <li><strong>Poultry:</strong> the Alyoum brand, undergoing development programs to raise efficiency and lower cost per unit.</li>
+          <li><strong>Other activities:</strong> farming operations, animal production, and refrigerated transport (Almarai Logistics), the infrastructure that feeds the consumer-facing units.</li>
+        </ul>
+        <h3>3. Support functions</h3>
+        <p>Finance, human resources, information technology, sustainability, and procurement operate centrally, serving all business units and creating operational integration across segments.</p>
+        <div class="note"><strong>Why this division succeeds:</strong> it grants each unit operational independence, its own market focus, competitors, and cost logic, while preserving a unified brand identity and a central strategy. The matrix means a bakery manager answers both to the bakery unit and to central functions like finance and quality, which keeps standards uniform without suffocating unit-level speed.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الهيكل التنظيمي ووحدات الأعمال الاستراتيجية</h2>
+        <p>تتبنّى المراعي <strong>هيكلًا مصفوفيًا</strong> يوازن بين الوظائف المركزية ووحدات الأعمال الاستراتيجية المستقلة، ما يمنحها المرونة التشغيلية والقدرة على إدارة خطوط إنتاج متعددة بكفاءة. ويتكوّن الهيكل من ثلاث طبقات رئيسية:</p>
+        <h3>1. المستوى التنفيذي الأعلى</h3>
+        <p>يقوده مجلس الإدارة والرئيس التنفيذي، ويرسم السياسات العامة، ويحدد التوجهات الاستراتيجية طويلة المدى، ويضمن التزام جميع القطاعات بمعايير الجودة والحوكمة. تُدار الاستراتيجية مركزيًا من المقر الرئيسي في الرياض بينما تنفّذ الوحدات محليًا.</p>
+        <h3>2. وحدات الأعمال الاستراتيجية</h3>
+        <ul>
+          <li><strong>الألبان والعصائر:</strong> النسبة الأكبر من الإيرادات والعمود الفقري لنمو الشركة، والقطاع الذي بُنيت عليه قيمة العلامة أصلًا.</li>
+          <li><strong>المخبوزات:</strong> علامتا لوزين و7Days، بتركيز على التوسع الإقليمي وتوسيع التنوع نحو السندويشات الجاهزة والحلويات.</li>
+          <li><strong>الدواجن:</strong> علامة «اليوم»، وتخضع لبرامج تطوير لرفع الكفاءة وخفض تكلفة الوحدة.</li>
+          <li><strong>أنشطة أخرى:</strong> عمليات الزراعة والإنتاج الحيواني والنقل المبرد (المراعي للخدمات اللوجستية)، البنية التي تغذي الوحدات المواجهة للمستهلك.</li>
+        </ul>
+        <h3>3. الوظائف الداعمة</h3>
+        <p>التمويل والموارد البشرية وتقنية المعلومات والاستدامة والمشتريات تعمل مركزيًا، فتخدم جميع وحدات الأعمال وتحقق التكامل التشغيلي بين القطاعات.</p>
+        <div class="note"><strong>لماذا ينجح هذا التقسيم:</strong> يمنح كل وحدة استقلالًا تشغيليًا، بسوقها ومنافسيها ومنطق تكاليفها، مع الحفاظ على هوية موحدة واستراتيجية مركزية. والمصفوفية تعني أن مدير المخبوزات يتبع وحدته ويتبع الوظائف المركزية كالمالية والجودة معًا، فتبقى المعايير موحدة دون خنق سرعة الوحدات.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. STRATEGIES -->
+  <section class="page" id="strategies">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Current Strategies on Three Levels</h2>
+        <h3>Corporate strategy: balanced growth and regional diversification</h3>
+        <ol>
+          <li><strong>Regional expansion:</strong> gradual growth beyond Saudi Arabia into the GCC, then Egypt and Jordan. The five-year plan (2023 to 2028) allocates about <strong>18 billion riyals</strong> to expand dairy and poultry production and enter new markets in North Africa and South Asia, reducing dependence on the home market and diversifying revenue sources.</li>
+          <li><strong>Vertical integration:</strong> among the region's first companies to apply full vertical integration in dairy, owning cattle farms, feed mills, and packing and distribution facilities. This grants complete control over quality and cost, and explains Almarai's stable pricing and quality edge over rivals dependent on external suppliers.</li>
+          <li><strong>Strategic diversification:</strong> the shift from a dairy specialist to a multi-segment food group (bakery, poultry, juices) protects against market swings and builds a single food basket for the consumer, reinforcing loyalty through the "farm to table" concept.</li>
+          <li><strong>Alliances and partnerships:</strong> the IDJ joint venture with PepsiCo manufactures and distributes juices in Egypt and Jordan, and the company pursues technology alliances in digital analytics and smart supply chains.</li>
+          <li><strong>Sustainability strategy:</strong> a sustainability plan focused on cutting carbon emissions, rationalizing water use, and improving waste management, positioning Almarai as a renewable-energy leader in the Saudi food sector.</li>
+        </ol>
+        <h3>Business strategies per unit</h3>
+        <ul>
+          <li><strong>Dairy and juices, product differentiation:</strong> quality, consistent taste, flavor innovation, and healthy low-fat, low-sugar lines.</li>
+          <li><strong>Bakery, horizontal growth:</strong> expansion into new categories such as ready sandwiches and confectionery under L'usine and 7Days.</li>
+          <li><strong>Poultry (Alyoum), operational improvement:</strong> cost reduction and productivity gains through farm automation and packaging development.</li>
+          <li><strong>Agriculture and logistics, cost leadership:</strong> minimizing feed and transport costs and raising logistics efficiency.</li>
+        </ul>
+        <h3>Functional strategies</h3>
+        <ul>
+          <li><strong>Marketing:</strong> a unified brand identity built on trust and quality, heavy investment in digital advertising and social engagement, and loyalty programs strengthening the bond with the end consumer.</li>
+          <li><strong>Production and operations:</strong> automated lines, artificial intelligence in milk-quality and supply monitoring, and lean manufacturing to cut waste.</li>
+          <li><strong>Human resources:</strong> attracting and training national talent in line with Saudi Vision 2030, plus leadership and middle-management development programs.</li>
+          <li><strong>Finance and investment:</strong> directing capital to the most profitable segments (dairy and poultry) with tight cost control and monitoring of ROA, ROE, and gross margin.</li>
+          <li><strong>Digital transformation:</strong> digitizing sales and supply-chain operations with AI and data analytics, and developing smart apps for ordering and distribution tracking.</li>
+        </ul>
+        <div class="note"><strong>The integrated effect:</strong> this three-level system, growth choices at the top, competitive positioning per unit, and functional excellence underneath, is what has preserved Almarai's leadership despite intense competition and economic shifts.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الاستراتيجيات الحالية على ثلاثة مستويات</h2>
+        <h3>استراتيجية الشركة: النمو المتوازن والتنويع الإقليمي</h3>
+        <ol>
+          <li><strong>التوسع الإقليمي:</strong> نمو تدريجي خارج المملكة إلى دول الخليج ثم مصر والأردن. وتخصص الخطة الخمسية (2023 إلى 2028) نحو <strong>18 مليار ريال</strong> لتوسيع إنتاج الألبان والدواجن ودخول أسواق جديدة في شمال أفريقيا وجنوب آسيا، بما يقلل الاعتماد على السوق المحلي وينوّع مصادر الإيراد.</li>
+          <li><strong>التكامل الرأسي:</strong> من أوائل شركات المنطقة تطبيقًا للتكامل الرأسي الكامل في الألبان: تملك مزارع الأبقار ومصانع الأعلاف ومرافق التعبئة والتوزيع، ما يمنحها تحكمًا كاملًا في الجودة والتكلفة، ويفسّر استقرار أسعارها وتفوقها على منافسين يعتمدون على موردين خارجيين.</li>
+          <li><strong>التنويع الاستراتيجي:</strong> الانتقال من شركة ألبان متخصصة إلى مجموعة غذائية متعددة القطاعات (مخبوزات، دواجن، عصائر) يحمي من تقلبات السوق ويبني سلة غذائية واحدة للمستهلك، معززًا الولاء عبر مفهوم «من المزرعة إلى المائدة».</li>
+          <li><strong>التحالفات والشراكات:</strong> مشروع IDJ المشترك مع بيبسيكو لتصنيع وتوزيع العصائر في مصر والأردن، مع سعي لتحالفات تقنية في التحليل الرقمي وسلاسل التوريد الذكية.</li>
+          <li><strong>استراتيجية الاستدامة:</strong> خطة استدامة تركّز على خفض انبعاثات الكربون وترشيد المياه وتحسين إدارة النفايات، تجعل المراعي من قادة التحول للطاقة المتجددة في قطاع الأغذية السعودي.</li>
+        </ol>
+        <h3>استراتيجيات وحدات الأعمال</h3>
+        <ul>
+          <li><strong>الألبان والعصائر، تمايز المنتج:</strong> الجودة والطعم الثابت والابتكار في النكهات وخطوط صحية منخفضة الدسم والسكر.</li>
+          <li><strong>المخبوزات، النمو الأفقي:</strong> التوسع في فئات جديدة كالسندويشات الجاهزة والحلويات عبر لوزين و7Days.</li>
+          <li><strong>الدواجن (اليوم)، التحسين التشغيلي:</strong> خفض التكاليف وزيادة الإنتاجية عبر أتمتة المزارع وتطوير التغليف.</li>
+          <li><strong>الزراعة والإمداد، قيادة التكلفة:</strong> تقليل تكلفة الأعلاف والنقل وتحسين الكفاءة اللوجستية.</li>
+        </ul>
+        <h3>الاستراتيجيات الوظيفية</h3>
+        <ul>
+          <li><strong>التسويق:</strong> هوية علامة موحدة قوامها الثقة والجودة، واستثمار قوي في الإعلانات الرقمية والتفاعل الاجتماعي، وبرامج ولاء تعمّق العلاقة مع المستهلك النهائي.</li>
+          <li><strong>الإنتاج والعمليات:</strong> خطوط مؤتمتة، وذكاء اصطناعي في مراقبة جودة الحليب والإمداد، وتصنيع رشيق يقلل الفاقد.</li>
+          <li><strong>الموارد البشرية:</strong> استقطاب وتدريب الكفاءات الوطنية بما يتماشى مع رؤية السعودية 2030، وبرامج تطوير القيادة والإدارة الوسطى.</li>
+          <li><strong>المالية والاستثمار:</strong> توجيه رأس المال نحو القطاعات الأعلى ربحية (الألبان والدواجن) مع إدارة دقيقة للتكاليف ومراقبة ROA وROE والهامش الإجمالي.</li>
+          <li><strong>التحول الرقمي:</strong> رقمنة المبيعات وسلسلة الإمداد بالذكاء الاصطناعي وتحليل البيانات، وتطوير تطبيقات ذكية للطلب وتتبع التوزيع.</li>
+        </ul>
+        <div class="note"><strong>الأثر المتكامل:</strong> هذه المنظومة ثلاثية المستويات، خيارات النمو في القمة، والتموضع التنافسي لكل وحدة، والتفوق الوظيفي في الأساس، هي ما حفظ ريادة المراعي رغم المنافسة العالية وتغيرات البيئة الاقتصادية.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. EXTERNAL -->
+  <section class="page" id="external">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>External Environment: PESTEL &amp; Porter's Five Forces</h2>
+        <h3>PESTEL analysis</h3>
+        <ul>
+          <li><strong>Political (moderate to high impact):</strong> a stable Saudi environment with government support for agriculture and food through food-security and self-sufficiency programs gives Almarai advantages in funding and expansion; customs policies and feed subsidies, however, affect production costs.</li>
+          <li><strong>Economic (high impact):</strong> the sector is exposed to fuel, transport, and feed price swings and global inflation, yet the strength of the Saudi economy and rising household income keep demand steady; Vision 2030 reforms have boosted investment in national industry.</li>
+          <li><strong>Social (very high impact):</strong> changing regional lifestyles have raised demand for healthy, protein-rich products, met by Almarai's healthy low-sugar lines; consumer trust in the Almarai name is itself a pillar of market power.</li>
+          <li><strong>Technological (high impact):</strong> heavy investment in production and supply-chain automation, advanced digital systems for milking, packing, and distribution, and smart solutions cutting waste and lifting quality.</li>
+          <li><strong>Environmental (high impact):</strong> water scarcity and high energy consumption are met with an ambitious sustainability strategy, water rationing on farms and a gradual shift to renewables.</li>
+          <li><strong>Legal and regulatory (moderate impact):</strong> oversight by the Saudi Food and Drug Authority and Gulf regulators, consumer-protection and competition law, and strict environmental standards for farming; a compliance burden that also raises trust in the products.</li>
+        </ul>
+        <div class="note"><strong>PESTEL summary:</strong> the external environment encourages growth but is operationally complex; political and social factors offer strong support, while economic and environmental factors demand precise cost and sustainability management.</div>
+        <h3>Porter's Five Forces</h3>
+        <ul>
+          <li><strong>Supplier power, moderate to high:</strong> Almarai owns farms and feed sources, but imported feed is exposed to global price swings; vertical integration softens the effect.</li>
+          <li><strong>Buyer power, high:</strong> consumers have many local and international dairy alternatives and real price sensitivity in mid-price categories; Almarai answers with quality differentiation to reduce price sensitivity.</li>
+          <li><strong>Threat of substitutes, moderate:</strong> plant-based dairy and imported juices are growing; Almarai responded with lactose-free and healthy lines to match the trend.</li>
+          <li><strong>Threat of new entrants, low:</strong> very high entry barriers from the scale of investment required in farms, plants, and distribution; Almarai's capital and brand advantages are decisive.</li>
+          <li><strong>Rivalry, high:</strong> strong Gulf competition from NADEC, SADAFCO, Nadia, and Puck (Arla Foods); Almarai still leads on market share and continuous innovation.</li>
+        </ul>
+        <div class="note"><strong>Porter summary:</strong> a fiercely competitive market, but Almarai holds a solid differential advantage built on chain integration, brand strength, and distribution reach; continued innovation is the price of keeping the lead.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>البيئة الخارجية: PESTEL وقوى بورتر الخمس</h2>
+        <h3>تحليل PESTEL</h3>
+        <ul>
+          <li><strong>العوامل السياسية (تأثير متوسط إلى مرتفع):</strong> بيئة سعودية مستقرة ودعم حكومي للقطاع الزراعي والغذائي عبر برامج الأمن الغذائي والاكتفاء الذاتي يمنح المراعي ميزة في التمويل والتوسع؛ لكن السياسات الجمركية ودعم الأعلاف تؤثر في تكاليف الإنتاج.</li>
+          <li><strong>العوامل الاقتصادية (تأثير مرتفع):</strong> يتأثر القطاع بتقلب أسعار الوقود والنقل والعلف والتضخم العالمي، غير أن قوة الاقتصاد السعودي ونمو دخل الأسر يحافظان على الطلب؛ وقد عززت إصلاحات رؤية 2030 الاستثمار في الصناعات الوطنية.</li>
+          <li><strong>العوامل الاجتماعية (تأثير مرتفع جدًا):</strong> تغيّر نمط الحياة رفع الطلب على المنتجات الصحية الغنية بالبروتين، وقابلته المراعي بخطوط «صحية ومنخفضة السكر»؛ وثقة المستهلك باسم المراعي ركن من أركان قوتها السوقية.</li>
+          <li><strong>العوامل التقنية (تأثير مرتفع):</strong> استثمار كثيف في أتمتة الإنتاج وسلاسل الإمداد، وأنظمة رقمية متقدمة للحلب والتعبئة والتوزيع، وحلول ذكية تقلل الفاقد وترفع الجودة.</li>
+          <li><strong>العوامل البيئية (تأثير مرتفع):</strong> شح المياه وارتفاع استهلاك الطاقة تقابلهما استراتيجية استدامة طموحة: ترشيد المياه في المزارع وتحول تدريجي للطاقة المتجددة.</li>
+          <li><strong>العوامل القانونية والتنظيمية (تأثير متوسط):</strong> رقابة هيئة الغذاء والدواء السعودية والجهات الخليجية، وقوانين حماية المستهلك والمنافسة، ومعايير بيئية صارمة للزراعة؛ عبء امتثال يرفع في المقابل الثقة بالمنتجات.</li>
+        </ul>
+        <div class="note"><strong>خلاصة PESTEL:</strong> البيئة الخارجية مشجعة للنمو لكنها معقدة تشغيليًا؛ فالعوامل السياسية والاجتماعية فرص دعم قوية، بينما الاقتصادية والبيئية تحديات تحتاج إدارة دقيقة للكلفة والاستدامة.</div>
+        <h3>قوى بورتر الخمس</h3>
+        <ul>
+          <li><strong>قوة الموردين، متوسطة إلى مرتفعة:</strong> تملك المراعي مزارعها ومصادر أعلافها، لكن الأعلاف المستوردة عرضة لتقلبات الأسعار العالمية؛ والتكامل الرأسي يخفف الأثر.</li>
+          <li><strong>قوة المشترين، مرتفعة:</strong> أمام المستهلك بدائل محلية وعالمية متعددة وحساسية سعرية حقيقية في الفئات المتوسطة؛ وترد المراعي بالتميز في الجودة لتقليل حساسية السعر.</li>
+          <li><strong>تهديد البدائل، متوسط:</strong> تنامي الألبان النباتية والعصائر المستوردة؛ وقد أطلقت المراعي منتجات خالية من اللاكتوز وصحية لمجاراة الاتجاه.</li>
+          <li><strong>تهديد الداخلين الجدد، منخفض:</strong> حواجز دخول مرتفعة جدًا بسبب حجم الاستثمارات المطلوبة في المزارع والمصانع والتوزيع؛ وميزة المراعي في رأس المال والعلامة حاسمة.</li>
+          <li><strong>حدة المنافسة، مرتفعة:</strong> منافسة خليجية قوية من نادك وسدافكو وناديا وبوك (أرلا فودز)؛ وما تزال المراعي تتصدر حصةً وابتكارًا.</li>
+        </ul>
+        <div class="note"><strong>خلاصة بورتر:</strong> سوق شديد التنافس، لكن المراعي تملك ميزة تفاضلية صلبة قوامها تكامل السلسلة وقوة العلامة وانتشار التوزيع؛ والابتكار المستمر هو ثمن الحفاظ على الصدارة.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SWOT -->
+  <section class="page" id="swot">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>SWOT Analysis &amp; the TOWS Matrix</h2>
+        <h3>Strengths</h3>
+        <ol>
+          <li><strong>Full vertical integration:</strong> control of every production stage, from cattle raising and feed cultivation to manufacturing and distribution, yields unique quality and cost control and less exposure to raw-material price swings than competitors.</li>
+          <li><strong>Brand equity:</strong> one of the Arab world's strongest brands, highly ranked in Brand Finance's Saudi listings and deeply trusted by consumers.</li>
+          <li><strong>Massive regional distribution network:</strong> a huge refrigerated fleet and distribution centers covering more than 100,000 outlets, the widest reach in the region.</li>
+          <li><strong>Product and segment diversification:</strong> four main fields (dairy, juices, bakery, poultry) reduce single-source dependence and add flexibility against demand swings.</li>
+          <li><strong>Strong finances and cash stability:</strong> robust cash flows, a balanced funding structure, and stable credit ratings enable expansion without debt strain.</li>
+          <li><strong>Continuous product innovation:</strong> yearly launches tracking health trends (protein, low-sugar, lactose-free) sustain loyalty and attract new segments.</li>
+          <li><strong>Sustainability and CSR commitment:</strong> environmental and social programs, with awards in energy efficiency and emission reduction, strengthen public standing.</li>
+        </ol>
+        <h3>Weaknesses</h3>
+        <ol>
+          <li><strong>High operating-cost structure:</strong> running the full chain demands heavy fixed investment in farms, plants, and transport, squeezing margins when prices fall.</li>
+          <li><strong>High dependence on the local and regional market:</strong> most revenue still comes from Gulf markets, exposing the company to regional recession or subsidy changes.</li>
+          <li><strong>Revenue sensitivity to feed and energy prices:</strong> imported feed is a large share of production cost, exposed to geopolitical crises and freight costs.</li>
+          <li><strong>Relatively slow digital transformation:</strong> data management and direct customer engagement remain early-stage against global benchmarks.</li>
+          <li><strong>Diversification-management challenges:</strong> breadth from dairy to poultry adds administrative complexity in resource allocation and operational control.</li>
+        </ol>
+        <h3>Opportunities</h3>
+        <ol>
+          <li>Growing demand for healthy and sustainable foods (protein, low-sugar, organic).</li>
+          <li>Expansion into North Africa and South Asia, where demand for trusted imported food is rising.</li>
+          <li>AI and smart systems in production and distribution to cut costs and raise efficiency.</li>
+          <li>The renewable-energy transition, solar power at plants and farms bringing long-term savings.</li>
+          <li>Additional international partnerships in nutrition and dairy to lift innovation and expansion.</li>
+        </ol>
+        <h3>Threats</h3>
+        <ol>
+          <li>Intense local and regional competition (NADEC, Al Safi, SADAFCO) with converging prices and promotions.</li>
+          <li>Global feed and raw-material price volatility, geopolitical events have destabilized grain supply chains and directly threaten margins.</li>
+          <li>Regulatory and legislative change in agricultural subsidies or water and environment policy.</li>
+          <li>Consumer shift toward plant-based alternatives (almond, oat) that could erode traditional dairy sales without fast adaptation.</li>
+          <li>Environmental and climate risks, drought and rising temperatures pressuring farming and animal production.</li>
+        </ol>
+        <h3>From SWOT to TOWS: four strategy families</h3>
+        <ul>
+          <li><strong>SO (strengths times opportunities):</strong> active regional expansion using distribution muscle and brand power; healthy-product innovation (high-protein, low-sugar) built on innovation capability and vertical integration; a green transition investing 1 to 2% of revenue in solar projects; and operations digitization using the logistics infrastructure.</li>
+          <li><strong>WO (weaknesses times opportunities):</strong> comprehensive digital transformation on a unified ERP linking customers, inventory, and sales in real time; export-led expansion to nearby African markets through Saudi ports; renewable energy to cut operating costs; and managerial development training unit leaders in diversification and segment-profitability analysis.</li>
+          <li><strong>ST (strengths times threats):</strong> value differentiation sustaining loyalty on trust and Saudi quality; agricultural independence through feed farms inside and outside the Kingdom; entry into plant-based milk under the Almarai name to capture the shifting segment; and environmental resilience via smart irrigation and water management.</li>
+          <li><strong>WT (weaknesses times threats):</strong> operational restructuring merging low-profit lines and cutting administrative cost; a direct-to-consumer digital app; risk diversification targeting 60% Gulf and 40% export sales within five years; and ISO 50001 energy-management adoption in plants and farms.</li>
+        </ul>
+        <div class="note"><strong>The four resulting strategic paths:</strong> regional growth, healthy and sustainable product innovation, digital and operational transformation, and environmental-financial resilience. Together they are the practical translation of the entire SWOT.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>تحليل SWOT ومصفوفة TOWS</h2>
+        <h3>نقاط القوة</h3>
+        <ol>
+          <li><strong>تكامل رأسي كامل:</strong> السيطرة على كل مراحل الإنتاج، من تربية الأبقار وزراعة الأعلاف إلى التصنيع والتوزيع، تمنح تحكمًا فريدًا في الجودة والتكاليف وتأثرًا أقل بتقلب أسعار المواد الخام مقارنة بالمنافسين.</li>
+          <li><strong>قوة العلامة التجارية:</strong> من أقوى العلامات في العالم العربي، بمراتب متقدمة في تصنيفات Brand Finance السعودية وثقة عالية من المستهلكين.</li>
+          <li><strong>شبكة توزيع إقليمية ضخمة:</strong> أسطول مبرد ضخم ومراكز توزيع تغطي أكثر من 100 ألف منفذ، الانتشار الأوسع في المنطقة.</li>
+          <li><strong>تنويع المنتجات والقطاعات:</strong> أربعة مجالات رئيسية (الألبان، العصائر، المخبوزات، الدواجن) تقلل الاعتماد على مصدر واحد وتمنح مرونة أمام تقلبات الطلب.</li>
+          <li><strong>قدرات مالية قوية واستقرار نقدي:</strong> تدفقات نقدية قوية وهيكل تمويلي متوازن وتصنيف ائتماني مستقر يتيح التوسع دون ضغط مفرط على الديون.</li>
+          <li><strong>ابتكار مستمر في المنتجات:</strong> إطلاقات سنوية تواكب الاتجاهات الصحية (البروتين، منخفض السكر، خالي اللاكتوز) تحافظ على الولاء وتستقطب شرائح جديدة.</li>
+          <li><strong>التزام بالاستدامة والمسؤولية الاجتماعية:</strong> برامج بيئية واجتماعية وجوائز في كفاءة الطاقة وتقليل الانبعاثات تعزز الصورة العامة.</li>
+        </ol>
+        <h3>نقاط الضعف</h3>
+        <ol>
+          <li><strong>ارتفاع هيكل التكلفة التشغيلية:</strong> تشغيل السلسلة الكاملة يتطلب استثمارات ثابتة ضخمة في المزارع والمصانع والنقل، فتنضغط الهوامش عند انخفاض الأسعار.</li>
+          <li><strong>اعتماد مرتفع على السوق المحلي والإقليمي:</strong> غالبية الإيرادات ما زالت من أسواق الخليج، ما يعرّض الشركة للركود الإقليمي أو تغيّر الدعم.</li>
+          <li><strong>حساسية الإيرادات لأسعار الأعلاف والطاقة:</strong> الأعلاف المستوردة نسبة كبيرة من تكلفة الإنتاج، وتتأثر بالأزمات الجيوسياسية وتكاليف الشحن.</li>
+          <li><strong>بطء نسبي في التحول الرقمي:</strong> إدارة البيانات والتفاعل المباشر مع العملاء ما زالا مبكرين مقارنة بالمعايير العالمية.</li>
+          <li><strong>تحديات إدارة التنويع:</strong> الاتساع من الألبان إلى الدواجن يفرض تعقيدًا إداريًا في توزيع الموارد والرقابة التشغيلية.</li>
+        </ol>
+        <h3>الفرص</h3>
+        <ol>
+          <li>نمو الطلب على الأغذية الصحية والمستدامة (البروتين، منخفض السكر، العضوي).</li>
+          <li>التوسع في شمال أفريقيا وجنوب آسيا حيث يتزايد الطلب على الغذاء الموثوق.</li>
+          <li>الذكاء الاصطناعي والأنظمة الذكية في الإنتاج والتوزيع لخفض الكلفة ورفع الكفاءة.</li>
+          <li>التحول للطاقة المتجددة: طاقة شمسية في المصانع والمزارع بوفورات طويلة الأجل.</li>
+          <li>شراكات دولية إضافية في التغذية والألبان لرفع الابتكار والتوسع.</li>
+        </ol>
+        <h3>التهديدات</h3>
+        <ol>
+          <li>منافسة شديدة محليًا وإقليميًا (نادك، الصافي، سدافكو) مع تقارب الأسعار والعروض.</li>
+          <li>تقلب أسعار الأعلاف والمواد الخام عالميًا؛ فالأحداث الجيوسياسية زعزعت سلاسل الحبوب وتهدد الهوامش مباشرة.</li>
+          <li>التغيرات التنظيمية والتشريعية في الدعم الزراعي أو سياسات البيئة والمياه.</li>
+          <li>تحوّل المستهلكين نحو البدائل النباتية (اللوز، الشوفان) بما قد يضغط على مبيعات الألبان التقليدية دون تكيّف سريع.</li>
+          <li>المخاطر البيئية والمناخية: الجفاف وارتفاع الحرارة يضغطان على الزراعة والإنتاج الحيواني.</li>
+        </ol>
+        <h3>من SWOT إلى TOWS: أربع عائلات استراتيجية</h3>
+        <ul>
+          <li><strong>SO (القوة × الفرص):</strong> توسع إقليمي نشط بعضلات التوزيع وقوة العلامة؛ وابتكار منتجات صحية (عالية البروتين، منخفضة السكر) على قاعدة الابتكار والتكامل الرأسي؛ وتحول أخضر باستثمار 1 إلى 2% من الإيرادات في الطاقة الشمسية؛ ورقمنة العمليات عبر البنية اللوجستية.</li>
+          <li><strong>WO (الضعف × الفرص):</strong> تحول رقمي شامل بنظام ERP موحد يربط العملاء والمخزون والمبيعات لحظيًا؛ وتوسع عبر التصدير للأسواق الأفريقية القريبة من الموانئ السعودية؛ وطاقة متجددة تخفض تكاليف التشغيل؛ وتطوير إداري يدرّب قادة الوحدات على إدارة التنويع وتحليل الربحية القطاعية.</li>
+          <li><strong>ST (القوة × التهديدات):</strong> تميّز في القيمة يحافظ على الولاء عبر «الثقة والجودة السعودية»؛ واستقلال زراعي بمزارع أعلاف داخل المملكة وخارجها؛ ودخول الحليب النباتي باسم المراعي لالتقاط الشريحة المتحولة؛ ومرونة بيئية بأنظمة ري متطورة وإدارة مياه ذكية.</li>
+          <li><strong>WT (الضعف × التهديدات):</strong> إعادة هيكلة تشغيلية تدمج الخطوط منخفضة الربحية وتخفض الكلفة الإدارية؛ وتطبيق رقمي للبيع المباشر؛ وتنويع مخاطر يستهدف 60% خليج و40% تصدير خلال خمس سنوات؛ وتبنّي ISO 50001 لإدارة الطاقة في المصانع والمزارع.</li>
+        </ul>
+        <div class="note"><strong>المسارات الأربعة الناتجة:</strong> نمو توسعي إقليمي، وابتكار منتجات صحية ومستدامة، وتحول رقمي وتشغيلي، ومرونة بيئية ومالية. هذه معًا هي الترجمة العملية لتحليل SWOT بكامله.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. MATRICES -->
+  <section class="page" id="matrices">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Portfolio Analysis: BCG, GE &amp; Shell Matrices</h2>
+        <p>Three complementary portfolio tools are applied. The original study rested on Almarai's 2024 results (revenue 20.98 billion riyals, net profit 2.31 billion); the picture holds in the newer 2025 results (revenue 22.06 billion, up 5.2%; net profit 2.46 billion, up 6.2%; 2025 records announced 18 January 2026), where poultry in particular gained economies of scale from its expansion project, exactly the "question mark to star" trajectory the matrices anticipated. BCG classifies by market growth and relative share; GE/McKinsey scores nine cells of market attractiveness against business strength; Shell's directional policy matrix converts position into investment direction.</p>
+        <h3>BCG matrix</h3>
+        <ul>
+          <li><strong>Stars, dairy and juices:</strong> over 60% of annual revenue, a growing market (natural juices, healthy dairy), the largest market share in Saudi Arabia and the Gulf against NADEC and SADAFCO. Strategy: <em>maintain and invest</em>; this is the company's heart and its primary cash source.</li>
+          <li><strong>Question marks, poultry (Alyoum):</strong> a strongly growing Saudi market requiring heavy infrastructure and feed investment; Almarai's share still trails competitors such as Tanmiah and Al-Watania, and profitability remains limited. Strategy: <em>selective investment</em> to convert it into a star through efficiency and cost reduction.</li>
+          <li><strong>Cash cows, bakery (L'usine and 7Days):</strong> stable moderate growth, steady cash profit with no heavy investment needs, roughly 10 to 15% of total revenue at stable margins. Strategy: <em>harvest</em>, funding the growth units.</li>
+          <li><strong>Dogs, agricultural and service activities:</strong> feed farms and non-core services that support the supply chain but generate no direct profit in low-growth markets with high operating costs. Strategy: <em>divest or restructure</em> into support units or outsourced services.</li>
+        </ul>
+        <h3>GE/McKinsey nine-box matrix</h3>
+        <p>Market attractiveness is scored on demand growth, competition, sector profitability, economic and regulatory stability, and expansion prospects; business strength on relative share, customer loyalty, brand power, operational efficiency, and financial-managerial capability.</p>
+        <ul>
+          <li><strong>Dairy and juices, very high attractiveness and very strong unit:</strong> invest and grow; keep expanding regionally, innovating in healthy products, and targeting new markets. An absolute strategic priority.</li>
+          <li><strong>Bakery, medium attractiveness and strong unit:</strong> hold and improve; raise efficiency and profitability without over-expansion in a near-saturated market with loyal customers.</li>
+          <li><strong>Poultry, high attractiveness and medium strength:</strong> selective investment; additional funds for production efficiency and lower cost toward a leadership position, the "future star."</li>
+          <li><strong>Agriculture and logistics, low attractiveness and medium strength:</strong> restructure or reduce; treat as a supporting field rather than an independent profit source.</li>
+        </ul>
+        <h3>Shell directional policy matrix</h3>
+        <ul>
+          <li><strong>Dairy and juices, invest to grow:</strong> keep pumping investment into production lines and innovation, and widen regional presence in new markets.</li>
+          <li><strong>Poultry, selectively invest:</strong> directed investment in productivity and lower feed and transport cost until it becomes a "star" unit.</li>
+          <li><strong>Bakery, harvest and maintain:</strong> protect profitability and operational efficiency without major expansion.</li>
+          <li><strong>Agriculture and logistics, divest or restructure:</strong> convert the activity into a logistics support unit (a cost center) rather than a profit center.</li>
+        </ul>
+        <div class="note"><strong>Combined reading:</strong> all three matrices converge on one verdict: a strategically balanced portfolio of growth units (dairy, poultry), cash units (bakery), and support units (agriculture). The recommended allocation directs about 60% of investment spending to the growth units and 40% to efficiency improvement elsewhere, giving high strategic flexibility and dampening overall profit volatility.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>تحليل المحفظة: مصفوفات BCG وGE وشِل</h2>
+        <p>تُطبَّق ثلاث أدوات محفظة متكاملة. ارتكزت الدراسة الأصلية على نتائج المراعي لعام 2024 (إيرادات 20.98 مليار ريال وصافي ربح 2.31 مليار)؛ وتبقى الصورة قائمة في نتائج 2025 الأحدث (إيرادات 22.06 مليار بارتفاع 5.2%؛ صافي ربح 2.46 مليار بارتفاع 6.2%؛ سجلات 2025 أُعلنت في 18 يناير 2026)، حيث حقق قطاع الدواجن خصوصًا وفورات حجم من مشروع توسعته، وهو تمامًا مسار «من علامة استفهام إلى نجم» الذي توقعته المصفوفات. تصنّف BCG وفق نمو السوق والحصة النسبية؛ وتُدرّج GE/ماكينزي تسع خلايا لجاذبية السوق مقابل قوة الوحدة؛ وتحوّل مصفوفة شِل الموقعَ إلى اتجاه استثماري.</p>
+        <h3>مصفوفة BCG</h3>
+        <ul>
+          <li><strong>النجوم، الألبان والعصائر:</strong> أكثر من 60% من الإيرادات السنوية، وسوق في نمو مستمر (العصائر الطبيعية والألبان الصحية)، وأكبر حصة سوقية في السعودية والخليج أمام نادك وسدافكو. الاستراتيجية: <em>الاستمرار في الاستثمار والتوسع</em>؛ فهذا قلب الشركة ومصدر النقد الأساسي.</li>
+          <li><strong>علامات الاستفهام، الدواجن (اليوم):</strong> سوق سعودي قوي النمو يتطلب استثمارات ضخمة في البنية والأعلاف؛ وحصة المراعي ما تزال أقل من منافسين مثل «تنمية» و«الدواجن الوطنية»، والربحية محدودة حاليًا. الاستراتيجية: <em>استثمار انتقائي</em> لتحويله إلى نجم عبر الكفاءة وخفض التكلفة.</li>
+          <li><strong>الأبقار الحلوب، المخبوزات (لوزين و7Days):</strong> نمو معتدل مستقر وأرباح نقدية ثابتة دون حاجة لاستثمارات ضخمة، بنحو 10 إلى 15% من الإيرادات وبهوامش مستقرة. الاستراتيجية: <em>الحصاد</em> لتمويل وحدات النمو.</li>
+          <li><strong>الكلاب، الأنشطة الزراعية والخدمية:</strong> مزارع الأعلاف والخدمات غير الأساسية تدعم سلسلة التوريد لكنها لا تحقق أرباحًا مباشرة في أسواق منخفضة النمو وبتكاليف تشغيل عالية. الاستراتيجية: <em>إعادة التقييم أو الدمج</em> كوحدات دعم أو بمصادر خارجية.</li>
+        </ul>
+        <h3>مصفوفة GE/ماكينزي ذات الخلايا التسع</h3>
+        <p>تُقاس جاذبية السوق بنمو الطلب والمنافسة وربحية القطاع والاستقرار الاقتصادي والتنظيمي وفرص التوسع؛ وتُقاس قوة الوحدة بالحصة النسبية وولاء العملاء وقوة العلامة والكفاءة التشغيلية والقدرات المالية والإدارية.</p>
+        <ul>
+          <li><strong>الألبان والعصائر، جاذبية مرتفعة جدًا وقوة عالية جدًا:</strong> استثمار ونمو؛ استمرار التوسع الإقليمي والابتكار في المنتجات الصحية واستهداف الأسواق الجديدة. أولوية استراتيجية مطلقة.</li>
+          <li><strong>المخبوزات، جاذبية متوسطة ووحدة قوية:</strong> الحفاظ والتحسين؛ رفع الكفاءة والربحية دون توسع مفرط في سوق شبه مشبع بعملاء أوفياء.</li>
+          <li><strong>الدواجن، جاذبية مرتفعة وقوة متوسطة:</strong> استثمار انتقائي؛ ضخ موارد إضافية لتحسين الكفاءة الإنتاجية وخفض التكلفة وصولًا لموقع ريادي، «نجم المستقبل».</li>
+          <li><strong>الزراعة والإمداد، جاذبية منخفضة وقوة متوسطة:</strong> إعادة هيكلة أو تقليل؛ التعامل معها كمجال داعم لا كمصدر ربح مستقل.</li>
+        </ul>
+        <h3>مصفوفة شِل للسياسة الاتجاهية</h3>
+        <ul>
+          <li><strong>الألبان والعصائر، استثمار للنمو:</strong> استمرار ضخ الاستثمارات في خطوط الإنتاج والابتكار وتوسيع التواجد الإقليمي في الأسواق الجديدة.</li>
+          <li><strong>الدواجن، استثمار انتقائي:</strong> استثمار موجّه لتحسين الإنتاجية وتقليل تكلفة الأعلاف والنقل حتى تتحول إلى وحدة «نجمة».</li>
+          <li><strong>المخبوزات، حصاد وحفاظ:</strong> حماية الربحية والكفاءة التشغيلية دون توسع كبير.</li>
+          <li><strong>الزراعة والإمداد، تصفية أو إعادة هيكلة:</strong> تحويل النشاط إلى وحدة دعم لوجستي (مركز تكلفة) بدل كونه مركز ربح.</li>
+        </ul>
+        <div class="note"><strong>القراءة المجمّعة:</strong> تتقاطع المصفوفات الثلاث على حكم واحد: محفظة متوازنة استراتيجيًا من وحدات نمو (الألبان، الدواجن) ووحدات نقد (المخبوزات) ووحدات دعم (الزراعة). والتخصيص الموصى به يوجّه نحو 60% من الإنفاق الاستثماري لوحدات النمو و40% لتحسين الكفاءة في البقية، بما يمنح مرونة استراتيجية عالية ويخفف تقلبات الربحية الكلية.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. EXECUTION -->
+  <section class="page" id="execution">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>Execution Plan &amp; Key Performance Indicators</h2>
+        <h3>Strategic goals 2025 to 2030</h3>
+        <ul>
+          <li><strong>Dairy and juice leadership (1 to 2 years):</strong> market share of 60% or more in Saudi Arabia and the Gulf.</li>
+          <li><strong>Poultry efficiency and profitability (3 years):</strong> cut production cost by 15%.</li>
+          <li><strong>Healthy product development (continuous):</strong> launch 10 new healthy products per year.</li>
+          <li><strong>External-market expansion (3 to 5 years):</strong> enter 3 new North African markets.</li>
+          <li><strong>Full digital transformation (5 years):</strong> ERP and AI applied across all operations.</li>
+          <li><strong>Sustainability (5 years):</strong> reduce CO2 emissions by 25%.</li>
+        </ul>
+        <h3>The five-phase roadmap</h3>
+        <ol>
+          <li><strong>Operational foundation (2025):</strong> review current processes, analyze financial performance, and create sector strategy teams; output: gap identification and updated short-term goals.</li>
+          <li><strong>Digital and operational transformation (2026 to 2027):</strong> ERP rollout, production and distribution automation, staff training; output: 10 to 15% lower operating costs.</li>
+          <li><strong>Regional expansion (2027 to 2028):</strong> production or packing lines abroad and strategic partnerships; output: new market entry and about 20% revenue growth.</li>
+          <li><strong>Continuous innovation and sustainability (2028 to 2030):</strong> new products, renewable-energy projects, annual sustainability reporting; output: ESG commitments met.</li>
+          <li><strong>Review and improvement (annual):</strong> periodic plan reviews, performance evaluation, and strategy adjustment by the board and performance teams.</li>
+        </ol>
+        <h3>Roles and governance</h3>
+        <p>The board approves the plan and monitors execution from a governance standpoint; senior executives coordinate units against budgets and timelines; unit managers deliver sector initiatives; support departments provide tools and systems; and digital-transformation and sustainability teams track technical and environmental KPIs and report periodically. Monitoring runs through a monthly performance dashboard, quarterly executive meetings, annual variance reviews, and a risk-governance system proposing contingency plans.</p>
+        <h3>KPIs on four levels (targets for 2025 to 2030)</h3>
+        <ul>
+          <li><strong>Financial:</strong> revenue growth 10 to 12% per year; gross margin at or above 35%; ROA at or above 8%; ROE at or above 15%; debt-to-equity at or below 0.7; consistently positive operating cash flow.</li>
+          <li><strong>Operational:</strong> production efficiency at or above 85% of capacity; unit cost down 10% within 3 years; on-time delivery at or above 97%; manufacturing waste at or below 2%; inventory turnover at or above 10 times per year.</li>
+          <li><strong>Marketing and customer:</strong> market share at or above 60% in dairy and juices; customer retention at or above 90%; satisfaction index at or above 85%; customer acquisition cost down 10% per year; NPS at or above +50.</li>
+          <li><strong>Sustainability and CSR:</strong> water use per liter of product down 20% within 5 years; renewables at or above 30% of operations by 2030; CO2 down 25% by 2030; at least 10 community initiatives per year; Saudization at or above 50% by 2027.</li>
+        </ul>
+        <div class="note"><strong>The measurement philosophy:</strong> a balanced-scorecard logic ties every KPI to a strategic objective, financial indicators measure growth and profitability, operational ones efficiency, marketing ones loyalty and standing, and sustainability ones alignment with Saudi Vision 2030's food-security and environmental principles. Results are reviewed quarterly and reported to the board with improvement recommendations. Execution rests on continuous improvement and a culture of empowerment with accountability: unit leaders decide freely and answer for results.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>خطة التنفيذ ومؤشرات الأداء الرئيسية</h2>
+        <h3>الأهداف الاستراتيجية 2025 إلى 2030</h3>
+        <ul>
+          <li><strong>ريادة الألبان والعصائر (سنة إلى سنتين):</strong> حصة سوقية 60% فأكثر في السعودية والخليج.</li>
+          <li><strong>كفاءة الدواجن وربحيتها (3 سنوات):</strong> خفض تكلفة الإنتاج بنسبة 15%.</li>
+          <li><strong>تطوير منتجات صحية (مستمر):</strong> إطلاق 10 منتجات صحية جديدة سنويًا.</li>
+          <li><strong>التوسع الخارجي (3 إلى 5 سنوات):</strong> دخول 3 أسواق جديدة في شمال أفريقيا.</li>
+          <li><strong>التحول الرقمي الكامل (5 سنوات):</strong> تطبيق ERP والذكاء الاصطناعي في جميع العمليات.</li>
+          <li><strong>الاستدامة (5 سنوات):</strong> خفض انبعاثات ثاني أكسيد الكربون بنسبة 25%.</li>
+        </ul>
+        <h3>خارطة الطريق بخمس مراحل</h3>
+        <ol>
+          <li><strong>الأساس التشغيلي (2025):</strong> مراجعة العمليات الحالية وتحليل الأداء المالي وإنشاء فرق استراتيجية قطاعية؛ المخرَج: تحديد الفجوات وتحديث الأهداف قصيرة المدى.</li>
+          <li><strong>التحول الرقمي والتشغيلي (2026 إلى 2027):</strong> تنفيذ أنظمة ERP وأتمتة الإنتاج والتوزيع وتدريب الموظفين؛ المخرَج: خفض التكاليف التشغيلية 10 إلى 15%.</li>
+          <li><strong>التوسع الإقليمي (2027 إلى 2028):</strong> خطوط إنتاج أو تعبئة خارج المملكة وشراكات استراتيجية؛ المخرَج: دخول أسواق جديدة ونمو إيرادات نحو 20%.</li>
+          <li><strong>الابتكار المستمر والاستدامة (2028 إلى 2030):</strong> منتجات جديدة ومشاريع طاقة متجددة وتقارير استدامة سنوية؛ المخرَج: الوفاء بالتزامات ESG.</li>
+          <li><strong>المراجعة والتحسين (سنويًا):</strong> مراجعات دورية للخطط وتقييم للأداء وتعديل للاستراتيجيات من مجلس الإدارة وفرق الأداء.</li>
+        </ol>
+        <h3>الأدوار والحوكمة</h3>
+        <p>يعتمد مجلس الإدارة الخطة ويراقب التنفيذ من منظور الحوكمة؛ وتنسّق الإدارة التنفيذية العليا بين الوحدات وفق الميزانيات والجداول؛ وينفّذ مديرو الوحدات المبادرات القطاعية؛ وتوفّر الإدارات الداعمة الأدوات والأنظمة؛ وتتابع فرق التحول الرقمي والاستدامة المؤشرات التقنية والبيئية بتقارير دورية. وتجري المراقبة عبر لوحة مؤشرات شهرية، واجتماعات تنفيذية ربع سنوية، ومراجعات انحراف سنوية، ونظام حوكمة مخاطر يقترح خطط الطوارئ.</p>
+        <h3>مؤشرات الأداء على أربعة مستويات (مستهدفات 2025 إلى 2030)</h3>
+        <ul>
+          <li><strong>مالية:</strong> نمو إيرادات 10 إلى 12% سنويًا؛ هامش إجمالي 35% فأكثر؛ عائد أصول 8% فأكثر؛ عائد حقوق ملكية 15% فأكثر؛ مديونية إلى حقوق الملكية 0.7 فأقل؛ تدفقات نقدية تشغيلية موجبة باستمرار.</li>
+          <li><strong>تشغيلية:</strong> كفاءة إنتاج 85% فأكثر من الطاقة؛ خفض تكلفة الوحدة 10% خلال 3 سنوات؛ دقة تسليم 97% فأكثر؛ هدر تصنيع 2% فأقل؛ دوران مخزون 10 مرات سنويًا فأكثر.</li>
+          <li><strong>تسويق وعميل:</strong> حصة سوقية 60% فأكثر في الألبان والعصائر؛ ولاء عملاء 90% فأكثر؛ مؤشر رضا 85% فأكثر؛ خفض تكلفة اكتساب العميل 10% سنويًا؛ صافي المروجين +50 فأكثر.</li>
+          <li><strong>استدامة ومسؤولية:</strong> خفض استهلاك المياه لكل لتر منتج 20% خلال 5 سنوات؛ طاقة متجددة 30% فأكثر من التشغيل بحلول 2030؛ خفض الكربون 25% بحلول 2030؛ 10 مبادرات مجتمعية سنويًا فأكثر؛ توطين 50% فأكثر بحلول 2027.</li>
+        </ul>
+        <div class="note"><strong>فلسفة القياس:</strong> منطق بطاقة الأداء المتوازن يربط كل مؤشر بهدف استراتيجي: فالمالية تقيس النمو والربحية، والتشغيلية الكفاءة، والتسويقية الولاء والمكانة، والاستدامة التوافق مع مبادئ رؤية السعودية 2030 في الأمن الغذائي والبيئة. تُراجع النتائج ربع سنويًا وتُرفع للمجلس مع توصيات التحسين. ويرتكز التنفيذ على «التحسين المستمر» وثقافة «التمكين والمساءلة»: يقرر قادة الوحدات بحرية ويتحملون مسؤولية النتائج.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. SUSTAINABILITY & RISK -->
+  <section class="page" id="sustainability">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Nine</span>
+        <h2>Sustainability, Social Responsibility &amp; Risk Governance</h2>
+        <h3>Environmental sustainability</h3>
+        <ul>
+          <li><strong>Water management:</strong> smart pivot irrigation and grey-water reuse on farms and in plants, with a declared target of cutting water consumption 20% by 2030.</li>
+          <li><strong>Energy efficiency:</strong> solar projects at Saudi plants, with a plan to lift renewables to 30% of total operations by 2030.</li>
+          <li><strong>Waste and emissions:</strong> at-source waste separation, plastic and carton recycling, and a 25% CO2 reduction target versus 2020 levels.</li>
+          <li><strong>Sustainable agriculture:</strong> feed cultivation inside the Kingdom ended in 2019 in compliance with groundwater-protection regulations; supply is secured through remote smart farming on external farms (Argentina and the United States).</li>
+        </ul>
+        <h3>Social responsibility</h3>
+        <ul>
+          <li><strong>Education and training:</strong> a scholarship program with local universities and a technical-training academy graduating hundreds of Saudi technicians yearly in production and distribution.</li>
+          <li><strong>Health and nutrition:</strong> school and community nutrition-awareness campaigns and health initiatives with the Ministry of Health.</li>
+          <li><strong>Women's empowerment:</strong> expanded hiring in marketing, quality, and technology; women exceeded 15% of the workforce (2024 record), with plans to raise the share gradually.</li>
+          <li><strong>Community engagement:</strong> continued support for food-security and relief programs, including more than 10 million free product packages donated in charity campaigns (2023 record).</li>
+        </ul>
+        <h3>Governance and ethics</h3>
+        <p>A strict governance framework aligned with Capital Market Authority regulations: audit and nomination-remuneration committees, public annual sustainability reports, a zero-corruption policy with full financial disclosure, and an internal whistleblowing system safeguarding institutional integrity. The strategy intersects directly with three Vision 2030 axes: a thriving economy (agricultural and industrial value-chain investment and citizen employment), a vibrant society (healthy products raising quality of life), and an ambitious nation (governance, transparency, and social responsibility).</p>
+        <h3>Risk map and mitigation</h3>
+        <ul>
+          <li><strong>Operational:</strong> supply-chain disruption (mitigated by supplier diversification, strategic stockpiles, and long-term contracts); production-cost inflation (solar and energy-efficiency investment targeting 10 to 15% cost cuts); food-safety incidents (ISO 22000 and HACCP, automated daily inspection, staff training); cold-chain dependence (fleet renewal and IoT temperature monitoring).</li>
+          <li><strong>Financial and economic:</strong> currency volatility in Egypt and Jordan (hedging with forward contracts); interest-rate rises (diversified funding across bank loans and sukuk); regional recession (focus on staples and digital sales).</li>
+          <li><strong>Environmental and climate:</strong> water scarcity (water-saving irrigation and external farms in water-rich regions); climate change (sustainable practices and drought-resistant varieties); tightening environmental regulation (pre-emptive compliance and regulator engagement).</li>
+          <li><strong>Legal and regulatory:</strong> food or tax law changes (continuous legislative monitoring and an internal legal unit); potential litigation (comprehensive insurance and an effective compliance unit).</li>
+          <li><strong>Strategic:</strong> digital-transformation failure (professional PMO and senior-management reviews); consumer shift to alternatives (new plant-based and healthy lines); global-brand competition (local-quality excellence and "Made in Saudi" trust).</li>
+        </ul>
+        <div class="note"><strong>The risk architecture:</strong> an enterprise risk management (ERM) system anticipates, scores, and pre-plans responses; a board-level audit and risk committee oversees it; risks are re-rated quarterly by priority; and a business continuity plan covers emergency scenarios from production stoppage to natural disaster, updated annually as the economic and regulatory environment shifts.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">التاسع</span>
+        <h2>الاستدامة والمسؤولية الاجتماعية وحوكمة المخاطر</h2>
+        <h3>الاستدامة البيئية</h3>
+        <ul>
+          <li><strong>إدارة المياه:</strong> ري محوري ذكي وإعادة استخدام المياه الرمادية في المزارع والمصانع، بهدف معلن لخفض استهلاك المياه 20% بحلول 2030.</li>
+          <li><strong>كفاءة الطاقة:</strong> مشاريع طاقة شمسية في مصانع سعودية، وخطة لرفع الطاقة المتجددة إلى 30% من إجمالي التشغيل بحلول 2030.</li>
+          <li><strong>النفايات والانبعاثات:</strong> فصل النفايات في المصدر وإعادة تدوير البلاستيك والكرتون، وهدف خفض ثاني أكسيد الكربون 25% عن مستويات 2020.</li>
+          <li><strong>الزراعة المستدامة:</strong> توقفت زراعة الأعلاف داخل المملكة عام 2019 التزامًا بلوائح حماية المياه الجوفية؛ ويؤمَّن الإمداد عبر «الزراعة الذكية عن بُعد» في مزارع خارجية (الأرجنتين والولايات المتحدة).</li>
+        </ul>
+        <h3>المسؤولية الاجتماعية</h3>
+        <ul>
+          <li><strong>التعليم والتدريب:</strong> برنامج منح دراسية مع جامعات محلية، وأكاديمية تدريب فني تخرّج سنويًا مئات الفنيين السعوديين في الإنتاج والتوزيع.</li>
+          <li><strong>الصحة والتغذية:</strong> حملات توعية تغذوية في المدارس والمجتمعات ومبادرات صحية مع وزارة الصحة.</li>
+          <li><strong>تمكين المرأة:</strong> توسّع في التوظيف بالتسويق والجودة والتقنية؛ وتجاوزت مشاركة النساء 15% من القوى العاملة (سجل 2024) مع خطط للزيادة تدريجيًا.</li>
+          <li><strong>المشاركة المجتمعية:</strong> دعم مستمر لبرامج الأمن الغذائي والإغاثة، منها أكثر من 10 ملايين عبوة منتجات مجانية ضمن الحملات الخيرية (سجل 2023).</li>
+        </ul>
+        <h3>الحوكمة والأخلاقيات</h3>
+        <p>إطار حوكمة صارم يتماشى مع لوائح هيئة السوق المالية: لجنة تدقيق ولجنة ترشيحات ومكافآت، وتقارير استدامة سنوية متاحة للجمهور، وسياسة «صفر فساد» بإفصاح مالي كامل، ونظام داخلي للإبلاغ عن المخالفات يصون النزاهة المؤسسية. وتتقاطع الاستراتيجية مباشرة مع ثلاثة محاور في رؤية 2030: اقتصاد مزدهر (استثمار سلاسل القيمة الزراعية والصناعية وتوظيف المواطنين)، ومجتمع حيوي (منتجات صحية ترفع جودة الحياة)، ووطن طموح (حوكمة وشفافية ومسؤولية اجتماعية).</p>
+        <h3>خريطة المخاطر والتخفيف</h3>
+        <ul>
+          <li><strong>تشغيلية:</strong> اضطراب سلاسل الإمداد (تنويع الموردين ومخزون استراتيجي وعقود طويلة المدى)؛ تضخم تكاليف الإنتاج (استثمار في الطاقة الشمسية وكفاءتها بهدف خفض 10 إلى 15%)؛ حوادث سلامة غذائية (ISO 22000 وHACCP وتفتيش آلي يومي وتدريب)؛ الاعتماد على النقل المبرد (تحديث الأسطول ومراقبة حرارة عبر إنترنت الأشياء).</li>
+          <li><strong>مالية واقتصادية:</strong> تقلب أسعار الصرف في مصر والأردن (تحوّط بعقود آجلة)؛ ارتفاع الفائدة (تنويع التمويل بين قروض وصكوك)؛ الركود الإقليمي (تركيز على السلع الأساسية والمبيعات الرقمية).</li>
+          <li><strong>بيئية ومناخية:</strong> ندرة المياه (ري موفّر ومزارع خارجية في مناطق غنية بالمياه)؛ التغير المناخي (ممارسات مستدامة وأصناف مقاومة للجفاف)؛ تشديد اللوائح البيئية (امتثال مسبق وتواصل مع المنظمين).</li>
+          <li><strong>قانونية وتنظيمية:</strong> تغيّر القوانين الغذائية أو الضريبية (متابعة تشريعية دائمة ووحدة قانونية داخلية)؛ دعاوى محتملة (تأمين شامل ووحدة امتثال فعالة).</li>
+          <li><strong>استراتيجية:</strong> فشل التحول الرقمي (إدارة مشاريع احترافية ومراجعات عليا)؛ تحوّل المستهلكين نحو البدائل (خطوط نباتية وصحية جديدة)؛ منافسة العلامات العالمية (تميز الجودة المحلية وثقة «صنع في السعودية»).</li>
+        </ul>
+        <div class="note"><strong>هندسة المخاطر:</strong> نظام متكامل لإدارة المخاطر المؤسسية (ERM) يتنبأ ويقيّم ويضع خطط استجابة مسبقة؛ تشرف عليه لجنة تدقيق ومخاطر تابعة للمجلس؛ وتُعاد درجات المخاطر ربع سنويًا وفق الأولوية؛ وتغطي خطة استمرارية الأعمال سيناريوهات الطوارئ من توقف الإنتاج إلى الكوارث الطبيعية، وتُحدَّث سنويًا مع تغيّر البيئة الاقتصادية والتنظيمية.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. TAKEAWAYS -->
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Ten</span>
+        <h2>Recommendations, Conclusion &amp; References</h2>
+        <h3>Final recommendations</h3>
+        <ul>
+          <li><strong>Comprehensive digital transformation:</strong> accelerate beyond manufacturing and supply chains into customer experience, direct-ordering apps, product tracking, and loyalty building.</li>
+          <li><strong>R&amp;D investment:</strong> allocate at least 2% of annual revenue to research, especially healthy foods, plant-based alternatives, and sustainable packaging, to hold the lead against arriving global players.</li>
+          <li><strong>Smart regional expansion:</strong> selective, study-based entry prioritizing North Africa and South Asia, through local partnerships that reduce operational risk.</li>
+          <li><strong>Poultry operational excellence:</strong> precision farming and operational-data analytics in the Alyoum segment to lift feed productivity and cut waste, converting the question mark into a star.</li>
+          <li><strong>Sustainability as competitive edge:</strong> turn environmental commitments into a marketing asset through clean-energy and water-saving messaging on packaging; the modern consumer equates the responsible product with the trustworthy one.</li>
+          <li><strong>Dynamic risk governance:</strong> predictive analytics fusing AI to anticipate price and demand swings, making strategic decisions proactive rather than reactive.</li>
+          <li><strong>Leadership Saudization:</strong> empower national leaders at senior executive levels, especially in finance, technology, and supply chains, supporting Vision 2030.</li>
+        </ul>
+        <h3>Conclusion</h3>
+        <ul>
+          <li>The full-toolkit analysis (SWOT, TOWS, PESTEL, Porter, BCG, GE, Shell) shows an institutional foundation strong enough to sustain more than four decades of regional leadership.</li>
+          <li>An integrated structure supports diverse business units within one vision, balancing growth, profitability, and sustainability.</li>
+          <li>The current strategy, vertical integration, regional expansion, and healthy-product innovation, is a conscious response to regional and global market change.</li>
+          <li>Real challenges remain: high costs, fierce competition, and economic and environmental volatility; but brand strength, distribution networks, and financial stability grant high adaptive capacity.</li>
+          <li>Almarai stands as a successful model of a Saudi company that transformed from a local operation into an influential regional entity through applied strategic management built on analysis, flexibility, and continuous innovation.</li>
+        </ul>
+        <div class="conclusion-final"><strong>Bottom line:</strong> the matrices agree, invest hard where leadership already exists (dairy and juices), build the future star (poultry), harvest the stable earner (bakery), and restructure the support base (agriculture), all executed through disciplined KPIs, sustainability commitments, and pre-emptive risk governance.</div>
+        <h3>References</h3>
+        <ul class="refs">
+          <li>Almarai. <a href="https://www.almarai.com/en/" target="_blank" rel="noopener">Official website</a>.</li>
+          <li>Almarai. <a href="https://www.almarai.com/en/corporate/investor-relations/financial-information" target="_blank" rel="noopener">Investor Relations: Financial Information and Reports</a>.</li>
+          <li>Almarai. <a href="https://annualreport.almarai.com/" target="_blank" rel="noopener">Annual Report</a>.</li>
+          <li>Argaam (January 2026). <a href="https://www.argaam.com/sa-en/financial-reports/company-report/62/2025/1" target="_blank" rel="noopener">Almarai 2025 profit up 6% to SAR 2.45B</a> (FY2025 results).</li>
+          <li>Argaam (January 2025). <a href="https://www.argaam.com/en/financial-reports/company-report/62/2024/1" target="_blank" rel="noopener">Almarai 2024 profit up 13% to SAR 2.31B</a>.</li>
+          <li>Porter, M. E. <a href="https://hbr.org/2008/01/the-five-competitive-forces-that-shape-strategy" target="_blank" rel="noopener">The Five Competitive Forces That Shape Strategy</a>. Harvard Business Review.</li>
+          <li>Boston Consulting Group. <a href="https://www.bcg.com/about/overview/our-history/growth-share-matrix" target="_blank" rel="noopener">The Growth Share Matrix</a>.</li>
+          <li>McKinsey &amp; Company. <a href="https://www.mckinsey.com/capabilities/strategy-and-corporate-finance/our-insights/enduring-ideas-the-ge-and-mckinsey-nine-box-matrix" target="_blank" rel="noopener">Enduring Ideas: The GE and McKinsey Nine-Box Matrix</a>.</li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">العاشر</span>
+        <h2>التوصيات والخاتمة والمراجع</h2>
+        <h3>التوصيات النهائية</h3>
+        <ul>
+          <li><strong>تحول رقمي شامل:</strong> التسريع بما يتجاوز التصنيع وسلاسل الإمداد إلى تجربة العميل: تطبيقات طلب مباشر وتتبع منتجات وبناء ولاء.</li>
+          <li><strong>الاستثمار في البحث والتطوير:</strong> تخصيص ما لا يقل عن 2% من الإيرادات السنوية للبحث، خصوصًا الأغذية الصحية والبدائل النباتية والتعبئة المستدامة، حفاظًا على الريادة أمام الشركات العالمية القادمة.</li>
+          <li><strong>توسع إقليمي ذكي:</strong> دخول انتقائي مبني على دراسات سوق دقيقة، بأولوية لشمال أفريقيا وجنوب آسيا، عبر شراكات محلية تقلل المخاطر التشغيلية.</li>
+          <li><strong>التميز التشغيلي في الدواجن:</strong> الزراعة الدقيقة وتحليل البيانات التشغيلية في قطاع «اليوم» لرفع إنتاجية الأعلاف وتقليل الهدر، فيتحول من علامة استفهام إلى نجم.</li>
+          <li><strong>الاستدامة كميزة تنافسية:</strong> تحويل الالتزامات البيئية إلى أصل تسويقي برسائل الطاقة النظيفة وحفظ المياه على العبوات؛ فالمستهلك الحديث يربط المنتج المسؤول بالمنتج الموثوق.</li>
+          <li><strong>حوكمة مخاطر مرنة:</strong> ذكاء تحليلي تنبؤي يدمج الذكاء الاصطناعي لاستباق تقلبات الأسعار والطلب، فيكون القرار الاستراتيجي استباقيًا لا تفاعليًا.</li>
+          <li><strong>توطين الكفاءات القيادية:</strong> تمكين القيادات الوطنية في المستويات التنفيذية العليا، خصوصًا التمويل والتقنية وسلاسل الإمداد، دعمًا لرؤية 2030.</li>
+        </ul>
+        <h3>الخاتمة</h3>
+        <ul>
+          <li>يُظهر التحليل بالعدة الكاملة (SWOT، TOWS، PESTEL، بورتر، BCG، GE، شِل) أساسًا مؤسسيًا قويًا مكّن من ريادة إقليمية لأكثر من أربعة عقود.</li>
+          <li>هيكل متكامل يدعم وحدات أعمال متنوعة ضمن رؤية موحدة، بتوازن بين النمو والربحية والاستدامة.</li>
+          <li>الاستراتيجية الحالية، التكامل الرأسي والتوسع الإقليمي والابتكار في المنتجات الصحية، استجابة واعية لتغيرات السوق الإقليمي والعالمي.</li>
+          <li>تبقى تحديات حقيقية: ارتفاع التكاليف والمنافسة الشديدة والتقلبات الاقتصادية والبيئية؛ لكن قوة العلامة وشبكات التوزيع والاستقرار المالي تمنح قدرة عالية على التكيف.</li>
+          <li>تمثل المراعي نموذجًا ناجحًا للشركة السعودية التي تحولت من منشأة محلية إلى كيان إقليمي مؤثر بتطبيق فعلي لمبادئ الإدارة الاستراتيجية القائمة على التحليل والمرونة والابتكار المستمر.</li>
+        </ul>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> تتفق المصفوفات على الاتجاه: استثمر بقوة حيث توجد الريادة أصلًا (الألبان والعصائر)، وابنِ نجم المستقبل (الدواجن)، واحصد المصدر المستقر (المخبوزات)، وأعد هيكلة قاعدة الدعم (الزراعة)، وكل ذلك بمؤشرات أداء منضبطة والتزامات استدامة وحوكمة مخاطر استباقية.</div>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li>المراعي. <a href="https://www.almarai.com/en/" target="_blank" rel="noopener">الموقع الرسمي</a>.</li>
+          <li>المراعي. <a href="https://www.almarai.com/en/corporate/investor-relations/financial-information" target="_blank" rel="noopener">علاقات المستثمرين: المعلومات والتقارير المالية</a>.</li>
+          <li>المراعي. <a href="https://annualreport.almarai.com/" target="_blank" rel="noopener">التقرير السنوي</a>.</li>
+          <li>أرقام (يناير 2026). <a href="https://www.argaam.com/sa-en/financial-reports/company-report/62/2025/1" target="_blank" rel="noopener">أرباح المراعي 2025 ترتفع 6% إلى 2.45 مليار ريال</a> (نتائج السنة المالية 2025).</li>
+          <li>أرقام (يناير 2025). <a href="https://www.argaam.com/en/financial-reports/company-report/62/2024/1" target="_blank" rel="noopener">أرباح المراعي 2024 ترتفع 13% إلى 2.31 مليار ريال</a>.</li>
+          <li>Porter, M. E. <a href="https://hbr.org/2008/01/the-five-competitive-forces-that-shape-strategy" target="_blank" rel="noopener">القوى التنافسية الخمس التي تشكّل الاستراتيجية</a>. Harvard Business Review.</li>
+          <li>Boston Consulting Group. <a href="https://www.bcg.com/about/overview/our-history/growth-share-matrix" target="_blank" rel="noopener">مصفوفة النمو والحصة</a>.</li>
+          <li>McKinsey &amp; Company. <a href="https://www.mckinsey.com/capabilities/strategy-and-corporate-finance/our-insights/enduring-ideas-the-ge-and-mckinsey-nine-box-matrix" target="_blank" rel="noopener">مصفوفة GE وماكينزي ذات الخلايا التسع</a>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","profile","structure","strategies","external","swot","matrices","execution","sustainability","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

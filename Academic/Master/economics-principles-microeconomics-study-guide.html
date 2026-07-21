@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Principles of Economics: A Bilingual Study Guide</title>
+<meta name="description" content="A bilingual study guide to the principles of economics: scarcity and choice, the production possibility curve, demand, supply, utility, and production.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">Principles of Economics &middot; Study Guide</span><span data-lang="ar">مبادئ الاقتصاد &middot; دليل دراسي</span></div>
+    <h1><span data-lang="en">Principles of Economics: A Bilingual Study Guide</span><span data-lang="ar">مبادئ الاقتصاد: دليل دراسي</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="foundations"><span data-lang="en">What Economics Is</span><span data-lang="ar">ماهية الاقتصاد</span></a>
+    <a data-id="scarcity"><span data-lang="en">Scarcity &amp; the PPC</span><span data-lang="ar">الندرة ومنحنى الإنتاج</span></a>
+    <a data-id="demand"><span data-lang="en">Demand</span><span data-lang="ar">الطلب</span></a>
+    <a data-id="supply"><span data-lang="en">Supply &amp; Equilibrium</span><span data-lang="ar">العرض والتوازن</span></a>
+    <a data-id="consumer"><span data-lang="en">Consumer Behavior</span><span data-lang="ar">سلوك المستهلك</span></a>
+    <a data-id="production"><span data-lang="en">Production</span><span data-lang="ar">الإنتاج</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways &amp; References</span><span data-lang="ar">الخلاصة والمراجع</span></a>
+  </nav>
+
+  <!-- 1. OVERVIEW -->
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Economics (Microeconomics)</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">This bilingual study guide covers the principles of economics, the science of using limited resources to satisfy unlimited human wants.</p>
+        <p>Everything below flows from one fact, <strong>scarcity</strong>: because wants exceed resources, every society and every person must choose, and every choice has a cost. The guide moves from that core problem to the tools economists use to study it: the production possibility curve, the forces of demand and supply that set prices, the behavior of consumers, and the theory of production.</p>
+        <h3>The seven topics at a glance</h3>
+        <ol>
+          <li><strong>What economics is:</strong> its meaning, the economic problem, wants, and resources.</li>
+          <li><strong>Scarcity, choice, and the production possibility curve.</strong></li>
+          <li><strong>Demand</strong> and its determinants.</li>
+          <li><strong>Supply</strong> and market equilibrium.</li>
+          <li><strong>Consumer behavior</strong> and utility.</li>
+          <li><strong>Production theory</strong> and diminishing returns.</li>
+        </ol>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الاقتصاد (الجزئي)</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">يغطّي هذا الدليل الدراسي ثنائي اللغة مبادئ الاقتصاد، علم استخدام الموارد المحدودة لإشباع الحاجات الإنسانية غير المحدودة.</p>
+        <p>وكل ما يأتي أدناه ينبع من حقيقة واحدة هي <strong>الندرة</strong>: فلأن الحاجات تفوق الموارد، على كل مجتمع وكل فرد أن يختار، ولكل اختيار كلفة. وينتقل الدليل من هذه المشكلة الجوهرية إلى الأدوات التي يستخدمها الاقتصاديون لدراستها: منحنى إمكانية الإنتاج، وقوى الطلب والعرض التي تحدّد الأسعار، وسلوك المستهلك، ونظرية الإنتاج.</p>
+        <h3>الموضوعات الستة في لمحة</h3>
+        <ol>
+          <li><strong>ماهية الاقتصاد:</strong> معناه، والمشكلة الاقتصادية، والحاجات، والموارد.</li>
+          <li><strong>الندرة والاختيار ومنحنى إمكانية الإنتاج.</strong></li>
+          <li><strong>الطلب</strong> ومحدّداته.</li>
+          <li><strong>العرض</strong> وتوازن السوق.</li>
+          <li><strong>سلوك المستهلك</strong> والمنفعة.</li>
+          <li><strong>نظرية الإنتاج</strong> وتناقص الغلّة.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. FOUNDATIONS -->
+  <section class="page" id="foundations">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>What Economics Is</h2>
+        <p>The word "economy" is used loosely in everyday speech, but as a science it has a precise meaning. The ancient Greeks used it for the wise, organized management of the household; the meaning later widened to the management of the state, seen as one large household. When Adam Smith, the father of modern economics, published <em>The Wealth of Nations</em>, he defined economics as the science that seeks to create wealth for a people and a nation.</p>
+        <h3>A working definition</h3>
+        <p><strong>Economics</strong> is the branch of the social sciences that studies how to use <em>limited resources</em> to satisfy <em>multiple and unlimited human wants</em>.</p>
+        <h3>The economic problem</h3>
+        <p>The whole subject rests on two facts that hold in the real world, not a world of fantasy:</p>
+        <ol>
+          <li>Human wants to be satisfied are multiple and unlimited.</li>
+          <li>The resources available to satisfy them are limited.</li>
+        </ol>
+        <p>The clash between unlimited wants and limited resources is <strong>scarcity</strong>, and scarcity is the economic problem itself, because it forces choice.</p>
+        <h3>Human wants and their characteristics</h3>
+        <p>A <strong>want</strong> is a feeling of deprivation joined to a desire to obtain the means that remove it. Wants are either <em>innate</em> (born with us, like the need for food, shelter, and clothing) or <em>acquired</em> (developing with growth and circumstance, like the want for luxuries and services). Their main characteristics are that they are <strong>multiple</strong> (unlimited in number), <strong>recurring</strong>, <strong>satiable</strong> for any single want at a moment in time, and <strong>changing</strong> with development.</p>
+        <h3>Resources and goods</h3>
+        <p>The means of satisfaction are produced from the <strong>factors of production</strong>, land, labor, and capital, which are limited and have alternative uses. What people consume are <strong>economic goods</strong>, which are scarce and carry a price, as opposed to <em>free goods</em> such as air that are not scarce.</p>
+        <h3>The three fundamental questions</h3>
+        <p>Because resources are scarce, every economy, whatever its politics, must answer three questions:</p>
+        <ol>
+          <li><strong>What to produce?</strong> Which goods and services, and in what quantities.</li>
+          <li><strong>How to produce?</strong> With which methods and which combination of resources.</li>
+          <li><strong>For whom to produce?</strong> How the output is distributed among the members of society.</li>
+        </ol>
+        <p>Different <strong>economic systems</strong> answer them differently: a <em>market</em> economy lets prices and private decisions decide, a <em>command</em> economy lets central planners decide, and a <em>mixed</em> economy blends the two.</p>
+        <h3>Positive versus normative economics</h3>
+        <ul>
+          <li><strong>Positive economics</strong> describes what <em>is</em> and can be tested against facts (for example, "a rise in price reduces the quantity demanded").</li>
+          <li><strong>Normative economics</strong> prescribes what <em>ought to be</em> and rests on value judgments (for example, "the government should subsidize bread").</li>
+        </ul>
+        <div class="note"><strong>Why we study economics:</strong> in an imaginary world where every wish is instantly granted there would be no need for the subject. It exists precisely because we live in a real world of scarcity, where using resources well is a genuine problem to be solved.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>ماهية الاقتصاد</h2>
+        <p>تُستخدم كلمة «اقتصاد» بتساهل في الحديث اليومي، لكنها كعلم لها معنى دقيق. فقد استخدمها الإغريق القدماء للإدارة الرشيدة المنظّمة لشؤون البيت والأسرة؛ ثم اتّسع المعنى ليشمل تدبير شؤون الدولة باعتبارها بيتًا كبيرًا. وحين قدّم آدم سميث، أبو الاقتصاد الحديث، كتابه <em>ثروة الأمم</em>، عرّف الاقتصاد بأنه العلم الذي يسعى إلى تحقيق الثراء للشعب والدولة.</p>
+        <h3>تعريف عملي</h3>
+        <p><strong>علم الاقتصاد</strong> هو فرع العلوم الاجتماعية الذي يبحث في كيفية استخدام <em>الموارد المحدودة</em> في إشباع <em>حاجات إنسانية متعددة وغير محدودة</em>.</p>
+        <h3>المشكلة الاقتصادية</h3>
+        <p>يقوم الموضوع كله على حقيقتين في عالم الواقع لا عالم الخيال:</p>
+        <ol>
+          <li>الحاجات الإنسانية المراد إشباعها متعددة وغير محدودة.</li>
+          <li>الموارد المتاحة لإشباعها محدودة.</li>
+        </ol>
+        <p>والتصادم بين الحاجات غير المحدودة والموارد المحدودة هو <strong>الندرة</strong>، والندرة هي المشكلة الاقتصادية نفسها، لأنها تفرض الاختيار.</p>
+        <h3>الحاجات الإنسانية وخصائصها</h3>
+        <p><strong>الحاجة</strong> شعور بالحرمان مصحوب برغبة في الحصول على وسائل إزالته. والحاجات إمّا <em>فطرية</em> (يولد بها الإنسان، كالحاجة إلى الغذاء والمأوى والملبس) أو <em>مكتسبة</em> (تتطوّر مع النمو والظروف، كالحاجة إلى الكماليات والخدمات). وأبرز خصائصها أنها <strong>متعددة</strong> (غير محدودة العدد)، و<strong>متكرّرة</strong>، و<strong>قابلة للإشباع</strong> لأي حاجة مفردة في لحظة، و<strong>متغيّرة</strong> مع التطور.</p>
+        <h3>الموارد والسلع</h3>
+        <p>تُنتَج وسائل الإشباع من <strong>عناصر الإنتاج</strong>: الأرض والعمل ورأس المال، وهي محدودة ولها استخدامات بديلة. وما يستهلكه الناس هو <strong>سلع اقتصادية</strong> نادرة ولها ثمن، مقابل <em>السلع الحرة</em> كالهواء التي ليست نادرة.</p>
+        <h3>الأسئلة الاقتصادية الثلاثة الأساسية</h3>
+        <p>لأن الموارد نادرة، على كل اقتصاد، مهما كان نظامه السياسي، أن يجيب عن ثلاثة أسئلة:</p>
+        <ol>
+          <li><strong>ماذا يُنتَج؟</strong> أي سلع وخدمات، وبأي كميات.</li>
+          <li><strong>كيف يُنتَج؟</strong> بأي أساليب وأي توليفة من الموارد.</li>
+          <li><strong>لمن يُنتَج؟</strong> كيف يُوزَّع الناتج بين أفراد المجتمع.</li>
+        </ol>
+        <p>وتُجيب <strong>الأنظمة الاقتصادية</strong> عنها بطرق مختلفة: فاقتصاد <em>السوق</em> يترك الأسعار والقرارات الخاصة تقرّر، والاقتصاد <em>الموجَّه</em> يترك المخطِّط المركزي يقرّر، والاقتصاد <em>المختلط</em> يمزج الاثنين.</p>
+        <h3>الاقتصاد الوصفي مقابل المعياري</h3>
+        <ul>
+          <li><strong>الاقتصاد الوصفي (الإيجابي)</strong> يصف ما هو <em>كائن</em> ويمكن اختباره بالوقائع (مثل: «ارتفاع الثمن يقلّل الكمية المطلوبة»).</li>
+          <li><strong>الاقتصاد المعياري</strong> يصف ما <em>ينبغي</em> أن يكون ويقوم على أحكام قيمية (مثل: «ينبغي أن تدعم الحكومة الخبز»).</li>
+        </ul>
+        <div class="note"><strong>لماذا ندرس الاقتصاد:</strong> في عالم خيالي تتحقق فيه كل أمنية فورًا لن تكون هناك حاجة لهذا العلم. وهو موجود بالضبط لأننا نعيش في عالم واقعي تسوده الندرة، حيث يمثّل حسن استخدام الموارد مشكلة حقيقية تحتاج إلى حل.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SCARCITY & PPC -->
+  <section class="page" id="scarcity">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Scarcity, Choice &amp; the Production Possibility Curve</h2>
+        <p>Because resources are scarce and can be used in more than one way, a society cannot produce everything it wants; it must <strong>choose</strong>. Every choice means giving something up, and the value of the next best alternative forgone is the <strong>opportunity cost</strong>.</p>
+        <h3>The production possibility curve (PPC)</h3>
+        <p>The <strong>PPC</strong> is the curve joining the different combinations of two goods that a society can produce using its available resources at full and efficient employment. It is built on four assumptions:</p>
+        <ul>
+          <li>Resources (land, labor, capital) are fixed in quantity, though each has alternative uses.</li>
+          <li>Technical knowledge is fixed, at least in the short run.</li>
+          <li>The society produces only two goods (or two groups of goods).</li>
+          <li>There is <strong>full employment</strong>, all available resources are fully used, with none idle.</li>
+        </ul>
+        <h3>Reading the curve</h3>
+        <ul>
+          <li>A point <strong>on</strong> the curve is efficient: resources are fully and best used.</li>
+          <li>A point <strong>inside</strong> the curve means unemployment or inefficiency, some resources are idle.</li>
+          <li>A point <strong>outside</strong> the curve is currently unattainable, until resources grow or technology improves.</li>
+        </ul>
+        <p>To produce more of one good, the society must give up some of the other, which is opportunity cost in action, and the curve bows outward because that cost tends to rise as production shifts. Economic <strong>growth</strong>, from more resources, new technology, or investment (for example, a loan directed into production), shifts the whole curve outward.</p>
+        <h3>Why opportunity cost increases</h3>
+        <p>The curve bows outward (is concave to the origin) because of <strong>increasing opportunity cost</strong>: resources are not equally suited to both goods. As a society keeps shifting resources toward one good, it must move resources that were better suited to the other, so each extra unit of the first good costs ever more of the second.</p>
+        <h3>Efficiency and unemployment</h3>
+        <p>A point on the curve is <strong>productively efficient</strong>, nothing more of one good can be made without making less of the other. A point inside signals wasted potential, from <strong>unemployment</strong> of labor or idle machines, and moving out to the curve is a free gain. Reaching a point outside requires <strong>economic growth</strong>.</p>
+        <div class="note"><strong>Micro versus macro:</strong> <strong>microeconomics</strong> studies individual units, the single consumer, one producer, one good, and one market, and is the focus of this guide. <strong>Macroeconomics</strong> studies the economy as a whole through aggregates such as national income, total employment, and the general price level.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الندرة والاختيار ومنحنى إمكانية الإنتاج</h2>
+        <p>لأن الموارد نادرة ويمكن استخدامها بأكثر من طريقة، لا يستطيع المجتمع إنتاج كل ما يريد؛ بل عليه أن <strong>يختار</strong>. وكل اختيار يعني التخلي عن شيء، وقيمة أفضل بديل مُتخلًّى عنه هي <strong>تكلفة الفرصة البديلة</strong>.</p>
+        <h3>منحنى إمكانية الإنتاج (PPC)</h3>
+        <p><strong>منحنى إمكانية الإنتاج</strong> هو المنحنى الواصل بين مختلف توليفات سلعتين يمكن للمجتمع إنتاجها باستخدام موارده المتاحة عند التوظيف الكامل والكفؤ. ويُبنى على أربعة افتراضات:</p>
+        <ul>
+          <li>الموارد (الأرض والعمل ورأس المال) ثابتة الكمية، وإن كان لكلٍّ استخدامات بديلة.</li>
+          <li>المعرفة الفنية ثابتة، على الأقل في المدى القصير.</li>
+          <li>ينتج المجتمع سلعتين فقط (أو مجموعتين من السلع).</li>
+          <li>هناك <strong>توظيف كامل</strong>: كل الموارد المتاحة مستخدمة بالكامل دون أي مورد عاطل.</li>
+        </ul>
+        <h3>قراءة المنحنى</h3>
+        <ul>
+          <li>النقطة <strong>على</strong> المنحنى كفؤة: الموارد مستخدمة بالكامل وبأفضل صورة.</li>
+          <li>النقطة <strong>داخل</strong> المنحنى تعني بطالة أو عدم كفاءة، فبعض الموارد عاطلة.</li>
+          <li>النقطة <strong>خارج</strong> المنحنى غير قابلة للتحقيق حاليًا، حتى تنمو الموارد أو تتحسّن التقنية.</li>
+        </ul>
+        <p>ولإنتاج مزيد من سلعة، على المجتمع أن يتخلى عن بعض الأخرى، وهذه تكلفة الفرصة عمليًا، ويتقوّس المنحنى للخارج لأن هذه الكلفة تميل إلى الارتفاع مع تحوّل الإنتاج. و<strong>النمو</strong> الاقتصادي، من زيادة الموارد أو تقنية جديدة أو استثمار (كقرض يُوجَّه للإنتاج)، يزيح المنحنى كله للخارج.</p>
+        <h3>لماذا تتزايد تكلفة الفرصة</h3>
+        <p>يتقوّس المنحنى للخارج (مقعّر نحو نقطة الأصل) بسبب <strong>تزايد تكلفة الفرصة البديلة</strong>: فالموارد ليست متساوية الملاءمة للسلعتين. وكلما استمر المجتمع في تحويل الموارد نحو سلعة، اضطُر لنقل موارد كانت أنسب للأخرى، فتكلّف كل وحدة إضافية من الأولى مزيدًا متصاعدًا من الثانية.</p>
+        <h3>الكفاءة والبطالة</h3>
+        <p>النقطة على المنحنى <strong>كفؤة إنتاجيًا</strong>، فلا يمكن إنتاج مزيد من سلعة دون إنتاج أقل من الأخرى. والنقطة داخله تشير إلى طاقة مهدورة، من <strong>بطالة</strong> العمل أو تعطّل الآلات، والانتقال إلى المنحنى مكسب مجاني. أما بلوغ نقطة خارجه فيتطلّب <strong>نموًا اقتصاديًا</strong>.</p>
+        <div class="note"><strong>الجزئي مقابل الكلي:</strong> <strong>الاقتصاد الجزئي</strong> يدرس الوحدات الفردية: المستهلك الواحد، والمنتج الواحد، والسلعة الواحدة، والسوق الواحد، وهو محور هذا الدليل. أما <strong>الاقتصاد الكلي</strong> فيدرس الاقتصاد ككل عبر مجاميع مثل الدخل القومي والتوظيف الكلي والمستوى العام للأسعار.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. DEMAND -->
+  <section class="page" id="demand">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Demand</h2>
+        <p><strong>Demand</strong> is the quantities of a good or service that consumers are <em>willing and able</em> to buy at the different prices assumed for it. In short, demand is desire backed by the ability to pay; wanting a thing is not demand unless you can also pay for it.</p>
+        <h3>The determinants of demand</h3>
+        <p><strong>Quantitative determinants</strong> (measurable):</p>
+        <ul>
+          <li><strong>Price of the good:</strong> the higher the price, the lower the quantity demanded, an <em>inverse</em> relationship.</li>
+          <li><strong>Consumer income:</strong> for a normal good, higher income raises purchasing power and quantity demanded, a <em>direct</em> relationship.</li>
+          <li><strong>Prices of related goods:</strong> for <em>substitutes</em>, a rise in one raises demand for the other (direct); for <em>complements</em>, a rise in one lowers demand for the other (inverse).</li>
+        </ul>
+        <p><strong>Qualitative determinants</strong> (describable but not measurable): tastes, habits, customs, and preferences, gathered under "consumer taste."</p>
+        <h3>The law of demand</h3>
+        <p>Holding other factors constant (<em>ceteris paribus</em>), when the price of a good rises the quantity demanded falls, and when the price falls the quantity demanded rises. The simplest linear form of the price-demand function is <strong>Qd = a &minus; bP</strong>, where the negative slope captures the inverse relationship.</p>
+        <h3>Normal and inferior goods</h3>
+        <p>The income effect depends on the type of good. For a <strong>normal good</strong>, higher income raises demand (most goods). For an <strong>inferior good</strong>, higher income <em>lowers</em> demand, because the consumer switches to a better substitute (for example, moving from a cheap staple to a preferred one as income rises).</p>
+        <h3>Individual and market demand</h3>
+        <p><strong>Individual demand</strong> is one consumer's schedule; <strong>market demand</strong> is the horizontal sum of all consumers' demands at each price. The market curve is what interacts with supply to set the price.</p>
+        <h3>Apparent exceptions to the law</h3>
+        <p>The inverse price-quantity relationship almost always holds, but a few special cases seem to defy it: <strong>Giffen goods</strong> (very inferior staples where a price rise can raise quantity demanded) and <strong>Veblen or prestige goods</strong> (where a higher price signals status and can attract more buyers).</p>
+        <div class="note"><strong>Along versus shift:</strong> a change in the good's <em>own price</em> causes a <strong>movement along</strong> the demand curve (a change in quantity demanded), while a change in any <em>other</em> determinant (income, related prices, tastes) <strong>shifts the whole curve</strong> (a change in demand).</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الطلب</h2>
+        <p><strong>الطلب</strong> هو الكميات التي يكون المستهلكون <em>راغبين وقادرين</em> على شرائها من السلعة أو الخدمة عند مختلف الأثمان المفترضة لها. باختصار، الطلب رغبة مدعومة بالقدرة على الشراء؛ فالرغبة في شيء ليست طلبًا ما لم تستطع دفع ثمنه.</p>
+        <h3>محدّدات الطلب</h3>
+        <p><strong>المحدّدات الكمية</strong> (القابلة للقياس):</p>
+        <ul>
+          <li><strong>ثمن السلعة:</strong> كلما ارتفع الثمن انخفضت الكمية المطلوبة، وهي علاقة <em>عكسية</em>.</li>
+          <li><strong>دخل المستهلك:</strong> للسلعة العادية، زيادة الدخل ترفع القدرة الشرائية والكمية المطلوبة، وهي علاقة <em>طردية</em>.</li>
+          <li><strong>أثمان السلع المرتبطة:</strong> للسلع <em>البديلة</em>، ارتفاع ثمن إحداها يرفع الطلب على الأخرى (طردية)؛ وللسلع <em>المكمّلة</em>، ارتفاع ثمن إحداها يخفض الطلب على الأخرى (عكسية).</li>
+        </ul>
+        <p><strong>المحدّدات النوعية</strong> (تُوصَف ولا تُقاس): الأذواق والعادات والتقاليد والتفضيلات، وتُجمَع تحت «ذوق المستهلك».</p>
+        <h3>قانون الطلب</h3>
+        <p>مع ثبات العوامل الأخرى، عندما يرتفع ثمن السلعة تنخفض الكمية المطلوبة، وعندما ينخفض الثمن ترتفع الكمية المطلوبة. وأبسط صورة خطية لدالة الطلب السعرية هي <strong>ك ط = أ &minus; ب ث</strong>، حيث يعكس الميل السالب العلاقة العكسية.</p>
+        <h3>السلع العادية والدنيا</h3>
+        <p>يعتمد أثر الدخل على نوع السلعة. فللسلعة <strong>العادية</strong>، ترفع زيادة الدخل الطلب (معظم السلع). أما السلعة <strong>الدنيا</strong> فترفع زيادة الدخل الطلب عليها <em>أقل</em> أو تخفضه، لأن المستهلك يتحوّل إلى بديل أفضل (كالانتقال من سلعة أساسية رخيصة إلى أفضل منها مع ارتفاع الدخل).</p>
+        <h3>الطلب الفردي والسوقي</h3>
+        <p><strong>الطلب الفردي</strong> جدول مستهلك واحد؛ و<strong>الطلب السوقي</strong> هو الجمع الأفقي لطلبات كل المستهلكين عند كل ثمن. ومنحنى السوق هو ما يتفاعل مع العرض لتحديد الثمن.</p>
+        <h3>استثناءات ظاهرية لقانون الطلب</h3>
+        <p>تسود العلاقة العكسية بين الثمن والكمية دائمًا تقريبًا، لكن حالات خاصة تبدو مخالفة لها: <strong>سلع جيفن</strong> (سلع أساسية شديدة الدنوّ قد يرفع ارتفاع ثمنها الكمية المطلوبة) و<strong>سلع فيبلن أو المكانة</strong> (حيث يشير الثمن الأعلى إلى المكانة فيجذب مزيدًا من المشترين).</p>
+        <div class="note"><strong>التحرّك مقابل الانتقال:</strong> تغيّر <em>ثمن السلعة نفسها</em> يسبّب <strong>تحرّكًا على</strong> منحنى الطلب (تغيّر الكمية المطلوبة)، بينما تغيّر أي محدّد <em>آخر</em> (الدخل، أثمان المرتبطة، الأذواق) <strong>يُزيح المنحنى كله</strong> (تغيّر الطلب).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. SUPPLY & EQUILIBRIUM -->
+  <section class="page" id="supply">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Supply &amp; Market Equilibrium</h2>
+        <p><strong>Supply</strong> is the quantities of a good or service that producers are actually willing to sell in the market at the different prices assumed for it.</p>
+        <h3>The determinants of supply</h3>
+        <ul>
+          <li><strong>Price of the good:</strong> a <em>direct</em> relationship, a higher price raises the quantity supplied.</li>
+          <li><strong>Prices of the factors of production:</strong> higher input costs (labor, land, capital) raise production cost and lower the quantity supplied, an <em>inverse</em> relationship.</li>
+          <li><strong>Prices of other goods:</strong> inverse with a good that is a substitute in production, direct with a complement in production.</li>
+          <li><strong>State of technology:</strong> better production technique lowers cost and raises the quantity supplied.</li>
+          <li><strong>Producers' goals:</strong> whether the aim is to maximize profit, minimize loss, or expand, which changes how much is offered.</li>
+        </ul>
+        <h3>The law of supply</h3>
+        <p>Holding other factors constant, a higher price leads to a higher quantity supplied. The simplest linear form is <strong>Qs = a + bP</strong>, with a positive slope for the direct relationship.</p>
+        <h3>Market equilibrium</h3>
+        <p><strong>Equilibrium</strong> is the price at which the quantity demanded equals the quantity supplied, giving the equilibrium price and quantity. Away from it, the market corrects itself:</p>
+        <ul>
+          <li>If price is <strong>above</strong> equilibrium, supply exceeds demand (a <em>surplus</em>), which pushes the price down.</li>
+          <li>If price is <strong>below</strong> equilibrium, demand exceeds supply (a <em>shortage</em>), which pushes the price up.</li>
+        </ul>
+        <h3>How equilibrium changes</h3>
+        <p>When a determinant shifts a curve, the equilibrium moves in a predictable way: a rise in demand raises both price and quantity; a fall in demand lowers both; a rise in supply lowers price but raises quantity; a fall in supply raises price but lowers quantity. When both shift at once, the net effect on price or quantity may be uncertain and depends on which shift is larger.</p>
+        <h3>Price controls</h3>
+        <ul>
+          <li><strong>A price ceiling</strong> (a legal maximum, such as rent control) set below equilibrium creates a persistent <em>shortage</em>.</li>
+          <li><strong>A price floor</strong> (a legal minimum, such as a minimum wage) set above equilibrium creates a persistent <em>surplus</em>.</li>
+        </ul>
+        <div class="note"><strong>The invisible hand:</strong> no one plans the equilibrium; it emerges from buyers and sellers each acting on price, which is why demand and supply together are the central mechanism of a market economy, and why interfering with the price (through controls) creates shortages or surpluses.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>العرض وتوازن السوق</h2>
+        <p><strong>العرض</strong> هو الكميات التي يكون المنتجون مستعدين فعلًا لبيعها في السوق من السلعة أو الخدمة عند مختلف الأثمان المفترضة لها.</p>
+        <h3>محدّدات العرض</h3>
+        <ul>
+          <li><strong>ثمن السلعة:</strong> علاقة <em>طردية</em>، فارتفاع الثمن يرفع الكمية المعروضة.</li>
+          <li><strong>أثمان عناصر الإنتاج:</strong> ارتفاع كلف المدخلات (العمل، الأرض، رأس المال) يرفع كلفة الإنتاج ويخفض الكمية المعروضة، وهي علاقة <em>عكسية</em>.</li>
+          <li><strong>أثمان السلع الأخرى:</strong> عكسية مع سلعة بديلة في الإنتاج، وطردية مع مكمّلة في الإنتاج.</li>
+          <li><strong>حالة الفن الإنتاجي:</strong> تحسّن الأسلوب الإنتاجي يخفض الكلفة ويرفع الكمية المعروضة.</li>
+          <li><strong>أهداف المنتجين:</strong> هل الهدف تعظيم الربح أو تقليل الخسارة أو التوسّع، وهو ما يغيّر المعروض.</li>
+        </ul>
+        <h3>قانون العرض</h3>
+        <p>مع ثبات العوامل الأخرى، يؤدي ارتفاع الثمن إلى ارتفاع الكمية المعروضة. وأبسط صورة خطية هي <strong>ك ع = أ + ب ث</strong>، بميل موجب للعلاقة الطردية.</p>
+        <h3>توازن السوق</h3>
+        <p><strong>التوازن</strong> هو الثمن الذي تتساوى عنده الكمية المطلوبة مع الكمية المعروضة، فيعطي ثمن التوازن وكميته. وبعيدًا عنه، يصحّح السوق نفسه:</p>
+        <ul>
+          <li>إذا كان الثمن <strong>أعلى</strong> من التوازن، يفوق العرض الطلب (<em>فائض</em>)، فيدفع الثمن نزولًا.</li>
+          <li>إذا كان الثمن <strong>أدنى</strong> من التوازن، يفوق الطلب العرض (<em>عجز</em>)، فيدفع الثمن صعودًا.</li>
+        </ul>
+        <h3>كيف يتغيّر التوازن</h3>
+        <p>عندما يُزيح محدّدٌ منحنى، يتحرّك التوازن بشكل متوقَّع: زيادة الطلب ترفع الثمن والكمية معًا؛ ونقص الطلب يخفضهما؛ وزيادة العرض تخفض الثمن وترفع الكمية؛ ونقص العرض يرفع الثمن ويخفض الكمية. وحين يُزاح المنحنيان معًا، قد يكون الأثر الصافي على الثمن أو الكمية غير مؤكد ويعتمد على أيّ الإزاحتين أكبر.</p>
+        <h3>ضوابط الأسعار</h3>
+        <ul>
+          <li><strong>سقف السعر</strong> (حدّ أقصى قانوني، كضبط الإيجارات) إذا وُضع دون التوازن يخلق <em>عجزًا</em> مستمرًا.</li>
+          <li><strong>أرضية السعر</strong> (حدّ أدنى قانوني، كالحد الأدنى للأجور) إذا وُضعت فوق التوازن تخلق <em>فائضًا</em> مستمرًا.</li>
+        </ul>
+        <div class="note"><strong>اليد الخفية:</strong> لا أحد يخطّط للتوازن؛ بل ينشأ من تصرّف المشترين والبائعين كلٍّ بحسب الثمن، ولهذا يكون الطلب والعرض معًا الآليةَ المركزية لاقتصاد السوق، ولهذا يخلق التدخّل في الثمن (عبر الضوابط) عجزًا أو فائضًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CONSUMER BEHAVIOR -->
+  <section class="page" id="consumer">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Consumer Behavior</h2>
+        <p>The theory of consumer behavior starts from one key assumption: the consumer is <strong>economically rational</strong>, aiming to gain the greatest possible satisfaction from spending a limited income, and choosing among the available goods and services and the quantities of each.</p>
+        <h3>Two ways to analyze it</h3>
+        <ul>
+          <li><strong>The utility (cardinal) method:</strong> treats satisfaction as if it can be measured in numbers.</li>
+          <li><strong>The indifference-curve (ordinal) method:</strong> treats satisfaction as something that can be ranked but not measured.</li>
+        </ul>
+        <h3>Total and marginal utility</h3>
+        <ul>
+          <li><strong>Total utility:</strong> the sum of all the units of satisfaction the consumer gets from consuming a good.</li>
+          <li><strong>Marginal utility:</strong> the extra satisfaction from consuming one more unit.</li>
+        </ul>
+        <h3>The law of diminishing marginal utility</h3>
+        <p>As a person consumes more of a good, the marginal utility of each additional unit tends to fall. For example, the first cup of coffee may give more satisfaction than the fourth. Marginal utility keeps falling until it reaches zero at the point of <em>satiation</em>, after which extra units give <strong>negative</strong> utility (they cause harm). Total utility rises while marginal utility is positive, peaks when marginal utility is zero, then declines.</p>
+        <h3>The equi-marginal principle in a formula</h3>
+        <p>The rule can be written precisely: the consumer is in equilibrium when, for every pair of goods, <strong>MU<sub>x</sub> &divide; P<sub>x</sub> = MU<sub>y</sub> &divide; P<sub>y</sub></strong>, that is, the marginal utility of the last riyal spent is the same on every good. If one good gives more utility per riyal than another, the consumer gains by moving spending toward it until the ratios equalize.</p>
+        <h3>Consumer surplus</h3>
+        <p><strong>Consumer surplus</strong> is the gap between what a consumer is <em>willing</em> to pay for a good (its value to them) and what they <em>actually</em> pay (the market price). It measures the benefit buyers gain from trade, and it is larger the lower the price.</p>
+        <h3>The indifference-curve approach in brief</h3>
+        <p>The ordinal approach uses two tools: an <strong>indifference curve</strong>, joining bundles that give the same satisfaction, and a <strong>budget line</strong>, showing the bundles the income can afford. The consumer's optimum is where the budget line just touches the highest reachable indifference curve.</p>
+        <div class="note"><strong>Consumer equilibrium:</strong> a rational consumer maximizes total utility by allocating income so that the <strong>marginal utility per unit of money is equal across all goods</strong>, and the entire budget is spent. This "equi-marginal" rule is what links utility to the downward-sloping demand curve.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>سلوك المستهلك</h2>
+        <p>تبدأ نظرية سلوك المستهلك من افتراض جوهري: أن المستهلك <strong>رشيد اقتصاديًا</strong>، يهدف إلى تحقيق أقصى إشباع ممكن من إنفاق دخله المحدود، ويختار بين السلع والخدمات المتاحة والكميات من كلٍّ منها.</p>
+        <h3>طريقتان للتحليل</h3>
+        <ul>
+          <li><strong>طريقة المنفعة (العددية):</strong> تعامل الإشباع وكأنه قابل للقياس بالأرقام.</li>
+          <li><strong>طريقة منحنيات السواء (الترتيبية):</strong> تعامل الإشباع كشيء يمكن ترتيبه لا قياسه.</li>
+        </ul>
+        <h3>المنفعة الكلية والحدية</h3>
+        <ul>
+          <li><strong>المنفعة الكلية:</strong> مجموع وحدات الإشباع التي يحصل عليها المستهلك من استهلاك السلعة.</li>
+          <li><strong>المنفعة الحدية:</strong> الإشباع الإضافي من استهلاك وحدة إضافية واحدة.</li>
+        </ul>
+        <h3>قانون تناقص المنفعة الحدية</h3>
+        <p>كلما استهلك الفرد مزيدًا من سلعة، تميل المنفعة الحدية لكل وحدة إضافية إلى التناقص. فمثلًا قد يعطي كوب القهوة الأول إشباعًا أكبر من الرابع. وتستمر المنفعة الحدية في التناقص حتى تبلغ الصفر عند حدّ <em>التشبّع</em>، وبعده تعطي الوحدات الإضافية منفعة <strong>سالبة</strong> (تسبّب ضررًا). وترتفع المنفعة الكلية ما دامت الحدية موجبة، وتبلغ ذروتها حين تكون الحدية صفرًا، ثم تنخفض.</p>
+        <h3>مبدأ تساوي الحدّيات في صيغة</h3>
+        <p>يمكن كتابة القاعدة بدقة: يكون المستهلك في توازن حين تتساوى، لكل زوج من السلع، النسبة <strong>MU<sub>x</sub> &divide; P<sub>x</sub> = MU<sub>y</sub> &divide; P<sub>y</sub></strong>، أي أن منفعة آخر ريال يُنفَق واحدة على كل سلعة. فإن أعطت سلعة منفعةً لكل ريال أكبر من أخرى، يكسب المستهلك بتحويل الإنفاق نحوها حتى تتساوى النسب.</p>
+        <h3>فائض المستهلك</h3>
+        <p><strong>فائض المستهلك</strong> هو الفارق بين ما يكون المستهلك <em>مستعدًا</em> لدفعه للسلعة (قيمتها لديه) وما <em>يدفعه</em> فعلًا (ثمن السوق). وهو يقيس المنفعة التي يجنيها المشترون من المبادلة، ويكبر كلما انخفض الثمن.</p>
+        <h3>مدخل منحنيات السواء باختصار</h3>
+        <p>يستخدم المدخل الترتيبي أداتين: <strong>منحنى السواء</strong> الذي يصل بين التوليفات التي تعطي الإشباع نفسه، و<strong>خط الميزانية</strong> الذي يبيّن التوليفات التي يقدر عليها الدخل. ويكون أمثل المستهلك حيث يلامس خط الميزانية أعلى منحنى سواء يمكن بلوغه.</p>
+        <div class="note"><strong>توازن المستهلك:</strong> يعظّم المستهلك الرشيد منفعته الكلية بتوزيع دخله بحيث تتساوى <strong>المنفعة الحدية لكل وحدة نقود عبر جميع السلع</strong>، مع إنفاق كامل الميزانية. وقاعدة «تساوي الحدّيات» هذه هي ما يربط المنفعة بمنحنى الطلب المنحدر نزولًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. PRODUCTION -->
+  <section class="page" id="production">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Production Theory</h2>
+        <p><strong>Production</strong> is the process of transforming the factors of production into goods and services that consumers are willing to pay for.</p>
+        <h3>The factors of production</h3>
+        <ul>
+          <li><strong>Land:</strong> in economics, all natural resources, the surface and subsoil, minerals, water, and climate. Its distinctive traits are a <em>fixed natural supply</em>, <em>no production cost</em> (it is a free gift of nature), and <em>heterogeneity</em> (no two plots are exactly alike).</li>
+          <li><strong>Labor:</strong> human physical and mental effort used in production.</li>
+          <li><strong>Capital:</strong> the produced means of production, such as machines and tools.</li>
+          <li><strong>Organization (entrepreneurship):</strong> the factor that combines the others and bears the risk.</li>
+        </ul>
+        <h3>The law of diminishing returns</h3>
+        <p>With two factors, one fixed and one variable, increasing the variable factor by successive units raises output at first but, beyond a certain point, causes the <strong>marginal product</strong> and the <strong>average product</strong> to fall.</p>
+        <h3>The three product measures</h3>
+        <ul>
+          <li><strong>Total product (TP):</strong> the total quantity produced using a given amount of the variable factor.</li>
+          <li><strong>Marginal product (MP):</strong> the change in total product from adding one more unit of the factor, MP = &Delta;TP &divide; &Delta;L.</li>
+          <li><strong>Average product (AP):</strong> total product divided by the number of units of the factor, AP = TP &divide; L.</li>
+        </ul>
+        <h3>Short run versus long run</h3>
+        <p>In the <strong>short run</strong>, at least one factor (usually capital or land) is fixed while others vary, which is where the law of diminishing returns operates. In the <strong>long run</strong>, all factors are variable, so the firm can change its whole scale of operation; the question then becomes <em>returns to scale</em> (whether doubling all inputs more than doubles, exactly doubles, or less than doubles output).</p>
+        <h3>The three stages of production</h3>
+        <ol>
+          <li><strong>Stage one:</strong> the average product is rising, adding the variable factor raises efficiency; a firm should not stop here.</li>
+          <li><strong>Stage two:</strong> total product still rises but at a falling rate, and marginal and average product decline; this is the <em>rational</em> stage where a firm operates.</li>
+          <li><strong>Stage three:</strong> marginal product turns negative and total product falls, adding more of the variable factor actually reduces output; a firm should never produce here.</li>
+        </ol>
+        <div class="note"><strong>Why it matters:</strong> the law of diminishing returns explains why a firm cannot expand output forever by piling more of one input onto a fixed one, and it underlies the shape of a firm's cost curves, the bridge from production to pricing decisions.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>نظرية الإنتاج</h2>
+        <p><strong>الإنتاج</strong> عملية تحويل عناصر الإنتاج إلى سلع وخدمات يكون المستهلك مستعدًا لدفع ثمن لها.</p>
+        <h3>عناصر الإنتاج</h3>
+        <ul>
+          <li><strong>الأرض:</strong> في الاقتصاد هي كل الموارد الطبيعية، السطح وباطنه والمعادن والمياه والمناخ. وسماتها المميزة: <em>عرض طبيعي ثابت</em>، و<em>انعدام نفقة الإنتاج</em> (هبة مجانية من الطبيعة)، و<em>عدم التجانس</em> (لا تتماثل قطعتان تمامًا).</li>
+          <li><strong>العمل:</strong> الجهد البشري البدني والذهني المستخدم في الإنتاج.</li>
+          <li><strong>رأس المال:</strong> وسائل الإنتاج المُنتَجة، كالآلات والأدوات.</li>
+          <li><strong>التنظيم (المقاولة):</strong> العنصر الذي يجمع العناصر الأخرى ويتحمّل المخاطرة.</li>
+        </ul>
+        <h3>قانون تناقص الغلّة</h3>
+        <p>مع عنصرين، أحدهما ثابت والآخر متغيّر، فإن زيادة العنصر المتغيّر بوحدات متتالية ترفع الناتج أولًا، لكنها بعد حدّ معيّن تؤدي إلى تناقص <strong>الناتج الحدي</strong> و<strong>الناتج المتوسط</strong>.</p>
+        <h3>مقاييس الناتج الثلاثة</h3>
+        <ul>
+          <li><strong>الناتج الكلي (TP):</strong> إجمالي الكمية المنتجة باستخدام كمية معيّنة من العنصر المتغيّر.</li>
+          <li><strong>الناتج الحدي (MP):</strong> التغيّر في الناتج الكلي من إضافة وحدة واحدة من العنصر، MP = &Delta;TP &divide; &Delta;L.</li>
+          <li><strong>الناتج المتوسط (AP):</strong> الناتج الكلي مقسومًا على عدد وحدات العنصر، AP = TP &divide; L.</li>
+        </ul>
+        <h3>المدى القصير مقابل الطويل</h3>
+        <p>في <strong>المدى القصير</strong>، يكون عنصر واحد على الأقل ثابتًا (عادةً رأس المال أو الأرض) بينما تتغيّر البقية، وهنا يعمل قانون تناقص الغلّة. أما في <strong>المدى الطويل</strong> فكل العناصر متغيّرة، فتستطيع المنشأة تغيير حجم عملياتها كله؛ ويصبح السؤال عن <em>غلّة الحجم</em> (هل مضاعفة كل المدخلات تضاعف الناتج أكثر أو تمامًا أو أقل).</p>
+        <h3>مراحل الإنتاج الثلاث</h3>
+        <ol>
+          <li><strong>المرحلة الأولى:</strong> يتزايد الناتج المتوسط، فإضافة العنصر المتغيّر ترفع الكفاءة؛ ولا ينبغي للمنشأة التوقف هنا.</li>
+          <li><strong>المرحلة الثانية:</strong> يستمر الناتج الكلي في الارتفاع لكن بمعدل متناقص، ويتناقص الناتج الحدي والمتوسط؛ وهي المرحلة <em>الرشيدة</em> التي تعمل فيها المنشأة.</li>
+          <li><strong>المرحلة الثالثة:</strong> يصبح الناتج الحدي سالبًا وينخفض الناتج الكلي، فإضافة مزيد من العنصر المتغيّر تقلّل الناتج فعليًا؛ ولا ينبغي الإنتاج هنا أبدًا.</li>
+        </ol>
+        <div class="note"><strong>لماذا يهم:</strong> يفسّر قانون تناقص الغلّة لماذا لا تستطيع المنشأة توسيع الناتج إلى ما لا نهاية بتكديس مزيد من مدخل واحد على مدخل ثابت، وهو أساس شكل منحنيات التكاليف، وهي الجسر من الإنتاج إلى قرارات التسعير.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. TAKEAWAYS -->
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <ul>
+          <li>Economics studies how limited resources are used to satisfy unlimited wants; the gap between them is scarcity, the source of every economic problem.</li>
+          <li>Scarcity forces choice, and every choice has an opportunity cost; the PPC shows a society's efficient combinations, its unattainable ones, and how growth expands them.</li>
+          <li>Demand (willing and able to buy) falls as price rises; supply rises as price rises; where they meet is the market equilibrium.</li>
+          <li>The rational consumer maximizes utility subject to income, and marginal utility diminishes as consumption grows.</li>
+          <li>Production turns land, labor, capital, and organization into output, but the law of diminishing returns limits how far a single variable input can be pushed.</li>
+        </ul>
+        <div class="conclusion-final"><strong>Bottom line:</strong> from a single idea, scarcity, the whole of microeconomics unfolds: choice, price, and the balancing of what people want against what can be produced.</div>
+        <h3>References</h3>
+        <ul class="refs">
+          <li>Mankiw, N. G. <a href="https://www.cengage.com/c/principles-of-economics-10e-mankiw/9780357722718/" target="_blank" rel="noopener"><em>Principles of Economics</em></a>. Cengage.</li>
+          <li>Khan Academy. <a href="https://www.khanacademy.org/economics-finance-domain/microeconomics" target="_blank" rel="noopener">Microeconomics</a>. (Free lessons on demand, supply, and elasticity.)</li>
+          <li>Investopedia. <a href="https://www.investopedia.com/terms/l/law-of-supply-demand.asp" target="_blank" rel="noopener">Law of Supply and Demand</a>.</li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>الخلاصة والمراجع</h2>
+        <ul>
+          <li>يدرس الاقتصاد كيف تُستخدم الموارد المحدودة لإشباع الحاجات غير المحدودة؛ والفجوة بينهما هي الندرة، مصدر كل مشكلة اقتصادية.</li>
+          <li>تفرض الندرة الاختيار، ولكل اختيار تكلفة فرصة بديلة؛ ويُظهر منحنى الإنتاج توليفات المجتمع الكفؤة، وغير القابلة للتحقيق، وكيف يوسّعها النمو.</li>
+          <li>ينخفض الطلب (الرغبة مع القدرة) مع ارتفاع الثمن؛ ويرتفع العرض مع ارتفاع الثمن؛ وحيث يلتقيان يكون توازن السوق.</li>
+          <li>يعظّم المستهلك الرشيد منفعته في حدود دخله، وتتناقص المنفعة الحدية مع زيادة الاستهلاك.</li>
+          <li>يحوّل الإنتاج الأرض والعمل ورأس المال والتنظيم إلى ناتج، لكن قانون تناقص الغلّة يحدّ من مدى دفع مدخل متغيّر واحد.</li>
+        </ul>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> من فكرة واحدة، هي الندرة، ينبثق الاقتصاد الجزئي كله: الاختيار، والثمن، والموازنة بين ما يريده الناس وما يمكن إنتاجه.</div>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li>Mankiw, N. G. <a href="https://www.cengage.com/c/principles-of-economics-10e-mankiw/9780357722718/" target="_blank" rel="noopener"><em>Principles of Economics</em></a>. Cengage.</li>
+          <li>Khan Academy. <a href="https://www.khanacademy.org/economics-finance-domain/microeconomics" target="_blank" rel="noopener">الاقتصاد الجزئي (Microeconomics)</a>. (دروس مجانية عن الطلب والعرض والمرونة.)</li>
+          <li>Investopedia. <a href="https://www.investopedia.com/terms/l/law-of-supply-demand.asp" target="_blank" rel="noopener">قانون العرض والطلب</a>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","foundations","scarcity","demand","supply","consumer","production","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

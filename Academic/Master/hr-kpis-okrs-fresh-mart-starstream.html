@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Measuring What Matters: KPIs for Fresh Mart and OKRs for StarStream</title>
+<meta name="description" content="How KPIs diagnose operational problems at Fresh Mart and OKRs drive aligned, ambitious growth at StarStream: an HR performance-management case study.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#2E1A47;
+    --offwhite:#F7F4EF;
+    --khuzama:#7A4E9E;
+    --lavender:#C9B8E8;
+    --platinum:#C9CBD1;
+    --card-radius:12px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.28em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:34px;line-height:1.3;color:var(--offwhite);max-width:780px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card ul{margin:0 0 14px 20px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;}
+  .note strong{color:var(--khuzama);}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul{margin:0 20px 14px 0;}
+  body.lang-ar .note{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){
+    header.cover h1{font-size:26px;}
+    .card{padding:26px 22px;}
+    .card h2{font-size:22px;}
+  }
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">Human Resources &middot; Performance Management</span><span data-lang="ar">الموارد البشرية &middot; إدارة الأداء</span></div>
+    <h1><span data-lang="en">Measuring What Matters: KPIs for Fresh Mart and OKRs for StarStream</span><span data-lang="ar">قياس ما يهم: مؤشرات الأداء لفريش مارت وأهداف OKRs لستارستريم</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="introduction"><span data-lang="en">Introduction</span><span data-lang="ar">المقدمة</span></a>
+    <a data-id="analysis"><span data-lang="en">Analysis</span><span data-lang="ar">التحليل</span></a>
+    <a data-id="figures"><span data-lang="en">Key Figures</span><span data-lang="ar">أرقام رئيسية</span></a>
+    <a data-id="conclusion"><span data-lang="en">Conclusion</span><span data-lang="ar">الخلاصة</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">أبرز النقاط</span></a>
+    <a data-id="sources"><span data-lang="en">Sources</span><span data-lang="ar">المصادر</span></a>
+  </nav>
+
+  <!-- OVERVIEW -->
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Human Resources</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p>This project applies two performance-management frameworks to two companies. It uses Key Performance Indicators (KPIs) to diagnose and measure operational problems at Fresh Mart, a large supermarket chain, and Objectives and Key Results (OKRs) to set ambitious, aligned goals for StarStream, a digital streaming platform. For each case it defines the current situation, the strategic objectives, and the specific metrics or key results that track progress.</p>
+        <p>The comparison shows how KPIs suit the ongoing monitoring of known operational areas, while OKRs suit driving stretch goals and cross-team alignment in a fast-moving, competitive market.</p>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الموارد البشرية</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p>يطبّق هذا المشروع إطارين لإدارة الأداء على شركتين. فيستخدم مؤشرات الأداء الرئيسية (KPIs) لتشخيص وقياس المشكلات التشغيلية في فريش مارت، سلسلة سوبرماركت كبيرة، ويستخدم الأهداف والنتائج الرئيسية (OKRs) لوضع أهداف طموحة ومتناسقة لستارستريم، منصة بث رقمية. ويحدد لكل حالة الوضع الراهن والأهداف الاستراتيجية والمقاييس أو النتائج الرئيسية التي تتابع التقدم.</p>
+        <p>وتُظهر المقارنة كيف تناسب مؤشرات الأداء المتابعة المستمرة للمجالات التشغيلية المعروفة، بينما تناسب OKRs دفع الأهداف الطموحة والمواءمة بين الفرق في سوق سريع التغير وشديد المنافسة.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRODUCTION -->
+  <section class="page" id="introduction">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Introduction</h2>
+        <p>Organisations measure performance to know whether their strategy is working and where to act. Two of the most widely used frameworks are KPIs, which track the health of core activities, and OKRs, which set ambitious objectives and the measurable results that define success.</p>
+        <p>This project examines each framework through a case. Fresh Mart is a supermarket chain facing operational and staffing challenges that call for close monitoring. StarStream is a streaming platform losing subscribers in a crowded market, where the priority is ambitious, aligned goals. The aim is to show when and how each framework adds value.</p>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>المقدمة</h2>
+        <p>تقيس المؤسسات الأداء لتعرف ما إذا كانت استراتيجيتها ناجحة وأين ينبغي أن تتحرك. ومن أكثر الأطر استخدامًا مؤشرات الأداء الرئيسية التي تتابع صحة الأنشطة الأساسية، وأطر OKRs التي تضع أهدافًا طموحة والنتائج القابلة للقياس التي تحدد النجاح.</p>
+        <p>يتناول هذا المشروع كل إطار عبر حالة عملية. فريش مارت سلسلة سوبرماركت تواجه تحديات تشغيلية وتحديات في الكوادر تستدعي متابعة دقيقة. وستارستريم منصة بث تفقد مشتركيها في سوق مزدحم، حيث الأولوية لأهداف طموحة ومتناسقة. والهدف هو بيان متى وكيف يضيف كل إطار قيمة.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANALYSIS -->
+  <section class="page" id="analysis">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Analysis</h2>
+        <h3>1. Fresh Mart: the situation and why KPIs</h3>
+        <p>Fresh Mart is a large supermarket chain with more than 100 branches, facing three main operational challenges: weak inventory management, where core products run out of stock while others overstock and create losses; long checkout queues and understaffing at points of sale; and a high employee turnover rate tied to limited training and support. KPIs are needed to monitor current performance with clear numbers, pinpoint exactly where problems lie, direct improvement efforts, measure progress over time, improve operational efficiency, and raise customer satisfaction.</p>
+        <h3>2. Fresh Mart: strategic objectives and critical success factors</h3>
+        <p>Three strategic objectives follow from the challenges: improve the efficiency of the supply chain and inventory to ensure availability and cut waste; raise customer satisfaction by improving the shopping experience and reducing wait times; and strengthen workforce stability and effectiveness through a better work environment and staff development. The critical success factors are an efficient inventory system (accurate demand forecasting, better purchasing and storage), quality and efficient in-store customer service (enough trained staff, fast and friendly service), and training and development programmes that build staff skills and loyalty.</p>
+        <h3>3. Fresh Mart: key performance indicators</h3>
+        <p>At the organisation level, three KPIs apply: In-Stock Rate for Key Products (available key products divided by total key products, measured daily or weekly per branch); Average Customer Wait Time at Checkout (measured with tracking systems or direct observation at peak times); and Employee Turnover Rate (staff who left divided by average headcount, measured monthly or quarterly by HR). At the functional level, Operations tracks Inventory Accuracy Percentage, HR tracks Average Time to Hire (critical for cashier roles), and Sales and Customer Service track Average Basket Size.</p>
+        <h3>4. StarStream: the situation and why OKRs</h3>
+        <p>StarStream is a digital streaming platform offering varied visual content in a highly competitive market. Its main challenges are a declining subscriber base, slow content loading that hurts user experience, delays in releasing original content, and weak coordination between the production and marketing teams. OKRs matter here because they provide a clear, measurable framework for ambitious goals: they set priorities, align every team (technology, production, marketing) to a shared strategy, enable transparency and accountability, and encourage stretch thinking and growth.</p>
+        <h3>5. StarStream: strategic objectives and OKRs</h3>
+        <p>Management focuses on improving technical infrastructure, speeding up original-content production, and improving marketing to win back subscriber loyalty. This yields three objectives with their key results. Objective one, enhance user experience and technical performance: cut average content load time by 30%, raise user satisfaction with technical performance from 70% to 85%, and reduce technical complaints by 40% within the quarter. Objective two, accelerate high-quality original content: launch 5 new original series and 10 exclusive documentaries, cut the idea-to-launch production cycle by 25%, and raise original-content viewership by 20%. Objective three, restore loyalty and grow the base: raise subscriber retention by 10%, increase new subscribers by 15% through targeted campaigns, and lift social-media engagement by 25%.</p>
+        <h3>6. Functional OKRs and how each framework fits</h3>
+        <p>Functional OKRs run across technology (reduce server response time by 20%, achieve 99.9% monthly uptime, implement key security updates), production (deliver original projects on schedule and budget, cut required revisions by 15%, hold weekly coordination meetings with marketing), and marketing (raise retention by 10%, grow new subscribers by 15%, increase engagement by 25%). The contrast is clear: KPIs suit Fresh Mart's need to monitor and stabilise known operational areas, while OKRs suit StarStream's need to set stretch goals and align teams in a fast-changing market.</p>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>التحليل</h2>
+        <h3>1. فريش مارت: الوضع ولماذا مؤشرات الأداء</h3>
+        <p>فريش مارت سلسلة سوبرماركت كبيرة تضم أكثر من 100 فرع، وتواجه ثلاثة تحديات تشغيلية رئيسية: ضعف إدارة المخزون، حيث تنفد المنتجات الأساسية بينما تتكدس أخرى وتسبب خسائر؛ وطوابير طويلة عند الدفع ونقص في الموظفين عند نقاط البيع؛ وارتفاع معدل دوران الموظفين المرتبط بقلة التدريب والدعم. وتحتاج مؤشرات الأداء لمراقبة الأداء الحالي بأرقام واضحة، وتحديد مكان المشكلات بدقة، وتوجيه جهود التحسين، وقياس التقدم بمرور الوقت، وتحسين الكفاءة التشغيلية، ورفع رضا العملاء.</p>
+        <h3>2. فريش مارت: الأهداف الاستراتيجية وعوامل النجاح الحرجة</h3>
+        <p>تنبثق ثلاثة أهداف استراتيجية من التحديات: تحسين كفاءة سلسلة الإمداد والمخزون لضمان التوفر وتقليل الهدر؛ ورفع رضا العملاء بتحسين تجربة التسوق وتقليل أوقات الانتظار؛ وتعزيز استقرار وفعالية القوى العاملة عبر بيئة عمل أفضل وتطوير الموظفين. أما عوامل النجاح الحرجة فهي نظام مخزون فعّال (تنبؤ دقيق بالطلب، وتحسين الشراء والتخزين)، وجودة وكفاءة خدمة العملاء داخل المتجر (عدد كافٍ من الموظفين المدربين، وخدمة سريعة وودودة)، وبرامج تدريب وتطوير تبني مهارات الموظفين وولاءهم.</p>
+        <h3>3. فريش مارت: مؤشرات الأداء الرئيسية</h3>
+        <p>على مستوى المؤسسة تنطبق ثلاثة مؤشرات: نسبة توفر المنتجات الأساسية (المنتجات الأساسية المتوفرة مقسومة على إجماليها، تُقاس يوميًا أو أسبوعيًا لكل فرع)؛ ومتوسط زمن انتظار العميل عند الدفع (يُقاس بأنظمة التتبع أو الملاحظة المباشرة في أوقات الذروة)؛ ومعدل دوران الموظفين (من غادروا مقسومًا على متوسط عدد الموظفين، يُقاس شهريًا أو ربع سنوي من قبل الموارد البشرية). وعلى المستوى الوظيفي، تتابع العمليات نسبة دقة المخزون، وتتابع الموارد البشرية متوسط زمن التوظيف (حرج لوظائف الكاشير)، ويتابع قسم المبيعات وخدمة العملاء متوسط قيمة سلة المشتريات.</p>
+        <h3>4. ستارستريم: الوضع ولماذا OKRs</h3>
+        <p>ستارستريم منصة بث رقمية تقدم محتوى مرئيًا متنوعًا في سوق شديد المنافسة. وأبرز تحدياتها انخفاض قاعدة المشتركين، وبطء تحميل المحتوى الذي يضر بتجربة المستخدم، والتأخر في إطلاق المحتوى الأصلي، وضعف التنسيق بين فريقي الإنتاج والتسويق. وتهم OKRs هنا لأنها توفر إطارًا واضحًا وقابلًا للقياس لأهداف طموحة: فهي تحدد الأولويات، وتواءم كل الفرق (التقنية والإنتاج والتسويق) على استراتيجية مشتركة، وتتيح الشفافية والمساءلة، وتشجع التفكير الطموح والنمو.</p>
+        <h3>5. ستارستريم: الأهداف الاستراتيجية وOKRs</h3>
+        <p>تركز الإدارة على تحسين البنية التقنية، وتسريع إنتاج المحتوى الأصلي، وتحسين التسويق لاستعادة ولاء المشتركين. وينتج عن ذلك ثلاثة أهداف مع نتائجها الرئيسية. الهدف الأول، تعزيز تجربة المستخدم والأداء التقني: خفض متوسط زمن تحميل المحتوى بنسبة 30%، ورفع رضا المستخدمين عن الأداء التقني من 70% إلى 85%، وتقليل الشكاوى التقنية بنسبة 40% خلال الربع. الهدف الثاني، تسريع إنتاج محتوى أصلي عالي الجودة: إطلاق 5 مسلسلات أصلية جديدة و10 أفلام وثائقية حصرية، وخفض دورة الإنتاج من الفكرة إلى الإطلاق بنسبة 25%، ورفع نسبة مشاهدة المحتوى الأصلي بنسبة 20%. الهدف الثالث، استعادة الولاء وزيادة قاعدة المستخدمين: رفع معدل الاحتفاظ بالمشتركين بنسبة 10%، وزيادة المشتركين الجدد بنسبة 15% عبر حملات مستهدفة، ورفع التفاعل على وسائل التواصل بنسبة 25%.</p>
+        <h3>6. OKRs الوظيفية وكيف يناسب كل إطار</h3>
+        <p>تمتد OKRs الوظيفية عبر التقنية (خفض زمن استجابة الخادم 20%، وتحقيق توفر شهري للمنصة 99.9%، وتنفيذ تحديثات أمنية أساسية)، والإنتاج (إنجاز المشاريع الأصلية ضمن الجدول والميزانية، وخفض المراجعات المطلوبة 15%، وعقد اجتماعات تنسيق أسبوعية مع التسويق)، والتسويق (رفع الاحتفاظ 10%، وزيادة المشتركين الجدد 15%، ورفع التفاعل 25%). والتباين واضح: تناسب مؤشرات الأداء حاجة فريش مارت لمراقبة وتثبيت مجالات تشغيلية معروفة، بينما تناسب OKRs حاجة ستارستريم لوضع أهداف طموحة والمواءمة بين الفرق في سوق سريع التغير.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY FIGURES -->
+  <section class="page" id="figures">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Figures &amp; Insights</h2>
+        <ul>
+          <li>Fresh Mart operates more than 100 branches.</li>
+          <li>Fresh Mart's core issues: stockouts alongside overstock, long checkout queues, and high staff turnover.</li>
+          <li>StarStream OKR targets: load time down 30%, uptime 99.9%, retention up 10%, new subscribers up 15%, engagement up 25%.</li>
+          <li>Content targets: 5 new original series and 10 exclusive documentaries per quarter; production cycle cut by 25%; viewership up 20%.</li>
+          <li>Technical targets: server response time down 20%, technical complaints down 40%, security updates at 100%.</li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>أرقام ورؤى رئيسية</h2>
+        <ul>
+          <li>تدير فريش مارت أكثر من 100 فرع.</li>
+          <li>مشكلات فريش مارت الأساسية: نفاد المنتجات مع تكدس أخرى، وطوابير دفع طويلة، وارتفاع دوران الموظفين.</li>
+          <li>مستهدفات OKRs لستارستريم: خفض زمن التحميل 30%، وتوفر 99.9%، ورفع الاحتفاظ 10%، وزيادة المشتركين الجدد 15%، ورفع التفاعل 25%.</li>
+          <li>مستهدفات المحتوى: 5 مسلسلات أصلية جديدة و10 أفلام وثائقية حصرية كل ربع؛ وخفض دورة الإنتاج 25%؛ ورفع المشاهدة 20%.</li>
+          <li>مستهدفات تقنية: خفض زمن استجابة الخادم 20%، وتقليل الشكاوى التقنية 40%، وتحديثات أمنية بنسبة 100%.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCLUSION -->
+  <section class="page" id="conclusion">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Conclusion &amp; Recommendations</h2>
+        <p>KPIs give Fresh Mart a clear numeric picture of inventory, service, and human resources, so management can target the right problems and allocate resources effectively. OKRs give StarStream a shared, ambitious direction that aligns technology, production, and marketing on measurable outcomes.</p>
+        <div class="note"><strong>Recommendations.</strong> For Fresh Mart, embed the KPIs in weekly reviews for each branch and tie them directly to inventory, service, and training actions. For StarStream, use OKRs to force cross-team coordination, especially between production and marketing, focus on measurable outcomes rather than activity, and give each team clear ownership to drive accountability and growth.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الخلاصة والتوصيات</h2>
+        <p>تمنح مؤشرات الأداء فريش مارت صورة رقمية واضحة عن المخزون والخدمة والموارد البشرية، فتستطيع الإدارة استهداف المشكلات الصحيحة وتخصيص الموارد بفعالية. وتمنح OKRs ستارستريم اتجاهًا مشتركًا وطموحًا يواءم بين التقنية والإنتاج والتسويق على نتائج قابلة للقياس.</p>
+        <div class="note"><strong>التوصيات.</strong> بالنسبة لفريش مارت، ضمّن مؤشرات الأداء في مراجعات أسبوعية لكل فرع واربطها مباشرة بإجراءات المخزون والخدمة والتدريب. وبالنسبة لستارستريم، استخدم OKRs لفرض التنسيق بين الفرق، خصوصًا بين الإنتاج والتسويق، وركّز على النتائج القابلة للقياس بدل مجرد النشاط، وامنح كل فريق ملكية واضحة لتعزيز المساءلة والنمو.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAKEAWAYS -->
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Key Takeaways</h2>
+        <ul>
+          <li>KPIs measure the ongoing health of core operations; OKRs set ambitious, time-bound goals.</li>
+          <li>Fresh Mart needs KPIs to diagnose and stabilise inventory, service, and staffing.</li>
+          <li>StarStream needs OKRs to align teams and drive growth in a competitive market.</li>
+          <li>Choosing the framework depends on the goal: steady monitoring versus stretch and alignment.</li>
+          <li>Both frameworks only work when the metrics are specific, measurable, and reviewed regularly.</li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>أبرز النقاط</h2>
+        <ul>
+          <li>تقيس مؤشرات الأداء الصحة المستمرة للعمليات الأساسية؛ بينما تضع OKRs أهدافًا طموحة محددة زمنيًا.</li>
+          <li>تحتاج فريش مارت مؤشرات الأداء لتشخيص وتثبيت المخزون والخدمة والكوادر.</li>
+          <li>تحتاج ستارستريم OKRs للمواءمة بين الفرق ودفع النمو في سوق تنافسي.</li>
+          <li>يعتمد اختيار الإطار على الهدف: المتابعة المستقرة مقابل الطموح والمواءمة.</li>
+          <li>لا ينجح الإطاران إلا حين تكون المقاييس محددة وقابلة للقياس وتُراجع بانتظام.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOURCES -->
+  <section class="page" id="sources">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Sources</h2>
+        <ul>
+          <li>Fresh Mart <a href="https://freshmart.one" target="_blank" rel="noopener">freshmart.one</a></li>
+          <li>StarStream <a href="https://starstream.pro/" target="_blank" rel="noopener">starstream.pro</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>المصادر</h2>
+        <ul>
+          <li>فريش مارت <a href="https://freshmart.one" target="_blank" rel="noopener">freshmart.one</a></li>
+          <li>ستارستريم <a href="https://starstream.pro/" target="_blank" rel="noopener">starstream.pro</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","introduction","analysis","figures","conclusion","takeaways","sources"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){
+        var sec = document.getElementById(sid);
+        if(sec){ sec.classList.toggle("active", sid === id); }
+      });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0);
+      nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i > 0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i < order.length - 1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); }
+      else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){
+      p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); });
+    });
+
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){
+        b.classList.toggle("active", b.getAttribute("data-set") === l);
+      });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){
+      b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); });
+    });
+
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

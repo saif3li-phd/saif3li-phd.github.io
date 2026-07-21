@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ethical Challenges in the Workplace and the Factors Affecting Ethical Behavior</title>
+<meta name="description" content="Ethical challenges in the workplace: conflicts of interest, customer trust, discrimination, harassment, resource misuse, and the factors that shape ethical behavior.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#2E1A47;
+    --offwhite:#F7F4EF;
+    --khuzama:#7A4E9E;
+    --lavender:#C9B8E8;
+    --platinum:#C9CBD1;
+    --card-radius:12px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.28em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:34px;line-height:1.3;color:var(--offwhite);max-width:800px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .refs li{margin-bottom:12px;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){
+    header.cover h1{font-size:26px;}
+    .card{padding:26px 22px;}
+    .card h2{font-size:22px;}
+  }
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">Research &amp; Analytical Project</span><span data-lang="ar">مشروع بحثي وتحليلي</span></div>
+    <h1><span data-lang="en">Ethical Challenges in the Workplace and the Factors Affecting Ethical Behavior</span><span data-lang="ar">التحديات الأخلاقية في بيئة العمل والعوامل المؤثرة في السلوك الأخلاقي</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="introduction"><span data-lang="en">Introduction</span><span data-lang="ar">المقدمة</span></a>
+    <a data-id="part-one"><span data-lang="en">Ethical Issues</span><span data-lang="ar">القضايا الأخلاقية</span></a>
+    <a data-id="part-two"><span data-lang="en">Influencing Factors</span><span data-lang="ar">العوامل المؤثرة</span></a>
+    <a data-id="conclusion"><span data-lang="en">Conclusion</span><span data-lang="ar">الاستنتاج</span></a>
+    <a data-id="closing"><span data-lang="en">Closing</span><span data-lang="ar">الخاتمة</span></a>
+    <a data-id="references"><span data-lang="en">References</span><span data-lang="ar">المراجع</span></a>
+  </nav>
+
+  <!-- OVERVIEW -->
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Business Ethics</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p>This project examines the ethical challenges that individuals and organizations face at work, and the factors that shape ethical behavior. It groups the main challenges, conflicts of interest, customer trust, discrimination, harassment, resource misuse, and dishonest communication, then explains how leadership, organizational culture and policies, and the external environment influence ethical conduct.</p>
+        <p>It closes with the shared responsibility of individuals, management, and governments in building a fair, safe, and sustainable work environment.</p>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> أخلاقيات الأعمال</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p>يتناول هذا المشروع التحديات الأخلاقية التي يواجهها الأفراد والمؤسسات في بيئة العمل، والعوامل التي تشكّل السلوك الأخلاقي. ويجمع أبرز التحديات، مثل تضارب المصالح وثقة العملاء والتمييز والتحرش وسوء استخدام الموارد والاتصال غير الصادق، ثم يوضح كيف تؤثر القيادة والثقافة والسياسات التنظيمية والبيئة الخارجية في السلوك الأخلاقي.</p>
+        <p>ويختم بالمسؤولية المشتركة بين الأفراد والإدارة والحكومات في بناء بيئة عمل عادلة وآمنة ومستدامة.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRODUCTION -->
+  <section class="page" id="introduction">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Introduction</h2>
+        <p class="lead">The business world constitutes an environment full of ethical challenges, where individuals and organizations alike face situations that call for difficult decisions relating to right and wrong. These challenges vary and span every aspect of work, from dealing with employees and suppliers, through competitiveness and marketing, all the way to social and environmental responsibility.</p>
+        <p>The importance of studying these challenges lies in understanding their impact on the ethical behavior of individuals within organizations and on the work environment as a whole. When a strong ethical culture prevails, trust and respect are built between employees and management, which in turn strengthens productivity, innovation, and loyalty to the organization.</p>
+        <p>Conversely, the absence of ethical principles in the work environment may lead to negative behaviors such as discrimination, harassment, and corruption, damaging the organization's reputation and threatening its long-term stability.</p>
+        <p>Ethical challenges in the workplace can be classified into several main categories, including:</p>
+        <ul>
+          <li><strong>Challenges related to relationships among employees:</strong> such as discrimination in the work environment, harassment, bullying, and mistreatment; inequity in salaries, promotions, and benefits; and the violation of workers' rights.</li>
+          <li><strong>Challenges related to professional conduct:</strong> such as conflicts of interest or competing interests, abuse of authority, misuse of resources, forgery and fraud, spying on employees, and plagiarism.</li>
+          <li><strong>Challenges related to competitiveness:</strong> such as customer trust, discrimination, and the use of unfair methods to attract customers' attention, deceptive advertising, industrial espionage, and monopolistic practices.</li>
+          <li><strong>Challenges related to social and environmental responsibility:</strong> such as neglecting safety standards, environmental pollution, unsustainable exploitation of natural resources, and abandoning social obligations.</li>
+        </ul>
+        <p>These challenges are influenced by a set of internal and external factors, including:</p>
+        <ul>
+          <li><strong>Organizational culture:</strong> the organization's values and principles, the extent of its commitment to ethics, and the behavior of its leadership and management.</li>
+          <li><strong>Competitive pressures:</strong> organizations' pursuit of profit and market leadership, which may lead to overlooking some ethical principles.</li>
+          <li><strong>Systems and laws:</strong> the clarity of the laws and regulations governing work behavior and the effectiveness of their enforcement.</li>
+          <li><strong>Personal factors:</strong> the individual's ethics and values, cultural and social background, and their capacity to resist pressures.</li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>المقدمة</h2>
+        <p class="lead">يشكّل عالم الأعمال بيئة مليئة بالتحديات الأخلاقية، حيث يواجه الأفراد والمؤسسات على حد سواء مواقف تستدعي قرارات صعبة تتعلق بالصواب والخطأ. وتتنوع هذه التحديات وتمتد إلى كل جوانب العمل، من التعامل مع الموظفين والموردين، مرورًا بالتنافسية والتسويق، وصولًا إلى المسؤولية الاجتماعية والبيئية.</p>
+        <p>وتكمن أهمية دراسة هذه التحديات في فهم أثرها على السلوك الأخلاقي للأفراد داخل المؤسسات وعلى بيئة العمل ككل. فحين تسود ثقافة أخلاقية قوية، تُبنى الثقة والاحترام بين الموظفين والإدارة، مما يعزز الإنتاجية والابتكار والولاء للمؤسسة.</p>
+        <p>وعلى العكس، قد يؤدي غياب المبادئ الأخلاقية في بيئة العمل إلى سلوكيات سلبية مثل التمييز والتحرش والفساد، مما يضر بسمعة المؤسسة ويهدد استقرارها على المدى الطويل.</p>
+        <p>يمكن تصنيف التحديات الأخلاقية في بيئة العمل إلى عدة فئات رئيسية، منها:</p>
+        <ul>
+          <li><strong>تحديات متعلقة بالعلاقات بين الموظفين:</strong> مثل التمييز في بيئة العمل، والتحرش، والتنمر، وسوء المعاملة؛ وعدم الإنصاف في الرواتب والترقيات والمزايا؛ وانتهاك حقوق العاملين.</li>
+          <li><strong>تحديات متعلقة بالسلوك المهني:</strong> مثل تضارب المصالح أو تعارضها، وإساءة استخدام السلطة، وسوء استخدام الموارد، والتزوير والاحتيال، والتجسس على الموظفين، والانتحال.</li>
+          <li><strong>تحديات متعلقة بالتنافسية:</strong> مثل ثقة العملاء، والتمييز، واستخدام أساليب غير عادلة لجذب انتباه العملاء، والإعلانات المضللة، والتجسس الصناعي، والممارسات الاحتكارية.</li>
+          <li><strong>تحديات متعلقة بالمسؤولية الاجتماعية والبيئية:</strong> مثل إهمال معايير السلامة، والتلوث البيئي، والاستغلال غير المستدام للموارد الطبيعية، والتخلي عن الالتزامات الاجتماعية.</li>
+        </ul>
+        <p>وتتأثر هذه التحديات بمجموعة من العوامل الداخلية والخارجية، منها:</p>
+        <ul>
+          <li><strong>الثقافة التنظيمية:</strong> قيم المؤسسة ومبادئها، ومدى التزامها بالأخلاق، وسلوك قيادتها وإدارتها.</li>
+          <li><strong>الضغوط التنافسية:</strong> سعي المؤسسات إلى الربح وريادة السوق، مما قد يؤدي إلى تجاوز بعض المبادئ الأخلاقية.</li>
+          <li><strong>الأنظمة والقوانين:</strong> وضوح القوانين واللوائح المنظمة لسلوك العمل وفعالية إنفاذها.</li>
+          <li><strong>العوامل الشخصية:</strong> أخلاق الفرد وقيمه، وخلفيته الثقافية والاجتماعية، وقدرته على مقاومة الضغوط.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PART ONE -->
+  <section class="page" id="part-one">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Ethical Issues in the Workplace</h2>
+        <p>The work environment is dense with many situations that require difficult ethical decisions, which poses significant challenges for individuals and organizations alike. Understanding these challenges is essential in order to grasp their impact on ethical behavior within organizations and on the work environment as a whole.</p>
+        <p>This section sheds light on the most important ethical challenges in the workplace, such as conflicts of interest, customer trust, discrimination, sexual misconduct or harassment, the misuse of the organization's resources, and communicating and transmitting information in a false or exaggerated manner.</p>
+        <h3>A. Conflicts of Interest</h3>
+        <p>A conflict of interest refers to a situation in which a personal or financial interest may influence a decision or behavior in an unfair way, thereby impairing the ability to make objective decisions that fundamentally serve the organization's interests. Examples include:</p>
+        <ul>
+          <li>An employee who supervises a tender for a company in which they hold shares.</li>
+          <li>A physician who recommends the products of a company they support.</li>
+          <li>A manager who employs relatives without regard to competence.</li>
+        </ul>
+        <h4>Negative Impact</h4>
+        <ul>
+          <li>Making flawed decisions that harm the organization's interests.</li>
+          <li>Loss of trust in management and leadership.</li>
+          <li>Creation of an unfair and negative work environment.</li>
+          <li>The possibility of corruption and bribery practices occurring.</li>
+        </ul>
+        <h3>B. Customer Trust</h3>
+        <p>The importance of this lies in the fact that customer trust is the cornerstone for building strong and sustainable relationships with them; trust directly affects customer loyalty, the organization's reputation, and its profits.</p>
+        <h4>Forms of Breaching Trust</h4>
+        <ul>
+          <li>Deceptive advertising.</li>
+          <li>Failure to keep promises.</li>
+          <li>Sharing customer data without their consent.</li>
+          <li>Failure of products or services.</li>
+          <li>Mistreatment of customers.</li>
+        </ul>
+        <p>Strategies for building trust include honesty and transparency in all dealings, offering high-quality products and services, respecting customer privacy, listening to their opinions and needs, and handling complaints efficiently and effectively, one of the most important strategies.</p>
+        <h3>C. Discrimination in the Workplace</h3>
+        <p>Among the forms of discrimination and bias are discrimination on the basis of race, religion, gender, color, age, or disability, as well as indirect bias, such as: stereotypical job expectations, harassment, and bullying in the workplace. This has a negative effect, such as lowering employee morale, reducing their productivity, and creating a toxic work environment. It also includes withholding promotions or making appointments to a particular position for a candidate because of individual characteristics unrelated to competence. There is also the possibility of lawsuits being filed and escalated against the organization, as well as the loss of talent and expertise.</p>
+        <h4>The Role of Leadership in Combating Discrimination</h4>
+        <ul>
+          <li>Emphasizing a non-discrimination policy.</li>
+          <li>Creating an inclusive work environment that values diversity.</li>
+          <li>Training employees to combat discrimination.</li>
+          <li>Addressing cases of discrimination firmly and effectively.</li>
+        </ul>
+        <h3>D. Sexual Misconduct or Harassment</h3>
+        <p>Sexual harassment consists of verbal transgressions, spoken expressions, or offensive conduct of a sexual nature that infringe on personal dignity, particularly the rights of working women.</p>
+        <p>Sexual violation refers to physical and actual assault or threat of physical assault carrying a sexual character, whether by using force or under uncompensated or coercive circumstances. It also includes sexual exploitation, pornographic material, mistreatment, and sexual assault. In practice, these fall under a broad group of violations, such as:</p>
+        <ul>
+          <li>Violations of human rights.</li>
+          <li>Violations of civil and criminal laws.</li>
+          <li>Violations of organizational or institutional rules.</li>
+          <li>Violations of social norms or ethics.</li>
+        </ul>
+        <p>As for policies and procedures to prevent and combat harassment and sexual misconduct in the workplace: codes of conduct and ethics within the organization must be drafted professionally; reporting and accountability mechanisms must also be provided, along with a permanent commitment to clarifying them to all stakeholders; and awareness must be raised about the risks of these violations. Consequences for such violations should be established depending on the type and severity of the violation, and may include:</p>
+        <ul>
+          <li>Legal penalties: such as imprisonment or fines.</li>
+          <li>Civil penalties: such as compensation for damage or harm inflicted on others.</li>
+          <li>Administrative penalties: such as dismissal from work or revocation of membership in the organization.</li>
+          <li>Social stigma: such as loss of reputation or exposure to social boycott.</li>
+        </ul>
+        <h4>Preventing Violations Involves Several Methods, Including:</h4>
+        <ul>
+          <li>Education and awareness: raising awareness of laws, regulations, and social and ethical norms.</li>
+          <li>Legal enforcement: issuing strong laws and enforcing them effectively.</li>
+          <li>Accountability: ensuring that individuals and organizations are held accountable for their violations.</li>
+          <li>Capacity building: empowering individuals to protect their rights and fight violations.</li>
+        </ul>
+        <h3>E. Misuse of the Organization's Resources</h3>
+        <p>This poses a danger that threatens sustainability, especially in the public sector. Among the forms of resource misuse:</p>
+        <ul>
+          <li><strong>Personal use:</strong> using the organization's property for personal purposes, such as work vehicles, computers, or office supplies.</li>
+          <li><strong>Wastefulness:</strong> squandering resources such as energy, water, or raw materials without regard to the resulting costs.</li>
+          <li><strong>Theft:</strong> taking the organization's property without permission.</li>
+          <li><strong>Fraud:</strong> using the organization's resources to obtain illegitimate personal gains.</li>
+          <li><strong>Forgery:</strong> providing false or misleading information to obtain the organization's resources.</li>
+        </ul>
+        <h4>The Impact of Resource Misuse on the Organization</h4>
+        <p>Financial losses through waste, theft, and fraud; declining productivity and the distraction of employees from their main tasks, reducing work efficiency. It also leads to low morale, which makes employees feel frustrated and dissatisfied with a work environment in which resources are misused, as well as a loss of trust on the part of all stakeholders, such as employees, customers, and investors.</p>
+        <h4>Mechanisms for Reducing Resource Misuse and Strengthening Accountability</h4>
+        <ul>
+          <li><strong>Clear policies:</strong> setting policies that define the rules for using resources and specify penalties for violators.</li>
+          <li><strong>Awareness and training:</strong> educating employees about the importance of using resources efficiently and responsibly.</li>
+          <li><strong>Oversight systems:</strong> establishing systems to monitor resource use and detect any violations.</li>
+          <li><strong>Accountability:</strong> holding employees accountable for their actions and ensuring that necessary measures are taken against violators.</li>
+          <li><strong>Promoting a culture of integrity:</strong> creating a work environment that encourages integrity and responsibility in the use of resources.</li>
+        </ul>
+        <p>By applying these mechanisms, organizations can reduce resource misuse, enhance sustainability and efficiency, and improve their image before stakeholders.</p>
+        <h3>F. Communications and the Transmission of Information in a False or Exaggerated Manner</h3>
+        <h4>The Concept of Integrity and Transparency in Institutional Communications</h4>
+        <p><strong>Integrity:</strong> honesty and objectivity in transmitting information and avoiding any misleading or exaggeration.</p>
+        <p><strong>Transparency:</strong> openness and candor in sharing information with stakeholders without concealing any facts.</p>
+        <h4>The Importance of Integrity and Transparency in Institutional Communications</h4>
+        <ul>
+          <li><strong>Building trust:</strong> honest and transparent communications contribute to building trust between the organization and stakeholders such as employees, customers, and investors. Trust leads to:
+            <ul>
+              <li>Stakeholders feeling comfortable dealing with the organization.</li>
+              <li>Loyalty of customers and employees.</li>
+              <li>Support from investors.</li>
+            </ul>
+          </li>
+          <li><strong>Improving decision-making:</strong> accurate information enables better decisions that achieve the organization's objectives.
+            <ul>
+              <li>Accurate information leads to correct analyses.</li>
+              <li>Correct analyses lead to sound decisions.</li>
+              <li>Sound decisions lead to achieving objectives.</li>
+            </ul>
+          </li>
+          <li><strong>Enhancing reputation:</strong> transparent communications create a positive image of the organization and enhance its reputation.
+            <ul>
+              <li>A positive image attracts customers, employees, and investors.</li>
+              <li>A good reputation contributes to the organization's sustainability over the long term.</li>
+            </ul>
+          </li>
+          <li><strong>Compliance with laws:</strong> some laws require organizations to disclose specific information accurately and clearly.
+            <ul>
+              <li>Compliance with laws helps the organization avoid legal penalties.</li>
+              <li>Compliance with laws preserves the organization's reputation.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>القضايا الأخلاقية في بيئة العمل</h2>
+        <p>بيئة العمل مليئة بمواقف كثيرة تتطلب قرارات أخلاقية صعبة، مما يفرض تحديات كبيرة على الأفراد والمؤسسات على حد سواء. وفهم هذه التحديات ضروري لإدراك أثرها على السلوك الأخلاقي داخل المؤسسات وعلى بيئة العمل ككل.</p>
+        <p>يسلّط هذا القسم الضوء على أهم التحديات الأخلاقية في بيئة العمل، مثل تضارب المصالح، وثقة العملاء، والتمييز، والتحرش أو سوء السلوك الجنسي، وسوء استخدام موارد المؤسسة، ونقل المعلومات وتوصيلها بطريقة كاذبة أو مبالغ فيها.</p>
+        <h3>أ. تضارب المصالح</h3>
+        <p>يشير تضارب المصالح إلى موقف قد تؤثر فيه مصلحة شخصية أو مالية على قرار أو سلوك بطريقة غير عادلة، مما يضعف القدرة على اتخاذ قرارات موضوعية تخدم مصالح المؤسسة أساسًا. ومن الأمثلة:</p>
+        <ul>
+          <li>موظف يشرف على مناقصة لشركة يملك فيها أسهمًا.</li>
+          <li>طبيب يوصي بمنتجات شركة يدعمها.</li>
+          <li>مدير يوظّف أقاربه دون اعتبار للكفاءة.</li>
+        </ul>
+        <h4>الأثر السلبي</h4>
+        <ul>
+          <li>اتخاذ قرارات خاطئة تضر بمصالح المؤسسة.</li>
+          <li>فقدان الثقة في الإدارة والقيادة.</li>
+          <li>خلق بيئة عمل غير عادلة وسلبية.</li>
+          <li>احتمال حدوث ممارسات فساد ورشوة.</li>
+        </ul>
+        <h3>ب. ثقة العملاء</h3>
+        <p>تكمن أهميتها في أن ثقة العملاء هي حجر الأساس لبناء علاقات قوية ومستدامة معهم؛ فالثقة تؤثر مباشرة على ولاء العملاء وسمعة المؤسسة وأرباحها.</p>
+        <h4>أشكال الإخلال بالثقة</h4>
+        <ul>
+          <li>الإعلانات المضللة.</li>
+          <li>عدم الوفاء بالوعود.</li>
+          <li>مشاركة بيانات العملاء دون موافقتهم.</li>
+          <li>فشل المنتجات أو الخدمات.</li>
+          <li>سوء معاملة العملاء.</li>
+        </ul>
+        <p>وتشمل استراتيجيات بناء الثقة الصدق والشفافية في كل التعاملات، وتقديم منتجات وخدمات عالية الجودة، واحترام خصوصية العملاء، والإنصات إلى آرائهم واحتياجاتهم، ومعالجة الشكاوى بكفاءة وفعالية، وهي من أهم الاستراتيجيات.</p>
+        <h3>ج. التمييز في بيئة العمل</h3>
+        <p>من أشكال التمييز والتحيّز التمييز على أساس العرق أو الدين أو الجنس أو اللون أو العمر أو الإعاقة، وكذلك التحيّز غير المباشر، مثل: التوقعات الوظيفية النمطية، والتحرش، والتنمر في بيئة العمل. ولهذا أثر سلبي، مثل خفض معنويات الموظفين وتقليل إنتاجيتهم وخلق بيئة عمل سامة. ويشمل أيضًا حجب الترقيات أو تعيين مرشح في منصب معين بسبب خصائص فردية لا علاقة لها بالكفاءة. كما يوجد احتمال رفع دعاوى قضائية وتصعيدها ضد المؤسسة، إضافة إلى فقدان المواهب والخبرات.</p>
+        <h4>دور القيادة في مكافحة التمييز</h4>
+        <ul>
+          <li>التأكيد على سياسة عدم التمييز.</li>
+          <li>خلق بيئة عمل شاملة تقدّر التنوع.</li>
+          <li>تدريب الموظفين على مكافحة التمييز.</li>
+          <li>التعامل مع حالات التمييز بحزم وفعالية.</li>
+        </ul>
+        <h3>د. سوء السلوك الجنسي أو التحرش</h3>
+        <p>يتكون التحرش الجنسي من تجاوزات لفظية أو تعبيرات منطوقة أو سلوك مسيء ذي طابع جنسي ينتهك الكرامة الشخصية، وبخاصة حقوق المرأة العاملة.</p>
+        <p>ويشير الاعتداء الجنسي إلى اعتداء جسدي فعلي أو تهديد باعتداء جسدي ذي طابع جنسي، سواء باستخدام القوة أو في ظروف قسرية أو دون تعويض. ويشمل أيضًا الاستغلال الجنسي، والمواد الإباحية، وسوء المعاملة، والاعتداء الجنسي. وعمليًا تندرج هذه ضمن مجموعة واسعة من الانتهاكات، مثل:</p>
+        <ul>
+          <li>انتهاكات حقوق الإنسان.</li>
+          <li>انتهاكات القوانين المدنية والجنائية.</li>
+          <li>انتهاكات القواعد التنظيمية أو المؤسسية.</li>
+          <li>انتهاكات الأعراف الاجتماعية أو الأخلاق.</li>
+        </ul>
+        <p>أما بالنسبة للسياسات والإجراءات الخاصة بمنع ومكافحة التحرش وسوء السلوك الجنسي في بيئة العمل: فيجب صياغة مدونات السلوك والأخلاق داخل المؤسسة باحترافية؛ كما يجب توفير آليات للإبلاغ والمساءلة، مع التزام دائم بتوضيحها لجميع أصحاب المصلحة؛ ورفع الوعي بمخاطر هذه الانتهاكات. وينبغي تحديد عواقب لهذه الانتهاكات بحسب نوعها وشدتها، وقد تشمل:</p>
+        <ul>
+          <li>عقوبات قانونية: مثل السجن أو الغرامات.</li>
+          <li>عقوبات مدنية: مثل التعويض عن الضرر أو الأذى الواقع على الآخرين.</li>
+          <li>عقوبات إدارية: مثل الفصل من العمل أو إلغاء العضوية في المؤسسة.</li>
+          <li>وصمة اجتماعية: مثل فقدان السمعة أو التعرض للمقاطعة الاجتماعية.</li>
+        </ul>
+        <h4>يتضمن منع الانتهاكات عدة أساليب، منها:</h4>
+        <ul>
+          <li>التعليم والتوعية: رفع الوعي بالقوانين واللوائح والأعراف الاجتماعية والأخلاقية.</li>
+          <li>الإنفاذ القانوني: إصدار قوانين قوية وإنفاذها بفعالية.</li>
+          <li>المساءلة: ضمان محاسبة الأفراد والمؤسسات على انتهاكاتهم.</li>
+          <li>بناء القدرات: تمكين الأفراد من حماية حقوقهم ومكافحة الانتهاكات.</li>
+        </ul>
+        <h3>هـ. سوء استخدام موارد المؤسسة</h3>
+        <p>يمثّل هذا خطرًا يهدد الاستدامة، خصوصًا في القطاع العام. ومن أشكال سوء استخدام الموارد:</p>
+        <ul>
+          <li><strong>الاستخدام الشخصي:</strong> استخدام ممتلكات المؤسسة لأغراض شخصية، مثل مركبات العمل أو الحواسيب أو المستلزمات المكتبية.</li>
+          <li><strong>الإسراف:</strong> تبديد الموارد مثل الطاقة أو المياه أو المواد الخام دون اعتبار للتكاليف الناتجة.</li>
+          <li><strong>السرقة:</strong> أخذ ممتلكات المؤسسة دون إذن.</li>
+          <li><strong>الاحتيال:</strong> استخدام موارد المؤسسة للحصول على مكاسب شخصية غير مشروعة.</li>
+          <li><strong>التزوير:</strong> تقديم معلومات كاذبة أو مضللة للحصول على موارد المؤسسة.</li>
+        </ul>
+        <h4>أثر سوء استخدام الموارد على المؤسسة</h4>
+        <p>خسائر مالية عبر الهدر والسرقة والاحتيال؛ وتراجع الإنتاجية وتشتيت الموظفين عن مهامهم الأساسية، مما يقلل كفاءة العمل. كما يؤدي إلى انخفاض المعنويات، مما يجعل الموظفين يشعرون بالإحباط وعدم الرضا عن بيئة عمل تُساء فيها إدارة الموارد، إضافة إلى فقدان ثقة جميع أصحاب المصلحة، مثل الموظفين والعملاء والمستثمرين.</p>
+        <h4>آليات الحد من سوء استخدام الموارد وتعزيز المساءلة</h4>
+        <ul>
+          <li><strong>سياسات واضحة:</strong> وضع سياسات تحدد قواعد استخدام الموارد وتنص على عقوبات للمخالفين.</li>
+          <li><strong>التوعية والتدريب:</strong> تثقيف الموظفين حول أهمية استخدام الموارد بكفاءة ومسؤولية.</li>
+          <li><strong>أنظمة الرقابة:</strong> إنشاء أنظمة لمراقبة استخدام الموارد وكشف أي مخالفات.</li>
+          <li><strong>المساءلة:</strong> محاسبة الموظفين على أفعالهم وضمان اتخاذ الإجراءات اللازمة ضد المخالفين.</li>
+          <li><strong>تعزيز ثقافة النزاهة:</strong> خلق بيئة عمل تشجع النزاهة والمسؤولية في استخدام الموارد.</li>
+        </ul>
+        <p>وبتطبيق هذه الآليات، تستطيع المؤسسات الحد من سوء استخدام الموارد، وتعزيز الاستدامة والكفاءة، وتحسين صورتها أمام أصحاب المصلحة.</p>
+        <h3>و. الاتصالات ونقل المعلومات بطريقة كاذبة أو مبالغ فيها</h3>
+        <h4>مفهوم النزاهة والشفافية في الاتصالات المؤسسية</h4>
+        <p><strong>النزاهة:</strong> الصدق والموضوعية في نقل المعلومات وتجنّب أي تضليل أو مبالغة.</p>
+        <p><strong>الشفافية:</strong> الانفتاح والصراحة في مشاركة المعلومات مع أصحاب المصلحة دون إخفاء أي حقائق.</p>
+        <h4>أهمية النزاهة والشفافية في الاتصالات المؤسسية</h4>
+        <ul>
+          <li><strong>بناء الثقة:</strong> تسهم الاتصالات الصادقة والشفافة في بناء الثقة بين المؤسسة وأصحاب المصلحة مثل الموظفين والعملاء والمستثمرين. وتؤدي الثقة إلى:
+            <ul>
+              <li>شعور أصحاب المصلحة بالراحة في التعامل مع المؤسسة.</li>
+              <li>ولاء العملاء والموظفين.</li>
+              <li>دعم المستثمرين.</li>
+            </ul>
+          </li>
+          <li><strong>تحسين اتخاذ القرار:</strong> تتيح المعلومات الدقيقة اتخاذ قرارات أفضل تحقق أهداف المؤسسة.
+            <ul>
+              <li>المعلومات الدقيقة تؤدي إلى تحليلات صحيحة.</li>
+              <li>التحليلات الصحيحة تؤدي إلى قرارات سليمة.</li>
+              <li>القرارات السليمة تؤدي إلى تحقيق الأهداف.</li>
+            </ul>
+          </li>
+          <li><strong>تعزيز السمعة:</strong> تخلق الاتصالات الشفافة صورة إيجابية عن المؤسسة وتعزز سمعتها.
+            <ul>
+              <li>الصورة الإيجابية تجذب العملاء والموظفين والمستثمرين.</li>
+              <li>السمعة الجيدة تسهم في استدامة المؤسسة على المدى الطويل.</li>
+            </ul>
+          </li>
+          <li><strong>الامتثال للقوانين:</strong> تتطلب بعض القوانين من المؤسسات الإفصاح عن معلومات محددة بدقة ووضوح.
+            <ul>
+              <li>الامتثال للقوانين يساعد المؤسسة على تجنّب العقوبات القانونية.</li>
+              <li>الامتثال للقوانين يحافظ على سمعة المؤسسة.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PART TWO -->
+  <section class="page" id="part-two">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Factors Affecting Ethical Behavior in the Business Environment</h2>
+        <p>There are numerous factors that can affect ethical behavior in the workplace. The most important of these factors include the following:</p>
+        <h3>The Role of the Manager as an Individual in Promoting Ethical Behavior</h3>
+        <p>The manager is the cornerstone of the ethical system within the workplace, playing a pivotal role in embedding ethical values and principles and ensuring their application on the ground. This is achieved through several key practices:</p>
+        <h4>Defining Ethical Values and Standards</h4>
+        <p>The manager's role begins with defining the ethical values and standards the organization seeks to embody. This includes transparency, fairness, responsibility, and respect, along with the need to communicate these values clearly to employees through explanation, discussion, and training.</p>
+        <h4>Influence Through Personal Behavior</h4>
+        <p>The manager's behavior serves as a mirror reflected by employees. Therefore, the manager's ethical or unethical conduct will shape the behavior and conduct of their team. If the manager's behavior is characterized by honesty and integrity, this will encourage employees to follow the same approach.</p>
+        <h4>Creating a Supportive Environment</h4>
+        <p>The manager must foster a safe and inclusive work environment that allows employees to express their opinions and concerns without fear of consequences. This environment should also encourage open communication and frank discussion of ethical issues, even if they are difficult or embarrassing.</p>
+        <h4>Rewarding Ethical Behavior</h4>
+        <p>Recognition and appreciation of ethical practices are among the most important tools for reinforcing them. Therefore, the manager should reward employees who act with responsibility and ethics, whether through verbal recognition or material or moral rewards.</p>
+        <h4>Addressing Unethical Behavior</h4>
+        <p>The manager must firmly address any unethical behavior within the work environment. This includes investigating violations and taking appropriate disciplinary measures while ensuring that fair and transparent procedures are followed.</p>
+        <h3>The Impact of the Organization's Structure, Culture, and Policies on Ethical Behavior</h3>
+        <p>Through its structure, culture, and policies, the organization plays an important role in shaping the ethical behavior of its employees.</p>
+        <h4>1. Organizational Structure</h4>
+        <ul>
+          <li><strong>Centralization:</strong> in a centralized environment, participation in decision-making may be reduced, which may discourage employees from reporting unethical behavior for fear of consequences.</li>
+          <li><strong>Decentralization:</strong> a decentralized environment encourages greater employee participation in decision-making, leading to more responsible ethical decisions, as employees feel greater responsibility for their actions.</li>
+        </ul>
+        <h4>2. Organizational Culture</h4>
+        <ul>
+          <li><strong>Strong ethical culture:</strong> encourages deeply rooted ethical values and a commitment to accountability for ethical behaviors. This culture promotes transparency, fairness, and respect, creating a safe and supportive work environment.</li>
+          <li><strong>Weak culture:</strong> a culture that focuses on short-term profit may nurture and tolerate similar unethical behaviors. This may lead to a toxic work environment in which employees avoid reporting violations for fear of retaliation.</li>
+        </ul>
+        <h4>3. Ethical Policies and Procedures</h4>
+        <ul>
+          <li><strong>Clear ethical policy:</strong> defines a clear ethical policy specifying the values and standards expected of employees, and provides guidance on how to handle difficult ethical situations.</li>
+          <li><strong>Reporting procedures:</strong> organizations must provide safe channels for reporting unethical behavior without fear of retaliation. These channels may include hotlines, online reporting programs, or dedicated ethics committees.</li>
+        </ul>
+        <h4>Good Ethical Practices</h4>
+        <ul>
+          <li><strong>Ethics programs and training:</strong> providing regular training programs for employees on ethical issues in the workplace, such as harassment, discrimination, and fraud. These programs help employees understand their ethical responsibilities and how to make the right decisions.</li>
+          <li><strong>Social responsibility initiatives:</strong> demonstrating participation in social responsibility initiatives, such as donating to charitable organizations or supporting environmental causes, reflects the organization's commitment to ethical values. These initiatives enhance the organization's positive image and encourage employees to take pride in working there.</li>
+        </ul>
+        <p>There is no doubt that the organization's structure, culture, and policies play a pivotal role in promoting ethical behavior in the workplace. By creating an environment that encourages ethical values, providing clear guidance, and offering safe channels for reporting, organizations can ensure an ethical and responsible work environment that contributes to achieving sustainable success.</p>
+        <h3>The External Environment</h3>
+        <h4>Legislation and Laws</h4>
+        <ul>
+          <li><strong>Labor laws:</strong> define the minimum standards for ethical behavior in the workplace.</li>
+          <li><strong>Anti-corruption laws:</strong> help prevent unethical practices such as bribery and nepotism.</li>
+        </ul>
+        <h4>Customs, Values, and Social Norms</h4>
+        <ul>
+          <li><strong>Social standards:</strong> prevailing social norms may influence employees' perceptions of ethical behavior.</li>
+          <li><strong>Cultural differences:</strong> organizations operating in multicultural environments must take into account differences in ethical values and standards.</li>
+        </ul>
+        <h4>Ethical Challenges Related to the External Environment</h4>
+        <ul>
+          <li><strong>Globalization:</strong> globalization poses new ethical challenges regarding issues such as workers' rights and environmental responsibility.</li>
+          <li><strong>Technological advancement:</strong> technological progress raises ethical concerns about the use of data and artificial intelligence.</li>
+        </ul>
+        <h4>Strategies for Dealing with External Ethical Challenges</h4>
+        <ul>
+          <li><strong>Dialogue with stakeholders:</strong> dialogue with external stakeholders, such as suppliers and local communities, can help identify ethical concerns and develop shared solutions.</li>
+          <li><strong>Ethical auditing:</strong> conducting regular ethical audits can assess ethical risks related to the external environment.</li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>العوامل المؤثرة في السلوك الأخلاقي في بيئة الأعمال</h2>
+        <p>هناك عوامل عديدة يمكن أن تؤثر على السلوك الأخلاقي في بيئة العمل. ومن أهم هذه العوامل ما يلي:</p>
+        <h3>دور المدير كفرد في تعزيز السلوك الأخلاقي</h3>
+        <p>المدير هو حجر الأساس للنظام الأخلاقي داخل بيئة العمل، ويؤدي دورًا محوريًا في ترسيخ القيم والمبادئ الأخلاقية وضمان تطبيقها على أرض الواقع. ويتحقق ذلك عبر عدة ممارسات رئيسية:</p>
+        <h4>تحديد القيم والمعايير الأخلاقية</h4>
+        <p>يبدأ دور المدير بتحديد القيم والمعايير الأخلاقية التي تسعى المؤسسة إلى تجسيدها. ويشمل ذلك الشفافية والعدالة والمسؤولية والاحترام، مع ضرورة إيصال هذه القيم بوضوح للموظفين عبر الشرح والنقاش والتدريب.</p>
+        <h4>التأثير عبر السلوك الشخصي</h4>
+        <p>سلوك المدير مرآة يعكسها الموظفون. لذلك فإن سلوك المدير الأخلاقي أو غير الأخلاقي سيشكّل سلوك فريقه وتصرفاته. فإذا اتسم سلوك المدير بالصدق والنزاهة، شجّع ذلك الموظفين على اتباع النهج نفسه.</p>
+        <h4>خلق بيئة داعمة</h4>
+        <p>على المدير أن يهيّئ بيئة عمل آمنة وشاملة تتيح للموظفين التعبير عن آرائهم ومخاوفهم دون خوف من العواقب. وينبغي أن تشجع هذه البيئة أيضًا التواصل المفتوح والنقاش الصريح للقضايا الأخلاقية، حتى لو كانت صعبة أو محرجة.</p>
+        <h4>مكافأة السلوك الأخلاقي</h4>
+        <p>الاعتراف بالممارسات الأخلاقية وتقديرها من أهم أدوات تعزيزها. لذلك ينبغي للمدير أن يكافئ الموظفين الذين يتصرفون بمسؤولية وأخلاق، سواء عبر التقدير اللفظي أو المكافآت المادية أو المعنوية.</p>
+        <h4>معالجة السلوك غير الأخلاقي</h4>
+        <p>على المدير أن يعالج بحزم أي سلوك غير أخلاقي داخل بيئة العمل. ويشمل ذلك التحقيق في المخالفات واتخاذ الإجراءات التأديبية المناسبة مع ضمان اتباع إجراءات عادلة وشفافة.</p>
+        <h3>أثر هيكل المؤسسة وثقافتها وسياساتها على السلوك الأخلاقي</h3>
+        <p>من خلال هيكلها وثقافتها وسياساتها، تؤدي المؤسسة دورًا مهمًا في تشكيل السلوك الأخلاقي لموظفيها.</p>
+        <h4>1. الهيكل التنظيمي</h4>
+        <ul>
+          <li><strong>المركزية:</strong> في بيئة مركزية، قد تقل المشاركة في اتخاذ القرار، مما قد يثني الموظفين عن الإبلاغ عن السلوك غير الأخلاقي خوفًا من العواقب.</li>
+          <li><strong>اللامركزية:</strong> تشجع البيئة اللامركزية مشاركة أكبر للموظفين في اتخاذ القرار، مما يؤدي إلى قرارات أخلاقية أكثر مسؤولية، إذ يشعر الموظفون بمسؤولية أكبر عن أفعالهم.</li>
+        </ul>
+        <h4>2. الثقافة التنظيمية</h4>
+        <ul>
+          <li><strong>ثقافة أخلاقية قوية:</strong> تشجع قيمًا أخلاقية راسخة والتزامًا بالمساءلة عن السلوكيات الأخلاقية. وتعزز هذه الثقافة الشفافية والعدالة والاحترام، وتخلق بيئة عمل آمنة وداعمة.</li>
+          <li><strong>ثقافة ضعيفة:</strong> قد تغذّي الثقافة التي تركز على الربح قصير الأجل وتتسامح مع سلوكيات غير أخلاقية مماثلة. وقد يؤدي ذلك إلى بيئة عمل سامة يتجنب فيها الموظفون الإبلاغ عن المخالفات خوفًا من الانتقام.</li>
+        </ul>
+        <h4>3. السياسات والإجراءات الأخلاقية</h4>
+        <ul>
+          <li><strong>سياسة أخلاقية واضحة:</strong> تحدد سياسة أخلاقية واضحة القيم والمعايير المتوقعة من الموظفين، وتوفر إرشادات حول كيفية التعامل مع المواقف الأخلاقية الصعبة.</li>
+          <li><strong>إجراءات الإبلاغ:</strong> يجب على المؤسسات توفير قنوات آمنة للإبلاغ عن السلوك غير الأخلاقي دون خوف من الانتقام. وقد تشمل هذه القنوات خطوطًا ساخنة، أو برامج إبلاغ إلكترونية، أو لجان أخلاقيات مخصصة.</li>
+        </ul>
+        <h4>الممارسات الأخلاقية الجيدة</h4>
+        <ul>
+          <li><strong>برامج الأخلاقيات والتدريب:</strong> توفير برامج تدريبية منتظمة للموظفين حول القضايا الأخلاقية في بيئة العمل، مثل التحرش والتمييز والاحتيال. وتساعد هذه البرامج الموظفين على فهم مسؤولياتهم الأخلاقية وكيفية اتخاذ القرارات الصحيحة.</li>
+          <li><strong>مبادرات المسؤولية الاجتماعية:</strong> إظهار المشاركة في مبادرات المسؤولية الاجتماعية، مثل التبرع للمؤسسات الخيرية أو دعم القضايا البيئية، يعكس التزام المؤسسة بالقيم الأخلاقية. وتعزز هذه المبادرات الصورة الإيجابية للمؤسسة وتشجع الموظفين على الاعتزاز بالعمل فيها.</li>
+        </ul>
+        <p>لا شك أن هيكل المؤسسة وثقافتها وسياساتها تؤدي دورًا محوريًا في تعزيز السلوك الأخلاقي في بيئة العمل. فبخلق بيئة تشجع القيم الأخلاقية، وتوفير إرشادات واضحة، وإتاحة قنوات آمنة للإبلاغ، تستطيع المؤسسات ضمان بيئة عمل أخلاقية ومسؤولة تسهم في تحقيق النجاح المستدام.</p>
+        <h3>البيئة الخارجية</h3>
+        <h4>التشريعات والقوانين</h4>
+        <ul>
+          <li><strong>قوانين العمل:</strong> تحدد الحد الأدنى من معايير السلوك الأخلاقي في بيئة العمل.</li>
+          <li><strong>قوانين مكافحة الفساد:</strong> تساعد على منع الممارسات غير الأخلاقية مثل الرشوة والمحسوبية.</li>
+        </ul>
+        <h4>الأعراف والقيم والمعايير الاجتماعية</h4>
+        <ul>
+          <li><strong>المعايير الاجتماعية:</strong> قد تؤثر الأعراف الاجتماعية السائدة على تصورات الموظفين للسلوك الأخلاقي.</li>
+          <li><strong>الاختلافات الثقافية:</strong> يجب على المؤسسات العاملة في بيئات متعددة الثقافات مراعاة الاختلافات في القيم والمعايير الأخلاقية.</li>
+        </ul>
+        <h4>التحديات الأخلاقية المتعلقة بالبيئة الخارجية</h4>
+        <ul>
+          <li><strong>العولمة:</strong> تطرح العولمة تحديات أخلاقية جديدة تتعلق بقضايا مثل حقوق العمال والمسؤولية البيئية.</li>
+          <li><strong>التقدم التقني:</strong> يثير التقدم التقني مخاوف أخلاقية حول استخدام البيانات والذكاء الاصطناعي.</li>
+        </ul>
+        <h4>استراتيجيات التعامل مع التحديات الأخلاقية الخارجية</h4>
+        <ul>
+          <li><strong>الحوار مع أصحاب المصلحة:</strong> يمكن للحوار مع أصحاب المصلحة الخارجيين، مثل الموردين والمجتمعات المحلية، أن يساعد على تحديد المخاوف الأخلاقية وتطوير حلول مشتركة.</li>
+          <li><strong>التدقيق الأخلاقي:</strong> يمكن لإجراء عمليات تدقيق أخلاقي منتظمة أن يقيّم المخاطر الأخلاقية المتعلقة بالبيئة الخارجية.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCLUSION -->
+  <section class="page" id="conclusion">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Conclusion</h2>
+        <div class="note"><strong>Ethics in the workplace constitute the cornerstone for the success and long-term sustainability of any organization.</strong></div>
+        <p>To understand how to promote these ethics, one must recognize the challenges and the influencing factors, which intertwine and interact with one another to shape the reality of ethical work.</p>
+        <p><strong>Among the most important of these challenges:</strong></p>
+        <ul>
+          <li><strong>Conflict between personal values and company culture:</strong> the individual's personal values may conflict with the company's culture, creating an internal struggle that affects their behavior.</li>
+          <li><strong>Pressures to achieve objectives:</strong> some companies may exert pressure on their employees to achieve short-term goals, which may push them toward unethical decisions.</li>
+          <li><strong>Weak oversight systems:</strong> some companies may lack sufficiently strong oversight systems to ensure adherence to ethical behavior.</li>
+          <li><strong>Rapid changes in the work environment:</strong> companies may find it difficult to keep pace with rapid changes in the work environment, which may lead to ethical gaps.</li>
+        </ul>
+        <p>However, these challenges should not dampen our resolve in striving toward an ethical work environment; on the contrary, they constitute an opportunity for cooperation and joint effort among all stakeholders to create a work environment that promotes ethical values and contributes to achieving sustainable success.</p>
+        <p><strong>Here, the responsibility for addressing these challenges falls on everyone:</strong></p>
+        <h4>Individuals</h4>
+        <ul>
+          <li>They form the foundation of business culture and ethical culture through their behavior and values.</li>
+          <li>They can report any unethical behavior without fear of retaliation.</li>
+          <li>They can participate in ethics and training programs.</li>
+        </ul>
+        <h4>Management</h4>
+        <ul>
+          <li>Defines clear ethical policies and rules.</li>
+          <li>Applies these policies in a fair and transparent manner.</li>
+          <li>Encourages open communication and frank discussion of ethical issues.</li>
+          <li>Rewards ethical behavior and penalizes unethical behavior.</li>
+        </ul>
+        <h4>Governments</h4>
+        <ul>
+          <li>Enact laws and regulations that govern business conduct.</li>
+          <li>Support ethical practices in companies.</li>
+          <li>Hold companies accountable for any ethical violations.</li>
+        </ul>
+        <div class="conclusion-final">Ethics in the workplace is not an individual responsibility alone; rather, it is a shared responsibility that falls on the shoulders of all stakeholders through collective work and everyone's commitment to ethical values. This makes it possible to create a work environment that promotes integrity, fairness, and responsibility, and contributes to achieving sustainable success for all parties.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الاستنتاج</h2>
+        <div class="note"><strong>تشكّل الأخلاق في بيئة العمل حجر الأساس لنجاح أي مؤسسة واستدامتها على المدى الطويل.</strong></div>
+        <p>ولفهم كيفية تعزيز هذه الأخلاق، لا بد من إدراك التحديات والعوامل المؤثرة التي تتشابك وتتفاعل معًا لتشكّل واقع العمل الأخلاقي.</p>
+        <p><strong>ومن أهم هذه التحديات:</strong></p>
+        <ul>
+          <li><strong>التعارض بين القيم الشخصية وثقافة الشركة:</strong> قد تتعارض قيم الفرد الشخصية مع ثقافة الشركة، مما يخلق صراعًا داخليًا يؤثر على سلوكه.</li>
+          <li><strong>الضغوط لتحقيق الأهداف:</strong> قد تمارس بعض الشركات ضغطًا على موظفيها لتحقيق أهداف قصيرة الأجل، مما قد يدفعهم نحو قرارات غير أخلاقية.</li>
+          <li><strong>ضعف أنظمة الرقابة:</strong> قد تفتقر بعض الشركات إلى أنظمة رقابة قوية بما يكفي لضمان الالتزام بالسلوك الأخلاقي.</li>
+          <li><strong>التغيرات السريعة في بيئة العمل:</strong> قد تجد الشركات صعوبة في مواكبة التغيرات السريعة في بيئة العمل، مما قد يؤدي إلى فجوات أخلاقية.</li>
+        </ul>
+        <p>لكن هذه التحديات يجب ألا تثبّط عزيمتنا في السعي نحو بيئة عمل أخلاقية؛ بل على العكس، تشكّل فرصة للتعاون والعمل المشترك بين جميع أصحاب المصلحة لخلق بيئة عمل تعزز القيم الأخلاقية وتسهم في تحقيق النجاح المستدام.</p>
+        <p><strong>وهنا تقع مسؤولية التصدي لهذه التحديات على الجميع:</strong></p>
+        <h4>الأفراد</h4>
+        <ul>
+          <li>يشكّلون أساس ثقافة الأعمال والثقافة الأخلاقية عبر سلوكهم وقيمهم.</li>
+          <li>يمكنهم الإبلاغ عن أي سلوك غير أخلاقي دون خوف من الانتقام.</li>
+          <li>يمكنهم المشاركة في برامج الأخلاقيات والتدريب.</li>
+        </ul>
+        <h4>الإدارة</h4>
+        <ul>
+          <li>تحدد سياسات وقواعد أخلاقية واضحة.</li>
+          <li>تطبّق هذه السياسات بطريقة عادلة وشفافة.</li>
+          <li>تشجع التواصل المفتوح والنقاش الصريح للقضايا الأخلاقية.</li>
+          <li>تكافئ السلوك الأخلاقي وتعاقب السلوك غير الأخلاقي.</li>
+        </ul>
+        <h4>الحكومات</h4>
+        <ul>
+          <li>تسنّ القوانين واللوائح التي تنظم سلوك الأعمال.</li>
+          <li>تدعم الممارسات الأخلاقية في الشركات.</li>
+          <li>تحاسب الشركات على أي مخالفات أخلاقية.</li>
+        </ul>
+        <div class="conclusion-final">الأخلاق في بيئة العمل ليست مسؤولية فردية وحدها؛ بل هي مسؤولية مشتركة تقع على عاتق جميع أصحاب المصلحة عبر العمل الجماعي والتزام الجميع بالقيم الأخلاقية. وهذا يجعل من الممكن خلق بيئة عمل تعزز النزاهة والعدالة والمسؤولية، وتسهم في تحقيق نجاح مستدام لجميع الأطراف.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="page" id="closing">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Closing</h2>
+        <p>Ethical challenges in the workplace are an inevitable reality, but understanding and analyzing them helps in finding effective solutions to address them. Based on the foregoing, it becomes clear that conflicts of interest, customer trust, discrimination, sexual misconduct or harassment, misuse of resources, and the improper handling of communications and information represent major ethical challenges that significantly affect the work environment and the organization's success. Likewise, combating harassment and unethical transgressions, preventing resource misuse, and ensuring the proper handling of communications and information provide a healthy and safe environment for organizations.</p>
+        <p>By shedding light on the most important ethical challenges in the workplace, such as conflicts of interest, customer trust, discrimination, sexual misconduct or harassment, misuse of the organization's resources, and communicating and transmitting information in a false or exaggerated manner, we contribute to:</p>
+        <ul>
+          <li><strong>Creating a fair and safe work environment:</strong> this environment encourages employees to work with high productivity and creativity, free from fear of discrimination or harassment.</li>
+          <li><strong>Building trust between the organization and stakeholders:</strong> trust leads to the loyalty of customers and employees and the support of investors.</li>
+          <li><strong>Protecting the organization's reputation:</strong> this spares the organization a damaged reputation and legal scandals.</li>
+          <li><strong>Compliance with laws and regulations:</strong> this preserves the organization's compliance with the laws and regulations related to workplace ethics.</li>
+          <li><strong>Achieving the organization's long-term objectives:</strong> good workplace ethics contribute to achieving the organization's objectives by improving performance and enhancing sustainability.</li>
+        </ul>
+        <p><strong>In addition, focusing on ethical challenges in the workplace helps to:</strong></p>
+        <ul>
+          <li><strong>Educate employees about the importance of workplace ethics:</strong> this can be achieved through training programs and awareness-raising workshops and materials.</li>
+          <li><strong>Provide mechanisms for reporting violations:</strong> this allows employees to report any unethical behavior without fear of retaliation.</li>
+          <li><strong>Take necessary measures against violators:</strong> this sends a strong message that the organization places great importance on workplace ethics.</li>
+        </ul>
+        <div class="conclusion-final">By taking these steps, organizations can create an ethical work environment that contributes to achieving long-term success and constitutes a large and successful part of business sustainability.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الخاتمة</h2>
+        <p>التحديات الأخلاقية في بيئة العمل واقع لا مفر منه، لكن فهمها وتحليلها يساعد على إيجاد حلول فعّالة لمعالجتها. وبناءً على ما سبق، يتضح أن تضارب المصالح، وثقة العملاء، والتمييز، والتحرش أو سوء السلوك الجنسي، وسوء استخدام الموارد، والتعامل غير السليم مع الاتصالات والمعلومات تمثّل تحديات أخلاقية كبرى تؤثر بشكل كبير على بيئة العمل ونجاح المؤسسة. كذلك فإن مكافحة التحرش والتجاوزات غير الأخلاقية، ومنع سوء استخدام الموارد، وضمان التعامل السليم مع الاتصالات والمعلومات، توفّر بيئة صحية وآمنة للمؤسسات.</p>
+        <p>وبتسليط الضوء على أهم التحديات الأخلاقية في بيئة العمل، مثل تضارب المصالح، وثقة العملاء، والتمييز، والتحرش أو سوء السلوك الجنسي، وسوء استخدام موارد المؤسسة، ونقل المعلومات وتوصيلها بطريقة كاذبة أو مبالغ فيها، نسهم في:</p>
+        <ul>
+          <li><strong>خلق بيئة عمل عادلة وآمنة:</strong> بيئة تشجع الموظفين على العمل بإنتاجية وإبداع عاليين، بعيدًا عن الخوف من التمييز أو التحرش.</li>
+          <li><strong>بناء الثقة بين المؤسسة وأصحاب المصلحة:</strong> تؤدي الثقة إلى ولاء العملاء والموظفين ودعم المستثمرين.</li>
+          <li><strong>حماية سمعة المؤسسة:</strong> يجنّب هذا المؤسسة سمعة متضررة وفضائح قانونية.</li>
+          <li><strong>الامتثال للقوانين واللوائح:</strong> يحافظ هذا على امتثال المؤسسة للقوانين واللوائح المتعلقة بأخلاقيات العمل.</li>
+          <li><strong>تحقيق أهداف المؤسسة على المدى الطويل:</strong> تسهم أخلاقيات العمل الجيدة في تحقيق أهداف المؤسسة بتحسين الأداء وتعزيز الاستدامة.</li>
+        </ul>
+        <p><strong>إضافة إلى ذلك، فإن التركيز على التحديات الأخلاقية في بيئة العمل يساعد على:</strong></p>
+        <ul>
+          <li><strong>توعية الموظفين بأهمية أخلاقيات العمل:</strong> ويمكن تحقيق ذلك عبر برامج تدريبية وورش ومواد توعوية.</li>
+          <li><strong>توفير آليات للإبلاغ عن المخالفات:</strong> يتيح هذا للموظفين الإبلاغ عن أي سلوك غير أخلاقي دون خوف من الانتقام.</li>
+          <li><strong>اتخاذ الإجراءات اللازمة ضد المخالفين:</strong> يرسل هذا رسالة قوية بأن المؤسسة تولي أهمية كبيرة لأخلاقيات العمل.</li>
+        </ul>
+        <div class="conclusion-final">وباتخاذ هذه الخطوات، تستطيع المؤسسات خلق بيئة عمل أخلاقية تسهم في تحقيق النجاح على المدى الطويل وتشكّل جزءًا كبيرًا وناجحًا من استدامة الأعمال.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFERENCES -->
+  <section class="page" id="references">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>References</h2>
+        <p>In building the research to fulfill the requirements of the first project for the course <em>Business Ethics and Social Responsibility</em>, the following available digital books and external sources were relied upon, with the content rewritten and reformulated (with adaptation):</p>
+        <ol class="refs">
+          <li><a href="https://www.neelwafurat.com/itempage.aspx?id=lbb207008-179156&amp;search=books" target="_blank" rel="noopener"><em>A Concise Guide to Work Ethics</em> (Al-Wajeez fi Akhlaqiyat al-'Amal)</a>, author: Ahmed Dawood Al-Mazjaji Al-Ash'ari, publisher: Dar Khawarizm Al-'Ilmiyya for Publishing, Jeddah.</li>
+          <li><a href="https://www.neelwafurat.com/itempage.aspx?id=lbb177630-140672&amp;search=books" target="_blank" rel="noopener"><em>Work Ethics</em> (Akhlaqiyat al-'Amal)</a>, author: Prof. Dr. Bilal Khalaf Al-Sakarneh, publisher: Dar Al-Maseera for Publishing.</li>
+          <li><a href="https://www.researchgate.net/publication/320843266_akhlaqyat_aladart_mdakhl_altkwyn_fy_mnzmat_alamal" target="_blank" rel="noopener"><em>Ethics of Management: Approaches to Development in Business Organizations</em></a> / Muayyad Al-Sa'idi.</li>
+          <li>MIT Technology Review Arabic (a publication of the Scientific Progress Company for Publishing and Distribution, headquartered in Kuwait) / <a href="https://sloanreview.mit.edu/article/fostering-ethical-conduct-through-psychological-safety/" target="_blank" rel="noopener"><em>Fostering Ethical Conduct Through Psychological Safety</em></a>.</li>
+          <li><a href="https://fastcompanyme.com/" target="_blank" rel="noopener">Fast Company Middle East</a> / <em>Work Ethics and Company Culture: Dealing with Ethical Dilemmas in the Workplace: A Guide for Managers</em>.</li>
+          <li>Office of the United Nations High Commissioner for Refugees (UNHCR) / <a href="https://www.unhcr.org/us/what-we-do/protect-human-rights/tackling-sexual-exploitation-abuse-and-harassment" target="_blank" rel="noopener"><em>Tackling Sexual Exploitation, Abuse, and Harassment</em></a>.</li>
+          <li>Harvard Business Review / <a href="https://hbr.org/2019/04/the-psychology-behind-unethical-behavior" target="_blank" rel="noopener"><em>The Psychology Behind Unethical Behavior</em></a>, author: Merete Wedell-Wedellsborg.</li>
+        </ol>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>المراجع</h2>
+        <p>في بناء البحث لاستيفاء متطلبات المشروع الأول لمقرر <em>أخلاقيات الأعمال والمسؤولية الاجتماعية</em>، تم الاعتماد على الكتب الرقمية والمصادر الخارجية المتاحة التالية، مع إعادة كتابة المحتوى وصياغته (بتصرّف):</p>
+        <ol class="refs">
+          <li><a href="https://www.neelwafurat.com/itempage.aspx?id=lbb207008-179156&amp;search=books" target="_blank" rel="noopener"><em>الوجيز في أخلاقيات العمل</em></a>، المؤلف: أحمد داود المزجاجي الأشعري، الناشر: دار خوارزم العلمية للنشر، جدة.</li>
+          <li><a href="https://www.neelwafurat.com/itempage.aspx?id=lbb177630-140672&amp;search=books" target="_blank" rel="noopener"><em>أخلاقيات العمل</em></a>، المؤلف: أ.د. بلال خلف السكارنة، الناشر: دار المسيرة للنشر.</li>
+          <li><a href="https://www.researchgate.net/publication/320843266_akhlaqyat_aladart_mdakhl_altkwyn_fy_mnzmat_alamal" target="_blank" rel="noopener"><em>أخلاقيات الإدارة: مداخل التكوين في منظمات الأعمال</em></a> / مؤيد السعيدي.</li>
+          <li>إم آي تي تكنولوجي ريفيو بالعربية (إصدار لشركة التقدم العلمي للنشر والتوزيع، ومقرها الكويت) / <a href="https://sloanreview.mit.edu/article/fostering-ethical-conduct-through-psychological-safety/" target="_blank" rel="noopener"><em>تعزيز السلوك الأخلاقي عبر الأمان النفسي</em></a>.</li>
+          <li><a href="https://fastcompanyme.com/" target="_blank" rel="noopener">فاست كومباني الشرق الأوسط</a> / <em>أخلاقيات العمل وثقافة الشركة: التعامل مع المعضلات الأخلاقية في بيئة العمل: دليل للمديرين</em>.</li>
+          <li>مفوضية الأمم المتحدة السامية لشؤون اللاجئين (UNHCR) / <a href="https://www.unhcr.org/us/what-we-do/protect-human-rights/tackling-sexual-exploitation-abuse-and-harassment" target="_blank" rel="noopener"><em>التصدي للاستغلال والاعتداء والتحرش الجنسي</em></a>.</li>
+          <li>هارفارد بزنس ريفيو / <a href="https://hbr.org/2019/04/the-psychology-behind-unethical-behavior" target="_blank" rel="noopener"><em>علم النفس وراء السلوك غير الأخلاقي</em></a>، المؤلفة: ميريتي ويديل-ويديلسبورغ.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","introduction","part-one","part-two","conclusion","closing","references"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){
+        var sec = document.getElementById(sid);
+        if(sec){ sec.classList.toggle("active", sid === id); }
+      });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0);
+      nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i > 0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i < order.length - 1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); }
+      else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){
+      p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); });
+    });
+
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){
+        b.classList.toggle("active", b.getAttribute("data-set") === l);
+      });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){
+      b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); });
+    });
+
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>
