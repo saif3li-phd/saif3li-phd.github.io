@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Productivity</title>
+<meta name="description" content="An original framework on productivity: doing the right things, not more, through prioritization, deep focus, energy management, and a sustainable pace.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">PROFESSIONAL SKILLS &middot; FRAMEWORK</span><span data-lang="ar">المهارات المهنية &middot; إطار</span></div>
+    <h1><span data-lang="en">Productivity</span><span data-lang="ar">الإنتاجية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="priorities"><span data-lang="en">Priorities</span><span data-lang="ar">الأولويات</span></a>
+    <a data-id="focus"><span data-lang="en">Focus &amp; Energy</span><span data-lang="ar">التركيز والطاقة</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Productivity</div>
+          <div><span>Scope:</span> Getting the right things done, sustainably</div>
+          <div><span>Owner role:</span> Every professional</div>
+          <div><span>Review cadence:</span> Continuous, with regular planning</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Productivity is not about doing more things or being constantly busy; it is about getting the right things done, effectively and sustainably. Real productivity is measured by valuable output, not by hours worked or tasks completed, and the most productive people are often not the busiest but those who focus their limited time and energy on what truly matters and protect it from everything else.</p>
+        <p>Productivity matters because time and energy are finite, and how we use them largely determines what we achieve. Yet much of what passes for productivity, endless busyness, long hours, an always-full calendar, actually undermines it, producing exhaustion and shallow output rather than real results. The difference between activity and achievement is enormous: a person can work furiously and accomplish little, or work with focus and accomplish a great deal. Understanding what genuinely drives productive output, rather than just feeling busy, is one of the highest-leverage things anyone can learn for their work and their life.</p>
+        <p>This framework explains the real principles of productivity, prioritization, focus, energy, and sustainability, with a practical tool for deciding what to work on. It is my own synthesis, written in my own words and grounded in recognized thinking on personal effectiveness, designed to be reusable across roles.</p>
+        <div class="note"><strong>Note:</strong> Being busy and being productive are not the same, and are often opposites. Busyness fills time; productivity creates value, and the two can look identical from outside while producing completely different results.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الإنتاجية</div>
+          <div><span>النطاق:</span> إنجاز الأشياء الصحيحة باستدامة</div>
+          <div><span>دور المالك:</span> كل محترف</div>
+          <div><span>دورية المراجعة:</span> مستمرة، بتخطيطٍ منتظم</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الإنتاجية ليست عن فعل أشياء أكثر أو الانشغال الدائم؛ بل عن إنجاز الأشياء الصحيحة بفاعليةٍ واستدامة. والإنتاجية الحقيقية تُقاس بالمُخرَج القيّم، لا بالساعات المعمولة أو المهام المكتملة، وأكثر الناس إنتاجيةً غالبًا ليسوا الأكثر انشغالًا بل من يركّزون وقتهم وطاقتهم المحدودَين على ما يهمّ حقًّا ويحمونه من كل ما عداه.</p>
+        <p>تهمّ الإنتاجية لأن الوقت والطاقة محدودان، وكيف نستخدمهما يحدّد إلى حدٍّ كبير ما نحقّقه. ومع ذلك، كثيرٌ ممّا يمرّ كإنتاجية، انشغالٌ لا ينتهي، وساعاتٌ طويلة، وتقويمٌ ممتلئ دومًا، يقوّضها فعلًا، مُنتِجًا إنهاكًا ومُخرَجًا سطحيًا لا نتائج حقيقية. والفرق بين النشاط والإنجاز هائل: فقد يعمل شخصٌ بجنونٍ وينجز قليلًا، أو يعمل بتركيزٍ وينجز الكثير. وفهم ما يقود المُخرَج المُنتِج فعلًا، لا مجرّد الشعور بالانشغال، من أعلى ما يتعلّمه أحدٌ رافعةً لعمله وحياته.</p>
+        <p>يشرح هذا الإطار مبادئ الإنتاجية الحقيقية، ترتيب الأولويات والتركيز والطاقة والاستدامة، بأداةٍ عملية لتقرير ما تعمل عليه. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في فكرٍ معترف به عن الفاعلية الشخصية، مصمَّمٌ ليكون قابلًا لإعادة الاستخدام عبر الأدوار.</p>
+        <div class="note"><strong>ملاحظة:</strong> الانشغال والإنتاجية ليسا سواءً، وغالبًا نقيضان. فالانشغال يملأ الوقت؛ والإنتاجية تخلق القيمة، وقد يبدوان متطابقَين من الخارج بينما يُنتِجان نتائج مختلفة تمامًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="priorities">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Doing the Right Things First</h2>
+        <p class="lead">The single most important productivity skill is not doing things faster but choosing the right things to do. A simple tool for this sorts work by importance and urgency, as shown below.</p>
+        <div style="text-align:center;margin:20px 0 8px;"><svg viewBox="0 0 460 400" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;max-width:420px;height:auto;font-family:&apos;IBM Plex Sans Arabic&apos;,sans-serif;"><rect x="70" y="70" width="145" height="145" rx="8" fill="#6b4790"/><text x="142" y="136" text-anchor="middle" font-size="13" font-weight="700" fill="#F7F4EF">Do now</text><text x="142" y="156" text-anchor="middle" font-size="10.5" fill="#F7F4EF" opacity="0.9">important &amp; urgent</text><rect x="245" y="70" width="145" height="145" rx="8" fill="#4d2f6b"/><text x="317" y="136" text-anchor="middle" font-size="13" font-weight="700" fill="#F7F4EF">Schedule</text><text x="317" y="156" text-anchor="middle" font-size="10.5" fill="#F7F4EF" opacity="0.9">important, not urgent</text><rect x="70" y="235" width="145" height="145" rx="8" fill="#9270b5"/><text x="142" y="301" text-anchor="middle" font-size="13" font-weight="700" fill="#F7F4EF">Delegate</text><text x="142" y="321" text-anchor="middle" font-size="10.5" fill="#F7F4EF" opacity="0.9">urgent, not important</text><rect x="245" y="235" width="145" height="145" rx="8" fill="#c9b8e8"/><text x="317" y="301" text-anchor="middle" font-size="13" font-weight="700" fill="#2E1A47">Drop</text><text x="317" y="321" text-anchor="middle" font-size="10.5" fill="#2E1A47" opacity="0.9">neither</text><text x="142" y="55" text-anchor="middle" font-size="12" font-weight="700" fill="#7A4E9E">Urgent</text><text x="317" y="55" text-anchor="middle" font-size="12" font-weight="700" fill="#7A4E9E">Not urgent</text><text x="45" y="146" text-anchor="middle" font-size="12" font-weight="700" fill="#7A4E9E" transform="rotate(-90 45 146)">Important</text><text x="45" y="310" text-anchor="middle" font-size="12" font-weight="700" fill="#7A4E9E" transform="rotate(-90 45 310)">Not important</text></svg></div>
+        <p>The core insight the matrix captures is the difference between the important and the urgent. Important things contribute most to your real goals; urgent things merely demand attention now. They often diverge, and the great trap of unproductive working is spending your days on the urgent but unimportant, the interruptions, the minor requests, the things that feel pressing, while the important but not urgent, the deep work, the planning, the things that actually move your goals, get endlessly postponed because nothing forces them. Productive people deliberately protect time for the important-but-not-urgent quadrant, since that is where the highest-value work lives, and it will never happen unless it is chosen on purpose.</p>
+        <p>Two further principles sharpen prioritization. The first is that a small share of your efforts usually produces most of your valuable results, so identifying and focusing on that vital few, rather than spreading effort evenly across everything, dramatically raises output. The second is the power of saying no: because time is finite, doing the most important things well requires declining many other things, however reasonable they seem. Every yes to a low-value task is a no to something more important, so productivity depends as much on what you deliberately choose not to do as on what you do. The person who tries to do everything does nothing especially well; the productive person chooses ruthlessly and focuses their finite capacity where it matters most.</p>
+        <div class="note"><strong>Note:</strong> The urgent crowds out the important unless you defend it. The most valuable work, planning, deep thinking, real progress on your goals, is rarely urgent, so it gets postponed forever unless you deliberately schedule and protect it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>فعل الأشياء الصحيحة أولًا</h2>
+        <p class="lead">أهمّ مهارة إنتاجيةٍ مفردة ليست فعل الأشياء أسرع بل اختيار الأشياء الصحيحة لفعلها. وأداةٌ بسيطة لهذا تفرز العمل بالأهمية والإلحاح، كما يُبيَّن أدناه.</p>
+        <div style="text-align:center;margin:20px 0 8px;"><svg viewBox="0 0 460 400" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;max-width:420px;height:auto;font-family:&apos;IBM Plex Sans Arabic&apos;,sans-serif;"><rect x="70" y="70" width="145" height="145" rx="8" fill="#6b4790"/><text x="142" y="136" text-anchor="middle" font-size="13" font-weight="700" fill="#F7F4EF">افعله الآن</text><text x="142" y="156" text-anchor="middle" font-size="10.5" fill="#F7F4EF" opacity="0.9">مهمّ وعاجل</text><rect x="245" y="70" width="145" height="145" rx="8" fill="#4d2f6b"/><text x="317" y="136" text-anchor="middle" font-size="13" font-weight="700" fill="#F7F4EF">جدوِله</text><text x="317" y="156" text-anchor="middle" font-size="10.5" fill="#F7F4EF" opacity="0.9">مهمّ غير عاجل</text><rect x="70" y="235" width="145" height="145" rx="8" fill="#9270b5"/><text x="142" y="301" text-anchor="middle" font-size="13" font-weight="700" fill="#F7F4EF">فوّضه</text><text x="142" y="321" text-anchor="middle" font-size="10.5" fill="#F7F4EF" opacity="0.9">عاجل غير مهمّ</text><rect x="245" y="235" width="145" height="145" rx="8" fill="#c9b8e8"/><text x="317" y="301" text-anchor="middle" font-size="13" font-weight="700" fill="#2E1A47">أسقِطه</text><text x="317" y="321" text-anchor="middle" font-size="10.5" fill="#2E1A47" opacity="0.9">لا هذا ولا ذاك</text><text x="142" y="55" text-anchor="middle" font-size="12" font-weight="700" fill="#7A4E9E">عاجل</text><text x="317" y="55" text-anchor="middle" font-size="12" font-weight="700" fill="#7A4E9E">غير عاجل</text><text x="45" y="146" text-anchor="middle" font-size="12" font-weight="700" fill="#7A4E9E" transform="rotate(-90 45 146)">مهمّ</text><text x="45" y="310" text-anchor="middle" font-size="12" font-weight="700" fill="#7A4E9E" transform="rotate(-90 45 310)">غير مهمّ</text></svg></div>
+        <p>الرؤية الجوهرية التي تلتقطها المصفوفة الفرق بين المهمّ والعاجل. فالأشياء المهمّة تسهم أكثر في أهدافك الحقيقية؛ والعاجلة تطلب الانتباه الآن فحسب. وهما يتباعدان غالبًا، والفخّ الكبير للعمل غير المُنتِج قضاء أيامك على العاجل غير المهمّ، المقاطعات والطلبات الصغيرة والأشياء التي تبدو مُلحّة، بينما المهمّ غير العاجل، العمل العميق والتخطيط والأشياء التي تحرّك أهدافك فعلًا، يُؤجَّل بلا نهايةٍ لأن لا شيء يفرضه. والناس المُنتِجون يحمون عمدًا وقتًا للربع المهمّ-غير-العاجل، إذ هناك يعيش العمل الأعلى قيمةً، ولن يحدث أبدًا ما لم يُختَر عمدًا.</p>
+        <p>ومبدآن آخران يشحذان ترتيب الأولويات. الأول أن حصّةً صغيرة من جهودك تُنتِج عادةً أغلب نتائجك القيّمة، فتحديد ذلك القليل الحيوي والتركيز عليه، بدل نشر الجهد بالتساوي عبر كل شيء، يرفع المُخرَج هائلًا. والثاني قوّة قول لا: فلأن الوقت محدود، فعل الأشياء الأهمّ جيدًا يتطلّب رفض أشياء كثيرة أخرى، مهما بدت معقولة. فكل نعمٍ لمهمّةٍ منخفضة القيمة لا لشيءٍ أهمّ، فالإنتاجية تعتمد على ما تختار عمدًا ألّا تفعله بقدر ما تفعله. ومن يحاول فعل كل شيءٍ لا يفعل شيئًا ببراعةٍ خاصة؛ والمُنتِج يختار بلا رحمةٍ ويركّز سعته المحدودة حيث تهمّ أكثر.</p>
+        <div class="note"><strong>ملاحظة:</strong> العاجل يزحم المهمّ ما لم تدافع عنه. فالعمل الأعلى قيمةً، التخطيط والتفكير العميق والتقدّم الحقيقي في أهدافك، نادرًا ما يكون عاجلًا، فيُؤجَّل للأبد ما لم تجدوِله وتحمِه عمدًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="focus">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Focus, Energy &amp; Sustainability</h2>
+        <p class="lead">Choosing the right work is half of productivity; actually doing it well is the other half, and that depends on focus, energy, and a sustainable pace rather than sheer hours.</p>
+        <p>The first key is focus. Deep, valuable work requires concentration, and concentration is destroyed by constant interruption and multitasking. Contrary to the myth of multitasking, the mind cannot truly do two demanding things at once; it rapidly switches between them, and each switch costs time and quality. Productive people therefore protect blocks of uninterrupted time for their most important work, minimizing distractions such as notifications and interruptions during it, because an hour of focused work often produces more than a whole day of fragmented, distracted effort. The second key is managing energy, not just time. Attention and willpower are finite and vary through the day, so matching demanding work to your peak-energy hours, and protecting the rest, sleep, and renewal that restore your capacity, matters as much as the schedule itself.</p>
+        <p>The third key, easily forgotten in a culture that glorifies overwork, is sustainability. Productivity is a long game, and pushing relentlessly without rest leads to burnout, which destroys productivity far more than the occasional break ever could. Sustainable productivity means working at a pace you can maintain, taking real breaks, and protecting your health and energy over the long term, because a rested, healthy person consistently out-produces an exhausted one, even if the exhausted one logs more hours. The deeper truth running through all of this is that productivity is not about squeezing more activity into every minute but about applying your finite focus and energy to the few things that matter most, and doing so in a way you can sustain. Understood this way, being more productive often means doing less, but doing the right less, with full attention, and giving yourself the rest that makes sustained focus possible.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> real productivity is doing the right things, not more things, by prioritizing the important over the merely urgent, focusing deeply without multitasking, managing energy as well as time, and working at a sustainable pace, so that finite focus and energy are applied to what matters most rather than scattered across endless busyness.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>التركيز والطاقة والاستدامة</h2>
+        <p class="lead">اختيار العمل الصحيح نصف الإنتاجية؛ وفعله جيدًا النصف الآخر، وذلك يعتمد على التركيز والطاقة ووتيرةٍ مستدامة لا على الساعات المحضة.</p>
+        <p>المفتاح الأول التركيز. فالعمل العميق القيّم يتطلّب تركيزًا، والتركيز تدمّره المقاطعة الدائمة وتعدّد المهام. وخلافًا لخرافة تعدّد المهام، لا يستطيع العقل فعل شيئين متطلّبين في آنٍ حقًّا؛ يتنقّل بينهما سريعًا، وكل تنقّلٍ يكلّف وقتًا وجودة. والناس المُنتِجون إذًا يحمون كتلًا من الوقت غير المقطوع لعملهم الأهمّ، مقلّلين المشتّتات كالإشعارات والمقاطعات أثناءه، لأن ساعةً من عملٍ مركَّز تُنتِج غالبًا أكثر من يومٍ كامل من جهدٍ مجزَّأ مشتَّت. والمفتاح الثاني إدارة الطاقة، لا الوقت فقط. فالانتباه والإرادة محدودان ويتغيّران عبر اليوم، فمطابقة العمل المتطلِّب لساعات ذروة طاقتك، وحماية الراحة والنوم والتجديد التي تُرجِع سعتك، تهمّ بقدر الجدول نفسه.</p>
+        <p>والمفتاح الثالث، سهل النسيان في ثقافةٍ تمجّد الإفراط في العمل، الاستدامة. فالإنتاجية لعبةٌ طويلة، والدفع بلا هوادةٍ دون راحة يقود للاحتراق، الذي يدمّر الإنتاجية أكثر بكثيرٍ مما تفعله استراحةٌ عرضية. والإنتاجية المستدامة تعني العمل بوتيرةٍ تستطيع الحفاظ عليها، وأخذ استراحاتٍ حقيقية، وحماية صحّتك وطاقتك على المدى الطويل، لأن شخصًا مرتاحًا صحّيًا يفوق باطّرادٍ مُخرَج مُنهَك، حتى لو سجّل المُنهَك ساعاتٍ أكثر. والحقيقة الأعمق الجارية عبر هذا كله أن الإنتاجية ليست عن عصر نشاطٍ أكثر في كل دقيقة بل عن تطبيق تركيزك وطاقتك المحدودَين على الأشياء القليلة الأهمّ، وفعل ذلك بطريقةٍ تستطيع إدامتها. ومفهومةً هكذا، أن تكون أكثر إنتاجيةً يعني غالبًا فعل أقلّ، لكن الأقلّ الصحيح، بانتباهٍ كامل، ومنح نفسك الراحة التي تجعل التركيز المستدام ممكنًا.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الإنتاجية الحقيقية فعل الأشياء الصحيحة لا أشياء أكثر، بترتيب المهمّ على العاجل فحسب، والتركيز العميق دون تعدّد مهام، وإدارة الطاقة كالوقت، والعمل بوتيرةٍ مستدامة، فيُطبَّق التركيز والطاقة المحدودان على الأهمّ بدل تبعثرهما عبر انشغالٍ لا ينتهي.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Real productivity applies finite focus and energy to the few things that matter, sustainably.</p>
+        <ul>
+          <li>Separate being productive from being busy: value created, not hours or tasks, is the measure.</li>
+          <li>Prioritize the important over the merely urgent, and protect time for important-but-not-urgent work.</li>
+          <li>Focus on the vital few, and say no to the many lower-value demands.</li>
+          <li>Work in blocks of deep, single-tasked focus, and manage energy as well as time.</li>
+          <li>Keep a sustainable pace with real rest, since burnout destroys productivity more than breaks do.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.franklincovey.com/the-7-habits/" target="_blank" rel="noopener">The 7 Habits, on urgent versus important.</a></li>
+          <li><a href="https://hbr.org/2007/10/manage-your-energy-not-your-time" target="_blank" rel="noopener">Manage Your Energy, Not Your Time (HBR).</a></li>
+          <li><a href="https://www.calnewport.com/books/deep-work/" target="_blank" rel="noopener">Cal Newport, on deep work.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">الإنتاجية الحقيقية تطبّق التركيز والطاقة المحدودَين على الأشياء القليلة التي تهمّ، باستدامة.</p>
+        <ul>
+          <li>افصل كونك مُنتِجًا عن كونك مشغولًا: القيمة المخلوقة، لا الساعات أو المهام، المقياس.</li>
+          <li>رتّب المهمّ على العاجل فحسب، واحمِ وقتًا للعمل المهمّ-غير-العاجل.</li>
+          <li>ركّز على القليل الحيوي، وقل لا للمطالب الكثيرة الأدنى قيمة.</li>
+          <li>اعمل في كتلٍ من التركيز العميق أحادي المهمّة، وأدِر الطاقة كالوقت.</li>
+          <li>أبقِ وتيرةً مستدامة براحةٍ حقيقية، إذ الاحتراق يدمّر الإنتاجية أكثر من الاستراحات.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.franklincovey.com/the-7-habits/" target="_blank" rel="noopener">العادات السبع، عن العاجل مقابل المهمّ.</a></li>
+          <li><a href="https://hbr.org/2007/10/manage-your-energy-not-your-time" target="_blank" rel="noopener">أدِر طاقتك لا وقتك (HBR).</a></li>
+          <li><a href="https://www.calnewport.com/books/deep-work/" target="_blank" rel="noopener">كال نيوبورت، عن العمل العميق.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","priorities","focus","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

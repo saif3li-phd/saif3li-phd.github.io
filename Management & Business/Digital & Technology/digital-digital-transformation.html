@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Transformation</title>
+<meta name="description" content="An original framework on digital transformation: reinventing customer experience, operations, business model, and culture, led by strategy not technology.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">DIGITAL &amp; TECHNOLOGY &middot; FRAMEWORK</span><span data-lang="ar">الرقمنة والتقنية &middot; إطار</span></div>
+    <h1><span data-lang="en">Digital Transformation</span><span data-lang="ar">التحوّل الرقمي</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="dimensions"><span data-lang="en">Dimensions</span><span data-lang="ar">الأبعاد</span></a>
+    <a data-id="success"><span data-lang="en">Succeeding</span><span data-lang="ar">النجاح</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Digital transformation</div>
+          <div><span>Scope:</span> Reinventing an organization for the digital age</div>
+          <div><span>Owner role:</span> Executive leadership, enabled by technology</div>
+          <div><span>Review cadence:</span> Strategic, with continuous iteration</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Digital transformation is the deep change an organization undertakes to use digital technology to fundamentally improve how it operates and delivers value, not just adding technology on top of old ways of working, but rethinking the business itself for a digital world. It is less about the technology than about the strategy, people, and change that turn technology into real advantage.</p>
+        <p>Digital transformation matters because technology has reset customer expectations and competitive rules in nearly every industry, and organizations that do not adapt fall behind ones that do. Customers now expect the speed, convenience, and personalization that digital leaders provide, and new competitors, unburdened by legacy, can serve them in ways established players cannot. Yet many transformation efforts fail, not because the technology does not work, but because organizations treat it as an IT project rather than a fundamental change in strategy, operations, and culture. Getting this right is now a matter of survival, not just improvement.</p>
+        <p>This framework explains what digital transformation really is, why most attempts fall short, and what makes it succeed. It is my own synthesis, written in my own words and grounded in recognized thinking on technology and strategy, designed to be reusable across organizations.</p>
+        <div class="note"><strong>Note:</strong> Digital transformation is not buying technology; it is changing the organization. The technology is the easy part, the strategy, people, and culture around it are where transformation succeeds or fails.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> التحوّل الرقمي</div>
+          <div><span>النطاق:</span> إعادة اختراع المنشأة للعصر الرقمي</div>
+          <div><span>دور المالك:</span> القيادة التنفيذية، مُمكَّنةً بالتقنية</div>
+          <div><span>دورية المراجعة:</span> استراتيجية، بتكرارٍ مستمر</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">التحوّل الرقمي التغيير العميق الذي تخوضه منشأةٌ لاستخدام التقنية الرقمية لتحسين كيف تعمل وتسلّم القيمة جوهريًا، لا مجرّد إضافة تقنيةٍ فوق طرقٍ قديمة، بل إعادة تفكيرٍ في العمل نفسه لعالمٍ رقمي. وهو عن الاستراتيجية والناس والتغيير أكثر من التقنية التي تحوّلها لميزةٍ حقيقية.</p>
+        <p>يهمّ التحوّل الرقمي لأن التقنية أعادت ضبط توقّعات العملاء وقواعد المنافسة في كل صناعةٍ تقريبًا، والمنشآت التي لا تتكيّف تتخلّف عن التي تتكيّف. فالعملاء الآن يتوقّعون السرعة والراحة والتخصيص التي يوفّرها القادة الرقميون، ومنافسون جدد، غير مثقَلين بالإرث، يستطيعون خدمتهم بطرقٍ لا يستطيعها الراسخون. ومع ذلك تفشل جهود تحوّلٍ كثيرة، لا لأن التقنية لا تعمل، بل لأن المنشآت تعاملها كمشروع تقنية معلومات لا تغييرًا جوهريًا في الاستراتيجية والعمليات والثقافة. وإتقان هذا الآن مسألة بقاءٍ لا مجرّد تحسين.</p>
+        <p>يشرح هذا الإطار ما هو التحوّل الرقمي فعلًا، ولماذا تقصّر أغلب المحاولات، وما يُنجِحه. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في فكرٍ معترف به عن التقنية والاستراتيجية، مصمَّمٌ ليكون قابلًا لإعادة الاستخدام عبر المنشآت.</p>
+        <div class="note"><strong>ملاحظة:</strong> التحوّل الرقمي ليس شراء تقنية؛ بل تغيير المنشأة. فالتقنية الجزء السهل، والاستراتيجية والناس والثقافة حولها حيث ينجح التحوّل أو يفشل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="dimensions">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Dimensions of Transformation</h2>
+        <p class="lead">Digital transformation is not one thing but a change across several connected dimensions. Treating it as only technology, or only one of these, is why so many efforts disappoint.</p>
+        <p>The first dimension is the customer experience: using digital tools to serve customers better, faster, and more personally, meeting the expectations that digital has created. The second is operations and processes: reworking how the organization actually does its work, automating, streamlining, and using data to operate more efficiently and effectively, rather than digitizing broken processes as they are. The third, and often the most powerful, is the business model itself: using technology to change what value the organization offers and how it makes money, sometimes reinventing the business entirely, as when a product company adds digital services or a physical business goes platform.</p>
+        <ul>
+          <li><strong>Customer experience:</strong> serve customers faster, easier, and more personally through digital.</li>
+          <li><strong>Operations and processes:</strong> rework and automate how the work is actually done, driven by data.</li>
+          <li><strong>Business model:</strong> change what value is offered and how money is made, not just how work is done.</li>
+          <li><strong>People and culture:</strong> the capabilities and mindset that make the other three possible.</li>
+        </ul>
+        <p>Running through all of these is a fourth dimension that determines whether the others succeed: people and culture. Technology and new processes only deliver value if people have the skills to use them and the mindset to work in new ways, and if the organization's culture supports experimentation, data-driven decisions, and continuous change rather than resisting them. This is why digital transformation is fundamentally a leadership and change challenge dressed in technology: the hardest part is not installing the systems but bringing the organization, its ways of working, its skills, and its culture, into a genuinely digital way of operating. The dimensions reinforce one another, and lasting transformation addresses them together rather than picking off one in isolation.</p>
+        <div class="note"><strong>Note:</strong> Digitizing a broken process just makes it fail faster. Real transformation rethinks the process, and often the business model, rather than pouring technology onto the way things have always been done.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>أبعاد التحوّل</h2>
+        <p class="lead">التحوّل الرقمي ليس شيئًا واحدًا بل تغييرٌ عبر عدّة أبعادٍ متصلة. ومعاملته كتقنيةٍ فقط، أو كأحد هذه فقط، هو لماذا تخيّب جهودٌ كثيرة.</p>
+        <p>البُعد الأول تجربة العميل: استخدام الأدوات الرقمية لخدمة العملاء أفضل وأسرع وأكثر شخصية، ملبّيًا التوقّعات التي خلقتها الرقمنة. والثاني العمليات والمسارات: إعادة صياغة كيف تفعل المنشأة عملها فعلًا، بالأتمتة والتبسيط واستخدام البيانات للعمل بكفاءةٍ وفاعلية أكبر، بدل رقمنة مساراتٍ معطوبة كما هي. والثالث، وغالبًا الأقوى، نموذج العمل نفسه: استخدام التقنية لتغيير أي قيمةٍ تعرضها المنشأة وكيف تكسب المال، أحيانًا بإعادة اختراع العمل كليًا، كأن تضيف شركة منتجٍ خدماتٍ رقمية أو يتحوّل عملٌ مادّي لمنصّة.</p>
+        <ul>
+          <li><strong>تجربة العميل:</strong> اخدم العملاء أسرع وأسهل وأكثر شخصيةً عبر الرقمنة.</li>
+          <li><strong>العمليات والمسارات:</strong> أعِد صياغة وأتمِت كيف يُفعَل العمل فعلًا، مدفوعًا بالبيانات.</li>
+          <li><strong>نموذج العمل:</strong> غيّر أي قيمةٍ تُعرَض وكيف يُكسَب المال، لا كيف يُفعَل العمل فقط.</li>
+          <li><strong>الناس والثقافة:</strong> القدرات والعقلية التي تجعل الثلاثة الأخرى ممكنة.</li>
+        </ul>
+        <p>ويجري عبر هذه كلها بُعدٌ رابع يحدّد هل تنجح الأخرى: الناس والثقافة. فالتقنية والمسارات الجديدة تسلّم قيمةً فقط إن كان للناس مهارات استخدامها وعقلية العمل بطرقٍ جديدة، وإن كانت ثقافة المنشأة تدعم التجريب والقرارات المدفوعة بالبيانات والتغيير المستمر لا تقاومها. ولهذا التحوّل الرقمي أساسًا تحدّي قيادةٍ وتغيير مُلبَسٌ تقنية: فالأصعب ليس تركيب الأنظمة بل جلب المنشأة، طرق عملها ومهاراتها وثقافتها، لطريقة عملٍ رقمية فعلًا. والأبعاد تعزّز بعضها، والتحوّل الدائم يعالجها معًا لا ينتقي واحدًا معزولًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> رقمنة مسارٍ معطوب تجعله يفشل أسرع فقط. فالتحوّل الحقيقي يعيد التفكير في المسار، وغالبًا نموذج العمل، بدل صبّ التقنية على ما كان يُفعَل دومًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="success">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Why It Fails and How to Succeed</h2>
+        <p class="lead">Most digital transformations disappoint, and understanding the common failure patterns points directly to what makes the rest succeed.</p>
+        <p>Transformations fail for recognizable reasons. Many are treated as technology projects owned by IT, disconnected from strategy and the rest of the business, so they deliver systems no one adopts. Many lack clear leadership and a clear why, so the effort sprawls without direction and loses momentum. Many neglect the people side, installing new tools without building the skills, changing the incentives, or shifting the culture, so the organization keeps working the old way around the new technology. And many try to change everything at once in a single grand programme, rather than moving in focused steps that deliver value and build capability along the way. In each case, the technology was not the problem; the surrounding strategy, leadership, and change were.</p>
+        <p>Success comes from inverting these failures. It starts with strategy and a clear purpose: transformation driven by a real goal, a better customer experience, a new source of value, greater efficiency, not by technology for its own sake. It requires committed leadership that owns the change as a business priority, not delegates it to IT, and that keeps the effort aligned with the strategy. It invests as heavily in people and culture, skills, ways of working, incentives, mindset, as in technology, since that is where transformations are won or lost. And it proceeds iteratively, delivering value in focused steps, learning as it goes, and building on what works, rather than betting everything on one enormous plan. Understood this way, digital transformation is not really about going digital; it is about leading deep organizational change, with technology as the enabler rather than the point.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> digital transformation reinvents how an organization operates and creates value across customer experience, operations, business model, and above all people and culture, and it succeeds when driven by strategy and committed leadership, invested in people as much as technology, and delivered iteratively rather than treated as a one-off IT project.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>لماذا يفشل وكيف ينجح</h2>
+        <p class="lead">أغلب التحوّلات الرقمية تخيّب، وفهم أنماط الإخفاق الشائعة يشير مباشرةً لما يُنجِح البقية.</p>
+        <p>التحوّلات تفشل لأسبابٍ معروفة. فكثيرٌ يُعامَل كمشاريع تقنية تملكها تقنية المعلومات، منفصلةً عن الاستراتيجية وبقية العمل، فتسلّم أنظمةً لا أحد يتبنّاها. وكثيرٌ يفتقد قيادةً واضحة ولماذا واضحًا، فيتشعّب الجهد بلا اتجاهٍ ويفقد الزخم. وكثيرٌ يُهمِل جانب الناس، مركّبًا أدواتٍ جديدة دون بناء المهارات أو تغيير الحوافز أو نقل الثقافة، فتواصل المنشأة العمل بالطريقة القديمة حول التقنية الجديدة. وكثيرٌ يحاول تغيير كل شيءٍ دفعةً في برنامجٍ ضخم واحد، بدل التحرّك بخطواتٍ مركّزة تسلّم قيمةً وتبني القدرة في الطريق. وفي كل حالة، لم تكن التقنية المشكلة؛ بل الاستراتيجية والقيادة والتغيير المحيطة.</p>
+        <p>النجاح يأتي من عكس هذه الإخفاقات. يبدأ بالاستراتيجية وغرضٍ واضح: تحوّلٌ مدفوعٌ بهدفٍ حقيقي، تجربة عميلٍ أفضل، مصدر قيمةٍ جديد، كفاءةٌ أكبر، لا بالتقنية لذاتها. ويتطلّب قيادةً ملتزمة تملك التغيير كأولوية عمل، لا تفوّضه لتقنية المعلومات، وتُبقي الجهد متوائمًا مع الاستراتيجية. ويستثمر في الناس والثقافة، المهارات وطرق العمل والحوافز والعقلية، بقدر التقنية، إذ هناك تُكسَب التحوّلات أو تُخسَر. ويمضي تكراريًا، مسلّمًا قيمةً بخطواتٍ مركّزة، متعلّمًا في الطريق، بانيًا على ما ينجح، بدل المراهنة بكل شيءٍ على خطّةٍ هائلة واحدة. ومفهومًا هكذا، التحوّل الرقمي ليس فعلًا عن الذهاب رقميًا؛ بل عن قيادة تغييرٍ تنظيمي عميق، بالتقنية مُمكِّنًا لا المقصد.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> التحوّل الرقمي يعيد اختراع كيف تعمل المنشأة وتخلق القيمة عبر تجربة العميل والعمليات ونموذج العمل وفوق كلٍّ الناس والثقافة، وينجح حين يُدفَع بالاستراتيجية وقيادةٍ ملتزمة، مستثمرًا في الناس بقدر التقنية، مُسلَّمًا تكراريًا لا مُعامَلًا كمشروع تقنية معلومات لمرةٍ واحدة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Digital transformation is deep organizational change enabled by technology, not a technology project.</p>
+        <ul>
+          <li>Treat transformation as changing the organization, with technology as enabler, not the goal.</li>
+          <li>Address all dimensions together: customer experience, operations, business model, and people.</li>
+          <li>Rethink processes rather than digitizing broken ones, which only fail faster.</li>
+          <li>Drive it with strategy and committed leadership, not as an IT project delegated away.</li>
+          <li>Invest in people and culture as much as technology, and deliver iteratively in focused steps.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2019/03/digital-transformation-is-not-about-technology" target="_blank" rel="noopener">HBR, Digital Transformation Is Not About Technology.</a></li>
+          <li><a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights" target="_blank" rel="noopener">McKinsey Digital insights.</a></li>
+          <li><a href="https://www.gartner.com/en/information-technology/insights/digitalization" target="_blank" rel="noopener">Gartner, on digitalization.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">التحوّل الرقمي تغييرٌ تنظيمي عميق مُمكَّنٌ بالتقنية، لا مشروع تقنية.</p>
+        <ul>
+          <li>عامِل التحوّل كتغيير المنشأة، بالتقنية مُمكِّنًا لا الهدف.</li>
+          <li>عالِج الأبعاد كلها معًا: تجربة العميل والعمليات ونموذج العمل والناس.</li>
+          <li>أعِد التفكير في المسارات بدل رقمنة المعطوبة، التي تفشل أسرع فقط.</li>
+          <li>ادفعه بالاستراتيجية وقيادةٍ ملتزمة، لا كمشروع تقنية معلومات مُفوَّض.</li>
+          <li>استثمر في الناس والثقافة بقدر التقنية، وسلّم تكراريًا بخطواتٍ مركّزة.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2019/03/digital-transformation-is-not-about-technology" target="_blank" rel="noopener">HBR، التحوّل الرقمي ليس عن التقنية.</a></li>
+          <li><a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights" target="_blank" rel="noopener">رؤى ماكنزي الرقمية.</a></li>
+          <li><a href="https://www.gartner.com/en/information-technology/insights/digitalization" target="_blank" rel="noopener">غارتنر، عن الرقمنة.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","dimensions","success","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

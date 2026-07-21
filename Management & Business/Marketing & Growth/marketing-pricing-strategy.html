@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing Strategy</title>
+<meta name="description" content="An original framework on pricing strategy: the range between cost and value, value-based pricing, and strategic choices, with a pricing-range illustration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">MARKETING &amp; GROWTH &middot; FRAMEWORK</span><span data-lang="ar">التسويق والنمو &middot; إطار</span></div>
+    <h1><span data-lang="en">Pricing Strategy</span><span data-lang="ar">استراتيجية التسعير</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="range"><span data-lang="en">The Range</span><span data-lang="ar">النطاق</span></a>
+    <a data-id="strategies"><span data-lang="en">Strategies</span><span data-lang="ar">الاستراتيجيات</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Pricing strategy</div>
+          <div><span>Scope:</span> Setting prices that capture value and drive profit</div>
+          <div><span>Owner role:</span> Commercial, marketing, and finance</div>
+          <div><span>Review cadence:</span> Periodic, with ongoing market monitoring</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Pricing is the decision of what to charge for an offering, and it is among the most powerful and most neglected levers a business has. Price directly determines both how much money each sale brings in and how customers perceive the value on offer, and small changes in price often move profit far more than equivalent changes in cost or volume. Yet many organizations set prices almost carelessly, leaving significant value uncaptured.</p>
+        <p>Pricing matters because it is where value is finally converted into money. A business can create excellent value and still fail to prosper if it prices poorly, either too low, giving away the value it created, or too high, driving customers away. Because price flows straight to the bottom line, a modest improvement in pricing can have an outsized effect on profit, larger than most cost-cutting or sales pushes. Getting pricing right is therefore one of the highest-leverage things a business can do, and getting it wrong quietly bleeds value on every transaction.</p>
+        <p>This framework explains how to think about pricing, the range within which any price must sit, the main pricing approaches, and the strategic choices behind them. It is my own synthesis, written in my own words and grounded in recognized pricing thinking, and it includes a worked illustration of the pricing range.</p>
+        <div class="note"><strong>Note:</strong> Price is the fastest lever on profit. Because it flows straight to the bottom line, a small pricing improvement often beats a large cost cut, yet pricing usually gets a fraction of the attention costs do.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> استراتيجية التسعير</div>
+          <div><span>النطاق:</span> وضع أسعارٍ تلتقط القيمة وتقود الربح</div>
+          <div><span>دور المالك:</span> التجاري والتسويق والمالية</div>
+          <div><span>دورية المراجعة:</span> دورية، بمراقبة سوقٍ مستمرة</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">التسعير قرار ما تتقاضاه مقابل عرض، وهو من أقوى الروافع وأكثرها إهمالًا لدى عمل. فالسعر يحدّد مباشرةً كم مالٍ يجلبه كل بيع وكيف يدرك العملاء القيمة المعروضة، وتغييراتٌ صغيرة في السعر تحرّك الربح غالبًا أكثر بكثيرٍ من تغييراتٍ مكافئة في الكلفة أو الحجم. ومع ذلك كثيرٌ من المنشآت تضع الأسعار بلا مبالاةٍ تقريبًا، تاركةً قيمةً كبيرة غير ملتقَطة.</p>
+        <p>يهمّ التسعير لأنه حيث تُحوَّل القيمة آخِرًا لمال. فقد يخلق عملٌ قيمةً ممتازة ويخفق في الازدهار إن سعّر رديئًا، إمّا منخفضًا جدًا، مُعطيًا القيمة التي خلقها، أو مرتفعًا جدًا، طاردًا العملاء. ولأن السعر يتدفّق مباشرةً للمحصّلة، فتحسينٌ متواضع في التسعير قد يكون له أثرٌ هائل على الربح، أكبر من أغلب خفض الكلفة أو دفعات المبيعات. وإتقان التسعير إذًا من أعلى ما يفعله عملٌ رافعةً، وإخطاؤه ينزف القيمة بهدوءٍ في كل معاملة.</p>
+        <p>يشرح هذا الإطار كيف تفكّر في التسعير، والنطاق الذي يجب أن يجلس فيه أي سعر، ونهوج التسعير الرئيسة، والاختيارات الاستراتيجية خلفها. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في فكرٍ تسعيري معترف به، ويتضمّن رسمًا توضيحيًا لنطاق التسعير.</p>
+        <div class="note"><strong>ملاحظة:</strong> السعر أسرع رافعةٍ على الربح. فلأنه يتدفّق مباشرةً للمحصّلة، تحسينٌ سعري صغير يغلب غالبًا خفض كلفةٍ كبير، ومع ذلك ينال التسعير عادةً جزءًا يسيرًا من الانتباه الذي تناله الكلف.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="range">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Pricing Range</h2>
+        <p class="lead">Every price must sit within a range bounded at the bottom by cost and at the top by value. Understanding this range, illustrated below, is the foundation of all pricing thinking.</p>
+        <div style="text-align:center;margin:20px 0 8px;"><svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;max-width:480px;height:auto;font-family:&apos;IBM Plex Sans Arabic&apos;,sans-serif;"><rect x="180" y="20" width="150" height="40" rx="6" fill="#c9b8e8"/><text x="255" y="45" text-anchor="middle" font-size="13" font-weight="700" fill="#2E1A47">Ceiling: what it is worth to them</text><rect x="180" y="66" width="150" height="120" rx="6" fill="#7A4E9E"/><text x="255" y="118" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">PRICE</text><text x="255" y="140" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.85">the profitable, viable range</text><rect x="180" y="192" width="150" height="40" rx="6" fill="#4d2f6b"/><text x="255" y="217" text-anchor="middle" font-size="13" font-weight="700" fill="#F7F4EF">Floor: what it costs you</text><text x="150" y="44" text-anchor="end" font-size="12" fill="#7A4E9E">value to the customer (max)</text><text x="150" y="216" text-anchor="end" font-size="12" fill="#7A4E9E">cost to produce (min)</text><line x1="166" y1="20" x2="344" y2="20" stroke="#7A4E9E" stroke-width="2"/><line x1="166" y1="232" x2="344" y2="232" stroke="#7A4E9E" stroke-width="2"/></svg></div>
+        <p>The floor of the range is cost: below it, each sale loses money, so cost sets the minimum a business can sustainably charge. The ceiling is the value the offering provides to the customer: no rational customer will pay more than the offering is worth to them, so value sets the maximum. Every viable price lies somewhere between these two, and where it sits within the range determines how the value created is split between the business and the customer. Price near the floor gives most of the value to the customer; price near the ceiling captures most of it for the business.</p>
+        <p>This simple picture corrects the most common pricing mistake: setting price by cost alone. Cost-plus pricing, adding a fixed margin to cost, is easy but often wrong, because it ignores the ceiling entirely. If customers value the offering far above its cost, cost-plus pricing leaves large amounts of value on the table; if they value it near its cost, cost-plus pricing may exceed what they will pay. The more powerful approach is value-based pricing, setting price according to what the offering is worth to the customer rather than what it costs to make, so the business captures a fair share of the value it genuinely creates. The whole art of pricing is understanding the value ceiling well enough to price toward it with confidence.</p>
+        <div class="note"><strong>Note:</strong> Cost sets the floor, but value sets the ceiling, and the best pricing looks up at the ceiling, not just down at the floor. Cost-plus pricing ignores the ceiling and usually leaves money on the table.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>نطاق التسعير</h2>
+        <p class="lead">كل سعرٍ يجب أن يجلس ضمن نطاقٍ محدودٍ من الأسفل بالكلفة ومن الأعلى بالقيمة. وفهم هذا النطاق، المُوضَّح أدناه، أساس كل تفكيرٍ تسعيري.</p>
+        <div style="text-align:center;margin:20px 0 8px;"><svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;max-width:480px;height:auto;font-family:&apos;IBM Plex Sans Arabic&apos;,sans-serif;"><rect x="180" y="20" width="150" height="40" rx="6" fill="#c9b8e8"/><text x="255" y="45" text-anchor="middle" font-size="13" font-weight="700" fill="#2E1A47">السقف: ما يساويه لهم</text><rect x="180" y="66" width="150" height="120" rx="6" fill="#7A4E9E"/><text x="255" y="118" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">السعر</text><text x="255" y="140" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.85">النطاق المربح القابل للحياة</text><rect x="180" y="192" width="150" height="40" rx="6" fill="#4d2f6b"/><text x="255" y="217" text-anchor="middle" font-size="13" font-weight="700" fill="#F7F4EF">الأرضية: ما يكلّفك</text><text x="150" y="44" text-anchor="end" font-size="12" fill="#7A4E9E">القيمة للعميل (الأقصى)</text><text x="150" y="216" text-anchor="end" font-size="12" fill="#7A4E9E">كلفة الإنتاج (الأدنى)</text><line x1="166" y1="20" x2="344" y2="20" stroke="#7A4E9E" stroke-width="2"/><line x1="166" y1="232" x2="344" y2="232" stroke="#7A4E9E" stroke-width="2"/></svg></div>
+        <p>أرضية النطاق الكلفة: تحتها، كل بيعٍ يخسر مالًا، فالكلفة تضع الأدنى الذي يستطيع عملٌ تقاضيه باستدامة. والسقف القيمة التي يوفّرها العرض للعميل: لا عميل عاقل يدفع أكثر مما يساويه العرض له، فالقيمة تضع الأقصى. وكل سعرٍ قابل للحياة يقع بين هذين، وحيث يجلس ضمن النطاق يحدّد كيف تُقسَم القيمة المخلوقة بين العمل والعميل. فسعرٌ قرب الأرضية يعطي أغلب القيمة للعميل؛ وسعرٌ قرب السقف يلتقط أغلبها للعمل.</p>
+        <p>هذه الصورة البسيطة تصحّح أشيع خطأ تسعيري: وضع السعر بالكلفة وحدها. فالتسعير كلفة-زائد، بإضافة هامشٍ ثابت للكلفة، سهلٌ لكنه خاطئ غالبًا، لأنه يتجاهل السقف كليًا. فإن قدّر العملاء العرض فوق كلفته بكثير، ترك تسعير كلفة-زائد كمياتٍ كبيرة من القيمة على الطاولة؛ وإن قدّروه قرب كلفته، قد يتجاوز تسعير كلفة-زائد ما سيدفعون. والنهج الأقوى التسعير القائم على القيمة، وضع السعر بحسب ما يساويه العرض للعميل لا ما يكلّف صنعه، فيلتقط العمل حصةً عادلة من القيمة التي يخلقها فعلًا. وكل فنّ التسعير فهم سقف القيمة جيدًا كفايةً للتسعير نحوه بثقة.</p>
+        <div class="note"><strong>ملاحظة:</strong> الكلفة تضع الأرضية، لكن القيمة تضع السقف، وأفضل تسعيرٍ ينظر أعلى للسقف لا للأرضية فقط. فتسعير كلفة-زائد يتجاهل السقف ويترك المال على الطاولة عادةً.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="strategies">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Pricing Strategies</h2>
+        <p class="lead">Within the range, a business makes strategic choices about how to price, and the right choice depends on the market, the customer, and the goal. A few core approaches recur.</p>
+        <p>The main pricing methods reflect what a price is anchored to. Cost-based pricing starts from cost and adds a margin, simple but blind to value. Competition-based pricing sets price relative to rivals, matching, undercutting, or premium, useful where offerings are similar but risky as a sole guide since it ignores your own value and can trigger price wars. Value-based pricing, the most powerful, sets price by the worth of the offering to the customer, and requires genuinely understanding that value. Most sophisticated pricing blends these, grounded in value, informed by competition, and constrained by cost.</p>
+        <table>
+          <tr><th><span data-lang="en">Approach</span><span data-lang="ar">النهج</span></th><th><span data-lang="en">Anchored to</span><span data-lang="ar">مرتكز على</span></th><th><span data-lang="en">Watch out for</span><span data-lang="ar">احذر</span></th></tr>
+          <tr><td><span data-lang="en">Cost-based</span><span data-lang="ar">قائم على الكلفة</span></td><td><span data-lang="en">cost plus a margin</span><span data-lang="ar">الكلفة زائد هامش</span></td><td><span data-lang="en">ignores what customers will pay</span><span data-lang="ar">يتجاهل ما سيدفعه العملاء</span></td></tr>
+          <tr><td><span data-lang="en">Competition-based</span><span data-lang="ar">قائم على المنافسة</span></td><td><span data-lang="en">what rivals charge</span><span data-lang="ar">ما يتقاضاه المنافسون</span></td><td><span data-lang="en">ignores your own value; price wars</span><span data-lang="ar">يتجاهل قيمتك؛ حروب أسعار</span></td></tr>
+          <tr><td><span data-lang="en">Value-based</span><span data-lang="ar">قائم على القيمة</span></td><td><span data-lang="en">worth to the customer</span><span data-lang="ar">ما يساويه للعميل</span></td><td><span data-lang="en">requires truly knowing the value</span><span data-lang="ar">يتطلّب معرفة القيمة فعلًا</span></td></tr>
+        </table>
+        <p>Beyond the basic method sit strategic plays. A business launching something new may skim, pricing high at first to capture the most value-hungry customers, then lowering over time, or penetrate, pricing low to win share fast. It may use psychological pricing, since how a price is presented affects perception, and price differentiation, charging different customers or segments different prices for the value each receives, as with tiered plans or premium versions. The unifying principle is that pricing is strategic, not clerical: it should express a deliberate choice about which customers to serve, how much of the value to capture, and how to position against rivals, all grounded in a genuine understanding of what the offering is worth to the people who buy it.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> pricing is a high-leverage strategic decision that must sit between the floor of cost and the ceiling of customer value, and the strongest approach prices toward value rather than just above cost, choosing deliberately how much of the value created to capture and how to position against competitors.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>استراتيجيات التسعير</h2>
+        <p class="lead">ضمن النطاق، يصنع عملٌ اختياراتٍ استراتيجية عن كيف يسعّر، والاختيار الصحيح يعتمد على السوق والعميل والهدف. وبضعة نهوجٍ جوهرية تتكرّر.</p>
+        <p>طرق التسعير الرئيسة تعكس على ماذا يرتكز السعر. فالتسعير القائم على الكلفة يبدأ من الكلفة ويضيف هامشًا، بسيطٌ لكنه أعمى عن القيمة. والقائم على المنافسة يضع السعر نسبةً للمنافسين، مطابقةً أو خفضًا أو علاوة، نافعٌ حيث تتشابه العروض لكنه خطرٌ كدليلٍ وحيد إذ يتجاهل قيمتك وقد يُشعِل حروب أسعار. والقائم على القيمة، الأقوى، يضع السعر بقيمة العرض للعميل، ويتطلّب فهم تلك القيمة فعلًا. وأغلب التسعير المتطوّر يمزج هذه، مؤصَّلًا في القيمة، مُطَّلعًا بالمنافسة، مقيَّدًا بالكلفة.</p>
+        <table>
+          <tr><th><span data-lang="en">النهج</span><span data-lang="ar">النهج</span></th><th><span data-lang="en">مرتكز على</span><span data-lang="ar">مرتكز على</span></th><th><span data-lang="en">احذر</span><span data-lang="ar">احذر</span></th></tr>
+          <tr><td><span data-lang="en">قائم على الكلفة</span><span data-lang="ar">قائم على الكلفة</span></td><td><span data-lang="en">الكلفة زائد هامش</span><span data-lang="ar">الكلفة زائد هامش</span></td><td><span data-lang="en">يتجاهل ما سيدفعه العملاء</span><span data-lang="ar">يتجاهل ما سيدفعه العملاء</span></td></tr>
+          <tr><td><span data-lang="en">قائم على المنافسة</span><span data-lang="ar">قائم على المنافسة</span></td><td><span data-lang="en">ما يتقاضاه المنافسون</span><span data-lang="ar">ما يتقاضاه المنافسون</span></td><td><span data-lang="en">يتجاهل قيمتك؛ حروب أسعار</span><span data-lang="ar">يتجاهل قيمتك؛ حروب أسعار</span></td></tr>
+          <tr><td><span data-lang="en">قائم على القيمة</span><span data-lang="ar">قائم على القيمة</span></td><td><span data-lang="en">ما يساويه للعميل</span><span data-lang="ar">ما يساويه للعميل</span></td><td><span data-lang="en">يتطلّب معرفة القيمة فعلًا</span><span data-lang="ar">يتطلّب معرفة القيمة فعلًا</span></td></tr>
+        </table>
+        <p>وراء الطريقة الأساس تجلس مناوراتٌ استراتيجية. فعملٌ يُطلِق جديدًا قد يقشط، مسعّرًا عاليًا أولًا لالتقاط أكثر العملاء تعطّشًا للقيمة، ثم يخفض بالزمن، أو يتغلغل، مسعّرًا منخفضًا لكسب حصةٍ سريعًا. وقد يستخدم التسعير النفسي، إذ كيف يُعرَض السعر يؤثّر في الإدراك، وتمييز الأسعار، بتقاضي عملاء أو شرائح مختلفة أسعارًا مختلفة للقيمة التي يتلقّاها كلٌّ، كالخطط المتدرّجة أو النسخ الراقية. والمبدأ الموحّد أن التسعير استراتيجي لا كتابي: ينبغي أن يعبّر عن اختيارٍ متعمَّد لأي عملاء يُخدَمون، وكم من القيمة يُلتقَط، وكيف يُموضَع ضد المنافسين، كلها مؤصَّلة في فهمٍ حقيقي لما يساويه العرض لمن يشترونه.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> التسعير قرارٌ استراتيجي عالي الرافعة يجب أن يجلس بين أرضية الكلفة وسقف قيمة العميل، والنهج الأقوى يسعّر نحو القيمة لا فوق الكلفة فقط، مختارًا عمدًا كم من القيمة المخلوقة يُلتقَط وكيف يُموضَع ضد المنافسين.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Pricing is a high-leverage strategic decision anchored between cost and customer value.</p>
+        <ul>
+          <li>Treat price as the fastest lever on profit, deserving real strategic attention.</li>
+          <li>Keep every price between the floor of cost and the ceiling of customer value.</li>
+          <li>Prefer value-based pricing, setting price by worth to the customer, not just cost-plus.</li>
+          <li>Use competition as input, not the sole guide, to avoid ignoring your value and price wars.</li>
+          <li>Make deliberate strategic choices: skim or penetrate, tier, and differentiate by value.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/topic/subject/pricing-strategy" target="_blank" rel="noopener">Harvard Business Review, pricing strategy.</a></li>
+          <li><a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights" target="_blank" rel="noopener">McKinsey, on pricing.</a></li>
+          <li><a href="https://www.ama.org/marketing-news/" target="_blank" rel="noopener">American Marketing Association resources.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">التسعير قرارٌ استراتيجي عالي الرافعة مرتكزٌ بين الكلفة وقيمة العميل.</p>
+        <ul>
+          <li>عامِل السعر كأسرع رافعةٍ على الربح، تستحقّ انتباهًا استراتيجيًا حقيقيًا.</li>
+          <li>أبقِ كل سعرٍ بين أرضية الكلفة وسقف قيمة العميل.</li>
+          <li>فضّل التسعير القائم على القيمة، بوضع السعر بقيمة العميل، لا كلفة-زائد فقط.</li>
+          <li>استخدم المنافسة كمُدخَل لا دليلًا وحيدًا، لتجنّب تجاهل قيمتك وحروب الأسعار.</li>
+          <li>اصنع اختياراتٍ استراتيجية متعمَّدة: قشط أو تغلغل، ودرّج، وميّز بالقيمة.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/topic/subject/pricing-strategy" target="_blank" rel="noopener">هارفارد بزنس ريفيو، استراتيجية التسعير.</a></li>
+          <li><a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights" target="_blank" rel="noopener">ماكنزي، عن التسعير.</a></li>
+          <li><a href="https://www.ama.org/marketing-news/" target="_blank" rel="noopener">جمعية التسويق الأمريكية، موارد.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","range","strategies","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO &amp; Digital Marketing</title>
+<meta name="description" content="An operational framework for digital marketing and SEO: how search works, content and search intent, technical foundations, and channel mix.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">MARKETING &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">التسويق &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">SEO &amp; Digital Marketing</span><span data-lang="ar">SEO والتسويق الرقمي</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="search"><span data-lang="en">How Search Works</span><span data-lang="ar">كيف يعمل البحث</span></a>
+    <a data-id="content"><span data-lang="en">Content &amp; Intent</span><span data-lang="ar">المحتوى والنيّة</span></a>
+    <a data-id="technical"><span data-lang="en">Technical &amp; Channels</span><span data-lang="ar">التقني والقنوات</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Digital marketing &amp; SEO</div>
+          <div><span>Scope:</span> Reaching and converting customers through digital channels</div>
+          <div><span>Owner role:</span> Digital marketing owner, with channel owners</div>
+          <div><span>Review cadence:</span> Continuous optimization, performance review each month</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Digital marketing is the practice of reaching, engaging, and converting customers through digital channels, from search engines to social media to email. Search engine optimization, or SEO, is one of its most durable disciplines: earning visibility in search results by making content that genuinely serves what people are looking for.</p>
+        <p>What makes digital marketing distinct is that it is measurable in a way traditional marketing never was. Every click, view, and conversion can be tracked, which turns marketing from an act of faith into a discipline of evidence, where what works can be identified and scaled and what does not can be stopped. But that measurability is also a trap: it is easy to optimize the numbers that are easy to measure rather than the ones that matter, so discipline means keeping the focus on real business outcomes, not vanity metrics.</p>
+        <p>This framework describes digital marketing with a focus on SEO as a durable, evidence-based discipline, organized around how people find and choose online. It draws on recognized guidance such as Google's own search documentation and connects to the customer-experience framework, without reproducing any source text.</p>
+        <div class="note"><strong>Note:</strong> Digital marketing's superpower is measurability, and its trap is measuring the wrong thing. The discipline is to optimize for real outcomes, customers and revenue, not for the vanity metrics that are merely easy to count.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> التسويق الرقمي وSEO</div>
+          <div><span>النطاق:</span> بلوغ العملاء وتحويلهم عبر القنوات الرقمية</div>
+          <div><span>دور المالك:</span> مالك التسويق الرقمي، مع ملّاك القنوات</div>
+          <div><span>دورية المراجعة:</span> تحسينٌ مستمر، ومراجعة أداءٍ كل شهر</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">التسويق الرقمي ممارسة بلوغ العملاء وإشراكهم وتحويلهم عبر القنوات الرقمية، من محرّكات البحث إلى التواصل الاجتماعي إلى البريد. وتحسين محرّكات البحث (SEO) أحد أدومها: كسب الظهور في نتائج البحث بصنع محتوىً يخدم فعلًا ما يبحث عنه الناس.</p>
+        <p>ما يميّز التسويق الرقمي أنه قابلٌ للقياس بطريقةٍ لم يكن التسويق التقليدي كذلك قط. فكل نقرةٍ ومشاهدةٍ وتحويل يمكن تتبّعه، ما يحوّل التسويق من فعل إيمانٍ إلى انضباط دليل، حيث ما يعمل يُحدَّد ويُوسَّع وما لا يعمل يُوقَف. لكن تلك القابلية للقياس فخٌّ أيضًا: فيسهُل تحسين الأرقام السهلة القياس بدل المهمّة، فالانضباط إبقاء التركيز على نتائج العمل الحقيقية، لا مقاييس الغرور.</p>
+        <p>يصف هذا الإطار التسويق الرقمي بتركيزٍ على SEO كانضباطٍ دائم قائم على الدليل، منظَّمًا حول كيف يجد الناس ويختارون على الإنترنت. ويستند إلى إرشادٍ معترف به كتوثيق بحث Google نفسه ويتّصل بإطار تجربة العميل، دون نسخ أي نصّ مصدري.</p>
+        <div class="note"><strong>ملاحظة:</strong> قوّة التسويق الرقمي القابلية للقياس، وفخّه قياس الشيء الخطأ. والانضباط التحسين للنتائج الحقيقية، العملاء والإيراد، لا مقاييس الغرور السهلة العدّ فقط.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="search">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>How Search Works</h2>
+        <p class="lead">To earn visibility in search, you first have to understand how search engines work. At heart, a search engine does three things: it discovers pages, it understands them, and it ranks them in response to a query, and SEO is about serving all three well.</p>
+        <p>The process runs in stages. First, search engines crawl the web, following links to discover pages. Then they index what they find, analyzing and storing an understanding of each page's content. Finally, when someone searches, they rank the relevant pages, ordering them by how well each answers the query and how trustworthy it is. A page that is not crawled cannot be indexed, a page that is not indexed cannot rank, and a page that is indexed but not relevant will rank poorly, so SEO addresses each stage in turn.</p>
+        <ul>
+          <li><strong>Crawling:</strong> search engines discover pages by following links, so a page must be reachable to be found.</li>
+          <li><strong>Indexing:</strong> they analyze and store an understanding of each page, so content must be clear and readable to them.</li>
+          <li><strong>Ranking:</strong> they order relevant pages by how well they answer the query and how trustworthy they are.</li>
+        </ul>
+        <p>The single most important idea underlying all of this is that modern search engines are trying to serve the user, by returning the most relevant, trustworthy answer to what the person actually wants. This means the durable way to rank well is not to trick the engine but to genuinely be the best answer to a real question. Tactics that try to game the system work briefly and then fail as engines improve, while content that truly serves the searcher's intent keeps its value, which is why SEO has converged over time on simply being genuinely useful.</p>
+        <div class="note"><strong>Note:</strong> Search engines are trying to serve the searcher, so the durable SEO strategy is to be the answer they are looking for. Tricks fade as engines improve; genuine usefulness compounds.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>كيف يعمل البحث</h2>
+        <p class="lead">لكسب الظهور في البحث، عليك أولًا فهم كيف تعمل محرّكات البحث. في جوهره، يفعل محرّك البحث ثلاثة أشياء: يكتشف الصفحات، ويفهمها، ويرتّبها استجابةً لاستعلام، وSEO هو خدمة الثلاثة جيدًا.</p>
+        <p>تجري العملية على مراحل. أولًا، تزحف محرّكات البحث على الويب، متتبّعةً الروابط لاكتشاف الصفحات. ثم تفهرس ما تجده، مُحلِّلةً وحافظةً فهمًا لمحتوى كل صفحة. وأخيرًا، حين يبحث أحد، ترتّب الصفحات ذات الصلة، مُرتِّبةً إياها بكم تجيب كلٌّ الاستعلام وكم هي موثوقة. فصفحةٌ لا يُزحَف عليها لا تُفهرَس، وصفحةٌ لا تُفهرَس لا ترتّب، وصفحةٌ مُفهرَسة لكن غير ذات صلة ترتّب رديئًا، فيعالج SEO كل مرحلةٍ بدورها.</p>
+        <ul>
+          <li><strong>الزحف:</strong> تكتشف محرّكات البحث الصفحات بتتبّع الروابط، فيجب أن تكون الصفحة قابلة للوصول لتُوجَد.</li>
+          <li><strong>الفهرسة:</strong> تُحلّل وتحفظ فهمًا لكل صفحة، فيجب أن يكون المحتوى واضحًا مقروءًا لها.</li>
+          <li><strong>الترتيب:</strong> ترتّب الصفحات ذات الصلة بكم تجيب الاستعلام وكم هي موثوقة.</li>
+        </ul>
+        <p>أهمّ فكرةٍ مفردة تحت كل هذا أن محرّكات البحث الحديثة تحاول خدمة المستخدم، بإرجاع الجواب الأكثر صلةً وثقةً لما يريده الشخص فعلًا. وهذا يعني أن الطريقة الدائمة للترتيب الجيد ليست خداع المحرّك بل أن تكون فعلًا أفضل جوابٍ لسؤالٍ حقيقي. فالحيل التي تحاول التلاعب بالنظام تعمل لحظةً ثم تفشل مع تحسّن المحرّكات، ومحتوىً يخدم نيّة الباحث حقًّا يحفظ قيمته، ولذا تقارب SEO عبر الزمن على مجرّد كونه مفيدًا فعلًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> محرّكات البحث تحاول خدمة الباحث، فالاستراتيجية الدائمة أن تكون الجواب الذي يبحث عنه. الحيل تخبو مع تحسّن المحرّكات؛ والفائدة الحقيقية تتراكم.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="content">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Content &amp; Search Intent</h2>
+        <p class="lead">At the center of SEO is content that answers what people are actually searching for. The key concept is search intent: understanding not just the words a person types, but the goal behind them, and giving them exactly what would satisfy it.</p>
+        <p>Different searches carry different intents. Someone searching how to do something wants a guide, someone searching to buy wants options and prices, someone searching a brand name wants that specific company. Matching content to intent means recognizing what kind of answer a search deserves and providing it, because a page that ranks for a query but does not satisfy the intent behind it will not keep the visitor or the ranking. The old practice of stuffing pages with keywords has given way to the understanding that the goal is to satisfy the intent the keywords represent.</p>
+        <ul>
+          <li><strong>Understand intent:</strong> identify the real goal behind a search, not just its literal words.</li>
+          <li><strong>Answer it fully:</strong> give the searcher what would genuinely satisfy their goal, better than the alternatives.</li>
+          <li><strong>Structure for clarity:</strong> organize content so both people and search engines can easily understand it.</li>
+          <li><strong>Earn trust:</strong> be accurate, credible, and useful, because trust is what sustains rankings over time.</li>
+        </ul>
+        <p>Quality content also earns the signals that help it rank. When content genuinely helps people, they link to it, share it, and spend time with it, and these behaviors signal to search engines that the content is valuable. This creates a virtuous circle that cannot be faked at scale: the durable path to visibility is to create something genuinely worth finding, which earns the signals, which earns the ranking. Trying to earn the signals without the underlying value is the treadmill that SEO tricks put an organization on.</p>
+        <div class="note"><strong>Note:</strong> Write for the intent, not the keyword. The keyword tells you what someone typed, but the intent tells you what they wanted, and satisfying the intent is what earns and keeps the ranking.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>المحتوى ونيّة البحث</h2>
+        <p class="lead">في مركز SEO محتوىً يجيب ما يبحث عنه الناس فعلًا. والمفهوم المفتاحي نيّة البحث: فهم لا الكلمات التي يكتبها الشخص فقط، بل الهدف خلفها، وإعطاؤه بالضبط ما يُرضيه.</p>
+        <p>بحوثٌ مختلفة تحمل نيّاتٍ مختلفة. فمن يبحث «كيف أفعل شيئًا» يريد دليلًا، ومن يبحث ليشتري يريد خياراتٍ وأسعارًا، ومن يبحث اسم علامةٍ يريد تلك الشركة بعينها. ومطابقة المحتوى للنيّة تعني إدراك أي جوابٍ يستحقّه بحثٌ وتقديمه، لأن صفحةً ترتّب لاستعلامٍ لكنها لا تُرضي نيّته لن تُبقي الزائر ولا الترتيب. والممارسة القديمة بحشو الصفحات بالكلمات المفتاحية تراجعت أمام فهم أن الهدف إرضاء النيّة التي تمثّلها الكلمات.</p>
+        <ul>
+          <li><strong>افهم النيّة:</strong> حدّد الهدف الحقيقي خلف بحثٍ، لا كلماته الحرفية فقط.</li>
+          <li><strong>أجِبها كاملةً:</strong> أعطِ الباحث ما يُرضي هدفه فعلًا، أفضل من البدائل.</li>
+          <li><strong>هيكِل للوضوح:</strong> نظّم المحتوى ليفهمه الناس ومحرّكات البحث بسهولة.</li>
+          <li><strong>اكسب الثقة:</strong> كن دقيقًا موثوقًا مفيدًا، لأن الثقة هي ما يُديم الترتيب عبر الزمن.</li>
+        </ul>
+        <p>المحتوى الجيد يكسب أيضًا الإشارات التي تساعده على الترتيب. فحين يساعد المحتوى الناس فعلًا، يربطون به ويشاركونه ويقضون وقتًا معه، وهذه السلوكيات تُشير لمحرّكات البحث أن المحتوى قيّم. وهذا يخلق دائرةً فاضلة لا تُزيَّف على نطاق: فالطريق الدائم للظهور صنع شيءٍ يستحقّ الإيجاد حقًّا، فيكسب الإشارات، فيكسب الترتيب. ومحاولة كسب الإشارات دون القيمة الكامنة هي دولاب الجري الذي تضع حيل SEO المنشأة عليه.</p>
+        <div class="note"><strong>ملاحظة:</strong> اكتب للنيّة لا للكلمة المفتاحية. فالكلمة تخبرك ما كتبه أحدٌ، لكن النيّة تخبرك ما أراده، وإرضاء النيّة هو ما يكسب الترتيب ويحفظه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="technical">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Technical Foundations &amp; Channels</h2>
+        <p class="lead">Great content needs a sound technical foundation to be found, and SEO sits within a wider mix of digital channels that work best together. The technical basics and the channel mix are what let good content actually reach its audience.</p>
+        <p>On the technical side, a few fundamentals matter most: a site that loads quickly, works well on mobile devices, is secure, and is structured so that search engines can crawl and understand it. These are not exotic, they are hygiene, and neglecting them can hold back even excellent content. Beyond search, digital marketing spans a mix of channels, and a useful way to organize them is by who controls them.</p>
+        <ul>
+          <li><strong>Owned channels:</strong> your own website, app, and email list, which you control fully.</li>
+          <li><strong>Earned channels:</strong> coverage, links, and word of mouth you earn through being worth talking about.</li>
+          <li><strong>Paid channels:</strong> advertising you buy, which delivers reach quickly but only while you keep paying.</li>
+        </ul>
+        <p>The strongest digital marketing combines these channels rather than relying on one. Paid advertising can deliver immediate reach but stops the moment the budget stops, while owned and earned assets such as strong content and a loyal audience compound over time and keep working after the spending ends. A common mistake is to over-rely on paid channels for growth that does not build any lasting asset, which is renting an audience rather than building one, so the durable strategy balances the quick reach of paid with the compounding value of owned and earned.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> digital marketing reaches and converts customers by understanding how search works, creating content that satisfies real intent on a sound technical foundation, and balancing owned, earned, and paid channels while measuring for real outcomes rather than vanity metrics.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الأسس التقنية والقنوات</h2>
+        <p class="lead">المحتوى الرائع يحتاج أساسًا تقنيًا سليمًا ليُوجَد، وSEO يجلس ضمن مزيجٍ أوسع من القنوات الرقمية التي تعمل أفضل معًا. والأساسيات التقنية ومزيج القنوات هما ما يتيح للمحتوى الجيد بلوغ جمهوره فعلًا.</p>
+        <p>في الجانب التقني، بضع أساسياتٍ تهمّ أكثر: موقعٌ يُحمَّل سريعًا، ويعمل جيدًا على الأجهزة المحمولة، وآمن، ومُهيكَل بحيث تستطيع محرّكات البحث الزحف عليه وفهمه. وهذه ليست غريبة بل نظافة، وإهمالها قد يكبح حتى محتوىً ممتازًا. وما وراء البحث، يمتد التسويق الرقمي عبر مزيج قنوات، وطريقةٌ مفيدة لتنظيمها بمن يتحكّم بها.</p>
+        <ul>
+          <li><strong>القنوات المملوكة:</strong> موقعك وتطبيقك وقائمة بريدك، تتحكّم بها كليًا.</li>
+          <li><strong>القنوات المكتسَبة:</strong> التغطية والروابط والكلمة المنقولة التي تكسبها بكونك جديرًا بالحديث.</li>
+          <li><strong>القنوات المدفوعة:</strong> إعلانٌ تشتريه، يسلّم بلوغًا سريعًا لكن فقط ما دمت تدفع.</li>
+        </ul>
+        <p>أقوى تسويقٍ رقمي يجمع هذه القنوات بدل الاعتماد على واحدة. فالإعلان المدفوع يسلّم بلوغًا فوريًا لكنه يتوقّف لحظة توقّف الميزانية، بينما الأصول المملوكة والمكتسَبة كمحتوىً قوي وجمهورٍ وفيّ تتراكم عبر الزمن وتبقى تعمل بعد انتهاء الإنفاق. وخطأٌ شائع الإفراط في الاعتماد على المدفوعة لنموٍّ لا يبني أصلًا دائمًا، وهو استئجار جمهورٍ لا بناؤه، فالاستراتيجية الدائمة توازن البلوغ السريع للمدفوعة بالقيمة المتراكمة للمملوكة والمكتسَبة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> التسويق الرقمي يبلغ العملاء ويحوّلهم بفهم كيف يعمل البحث، وصنع محتوىً يُرضي نيّةً حقيقية على أساسٍ تقني سليم، وموازنة القنوات المملوكة والمكتسَبة والمدفوعة مع القياس للنتائج الحقيقية لا مقاييس الغرور.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Digital marketing and SEO reach and convert customers by being genuinely the best answer online, on a sound foundation, measured for real outcomes.</p>
+        <ul>
+          <li>Use measurability to optimize for real outcomes, customers and revenue, not vanity metrics.</li>
+          <li>Understand how search crawls, indexes, and ranks, and serve each stage.</li>
+          <li>Write for search intent, satisfying the goal behind the query rather than stuffing keywords.</li>
+          <li>Get the technical basics right, speed, mobile, security, and structure, so good content can be found.</li>
+          <li>Balance owned, earned, and paid channels, building compounding assets rather than only renting reach.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide" target="_blank" rel="noopener">Google Search Central, SEO Starter Guide.</a></li>
+          <li><a href="https://developers.google.com/search/docs" target="_blank" rel="noopener">Google Search Central, search documentation.</a></li>
+          <li><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">ISO 9001:2015, Quality management systems (customer focus).</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">Harvard Business School Online, marketing and strategy tools.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">التسويق الرقمي وSEO يبلغان العملاء ويحوّلانهم بأن تكون فعلًا أفضل جوابٍ على الإنترنت، على أساسٍ سليم، مُقاسًا للنتائج الحقيقية.</p>
+        <ul>
+          <li>استخدم القابلية للقياس للتحسين للنتائج الحقيقية، العملاء والإيراد، لا مقاييس الغرور.</li>
+          <li>افهم كيف يزحف البحث ويفهرس ويرتّب، واخدم كل مرحلة.</li>
+          <li>اكتب لنيّة البحث، مُرضِيًا الهدف خلف الاستعلام لا حشو الكلمات.</li>
+          <li>اضبط الأساسيات التقنية، السرعة والمحمول والأمن والهيكلة، ليُوجَد المحتوى الجيد.</li>
+          <li>وازِن القنوات المملوكة والمكتسَبة والمدفوعة، ببناء أصولٍ متراكمة لا مجرّد استئجار بلوغ.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide" target="_blank" rel="noopener">Google Search Central، دليل بدء SEO.</a></li>
+          <li><a href="https://developers.google.com/search/docs" target="_blank" rel="noopener">Google Search Central، توثيق البحث.</a></li>
+          <li><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">ISO 9001:2015، أنظمة إدارة الجودة (التركيز على العميل).</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">هارفارد أونلاين، أدوات التسويق والاستراتيجية.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","search","content","technical","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

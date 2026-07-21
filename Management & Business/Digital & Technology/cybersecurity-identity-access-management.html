@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Identity, Access &amp; Security Policies</title>
+<meta name="description" content="An operational framework for identity and access: lifecycle, authentication, least privilege, access review, supporting policies, and metrics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">CYBERSECURITY &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الأمن السيبراني &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Identity, Access &amp; Security Policies</span><span data-lang="ar">الهوية والصلاحيات والسياسات الأمنية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="identity"><span data-lang="en">Identity</span><span data-lang="ar">الهوية</span></a>
+    <a data-id="authentication"><span data-lang="en">Authentication</span><span data-lang="ar">المصادقة</span></a>
+    <a data-id="authorization"><span data-lang="en">Authorization</span><span data-lang="ar">التخويل</span></a>
+    <a data-id="review"><span data-lang="en">Access Review</span><span data-lang="ar">مراجعة الوصول</span></a>
+    <a data-id="policies"><span data-lang="en">Policies</span><span data-lang="ar">السياسات</span></a>
+    <a data-id="metrics"><span data-lang="en">Metrics</span><span data-lang="ar">المؤشرات</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Identity &amp; access management</div>
+          <div><span>Scope:</span> Who can access what, proven, granted least, and reviewed</div>
+          <div><span>Owner role:</span> Identity &amp; access owner, with system owners</div>
+          <div><span>Review cadence:</span> Access recertified at planned intervals, at least yearly</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Identity and access management is the discipline of making sure the right people, and only the right people, can reach the right resources, for the right reasons, at the right time. It is the control most incidents ultimately turn on, because a stolen or over-privileged identity is the key that opens every other door.</p>
+        <p>The framework rests on a simple chain: prove who someone is, decide what they may do, grant only that, and check later that the grant is still correct. Break any link and the others weaken, since strong authentication is wasted if everyone is an administrator, and least privilege is meaningless if identities are easy to impersonate.</p>
+        <p>This framework is reusable for any environment and aligns to recognized guidance, drawing on the digital identity guidance of NIST and the access control controls of established catalogs, without reproducing their text.</p>
+        <div class="note"><strong>Note:</strong> Identity is the new perimeter. As systems move outside the office network, the question shifts from where you are connecting to who you are and what you are allowed to do.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> إدارة الهوية والصلاحيات</div>
+          <div><span>النطاق:</span> مَن يصل إلى ماذا، بإثباتٍ وأقلّ صلاحية ومراجعة</div>
+          <div><span>دور المالك:</span> مالك الهوية والصلاحيات، مع ملّاك الأنظمة</div>
+          <div><span>دورية المراجعة:</span> إعادة اعتماد الصلاحيات على فترات مخطّطة، سنويًا على الأقل</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">إدارة الهوية والصلاحيات انضباطٌ يضمن أن الأشخاص الصحيحين، وهم فقط، يصلون إلى الموارد الصحيحة، لأسبابٍ صحيحة، في الوقت الصحيح. وهي الضابط الذي تدور عليه أغلب الحوادث في النهاية، لأن هويةً مسروقة أو مفرطة الصلاحية هي المفتاح الذي يفتح كل بابٍ آخر.</p>
+        <p>يقوم الإطار على سلسلةٍ بسيطة: أثبِت من يكون الشخص، وقرّر ما يجوز له، وامنحه ذلك فقط، وتحقّق لاحقًا أن المنح ما زال صحيحًا. واكسِر أي حلقةٍ تضعف الأخرى، فالمصادقة القوية تُهدَر إن كان الجميع مسؤولًا إداريًا، وأقلّ الصلاحية بلا معنى إن كانت الهويات سهلة الانتحال.</p>
+        <p>هذا الإطار قابل لإعادة الاستخدام لأي بيئة ويتوافق مع الإرشاد المعترف به، مستندًا إلى إرشاد الهوية الرقمية من NIST وضوابط التحكّم بالوصول من الكتالوجات المعتمَدة، دون نسخ نصّها.</p>
+        <div class="note"><strong>ملاحظة:</strong> الهوية هي المحيط الجديد. فمع خروج الأنظمة عن شبكة المكتب، ينتقل السؤال من أين تتّصل إلى مَن أنت وما المسموح لك فعله.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="identity">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Identity &amp; Its Lifecycle</h2>
+        <p class="lead">Every access decision starts with an identity, and every identity has a lifecycle: it is created, it changes as a person's role changes, and it must be removed when they leave. Most access problems trace back to a lifecycle step that was skipped.</p>
+        <p>The critical events are joining, moving, and leaving. When someone joins, they should receive exactly the access their role needs, no more. When they move, old access should be removed as new access is added, not simply stacked on top. When they leave, access should be revoked promptly, because a departed employee with a live account is a standing risk that guards nothing.</p>
+        <ul>
+          <li><strong>Joiner:</strong> provision access from a defined role, so a new hire starts with a known, minimal set.</li>
+          <li><strong>Mover:</strong> adjust access on role change, removing what is no longer needed rather than accumulating.</li>
+          <li><strong>Leaver:</strong> revoke access promptly on departure, across every system the identity touched.</li>
+        </ul>
+        <p>Accumulated access, often called privilege creep, is the silent result of many moves without cleanups. Over years, a long-tenured employee can quietly gather the combined access of every role they ever held, which is exactly the concentration an attacker hopes to hijack.</p>
+        <h4>Worked example</h4>
+        <p>An analyst joins in finance, moves to procurement after a year, then to a systems role. If each move only added access, they now hold finance approvals, procurement authority, and system administration at once, a combination no single job needs and no reviewer would grant on purpose. A single compromised session for that one account now spans three sensitive domains. The fix is not heroic: at each move, the mover process removes what the old role required before the new access is granted, so the account always reflects the current job and nothing more.</p>
+        <div class="note"><strong>Note:</strong> The leaver process is the one most often neglected and most dangerous when it fails. Time-to-revoke on departure is a metric worth watching closely.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الهوية ودورة حياتها</h2>
+        <p class="lead">كل قرار وصولٍ يبدأ بهوية، ولكل هويةٍ دورة حياة: تُنشَأ، وتتغيّر مع تغيّر دور الشخص، ويجب إزالتها حين يغادر. وأغلب مشكلات الوصول تعود إلى خطوة دورة حياةٍ أُغفِلت.</p>
+        <p>الأحداث الحرجة هي الالتحاق والانتقال والمغادرة. فحين يلتحق أحد، ينبغي أن ينال بالضبط ما يحتاجه دوره من وصول، لا أكثر. وحين ينتقل، يُزال القديم مع إضافة الجديد، لا أن يُكدَّس فوقه. وحين يغادر، تُسحَب الصلاحيات فورًا، لأن موظفًا مغادرًا بحسابٍ حيّ خطرٌ قائم لا يحرس شيئًا.</p>
+        <ul>
+          <li><strong>الملتحق:</strong> امنح الوصول من دورٍ محدَّد، فيبدأ الجديد بمجموعةٍ معلومة دنيا.</li>
+          <li><strong>المنتقل:</strong> عدّل الوصول عند تغيّر الدور، بإزالة ما لم يعُد لازمًا لا بمراكمته.</li>
+          <li><strong>المغادر:</strong> اسحب الوصول فورًا عند المغادرة، عبر كل نظامٍ مسّته الهوية.</li>
+        </ul>
+        <p>الوصول المتراكم، ويُسمّى غالبًا زحف الصلاحيات، هو الناتج الصامت لانتقالاتٍ كثيرة بلا تنظيف. فعبر السنين قد يجمع موظفٌ طويل الخدمة بهدوءٍ وصولَ كل دورٍ شغله يومًا، وهو بالضبط التركّز الذي يأمل المهاجم اختطافه.</p>
+        <h4>مثال محلول</h4>
+        <p>محلّلٌ يلتحق في المالية، ثم ينتقل للمشتريات بعد عام، ثم لدورٍ تقني. فإن كان كل انتقالٍ يضيف وصولًا فقط، صار يحمل اعتمادات المالية وصلاحية المشتريات وإدارة الأنظمة معًا، تركيبةٌ لا تحتاجها وظيفةٌ واحدة ولا يمنحها مراجعٌ عن قصد. وجلسةٌ واحدة مخترَقة لذلك الحساب تمتدّ الآن عبر ثلاثة مجالاتٍ حسّاسة. والعلاج ليس بطوليًا: عند كل انتقال، تُزيل عملية المنتقل ما تطلّبه الدور القديم قبل منح الجديد، فيعكس الحساب دائمًا الوظيفة الحالية لا أكثر.</p>
+        <div class="note"><strong>ملاحظة:</strong> عملية المغادر أكثرها إهمالًا وأخطرها عند الفشل. وزمن السحب عند المغادرة مؤشرٌ يستحق مراقبةً دقيقة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="authentication">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Authentication</h2>
+        <p class="lead">Authentication is proving that a person is who they claim to be. Its strength sets a ceiling on every access decision that follows, because a resource is only as protected as the login in front of it.</p>
+        <p>Proof draws on factors of different kinds: something you know such as a password, something you have such as a phone or hardware key, and something you are such as a fingerprint. Any single factor can be stolen or guessed, so combining factors, known as multi-factor authentication, is the single highest-value control most organizations can apply. It turns a stolen password from a full compromise into a failed attempt.</p>
+        <h3>Beyond the password</h3>
+        <p>Passwords remain common but are the weakest factor, because people reuse them and attackers harvest them at scale. Modern guidance favors longer passphrases over forced complexity, discourages routine forced rotation that pushes people toward weak patterns, and pushes toward phishing-resistant methods where possible. The direction of travel is to lean less on the secret a user remembers and more on the device they hold.</p>
+        <div class="formula">Assurance rises with independent factors: knowledge + possession + inherence, each hard to steal together</div>
+        <div class="note"><strong>Note:</strong> Apply the strongest authentication to the highest-value access first. Requiring a hardware key for administrators buys more safety than tightening every ordinary login.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>المصادقة</h2>
+        <p class="lead">المصادقة إثباتٌ بأن الشخص هو من يدّعي. وقوّتها تضع سقفًا لكل قرار وصولٍ يليها، لأن الموردَ محميٌ بقدر الدخول الذي أمامه فقط.</p>
+        <p>يستند الإثبات إلى عوامل من أنواعٍ مختلفة: شيءٌ تعرفه ككلمة مرور، وشيءٌ تملكه كهاتفٍ أو مفتاحٍ صلب، وشيءٌ أنت هو كبصمة. وأي عاملٍ مفرد يمكن سرقته أو تخمينه، فجمع العوامل، ويُعرَف بالمصادقة متعددة العوامل، أعلى ضابطٍ قيمةً تستطيع أغلب المنشآت تطبيقه. فهو يحوّل كلمة مرورٍ مسروقة من اختراقٍ كامل إلى محاولةٍ فاشلة.</p>
+        <h3>ما بعد كلمة المرور</h3>
+        <p>تبقى كلمات المرور شائعة لكنها أضعف عامل، لأن الناس يُعيدون استخدامها والمهاجمين يحصدونها بالجملة. والإرشاد الحديث يفضّل عبارات المرور الأطول على التعقيد القسري، ويثبّط التدوير القسري الروتيني الذي يدفع الناس لأنماطٍ ضعيفة، ويدفع نحو طرقٍ مقاوِمة للتصيّد حيثما أمكن. واتجاه السير هو الاتّكاء أقل على السرّ الذي يحفظه المستخدم وأكثر على الجهاز الذي يحمله.</p>
+        <div class="formula">يرتفع التوكيد بالعوامل المستقلّة: معرفة + حيازة + سمة ذاتية، يصعب سرقتها معًا</div>
+        <div class="note"><strong>ملاحظة:</strong> طبّق أقوى مصادقةٍ على أعلى وصولٍ قيمةً أولًا. فاشتراط مفتاحٍ صلب للمسؤولين الإداريين يشتري أمانًا أكثر من تشديد كل دخولٍ عادي.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="authorization">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Authorization &amp; Least Privilege</h2>
+        <p class="lead">Once identity is proven, authorization decides what that identity may do. The governing principle is least privilege: grant only the access a role genuinely needs, and nothing more, because every unused permission is a risk with no benefit.</p>
+        <p>Role-based access is the practical way to apply this at scale. Instead of granting permissions to people one by one, you define roles that bundle the access a job needs, then assign people to roles. This makes access reviewable, because a reviewer can reason about a handful of roles rather than thousands of individual grants, and it makes the joiner and mover processes clean.</p>
+        <h3>Privileged access</h3>
+        <p>The most powerful accounts, administrators and service accounts, deserve the tightest control, because their compromise is the most damaging. Good practice separates everyday work from privileged work, grants elevated access only when needed and for a limited time, and records what privileged accounts do. Standing, always-on administrative rights are a large target that is rarely justified.</p>
+        <p>Service accounts deserve a special mention because they are so often forgotten. They are non-human identities that let systems talk to each other, they frequently hold broad access, and because no person logs into them, their passwords are rarely changed and their activity is rarely watched. That combination, high privilege and low scrutiny, makes them a favored path for attackers, so they need owners, rotated credentials, and monitoring just like the human accounts, and arguably more.</p>
+        <ul>
+          <li><strong>Least privilege:</strong> the default is no access, and each grant is justified by need.</li>
+          <li><strong>Role-based access:</strong> permissions bundled into roles, people assigned to roles.</li>
+          <li><strong>Separation of duties:</strong> no single person can both perform and approve a sensitive action.</li>
+          <li><strong>Just-in-time elevation:</strong> raise privilege only when needed, then lower it again.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Separation of duties is a control against both fraud and error. When one person can request, approve, and execute, a single mistake or bad actor has nothing to stop it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>التخويل وأقلّ الصلاحية</h2>
+        <p class="lead">متى أُثبِتت الهوية، يقرّر التخويل ما يجوز لتلك الهوية فعله. والمبدأ الحاكم هو أقلّ الصلاحية: امنح فقط الوصول الذي يحتاجه الدور فعلًا، لا أكثر، لأن كل صلاحيةٍ غير مستخدَمة خطرٌ بلا فائدة.</p>
+        <p>الوصول القائم على الأدوار هو الطريقة العملية لتطبيق ذلك على نطاق. فبدل منح الصلاحيات للأشخاص واحدًا واحدًا، تعرّف أدوارًا تحزم الوصول الذي تحتاجه الوظيفة، ثم تُسنِد الأشخاص للأدوار. وهذا يجعل الوصول قابلًا للمراجعة، إذ يستطيع المراجع التفكير في حفنة أدوارٍ لا آلاف المنح الفردية، ويجعل عمليتي الملتحق والمنتقل نظيفتين.</p>
+        <h3>الوصول المميَّز</h3>
+        <p>أقوى الحسابات، المسؤولون الإداريون وحسابات الخدمة، تستحق أشدّ ضبط، لأن اختراقها الأشدّ ضررًا. والممارسة الجيدة تفصل العمل اليومي عن العمل المميَّز، وتمنح الوصول المرتفع عند الحاجة ولوقتٍ محدود، وتسجّل ما تفعله الحسابات المميَّزة. والصلاحيات الإدارية الدائمة المشتغلة دومًا هدفٌ كبير نادرًا ما يُبرَّر.</p>
+        <p>وتستحق حسابات الخدمة ذكرًا خاصًا لأنها كثيرًا ما تُنسى. فهي هويات غير بشرية تتيح للأنظمة التحادث، وتحمل غالبًا وصولًا واسعًا، ولأن لا شخص يدخل بها، نادرًا ما تُغيَّر كلمات مرورها ونادرًا ما يُراقَب نشاطها. وتلك التركيبة، صلاحيةٌ عالية وتدقيقٌ منخفض، تجعلها طريقًا مفضّلًا للمهاجمين، فتحتاج ملّاكًا وبيانات دخولٍ مُدوَّرة ومراقبةً كالحسابات البشرية تمامًا، بل أكثر.</p>
+        <ul>
+          <li><strong>أقلّ الصلاحية:</strong> الافتراض لا وصول، وكل منحٍ تبرّره الحاجة.</li>
+          <li><strong>الوصول بالأدوار:</strong> صلاحيات محزومة في أدوار، وأشخاص مُسنَدون لأدوار.</li>
+          <li><strong>فصل المهام:</strong> لا يستطيع شخصٌ واحد أداء إجراءٍ حسّاس واعتماده معًا.</li>
+          <li><strong>الرفع عند الحاجة:</strong> ارفع الصلاحية عند الحاجة فقط، ثم اخفضها ثانيةً.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> فصل المهام ضابطٌ ضد الاحتيال والخطأ معًا. فحين يستطيع شخصٌ الطلب والاعتماد والتنفيذ، لا شيء يوقف خطأً واحدًا أو فاعلًا سيئًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="review">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Access Review &amp; Recertification</h2>
+        <p class="lead">Access granted correctly today drifts out of correctness over time. Recertification is the periodic check that every grant is still justified, and it is the control that catches the privilege creep the lifecycle process misses.</p>
+        <p>In a recertification cycle, the owner of a system or role reviews who has access and confirms, with evidence of the business need, that each grant should remain. Anything that cannot be justified is removed. The discipline that makes this real is that the reviewer must actively confirm each access, because a review where everyone clicks approve without looking is worse than none, since it launders stale access as if it were checked.</p>
+        <p>Two design choices make recertification effective rather than ritual. First, present the reviewer with the smallest useful unit, one person's access or one role's members, with enough context to judge, rather than a spreadsheet of thousands of lines that guarantees rubber-stamping. Second, make removal the easy default and retention the deliberate choice, so an access that the reviewer cannot quickly justify falls away rather than surviving by inertia. Framed this way, the review actively shrinks access over time instead of merely blessing whatever exists.</p>
+        <ul>
+          <li><strong>Scope:</strong> the accounts, roles, and privileged access to be reviewed each cycle.</li>
+          <li><strong>Reviewer:</strong> the owner who genuinely knows whether the access is still needed.</li>
+          <li><strong>Evidence:</strong> the justification retained, so the decision can be audited later.</li>
+          <li><strong>Action:</strong> prompt removal of anything not reconfirmed.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Focus the deepest reviews on privileged and sensitive access. A yearly full review plus more frequent reviews of the riskiest access is a practical balance.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>مراجعة الوصول وإعادة الاعتماد</h2>
+        <p class="lead">وصولٌ مُنِح صحيحًا اليوم ينحرف عن الصحّة مع الوقت. وإعادة الاعتماد هي الفحص الدوري بأن كل منحٍ ما زال مبرَّرًا، وهي الضابط الذي يلتقط زحف الصلاحيات الذي تُغفِله عملية دورة الحياة.</p>
+        <p>في دورة إعادة الاعتماد، يراجع مالك النظام أو الدور مَن لديه وصول ويؤكّد، بدليل الحاجة العملية، أن كل منحٍ ينبغي أن يبقى. وما لا يمكن تبريره يُزال. والانضباط الذي يجعل هذا حقيقيًا أن على المراجع تأكيد كل وصولٍ فعليًا، لأن مراجعةً يضغط فيها الجميع «اعتماد» دون نظرٍ أسوأ من عدمها، إذ تُبيّض وصولًا قديمًا وكأنه فُحِص.</p>
+        <p>خياران تصميميان يجعلان إعادة الاعتماد فعّالة لا طقسًا. الأول: اعرض على المراجع أصغر وحدةٍ مفيدة، وصولَ شخصٍ واحد أو أعضاء دورٍ واحد، بسياقٍ يكفي للحكم، لا جدولًا بآلاف السطور يضمن الختم الآلي. والثاني: اجعل الإزالة هي الافتراض السهل والإبقاء هو الاختيار المتعمَّد، فيسقط وصولٌ لا يستطيع المراجع تبريره سريعًا بدل أن يبقى بالقصور الذاتي. وبهذا التأطير تُقلّص المراجعة الوصول فعليًا عبر الزمن بدل مباركة ما هو قائم.</p>
+        <ul>
+          <li><strong>النطاق:</strong> الحسابات والأدوار والوصول المميَّز الذي يُراجَع كل دورة.</li>
+          <li><strong>المراجع:</strong> المالك الذي يعرف حقًا هل ما زال الوصول لازمًا.</li>
+          <li><strong>الدليل:</strong> المبرّر محفوظًا، ليُدقَّق القرار لاحقًا.</li>
+          <li><strong>الإجراء:</strong> إزالةٌ فورية لكل ما لم يُعَد تأكيده.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> ركّز أعمق المراجعات على الوصول المميَّز والحسّاس. فمراجعةٌ كاملة سنوية مع مراجعاتٍ أكثر تكرارًا لأخطر الوصول توازنٌ عملي.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="policies">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Supporting Security Policies</h2>
+        <p class="lead">Identity controls rest on a small set of clear policies that state the rules everyone must follow. A policy is not paperwork for its own sake, it is the agreed answer to a recurring question, written down so it is applied the same way every time.</p>
+        <p>The policies most tied to access are the account and password rules, the acceptable-use rules, and the third-party access rules. Each turns a principle into a specific, enforceable requirement, and each names an owner responsible for keeping it current. A policy nobody owns is a policy that quietly goes out of date.</p>
+        <ul>
+          <li><strong>Access &amp; password policy:</strong> how accounts are created, secured, and closed, and the authentication required.</li>
+          <li><strong>Acceptable use:</strong> what users may and may not do with the access they are given.</li>
+          <li><strong>Privileged access policy:</strong> the stricter rules for administrative and service accounts.</li>
+          <li><strong>Third-party access:</strong> how external parties are granted, monitored, and removed.</li>
+        </ul>
+        <p>Policies work only when people know them, which is why awareness matters as much as the document. A rule that lives in a folder nobody opens protects nothing, so the policy has to be communicated, understood, and reinforced.</p>
+        <div class="note"><strong>Note:</strong> Keep policies short and specific enough to be followed. A policy that is too long to read is a policy that will be ignored precisely when it is needed.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>السياسات الأمنية المساندة</h2>
+        <p class="lead">تستند ضوابط الهوية إلى مجموعةٍ صغيرة من سياساتٍ واضحة تذكر القواعد التي على الجميع اتّباعها. والسياسة ليست ورقًا لذاته، بل الجواب المتّفق عليه لسؤالٍ متكرّر، مكتوبًا ليُطبَّق بالطريقة نفسها كل مرة.</p>
+        <p>أكثر السياسات ارتباطًا بالوصول هي قواعد الحسابات وكلمات المرور، وقواعد الاستخدام المقبول، وقواعد وصول الأطراف الثالثة. وكلٌّ يحوّل مبدأً إلى متطلبٍ محدَّد قابلٍ للإنفاذ، وكلٌّ يسمّي مالكًا مسؤولًا عن إبقائه محدَّثًا. وسياسةٌ لا يملكها أحد سياسةٌ تتقادم بصمت.</p>
+        <ul>
+          <li><strong>سياسة الوصول وكلمات المرور:</strong> كيف تُنشَأ الحسابات وتُؤمَّن وتُغلَق، والمصادقة المطلوبة.</li>
+          <li><strong>الاستخدام المقبول:</strong> ما يجوز وما لا يجوز للمستخدمين فعله بما مُنِحوه من وصول.</li>
+          <li><strong>سياسة الوصول المميَّز:</strong> القواعد الأشدّ للحسابات الإدارية وحسابات الخدمة.</li>
+          <li><strong>وصول الأطراف الثالثة:</strong> كيف يُمنَح الخارجيون ويُراقَبون ويُزالون.</li>
+        </ul>
+        <p>لا تعمل السياسات إلا حين يعرفها الناس، ولذا تهمّ التوعية بقدر الوثيقة. فقاعدةٌ تعيش في مجلدٍ لا أحد يفتحه لا تحمي شيئًا، فيجب إبلاغ السياسة وفهمها وترسيخها.</p>
+        <div class="note"><strong>ملاحظة:</strong> أبقِ السياسات قصيرة ومحدَّدة بما يكفي لاتّباعها. فسياسةٌ أطول من أن تُقرَأ ستُتجاهَل في اللحظة التي تُحتاج فيها بالضبط.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="metrics">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Metrics &amp; Assurance</h2>
+        <p class="lead">Identity health can be measured, and a few honest metrics tell you whether the controls are actually holding or merely written down. Each should point to a specific fix rather than a general unease.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">%</div><div class="lbl">Privileged accounts with multi-factor</div></div>
+          <div class="stat"><div class="num">Hrs</div><div class="lbl">Mean time to revoke on departure</div></div>
+          <div class="stat"><div class="num">%</div><div class="lbl">Access recertified on schedule</div></div>
+        </div>
+        <p>These are chosen because each reveals a real weakness when it slips. Privileged accounts without strong authentication are the highest-value targets left exposed, a slow time-to-revoke means departed people keep live keys, and overdue recertification means access is drifting unchecked. A dormant-account count is a useful fourth, since unused live accounts are pure attack surface.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> get identity right and most other controls get easier, because the attacker's favorite path, a trusted account doing untrusted things, is the one you have closed.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>المؤشرات والضمان</h2>
+        <p class="lead">يمكن قياس صحّة الهوية، وبضعة مؤشراتٍ صادقة تخبرك هل الضوابط صامدةٌ فعلًا أم مكتوبةٌ فحسب. وكلٌّ ينبغي أن يشير إلى إصلاحٍ محدَّد لا قلقٍ عام.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">%</div><div class="lbl">حسابات مميَّزة بمصادقة متعددة</div></div>
+          <div class="stat"><div class="num">ساعات</div><div class="lbl">متوسط زمن السحب عند المغادرة</div></div>
+          <div class="stat"><div class="num">%</div><div class="lbl">وصولٌ أُعيد اعتماده في موعده</div></div>
+        </div>
+        <p>اختيرت لأن كلًّا يكشف ضعفًا حقيقيًا حين ينزلق. فحسابات مميَّزة بلا مصادقة قوية هي أعلى الأهداف قيمةً وقد تُركت مكشوفة، وزمن سحبٍ بطيء يعني أن مغادرين يحتفظون بمفاتيح حيّة، وإعادة اعتمادٍ متأخّرة تعني وصولًا ينحرف بلا فحص. وعدّ الحسابات الخاملة رابعٌ مفيد، إذ الحسابات الحيّة غير المستخدَمة سطح هجومٍ صرف.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> أتقِن الهوية تسهُل أغلب الضوابط الأخرى، لأن طريق المهاجم المفضّل، حسابٌ موثوق يفعل أشياء غير موثوقة، هو الذي أغلقته.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Identity and access management protects everything else by ensuring only the right people reach the right resources, proven, granted least, and reviewed.</p>
+        <ul>
+          <li>Manage the identity lifecycle end to end, and make the leaver process fast and complete.</li>
+          <li>Require strong, phishing-resistant authentication, hardest on the highest-value access.</li>
+          <li>Grant least privilege through roles, and tightly control privileged access.</li>
+          <li>Recertify access on a cadence, with reviewers who actively confirm each grant.</li>
+          <li>Back it all with short, owned policies and a few honest metrics.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://pages.nist.gov/800-63-4/" target="_blank" rel="noopener">NIST SP 800-63 Rev. 4, Digital Identity Guidelines (2025 record).</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/63/b/4/final" target="_blank" rel="noopener">NIST SP 800-63B, Authentication and Authenticator Management.</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" target="_blank" rel="noopener">NIST SP 800-53 Rev. 5, Access Control (AC) family.</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022, Information security management systems.</a></li>
+          <li><a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener">NIST Cybersecurity Framework (CSF) 2.0 (2024 record).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">إدارة الهوية والصلاحيات تحمي كل ما عداها بضمان أن الأشخاص الصحيحين فقط يصلون إلى الموارد الصحيحة، بإثباتٍ وأقلّ صلاحية ومراجعة.</p>
+        <ul>
+          <li>أدِر دورة حياة الهوية من طرفٍ لطرف، واجعل عملية المغادر سريعة كاملة.</li>
+          <li>اشترِط مصادقةً قوية مقاوِمة للتصيّد، أشدّها على أعلى وصولٍ قيمةً.</li>
+          <li>امنح أقلّ صلاحيةٍ عبر الأدوار، واضبط الوصول المميَّز بإحكام.</li>
+          <li>أعِد اعتماد الوصول بدورية، بمراجعين يؤكّدون كل منحٍ فعليًا.</li>
+          <li>اسنِد ذلك كله بسياساتٍ قصيرة مملوكة وبضعة مؤشراتٍ صادقة.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://pages.nist.gov/800-63-4/" target="_blank" rel="noopener">NIST SP 800-63 Rev. 4، إرشادات الهوية الرقمية (سجل 2025).</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/63/b/4/final" target="_blank" rel="noopener">NIST SP 800-63B، المصادقة وإدارة أدوات التوثيق.</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" target="_blank" rel="noopener">NIST SP 800-53 Rev. 5، عائلة التحكّم بالوصول (AC).</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022، أنظمة إدارة أمن المعلومات.</a></li>
+          <li><a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener">إطار NIST للأمن السيبراني (CSF) 2.0 (سجل 2024).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","identity","authentication","authorization","review","policies","metrics","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scrum Framework</title>
+<meta name="description" content="An original framework on Scrum: organizing agile work into short sprints with clear roles, events, and artifacts, valuable when used in the agile spirit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">PROJECT &amp; AGILE &middot; FRAMEWORK</span><span data-lang="ar">المشاريع والرشاقة &middot; إطار</span></div>
+    <h1><span data-lang="en">Scrum Framework</span><span data-lang="ar">إطار سكرم</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="structure"><span data-lang="en">Structure</span><span data-lang="ar">البنية</span></a>
+    <a data-id="spirit"><span data-lang="en">Spirit</span><span data-lang="ar">الروح</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Scrum framework</div>
+          <div><span>Scope:</span> A structured way to work in short cycles</div>
+          <div><span>Owner role:</span> The Scrum team and its accountabilities</div>
+          <div><span>Review cadence:</span> Every sprint, with defined events</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Scrum is a specific, lightweight framework for putting agile into practice: it organizes work into short, fixed-length cycles called sprints, with a small set of defined roles, events, and artifacts that create a repeatable rhythm of planning, doing, reviewing, and improving. It is the most widely used agile method, valued for giving teams enough structure to work iteratively without prescribing how they do the actual work.</p>
+        <p>Scrum matters because agile values alone do not tell a team how to organize day to day, and Scrum fills that gap with a simple, proven structure. By fixing the length of each cycle, defining who is responsible for what, and building in regular points to plan, show progress, and reflect, Scrum gives a team a dependable cadence that turns the abstract idea of iterative delivery into a concrete way of working. Its popularity comes from being simple to understand yet powerful in creating focus, transparency, and continuous improvement.</p>
+        <p>This framework explains the structure of Scrum, its roles, events, and artifacts, and the spirit that makes it work rather than becoming empty ritual. It is my own synthesis, written in my own words and grounded in the recognized Scrum framework, designed to be reusable across teams.</p>
+        <div class="note"><strong>Note:</strong> Scrum is a container for good agile practice, not a guarantee of it. A team can perform every event on schedule and still miss the point if it does not use them to inspect honestly and adapt.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> إطار سكرم</div>
+          <div><span>النطاق:</span> طريقة منظَّمة للعمل في دوراتٍ قصيرة</div>
+          <div><span>دور المالك:</span> فريق سكرم ومسؤولياته</div>
+          <div><span>دورية المراجعة:</span> كل سبرنت، بأحداثٍ معرَّفة</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">سكرم إطارٌ محدَّد خفيف لوضع الرشاقة موضع التطبيق: ينظّم العمل في دوراتٍ قصيرة ثابتة الطول تسمّى سبرنتات، بمجموعةٍ صغيرة من الأدوار والأحداث والمُخرَجات المعرَّفة التي تخلق إيقاعًا متكرّرًا من التخطيط والفعل والمراجعة والتحسين. وهو أكثر طرق الرشاقة استخدامًا، مُقدَّرٌ لمنحه الفرق بنيةً كافية للعمل تكراريًا دون إملاء كيف تفعل العمل الفعلي.</p>
+        <p>يهمّ سكرم لأن قيم الرشاقة وحدها لا تخبر فريقًا كيف ينظّم يومًا بيوم، وسكرم يملأ تلك الفجوة ببنيةٍ بسيطة مُثبَتة. فبتثبيت طول كل دورة، وتعريف من مسؤولٌ عن ماذا، وبناء نقاطٍ منتظمة للتخطيط وإظهار التقدّم والتأمّل، يمنح سكرم فريقًا إيقاعًا موثوقًا يحوّل فكرة التسليم التكراري المجرّدة لطريقة عملٍ ملموسة. وشعبيته تأتي من كونه بسيط الفهم لكنه قوي في خلق التركيز والشفافية والتحسين المستمر.</p>
+        <p>يشرح هذا الإطار بنية سكرم، أدواره وأحداثه ومُخرَجاته، والروح التي تُنجِحه بدل أن يصير طقسًا فارغًا. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في إطار سكرم المعترف به، مصمَّمٌ ليكون قابلًا لإعادة الاستخدام عبر الفرق.</p>
+        <div class="note"><strong>ملاحظة:</strong> سكرم وعاءٌ للممارسة الرشيقة الجيدة، لا ضمانٌ لها. فقد يؤدّي فريقٌ كل حدثٍ في موعده ويفوّت المقصد إن لم يستخدمها للتفحّص بأمانةٍ والتكيّف.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="structure">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Roles, Events &amp; Artifacts</h2>
+        <p class="lead">Scrum's structure is deliberately minimal: a few roles, a few events, and a few artifacts, which together create its rhythm. Understanding what each is for is what turns the structure into value.</p>
+        <p>There are three accountabilities. A product owner decides what to build and in what order, owning the priorities and representing the customer's interest. A developer team does the work of building the increment each sprint, deciding together how to do it. And a scrum master helps the team work well, facilitating the process, removing obstacles, and coaching the team in the method, without being a traditional boss. These roles separate the what (product owner), the how and the doing (team), and the health of the process (scrum master), so responsibilities are clear.</p>
+        <table>
+          <tr><th><span data-lang="en">Element</span><span data-lang="ar">العنصر</span></th><th><span data-lang="en">Its purpose</span><span data-lang="ar">غرضه</span></th></tr>
+          <tr><td><span data-lang="en">Sprint</span><span data-lang="ar">السبرنت</span></td><td><span data-lang="en">a short fixed cycle that produces a usable increment</span><span data-lang="ar">دورة قصيرة ثابتة تُنتِج زيادةً قابلة للاستخدام</span></td></tr>
+          <tr><td><span data-lang="en">Sprint planning</span><span data-lang="ar">تخطيط السبرنت</span></td><td><span data-lang="en">decide what to build this sprint and how</span><span data-lang="ar">تقرير ما يُبنى هذا السبرنت وكيف</span></td></tr>
+          <tr><td><span data-lang="en">Daily standup</span><span data-lang="ar">الوقفة اليومية</span></td><td><span data-lang="en">a short daily sync to align and surface blockers</span><span data-lang="ar">مزامنة يومية قصيرة للمواءمة وإظهار العوائق</span></td></tr>
+          <tr><td><span data-lang="en">Review &amp; retrospective</span><span data-lang="ar">المراجعة والاستعادة</span></td><td><span data-lang="en">inspect the product and improve the process</span><span data-lang="ar">تفحّص المنتج وتحسين العملية</span></td></tr>
+        </table>
+        <p>The rhythm runs through the sprint and its events. Each sprint begins with planning, where the team decides what it will deliver and how. A brief daily standup keeps everyone aligned and surfaces obstacles quickly. At the end, a review shows the increment to stakeholders for feedback, and a retrospective lets the team reflect on how it worked and choose improvements for next time. Two artifacts anchor the work: a product backlog, the ordered list of everything that might be built, and a sprint backlog, the slice the team commits to this cycle. Together these produce a working increment each sprint. The genius of Scrum is that this small set of parts creates transparency, regular feedback, and built-in continuous improvement, all in a rhythm simple enough for any team to follow.</p>
+        <div class="note"><strong>Note:</strong> The retrospective is Scrum's engine of improvement. A team that skips it, or treats it as a formality, keeps the cadence of Scrum while losing the mechanism by which it actually gets better over time.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الأدوار والأحداث والمُخرَجات</h2>
+        <p class="lead">بنية سكرم أدنويّة عمدًا: بضعة أدوار، وبضعة أحداث، وبضعة مُخرَجات، تخلق معًا إيقاعه. وفهم غرض كلٍّ هو ما يحوّل البنية لقيمة.</p>
+        <p>ثمّة ثلاث مسؤوليات. مالك المنتج يقرّر ماذا يُبنى وبأي ترتيب، مالكًا الأولويات ممثّلًا مصلحة العميل. وفريق المطوّرين يفعل عمل بناء الزيادة كل سبرنت، مقرّرًا معًا كيف يفعله. ومدير سكرم يساعد الفريق على العمل جيدًا، مُيسّرًا العملية، مزيلًا العوائق، ومدرّبًا الفريق في المنهج، دون أن يكون رئيسًا تقليديًا. وهذه الأدوار تفصل الماذا (مالك المنتج)، والكيف والفعل (الفريق)، وصحّة العملية (مدير سكرم)، فتصير المسؤوليات واضحة.</p>
+        <table>
+          <tr><th><span data-lang="en">العنصر</span><span data-lang="ar">العنصر</span></th><th><span data-lang="en">غرضه</span><span data-lang="ar">غرضه</span></th></tr>
+          <tr><td><span data-lang="en">السبرنت</span><span data-lang="ar">السبرنت</span></td><td><span data-lang="en">دورة قصيرة ثابتة تُنتِج زيادةً قابلة للاستخدام</span><span data-lang="ar">دورة قصيرة ثابتة تُنتِج زيادةً قابلة للاستخدام</span></td></tr>
+          <tr><td><span data-lang="en">تخطيط السبرنت</span><span data-lang="ar">تخطيط السبرنت</span></td><td><span data-lang="en">تقرير ما يُبنى هذا السبرنت وكيف</span><span data-lang="ar">تقرير ما يُبنى هذا السبرنت وكيف</span></td></tr>
+          <tr><td><span data-lang="en">الوقفة اليومية</span><span data-lang="ar">الوقفة اليومية</span></td><td><span data-lang="en">مزامنة يومية قصيرة للمواءمة وإظهار العوائق</span><span data-lang="ar">مزامنة يومية قصيرة للمواءمة وإظهار العوائق</span></td></tr>
+          <tr><td><span data-lang="en">المراجعة والاستعادة</span><span data-lang="ar">المراجعة والاستعادة</span></td><td><span data-lang="en">تفحّص المنتج وتحسين العملية</span><span data-lang="ar">تفحّص المنتج وتحسين العملية</span></td></tr>
+        </table>
+        <p>يجري الإيقاع عبر السبرنت وأحداثه. فكل سبرنت يبدأ بتخطيطٍ يقرّر فيه الفريق ما سيسلّمه وكيف. ووقفةٌ يومية قصيرة تُبقي الجميع متوائمين وتُظهِر العوائق سريعًا. وفي النهاية، مراجعةٌ تُظهِر الزيادة لأصحاب المصلحة للتغذية، واستعادةٌ تتيح للفريق التأمّل في كيف عمل واختيار تحسيناتٍ للمرة القادمة. ومُخرَجان يرسّخان العمل: سجلّ المنتج، القائمة المرتَّبة لكل ما قد يُبنى، وسجلّ السبرنت، الشريحة التي يلتزم بها الفريق هذه الدورة. ومعًا تُنتِج هذه زيادةً عاملة كل سبرنت. وعبقرية سكرم أن هذه المجموعة الصغيرة من الأجزاء تخلق شفافيةً وتغذيةً منتظمة وتحسينًا مستمرًا مدمجًا، كلها في إيقاعٍ بسيطٍ كفايةً ليتبعه أي فريق.</p>
+        <div class="note"><strong>ملاحظة:</strong> الاستعادة محرّك التحسين في سكرم. ففريقٌ يتخطّاها، أو يعاملها كإجراءٍ شكلي، يُبقي إيقاع سكرم ويفقد الآلية التي يتحسّن بها فعلًا عبر الزمن.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="spirit">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Spirit Behind the Structure</h2>
+        <p class="lead">Scrum is easy to adopt in form and hard to live in spirit, so a fair framework distinguishes the mechanics from what makes them actually work, and notes the common ways teams go wrong.</p>
+        <p>The structure of Scrum only creates value if it is used in the agile spirit it was designed to serve. The events are not boxes to tick but mechanisms for real transparency, honest inspection, and genuine adaptation: the standup only helps if people surface real obstacles, the review only helps if stakeholders give honest feedback that changes the plan, and the retrospective only helps if the team is candid about problems and actually acts on them. A team that performs the ceremonies mechanically, going through the motions without the underlying honesty and willingness to change, gets the cost of Scrum with little of its benefit. This is often called doing the form of Scrum without its substance, and it is extremely common.</p>
+        <p>Other pitfalls follow from misusing the structure. Treating the product owner as merely a ticket-writer rather than a real owner of priorities, using the standup as a status report to a manager rather than a team sync, letting the scrum master become a traditional boss, or overloading each sprint so nothing is truly finished, all hollow out the framework. The honest guidance is that Scrum is a genuinely useful structure, but only as a servant of the agile mindset, not a substitute for it. Used by a team that embraces transparency, inspection, and adaptation, it provides a simple, powerful rhythm for delivering value iteratively; used as an empty ritual, it becomes exactly the kind of process-for-its-own-sake that agile was meant to escape.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> Scrum organizes agile work into short sprints with clear roles, events, and artifacts that create a rhythm of transparency, feedback, and improvement, and it delivers value only when its structure serves the agile spirit of honest inspection and real adaptation rather than becoming ceremony performed for its own sake.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الروح خلف البنية</h2>
+        <p class="lead">سكرم سهل التبنّي في الشكل صعب العيش في الروح، فالإطار العادل يميّز الآليات عمّا يُنجِحها فعلًا، ويذكر الطرق الشائعة لخطأ الفرق.</p>
+        <p>بنية سكرم تخلق قيمةً فقط إن استُخدِمت بالروح الرشيقة التي صُمِّمت لخدمتها. فالأحداث ليست صناديق تُؤشَّر بل آلياتٌ لشفافيةٍ حقيقية وتفحّصٍ أمين وتكيّفٍ فعلي: الوقفة تساعد فقط إن أظهر الناس عوائق حقيقية، والمراجعة تساعد فقط إن أعطى أصحاب المصلحة تغذيةً أمينة تغيّر الخطّة، والاستعادة تساعد فقط إن كان الفريق صريحًا عن المشكلات وعمل بها فعلًا. وفريقٌ يؤدّي الطقوس آليًا، مؤدّيًا الحركات بلا الأمانة الكامنة والاستعداد للتغيير، يحصل على كلفة سكرم بقليلٍ من فائدته. وهذا يُسمّى غالبًا أداء شكل سكرم بلا جوهره، وهو شائعٌ جدًا.</p>
+        <p>ومطبّاتٌ أخرى تتبع سوء استخدام البنية. فمعاملة مالك المنتج كمجرّد كاتب تذاكر لا مالكٍ حقيقي للأولويات، واستخدام الوقفة كتقرير حالةٍ لمدير لا مزامنة فريق، وترك مدير سكرم يصير رئيسًا تقليديًا، أو تحميل كل سبرنت فوق طاقته فلا يُنجَز شيءٌ فعلًا، كلها تُفرِغ الإطار. والإرشاد الأمين أن سكرم بنيةٌ نافعة فعلًا، لكن فقط كخادمٍ للعقلية الرشيقة، لا بديلٍ عنها. ومستخدَمًا من فريقٍ يحتضن الشفافية والتفحّص والتكيّف، يوفّر إيقاعًا بسيطًا قويًا لتسليم القيمة تكراريًا؛ ومستخدَمًا كطقسٍ فارغ، يصير بالضبط نوع العملية-لذاتها الذي أُريد للرشاقة الهروب منه.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> سكرم ينظّم العمل الرشيق في سبرنتاتٍ قصيرة بأدوارٍ وأحداثٍ ومُخرَجات واضحة تخلق إيقاع شفافيةٍ وتغذيةٍ وتحسين، ويسلّم القيمة فقط حين تخدم بنيته الروح الرشيقة من التفحّص الأمين والتكيّف الفعلي بدل أن يصير طقسًا يُؤدّى لذاته.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Scrum gives agile a concrete rhythm of sprints, roles, and events, valuable only when used in the agile spirit.</p>
+        <ul>
+          <li>Organize work into short, fixed sprints, each producing a usable increment.</li>
+          <li>Use the three accountabilities: product owner (what), team (how and doing), scrum master (process).</li>
+          <li>Run the events for real transparency, feedback, and improvement, not as boxes to tick.</li>
+          <li>Treat the retrospective as the engine of continuous improvement, and actually act on it.</li>
+          <li>Remember Scrum serves the agile mindset; its form without substance delivers little.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://scrumguides.org/" target="_blank" rel="noopener">The Scrum Guide.</a></li>
+          <li><a href="https://www.scrum.org/resources/what-is-scrum" target="_blank" rel="noopener">Scrum.org, what is Scrum.</a></li>
+          <li><a href="https://agilemanifesto.org/" target="_blank" rel="noopener">The Agile Manifesto.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">سكرم يمنح الرشاقة إيقاعًا ملموسًا من سبرنتاتٍ وأدوارٍ وأحداث، قيّمًا فقط حين يُستخدَم بالروح الرشيقة.</p>
+        <ul>
+          <li>نظّم العمل في سبرنتاتٍ قصيرة ثابتة، كلٌّ تُنتِج زيادةً قابلة للاستخدام.</li>
+          <li>استخدم المسؤوليات الثلاث: مالك المنتج (الماذا)، الفريق (الكيف والفعل)، مدير سكرم (العملية).</li>
+          <li>أدِر الأحداث لشفافيةٍ وتغذيةٍ وتحسينٍ حقيقي، لا كصناديق تُؤشَّر.</li>
+          <li>عامِل الاستعادة كمحرّك التحسين المستمر، واعمل بها فعلًا.</li>
+          <li>تذكّر أن سكرم يخدم العقلية الرشيقة؛ شكله بلا جوهره يسلّم قليلًا.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://scrumguides.org/" target="_blank" rel="noopener">دليل سكرم.</a></li>
+          <li><a href="https://www.scrum.org/resources/what-is-scrum" target="_blank" rel="noopener">Scrum.org، ما هو سكرم.</a></li>
+          <li><a href="https://agilemanifesto.org/" target="_blank" rel="noopener">بيان الرشاقة.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","structure","spirit","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI in the Enterprise</title>
+<meta name="description" content="An operational framework for enterprise AI adoption: use-case selection, the data foundation, operating model, change management, and measuring value.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">ARTIFICIAL INTELLIGENCE &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الذكاء الاصطناعي &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">AI in the Enterprise</span><span data-lang="ar">الذكاء الاصطناعي في المؤسسة</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="strategy"><span data-lang="en">Strategy</span><span data-lang="ar">الاستراتيجية</span></a>
+    <a data-id="data"><span data-lang="en">Data Foundation</span><span data-lang="ar">أساس البيانات</span></a>
+    <a data-id="operating"><span data-lang="en">Operating Model</span><span data-lang="ar">نموذج التشغيل</span></a>
+    <a data-id="change"><span data-lang="en">Change</span><span data-lang="ar">إدارة التغيير</span></a>
+    <a data-id="value"><span data-lang="en">Value</span><span data-lang="ar">القيمة</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Enterprise AI adoption</div>
+          <div><span>Scope:</span> Turning AI capability into durable business value</div>
+          <div><span>Owner role:</span> AI adoption lead, sponsored by executive leadership</div>
+          <div><span>Review cadence:</span> Portfolio review each quarter, value review each half-year</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Adopting AI in an enterprise is not a technology project, it is a change project that happens to involve technology. The models are increasingly the easy part, and the hard part is choosing the right problems, redesigning the work around the new capability, and bringing people with you so the capability is actually used.</p>
+        <p>The common failure is to start from the technology and look for a place to apply it, which produces impressive demonstrations that never reach production and never change a number that leadership cares about. The discipline of enterprise adoption reverses that: start from a business problem worth solving, ask whether AI is genuinely the best way to solve it, and only then build, so effort flows to value rather than to novelty.</p>
+        <p>This framework treats adoption as a portfolio to be managed, not a single bet. It draws on the governance and risk discipline of the companion frameworks, since responsible adoption and value creation are two sides of the same coin, and aligns to recognized guidance from the OECD and NIST without reproducing their text.</p>
+        <div class="note"><strong>Note:</strong> The measure of enterprise AI is not how advanced the models are, it is how much of the organization's real work is done better because of them. Value in production beats sophistication in a demo every time.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> تبنّي الذكاء الاصطناعي في المؤسسة</div>
+          <div><span>النطاق:</span> تحويل قدرة الذكاء إلى قيمة عملٍ دائمة</div>
+          <div><span>دور المالك:</span> قائد تبنّي الذكاء، برعاية القيادة التنفيذية</div>
+          <div><span>دورية المراجعة:</span> مراجعة محفظة كل ربع، ومراجعة قيمة كل نصف سنة</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">تبنّي الذكاء الاصطناعي في مؤسسةٍ ليس مشروعًا تقنيًا، بل مشروع تغييرٍ يتصادف أن يشمل تقنية. فالنماذج تصير الجزء السهل تباعًا، والصعب اختيار المشكلات الصحيحة، وإعادة تصميم العمل حول القدرة الجديدة، واصطحاب الناس معك حتى تُستخدَم القدرة فعلًا.</p>
+        <p>والفشل الشائع أن تبدأ من التقنية وتبحث عن مكانٍ لتطبيقها، فيُنتِج عروضًا مبهرة لا تبلغ الإنتاج ولا تغيّر رقمًا يهمّ القيادة. وانضباط تبنّي المؤسسة يعكس ذلك: ابدأ من مشكلة عملٍ تستحق الحلّ، واسأل هل الذكاء فعلًا أفضل طريقةٍ لحلّها، وعندها فقط ابنِ، فيتدفّق الجهد إلى القيمة لا إلى الجِدّة.</p>
+        <p>يعامل هذا الإطار التبنّي كمحفظةٍ تُدار لا رهانًا واحدًا. ويستند إلى انضباط الحوكمة والمخاطر في الأطر الرفيقة، لأن التبنّي المسؤول وخلق القيمة وجهان لعملةٍ واحدة، ويتوافق مع إرشاد OECD وNIST المعترف به دون نسخ نصّه.</p>
+        <div class="note"><strong>ملاحظة:</strong> مقياس ذكاء المؤسسة ليس كم النماذج متقدّمة، بل كم من عمل المنشأة الحقيقي يُؤدّى أفضل بسببها. فقيمةٌ في الإنتاج تغلب تطوّرًا في عرضٍ في كل مرة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="strategy">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>From Strategy to Use Cases</h2>
+        <p class="lead">Adoption begins with choosing where to apply AI, and that choice is a strategic one. The goal is a small set of use cases where AI clearly moves a metric the business already cares about, not a long list of experiments that impress technically but change nothing.</p>
+        <p>A useful way to choose is to score candidate use cases on two axes: the value they would create if they worked, and the feasibility of making them work given the data, the technology, and the organization's readiness. The best first projects are high on both, valuable enough to matter and feasible enough to succeed, because early wins build the credibility and the appetite that later, harder projects will need.</p>
+        <table>
+          <tr><th></th><th>High feasibility</th><th>Low feasibility</th></tr>
+          <tr><td>High value</td><td>Do first: quick, meaningful wins</td><td>Invest and build toward: the strategic bets</td></tr>
+          <tr><td>Low value</td><td>Do if cheap: minor efficiencies</td><td>Avoid: effort with little return</td></tr>
+        </table>
+        <p>The trap to avoid is being seduced by the high-value, low-feasibility corner too early. These are often the most exciting ideas, but attempting them before the organization has the data foundations and the experience to deliver them produces expensive, visible failures that sour the whole adoption effort. Earn the right to attempt the hard, transformative use cases by first succeeding at the achievable ones.</p>
+        <div class="note"><strong>Note:</strong> For every proposed use case, insist on naming the specific metric it will move and by roughly how much. A use case that cannot name its intended impact is a science experiment, and it should be funded as one, not as a business initiative.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>من الاستراتيجية إلى حالات الاستخدام</h2>
+        <p class="lead">يبدأ التبنّي باختيار أين يُطبَّق الذكاء، وذلك الاختيار استراتيجي. والهدف مجموعةٌ صغيرة من حالات الاستخدام يحرّك فيها الذكاء بوضوحٍ مؤشرًا يهمّ العمل أصلًا، لا قائمةٌ طويلة من تجاربَ تُبهِر تقنيًا ولا تغيّر شيئًا.</p>
+        <p>ومن الطرق المفيدة تنقيط الحالات المرشَّحة على محورين: القيمة التي ستخلقها لو نجحت، وجدوى إنجاحها بالنظر للبيانات والتقنية وجاهزية المنشأة. وأفضل المشاريع الأولى عاليةٌ في الاثنين، قيّمةٌ بما يهمّ ومجدِيةٌ بما ينجح، لأن الانتصارات المبكرة تبني المصداقية والشهية اللتين ستحتاجهما المشاريع الأصعب لاحقًا.</p>
+        <table>
+          <tr><th></th><th>جدوى عالية</th><th>جدوى منخفضة</th></tr>
+          <tr><td>قيمة عالية</td><td>ابدأ بها: انتصارات سريعة ذات معنى</td><td>استثمر وابنِ نحوها: الرهانات الاستراتيجية</td></tr>
+          <tr><td>قيمة منخفضة</td><td>افعلها إن رخصت: كفاءاتٌ طفيفة</td><td>تجنّبها: جهدٌ بعائدٍ ضئيل</td></tr>
+        </table>
+        <p>والفخّ المُتَجنَّب الانخداع بزاوية القيمة العالية الجدوى المنخفضة مبكرًا. فهذه غالبًا أكثر الأفكار إثارةً، لكن محاولتها قبل أن تملك المنشأة أسس البيانات والخبرة لتسليمها تُنتِج إخفاقاتٍ باهظة ظاهرة تُنغّص جهد التبنّي كله. اكسب حقّ محاولة الحالات الصعبة التحويلية بالنجاح أولًا في المُتاحة.</p>
+        <div class="note"><strong>ملاحظة:</strong> لكل حالة مقترَحة، أصرّ على تسمية المؤشر المحدَّد الذي ستحرّكه وبكم تقريبًا. فحالةٌ لا تستطيع تسمية أثرها المقصود تجربةٌ علمية، وينبغي تمويلها كذلك لا كمبادرة عمل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="data">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Data Foundation</h2>
+        <p class="lead">AI runs on data, and most enterprise AI ambitions meet reality at the data layer. A capable model on poor data produces confident nonsense, so the state of an organization's data quietly sets the ceiling on what its AI can achieve.</p>
+        <p>The foundation has three parts: the data has to exist, it has to be usable, and it has to be governed. Existing means the relevant data is actually captured somewhere, usable means it is accessible, reasonably clean, and connected rather than trapped in disconnected systems, and governed means its ownership, quality, and permitted uses are clear. Skipping straight to models while the data is scattered and unmanaged is the single most common reason enterprise AI projects stall.</p>
+        <ul>
+          <li><strong>Availability:</strong> the data the use case needs is captured and reachable, not locked in silos or lost.</li>
+          <li><strong>Quality:</strong> it is accurate and complete enough for the decision it will inform, because errors in the data become errors in the output.</li>
+          <li><strong>Governance:</strong> ownership, classification, and permitted use are defined, so AI does not quietly cross a privacy or contractual line.</li>
+          <li><strong>Lineage:</strong> where the data came from and how it was transformed is known, so a surprising model output can be traced back to its source.</li>
+        </ul>
+        <p>This is also where AI adoption and data governance become inseparable. The permissions, quality, and ownership that a data governance program provides are exactly what responsible AI needs, so an organization that has invested in governing its data finds AI adoption far smoother, and one that has not usually discovers the gap the hard way, mid-project.</p>
+        <div class="note"><strong>Note:</strong> Assess the data honestly before committing to a use case. It is cheaper to discover that the data is not ready at the planning stage than after a model has been built on it and its outputs cannot be trusted.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>أساس البيانات</h2>
+        <p class="lead">الذكاء يجري على البيانات، وأغلب طموحات ذكاء المؤسسة تلقى الواقع عند طبقة البيانات. فنموذجٌ قادر على بياناتٍ رديئة يُنتِج هُراءً واثقًا، فحالُ بيانات المنشأة يضع بهدوءٍ سقفَ ما يستطيع ذكاؤها بلوغه.</p>
+        <p>للأساس ثلاثة أجزاء: على البيانات أن توجد، وأن تكون قابلة للاستخدام، وأن تكون محوكَمة. الوجود أن تُلتقَط البيانات المعنية فعلًا في مكانٍ ما، والقابلية أن تكون متاحةً ونظيفةً بمعقولية وموصولةً لا محبوسةً في أنظمةٍ منفصلة، والحوكمة أن تكون ملكيتها وجودتها واستخداماتها المسموحة واضحة. والقفز مباشرةً للنماذج بينما البيانات مبعثرة غير مُدارة أشيع سبب تعثّر مشاريع ذكاء المؤسسة.</p>
+        <ul>
+          <li><strong>التوفّر:</strong> البيانات التي تحتاجها الحالة مُلتقَطة وقابلة للوصول، لا محبوسة في صوامع أو ضائعة.</li>
+          <li><strong>الجودة:</strong> دقيقةٌ وكاملة بما يكفي للقرار الذي ستُرشِده، لأن أخطاء البيانات تصير أخطاء المخرج.</li>
+          <li><strong>الحوكمة:</strong> الملكية والتصنيف والاستخدام المسموح مُعرَّفة، فلا يعبر الذكاء بهدوءٍ خطًّا خصوصيًا أو تعاقديًا.</li>
+          <li><strong>النسب:</strong> من أين جاءت البيانات وكيف حُوِّلت معلوم، فيُتتبَّع مخرجٌ مفاجئ إلى مصدره.</li>
+        </ul>
+        <p>وهنا أيضًا يصير تبنّي الذكاء وحوكمة البيانات لا ينفصلان. فالأذونات والجودة والملكية التي يوفّرها برنامج حوكمة البيانات هي بالضبط ما يحتاجه الذكاء المسؤول، فمنشأةٌ استثمرت في حوكمة بياناتها تجد تبنّي الذكاء أسلس بكثير، والتي لم تفعل تكتشف الفجوة عادةً بالطريقة الصعبة، وسط المشروع.</p>
+        <div class="note"><strong>ملاحظة:</strong> قيّم البيانات بصدق قبل الالتزام بحالة استخدام. فاكتشاف أن البيانات غير جاهزة في مرحلة التخطيط أرخص من اكتشافه بعد بناء نموذجٍ عليها لا يُوثَق بمخرجاته.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="operating">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Talent &amp; Operating Model</h2>
+        <p class="lead">AI capability has to live somewhere in the organization, and how it is organized shapes how fast and how safely it spreads. The choice is not only who to hire, but how to arrange the people and the decisions so capability reaches the whole business.</p>
+        <p>Organizations tend toward one of three shapes. A centralized model puts AI expertise in one team that serves the whole organization, which builds deep skill and consistent standards but can become a bottleneck. A decentralized model embeds AI people in each business unit, which brings them close to the problems but risks duplicated effort and inconsistent practice. A hub-and-spoke model, often the most durable, keeps a central team for standards, platforms, and hard problems, while embedding practitioners in the units, so it captures the strengths of both.</p>
+        <ul>
+          <li><strong>Centralized:</strong> one expert team, deep skill and consistency, at the risk of becoming a bottleneck.</li>
+          <li><strong>Decentralized:</strong> experts embedded in units, close to the work, at the risk of duplication and drift.</li>
+          <li><strong>Hub and spoke:</strong> a central core for standards and platforms, with embedded practitioners, balancing both.</li>
+        </ul>
+        <p>Whatever the shape, the scarcest resource is rarely the specialist and more often the translator, the person who understands both the business problem and what AI can realistically do, and can broker between them. Investing in that fluency across the organization, so ordinary managers can spot a good AI opportunity and call out a bad one, often does more for adoption than hiring another researcher.</p>
+        <div class="note"><strong>Note:</strong> Match the operating model to the organization's maturity, and expect it to change. Many organizations start centralized to build capability and standards, then move toward hub and spoke as AI fluency spreads.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الكفاءات ونموذج التشغيل</h2>
+        <p class="lead">قدرة الذكاء يجب أن تسكن مكانًا ما في المنشأة، وكيف تُنظَّم يُشكّل كم تنتشر سريعًا وآمنًا. والاختيار ليس من تُوظِّف فقط، بل كيف ترتّب الناس والقرارات لتبلغ القدرةُ العملَ كله.</p>
+        <p>تميل المنشآت لأحد ثلاثة أشكال. النموذج المركزي يضع خبرة الذكاء في فريقٍ واحد يخدم المنشأة كلها، فيبني مهارةً عميقة ومعاييرَ متّسقة لكنه قد يصير عنق زجاجة. واللامركزي يُضمِّن أهل الذكاء في كل وحدة عمل، فيقرّبهم من المشكلات لكن يخاطر بتكرار الجهد وتباين الممارسة. والنموذج المحوري-الفرعي، غالبًا أدومها، يُبقي فريقًا مركزيًا للمعايير والمنصّات والمشكلات الصعبة، مع تضمين ممارسين في الوحدات، فيلتقط قوّتي الاثنين.</p>
+        <ul>
+          <li><strong>مركزي:</strong> فريق خبراء واحد، مهارةٌ عميقة واتساق، بخطر أن يصير عنق زجاجة.</li>
+          <li><strong>لامركزي:</strong> خبراء مُضمَّنون في الوحدات، قربٌ من العمل، بخطر التكرار والانحراف.</li>
+          <li><strong>محوري-فرعي:</strong> نواةٌ مركزية للمعايير والمنصّات، مع ممارسين مُضمَّنين، توازِن الاثنين.</li>
+        </ul>
+        <p>وأيًّا كان الشكل، أندر الموارد نادرًا ما هو المتخصّص وأكثر ما هو المترجِم، من يفهم مشكلة العمل وما يستطيع الذكاء فعله واقعيًا، ويستطيع الوساطة بينهما. والاستثمار في تلك الطلاقة عبر المنشأة، ليرصد مديرٌ عادي فرصة ذكاءٍ جيدة ويستبعد سيئة، غالبًا يفعل للتبنّي أكثر من توظيف باحثٍ آخر.</p>
+        <div class="note"><strong>ملاحظة:</strong> طابِق نموذج التشغيل بنضج المنشأة، وتوقّع تغيّره. فكثيرٌ يبدأ مركزيًا لبناء القدرة والمعايير، ثم يتّجه للمحوري-الفرعي مع انتشار طلاقة الذكاء.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="change">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Change &amp; Adoption</h2>
+        <p class="lead">The hardest part of enterprise AI is rarely the model, it is getting people to trust it, use it, and change how they work around it. A brilliant system that no one adopts creates no value, and adoption is a human problem, not a technical one.</p>
+        <p>People resist AI for reasons that are usually rational: fear for their jobs, distrust of a system they do not understand, and past experience of tools that promised much and delivered friction. Addressing these openly is more effective than overriding them. That means being honest about how roles will change, involving the people who do the work in designing how AI fits into it, and framing the tool as something that removes drudgery rather than something that replaces the person.</p>
+        <ul>
+          <li><strong>Involve early:</strong> the people whose work changes should help shape the change, because a tool designed with them is trusted, one imposed on them is resisted.</li>
+          <li><strong>Be honest about roles:</strong> name how jobs will change, because uncertainty breeds more fear than an honest, difficult truth.</li>
+          <li><strong>Build trust gradually:</strong> let people see the AI work on low-stakes tasks before relying on it, so trust is earned by evidence.</li>
+          <li><strong>Train for the new work:</strong> give people the skills to use the tool and to do the higher-value work it frees them for.</li>
+        </ul>
+        <p>Trust is built by transparency and small wins, not by mandate. When people can see why an AI made a recommendation and have watched it be reliable on things they can check, they extend trust to things they cannot. Forcing adoption before that trust exists produces malicious compliance, where people use the tool as little as they can get away with, which looks like adoption in the metrics and delivers none of the value.</p>
+        <div class="note"><strong>Note:</strong> Position AI as augmenting people, not replacing them, and mean it. The framing shapes whether the workforce becomes the project's ally or its obstacle, and no amount of technical excellence overcomes a workforce that quietly wants it to fail.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>إدارة التغيير والتبنّي</h2>
+        <p class="lead">أصعب أجزاء ذكاء المؤسسة نادرًا ما هو النموذج، بل جعل الناس يثقون به ويستخدمونه ويغيّرون كيف يعملون حوله. فنظامٌ بارع لا يتبنّاه أحد لا يخلق قيمة، والتبنّي مشكلةٌ بشرية لا تقنية.</p>
+        <p>يقاوم الناس الذكاء لأسبابٍ عقلانية عادةً: خوفٌ على وظائفهم، وريبةٌ من نظامٍ لا يفهمونه، وخبرةٌ سابقة بأدواتٍ وعدت كثيرًا وسلّمت احتكاكًا. ومعالجتها صراحةً أنجع من تجاوزها. وذلك يعني الصدق حول كيف ستتغيّر الأدوار، وإشراك من يؤدّون العمل في تصميم كيف يلائمه الذكاء، وتأطير الأداة كمن يزيل الكدح لا كمن يستبدل الشخص.</p>
+        <ul>
+          <li><strong>أشرِك مبكرًا:</strong> من يتغيّر عملهم ينبغي أن يُشكّلوا التغيير، فأداةٌ صُمِّمت معهم يُوثَق بها، ومفروضةٌ عليهم تُقاوَم.</li>
+          <li><strong>اصدُق حول الأدوار:</strong> سمِّ كيف ستتغيّر الوظائف، فالغموض يولّد خوفًا أكثر من حقيقةٍ صعبة صادقة.</li>
+          <li><strong>ابنِ الثقة تدريجيًا:</strong> دع الناس يرون الذكاء يعمل على مهامٍ منخفضة الرهان قبل الاعتماد عليه، فتُكسَب الثقة بالدليل.</li>
+          <li><strong>درّب على العمل الجديد:</strong> امنح الناس مهارة استخدام الأداة وأداء العمل الأعلى قيمةً الذي تحرّرهم له.</li>
+        </ul>
+        <p>الثقة تُبنى بالشفافية والانتصارات الصغيرة لا بالأمر. فحين يرى الناس لماذا أوصى الذكاء بشيء وشاهدوه موثوقًا فيما يستطيعون فحصه، مدّوا الثقة لما لا يستطيعون. وفرض التبنّي قبل وجود تلك الثقة يُنتِج امتثالًا كيديًا، حيث يستخدم الناس الأداة بأقلّ ما يفلتون به، فيبدو تبنّيًا في المؤشرات ولا يسلّم شيئًا من القيمة.</p>
+        <div class="note"><strong>ملاحظة:</strong> ضع الذكاء كمُعزِّزٍ للناس لا مستبدِلٍ لهم، واعنِ ذلك. فالتأطير يُحدّد هل تصير القوى العاملة حليف المشروع أم عقبته، ولا يتغلّب أي تفوّقٍ تقني على قوى عاملةٍ تريده بهدوءٍ أن يفشل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="value">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Measuring Value &amp; Scaling</h2>
+        <p class="lead">Adoption is only worthwhile if it creates value, and value has to be measured to be managed. The final discipline is to prove that the AI moved a real number, then to scale what works and stop what does not.</p>
+        <p>Value should be defined before a project starts, in terms the business already uses: time saved, cost reduced, revenue gained, error rate lowered, or customer experience improved. Tying each use case to a baseline measured before deployment lets you show the change honestly afterward, and it protects against the common illusion of activity, where a program is busy building models while no one can say what any of them changed.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">Baseline</div><div class="lbl">The metric measured before AI</div></div>
+          <div class="stat"><div class="num">Impact</div><div class="lbl">The change attributable to the AI</div></div>
+          <div class="stat"><div class="num">Adoption</div><div class="lbl">How much the tool is actually used</div></div>
+        </div>
+        <h4>Scaling what works</h4>
+        <p>A successful pilot is a beginning, not a conclusion. Scaling means taking a use case that worked in one place and making it work reliably everywhere it applies, which usually surfaces problems the pilot never faced: more data variety, more edge cases, more users, and more operational load. The discipline is to scale deliberately, hardening the successful pilot into a supported product, rather than assuming that what worked small will simply work big.</p>
+        <p>Equally important is the willingness to stop. Not every use case that seemed promising will deliver, and a portfolio approach means treating each as a bet that either earns continued investment or is ended so its resources move to something better. An organization that never kills a failing AI project accumulates expensive, ignored systems that drain the credibility of the ones that work.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> enterprise AI succeeds when it is run as a value-driven portfolio, starting from problems, resting on governed data, carried by people who trust it, and measured honestly enough to double down on what works and stop what does not.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>قياس القيمة والتوسّع</h2>
+        <p class="lead">التبنّي لا يستحق إلا إن خلق قيمة، والقيمة يجب أن تُقاس لتُدار. والانضباط الأخير إثبات أن الذكاء حرّك رقمًا حقيقيًا، ثم توسيع ما ينجح وإيقاف ما لا ينجح.</p>
+        <p>ينبغي تعريف القيمة قبل بدء المشروع، بعباراتٍ يستخدمها العمل أصلًا: وقتٌ مُوفَّر، أو كلفةٌ مُخفَّضة، أو إيرادٌ مكتسَب، أو معدّل خطأٍ منخفض، أو تجربة عميلٍ محسّنة. وربط كل حالةٍ بخط أساسٍ يُقاس قبل النشر يتيح إظهار التغيّر بصدقٍ بعدها، ويحمي من وهم النشاط الشائع، حيث ينشغل برنامجٌ ببناء نماذج بينما لا أحد يقول ما الذي غيّرته أيٌّ منها.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">خط الأساس</div><div class="lbl">المؤشر المُقاس قبل الذكاء</div></div>
+          <div class="stat"><div class="num">الأثر</div><div class="lbl">التغيّر المنسوب للذكاء</div></div>
+          <div class="stat"><div class="num">التبنّي</div><div class="lbl">كم تُستخدَم الأداة فعلًا</div></div>
+        </div>
+        <h4>توسيع ما ينجح</h4>
+        <p>التجربة الناجحة بداية لا خاتمة. والتوسيع أخذُ حالةٍ نجحت في مكانٍ وجعلها تعمل بموثوقية أينما تنطبق، وهو ما يُظهِر عادةً مشكلاتٍ لم تواجهها التجربة: تنوّع بياناتٍ أكبر، وحالاتٍ حدّية أكثر، ومستخدمين أكثر، وحملًا تشغيليًا أكبر. والانضباط أن تُوسِّع عن قصد، مُصلِّبًا التجربة الناجحة إلى منتجٍ مدعوم، بدل افتراض أن ما نجح صغيرًا سينجح كبيرًا ببساطة.</p>
+        <p>ومثلها أهميةً الاستعداد للإيقاف. فليست كل حالةٍ بدت واعدة ستسلّم، ونهج المحفظة يعني معاملة كلٍّ كرهانٍ إمّا يكسب استثمارًا مستمرًا أو يُنهى لتنتقل موارده لأفضل. ومنشأةٌ لا تُوقِف مشروع ذكاءٍ فاشلًا تُراكم أنظمةً باهظة مُهمَلة تستنزف مصداقية الناجحة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> ذكاء المؤسسة ينجح حين يُدار كمحفظةٍ مدفوعة بالقيمة، تبدأ من المشكلات، وتستند إلى بياناتٍ محوكَمة، ويحملها أناسٌ يثقون بها، وتُقاس بصدقٍ يكفي لمضاعفة الناجح وإيقاف الفاشل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Enterprise AI turns capability into value when it is run as a change program and a managed portfolio, not a technology hunt.</p>
+        <ul>
+          <li>Start from a business problem and a named metric, not from the technology looking for a use.</li>
+          <li>Choose use cases by value and feasibility, winning the achievable ones before attempting the transformative.</li>
+          <li>Build on governed, usable data, because the data layer sets the ceiling on what AI can do.</li>
+          <li>Organize capability to fit the organization's maturity, and invest in the translators who bridge business and AI.</li>
+          <li>Lead the human change through involvement and trust, and measure value honestly enough to scale winners and stop losers.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://oecd.ai/en/ai-principles" target="_blank" rel="noopener">OECD AI Principles (2019, updated 2024).</a></li>
+          <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">NIST AI Risk Management Framework (AI RMF 1.0) (2023 record).</a></li>
+          <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener">ISO/IEC 42001:2023, Artificial intelligence management system.</a></li>
+          <li><a href="https://www.iso.org/standard/iso-iec-27000-family" target="_blank" rel="noopener">ISO/IEC 27000 family, Information security management (data governance context).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">ذكاء المؤسسة يحوّل القدرة إلى قيمة حين يُدار كبرنامج تغييرٍ ومحفظةٍ مُدارة، لا كصيد تقنية.</p>
+        <ul>
+          <li>ابدأ من مشكلة عملٍ ومؤشرٍ مُسمّى، لا من التقنية تبحث عن استخدام.</li>
+          <li>اختر الحالات بالقيمة والجدوى، كاسبًا المُتاحة قبل محاولة التحويلية.</li>
+          <li>ابنِ على بياناتٍ محوكَمة قابلة للاستخدام، لأن طبقة البيانات تضع سقف ما يستطيعه الذكاء.</li>
+          <li>نظّم القدرة لتلائم نضج المنشأة، واستثمر في المترجِمين الذين يجسرون العمل والذكاء.</li>
+          <li>قُد التغيير البشري بالإشراك والثقة، وقِس القيمة بصدقٍ يكفي لتوسيع الناجح وإيقاف الفاشل.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://oecd.ai/en/ai-principles" target="_blank" rel="noopener">مبادئ OECD للذكاء الاصطناعي (2019، محدَّثة 2024).</a></li>
+          <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">إطار NIST لإدارة مخاطر الذكاء (AI RMF 1.0) (سجل 2023).</a></li>
+          <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener">ISO/IEC 42001:2023، نظام إدارة الذكاء الاصطناعي.</a></li>
+          <li><a href="https://www.iso.org/standard/iso-iec-27000-family" target="_blank" rel="noopener">عائلة ISO/IEC 27000، إدارة أمن المعلومات (سياق حوكمة البيانات).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","strategy","data","operating","change","value","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Management</title>
+<meta name="description" content="An original framework on financial management: the investment, financing, and cash decisions that create value, and why cash beats paper profit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">FINANCE &amp; ECONOMY &middot; FRAMEWORK</span><span data-lang="ar">المال والاقتصاد &middot; إطار</span></div>
+    <h1><span data-lang="en">Financial Management</span><span data-lang="ar">الإدارة المالية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="decisions"><span data-lang="en">Decisions</span><span data-lang="ar">القرارات</span></a>
+    <a data-id="principles"><span data-lang="en">Principles</span><span data-lang="ar">المبادئ</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Financial management</div>
+          <div><span>Scope:</span> Managing an organization's money to create value</div>
+          <div><span>Owner role:</span> Finance leadership, with the whole business</div>
+          <div><span>Review cadence:</span> Continuous, with formal reporting cycles</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Financial management is the discipline of managing an organization's money to achieve its goals and create value: deciding how to raise funds, how to invest them, and how to manage the cash and risk in between. It is the language and control system of business, translating every activity into the common measure of money, and ensuring the organization has the resources it needs while using them wisely.</p>
+        <p>Financial management matters because money is the resource that enables everything else, and mismanaging it is one of the surest ways for an otherwise good business to fail. A company can have a great product, happy customers, and talented people and still collapse if it runs out of cash, invests in the wrong things, or takes on unsustainable debt. Sound financial management is what keeps an organization solvent, funds its growth, and ensures that the value it creates in the market translates into a healthy, sustainable business rather than being lost through poor financial decisions.</p>
+        <p>This framework explains the core decisions of financial management, the difference between profit and cash, and the principles that guide sound financial choices. It is my own synthesis, written in my own words and grounded in recognized financial thinking, designed to be reusable across organizations.</p>
+        <div class="note"><strong>Note:</strong> Profit is an opinion; cash is a fact. A business can be profitable on paper and still fail by running out of cash, which is why managing money, not just measuring profit, is the heart of financial management.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الإدارة المالية</div>
+          <div><span>النطاق:</span> إدارة مال المنشأة لخلق القيمة</div>
+          <div><span>دور المالك:</span> القيادة المالية، مع العمل كله</div>
+          <div><span>دورية المراجعة:</span> مستمرة، بدورات تقاريرَ رسمية</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الإدارة المالية انضباط إدارة مال المنشأة لتحقيق أهدافها وخلق القيمة: تقرير كيف تُجمَع الأموال، وكيف تُستثمَر، وكيف يُدار النقد والخطر بينهما. وهي لغة الأعمال ونظام ضبطها، مترجمةً كل نشاطٍ لمقياس المال المشترك، وضامنةً أن للمنشأة الموارد التي تحتاجها مع استخدامها بحكمة.</p>
+        <p>تهمّ الإدارة المالية لأن المال المورد الذي يُمكِّن كل ما عداه، وسوء إدارته من أوثق طرق فشل عملٍ جيد. فقد يكون لشركةٍ منتجٌ رائع وعملاء سعداء وناسٌ موهوبون وتنهار مع ذلك إن نفد نقدها، أو استثمرت في الأشياء الخطأ، أو حمّلت ديونًا غير مستدامة. والإدارة المالية السليمة ما يُبقي المنشأة قادرة على السداد، ويموّل نموّها، ويضمن أن القيمة التي تخلقها في السوق تُترجَم لعملٍ صحّي مستدام لا تضيع عبر قراراتٍ مالية رديئة.</p>
+        <p>يشرح هذا الإطار قرارات الإدارة المالية الجوهرية، والفرق بين الربح والنقد، والمبادئ التي توجّه الاختيارات المالية السليمة. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في فكرٍ مالي معترف به، مصمَّمٌ ليكون قابلًا لإعادة الاستخدام عبر المنشآت.</p>
+        <div class="note"><strong>ملاحظة:</strong> الربح رأي؛ والنقد حقيقة. فقد يكون عملٌ مربحًا على الورق ويفشل بنفاد النقد، ولهذا إدارة المال، لا مجرّد قياس الربح، قلب الإدارة المالية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="decisions">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Core Financial Decisions</h2>
+        <p class="lead">Financial management comes down to a few connected decisions about where money comes from, where it goes, and how it is managed day to day. Each has to serve the goal of creating value.</p>
+        <p>The first is the investment decision: what to spend the organization's money on, which projects, assets, and opportunities to fund. This is where value is created or destroyed, because it commits resources to some uses over others, and the discipline is to invest where the expected return justifies the cost and risk, rather than where it feels attractive. The second is the financing decision: where to get the money, chiefly the mix of debt (borrowing) and equity (ownership). Debt is cheaper but must be repaid and adds risk, while equity is more expensive but more forgiving, and the balance between them, the capital structure, shapes both the cost and the risk of the whole business.</p>
+        <ul>
+          <li><strong>Investment:</strong> what to fund, choosing uses where return justifies cost and risk.</li>
+          <li><strong>Financing:</strong> where money comes from, balancing debt and equity.</li>
+          <li><strong>Working capital:</strong> managing day-to-day cash so the business can always pay its way.</li>
+          <li><strong>Value and risk:</strong> the goal running through all three, more value at acceptable risk.</li>
+        </ul>
+        <p>The third is managing working capital: the day-to-day money tied up in running the business, the cash, the money owed by customers, the money owed to suppliers, and the inventory. Managing this well ensures the organization always has enough cash to meet its obligations, since even a profitable business fails if it cannot pay its bills when they fall due. Running through all three decisions is a single purpose: creating value while managing risk. Every financial choice is ultimately about whether it makes the organization more valuable, weighed against the risk it adds, and the art of financial management is making these investment, financing, and cash decisions in a way that steadily builds a more valuable and more resilient business.</p>
+        <div class="note"><strong>Note:</strong> The three decisions, what to invest in, how to fund it, and how to manage the cash, are the whole of financial management. Everything else is detail in service of making these well.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>القرارات المالية الجوهرية</h2>
+        <p class="lead">الإدارة المالية تؤول لبضعة قراراتٍ متصلة عن من أين يأتي المال، وأين يذهب، وكيف يُدار يومًا بيوم. وكلٌّ يجب أن يخدم هدف خلق القيمة.</p>
+        <p>الأول قرار الاستثمار: على ماذا يُنفَق مال المنشأة، أي مشاريع وأصولٍ وفرصٍ تُموَّل. وهنا تُخلَق القيمة أو تُدمَّر، لأنه يلتزم الموارد لاستخداماتٍ دون أخرى، والانضباط أن تستثمر حيث يبرّر العائد المتوقَّع الكلفة والخطر، لا حيث يبدو جذّابًا. والثاني قرار التمويل: من أين تحصل على المال، أساسًا مزيج الدين (الاقتراض) وحقوق الملكية. فالدين أرخص لكنه يجب سداده ويضيف خطرًا، وحقوق الملكية أغلى لكنها أسمح، والتوازن بينهما، هيكل رأس المال، يُشكّل كلفة وخطر العمل كله.</p>
+        <ul>
+          <li><strong>الاستثمار:</strong> ماذا تموّل، مختارًا استخداماتٍ يبرّر فيها العائد الكلفة والخطر.</li>
+          <li><strong>التمويل:</strong> من أين يأتي المال، موازنًا الدين وحقوق الملكية.</li>
+          <li><strong>رأس المال العامل:</strong> إدارة نقد اليوم فيستطيع العمل السداد دومًا.</li>
+          <li><strong>القيمة والخطر:</strong> الهدف الجاري عبر الثلاثة، قيمةٌ أكثر بخطرٍ مقبول.</li>
+        </ul>
+        <p>والثالث إدارة رأس المال العامل: مال اليوم المربوط في تشغيل العمل، النقد، والمال المستحقّ من العملاء، والمستحقّ للمورّدين، والمخزون. وإدارته جيدًا تضمن أن للمنشأة دومًا نقدًا كافيًا للوفاء بالتزاماتها، إذ حتى عملٌ مربح يفشل إن لم يستطع سداد فواتيره عند استحقاقها. ويجري عبر القرارات الثلاثة غرضٌ واحد: خلق القيمة مع إدارة الخطر. فكل اختيارٍ مالي في النهاية عن هل يجعل المنشأة أقيَم، موزونًا بالخطر الذي يضيفه، وفنّ الإدارة المالية صنع قرارات الاستثمار والتمويل والنقد هذه بطريقةٍ تبني باطّرادٍ عملًا أقيَم وأصمد.</p>
+        <div class="note"><strong>ملاحظة:</strong> القرارات الثلاثة، فيمَ تستثمر، وكيف تموّله، وكيف تدير النقد، هي الإدارة المالية كلها. وكل ما عداها تفصيلٌ في خدمة إتقانها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="principles">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Profit, Cash &amp; Sound Principles</h2>
+        <p class="lead">Underlying good financial management are a few principles that repeatedly separate sound decisions from ones that look attractive but destroy value or invite disaster.</p>
+        <p>The most important, and most often overlooked, is the difference between profit and cash. Profit is an accounting measure of whether revenues exceed costs over a period; cash is the actual money in the bank. They are not the same: a business can be profitable on paper while running out of cash, because money is tied up in unpaid invoices or inventory, or spent on assets, before the profit becomes real money. Because a business fails when it cannot pay its bills, not when it reports a loss, managing cash is often more urgent than managing profit, and confusing the two has sunk many otherwise sound companies. A second principle is the time value of money: money today is worth more than the same money later, because it can be used or invested in the meantime, which is why sound financial analysis weighs future returns against the fact that they arrive later and are uncertain.</p>
+        <p>A third principle is the relationship between risk and return: higher returns generally require accepting higher risk, so financial decisions are always a trade-off, not a search for high return with no risk, which does not exist. Sound financial management does not avoid risk but takes it deliberately, where the expected return justifies it and within what the organization can bear. Underlying all of these is a disciplined honesty about the numbers: good financial management depends on accurate information and clear-eyed analysis, not optimistic assumptions, because financial decisions made on flattering but false numbers lead reliably to trouble. Held together, these principles keep financial management anchored to reality, ensuring that the pursuit of value does not quietly become the accumulation of hidden risk.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> financial management creates value through sound investment, financing, and cash decisions, guided by the hard truths that cash matters more than paper profit, that money has a time value, that return and risk trade off against each other, and that good decisions depend on honest numbers rather than optimistic ones.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الربح والنقد والمبادئ السليمة</h2>
+        <p class="lead">تحت الإدارة المالية الجيدة بضعة مبادئ تفصل باطّرادٍ القرارات السليمة عن التي تبدو جذّابة لكنها تدمّر القيمة أو تدعو للكارثة.</p>
+        <p>الأهمّ، والأكثر إغفالًا، الفرق بين الربح والنقد. فالربح مقياسٌ محاسبي لهل تفوق الإيرادات الكلف عبر فترة؛ والنقد المال الفعلي في البنك. وليسا سواءً: فقد يكون عملٌ مربحًا على الورق بينما ينفد نقده، لأن المال مربوطٌ في فواتير غير مسدَّدة أو مخزون، أو مُنفَقٌ على أصول، قبل أن يصير الربح مالًا حقيقيًا. ولأن عملًا يفشل حين لا يستطيع سداد فواتيره، لا حين يُبلِغ خسارة، فإدارة النقد غالبًا أعجل من إدارة الربح، وخلط الاثنين أغرق شركاتٍ كثيرة سليمة لولاه. والمبدأ الثاني القيمة الزمنية للمال: مالٌ اليوم أقيَم من المال ذاته لاحقًا، لأنه يمكن استخدامه أو استثماره في الأثناء، ولهذا التحليل المالي السليم يزن العوائد المستقبلية مقابل أنها تصل لاحقًا وغير يقينية.</p>
+        <p>والمبدأ الثالث العلاقة بين الخطر والعائد: العوائد الأعلى تتطلّب عمومًا قبول خطرٍ أعلى، فالقرارات المالية دومًا مقايضة، لا بحثٌ عن عائدٍ عالٍ بلا خطر، وهو ما لا يوجد. والإدارة المالية السليمة لا تتجنّب الخطر بل تأخذه عمدًا، حيث يبرّره العائد المتوقَّع وضمن ما تستطيع المنشأة تحمّله. ويكمن تحت هذه كلها أمانةٌ منضبطة عن الأرقام: فالإدارة المالية الجيدة تعتمد على معلوماتٍ دقيقة وتحليلٍ صريح، لا افتراضاتٍ متفائلة، لأن قراراتٍ مالية على أرقامٍ مُطرِية لكن زائفة تقود بوثوقٍ لمتاعب. ومجتمعةً، تُبقي هذه المبادئ الإدارة المالية مرساةً للواقع، ضامنةً ألّا يصير السعي للقيمة بهدوءٍ تراكمًا لخطرٍ خفيّ.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الإدارة المالية تخلق القيمة عبر قرارات استثمارٍ وتمويلٍ ونقدٍ سليمة، موجَّهةً بالحقائق الصعبة أن النقد يهمّ أكثر من ربح الورق، وأن للمال قيمةً زمنية، وأن العائد والخطر يتقايضان، وأن القرارات الجيدة تعتمد على أرقامٍ أمينة لا متفائلة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Financial management creates value through sound investment, financing, and cash decisions grounded in honest numbers.</p>
+        <ul>
+          <li>Master the three decisions: what to invest in, how to finance it, and how to manage working capital.</li>
+          <li>Never confuse profit with cash, since a profitable business can still fail by running out of cash.</li>
+          <li>Respect the time value of money: money now is worth more than the same money later.</li>
+          <li>Treat every choice as a risk-return trade-off, taking risk deliberately, not avoiding or ignoring it.</li>
+          <li>Base decisions on accurate, honest numbers rather than optimistic assumptions.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://corporatefinanceinstitute.com/resources/" target="_blank" rel="noopener">Corporate Finance Institute resources.</a></li>
+          <li><a href="https://hbr.org/topic/subject/finance" target="_blank" rel="noopener">Harvard Business Review, finance.</a></li>
+          <li><a href="https://www.investopedia.com/corporate-finance-4689807" target="_blank" rel="noopener">Investopedia, on corporate finance.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">الإدارة المالية تخلق القيمة عبر قرارات استثمارٍ وتمويلٍ ونقدٍ سليمة مؤصَّلة في أرقامٍ أمينة.</p>
+        <ul>
+          <li>أتقِن القرارات الثلاثة: فيمَ تستثمر، وكيف تموّله، وكيف تدير رأس المال العامل.</li>
+          <li>لا تخلط الربح بالنقد، إذ عملٌ مربح قد يفشل بنفاد النقد.</li>
+          <li>احترم القيمة الزمنية للمال: مالٌ الآن أقيَم من المال ذاته لاحقًا.</li>
+          <li>عامِل كل اختيارٍ كمقايضة خطرٍ-عائد، آخذًا الخطر عمدًا لا متجنّبًا أو متجاهلًا له.</li>
+          <li>أسّس القرارات على أرقامٍ دقيقة أمينة لا افتراضاتٍ متفائلة.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://corporatefinanceinstitute.com/resources/" target="_blank" rel="noopener">معهد تمويل الشركات، موارد.</a></li>
+          <li><a href="https://hbr.org/topic/subject/finance" target="_blank" rel="noopener">هارفارد بزنس ريفيو، المالية.</a></li>
+          <li><a href="https://www.investopedia.com/corporate-finance-4689807" target="_blank" rel="noopener">Investopedia، عن تمويل الشركات.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","decisions","principles","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Analytics</title>
+<meta name="description" content="An original framework on business analytics: the ladder from descriptive to prescriptive, and making analytics change real decisions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">DIGITAL &amp; TECHNOLOGY &middot; FRAMEWORK</span><span data-lang="ar">الرقمنة والتقنية &middot; إطار</span></div>
+    <h1><span data-lang="en">Business Analytics</span><span data-lang="ar">تحليلات الأعمال</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="ladder"><span data-lang="en">The Ladder</span><span data-lang="ar">السلّم</span></a>
+    <a data-id="useful"><span data-lang="en">Making It Useful</span><span data-lang="ar">جعلها نافعة</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Business analytics</div>
+          <div><span>Scope:</span> Turning data into better business decisions</div>
+          <div><span>Owner role:</span> Analytics teams, with decision-makers</div>
+          <div><span>Review cadence:</span> Continuous, tied to decision cycles</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Business analytics is the practice of using data to understand what is happening in a business, why, and what to do about it, turning raw information into insight that improves decisions. It ranges from simple reports of what happened to sophisticated models that predict the future and recommend action, but its purpose is always the same: to help people make better decisions than they could on instinct alone.</p>
+        <p>Business analytics matters because organizations now generate vast amounts of data, and that data is worthless until it is turned into insight that changes what people do. A business drowning in dashboards but not deciding differently has gained nothing; the value of analytics lies entirely in better decisions and actions. Done well, analytics replaces guesswork and opinion with evidence, catches problems and opportunities early, and lets an organization learn systematically from its own experience. Done poorly, it produces impressive reports that no one uses, or, worse, misleads through bad data or flawed analysis.</p>
+        <p>This framework explains the levels of analytics, from describing the past to prescribing action, what it takes to make analytics actually useful, and its pitfalls. It is my own synthesis, written in my own words and grounded in recognized analytics thinking, and it includes a worked illustration of the analytics ladder.</p>
+        <div class="note"><strong>Note:</strong> Analytics is worthless until it changes a decision. A dashboard no one acts on is a cost, not an asset; the entire value lies in doing something differently because of what the data revealed.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> تحليلات الأعمال</div>
+          <div><span>النطاق:</span> تحويل البيانات لقراراتٍ أفضل</div>
+          <div><span>دور المالك:</span> فرق التحليلات، مع صانعي القرار</div>
+          <div><span>دورية المراجعة:</span> مستمرة، مربوطة بدورات القرار</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">تحليلات الأعمال ممارسة استخدام البيانات لفهم ما يحدث في عملٍ، ولماذا، وما يُفعَل بشأنه، محوّلةً المعلومات الخام لرؤيةٍ تحسّن القرارات. تمتدّ من تقارير بسيطة لما حدث لنماذج متطوّرة تتنبّأ بالمستقبل وتوصي بالفعل، لكن غرضها دومًا واحد: مساعدة الناس على قراراتٍ أفضل مما يستطيعون بالغريزة وحدها.</p>
+        <p>تهمّ تحليلات الأعمال لأن المنشآت تولّد الآن كمياتٍ هائلة من البيانات، وتلك البيانات عديمة القيمة حتى تُحوَّل لرؤيةٍ تغيّر ما يفعله الناس. فعملٌ يغرق في لوحاتٍ لكنه لا يقرّر مختلفًا لم يكسب شيئًا؛ وقيمة التحليلات كلها في قراراتٍ وأفعالٍ أفضل. ومفعولةً جيدًا، تستبدل التحليلات بالتخمين والرأي دليلًا، وتلتقط المشكلات والفرص باكرًا، وتتيح للمنشأة التعلّم منهجيًا من تجربتها. ومفعولةً رديئًا، تُنتِج تقارير مبهرة لا أحد يستخدمها، أو الأسوأ، تضلّل ببياناتٍ سيّئة أو تحليلٍ معيب.</p>
+        <p>يشرح هذا الإطار مستويات التحليلات، من وصف الماضي إلى وصف الفعل، وما يلزم لجعل التحليلات نافعة فعلًا، ومطبّاتها. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في فكرٍ معترف به عن التحليلات، ويتضمّن رسمًا توضيحيًا لسلّم التحليلات.</p>
+        <div class="note"><strong>ملاحظة:</strong> التحليلات عديمة القيمة حتى تغيّر قرارًا. فلوحةٌ لا أحد يعمل بها كلفةٌ لا أصل؛ والقيمة كلها في فعل شيءٍ مختلف بسبب ما كشفته البيانات.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="ladder">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Analytics Ladder</h2>
+        <p class="lead">Analytics comes in levels of increasing power and difficulty, often pictured as a ladder. Each level answers a different question, and climbing it moves from understanding the past to shaping the future.</p>
+        <div style="text-align:center;margin:20px 0 8px;"><svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;max-width:480px;height:auto;font-family:&apos;IBM Plex Sans Arabic&apos;,sans-serif;"><rect x="70" y="14" width="380" height="56" rx="8" fill="#c9b8e8"/><text x="260" y="40" text-anchor="middle" font-size="14" font-weight="700" fill="#2E1A47">Descriptive</text><text x="260" y="58" text-anchor="middle" font-size="11" fill="#2E1A47" opacity="0.9">what happened?</text><rect x="70" y="84" width="380" height="56" rx="8" fill="#9270b5"/><text x="260" y="110" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">Diagnostic</text><text x="260" y="128" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.9">why did it happen?</text><rect x="70" y="154" width="380" height="56" rx="8" fill="#6b4790"/><text x="260" y="180" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">Predictive</text><text x="260" y="198" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.9">what will happen?</text><rect x="70" y="224" width="380" height="56" rx="8" fill="#4d2f6b"/><text x="260" y="250" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">Prescriptive</text><text x="260" y="268" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.9">what should we do?</text></svg></div>
+        <p>The first rung is descriptive analytics, which answers what happened: the reports, dashboards, and summaries that tell an organization its sales, its costs, its performance. This is the foundation, essential but limited, since it describes the past without explaining or predicting it. The second rung, diagnostic analytics, answers why it happened, digging into the data to find the causes behind the numbers, why sales fell in a region, why customers churned. This is more valuable because understanding cause is the first step to doing something about it.</p>
+        <p>The higher rungs look forward. Predictive analytics answers what will happen, using patterns in past data to forecast future outcomes, which customers are likely to leave, what demand will be next quarter, which transactions are probably fraud. This lets an organization act before events rather than after. The highest rung, prescriptive analytics, answers what we should do, going beyond prediction to recommend the best action given the forecast and the goal. Each rung is more powerful and more demanding than the last, requiring better data and more sophisticated methods. Importantly, the goal is not always to reach the top: much of the value in most organizations still lies in doing the lower rungs well, since an organization that cannot reliably describe and explain what is happening is not ready to predict or prescribe.</p>
+        <div class="note"><strong>Note:</strong> Do not chase prediction before you can describe and explain. Most organizations capture more value by mastering the lower rungs of the ladder than by reaching for advanced models on a shaky foundation.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>سلّم التحليلات</h2>
+        <p class="lead">التحليلات تأتي بمستوياتٍ متزايدة القوّة والصعوبة، تُصوَّر غالبًا كسلّم. كل مستوى يجيب سؤالًا مختلفًا، وتسلّقه ينتقل من فهم الماضي لتشكيل المستقبل.</p>
+        <div style="text-align:center;margin:20px 0 8px;"><svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;max-width:480px;height:auto;font-family:&apos;IBM Plex Sans Arabic&apos;,sans-serif;"><rect x="70" y="14" width="380" height="56" rx="8" fill="#c9b8e8"/><text x="260" y="40" text-anchor="middle" font-size="14" font-weight="700" fill="#2E1A47">الوصفي</text><text x="260" y="58" text-anchor="middle" font-size="11" fill="#2E1A47" opacity="0.9">ماذا حدث؟</text><rect x="70" y="84" width="380" height="56" rx="8" fill="#9270b5"/><text x="260" y="110" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">التشخيصي</text><text x="260" y="128" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.9">لماذا حدث؟</text><rect x="70" y="154" width="380" height="56" rx="8" fill="#6b4790"/><text x="260" y="180" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">التنبّئي</text><text x="260" y="198" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.9">ماذا سيحدث؟</text><rect x="70" y="224" width="380" height="56" rx="8" fill="#4d2f6b"/><text x="260" y="250" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">الوصفة/التوجيهي</text><text x="260" y="268" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.9">ماذا ينبغي أن نفعل؟</text></svg></div>
+        <p>الدرجة الأولى التحليلات الوصفية، تجيب ماذا حدث: التقارير واللوحات والملخّصات التي تخبر منشأةً بمبيعاتها وكلفها وأدائها. وهذا الأساس، ضروريٌّ لكنه محدود، إذ يصف الماضي دون تفسيره أو التنبّؤ به. والدرجة الثانية، التحليلات التشخيصية، تجيب لماذا حدث، بالحفر في البيانات لإيجاد الأسباب خلف الأرقام، لماذا هبطت المبيعات في منطقة، لماذا رحل العملاء. وهذه أقيَم لأن فهم السبب أول خطوةٍ لفعل شيءٍ بشأنه.</p>
+        <p>والدرجات الأعلى تنظر للأمام. التحليلات التنبّئية تجيب ماذا سيحدث، مستخدمةً أنماطًا في بيانات الماضي للتنبّؤ بالنتائج المستقبلية، أي العملاء يُرجَّح أن يغادروا، وما سيكون الطلب الربع القادم، وأي المعاملات احتيالٌ غالبًا. وهذا يتيح للمنشأة الفعل قبل الأحداث لا بعدها. والدرجة الأعلى، التحليلات التوجيهية، تجيب ماذا ينبغي أن نفعل، متجاوزةً التنبّؤ للتوصية بأفضل فعلٍ بالنظر للتوقّع والهدف. وكل درجةٍ أقوى وأكثر تطلّبًا من سابقتها، تتطلّب بياناتٍ أفضل وطرقًا أكثر تطوّرًا. ومهمًّا، الهدف ليس دومًا بلوغ القمة: فكثيرٌ من القيمة في أغلب المنشآت ما زال في فعل الدرجات الأدنى جيدًا، إذ منشأةٌ لا تستطيع وصف وتفسير ما يحدث بموثوقيةٍ ليست مستعدّة للتنبّؤ أو التوجيه.</p>
+        <div class="note"><strong>ملاحظة:</strong> لا تطارد التنبّؤ قبل أن تستطيع الوصف والتفسير. فأغلب المنشآت تلتقط قيمةً أكبر بإتقان درجات السلّم الأدنى منها بمدّ اليد لنماذج متقدّمة على أساسٍ مهزوز.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="useful">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Making Analytics Useful</h2>
+        <p class="lead">The hardest part of analytics is not the analysis but making it change what people do. A few conditions separate analytics that drives decisions from analytics that just produces reports.</p>
+        <p>The first condition is starting from the decision, not the data. Useful analytics begins by asking what decision needs to be made better, and works back to the data and analysis that would inform it, rather than analyzing whatever data happens to be available and hoping it proves useful. Analytics that is not tied to a real decision is a solution in search of a problem. The second is trustworthy data, because analysis built on poor, incomplete, or misunderstood data produces confident nonsense, and a single bad conclusion that misleads a decision can cost more than the whole analytics effort saves. The third is communicating insight clearly to the people who decide, since an analysis that decision-makers cannot understand or trust will not be used, however sophisticated it is.</p>
+        <p>Underlying all of this is a culture that actually uses data. Analytics delivers value only in an organization where people are willing to let evidence challenge their opinions and change their decisions, rather than using data selectively to justify what they already wanted to do. Building that culture, where a good analysis can overturn a senior person's assumption, is often harder than building the analytics capability itself, and more important. The honest guidance is that analytics is not a technology project but a decision-improvement discipline: its success is measured not by the sophistication of its models or the beauty of its dashboards, but by whether decisions across the organization are measurably better because of it.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> business analytics turns data into better decisions across the ladder from describing the past to prescribing action, and it delivers value only when it starts from a real decision, rests on trustworthy data, communicates clearly, and lives in a culture genuinely willing to let evidence change what it does.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>جعل التحليلات نافعة</h2>
+        <p class="lead">أصعب أجزاء التحليلات ليس التحليل بل جعله يغيّر ما يفعله الناس. وبضعة شروطٍ تفصل تحليلاتٍ تقود القرارات عن تحليلاتٍ تُنتِج تقارير فقط.</p>
+        <p>الشرط الأول البدء من القرار لا البيانات. فالتحليلات النافعة تبدأ بسؤال أي قرارٍ يحتاج تحسينًا، وتعمل عكسيًا للبيانات والتحليل الذي يُنيره، بدل تحليل أي بياناتٍ متاحة وأمل أن تُثبِت نفعها. وتحليلاتٌ غير مربوطة بقرارٍ حقيقي حلٌّ يبحث عن مشكلة. والثاني بياناتٌ موثوقة، لأن تحليلًا مبنيًا على بياناتٍ رديئة أو ناقصة أو مُساءةَ الفهم يُنتِج هراءً واثقًا، واستنتاجٌ سيّئ واحد يضلّل قرارًا قد يكلّف أكثر مما يوفّره جهد التحليلات كله. والثالث إبلاغ الرؤية بوضوحٍ لمن يقرّرون، إذ تحليلٌ لا يفهمه أو يثق به صانعو القرار لن يُستخدَم، مهما تطوّر.</p>
+        <p>ويكمن تحت هذا كله ثقافةٌ تستخدم البيانات فعلًا. فالتحليلات تسلّم قيمةً فقط في منشأةٍ يكون فيها الناس مستعدّين لترك الدليل يتحدّى آراءهم ويغيّر قراراتهم، بدل استخدام البيانات انتقائيًا لتبرير ما أرادوا فعله أصلًا. وبناء تلك الثقافة، حيث يستطيع تحليلٌ جيد قلب افتراض شخصٍ كبير، غالبًا أصعب من بناء قدرة التحليلات نفسها، وأهمّ. والإرشاد الأمين أن التحليلات ليست مشروع تقنية بل انضباط تحسين قرار: نجاحها يُقاس لا بتطوّر نماذجها أو جمال لوحاتها، بل بهل القرارات عبر المنشأة أفضل قياسًا بسببها.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> تحليلات الأعمال تحوّل البيانات لقراراتٍ أفضل عبر السلّم من وصف الماضي لوصف الفعل، وتسلّم قيمةً فقط حين تبدأ من قرارٍ حقيقي، وتقوم على بياناتٍ موثوقة، وتُبلِغ بوضوح، وتعيش في ثقافةٍ مستعدّة فعلًا لترك الدليل يغيّر ما تفعله.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Business analytics turns data into better decisions, and its value lies in action, not reports.</p>
+        <ul>
+          <li>Climb the ladder deliberately: descriptive, diagnostic, predictive, and prescriptive.</li>
+          <li>Master the lower rungs first, since prediction on a shaky foundation misleads.</li>
+          <li>Start from the decision, not the data: analytics untied to a decision is a solution seeking a problem.</li>
+          <li>Rest on trustworthy data and communicate clearly to the people who decide.</li>
+          <li>Build a culture willing to let evidence change decisions, which is harder than the analytics itself.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2013/12/analytics-30" target="_blank" rel="noopener">HBR, on analytics.</a></li>
+          <li><a href="https://www.gartner.com/en/data-analytics" target="_blank" rel="noopener">Gartner, on data and analytics.</a></li>
+          <li><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights" target="_blank" rel="noopener">McKinsey QuantumBlack, on analytics.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">تحليلات الأعمال تحوّل البيانات لقراراتٍ أفضل، وقيمتها في الفعل لا التقارير.</p>
+        <ul>
+          <li>تسلّق السلّم عمدًا: الوصفي، التشخيصي، التنبّئي، والتوجيهي.</li>
+          <li>أتقِن الدرجات الأدنى أولًا، إذ التنبّؤ على أساسٍ مهزوز يضلّل.</li>
+          <li>ابدأ من القرار لا البيانات: تحليلاتٌ غير مربوطة بقرارٍ حلٌّ يبحث عن مشكلة.</li>
+          <li>قُم على بياناتٍ موثوقة وأبلِغ بوضوحٍ لمن يقرّرون.</li>
+          <li>ابنِ ثقافةً مستعدّة لترك الدليل يغيّر القرارات، وهي أصعب من التحليلات نفسها.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2013/12/analytics-30" target="_blank" rel="noopener">HBR، عن التحليلات.</a></li>
+          <li><a href="https://www.gartner.com/en/data-analytics" target="_blank" rel="noopener">غارتنر، عن البيانات والتحليلات.</a></li>
+          <li><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights" target="_blank" rel="noopener">ماكنزي QuantumBlack، عن التحليلات.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","ladder","useful","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

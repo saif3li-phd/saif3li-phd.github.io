@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security Operations &amp; Incident Management</title>
+<meta name="description" content="An operational framework for security operations and incident management: SOC model, detection, triage, response lifecycle, metrics, and improvement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">CYBERSECURITY &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الأمن السيبراني &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Security Operations &amp; Incident Management</span><span data-lang="ar">عمليات الأمن والاستجابة للحوادث</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="model"><span data-lang="en">Operating Model</span><span data-lang="ar">نموذج التشغيل</span></a>
+    <a data-id="detection"><span data-lang="en">Detection</span><span data-lang="ar">الكشف</span></a>
+    <a data-id="triage"><span data-lang="en">Triage</span><span data-lang="ar">الفرز</span></a>
+    <a data-id="response"><span data-lang="en">Response Lifecycle</span><span data-lang="ar">دورة الاستجابة</span></a>
+    <a data-id="escalation"><span data-lang="en">Escalation</span><span data-lang="ar">التصعيد</span></a>
+    <a data-id="metrics"><span data-lang="en">Metrics &amp; SLAs</span><span data-lang="ar">المؤشرات</span></a>
+    <a data-id="improvement"><span data-lang="en">Improvement</span><span data-lang="ar">التحسين</span></a>
+    <a data-id="failure"><span data-lang="en">Failure Modes</span><span data-lang="ar">أنماط الفشل</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Cybersecurity operations</div>
+          <div><span>Scope:</span> Detection, triage, response, recovery, and improvement</div>
+          <div><span>Owner role:</span> Security operations lead</div>
+          <div><span>Review cadence:</span> Quarterly, plus after every major incident</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Security operations is the standing capability that keeps watch over an organization's systems, spots hostile or abnormal activity, and drives every confirmed threat to a controlled close. Incident management is the disciplined process layered on top of it, turning a noisy alert into a decision, an action, and a documented lesson.</p>
+        <p>This framework treats the two as one continuous loop rather than two separate functions. Monitoring feeds triage, triage feeds response, response feeds improvement, and improvement sharpens the very detection that started the cycle. The value of writing it down is consistency: when an alert fires at 3 a.m., the responder should not be inventing a process, they should be executing one that was designed calmly in advance. Consistency is what turns individual skill into an organizational capability that survives staff turnover.</p>
+        <p>The framework is deliberately technology neutral. It assumes you have some telemetry source and some way to act, but it does not depend on a specific product. That keeps it reusable across environments, and it keeps the focus on decisions and roles rather than on tool menus that change every year. Where a recognized standard adds rigor, this framework aligns to it, drawing on the incident handling guidance of NIST and the incident management process of ISO, without copying either.</p>
+        <h3>What good looks like</h3>
+        <p>A capable program is not the one with the most dashboards, it is the one that can answer three questions at any moment: what is happening right now, who is acting on it, and how long until it is contained. If any of those three answers requires a meeting to produce, the program is not yet operational, it is still aspirational.</p>
+        <div class="note"><strong>Note:</strong> A mature program is measured less by how many alerts it generates and more by how quickly and reliably it converts a real threat into a contained, understood, and closed event.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> عمليات الأمن السيبراني</div>
+          <div><span>النطاق:</span> الكشف والفرز والاستجابة والتعافي والتحسين</div>
+          <div><span>دور المالك:</span> قائد عمليات الأمن</div>
+          <div><span>دورية المراجعة:</span> ربع سنوية، وبعد كل حادثة كبرى</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">عمليات الأمن هي القدرة الدائمة التي تراقب أنظمة المنشأة، وترصد النشاط العدائي أو الشاذ، وتقود كل تهديد مؤكَّد إلى إغلاق مضبوط. أما إدارة الحوادث فهي العملية المنضبطة فوقها، تحوّل التنبيه المزعج إلى قرار، ثم إجراء، ثم درس موثَّق.</p>
+        <p>يعامل هذا الإطار الاثنين كحلقة واحدة متصلة لا كوظيفتين منفصلتين. المراقبة تُغذّي الفرز، والفرز يُغذّي الاستجابة، والاستجابة تُغذّي التحسين، والتحسين يشحذ الكشف الذي بدأت به الدورة. وقيمة توثيقه هي الاتساق: حين يشتعل تنبيه في الثالثة فجرًا، لا يبتكر المستجيب عمليةً، بل ينفّذ عمليةً صُمِّمت بهدوء مسبقًا. والاتساق هو ما يحوّل المهارة الفردية إلى قدرة مؤسسية تبقى رغم تبدّل الموظفين.</p>
+        <p>الإطار محايد تقنيًا عن قصد. يفترض وجود مصدر بيانات ما ووسيلة فعل ما، لكنه لا يعتمد على منتج بعينه. وهذا يبقيه قابلًا لإعادة الاستخدام عبر البيئات، ويُبقي التركيز على القرارات والأدوار لا على قوائم أدوات تتغير كل عام. وحيث يضيف معيارٌ معترف به صرامةً، يتوافق هذا الإطار معه، مستندًا إلى إرشاد معالجة الحوادث من NIST وعملية إدارة الحوادث من ISO، دون نسخ أيٍّ منهما.</p>
+        <h3>كيف يبدو الأداء الجيد</h3>
+        <p>البرنامج القادر ليس صاحب أكثر اللوحات، بل القادر على الإجابة في أي لحظة عن ثلاثة أسئلة: ماذا يجري الآن، ومن يتصرّف حياله، وكم يتبقّى حتى الاحتواء. وإن تطلّبت أيٌّ من هذه الإجابات اجتماعًا لإنتاجها، فالبرنامج ليس تشغيليًا بعد، بل ما زال طموحًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> نضج البرنامج يُقاس بسرعة وموثوقية تحويله للتهديد الحقيقي إلى حدث محتوى ومفهوم ومغلق، لا بعدد التنبيهات التي يولّدها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="model">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Operating Model &amp; Roles</h2>
+        <p class="lead">A response only moves as fast as its clarity of ownership. Before an incident, every recurring decision should already have a named role attached, so that during an incident no one is asking who is allowed to decide this.</p>
+        <p>Most teams organize the work into tiers. Tier 1 watches the queue and handles routine triage, Tier 2 investigates the cases that survive triage, and Tier 3 or specialist functions handle deep forensics, threat hunting, and the hardest containment calls. An incident commander coordinates the response of a major event, keeping the technical work, the communication, and the decision record moving in parallel rather than in sequence. Separating the commander role from the hands-on responders is deliberate: the person making cross-cutting decisions should not also be the person deep in a terminal, because each job needs full attention.</p>
+        <h3>Coverage model</h3>
+        <p>Continuous operations need a coverage model that names who is watching at every hour. A follow-the-sun model spreads shifts across regions, an on-call rotation keeps a responder reachable outside business hours, and a hybrid does both. Whichever you pick, the on-call schedule, the escalation contacts, and the authority to act must be written down and reachable in seconds, because an incident that starts with a hunt for a phone number has already lost time it cannot recover.</p>
+        <p>The matrix below is a starting RACI for a mid-sized operation. Adapt the names to your structure, but keep the principle: exactly one accountable role per activity, because shared accountability is the same as none.</p>
+        <table>
+          <tr><th>Activity</th><th>Tier 1</th><th>Tier 2</th><th>Incident commander</th><th>Business owner</th></tr>
+          <tr><td>Alert triage</td><td>Accountable</td><td>Consulted</td><td>Informed</td><td>Informed</td></tr>
+          <tr><td>Investigation</td><td>Responsible</td><td>Accountable</td><td>Informed</td><td>Informed</td></tr>
+          <tr><td>Containment decision</td><td>Informed</td><td>Responsible</td><td>Accountable</td><td>Consulted</td></tr>
+          <tr><td>External communication</td><td>Informed</td><td>Informed</td><td>Responsible</td><td>Accountable</td></tr>
+          <tr><td>Post-incident review</td><td>Consulted</td><td>Responsible</td><td>Accountable</td><td>Consulted</td></tr>
+        </table>
+        <div class="note"><strong>Note:</strong> Roles are attached to activities, not to people. When someone is on leave, the role still exists and can be reassigned in seconds.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>نموذج التشغيل والأدوار</h2>
+        <p class="lead">لا تتحرك الاستجابة أسرع من وضوح ملكيتها. قبل الحادثة، ينبغي أن يكون لكل قرار متكرر دورٌ مُسمّى مرتبط به، حتى لا يسأل أحد أثناء الحادثة من يحق له أن يقرر هذا.</p>
+        <p>تنظّم أغلب الفرق العمل في طبقات. الطبقة الأولى تراقب قائمة التنبيهات وتتولى الفرز الروتيني، والطبقة الثانية تحقّق في الحالات التي تنجو من الفرز، والطبقة الثالثة أو الوظائف المتخصصة تتولى التحاليل الجنائية العميقة والصيد الاستباقي وأصعب قرارات الاحتواء. ويُنسّق قائد الحادثة استجابة الحدث الكبير، فيبقي العمل التقني والتواصل وسجل القرار متحركةً بالتوازي لا بالتتابع. وفصل دور القائد عن المستجيبين المباشرين مقصود: فمن يتخذ القرارات الشاملة لا ينبغي أن يكون نفسه الغارق في الطرفية، لأن كل مهمة تحتاج انتباهًا كاملًا.</p>
+        <h3>نموذج التغطية</h3>
+        <p>العمليات المستمرة تحتاج نموذج تغطية يسمّي مَن يراقب في كل ساعة. نموذج «تتبّع الشمس» يوزّع المناوبات عبر المناطق، ونوبة الاستدعاء تُبقي مستجيبًا قابلًا للوصول خارج الدوام، والهجين يجمع الاثنين. وأيًّا اخترت، يجب أن يكون جدول المناوبة وجهات التصعيد وصلاحية التصرّف مكتوبةً وقابلةً للوصول خلال ثوانٍ، لأن حادثةً تبدأ بالبحث عن رقم هاتف تكون قد خسرت وقتًا لا يُعوَّض.</p>
+        <p>المصفوفة أدناه هي بداية RACI لعملية متوسطة الحجم. عدّل المسميات لهيكلك، لكن أبقِ المبدأ: دورٌ مساءَل واحد فقط لكل نشاط، لأن المساءلة المشتركة كعدمها.</p>
+        <table>
+          <tr><th>النشاط</th><th>الطبقة ١</th><th>الطبقة ٢</th><th>قائد الحادثة</th><th>مالك العمل</th></tr>
+          <tr><td>فرز التنبيه</td><td>مساءَل</td><td>مُستشار</td><td>مُبلَّغ</td><td>مُبلَّغ</td></tr>
+          <tr><td>التحقيق</td><td>منفّذ</td><td>مساءَل</td><td>مُبلَّغ</td><td>مُبلَّغ</td></tr>
+          <tr><td>قرار الاحتواء</td><td>مُبلَّغ</td><td>منفّذ</td><td>مساءَل</td><td>مُستشار</td></tr>
+          <tr><td>التواصل الخارجي</td><td>مُبلَّغ</td><td>مُبلَّغ</td><td>منفّذ</td><td>مساءَل</td></tr>
+          <tr><td>مراجعة ما بعد الحادثة</td><td>مُستشار</td><td>منفّذ</td><td>مساءَل</td><td>مُستشار</td></tr>
+        </table>
+        <div class="note"><strong>ملاحظة:</strong> الأدوار مرتبطة بالأنشطة لا بالأشخاص. حين يغيب شخص، يبقى الدور قائمًا ويُعاد إسناده في ثوانٍ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="detection">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Detection &amp; Monitoring</h2>
+        <p class="lead">Detection is only as good as the questions you have taught your tools to ask. Collecting every log is not a strategy, it is a cost. The discipline is to decide which behaviors matter, then engineer a signal for each one.</p>
+        <p>A useful detection is written like a hypothesis: it names the behavior it expects to see, the data source that would reveal it, and the action a responder should take when it fires. This keeps the alert catalog honest, because any rule that cannot name a response is noise waiting to be tuned out. Coverage is best mapped against a shared model of attacker behavior so that gaps are visible rather than assumed, and so that the team argues about evidence rather than opinion.</p>
+        <h3>Signal quality over signal volume</h3>
+        <p>Every alert carries a hidden tax: the analyst time spent confirming it is benign. A catalog that fires ten thousand times a day trains its own team to ignore it. The goal is a small set of high-fidelity detections, each with a low false positive rate, backed by a steady program of tuning that retires the rules which cry wolf. A single well-tuned detection that reliably catches a real technique is worth more than a hundred noisy ones.</p>
+        <ul>
+          <li><strong>Fidelity:</strong> what share of alerts from a rule turn out to be real. Low-fidelity rules get tuned or retired, not silenced by hand, because a manually ignored alert is a disabled control that still looks enabled.</li>
+          <li><strong>Coverage:</strong> which attacker techniques you can actually see, and which you are blind to, stated openly. A coverage map turns invisible gaps into a prioritized backlog.</li>
+          <li><strong>Actionability:</strong> every alert names the next step, so triage starts with a decision rather than a research project.</li>
+          <li><strong>Enrichment:</strong> context added automatically, such as asset owner, criticality, and recent related alerts, so the analyst reads a story rather than a raw line.</li>
+        </ul>
+        <h3>Data sources</h3>
+        <p>Detections draw on telemetry from endpoints, network, identity, and cloud. The art is choosing the smallest set of sources that covers the behaviors you care about, since every source ingested is a source to be stored, parsed, and paid for. Start from the behaviors, then pull only the data that reveals them.</p>
+        <div class="note"><strong>Note:</strong> Treat the detection catalog as a living product with an owner, a backlog, and a retirement policy, not as a pile of rules that only ever grows.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الكشف والمراقبة</h2>
+        <p class="lead">جودة الكشف من جودة الأسئلة التي علّمتَ أدواتك أن تسألها. جمع كل السجلات ليس استراتيجية بل تكلفة. والانضباط هو أن تقرّر أي السلوكيات مهمّ، ثم تهندس إشارةً لكلٍّ منها.</p>
+        <p>الكشف المفيد يُكتب كفرضية: يسمّي السلوك المتوقَّع رصده، ومصدر البيانات الذي يكشفه، والإجراء الذي على المستجيب اتخاذه حين يشتعل. وهذا يُبقي سجل التنبيهات صادقًا، لأن أي قاعدة لا تستطيع تسمية إجراءٍ هي ضجيج ينتظر أن يُهمَل. ويُفضَّل رسم التغطية على نموذج مشترك لسلوك المهاجم حتى تكون الفجوات مرئيةً لا مُفترَضة، وحتى يتجادل الفريق حول الدليل لا حول الرأي.</p>
+        <h3>جودة الإشارة قبل كثرتها</h3>
+        <p>كل تنبيه يحمل ضريبةً خفية: وقت المحلّل في تأكيد أنه غير ضار. والسجل الذي يشتعل عشرة آلاف مرة يوميًا يدرّب فريقه على تجاهله. والهدف مجموعة صغيرة من كشوف عالية الدقة، كلٌّ منها منخفض الإنذارات الكاذبة، تسنده عمليةُ ضبطٍ ثابتة تُقاعِد القواعد التي تُطلق إنذارًا زائفًا. وكشفٌ واحد مضبوط جيدًا يلتقط أسلوبًا حقيقيًا بموثوقية أثمن من مئة كشفٍ صاخب.</p>
+        <ul>
+          <li><strong>الدقة:</strong> ما نسبة تنبيهات القاعدة التي تتبيّن حقيقية. القواعد منخفضة الدقة تُضبَط أو تُقاعَد لا تُكتَم يدويًا، لأن تنبيهًا يُتجاهَل يدويًا ضابطٌ مُعطَّل يبدو مفعَّلًا.</li>
+          <li><strong>التغطية:</strong> أي أساليب المهاجمين تستطيع رؤيتها فعلًا، وأيها أنت أعمى عنه، بوضوح مُعلَن. وخريطة التغطية تحوّل الفجوات الخفية إلى قائمة أعمال مرتّبة بالأولوية.</li>
+          <li><strong>القابلية للتنفيذ:</strong> كل تنبيه يسمّي الخطوة التالية، فيبدأ الفرز بقرار لا بمشروع بحث.</li>
+          <li><strong>الإثراء:</strong> سياقٌ يُضاف تلقائيًا، كمالك الأصل وحرجيّته والتنبيهات المرتبطة الحديثة، فيقرأ المحلّل قصةً لا سطرًا خامًا.</li>
+        </ul>
+        <h3>مصادر البيانات</h3>
+        <p>يستمد الكشف بياناته من الأجهزة الطرفية والشبكة والهوية والسحابة. والفن هو اختيار أصغر مجموعة مصادر تغطّي السلوكيات التي تهمّك، لأن كل مصدر يُستوعَب مصدرٌ يُخزَّن ويُحلَّل ويُدفَع ثمنه. ابدأ من السلوكيات، ثم اسحب فقط البيانات التي تكشفها.</p>
+        <div class="note"><strong>ملاحظة:</strong> عامِل سجل الكشف كمنتج حيّ له مالك وقائمة أعمال وسياسة تقاعد، لا ككومة قواعد لا تكبر إلا كِبَرًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="triage">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Triage &amp; Classification</h2>
+        <p class="lead">Triage is the moment an alert becomes a case, or is dismissed. Its job is to answer three questions quickly: is this real, how bad could it be, and who needs to act now. A consistent severity model turns that judgment from a personal opinion into a repeatable decision.</p>
+        <p>Severity should be a function of two things: the potential business impact and the confidence that the activity is genuinely hostile. A high-impact, high-confidence alert deserves an immediate page, while a high-impact but low-confidence alert deserves fast investigation before anyone is woken up. Writing this down prevents both the fatigue of over-escalation and the danger of under-reaction. The model should be simple enough to apply under stress in under a minute, because a severity scheme that needs a spreadsheet will be skipped exactly when it matters.</p>
+        <table>
+          <tr><th>Severity</th><th>Meaning</th><th>Example</th><th>Target first action</th></tr>
+          <tr><td>Critical (Sev 1)</td><td>Active, confirmed impact on core systems or data</td><td>Ransomware spreading, confirmed data theft</td><td>Immediate, 24/7</td></tr>
+          <tr><td>High (Sev 2)</td><td>Confirmed compromise, contained blast radius</td><td>Single host compromise, credential misuse</td><td>Within the hour</td></tr>
+          <tr><td>Medium (Sev 3)</td><td>Suspicious activity needing investigation</td><td>Unusual access pattern, policy violation</td><td>Same business day</td></tr>
+          <tr><td>Low (Sev 4)</td><td>Low-confidence or informational signal</td><td>Isolated failed logins, hygiene finding</td><td>Next business day</td></tr>
+        </table>
+        <p>The numbers in the last column are placeholders you set against your own risk appetite and staffing. What matters is that they exist and are agreed before the incident, so severity drives the clock automatically. Pair each severity with a default first responder and a default notification list, so classifying an alert also routes it.</p>
+        <h4>Worked example</h4>
+        <p>An alert fires for a successful login from an unusual country on an administrator account. Impact is high, because the account is privileged, and confidence is moderate, because legitimate travel is possible, so the model places it at high rather than critical: investigate within the hour, and page immediately if a second signal appears, such as a new mail-forwarding rule or a privilege change. Writing the rule this way means the analyst spends the first minute deciding and acting, not debating what the alert deserves.</p>
+        <h3>False positives and dismissals</h3>
+        <p>A dismissal is a decision, not a shrug. Every closed alert should record why it was benign, because those reasons are the raw material for tuning the detection that produced it. A triage queue that closes alerts without capturing the reason is discarding its own improvement data.</p>
+        <div class="note"><strong>Note:</strong> Allow severity to move in both directions. A case that looked medium can escalate on new evidence, and one that looked critical can be de-escalated once scope is understood.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الفرز والتصنيف</h2>
+        <p class="lead">الفرز هو اللحظة التي يصبح فيها التنبيه حالةً أو يُستبعد. ومهمته الإجابة العاجلة عن ثلاثة أسئلة: هل هذا حقيقي، وكم قد يكون سيئًا، ومن يجب أن يتحرك الآن. ونموذج الشدّة المتّسق يحوّل هذا الحكم من رأي شخصي إلى قرار قابل للتكرار.</p>
+        <p>ينبغي أن تكون الشدّة دالةً لأمرين: الأثر المحتمل على العمل، والثقة في أن النشاط عدائي فعلًا. فالتنبيه عالي الأثر عالي الثقة يستحق استدعاءً فوريًا، أما عالي الأثر منخفض الثقة فيستحق تحقيقًا عاجلًا قبل إيقاظ أحد. وتوثيق هذا يمنع إرهاق التصعيد الزائد وخطر التهاون معًا. وينبغي أن يكون النموذج بسيطًا بما يكفي لتطبيقه تحت الضغط في أقل من دقيقة، لأن مخطط شدّةٍ يحتاج جدولًا سيُتجاوَز في اللحظة التي يهمّ فيها بالضبط.</p>
+        <table>
+          <tr><th>الشدّة</th><th>المعنى</th><th>مثال</th><th>أول إجراء مستهدف</th></tr>
+          <tr><td>حرجة (١)</td><td>أثر نشط مؤكَّد على أنظمة أو بيانات جوهرية</td><td>فدية تنتشر، سرقة بيانات مؤكَّدة</td><td>فوري، ٢٤/٧</td></tr>
+          <tr><td>عالية (٢)</td><td>اختراق مؤكَّد بنطاق انتشار محتوى</td><td>اختراق مضيف واحد، إساءة استخدام بيانات دخول</td><td>خلال ساعة</td></tr>
+          <tr><td>متوسطة (٣)</td><td>نشاط مشبوه يحتاج تحقيقًا</td><td>نمط وصول غير معتاد، مخالفة سياسة</td><td>خلال يوم العمل</td></tr>
+          <tr><td>منخفضة (٤)</td><td>إشارة منخفضة الثقة أو تعريفية</td><td>محاولات دخول فاشلة معزولة، ملحوظة نظافة</td><td>يوم العمل التالي</td></tr>
+        </table>
+        <p>الأرقام في العمود الأخير قيمٌ افتراضية تضبطها وفق شهيّتك للمخاطر وطاقتك البشرية. المهم أنها موجودة ومتّفق عليها قبل الحادثة، فتقود الشدّةُ الساعةَ تلقائيًا. واقرِن كل شدّة بمستجيبٍ أول افتراضي وقائمة إبلاغ افتراضية، فيصير تصنيف التنبيه توجيهًا له أيضًا.</p>
+        <h4>مثال محلول</h4>
+        <p>يشتعل تنبيهٌ لدخولٍ ناجح من دولةٍ غير معتادة على حسابٍ إداري. الأثر عالٍ لأن الحساب مميَّز، والثقة متوسطة لأن السفر المشروع ممكن، فيضعه النموذج عاليًا لا حرجًا: حقّق خلال ساعة، واستدعِ فورًا إن ظهرت إشارةٌ ثانية، كقاعدة إعادة توجيه بريدٍ جديدة أو تغيير صلاحية. وكتابة القاعدة هكذا تعني أن المحلّل يقضي الدقيقة الأولى في القرار والفعل، لا في الجدال حول ما يستحقه التنبيه.</p>
+        <h3>الإنذارات الكاذبة والاستبعادات</h3>
+        <p>الاستبعاد قرار لا استخفاف. وكل تنبيه مُغلَق ينبغي أن يسجّل سبب كونه غير ضار، لأن تلك الأسباب مادةٌ خام لضبط الكشف الذي أنتجه. وقائمة فرزٍ تغلق التنبيهات دون التقاط السبب تُهدر بيانات تحسينها.</p>
+        <div class="note"><strong>ملاحظة:</strong> اسمح للشدّة بالحركة في الاتجاهين. فحالةٌ بدت متوسطة قد تتصاعد بدليل جديد، وأخرى بدت حرجة قد تُخفَّض متى فُهم نطاقها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="response">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Incident Response Lifecycle</h2>
+        <p class="lead">A response follows a lifecycle so that under pressure the team executes steps rather than improvises them. The widely used phasing runs from preparation, through detection and analysis, into containment, eradication and recovery, and closes with a lesson.</p>
+        <h3>The phases in practice</h3>
+        <ul>
+          <li><strong>Preparation:</strong> the work done before anything happens, playbooks, access, tooling, and rehearsals. It is the only phase you fully control, and it decides how the others go.</li>
+          <li><strong>Detection and analysis:</strong> confirming the alert is real, scoping what it touches, and establishing a timeline of what happened.</li>
+          <li><strong>Containment:</strong> stopping the spread first, often in a short-term way to buy time, then in a durable way once scope is understood.</li>
+          <li><strong>Eradication:</strong> removing the foothold, whether that is malware, a rogue account, or an exploited weakness.</li>
+          <li><strong>Recovery:</strong> restoring systems to trusted operation and watching closely for any return of the activity.</li>
+          <li><strong>Post-incident activity:</strong> the review that converts the event into a durable improvement, covered in the improvement section.</li>
+        </ul>
+        <p>Containment is where most of the pressure lives, because the fastest fix and the safest fix are rarely the same. Pulling a machine offline stops the bleeding but can destroy the evidence needed to understand the intrusion, so the decision belongs to a named role, made against a rule agreed in advance. A useful pattern is to contain in two stages: a short-term isolation that limits harm immediately, then a considered long-term action once you understand how far the intrusion reached.</p>
+        <h3>Evidence and chain of custody</h3>
+        <p>If an incident might lead to legal, regulatory, or disciplinary action, the evidence has to be collected and preserved in a way that will hold up later. That means capturing volatile data before it is lost, recording who handled what and when, and storing copies untouched. Deciding these handling rules calmly in advance is far cheaper than reconstructing a broken chain after the fact.</p>
+        <div class="note"><strong>Note:</strong> The phases are not a strict one-way march. Analysis often reopens after containment reveals a wider scope, and that loop is a sign of diligence, not failure.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>دورة الاستجابة للحوادث</h2>
+        <p class="lead">تسير الاستجابة وفق دورة حياة حتى ينفّذ الفريق خطواتٍ تحت الضغط لا أن يرتجلها. والتقسيم الشائع يمتد من التهيئة، مرورًا بالكشف والتحليل، إلى الاحتواء والاستئصال والتعافي، ويُختم بدرس.</p>
+        <h3>المراحل عمليًا</h3>
+        <ul>
+          <li><strong>التهيئة:</strong> العمل المُنجَز قبل وقوع أي شيء: أدلة التنفيذ، والصلاحيات، والأدوات، والتدريبات. وهي المرحلة الوحيدة التي تتحكم بها كليًا، وهي تقرّر كيف تسير البقية.</li>
+          <li><strong>الكشف والتحليل:</strong> تأكيد أن التنبيه حقيقي، وتحديد ما يمسّه، وبناء خط زمني لما جرى.</li>
+          <li><strong>الاحتواء:</strong> إيقاف الانتشار أولًا، غالبًا بطريقة قصيرة الأمد لكسب الوقت، ثم بطريقة دائمة متى فُهم النطاق.</li>
+          <li><strong>الاستئصال:</strong> إزالة موطئ القدم، سواء كان برمجية خبيثة أو حسابًا مارقًا أو ثغرة مُستغَلّة.</li>
+          <li><strong>التعافي:</strong> إعادة الأنظمة إلى تشغيل موثوق مع مراقبة دقيقة لأي عودة للنشاط.</li>
+          <li><strong>ما بعد الحادثة:</strong> المراجعة التي تحوّل الحدث إلى تحسين دائم، وتُغطّى في قسم التحسين.</li>
+        </ul>
+        <p>الاحتواء موضع أكثر الضغط، لأن أسرع علاج وأسلمه نادرًا ما يكونان واحدًا. فعزل جهاز يوقف النزيف لكنه قد يتلف الأدلة اللازمة لفهم الاختراق، لذا يعود القرار لدورٍ مُسمّى، يُتَّخذ وفق قاعدة مُتَّفق عليها مسبقًا. ومن الأنماط المفيدة الاحتواء على مرحلتين: عزلٌ قصير الأمد يحدّ الضرر فورًا، ثم إجراءٌ طويل الأمد مدروس متى فهمت مدى وصول الاختراق.</p>
+        <h3>الأدلة وسلسلة الحيازة</h3>
+        <p>إن كانت الحادثة قد تفضي إلى إجراء قانوني أو تنظيمي أو تأديبي، فيجب جمع الأدلة وحفظها بطريقة تصمد لاحقًا. وهذا يعني التقاط البيانات المتطايرة قبل ضياعها، وتسجيل من تعامل مع ماذا ومتى، وحفظ النسخ دون مساس. وحسم قواعد التعامل هذه بهدوء مسبقًا أرخص بكثير من ترميم سلسلةٍ مكسورة بعد وقوع الأمر.</p>
+        <div class="note"><strong>ملاحظة:</strong> المراحل ليست مسيرًا صارمًا باتجاه واحد. فكثيرًا ما يُعاد فتح التحليل بعد أن يكشف الاحتواء نطاقًا أوسع، وتلك الحلقة دليل عناية لا فشل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="escalation">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Escalation &amp; Communication</h2>
+        <p class="lead">Escalation is not about panic, it is about routing a decision to the person authorized to make it, before delay makes the decision for you. The rule should be explicit enough to trigger without debate.</p>
+        <p>A clean escalation rule reads like a threshold: when a defined condition is met, a defined role is engaged within a defined time. For example, when an incident is confirmed at Sev 1, engage the incident commander immediately and notify the business owner within fifteen minutes. Numbers like these are set to your context, but their existence is what removes hesitation at the worst moment. Time-based triggers matter too: if a Sev 2 is not contained within its target window, it should escalate automatically, so a stuck response gets more help rather than quietly stalling.</p>
+        <h3>Communication runs on two tracks</h3>
+        <p>Technical communication keeps responders synchronized: one channel, one running timeline, one source of truth. Stakeholder communication keeps leaders and affected parties informed at their altitude, in plain language, without drowning them in technical detail or leaving them guessing. Mixing the two tracks is a common failure, because it either buries the responders in status requests or starves the leaders of the picture they need. Assigning a dedicated communications role during a major incident keeps the responders focused on the response.</p>
+        <h3>Handoffs across shifts</h3>
+        <p>A long incident crosses shift boundaries, and the handoff is where context leaks and mistakes enter. A disciplined handoff passes the running timeline, the current hypothesis, the actions already taken, and the open questions, so the incoming responder continues rather than restarts. Treating the handoff as a formal step with a short written summary, not a hallway conversation, is what keeps a multi-day response coherent and stops the same investigative dead end from being explored twice.</p>
+        <div class="formula"><span data-lang="en">Escalation trigger = severity threshold reached OR target time exceeded  &rarr;  named role engaged within target time</span><span data-lang="ar">مُطلِق التصعيد = بلوغ عتبة الشدّة أو تجاوز الزمن المستهدف  &larr;  إشراك دور مُسمّى خلال زمن مستهدف</span></div>
+        <div class="note"><strong>Note:</strong> Decide the legal, regulatory, and customer notification thresholds in advance with the relevant functions. An incident is the wrong time to first ask whether a disclosure obligation applies.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>التصعيد والتواصل</h2>
+        <p class="lead">التصعيد ليس ذعرًا، بل توجيه القرار إلى مَن يملك صلاحيته قبل أن يتخذ التأخيرُ القرارَ نيابةً عنك. وينبغي أن تكون القاعدة صريحةً بما يكفي لتُطلَق دون جدال.</p>
+        <p>قاعدة التصعيد النظيفة تُقرأ كعتبة: متى تحقق شرطٌ محدَّد، أُشرِك دورٌ محدَّد خلال زمن محدَّد. مثلًا: متى تأكدت حادثة بشدّة (١)، يُشرَك قائد الحادثة فورًا، ويُبلَّغ مالك العمل خلال خمس عشرة دقيقة. هذه الأرقام تُضبَط لسياقك، لكن وجودها هو ما يزيل التردد في أسوأ لحظة. والمُطلِقات الزمنية مهمّة أيضًا: إن لم تُحتوَ حادثة بشدّة (٢) خلال نافذتها المستهدفة، فينبغي أن تتصاعد تلقائيًا، فتحصل الاستجابة المتعثّرة على عونٍ أكثر بدل أن تتوقف بصمت.</p>
+        <h3>التواصل على مسارين</h3>
+        <p>التواصل التقني يبقي المستجيبين متزامنين: قناة واحدة، خط زمني جارٍ واحد، مصدر حقيقة واحد. والتواصل مع أصحاب المصلحة يبقي القادة والمتأثرين مُطّلعين على مستواهم، بلغة واضحة، دون إغراقهم بالتفاصيل التقنية أو تركهم يخمّنون. وخلط المسارين فشلٌ شائع، فهو إمّا يدفن المستجيبين في طلبات التحديث أو يُجوّع القادة من الصورة التي يحتاجونها. وتعيين دور تواصل مخصَّص أثناء الحادثة الكبرى يُبقي المستجيبين مركّزين على الاستجابة.</p>
+        <h3>تسليم المناوبات</h3>
+        <p>الحادثة الطويلة تعبر حدود المناوبات، والتسليم حيث يتسرّب السياق وتدخل الأخطاء. والتسليم المنضبط يمرّر الخط الزمني الجاري، والفرضية الحالية، والإجراءات المُتَّخذة، والأسئلة المفتوحة، فيُكمِل المستجيب الوارد لا أن يبدأ من جديد. ومعاملة التسليم كخطوةٍ رسمية بملخّصٍ مكتوب موجز، لا حديثَ ممرٍّ عابر، هي ما يُبقي استجابةً متعددة الأيام متماسكة ويمنع استكشاف الطريق المسدود نفسه مرتين.</p>
+        <div class="formula"><span data-lang="en">Escalation trigger = severity threshold reached OR target time exceeded  &rarr;  named role engaged within target time</span><span data-lang="ar">مُطلِق التصعيد = بلوغ عتبة الشدّة أو تجاوز الزمن المستهدف  &larr;  إشراك دور مُسمّى خلال زمن مستهدف</span></div>
+        <div class="note"><strong>ملاحظة:</strong> حدّد عتبات الإبلاغ القانوني والتنظيمي وإبلاغ العملاء مسبقًا مع الجهات المعنية. فالحادثة وقتٌ خاطئ لتسأل أول مرة إن كان التزام الإفصاح ينطبق.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="metrics">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Metrics &amp; Service Levels</h2>
+        <p class="lead">Timing metrics tell you whether the machine is getting faster or slower. The core four measure how long each stage of the response takes, and their trend over time is more informative than any single value.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">MTTD</div><div class="lbl">Mean time to detect</div></div>
+          <div class="stat"><div class="num">MTTA</div><div class="lbl">Mean time to acknowledge</div></div>
+          <div class="stat"><div class="num">MTTR</div><div class="lbl">Mean time to respond / recover</div></div>
+          <div class="stat"><div class="num">MTTC</div><div class="lbl">Mean time to contain</div></div>
+        </div>
+        <p>Each is an average over a period, computed the same way so the trend is honest:</p>
+        <div class="formula">MTTR = total time from detection to recovery across incidents &divide; number of incidents in the period</div>
+        <h4>Worked example</h4>
+        <p>Suppose in one month you closed 5 incidents, and the time from detection to recovery was 4, 6, 3, 9, and 8 hours. The sum is 30 hours, so MTTR = 30 &divide; 5 = 6 hours. If the previous month was 8 hours, that is a 25% improvement, which is the story a metric should tell, direction and magnitude, not a lone number. Watch the distribution too: five incidents averaging six hours can hide one that took a full day, and that outlier is often where the real lesson lives.</p>
+        <h4>Leading versus lagging</h4>
+        <p>Timing metrics are lagging, they describe incidents that already happened. Balance them with leading indicators such as detection coverage, percentage of assets monitored, and patch latency, because those predict tomorrow's incident load rather than merely recording yesterday's.</p>
+        <p>Industry reporting often cites long average times for serious breaches, with figures such as an average of 194 days to identify a breach (2024 record, from a widely cited annual breach-cost study). Treat any external benchmark as a comparison point recorded in a specific year, not a fixed law, and refresh it against the latest published edition.</p>
+        <div class="note"><strong>Year-of-record convention:</strong> every external figure here is tagged with the year it was recorded, because benchmarks drift. When a newer edition is published, update the number and its year rather than carrying an old one forward silently.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>المؤشرات ومستويات الخدمة</h2>
+        <p class="lead">مؤشرات التوقيت تخبرك إن كانت الآلة تتسارع أو تتباطأ. والأربعة الأساسية تقيس كم يستغرق كل طور من أطوار الاستجابة، واتجاهها عبر الزمن أكثر إفادةً من أي قيمة مفردة.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">MTTD</div><div class="lbl">متوسط زمن الكشف</div></div>
+          <div class="stat"><div class="num">MTTA</div><div class="lbl">متوسط زمن الإقرار</div></div>
+          <div class="stat"><div class="num">MTTR</div><div class="lbl">متوسط زمن الاستجابة/التعافي</div></div>
+          <div class="stat"><div class="num">MTTC</div><div class="lbl">متوسط زمن الاحتواء</div></div>
+        </div>
+        <p>كلٌّ منها متوسطٌ على مدة، يُحسَب بالطريقة نفسها ليكون الاتجاه صادقًا:</p>
+        <div class="formula">MTTR = مجموع الزمن من الكشف إلى التعافي عبر الحوادث &divide; عدد الحوادث في المدة</div>
+        <h4>مثال محلول</h4>
+        <p>لنفترض أنك في شهرٍ أغلقت ٥ حوادث، وكان الزمن من الكشف إلى التعافي: ٤ و٦ و٣ و٩ و٨ ساعات. المجموع ٣٠ ساعة، إذًا MTTR = ٣٠ &divide; ٥ = ٦ ساعات. وإن كان الشهر السابق ٨ ساعات، فذلك تحسّن بنسبة ٢٥٪، وهي القصة التي ينبغي أن يرويها المؤشر: اتجاهٌ ومقدار، لا رقمٌ وحيد. وراقب التوزيع أيضًا: خمس حوادث بمتوسط ست ساعات قد تُخفي واحدةً استغرقت يومًا كاملًا، وذلك الشاذّ غالبًا حيث يسكن الدرس الحقيقي.</p>
+        <h4>المؤشرات القائدة مقابل المتأخرة</h4>
+        <p>مؤشرات التوقيت متأخرة، تصف حوادث وقعت فعلًا. وازِنها بمؤشرات قائدة كتغطية الكشف، ونسبة الأصول المراقَبة، وزمن تأخّر الترقيع، لأنها تتنبأ بعبء حوادث الغد لا تسجّل حوادث الأمس فحسب.</p>
+        <p>كثيرًا ما تذكر التقارير أزمنة متوسطة طويلة للاختراقات الجسيمة، بأرقام مثل متوسط ١٩٤ يومًا لاكتشاف الاختراق (سجل 2024، من دراسة سنوية واسعة الاستشهاد لتكلفة الاختراق). عامِل أي مرجع خارجي كنقطة مقارنة سُجِّلت في سنة بعينها لا كقانون ثابت، وحدّثه وفق أحدث إصدار منشور.</p>
+        <div class="note"><strong>اصطلاح سنة التسجيل:</strong> كل رقم خارجي هنا مَوسومٌ بسنة تسجيله لأن المعايير تنزاح. ومتى نُشِر إصدار أحدث، حدّث الرقم وسنته بدل حمل القديم صامتًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="improvement">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>Continuous Improvement</h2>
+        <p class="lead">An incident that closes without a lesson is a cost with no return. The post-incident review is the mechanism that pays it back, turning one bad day into a permanent reduction in the odds of the next one.</p>
+        <p>The review works best when it is blameless. Its question is not who erred but what about our system made this error likely, and what change removes that likelihood. A blameless review gets honest input, and honest input is the only kind that produces real fixes. Each review should leave behind a small number of owned, dated actions, because a lesson with no owner and no date is a wish.</p>
+        <h3>From event to improvement</h3>
+        <ul>
+          <li><strong>Timeline:</strong> reconstruct what happened and when, as fact, before any interpretation.</li>
+          <li><strong>Contributing factors:</strong> the conditions that let the incident happen or grow, in the system, not the individual.</li>
+          <li><strong>Actions:</strong> specific changes with an owner and a due date, tracked to completion like any other work.</li>
+          <li><strong>Feedback to detection:</strong> new signals or tuned rules, so the same pattern is caught earlier next time.</li>
+        </ul>
+        <p>Maturity grows when these actions actually close. A program that runs reviews but never finishes the actions is performing a ritual, not improving. Tracking the completion rate of post-incident actions is often more telling than tracking incident counts. It also helps to distinguish a repeat incident, the same root cause recurring, from a novel one, since a rising share of repeats is a direct signal that the loop is not closing.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> the improvement loop is what separates a team that survives incidents from one that compounds every incident into a durable edge.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>التحسين المستمر</h2>
+        <p class="lead">حادثةٌ تُغلَق دون درس هي تكلفةٌ بلا عائد. ومراجعة ما بعد الحادثة هي الآلية التي تردّ العائد، فتحوّل يومًا سيئًا واحدًا إلى خفضٍ دائم في احتمال اليوم التالي.</p>
+        <p>تعمل المراجعة أفضل ما تعمل حين تكون بلا لوم. سؤالها ليس من أخطأ بل ما الذي في نظامنا جعل هذا الخطأ محتملًا، وأي تغيير يزيل ذلك الاحتمال. المراجعة بلا لوم تحصل على مُدخلات صادقة، والصادقة وحدها هي التي تُنتج إصلاحات حقيقية. وينبغي أن تترك كل مراجعة عددًا قليلًا من الإجراءات ذات المالك والتاريخ، لأن درسًا بلا مالك ولا تاريخ أُمنية.</p>
+        <h3>من الحدث إلى التحسين</h3>
+        <ul>
+          <li><strong>الخط الزمني:</strong> أعِد بناء ما جرى ومتى، كحقيقة، قبل أي تفسير.</li>
+          <li><strong>العوامل المساهمة:</strong> الظروف التي سمحت للحادثة بالوقوع أو النمو، في النظام لا في الفرد.</li>
+          <li><strong>الإجراءات:</strong> تغييرات محددة لها مالك وتاريخ استحقاق، تُتابَع للإغلاق كأي عمل آخر.</li>
+          <li><strong>التغذية الراجعة للكشف:</strong> إشارات جديدة أو قواعد مضبوطة، ليُلتقَط النمط نفسه أبكر في المرة القادمة.</li>
+        </ul>
+        <p>ينمو النضج حين تُغلَق هذه الإجراءات فعلًا. فبرنامجٌ يُجري مراجعات ولا يُنهي الإجراءات يؤدّي طقسًا لا يتحسّن. وتتبّع نسبة إنجاز إجراءات ما بعد الحادثة غالبًا أدلّ من تتبّع عدد الحوادث. ويفيد كذلك التمييز بين حادثةٍ مُكرَّرة، أي عودة السبب الجذري نفسه، وأخرى جديدة، لأن ارتفاع نصيب المكرَّرة إشارة مباشرة إلى أن الحلقة لا تُغلَق.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> حلقة التحسين هي ما يفصل فريقًا ينجو من الحوادث عن فريقٍ يُراكم كل حادثة إلى ميزةٍ دائمة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="failure">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Nine</span>
+        <h2>Common Failure Modes</h2>
+        <p class="lead">Most programs fail in predictable ways. Naming these patterns in advance is the cheapest form of prevention, because a team that can recognize a trap is far less likely to walk into it.</p>
+        <ul>
+          <li><strong>Alert fatigue:</strong> a flood of low-fidelity alerts trains analysts to dismiss quickly, so the real one gets dismissed too. The fix is fewer, sharper detections, not more staff to absorb noise.</li>
+          <li><strong>No named owner:</strong> when accountability is shared across a team, the critical decision waits for a volunteer. Attach one accountable role to every activity.</li>
+          <li><strong>Containment without evidence:</strong> pulling the plug feels decisive but can destroy the record needed to understand and fully remove the intrusion. Decide the evidence-versus-speed rule in advance.</li>
+          <li><strong>Reviews without follow-through:</strong> lessons are written and never closed, so the same incident recurs. Track action completion, not just review attendance.</li>
+          <li><strong>Untested playbooks:</strong> a plan that has never been rehearsed fails on first contact. Exercise the plan on a calm day so the real day is not the rehearsal.</li>
+          <li><strong>Tool sprawl:</strong> buying a product for every gap creates a stack no one can operate. Prefer fewer tools used fully over many used barely.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> These failures are organizational far more often than technical. The best tooling cannot rescue an operation with unclear ownership and unrehearsed plans.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">التاسع</span>
+        <h2>أنماط الفشل الشائعة</h2>
+        <p class="lead">تفشل أغلب البرامج بطرقٍ متوقَّعة. وتسمية هذه الأنماط مسبقًا أرخص أشكال الوقاية، لأن فريقًا يعرف الفخّ أقل احتمالًا للوقوع فيه بكثير.</p>
+        <ul>
+          <li><strong>إرهاق التنبيهات:</strong> سيلٌ من تنبيهات منخفضة الدقة يدرّب المحللين على الاستبعاد العاجل، فيُستبعَد الحقيقي أيضًا. والعلاج كشوفٌ أقل وأحدّ، لا مزيد من الموظفين لامتصاص الضجيج.</li>
+          <li><strong>غياب المالك المُسمّى:</strong> حين تتوزّع المساءلة على الفريق، ينتظر القرار الحرج متطوّعًا. اربط دورًا مساءَلًا واحدًا بكل نشاط.</li>
+          <li><strong>احتواء بلا أدلة:</strong> فصل الجهاز يبدو حاسمًا لكنه قد يتلف السجل اللازم لفهم الاختراق وإزالته كليًا. احسم قاعدة الأدلة مقابل السرعة مسبقًا.</li>
+          <li><strong>مراجعات بلا متابعة:</strong> تُكتَب الدروس ولا تُغلَق أبدًا، فتتكرر الحادثة نفسها. تتبّع إنجاز الإجراءات لا مجرد حضور المراجعة.</li>
+          <li><strong>أدلة تنفيذ غير مُختبَرة:</strong> خطةٌ لم تُتَمرَّن تفشل عند أول تماس. تمرّن على الخطة في يومٍ هادئ حتى لا يكون اليوم الحقيقي هو التمرين.</li>
+          <li><strong>تضخّم الأدوات:</strong> شراء منتج لكل فجوة يصنع كومةً لا يقدر أحد على تشغيلها. فضّل أدواتٍ أقل تُستخدَم كاملةً على كثيرةٍ بالكاد تُستخدَم.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> هذه الإخفاقات تنظيمية أكثر بكثير مما هي تقنية. فأفضل الأدوات لا تُنقذ عمليةً غامضة الملكية غير مُتَمرَّنة الخطط.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Ten</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Security operations and incident management succeed when they are designed as one calm loop in advance, so that the pressured moment is execution rather than invention.</p>
+        <ul>
+          <li>Treat detection as a curated product measured by fidelity and coverage, not by volume.</li>
+          <li>Make severity a repeatable function of impact and confidence, agreed before the incident.</li>
+          <li>Attach exactly one accountable role to every activity, and pre-agree escalation thresholds.</li>
+          <li>Measure the core timing metrics by trend, and tag every external benchmark with its year of record.</li>
+          <li>Close the loop with blameless reviews whose actions are owned, dated, and tracked to completion.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener">NIST SP 800-61 Rev. 3, Incident Response Recommendations and Considerations (2025 record).</a></li>
+          <li><a href="https://nvlpubs.nist.gov/nistpubs/specialpublications/nist.sp.800-61r2.pdf" target="_blank" rel="noopener">NIST SP 800-61 Rev. 2, Computer Security Incident Handling Guide (PDF).</a></li>
+          <li><a href="https://www.iso.org/standard/78973.html" target="_blank" rel="noopener">ISO/IEC 27035-1:2023, Information security incident management, Principles and process.</a></li>
+          <li><a href="https://www.first.org/standards/frameworks/csirts/FIRST_CSIRT_Services_Framework_v2.1.0.pdf" target="_blank" rel="noopener">FIRST CSIRT Services Framework, version 2.1.</a></li>
+          <li><a href="https://www.first.org/global/sigs/metrics/Security-Incident-Timing-Metrics_v1.0.pdf" target="_blank" rel="noopener">FIRST Security Incident Timing Metrics, version 1.0.</a></li>
+          <li><a href="https://www.sans.org/white-papers/33901" target="_blank" rel="noopener">SANS Institute, Incident Handler's Handbook.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">العاشر</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">تنجح عمليات الأمن وإدارة الحوادث حين تُصمَّم كحلقةٍ هادئة واحدة مسبقًا، فتكون اللحظة المضغوطة تنفيذًا لا ابتكارًا.</p>
+        <ul>
+          <li>عامِل الكشف كمنتج مُنتقى يُقاس بالدقة والتغطية لا بالكم.</li>
+          <li>اجعل الشدّة دالةً قابلة للتكرار من الأثر والثقة، مُتَّفقًا عليها قبل الحادثة.</li>
+          <li>اربط دورًا مساءَلًا واحدًا بكل نشاط، واتّفق على عتبات التصعيد مسبقًا.</li>
+          <li>قِس مؤشرات التوقيت الأساسية بالاتجاه، ووسِم كل مرجع خارجي بسنة تسجيله.</li>
+          <li>أغلِق الحلقة بمراجعات بلا لوم، إجراءاتها مملوكة ومؤرَّخة ومُتابَعة للإغلاق.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" target="_blank" rel="noopener">NIST SP 800-61 Rev. 3، توصيات الاستجابة للحوادث (سجل 2025).</a></li>
+          <li><a href="https://nvlpubs.nist.gov/nistpubs/specialpublications/nist.sp.800-61r2.pdf" target="_blank" rel="noopener">NIST SP 800-61 Rev. 2، دليل معالجة حوادث أمن الحاسب (PDF).</a></li>
+          <li><a href="https://www.iso.org/standard/78973.html" target="_blank" rel="noopener">ISO/IEC 27035-1:2023، إدارة حوادث أمن المعلومات، المبادئ والعملية.</a></li>
+          <li><a href="https://www.first.org/standards/frameworks/csirts/FIRST_CSIRT_Services_Framework_v2.1.0.pdf" target="_blank" rel="noopener">إطار خدمات فرق الاستجابة CSIRT من FIRST، الإصدار 2.1.</a></li>
+          <li><a href="https://www.first.org/global/sigs/metrics/Security-Incident-Timing-Metrics_v1.0.pdf" target="_blank" rel="noopener">مؤشرات توقيت حوادث الأمن من FIRST، الإصدار 1.0.</a></li>
+          <li><a href="https://www.sans.org/white-papers/33901" target="_blank" rel="noopener">معهد SANS، دليل معالِج الحوادث.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","model","detection","triage","response","escalation","metrics","improvement","failure","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

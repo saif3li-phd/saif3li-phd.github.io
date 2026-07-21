@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Public Relations &amp; Protocol</title>
+<meta name="description" content="An operational framework for public relations and protocol: building reputation, crisis communication, and conducting formal relations correctly.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">MARKETING &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">التسويق &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Public Relations &amp; Protocol</span><span data-lang="ar">العلاقات العامة والبروتوكول</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="reputation"><span data-lang="en">Reputation</span><span data-lang="ar">السمعة</span></a>
+    <a data-id="crisis"><span data-lang="en">Crisis</span><span data-lang="ar">الأزمات</span></a>
+    <a data-id="protocol"><span data-lang="en">Protocol</span><span data-lang="ar">البروتوكول</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Public relations &amp; protocol</div>
+          <div><span>Scope:</span> Managing reputation and formal relationships</div>
+          <div><span>Owner role:</span> Communications lead, with a spokesperson</div>
+          <div><span>Review cadence:</span> Continuous monitoring, communications review each quarter</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Public relations is the discipline of managing how an organization is perceived by the public and its stakeholders, by shaping its reputation deliberately rather than leaving it to chance. Protocol is the related practice of conducting formal relationships and occasions correctly, according to accepted rules of precedence and courtesy. Together they govern how an organization presents itself and relates to others.</p>
+        <p>The distinction from advertising is important. Advertising is paid and controlled, the organization says what it wants in its own words, while public relations is about earning credibility through others, coverage, endorsement, and reputation that the organization does not directly buy and cannot fully control. That is precisely its power: because it is not bought, it is more trusted, and a favorable word from an independent source carries weight that no advertisement can match.</p>
+        <p>This framework describes public relations and protocol as a managed discipline of reputation and relationship, from building trust to communicating in a crisis to conducting formal occasions correctly. It is written to be reusable across organizations and connects to the brand and experience frameworks.</p>
+        <div class="note"><strong>Note:</strong> Reputation is earned, not bought, which is why it is both more valuable and more fragile than advertising. It takes years to build and can be damaged in a moment, so it must be managed deliberately every day.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> العلاقات العامة والبروتوكول</div>
+          <div><span>النطاق:</span> إدارة السمعة والعلاقات الرسمية</div>
+          <div><span>دور المالك:</span> قائد الاتصال، مع متحدّثٍ رسمي</div>
+          <div><span>دورية المراجعة:</span> مراقبةٌ مستمرة، ومراجعة اتصالٍ كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">العلاقات العامة انضباط إدارة كيف يُدرِك الجمهورُ وأصحاب المصلحة المنشأةَ، بتشكيل سمعتها عمدًا لا تركها للصدفة. والبروتوكول الممارسة المرتبطة بإدارة العلاقات والمناسبات الرسمية بصحّة، وفق قواعد الأسبقية والمجاملة المقبولة. وهما معًا يحكمان كيف تقدّم المنشأة نفسها وتتعلّق بالآخرين.</p>
+        <p>التمييز عن الإعلان مهمّ. فالإعلان مدفوعٌ ومُتحكَّم به، تقول المنشأة ما تريد بكلماتها، أما العلاقات العامة فعن كسب المصداقية عبر الآخرين، تغطيةً وتزكيةً وسمعةً لا تشتريها المنشأة مباشرةً ولا تتحكّم بها كليًا. وذلك بالضبط قوّتها: فلأنها غير مشتراة، هي أوثق، وكلمةٌ حسنة من مصدرٍ مستقلّ تحمل ثقلًا لا يجاريه إعلان.</p>
+        <p>يصف هذا الإطار العلاقات العامة والبروتوكول كانضباطٍ مُدار للسمعة والعلاقة، من بناء الثقة إلى التواصل في أزمةٍ إلى إدارة المناسبات الرسمية بصحّة. وهو قابل لإعادة الاستخدام عبر المنشآت ويتّصل بإطارَي العلامة والتجربة.</p>
+        <div class="note"><strong>ملاحظة:</strong> السمعة تُكسَب لا تُشترى، ولذا هي أثمن وأهشّ من الإعلان. تستغرق سنينًا للبناء وتُتلَف في لحظة، فيجب إدارتها عمدًا كل يوم.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="reputation">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Building Reputation</h2>
+        <p class="lead">Reputation is the accumulated impression of an organization in the minds of the people who matter to it, and it is built slowly through consistent behavior and communication over time. There is no shortcut, because reputation is earned through what an organization actually does and how it tells that story.</p>
+        <p>The foundation of reputation is that the message must match the reality. An organization can communicate its values and achievements, but if its actual behavior contradicts what it says, the gap is eventually exposed and the reputation collapses, because trust cannot survive being repeatedly disappointed. This is why the most durable reputation strategy is to behave well and communicate honestly, aligning what is said with what is done, so that the message is confirmed by experience rather than contradicted by it.</p>
+        <ul>
+          <li><strong>Consistency:</strong> a reputation is built by behaving and communicating consistently over a long time.</li>
+          <li><strong>Alignment:</strong> the message must match the reality, or the gap destroys trust when it is exposed.</li>
+          <li><strong>Relationships:</strong> reputation lives in relationships with stakeholders, media, and the public, built before they are needed.</li>
+          <li><strong>Storytelling:</strong> communicating what the organization does in a way that is true, clear, and worth attention.</li>
+        </ul>
+        <p>Relationships are the working capital of public relations, and they must be built before they are needed. An organization that has invested in honest, ongoing relationships with the people who shape its reputation, journalists, communities, partners, has a reservoir of goodwill to draw on when it needs to communicate something important or difficult. The organization that only reaches out when it wants something, or when it is in trouble, finds those relationships thin exactly when it needs them most.</p>
+        <div class="note"><strong>Note:</strong> Build relationships before you need them. The time to earn the trust of the people who shape your reputation is when you want nothing from them, so that the goodwill is there when you do.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>بناء السمعة</h2>
+        <p class="lead">السمعة الانطباع المتراكم عن منشأةٍ في أذهان من يهمّونها، وتُبنى ببطءٍ عبر سلوكٍ وتواصلٍ متّسق عبر الزمن. ولا اختصار، لأن السمعة تُكسَب بما تفعله المنشأة فعلًا وكيف تروي تلك القصة.</p>
+        <p>أساس السمعة أن تطابق الرسالة الواقع. فتستطيع منشأةٌ إبلاغ قيمها وإنجازاتها، لكن إن ناقض سلوكها الفعلي ما تقوله، انكشفت الفجوة آخرًا وانهارت السمعة، لأن الثقة لا تنجو من التخييب المتكرّر. ولذا فأدوم استراتيجية سمعةٍ حسن السلوك والتواصل الصادق، بمواءمة ما يُقال بما يُفعَل، فتؤكّد التجربةُ الرسالةَ لا تناقضها.</p>
+        <ul>
+          <li><strong>الاتساق:</strong> السمعة تُبنى بالسلوك والتواصل باتساقٍ زمنًا طويلًا.</li>
+          <li><strong>المواءمة:</strong> يجب أن تطابق الرسالة الواقع، وإلا دمّرت الفجوة الثقة حين تنكشف.</li>
+          <li><strong>العلاقات:</strong> السمعة تعيش في علاقاتٍ مع أصحاب المصلحة والإعلام والجمهور، تُبنى قبل الحاجة.</li>
+          <li><strong>السرد:</strong> إبلاغ ما تفعله المنشأة بطريقةٍ صادقة واضحة جديرة بالانتباه.</li>
+        </ul>
+        <p>العلاقات رأس المال العامل للعلاقات العامة، ويجب بناؤها قبل الحاجة. فمنشأةٌ استثمرت في علاقاتٍ صادقة مستمرة مع من يُشكّلون سمعتها، صحفيين ومجتمعاتٍ وشركاء، لديها خزّان نيّةٍ حسنة تسحب منه حين تحتاج إبلاغ شيءٍ مهمّ أو صعب. والمنشأة التي لا تتواصل إلا حين تريد شيئًا، أو حين تكون في ورطة، تجد تلك العلاقات رقيقةً في اللحظة التي تحتاجها فيها أكثر.</p>
+        <div class="note"><strong>ملاحظة:</strong> ابنِ العلاقات قبل حاجتك إليها. فوقت كسب ثقة من يُشكّلون سمعتك حين لا تريد منهم شيئًا، لتكون النيّة الحسنة حاضرةً حين تريد.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="crisis">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Crisis Communication</h2>
+        <p class="lead">The truest test of public relations comes in a crisis, when something has gone wrong and the organization's reputation is suddenly at risk. How an organization communicates in those moments can matter more to its reputation than the crisis itself.</p>
+        <p>The principles of crisis communication are consistent and, in the pressure of the moment, easy to abandon. Respond quickly, because silence is read as either guilt or incompetence and lets others tell the story for you. Be honest, because the truth usually emerges and a caught lie compounds the damage far beyond the original problem. Show that you take it seriously and are acting, because people forgive mistakes far more readily than they forgive indifference. The organizations that come through crises with their reputation intact are usually the ones that faced the problem openly, not the ones that tried to hide it.</p>
+        <ul>
+          <li><strong>Respond quickly:</strong> silence lets others control the story, so acknowledge the situation promptly.</li>
+          <li><strong>Be honest:</strong> the truth tends to emerge, and a discovered cover-up is worse than the original problem.</li>
+          <li><strong>Show you care and are acting:</strong> people forgive mistakes handled responsibly, not indifference.</li>
+          <li><strong>Speak with one voice:</strong> a single, consistent message through a designated spokesperson avoids confusion.</li>
+        </ul>
+        <p>The instinct in a crisis is often to say nothing, minimize, or deflect, and that instinct is usually wrong. The attempt to hide or downplay a problem tends to become a second, larger story about dishonesty once it is exposed, and it forfeits the goodwill that an honest response would have earned. Preparing for crises in advance, deciding who speaks, how decisions are made, and what the principles are, is what allows an organization to act on these principles under pressure rather than abandon them.</p>
+        <div class="note"><strong>Note:</strong> In a crisis, how you respond often matters more than what went wrong. An honest, prompt, caring response can protect a reputation, while an attempt to hide the problem usually becomes a worse story than the problem itself.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>التواصل في الأزمات</h2>
+        <p class="lead">أصدق اختبارٍ للعلاقات العامة يأتي في أزمة، حين يكون شيءٌ قد ساء وسمعة المنشأة فجأةً في خطر. وكيف تتواصل المنشأة في تلك اللحظات قد يهمّ لسمعتها أكثر من الأزمة نفسها.</p>
+        <p>مبادئ التواصل في الأزمات ثابتة، وفي ضغط اللحظة سهلة الهجر. استجب سريعًا، لأن الصمت يُقرَأ إمّا ذنبًا أو عجزًا ويدع غيرك يروي القصة عنك. كن صادقًا، لأن الحقيقة تظهر عادةً وكذبةٌ مضبوطة تضاعف الضرر أبعد بكثير من المشكلة الأصلية. أظهِر أنك تأخذها بجدّية وتتصرّف، لأن الناس يغفرون الأخطاء أسهل بكثير مما يغفرون اللامبالاة. والمنشآت التي تعبر الأزمات بسمعةٍ سليمة عادةً هي التي واجهت المشكلة علنًا، لا التي حاولت إخفاءها.</p>
+        <ul>
+          <li><strong>استجب سريعًا:</strong> الصمت يدع غيرك يتحكّم بالقصة، فأقرّ بالوضع فورًا.</li>
+          <li><strong>كن صادقًا:</strong> الحقيقة تميل للظهور، وتستّرٌ مكتشَف أسوأ من المشكلة الأصلية.</li>
+          <li><strong>أظهِر اهتمامك وتصرّفك:</strong> الناس يغفرون الأخطاء المُعالَجة بمسؤولية لا اللامبالاة.</li>
+          <li><strong>تكلّم بصوتٍ واحد:</strong> رسالةٌ واحدة متّسقة عبر متحدّثٍ مُعيَّن تتفادى الالتباس.</li>
+        </ul>
+        <p>الغريزة في الأزمة غالبًا قول لا شيء، أو التهوين، أو التنصّل، وتلك الغريزة عادةً خاطئة. فمحاولة إخفاء مشكلةٍ أو التقليل منها تميل لأن تصير قصّةً ثانية أكبر عن عدم الصدق متى انكشفت، وتُفقِد النيّة الحسنة التي كانت استجابةٌ صادقة لتكسبها. والتهيّؤ للأزمات مسبقًا، بتقرير من يتكلّم وكيف تُتَّخذ القرارات وما المبادئ، هو ما يتيح للمنشأة التصرّف بهذه المبادئ تحت الضغط لا هجرها.</p>
+        <div class="note"><strong>ملاحظة:</strong> في الأزمة، كيف تستجيب غالبًا يهمّ أكثر مما ساء. فاستجابةٌ صادقة سريعة مهتمّة قد تحمي سمعة، ومحاولة إخفاء المشكلة عادةً تصير قصّةً أسوأ من المشكلة نفسها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="protocol">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Protocol &amp; Formal Relations</h2>
+        <p class="lead">Alongside reputation sits protocol: the accepted rules for conducting formal occasions and relationships correctly. In formal and official settings, getting protocol right is a form of respect, and getting it wrong can cause offense that undermines the relationship the occasion was meant to build.</p>
+        <p>Protocol governs the details of formal interaction: the correct order of precedence among guests, the proper forms of address and courtesy, the arrangement of seating and ceremony, and the etiquette appropriate to the occasion and the cultures involved. These may seem like small things, but in official and diplomatic contexts they carry real meaning, because they signal the respect and status accorded to each party. Handling them correctly shows care and competence, while mishandling them can be read as carelessness or even disrespect.</p>
+        <ul>
+          <li><strong>Precedence:</strong> the correct order of seniority and honor among participants, which must be respected.</li>
+          <li><strong>Forms of address:</strong> the proper titles and courtesies for each person, according to their position and culture.</li>
+          <li><strong>Ceremony and seating:</strong> the arrangement of formal occasions so that each party is accorded its due.</li>
+          <li><strong>Cultural sensitivity:</strong> the etiquette appropriate to the cultures present, which varies and must be understood.</li>
+        </ul>
+        <p>The underlying principle of protocol is respect made visible. Its rules exist to ensure that everyone is treated with the courtesy and status appropriate to them and the occasion, so that a formal event strengthens relationships rather than accidentally straining them. This is why protocol matters most in exactly the settings where relationships are most important and most sensitive, official visits, ceremonies, and cross-cultural encounters, where a small error can carry a meaning far larger than intended.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> public relations and protocol manage reputation and formal relationships, by building trust through consistent honest behavior and relationships, communicating responsibly especially in crisis, and conducting formal occasions with the respect that protocol makes visible.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>البروتوكول والعلاقات الرسمية</h2>
+        <p class="lead">بجانب السمعة يجلس البروتوكول: القواعد المقبولة لإدارة المناسبات والعلاقات الرسمية بصحّة. ففي السياقات الرسمية، ضبط البروتوكول شكلٌ من الاحترام، وإخطاؤه قد يسبّب إساءةً تقوّض العلاقة التي وُجِدت المناسبة لبنائها.</p>
+        <p>يحكم البروتوكول تفاصيل التفاعل الرسمي: الترتيب الصحيح للأسبقية بين الضيوف، والأشكال السليمة للمخاطبة والمجاملة، وترتيب الجلوس والمراسم، والإتيكيت الملائم للمناسبة والثقافات المعنيّة. وقد تبدو هذه أمورًا صغيرة، لكنها في السياقات الرسمية والدبلوماسية تحمل معنىً حقيقيًا، لأنها تُشير للاحترام والمكانة المُوليَين لكل طرف. وإدارتها بصحّة تُظهِر عنايةً وكفاءة، وإساءتها قد تُقرَأ إهمالًا أو حتى قلّة احترام.</p>
+        <ul>
+          <li><strong>الأسبقية:</strong> الترتيب الصحيح للأقدمية والتشريف بين المشاركين، ويجب احترامه.</li>
+          <li><strong>أشكال المخاطبة:</strong> الألقاب والمجاملات السليمة لكل شخص، وفق منصبه وثقافته.</li>
+          <li><strong>المراسم والجلوس:</strong> ترتيب المناسبات الرسمية بحيث يُولى كل طرفٍ حقّه.</li>
+          <li><strong>الحساسية الثقافية:</strong> الإتيكيت الملائم للثقافات الحاضرة، وهو يتباين ويجب فهمه.</li>
+        </ul>
+        <p>المبدأ الكامن للبروتوكول احترامٌ مُجسَّد. فقواعده موجودة لضمان معاملة الجميع بالمجاملة والمكانة الملائمتين لهم وللمناسبة، فيقوّي حدثٌ رسمي العلاقاتِ لا يُجهِدها مصادفةً. ولذا يهمّ البروتوكول أكثر ما يهمّ في السياقات بالضبط التي تكون فيها العلاقات أهمّ وأحسّ، الزيارات الرسمية والمراسم واللقاءات عبر الثقافات، حيث قد يحمل خطأٌ صغير معنىً أكبر بكثير مما قُصِد.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> العلاقات العامة والبروتوكول يديران السمعة والعلاقات الرسمية، ببناء الثقة عبر سلوكٍ صادق متّسق وعلاقات، والتواصل بمسؤولية خاصةً في الأزمة، وإدارة المناسبات الرسمية بالاحترام الذي يُجسّده البروتوكول.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Public relations and protocol manage reputation and formal relationships through consistent honesty, prepared crisis response, and respectful conduct.</p>
+        <ul>
+          <li>Treat reputation as earned trust, more valuable and fragile than paid advertising.</li>
+          <li>Build reputation through consistency, alignment of message and reality, and relationships formed before they are needed.</li>
+          <li>Communicate in a crisis quickly, honestly, and with visible care, prepared in advance and speaking with one voice.</li>
+          <li>Conduct formal occasions with correct protocol, which is respect made visible.</li>
+          <li>Remember that in reputation and crisis alike, how you behave matters as much as what you say.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.prsa.org/about/all-about-pr" target="_blank" rel="noopener">Public Relations Society of America, about public relations.</a></li>
+          <li><a href="https://www.iso.org/standard/71580.html" target="_blank" rel="noopener">ISO 10002:2018, Complaints handling (stakeholder response).</a></li>
+          <li><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">ISO 9001:2015, Quality management systems (interested parties).</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">Harvard Business School Online, communication and strategy tools.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">العلاقات العامة والبروتوكول يديران السمعة والعلاقات الرسمية عبر صدقٍ متّسق، واستجابة أزمةٍ مُهيّأة، وسلوكٍ محترم.</p>
+        <ul>
+          <li>عامِل السمعة كثقةٍ مكسوبة، أثمن وأهشّ من الإعلان المدفوع.</li>
+          <li>ابنِ السمعة بالاتساق، ومواءمة الرسالة والواقع، وعلاقاتٍ تُبنى قبل الحاجة.</li>
+          <li>تواصل في الأزمة سريعًا وصادقًا وباهتمامٍ ظاهر، مُهيّأً مسبقًا ومتكلّمًا بصوتٍ واحد.</li>
+          <li>أدِر المناسبات الرسمية ببروتوكولٍ صحيح، وهو احترامٌ مُجسَّد.</li>
+          <li>تذكّر أن في السمعة والأزمة سواءً، كيف تتصرّف يهمّ بقدر ما تقول.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.prsa.org/about/all-about-pr" target="_blank" rel="noopener">جمعية العلاقات العامة الأمريكية، عن العلاقات العامة.</a></li>
+          <li><a href="https://www.iso.org/standard/71580.html" target="_blank" rel="noopener">ISO 10002:2018، معالجة الشكاوى (استجابة أصحاب المصلحة).</a></li>
+          <li><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">ISO 9001:2015، أنظمة إدارة الجودة (الأطراف المعنيّة).</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">هارفارد أونلاين، أدوات الاتصال والاستراتيجية.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","reputation","crisis","protocol","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

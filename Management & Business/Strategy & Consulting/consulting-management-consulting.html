@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Management Consulting</title>
+<meta name="description" content="An original framework for management consulting: framing the right problem, structured analysis, clear recommendations, and lasting client impact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">STRATEGY &amp; CONSULTING &middot; FRAMEWORK</span><span data-lang="ar">الاستراتيجية والاستشارات &middot; إطار</span></div>
+    <h1><span data-lang="en">Management Consulting</span><span data-lang="ar">الاستشارات الإدارية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="problem"><span data-lang="en">Framing</span><span data-lang="ar">التأطير</span></a>
+    <a data-id="method"><span data-lang="en">Method</span><span data-lang="ar">المنهج</span></a>
+    <a data-id="impact"><span data-lang="en">Impact</span><span data-lang="ar">الأثر</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Management consulting</div>
+          <div><span>Scope:</span> Solving client problems and creating lasting value</div>
+          <div><span>Owner role:</span> Consultants and engagement leaders</div>
+          <div><span>Review cadence:</span> Per engagement, with continuous client feedback</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Management consulting is the practice of helping organizations solve their most important problems and improve their performance, by bringing outside expertise, structured analysis, and an objective perspective to bear on a challenge the organization cannot fully solve on its own. At its best, consulting is not the delivery of a report but the creation of a real, lasting improvement the client owns.</p>
+        <p>Consulting matters because organizations regularly face problems that are too complex, too unfamiliar, or too politically charged to solve from within. An outsider brings three things insiders often cannot: specialized expertise built across many similar situations, a structured method for cutting through complexity, and an independence that lets uncomfortable truths be said. Used well, this accelerates good decisions and builds capability; used badly, it produces expensive slide decks that change nothing.</p>
+        <p>This framework describes consulting as a disciplined craft, from framing the real problem, through rigorous analysis, to recommendations that actually get implemented. It is my own synthesis, written in my own words and grounded in recognized consulting practice, designed to be reusable across engagements and sectors.</p>
+        <div class="note"><strong>Note:</strong> The value of consulting is measured by what changes for the client, not by the thickness of the report. A brilliant analysis that no one acts on has created nothing.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الاستشارات الإدارية</div>
+          <div><span>النطاق:</span> حلّ مشكلات العميل وخلق قيمةٍ دائمة</div>
+          <div><span>دور المالك:</span> المستشارون وقادة المهام</div>
+          <div><span>دورية المراجعة:</span> لكل مهمّة، بتغذيةٍ راجعة مستمرة من العميل</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الاستشارات الإدارية ممارسة مساعدة المنشآت على حلّ أهمّ مشكلاتها وتحسين أدائها، بجلب خبرةٍ خارجية وتحليلٍ منظَّم ومنظورٍ موضوعي لتحدٍّ لا تستطيع المنشأة حلّه كليًا وحدها. وفي أفضل حالاتها، الاستشارة ليست تسليم تقرير بل خلق تحسينٍ حقيقي دائم يملكه العميل.</p>
+        <p>تهمّ الاستشارات لأن المنشآت تواجه بانتظامٍ مشكلاتٍ أعقد أو أغرب أو أشدّ حساسيةً سياسيًا من أن تُحَلّ من الداخل. والغريب يجلب ثلاثة أشياء يعجز عنها الداخليّون غالبًا: خبرة متخصّصة مبنيّة عبر مواقف متشابهة كثيرة، وطريقة منظَّمة لاختراق التعقيد، واستقلاليةً تتيح قول الحقائق غير المريحة. ومستخدَمةً جيدًا، تسرّع القرارات الجيدة وتبني القدرة؛ ومستخدَمةً رديئًا، تُنتِج عروضًا مكلفة لا تغيّر شيئًا.</p>
+        <p>يصف هذا الإطار الاستشارة كحرفةٍ منضبطة، من تأطير المشكلة الحقيقية، عبر التحليل الصارم، إلى توصياتٍ تُنفَّذ فعلًا. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في ممارسة استشاريةٍ معترف بها، مصمَّمٌ ليكون قابلًا لإعادة الاستخدام عبر المهامّ والقطاعات.</p>
+        <div class="note"><strong>ملاحظة:</strong> قيمة الاستشارة تُقاس بما يتغيّر للعميل، لا بسُمك التقرير. فتحليلٌ بارع لا أحد يعمل به لم يخلق شيئًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="problem">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Framing the Real Problem</h2>
+        <p class="lead">The most valuable, and most neglected, step in consulting is defining the right problem. A brilliant answer to the wrong question is worthless, so disciplined consulting begins by making sure the problem being solved is the one that truly matters.</p>
+        <p>Clients often present a problem as they see it, which may be a symptom rather than the cause, or a solution already assumed rather than a question genuinely open. A good consultant resists rushing to solve the stated problem and instead digs to find the real one: asking why the symptom occurs, separating cause from effect, and reframing the challenge in a way that opens up the options that matter. This reframing is frequently where the largest value is created, because solving the right problem imperfectly beats solving the wrong problem flawlessly.</p>
+        <ul>
+          <li><strong>Distinguish symptom from cause:</strong> the presenting complaint is often not the underlying problem.</li>
+          <li><strong>Question the assumed solution:</strong> a request framed as a solution can hide the real question.</li>
+          <li><strong>Scope it sharply:</strong> a well-defined, bounded problem is far more solvable than a vague one.</li>
+          <li><strong>Agree the problem with the client:</strong> shared ownership of the question underpins acceptance of the answer.</li>
+        </ul>
+        <p>Framing also means scoping the problem so it is actually solvable within the engagement, and agreeing that framing explicitly with the client. A shared, precise problem statement aligns everyone on what success looks like and prevents the common failure of an engagement that answers a question no one was really asking. The discipline here is patience: spending real effort up front to define the problem, when the temptation is to look busy by jumping straight to analysis, is what separates consulting that lands from consulting that merely fills time.</p>
+        <div class="note"><strong>Note:</strong> Clients buy solutions but need the right problem defined first. The reframing of the question is often the single most valuable thing a consultant does, and it happens before any analysis begins.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>تأطير المشكلة الحقيقية</h2>
+        <p class="lead">أثمن الخطوات وأكثرها إهمالًا في الاستشارة تعريف المشكلة الصحيحة. فجوابٌ بارع لسؤالٍ خطأ بلا قيمة، فالاستشارة المنضبطة تبدأ بالتأكّد أن المشكلة التي تُحَلّ هي التي تهمّ حقًّا.</p>
+        <p>يقدّم العملاء المشكلة غالبًا كما يرونها، وقد تكون عَرَضًا لا سببًا، أو حلًّا مفترَضًا سلفًا لا سؤالًا مفتوحًا فعلًا. والمستشار الجيد يقاوم التسرّع لحلّ المشكلة المُعلَنة ويحفر بدلًا من ذلك لإيجاد الحقيقية: بسؤال لماذا يقع العَرَض، وفصل السبب عن الأثر، وإعادة تأطير التحدّي بطريقةٍ تفتح الخيارات التي تهمّ. وإعادة التأطير هذه غالبًا حيث تُخلَق أكبر قيمة، لأن حلّ المشكلة الصحيحة بنقصٍ يتفوّق على حلّ الخطأ بإتقان.</p>
+        <ul>
+          <li><strong>ميّز العَرَض من السبب:</strong> الشكوى المعروضة غالبًا ليست المشكلة الكامنة.</li>
+          <li><strong>ساءل الحلّ المفترَض:</strong> طلبٌ مؤطَّر كحلٍّ قد يخفي السؤال الحقيقي.</li>
+          <li><strong>حدّد نطاقه بحدّة:</strong> مشكلةٌ معرَّفة محدودة أقبل للحلّ بكثيرٍ من غامضة.</li>
+          <li><strong>اتّفق على المشكلة مع العميل:</strong> الملكية المشتركة للسؤال تسند قبول الجواب.</li>
+        </ul>
+        <p>التأطير يعني أيضًا تحديد نطاق المشكلة فتصير قابلة للحلّ فعلًا ضمن المهمّة، والاتّفاق على ذلك التأطير صراحةً مع العميل. فبيان مشكلةٍ مشترك دقيق يوائم الجميع على شكل النجاح ويمنع الإخفاق الشائع لمهمّةٍ تجيب على سؤالٍ لم يكن أحدٌ يسأله فعلًا. والانضباط هنا الصبر: بذل جهدٍ حقيقي مقدَّمًا لتعريف المشكلة، حين يكون الإغراء أن تبدو مشغولًا بالقفز مباشرةً للتحليل، هو ما يفصل الاستشارة التي تصيب عن التي تملأ الوقت فحسب.</p>
+        <div class="note"><strong>ملاحظة:</strong> العملاء يشترون حلولًا لكنهم يحتاجون المشكلة الصحيحة معرَّفةً أولًا. وإعادة تأطير السؤال غالبًا أثمن شيءٍ يفعله المستشار، ويحدث قبل أن يبدأ أي تحليل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="method">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Analysis &amp; Recommendation</h2>
+        <p class="lead">With the right problem framed, consulting brings a structured method to solving it: breaking a complex challenge into parts, gathering evidence, and building a recommendation that rests on logic rather than opinion.</p>
+        <p>The core analytical discipline is to decompose a big, messy problem into a structured set of smaller questions that can each be answered with evidence, so that the whole is covered without overlap or gaps. This is combined with fact-based analysis: gathering the data and doing the work to test each hypothesis, rather than asserting conclusions. Good consulting forms an early view of the likely answer, a hypothesis, and then rigorously tests it against evidence, refining or discarding it as the facts demand. The aim is a recommendation the client can trust because it is built on a visible chain of reasoning and fact.</p>
+        <table>
+          <tr><th><span data-lang="en">Stage</span><span data-lang="ar">المرحلة</span></th><th><span data-lang="en">What it does</span><span data-lang="ar">ماذا يفعل</span></th></tr>
+          <tr><td><span data-lang="en">Structure</span><span data-lang="ar">الهيكلة</span></td><td><span data-lang="en">break the problem into clear, non-overlapping questions</span><span data-lang="ar">تفكيك المشكلة لأسئلةٍ واضحة غير متداخلة</span></td></tr>
+          <tr><td><span data-lang="en">Hypothesize</span><span data-lang="ar">الفرضية</span></td><td><span data-lang="en">form an early view of the likely answer to test</span><span data-lang="ar">تكوين رأيٍ مبكر عن الجواب المرجَّح لاختباره</span></td></tr>
+          <tr><td><span data-lang="en">Analyze</span><span data-lang="ar">التحليل</span></td><td><span data-lang="en">gather facts and test each hypothesis rigorously</span><span data-lang="ar">جمع الحقائق واختبار كل فرضيةٍ بصرامة</span></td></tr>
+          <tr><td><span data-lang="en">Synthesize</span><span data-lang="ar">التوليف</span></td><td><span data-lang="en">turn findings into a clear, actionable recommendation</span><span data-lang="ar">تحويل النتائج لتوصيةٍ واضحة قابلة للتنفيذ</span></td></tr>
+        </table>
+        <p>Analysis is only useful if it leads to a clear recommendation, communicated so decision-makers can act. This means synthesizing findings into a sharp answer to the original question, leading with the recommendation rather than burying it, and making the reasoning transparent. The best consulting communication is structured for the busy executive: the main message first, supported by a clear logic and the evidence beneath it, so the client can grasp the recommendation quickly and trust the work that stands behind it.</p>
+        <div class="note"><strong>Note:</strong> Lead with the answer, then show the reasoning. Executives need the recommendation and its logic quickly; the detailed analysis supports the message, it should not bury it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>التحليل والتوصية</h2>
+        <p class="lead">مع تأطير المشكلة الصحيحة، تجلب الاستشارة منهجًا منظَّمًا لحلّها: تفكيك تحدٍّ معقّد لأجزاء، وجمع الأدلّة، وبناء توصيةٍ تقوم على المنطق لا الرأي.</p>
+        <p>الانضباط التحليلي الجوهري تفكيك مشكلةٍ كبيرة فوضوية لمجموعةٍ منظَّمة من أسئلةٍ أصغر يمكن الإجابة على كلٍّ بالدليل، فيُغطّى الكلّ بلا تداخلٍ أو فجوات. ويُدمَج هذا مع تحليلٍ قائم على الحقائق: جمع البيانات وأداء العمل لاختبار كل فرضية، بدل تأكيد الاستنتاجات. والاستشارة الجيدة تكوّن رأيًا مبكرًا عن الجواب المرجَّح، فرضية، ثم تختبره بصرامةٍ ضدّ الأدلّة، مصقولةً أو نابذةً إياه كما تطلب الحقائق. والهدف توصيةٌ يستطيع العميل الثقة بها لأنها مبنيّة على سلسلةٍ مرئية من الاستدلال والحقيقة.</p>
+        <table>
+          <tr><th><span data-lang="en">المرحلة</span><span data-lang="ar">المرحلة</span></th><th><span data-lang="en">ماذا يفعل</span><span data-lang="ar">ماذا يفعل</span></th></tr>
+          <tr><td><span data-lang="en">الهيكلة</span><span data-lang="ar">الهيكلة</span></td><td><span data-lang="en">تفكيك المشكلة لأسئلةٍ واضحة غير متداخلة</span><span data-lang="ar">تفكيك المشكلة لأسئلةٍ واضحة غير متداخلة</span></td></tr>
+          <tr><td><span data-lang="en">الفرضية</span><span data-lang="ar">الفرضية</span></td><td><span data-lang="en">تكوين رأيٍ مبكر عن الجواب المرجَّح لاختباره</span><span data-lang="ar">تكوين رأيٍ مبكر عن الجواب المرجَّح لاختباره</span></td></tr>
+          <tr><td><span data-lang="en">التحليل</span><span data-lang="ar">التحليل</span></td><td><span data-lang="en">جمع الحقائق واختبار كل فرضيةٍ بصرامة</span><span data-lang="ar">جمع الحقائق واختبار كل فرضيةٍ بصرامة</span></td></tr>
+          <tr><td><span data-lang="en">التوليف</span><span data-lang="ar">التوليف</span></td><td><span data-lang="en">تحويل النتائج لتوصيةٍ واضحة قابلة للتنفيذ</span><span data-lang="ar">تحويل النتائج لتوصيةٍ واضحة قابلة للتنفيذ</span></td></tr>
+        </table>
+        <p>التحليل نافعٌ فقط إن قاد لتوصيةٍ واضحة، مُبلَّغة فيستطيع صانعو القرار العمل. وهذا يعني توليف النتائج لجوابٍ حادّ للسؤال الأصلي، والبدء بالتوصية لا دفنها، وجعل الاستدلال شفّافًا. وأفضل تواصلٍ استشاري مُهيكَل للتنفيذي المشغول: الرسالة الرئيسة أولًا، مسنودةً بمنطقٍ واضح والدليل تحته، فيمسك العميل التوصية سريعًا ويثق بالعمل خلفها.</p>
+        <div class="note"><strong>ملاحظة:</strong> ابدأ بالجواب، ثم أظهِر الاستدلال. فالتنفيذيون يحتاجون التوصية ومنطقها سريعًا؛ والتحليل المفصَّل يسند الرسالة، لا ينبغي أن يدفنها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="impact">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>From Advice to Impact</h2>
+        <p class="lead">The final test of consulting is whether anything changes. A recommendation that is accepted but never implemented, or implemented and then abandoned, has failed, so the best consulting is designed for impact from the start.</p>
+        <p>Impact depends heavily on how the work is done, not just what is concluded. Recommendations are far more likely to be implemented when the client has been involved throughout, so the answer feels like theirs rather than an outsider's imposition, and when the advice is practical and matched to what the organization can actually execute. A technically perfect recommendation that ignores the client's real constraints, capabilities, and politics will sit on a shelf. Good consultants therefore build ownership as they go, testing ideas with the client, bringing key people along, and shaping recommendations that are ambitious yet genuinely doable.</p>
+        <p>The deepest form of value is building the client's own capability, so the improvement outlasts the engagement. Consulting that solves a problem while leaving the organization no more able to solve the next one has delivered less than it could; consulting that transfers knowledge, method, and confidence leaves the client stronger for good. This is the difference between dependence and empowerment, and it is what distinguishes a trusted adviser from a vendor of answers. In the end, consulting earns its keep not through the elegance of its analysis but through the durable improvement the client is left owning and able to sustain.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> consulting creates value by framing the right problem, solving it with structured fact-based analysis, and communicating a clear recommendation, but it only creates impact when the client owns the answer, the advice fits what they can execute, and the engagement leaves the organization more capable than it found it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>من النصيحة للأثر</h2>
+        <p class="lead">الاختبار الأخير للاستشارة هل يتغيّر أي شيء. فتوصيةٌ تُقبَل ولا تُنفَّذ أبدًا، أو تُنفَّذ ثم تُهجَر، قد فشلت، فأفضل استشارةٍ مصمَّمة للأثر من البداية.</p>
+        <p>الأثر يعتمد كثيرًا على كيف يُؤدّى العمل لا فقط ما يُستنتَج. فالتوصيات أرجح تنفيذًا بكثيرٍ حين يكون العميل مُشرَكًا طوالَه، فيشعر الجواب كأنه له لا فرضًا من غريب، وحين تكون النصيحة عملية ومطابقة لما تستطيع المنشأة تنفيذه فعلًا. فتوصيةٌ مثالية تقنيًا تتجاهل قيود العميل الحقيقية وقدراته وسياساته ستجلس على رفّ. والمستشارون الجيدون إذًا يبنون الملكية أثناء المسير، مختبرين الأفكار مع العميل، جالبين الناس الرئيسين معهم، مشكّلين توصياتٍ طموحة لكن قابلة للتنفيذ فعلًا.</p>
+        <p>وأعمق أشكال القيمة بناء قدرة العميل ذاته، فيدوم التحسين وراء المهمّة. فاستشارةٌ تحلّ مشكلةً بينما تترك المنشأة غير أقدر على حلّ التالية سلّمت أقلّ مما تستطيع؛ واستشارةٌ تنقل المعرفة والمنهج والثقة تترك العميل أقوى للأبد. وهذا الفرق بين الاعتماد والتمكين، وهو ما يميّز مستشارًا موثوقًا عن بائع أجوبة. وفي النهاية، تكسب الاستشارة قيمتها لا بأناقة تحليلها بل بالتحسين الدائم الذي يُترَك العميل مالكًا له وقادرًا على إدامته.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الاستشارة تخلق قيمةً بتأطير المشكلة الصحيحة، وحلّها بتحليلٍ منظَّم قائم على الحقائق، وإبلاغ توصيةٍ واضحة، لكنها تخلق أثرًا فقط حين يملك العميل الجواب، وتلائم النصيحة ما يستطيع تنفيذه، وتترك المهمّة المنشأة أقدر مما وجدتها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Consulting turns outside expertise into lasting improvement the client owns and can sustain.</p>
+        <ul>
+          <li>Define the right problem first, distinguishing symptom from cause and questioning the assumed solution.</li>
+          <li>Solve it with structure: break it into clear questions, hypothesize, and test against evidence.</li>
+          <li>Lead with a clear recommendation and transparent reasoning, built for the busy decision-maker.</li>
+          <li>Design for implementation by building client ownership and matching advice to real constraints.</li>
+          <li>Aim to leave the client more capable, transferring knowledge rather than creating dependence.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.mckinsey.com/capabilities/strategy-and-corporate-finance/our-insights" target="_blank" rel="noopener">McKinsey, problem solving and strategy insights.</a></li>
+          <li><a href="https://hbr.org/2017/09/the-consulting-industry-is-being-disrupted" target="_blank" rel="noopener">HBR, on consulting and its value.</a></li>
+          <li><a href="https://www.bcg.com/publications" target="_blank" rel="noopener">BCG, publications on problem solving.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">الاستشارة تحوّل الخبرة الخارجية لتحسينٍ دائم يملكه العميل ويقدر على إدامته.</p>
+        <ul>
+          <li>عرّف المشكلة الصحيحة أولًا، مميّزًا العَرَض من السبب ومساءلًا الحلّ المفترَض.</li>
+          <li>حُلَّها بالهيكلة: فكّكها لأسئلةٍ واضحة، وافترض، واختبر ضدّ الأدلّة.</li>
+          <li>ابدأ بتوصيةٍ واضحة واستدلالٍ شفّاف، مبنيٍّ لصانع القرار المشغول.</li>
+          <li>صمّم للتنفيذ ببناء ملكية العميل ومطابقة النصيحة للقيود الحقيقية.</li>
+          <li>اهدف لترك العميل أقدر، بنقل المعرفة لا خلق الاعتماد.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.mckinsey.com/capabilities/strategy-and-corporate-finance/our-insights" target="_blank" rel="noopener">ماكنزي، رؤى حلّ المشكلات والاستراتيجية.</a></li>
+          <li><a href="https://hbr.org/2017/09/the-consulting-industry-is-being-disrupted" target="_blank" rel="noopener">HBR، عن الاستشارات وقيمتها.</a></li>
+          <li><a href="https://www.bcg.com/publications" target="_blank" rel="noopener">BCG، منشورات عن حلّ المشكلات.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","problem","method","impact","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

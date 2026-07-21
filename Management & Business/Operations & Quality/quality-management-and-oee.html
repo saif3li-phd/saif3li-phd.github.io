@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quality Management &amp; OEE</title>
+<meta name="description" content="An operational framework for quality management: quality principles, the process approach, OEE, continual improvement, and cost of quality.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">FRAMEWORKS &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الأطر &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Quality Management &amp; OEE</span><span data-lang="ar">إدارة الجودة والفاعلية OEE</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="principles"><span data-lang="en">Principles</span><span data-lang="ar">المبادئ</span></a>
+    <a data-id="oee"><span data-lang="en">OEE</span><span data-lang="ar">الفاعلية</span></a>
+    <a data-id="improvement"><span data-lang="en">Improvement</span><span data-lang="ar">التحسين</span></a>
+    <a data-id="cost"><span data-lang="en">Cost of Quality</span><span data-lang="ar">كلفة الجودة</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Quality management &amp; operational effectiveness</div>
+          <div><span>Scope:</span> Delivering consistent quality and using resources effectively</div>
+          <div><span>Owner role:</span> Quality lead, with process owners</div>
+          <div><span>Review cadence:</span> Continuous measurement, management review each quarter</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Quality management is the discipline of consistently meeting the requirements of those you serve, and improving how you do it over time. It shifts the focus from catching defects at the end to designing processes that produce good results reliably, so that quality is built in rather than inspected in.</p>
+        <p>The central shift in modern quality thinking is from inspection to prevention. Checking finished products and discarding the bad ones is expensive and wasteful, because the cost of a defect has already been incurred by the time it is caught. A mature quality approach instead asks why defects occur and fixes the process, so that the good outcome is the natural result of how the work is done, not something rescued by a final check. This is cheaper, faster, and far more reliable.</p>
+        <p>This framework covers both the management-system view of quality, organized around the principles of ISO 9001, and the operational measurement of effectiveness through OEE, a standard measure from lean and total productive maintenance. It is written to be reusable across manufacturing and service settings, and aligns to both without reproducing their text.</p>
+        <div class="note"><strong>Note:</strong> Quality is not the absence of defects caught at the end, it is the presence of processes that rarely produce them. The best inspection is the one you did not need because the process was right.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> إدارة الجودة والفاعلية التشغيلية</div>
+          <div><span>النطاق:</span> تسليم جودةٍ متّسقة واستخدام الموارد بفاعلية</div>
+          <div><span>دور المالك:</span> قائد الجودة، مع ملّاك العمليات</div>
+          <div><span>دورية المراجعة:</span> قياسٌ مستمر، ومراجعة إدارةٍ كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">إدارة الجودة انضباط الوفاء المتّسق بمتطلبات من تخدمهم، وتحسين كيف تفعل ذلك عبر الزمن. تنقل التركيز من التقاط العيوب في النهاية إلى تصميم عملياتٍ تُنتِج نتائج جيدة بموثوقية، فتُبنى الجودة بدل أن تُفتَّش.</p>
+        <p>التحوّل المركزي في فكر الجودة الحديث من التفتيش إلى الوقاية. ففحص المنتجات المنتهية ونبذ السيئ منها باهظٌ ومهدِر، لأن كلفة العيب تكون قد وقعت بحلول التقاطه. والنهج الناضج يسأل بدلًا من ذلك لماذا تقع العيوب ويُصلِح العملية، فتصير النتيجة الجيدة ناتجًا طبيعيًا لكيفية أداء العمل، لا شيئًا يُنقَذ بفحصٍ أخير. وهذا أرخص وأسرع وأوثق بكثير.</p>
+        <p>يغطّي هذا الإطار رؤية نظام إدارة الجودة، منظَّمةً حول مبادئ ISO 9001، والقياس التشغيلي للفاعلية عبر OEE، وهو مقياسٌ معياري من اللين والصيانة الإنتاجية الشاملة. وهو مكتوب ليكون قابلًا لإعادة الاستخدام عبر بيئات التصنيع والخدمات، ويتوافق مع كليهما دون نسخ نصّهما.</p>
+        <div class="note"><strong>ملاحظة:</strong> الجودة ليست غياب العيوب المُلتقَطة في النهاية، بل حضور عملياتٍ نادرًا ما تُنتِجها. وأفضل تفتيشٍ هو الذي لم تحتجه لأن العملية كانت صحيحة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="principles">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Quality Principles</h2>
+        <p class="lead">A recognized quality management system rests on a set of principles that together describe an organization built to deliver and improve quality. They are the foundation the specific practices and controls implement.</p>
+        <ul>
+          <li><strong>Customer focus:</strong> quality is defined by whether you meet the needs of those you serve, so understanding those needs comes first.</li>
+          <li><strong>Leadership:</strong> quality requires direction and commitment from the top, because it competes with cost and speed and only leadership can protect it.</li>
+          <li><strong>Engagement of people:</strong> the people doing the work are closest to its problems, so involving them is how quality actually improves.</li>
+          <li><strong>Process approach:</strong> results come from processes, so managing the process is how you manage the result.</li>
+          <li><strong>Improvement:</strong> quality is never finished, it is continuously raised, because standing still is falling behind.</li>
+          <li><strong>Evidence-based decisions:</strong> decisions rest on data about what is actually happening, not on assumption or hierarchy.</li>
+          <li><strong>Relationship management:</strong> quality extends to suppliers and partners, because your output is only as good as your inputs.</li>
+        </ul>
+        <p>The process approach is the principle that carries the most practical weight. It reframes quality problems from being about people, who is to blame for the defect, to being about processes, what about the way this work is done made the defect likely. This is not only fairer, it is more effective, because a process fixed once prevents the defect for everyone, while blaming a person leaves the process free to produce the same defect again through someone else.</p>
+        <div class="note"><strong>Note:</strong> When quality fails, look at the process before the person. Most defects are produced by systems that made the error easy or the right action hard, and fixing the system is what actually prevents recurrence.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>مبادئ الجودة</h2>
+        <p class="lead">نظام إدارة جودةٍ معترف به يقوم على مجموعة مبادئ تصف معًا منشأةً مبنيةً لتسليم الجودة وتحسينها. وهي الأساس الذي تُنفّذه الممارسات والضوابط المحدَّدة.</p>
+        <ul>
+          <li><strong>التركيز على العميل:</strong> الجودة تُعرَّف بهل تفي بحاجات من تخدمهم، ففهم تلك الحاجات يأتي أولًا.</li>
+          <li><strong>القيادة:</strong> الجودة تتطلّب توجيهًا والتزامًا من القمة، لأنها تنافس الكلفة والسرعة ولا يحميها إلا القيادة.</li>
+          <li><strong>إشراك الناس:</strong> من يؤدّون العمل أقرب لمشكلاته، فإشراكهم هو كيف تتحسّن الجودة فعلًا.</li>
+          <li><strong>نهج العملية:</strong> النتائج تأتي من العمليات، فإدارة العملية هي كيف تدير النتيجة.</li>
+          <li><strong>التحسين:</strong> الجودة لا تنتهي بل تُرفَع باستمرار، لأن الوقوف تأخّر.</li>
+          <li><strong>قرارات قائمة على الدليل:</strong> القرارات تستند إلى بياناتٍ عمّا يجري فعلًا، لا افتراضٍ أو هرمية.</li>
+          <li><strong>إدارة العلاقات:</strong> الجودة تمتد للمورّدين والشركاء، لأن مخرجك بقدر مدخلاتك.</li>
+        </ul>
+        <p>نهج العملية هو المبدأ الأثقل عمليًا. فهو يعيد تأطير مشكلات الجودة من كونها عن الناس، من يُلام على العيب، إلى كونها عن العمليات، ما الذي في طريقة أداء هذا العمل جعل العيب محتملًا. وهذا ليس أعدل فحسب، بل أنجع، لأن عمليةً تُصلَح مرةً تمنع العيب للجميع، بينما لوم شخصٍ يترك العملية حرّةً لإنتاج العيب نفسه ثانيةً عبر غيره.</p>
+        <div class="note"><strong>ملاحظة:</strong> حين تفشل الجودة، انظر للعملية قبل الشخص. فأغلب العيوب تُنتِجها أنظمةٌ جعلت الخطأ سهلًا أو الصواب صعبًا، وإصلاح النظام هو ما يمنع التكرار فعلًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="oee">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Overall Equipment Effectiveness</h2>
+        <p class="lead">Beyond the quality system sits a precise operational measure of how effectively a process actually runs: overall equipment effectiveness, or OEE. It captures in one number how much of a process's potential is genuinely being turned into good output.</p>
+        <p>OEE works by combining three sources of loss into a single figure. Availability measures how much of the planned time the process was actually running, capturing losses from breakdowns and setup. Performance measures how fast it ran compared to its potential, capturing losses from slow running and small stops. Quality measures how much of what it produced was actually good, capturing losses from defects and rework. Multiplying the three gives the share of ideal production that was truly achieved.</p>
+        <div class="formula">OEE = Availability &times; Performance &times; Quality</div>
+        <h4>Worked example</h4>
+        <p>A line is available 90% of its planned time, runs at 95% of its rated speed, and produces good parts 99% of the time. Its OEE is 0.90 &times; 0.95 &times; 0.99 = 0.846, or about 85%. The power of the calculation is that it shows where the loss lives: this line's biggest opportunity is availability, the 10% of time it is not running, so improvement effort should target breakdowns and changeovers, not speed or defects. A single OEE number that hid these three factors would point nowhere.</p>
+        <p>Benchmarks give context but must be read carefully. A commonly cited world-class target is around 85% OEE (2023 record), but the right target depends entirely on the process, and chasing a benchmark number without understanding your own loss structure can waste effort on the wrong factor. OEE is most valuable not as a score to compare but as a diagnosis of where your specific losses are.</p>
+        <div class="note"><strong>Note:</strong> Never report OEE as a single number without its three components. The whole value of OEE is in showing which of availability, performance, or quality is dragging it down, because that is what tells you where to act.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الفاعلية الكلية للمعدات</h2>
+        <p class="lead">وراء نظام الجودة يجلس مقياسٌ تشغيلي دقيق لمدى فاعلية تشغيل عمليةٍ فعلًا: الفاعلية الكلية للمعدات (OEE). يلتقط في رقمٍ واحد كم من إمكان العملية يُحوَّل حقًّا إلى مخرجٍ جيد.</p>
+        <p>يعمل OEE بجمع ثلاثة مصادر خسارةٍ في رقمٍ واحد. التوافر يقيس كم من الزمن المخطَّط كانت العملية تعمل فعلًا، ملتقطًا خسائر الأعطال والإعداد. والأداء يقيس كم سارت سريعًا مقارنةً بإمكانها، ملتقطًا خسائر البطء والوقفات الصغيرة. والجودة تقيس كم مما أنتجته كان جيدًا فعلًا، ملتقطًا خسائر العيوب وإعادة العمل. وضرب الثلاثة يعطي نصيب الإنتاج المثالي الذي تحقّق حقًّا.</p>
+        <div class="formula">OEE = التوافر &times; الأداء &times; الجودة</div>
+        <h4>مثال محلول</h4>
+        <p>خطٌّ متاحٌ 90% من زمنه المخطَّط، يسير بـ 95% من سرعته المقدَّرة، ويُنتِج قطعًا جيدة 99% من الوقت. فـ OEE = 0.90 &times; 0.95 &times; 0.99 = 0.846، أي نحو 85%. وقوّة الحساب أنه يُظهر أين تسكن الخسارة: أكبر فرصةٍ لهذا الخط التوافر، الـ10% من الوقت الذي لا يعمل فيه، فينبغي أن يستهدف جهد التحسين الأعطال والتحويلات، لا السرعة أو العيوب. ورقم OEE واحد يُخفي هذه العوامل الثلاثة لا يشير لشيء.</p>
+        <p>المعايير تمنح سياقًا لكن تُقرَأ بحذر. فهدفٌ عالمي شائع نحو 85% OEE (سجل 2023)، لكن الهدف الصحيح يعتمد كليًا على العملية، ومطاردة رقم معيارٍ دون فهم بنية خسائرك قد تهدر الجهد على العامل الخطأ. وOEE أنفع لا كدرجةٍ تُقارَن بل كتشخيصٍ لأين تقع خسائرك تحديدًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> لا تُبلّغ عن OEE كرقمٍ واحد دون مكوّناته الثلاثة. فكل قيمة OEE في إظهار أيٌّ من التوافر أو الأداء أو الجودة يجرّه للأسفل، لأن ذلك ما يخبرك أين تتصرّف.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="improvement">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Continual Improvement</h2>
+        <p class="lead">Quality is never a destination, it is a direction. Continual improvement is the disciplined habit of steadily raising performance, and it is what keeps a quality system alive rather than frozen at whatever level it first reached.</p>
+        <p>The engine of improvement is a simple loop, often summarized as plan, do, check, act: plan a change, make it on a small scale, check whether it actually improved things, and then adopt it widely or discard it and try again. This turns improvement from a matter of opinion into a matter of evidence, because each change is tested rather than assumed, and only the changes that demonstrably work are kept.</p>
+        <h3>Getting to the root cause</h3>
+        <p>Durable improvement depends on fixing causes, not symptoms. When a defect occurs, the tempting response is to correct that instance and move on, but that leaves the cause free to produce the defect again. Root cause analysis, asking repeatedly why a problem happened until the underlying cause is reached, is what separates a fix that lasts from one that has to be repeated. A defect traced to a worn tool is corrected by replacing the tool, but the root cause, no schedule to replace tools before they wear, is what actually stops the defect from recurring.</p>
+        <div class="note"><strong>Note:</strong> Distinguish correction from corrective action. Correcting the defective item addresses today, corrective action on its cause addresses every tomorrow, and only the second one truly improves quality.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>التحسين المستمر</h2>
+        <p class="lead">الجودة ليست وجهةً بل اتجاه. والتحسين المستمر عادةٌ منضبطة في رفع الأداء باطّراد، وهو ما يُبقي نظام الجودة حيًّا لا مجمَّدًا عند أي مستوىً بلغه أولًا.</p>
+        <p>محرّك التحسين حلقةٌ بسيطة، تُلخَّص غالبًا بـ «خطّط، نفّذ، افحص، تصرّف»: خطّط تغييرًا، ونفّذه على نطاقٍ صغير، وافحص هل حسّن الأمور فعلًا، ثم تبنّاه واسعًا أو انبذه وأعد المحاولة. وهذا يحوّل التحسين من مسألة رأيٍ إلى مسألة دليل، لأن كل تغييرٍ يُختبَر لا يُفترَض، ولا يُبقى إلا ما يعمل بوضوح.</p>
+        <h3>الوصول للسبب الجذري</h3>
+        <p>التحسين الدائم يعتمد على إصلاح الأسباب لا الأعراض. فحين يقع عيب، الاستجابة المغرية تصحيح تلك الحالة والمضي، لكن ذلك يترك السبب حرًّا لإنتاج العيب ثانيةً. وتحليل السبب الجذري، بالسؤال مرارًا لماذا وقعت المشكلة حتى يُبلَغ السبب الكامن، هو ما يفصل إصلاحًا يدوم عن آخر يجب تكراره. فعيبٌ يُعزى لأداةٍ بالية يُصحَّح باستبدال الأداة، لكن السبب الجذري، غياب جدولٍ لاستبدال الأدوات قبل بلاها، هو ما يوقف تكرار العيب فعلًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> ميّز التصحيح عن الإجراء التصحيحي. فتصحيح الصنف المعيب يعالج اليوم، والإجراء التصحيحي على سببه يعالج كل غد، والثاني وحده يُحسّن الجودة حقًّا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="cost">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>The Cost of Quality</h2>
+        <p class="lead">Quality is often seen as a cost, but the more useful view is that poor quality is the real cost, and investing in prevention is usually cheaper than paying for failure. The cost-of-quality lens makes this trade-off visible.</p>
+        <p>The costs of quality fall into a revealing pattern. Prevention costs are spent stopping defects before they happen, through better design, training, and process control. Appraisal costs are spent finding defects through inspection and testing. Failure costs are what defects actually cost, split between internal failure, caught before reaching the customer, and external failure, caught after, which is by far the most expensive because it adds lost trust and reputation to the direct cost.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">Prevention</div><div class="lbl">Stopping defects before they occur</div></div>
+          <div class="stat"><div class="num">Appraisal</div><div class="lbl">Finding defects through inspection</div></div>
+          <div class="stat"><div class="num">Failure</div><div class="lbl">The cost when defects get through</div></div>
+        </div>
+        <p>The strategic insight is that these costs trade off, and not evenly. A dollar spent on prevention typically saves several dollars of failure cost, because it stops the defect at its cheapest point, before any value has been added to a product that will be scrapped, and before a customer has been harmed. Organizations that underinvest in prevention to save money end up paying far more in failure, and the external failure that reaches a customer is the most expensive lesson of all.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> quality management builds good outcomes into the process, measures effectiveness with tools like OEE, improves relentlessly at the root cause, and understands that preventing defects is almost always cheaper than paying for them.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>كلفة الجودة</h2>
+        <p class="lead">تُرى الجودة غالبًا ككلفة، لكن الرؤية الأنفع أن الجودة الرديئة هي الكلفة الحقيقية، والاستثمار في الوقاية عادةً أرخص من دفع ثمن الفشل. وعدسة كلفة الجودة تُظهر هذه المقايضة.</p>
+        <p>تقع كلف الجودة في نمطٍ كاشف. كلف الوقاية تُنفَق لإيقاف العيوب قبل وقوعها، عبر تصميمٍ أفضل وتدريبٍ وضبط عملية. وكلف التقييم تُنفَق لإيجاد العيوب بالتفتيش والاختبار. وكلف الفشل هي ما تكلّفه العيوب فعلًا، مقسومةً بين فشلٍ داخلي، يُلتقَط قبل بلوغ العميل، وخارجي، يُلتقَط بعده، وهو الأغلى بمراحل لأنه يضيف فقدان الثقة والسمعة إلى الكلفة المباشرة.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">الوقاية</div><div class="lbl">إيقاف العيوب قبل وقوعها</div></div>
+          <div class="stat"><div class="num">التقييم</div><div class="lbl">إيجاد العيوب بالتفتيش</div></div>
+          <div class="stat"><div class="num">الفشل</div><div class="lbl">الكلفة حين تمرّ العيوب</div></div>
+        </div>
+        <p>البصيرة الاستراتيجية أن هذه الكلف تتقايض، وليس بالتساوي. فريالٌ يُنفَق على الوقاية يوفّر عادةً عدّة ريالاتٍ من كلفة الفشل، لأنه يوقف العيب عند أرخص نقطةٍ له، قبل إضافة أي قيمةٍ لمنتجٍ سيُنبَذ، وقبل أن يُؤذى عميل. والمنشآت التي تُقصّر في الوقاية توفيرًا تدفع أكثر بكثير في الفشل، والفشل الخارجي الذي يبلغ العميل أغلى درسٍ على الإطلاق.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> إدارة الجودة تبني النتائج الجيدة في العملية، وتقيس الفاعلية بأدواتٍ كـ OEE، وتُحسّن بلا هوادةٍ عند السبب الجذري، وتُدرك أن منع العيوب أرخص دومًا تقريبًا من دفع ثمنها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Quality management delivers consistent results and effective operations by building quality into processes and measuring how well they run.</p>
+        <ul>
+          <li>Shift from inspection to prevention, building good outcomes into the process rather than catching bad ones at the end.</li>
+          <li>Apply the quality principles, especially the process approach that fixes systems rather than blaming people.</li>
+          <li>Measure operational effectiveness with OEE, and always report its three components so the loss is visible.</li>
+          <li>Improve continually through the plan-do-check-act loop, fixing root causes not symptoms.</li>
+          <li>Use the cost-of-quality view to invest in prevention, which is almost always cheaper than failure.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">ISO 9001:2015, Quality management systems, Requirements.</a></li>
+          <li><a href="https://www.iso.org/standards/popular/iso-9000-family" target="_blank" rel="noopener">ISO 9000 family, Quality management (principles and vocabulary).</a></li>
+          <li><a href="https://www.lean.org/lexicon-terms/overall-equipment-effectiveness/" target="_blank" rel="noopener">Lean Enterprise Institute, Overall Equipment Effectiveness (OEE).</a></li>
+          <li><a href="https://www.leanproduction.com/tpm/" target="_blank" rel="noopener">Lean Production, Total Productive Maintenance and OEE (2023 record).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">إدارة الجودة تسلّم نتائج متّسقة وعملياتٍ فعّالة ببناء الجودة في العمليات وقياس كم تعمل جيدًا.</p>
+        <ul>
+          <li>انتقل من التفتيش إلى الوقاية، ببناء النتائج الجيدة في العملية لا التقاط السيئة في النهاية.</li>
+          <li>طبّق مبادئ الجودة، خاصةً نهج العملية الذي يُصلِح الأنظمة لا يلوم الناس.</li>
+          <li>قِس الفاعلية التشغيلية بـ OEE، وبلّغ دومًا مكوّناته الثلاثة لتكون الخسارة مرئية.</li>
+          <li>حسّن باستمرار عبر حلقة «خطّط، نفّذ، افحص، تصرّف»، بإصلاح الأسباب الجذرية لا الأعراض.</li>
+          <li>استخدم رؤية كلفة الجودة للاستثمار في الوقاية، وهي أرخص دومًا تقريبًا من الفشل.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">ISO 9001:2015، أنظمة إدارة الجودة، المتطلبات.</a></li>
+          <li><a href="https://www.iso.org/standards/popular/iso-9000-family" target="_blank" rel="noopener">عائلة ISO 9000، إدارة الجودة (المبادئ والمصطلحات).</a></li>
+          <li><a href="https://www.lean.org/lexicon-terms/overall-equipment-effectiveness/" target="_blank" rel="noopener">معهد لين، الفاعلية الكلية للمعدات (OEE).</a></li>
+          <li><a href="https://www.leanproduction.com/tpm/" target="_blank" rel="noopener">Lean Production، الصيانة الإنتاجية الشاملة وOEE (سجل 2023).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","principles","oee","improvement","cost","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Decision Systems</title>
+<meta name="description" content="An original framework for decision systems: why decisions fail through predictable bias, and a sound process to make better decisions over time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">STRATEGY &amp; CONSULTING &middot; FRAMEWORK</span><span data-lang="ar">الاستراتيجية والاستشارات &middot; إطار</span></div>
+    <h1><span data-lang="en">Decision Systems</span><span data-lang="ar">أنظمة القرار</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="traps"><span data-lang="en">Why Decisions Fail</span><span data-lang="ar">لماذا تفشل</span></a>
+    <a data-id="process"><span data-lang="en">Deciding Well</span><span data-lang="ar">القرار الجيد</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Decision systems</div>
+          <div><span>Scope:</span> Making better decisions, individually and organizationally</div>
+          <div><span>Owner role:</span> Leaders and decision-makers at every level</div>
+          <div><span>Review cadence:</span> Continuous, with periodic review of decision quality</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">A decision system is the deliberate way an individual or organization makes choices: how it frames questions, weighs evidence, handles uncertainty, and decides who decides. Every organization already has a decision system, whether designed or accidental, and its quality shapes everything, because an organization is, in the end, the sum of the decisions it makes.</p>
+        <p>Decision systems matter because outcomes flow from decisions, yet most decisions are made with far less discipline than the stakes deserve. People and organizations fall into predictable traps, deciding on gut feeling dressed as analysis, seeking only confirming evidence, avoiding hard choices, or letting the loudest voice win. A good decision system does not guarantee good outcomes, since uncertainty is real, but it reliably improves the quality of decisions over time, which is the only thing anyone can actually control.</p>
+        <p>This framework describes how to make better decisions, from understanding why decisions go wrong, through a sound decision process, to designing decision-making in organizations. It is my own synthesis, written in my own words and grounded in recognized thinking on judgment and decision-making, designed to be reusable across contexts.</p>
+        <div class="note"><strong>Note:</strong> Judge decisions by the quality of the process, not only the outcome. A good decision can have a bad result through sheer luck, and a reckless one can get lucky; only a good process is repeatable.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> أنظمة القرار</div>
+          <div><span>النطاق:</span> صنع قراراتٍ أفضل، فرديًا ومؤسسيًا</div>
+          <div><span>دور المالك:</span> القادة وصانعو القرار في كل مستوى</div>
+          <div><span>دورية المراجعة:</span> مستمرة، بمراجعةٍ دورية لجودة القرار</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">نظام القرار الطريقة المتعمَّدة التي يصنع بها فردٌ أو منشأة الاختيارات: كيف يؤطّر الأسئلة، ويزن الأدلّة، ويتعامل مع عدم اليقين، ويقرّر من يقرّر. ولكل منشأةٍ نظام قرارٍ أصلًا، مصمَّمًا أو عرَضيًا، وجودته تُشكّل كل شيء، لأن المنشأة، في النهاية، مجموع القرارات التي تصنعها.</p>
+        <p>تهمّ أنظمة القرار لأن النتائج تتدفّق من القرارات، ومع ذلك تُصنَع أغلب القرارات بانضباطٍ أقلّ بكثير مما تستحقّه المخاطر. فالناس والمنشآت يقعون في مطبّاتٍ متوقَّعة، الحسم بشعورٍ غريزي مُلبَسٍ ثوب تحليل، والبحث عن أدلّةٍ مؤكِّدة فقط، وتجنّب الاختيارات الصعبة، أو ترك الصوت الأعلى يفوز. ونظام قرارٍ جيد لا يضمن نتائج جيدة، إذ عدم اليقين حقيقي، لكنه يحسّن باطّرادٍ جودة القرارات بمرور الوقت، وهو الشيء الوحيد الذي يستطيع أحدٌ التحكّم به فعلًا.</p>
+        <p>يصف هذا الإطار كيف تُصنَع قراراتٌ أفضل، من فهم لماذا تفشل القرارات، عبر عملية قرارٍ سليمة، إلى تصميم صنع القرار في المنشآت. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في فكرٍ معترف به عن الحكم وصنع القرار، مصمَّمٌ ليكون قابلًا لإعادة الاستخدام عبر السياقات.</p>
+        <div class="note"><strong>ملاحظة:</strong> احكم على القرارات بجودة العملية لا النتيجة وحدها. فقرارٌ جيد قد تكون له نتيجةٌ سيّئة بمحض حظّ، ومتهوّرٌ قد يحالفه الحظّ؛ والعملية الجيدة وحدها قابلة للتكرار.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="traps">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Why Decisions Go Wrong</h2>
+        <p class="lead">To decide better, it helps to understand why decisions so often go wrong, because most failures come not from a lack of intelligence but from predictable flaws in how the human mind and organizations handle choices.</p>
+        <p>The mind takes shortcuts that usually serve us but systematically mislead in important decisions. We favor evidence that confirms what we already believe and dismiss what challenges it. We anchor on the first number or idea we encounter. We overweight vivid, recent, or emotionally charged information over the dull statistics that matter more. We are overconfident in our own judgment, and we let the way a choice is framed, as a gain or a loss, sway us more than the substance. These are not signs of stupidity; they are built-in patterns that affect everyone, which is precisely why a system, not just good intentions, is needed to counter them.</p>
+        <ul>
+          <li><strong>Confirmation bias:</strong> seeking evidence that supports what we already think.</li>
+          <li><strong>Anchoring:</strong> being pulled by the first figure or framing we encounter.</li>
+          <li><strong>Overconfidence:</strong> trusting our own judgment more than the evidence warrants.</li>
+          <li><strong>Framing effects:</strong> deciding differently based on how a choice is worded, not its substance.</li>
+        </ul>
+        <p>Organizations add their own failure modes on top of individual ones. Groups can amplify bias rather than cancel it, as people converge on a leader's view or a comfortable consensus and suppress dissent. Politics and incentives distort choices, so decisions serve some interest other than the organization's. And unclear ownership means important decisions are made by no one, or by everyone, and so made badly or not at all. Recognizing that both individuals and groups are prone to these predictable errors is the starting point, because a good decision system is essentially a set of deliberate countermeasures against them.</p>
+        <div class="note"><strong>Note:</strong> Bias is not a personal failing to be ashamed of; it is a feature of how all minds work. This is why willpower and good intentions are not enough, and a deliberate process is what actually improves decisions.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>لماذا تسوء القرارات</h2>
+        <p class="lead">لتقرّر أفضل، يفيد فهم لماذا تسوء القرارات كثيرًا، لأن أغلب الإخفاقات تأتي لا من نقص ذكاءٍ بل من عيوبٍ متوقَّعة في كيف يتعامل العقل البشري والمنشآت مع الاختيارات.</p>
+        <p>العقل يأخذ اختصاراتٍ تخدمنا عادةً لكنها تضلّل منهجيًا في القرارات المهمّة. فنحابي الأدلّة التي تؤكّد ما نؤمن به أصلًا ونهمل ما يتحدّاه. ونرسو على أول رقمٍ أو فكرةٍ نلقاها. ونثقّل المعلومات الحيّة أو الحديثة أو المشحونة عاطفيًا فوق الإحصاءات المملّة الأهمّ. ونثق بحكمنا مفرطًا، وندع الطريقة التي يُؤطَّر بها اختيارٌ، كمكسبٍ أو خسارة، تميلنا أكثر من الجوهر. وهذه ليست علامات غباء؛ أنماطٌ مدمجة تؤثّر في الجميع، وهو بالضبط لماذا يُحتاج نظامٌ، لا مجرّد نوايا حسنة، لمواجهتها.</p>
+        <ul>
+          <li><strong>انحياز التأكيد:</strong> البحث عن أدلّةٍ تدعم ما نظنّه أصلًا.</li>
+          <li><strong>الترسية:</strong> الانجذاب لأول رقمٍ أو تأطيرٍ نلقاه.</li>
+          <li><strong>الثقة المفرطة:</strong> الوثوق بحكمنا أكثر مما يبرّره الدليل.</li>
+          <li><strong>آثار التأطير:</strong> القرار مختلفًا بناءً على كيف يُصاغ اختيار، لا جوهره.</li>
+        </ul>
+        <p>المنشآت تضيف أنماط إخفاقها فوق الفردية. فالمجموعات قد تضخّم الانحياز لا تلغيه، إذ يتقارب الناس على رأي قائدٍ أو إجماعٍ مريح ويكبتون المخالفة. والسياسات والحوافز تشوّه الاختيارات، فتخدم القرارات مصلحةً غير مصلحة المنشأة. والملكية غير الواضحة تعني أن قراراتٍ مهمّة يصنعها لا أحد، أو الجميع، فتُصنَع رديئًا أو لا تُصنَع. وإدراك أن الأفراد والمجموعات معًا عرضةٌ لهذه الأخطاء المتوقَّعة نقطة البداية، لأن نظام القرار الجيد أساسًا مجموعة تدابيرَ متعمَّدة ضدّها.</p>
+        <div class="note"><strong>ملاحظة:</strong> الانحياز ليس عيبًا شخصيًا يُخجَل منه؛ سمةٌ في كيف تعمل كل العقول. ولهذا الإرادة والنوايا الحسنة لا تكفي، والعملية المتعمَّدة هي ما يحسّن القرارات فعلًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="process">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>A Sound Decision Process</h2>
+        <p class="lead">A good decision system is a process that counters these traps by design. It does not remove uncertainty, but it makes sure a decision is well framed, well informed, and honestly weighed before it is made.</p>
+        <p>The elements of a sound process are simple in principle and demanding in practice. Frame the decision clearly: what exactly is being decided, and why. Generate real alternatives, more than one genuine option, since a choice between a favored idea and a strawman is not a choice. Gather relevant evidence, actively including information that might disprove the preferred answer. Weigh the options against clear criteria and against their uncertainty, thinking honestly about what could go wrong. Then decide, and, crucially, record the reasoning so the decision can be learned from later. Matching the rigor of the process to the stakes matters too: reversible, low-stakes decisions should be made fast, while big, hard-to-reverse ones deserve the full discipline.</p>
+        <table>
+          <tr><th><span data-lang="en">Step</span><span data-lang="ar">الخطوة</span></th><th><span data-lang="en">Guards against</span><span data-lang="ar">يحرس من</span></th></tr>
+          <tr><td><span data-lang="en">Frame clearly</span><span data-lang="ar">أطّر بوضوح</span></td><td><span data-lang="en">solving the wrong question</span><span data-lang="ar">حلّ السؤال الخطأ</span></td></tr>
+          <tr><td><span data-lang="en">Generate options</span><span data-lang="ar">ولّد خيارات</span></td><td><span data-lang="en">a false choice with only one real option</span><span data-lang="ar">اختيارٌ زائف بخيارٍ حقيقي واحد</span></td></tr>
+          <tr><td><span data-lang="en">Seek disconfirming evidence</span><span data-lang="ar">اطلب دليلًا مخالفًا</span></td><td><span data-lang="en">confirmation bias</span><span data-lang="ar">انحياز التأكيد</span></td></tr>
+          <tr><td><span data-lang="en">Record the reasoning</span><span data-lang="ar">سجّل الاستدلال</span></td><td><span data-lang="en">learning nothing from the outcome</span><span data-lang="ar">ألّا تتعلّم من النتيجة</span></td></tr>
+        </table>
+        <p>In organizations, the system also has to answer who decides. Clear decision rights, knowing who owns a decision, who must be consulted, and who is merely informed, prevent both paralysis and chaos. Deliberately inviting dissent, assigning someone to argue the opposing case, and separating the generation of options from their evaluation all help groups escape the pull toward premature consensus. And reviewing important decisions afterward, honestly comparing what was expected to what happened, is how a decision system learns and improves. Over time, an organization that decides well, using a sound process, clear ownership, and honest review, compounds better outcomes than rivals who leave decisions to instinct and politics.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> a good decision system counters predictable human and organizational biases with a deliberate process, frame clearly, generate real options, seek disconfirming evidence, weigh honestly, decide, and record and review, matching rigor to the stakes and clarifying who decides, so decision quality compounds over time.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>عملية قرارٍ سليمة</h2>
+        <p class="lead">نظام القرار الجيد عمليةٌ تواجه هذه المطبّات بالتصميم. لا يزيل عدم اليقين، لكنه يضمن أن قرارًا مؤطَّرٌ جيدًا ومُطَّلعٌ جيدًا وموزونٌ بأمانةٍ قبل صنعه.</p>
+        <p>عناصر العملية السليمة بسيطةٌ مبدئيًا ومتطلِّبة عمليًا. أطّر القرار بوضوح: ما الذي يُقرَّر بالضبط، ولماذا. ولّد بدائل حقيقية، أكثر من خيارٍ واحد فعلي، إذ اختيارٌ بين فكرةٍ مفضَّلة وفزّاعة ليس اختيارًا. اجمع الأدلّة ذات الصلة، مُدرِجًا نشطًا معلوماتٍ قد تدحض الجواب المفضَّل. زِن الخيارات ضدّ معاييرَ واضحة وضدّ عدم يقينها، مفكّرًا بأمانةٍ فيما قد يسوء. ثم قرّر، وحاسمًا، سجّل الاستدلال فيُتعلَّم من القرار لاحقًا. ومطابقة صرامة العملية للمخاطر تهمّ أيضًا: القرارات القابلة للعكس المنخفضة المخاطر تُصنَع سريعًا، والكبيرة الصعبة العكس تستحقّ الانضباط الكامل.</p>
+        <table>
+          <tr><th><span data-lang="en">الخطوة</span><span data-lang="ar">الخطوة</span></th><th><span data-lang="en">يحرس من</span><span data-lang="ar">يحرس من</span></th></tr>
+          <tr><td><span data-lang="en">أطّر بوضوح</span><span data-lang="ar">أطّر بوضوح</span></td><td><span data-lang="en">حلّ السؤال الخطأ</span><span data-lang="ar">حلّ السؤال الخطأ</span></td></tr>
+          <tr><td><span data-lang="en">ولّد خيارات</span><span data-lang="ar">ولّد خيارات</span></td><td><span data-lang="en">اختيارٌ زائف بخيارٍ حقيقي واحد</span><span data-lang="ar">اختيارٌ زائف بخيارٍ حقيقي واحد</span></td></tr>
+          <tr><td><span data-lang="en">اطلب دليلًا مخالفًا</span><span data-lang="ar">اطلب دليلًا مخالفًا</span></td><td><span data-lang="en">انحياز التأكيد</span><span data-lang="ar">انحياز التأكيد</span></td></tr>
+          <tr><td><span data-lang="en">سجّل الاستدلال</span><span data-lang="ar">سجّل الاستدلال</span></td><td><span data-lang="en">ألّا تتعلّم من النتيجة</span><span data-lang="ar">ألّا تتعلّم من النتيجة</span></td></tr>
+        </table>
+        <p>في المنشآت، على النظام أيضًا أن يجيب من يقرّر. فحقوق القرار الواضحة، معرفة من يملك قرارًا، ومن يجب استشارته، ومن يُبلَّغ فقط، تمنع الشلل والفوضى معًا. ودعوة المخالفة عمدًا، وتكليف أحدٍ بمحاجّة الرأي المقابل، وفصل توليد الخيارات عن تقييمها، كلها تساعد المجموعات على الإفلات من الشدّ نحو الإجماع المبكر. ومراجعة القرارات المهمّة لاحقًا، بمقارنةٍ أمينة لما كان متوقَّعًا بما حدث، هي كيف يتعلّم نظام القرار ويتحسّن. وبمرور الوقت، منشأةٌ تقرّر جيدًا، بعمليةٍ سليمة وملكيةٍ واضحة ومراجعةٍ أمينة، تراكم نتائج أفضل من منافسين يتركون القرارات للغريزة والسياسة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> نظام قرارٍ جيد يواجه الانحيازات البشرية والمؤسسية المتوقَّعة بعمليةٍ متعمَّدة، أطّر بوضوح، ولّد خياراتٍ حقيقية، اطلب دليلًا مخالفًا، زِن بأمانة، قرّر، وسجّل وراجِع، مطابقًا الصرامة للمخاطر ومُوضِّحًا من يقرّر، فتتراكم جودة القرار بمرور الوقت.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">A good decision system counters predictable biases with a deliberate process, improving decision quality over time.</p>
+        <ul>
+          <li>Judge decisions by process quality, not outcome alone, since luck affects results.</li>
+          <li>Expect predictable biases: confirmation, anchoring, overconfidence, and framing effects.</li>
+          <li>Follow a sound process: frame clearly, generate real options, seek disconfirming evidence, weigh, decide.</li>
+          <li>Match the rigor to the stakes, deciding reversible small things fast and big ones carefully.</li>
+          <li>In organizations, clarify who decides, invite dissent, and review important decisions to learn.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2006/01/a-brief-history-of-decision-making" target="_blank" rel="noopener">HBR, on decision-making.</a></li>
+          <li><a href="https://www.mckinsey.com/capabilities/strategy-and-corporate-finance/our-insights/decision-making-in-uncertain-times" target="_blank" rel="noopener">McKinsey, on decision-making under uncertainty.</a></li>
+          <li><a href="https://fs.blog/mental-models/" target="_blank" rel="noopener">Farnam Street, on mental models and judgment.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">نظام قرارٍ جيد يواجه الانحيازات المتوقَّعة بعمليةٍ متعمَّدة، محسّنًا جودة القرار بمرور الوقت.</p>
+        <ul>
+          <li>احكم على القرارات بجودة العملية لا النتيجة وحدها، إذ الحظّ يؤثّر في النتائج.</li>
+          <li>توقّع انحيازاتٍ متوقَّعة: التأكيد والترسية والثقة المفرطة وآثار التأطير.</li>
+          <li>اتّبع عمليةً سليمة: أطّر بوضوح، ولّد خياراتٍ حقيقية، اطلب دليلًا مخالفًا، زِن، قرّر.</li>
+          <li>طابق الصرامة للمخاطر، مقرّرًا القابل للعكس الصغير سريعًا والكبير بعناية.</li>
+          <li>في المنشآت، وضّح من يقرّر، وادعُ المخالفة، وراجِع القرارات المهمّة لتتعلّم.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2006/01/a-brief-history-of-decision-making" target="_blank" rel="noopener">HBR، عن صنع القرار.</a></li>
+          <li><a href="https://www.mckinsey.com/capabilities/strategy-and-corporate-finance/our-insights/decision-making-in-uncertain-times" target="_blank" rel="noopener">ماكنزي، عن صنع القرار تحت عدم اليقين.</a></li>
+          <li><a href="https://fs.blog/mental-models/" target="_blank" rel="noopener">Farnam Street، عن النماذج الذهنية والحكم.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","traps","process","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

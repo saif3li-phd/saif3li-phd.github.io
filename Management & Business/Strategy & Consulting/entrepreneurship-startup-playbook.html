@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrepreneurship &amp; Startup Playbook</title>
+<meta name="description" content="An operational framework for entrepreneurship: the business model canvas, the lean startup loop, problem and market fit, funding, and unit economics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">CONSULTING &amp; STRATEGY &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الاستشارات والاستراتيجية &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Entrepreneurship &amp; Startup Playbook</span><span data-lang="ar">ريادة الأعمال ودليل الناشئة</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="model"><span data-lang="en">Business Model</span><span data-lang="ar">نموذج العمل</span></a>
+    <a data-id="lean"><span data-lang="en">Lean Startup</span><span data-lang="ar">الناشئة الرشيقة</span></a>
+    <a data-id="fit"><span data-lang="en">Fit</span><span data-lang="ar">الملاءمة</span></a>
+    <a data-id="funding"><span data-lang="en">Funding</span><span data-lang="ar">التمويل</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Entrepreneurship &amp; startups</div>
+          <div><span>Scope:</span> Building a new venture under deep uncertainty</div>
+          <div><span>Owner role:</span> Founder, with an early team</div>
+          <div><span>Review cadence:</span> Rapid learning cycles, milestone review by stage</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Entrepreneurship is the work of building something new under conditions of deep uncertainty, where the product, the customer, and even the business model are unknown and must be discovered rather than assumed. A startup is not a small version of a large company, it is a temporary organization searching for a repeatable, scalable business model.</p>
+        <p>That distinction shapes everything. An established company executes a known model efficiently, while a startup is trying to find a model that works at all, so the disciplines that make a large company succeed, careful planning and flawless execution of the plan, can actively harm a startup by committing it firmly to assumptions that turn out to be wrong. The entrepreneur's central task is not to execute a plan but to learn, quickly and cheaply, what the market actually wants before the money runs out.</p>
+        <p>This framework describes entrepreneurship as a disciplined search for a working business model, organized around the business model canvas and the lean startup method. It is written to be reusable for any new venture and aligns to that recognized thinking without reproducing its text.</p>
+        <div class="note"><strong>Note:</strong> A startup is a search, not an execution. The goal in the early days is not to build the plan flawlessly but to discover, before the money runs out, whether there is a real business to build at all.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> ريادة الأعمال والشركات الناشئة</div>
+          <div><span>النطاق:</span> بناء مشروعٍ جديد تحت عدم يقينٍ عميق</div>
+          <div><span>دور المالك:</span> المؤسِّس، مع فريقٍ مبكر</div>
+          <div><span>دورية المراجعة:</span> دورات تعلّمٍ سريعة، ومراجعة معالم بحسب المرحلة</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">ريادة الأعمال عمل بناء شيءٍ جديد تحت ظروف عدم يقينٍ عميق، حيث المنتج والعميل وحتى نموذج العمل مجهولةٌ ويجب اكتشافها لا افتراضها. والشركة الناشئة ليست نسخةً صغيرة من شركةٍ كبيرة، بل منظمةٌ مؤقتة تبحث عن نموذج عملٍ قابل للتكرار والتوسّع.</p>
+        <p>هذا التمييز يُشكّل كل شيء. فشركةٌ راسخة تنفّذ نموذجًا معلومًا بكفاءة، والناشئة تحاول إيجاد نموذجٍ يعمل أصلًا، فالانضباطات التي تُنجِح الشركة الكبيرة، التخطيط الدقيق والتنفيذ المتقن للخطة، قد تؤذي الناشئة بتثبيتها بحزمٍ على افتراضاتٍ تتبيّن خاطئة. ومهمة الريادي المركزية ليست تنفيذ خطةٍ بل التعلّم، بسرعةٍ ورخص، ما تريده السوق فعلًا قبل نفاد المال.</p>
+        <p>يصف هذا الإطار ريادة الأعمال كبحثٍ منضبط عن نموذج عملٍ يعمل، منظَّمًا حول نموذج العمل التجاري ومنهج الشركة الناشئة الرشيقة. وهو قابل لإعادة الاستخدام لأي مشروعٍ جديد ويتوافق مع ذلك الفكر المعترف به دون نسخ نصّه.</p>
+        <div class="note"><strong>ملاحظة:</strong> الناشئة بحثٌ لا تنفيذ. فالهدف في الأيام الأولى ليس بناء الخطة بإتقانٍ بل اكتشاف، قبل نفاد المال، هل ثمّة عملٌ حقيقي يُبنى أصلًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="model">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Business Model</h2>
+        <p class="lead">Before building anything, an entrepreneur needs a clear picture of how the whole business is meant to work, how it will create value, deliver it, and capture it. A business model canvas is a single-page way to sketch that whole picture and see whether its parts fit together.</p>
+        <p>The canvas breaks a business into a set of connected building blocks: who the customers are, what value is offered to them, how they are reached and related to, how revenue is earned, what key activities and resources the business requires, who its key partners are, and what its costs are. Laying these out together on one page does something a long business plan cannot: it makes the connections and the gaps visible at a glance, so an entrepreneur can see whether the pieces actually support each other.</p>
+        <ul>
+          <li><strong>Value proposition:</strong> the value offered that makes customers choose this, the heart the rest supports.</li>
+          <li><strong>Customers and channels:</strong> who is served, and how they are reached and related to.</li>
+          <li><strong>Revenue and costs:</strong> how money comes in and goes out, and whether the two can add up.</li>
+          <li><strong>Activities, resources, and partners:</strong> what the business must do, have, and rely on to deliver.</li>
+        </ul>
+        <p>The value of the canvas is that it treats the business model as a set of hypotheses to be tested, not facts to be assumed. Every block is a guess when a venture starts, and drawing them out makes the riskiest guesses visible, so the entrepreneur can test those first rather than building elaborately on an assumption that a little evidence would have shown to be false. The canvas is a tool for thinking and testing, not a document to be filed.</p>
+        <div class="note"><strong>Note:</strong> Every block of the canvas is a hypothesis, not a fact. The value of drawing it is seeing which assumptions the whole business depends on, so you can test the riskiest ones before betting everything on them.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>نموذج العمل</h2>
+        <p class="lead">قبل بناء أي شيء، يحتاج الريادي صورةً واضحة لكيف يُفترَض أن يعمل العمل كله، كيف يخلق القيمة، ويسلّمها، ويلتقطها. ونموذج العمل التجاري طريقةٌ بصفحةٍ واحدة لرسم تلك الصورة كاملةً ورؤية هل تتلاءم أجزاؤها.</p>
+        <p>يُقسّم النموذج العمل إلى مجموعة لبناتٍ متصلة: من العملاء، وما القيمة المُقدَّمة لهم، وكيف يُبلَغون ويُرتبَط بهم، وكيف يُكسَب الإيراد، وما الأنشطة والموارد الرئيسة التي يتطلّبها العمل، ومن شركاؤه الرئيسون، وما كلفه. ووضع هذه معًا على صفحةٍ واحدة يفعل ما لا تفعله خطة عملٍ طويلة: يُظهِر الصلات والفجوات بلمحة، فيرى الريادي هل تسند القطع بعضها فعلًا.</p>
+        <ul>
+          <li><strong>عرض القيمة:</strong> القيمة المُقدَّمة التي تجعل العملاء يختارون هذا، القلب الذي يسنده الباقي.</li>
+          <li><strong>العملاء والقنوات:</strong> من يُخدَم، وكيف يُبلَغ ويُرتبَط به.</li>
+          <li><strong>الإيراد والكلف:</strong> كيف يدخل المال ويخرج، وهل يستطيع الاثنان أن يتّزنا.</li>
+          <li><strong>الأنشطة والموارد والشركاء:</strong> ما يجب أن يفعله العمل ويملكه ويعتمد عليه ليسلّم.</li>
+        </ul>
+        <p>قيمة النموذج أنه يعامل نموذج العمل كمجموعة فرضياتٍ تُختبَر، لا حقائق تُفترَض. فكل لبنةٍ تخمينٌ حين يبدأ مشروع، ورسمها يُظهِر أخطر التخمينات، فيختبرها الريادي أولًا بدل البناء المتقن على افتراضٍ كان قليلٌ من الدليل ليُظهِر زيفه. والنموذج أداة تفكيرٍ واختبار، لا وثيقةً تُحفَظ.</p>
+        <div class="note"><strong>ملاحظة:</strong> كل لبنةٍ في النموذج فرضيةٌ لا حقيقة. وقيمة رسمه رؤية أي الافتراضات يعتمد عليها العمل كله، فتختبر أخطرها قبل المراهنة بكل شيءٍ عليها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="lean">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Lean Startup Method</h2>
+        <p class="lead">If a startup is a search for a working model, the lean startup method is the disciplined way to conduct that search: a fast loop of building something small, measuring how the market responds, and learning what to do next.</p>
+        <p>The engine is a cycle often summarized as build, measure, learn. Instead of building the full product on the strength of assumptions, the entrepreneur builds the smallest thing that can test the riskiest assumption, puts it in front of real customers, measures what they actually do, and learns whether the assumption held. This turns the risky bet of a big launch into a series of small, cheap experiments, each one reducing uncertainty before more is invested.</p>
+        <ul>
+          <li><strong>Minimum viable product:</strong> the smallest version that lets you test a key assumption with real customers, not the finished product.</li>
+          <li><strong>Validated learning:</strong> learning backed by what customers actually do, not what they say or what you hope.</li>
+          <li><strong>Build, measure, learn:</strong> the fast loop that converts assumptions into evidence one experiment at a time.</li>
+          <li><strong>Pivot or persevere:</strong> the honest decision, on the evidence, to change direction or to push further on the current path.</li>
+        </ul>
+        <p>The hardest and most valuable discipline in the method is the willingness to pivot: to change direction when the evidence says the current path is not working. Entrepreneurs fall in love with their original idea, and the temptation is to explain away disappointing results rather than act on them. The method's power is that it forces the question honestly, on real evidence, so a venture changes direction while it still has the resources to try something better, rather than persevering on a failing idea until the money is gone.</p>
+        <div class="note"><strong>Note:</strong> Measure what customers do, not what they say. People are polite in interviews and honest with their behavior, so a real test puts something in front of them and watches what they actually do.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>منهج الناشئة الرشيقة</h2>
+        <p class="lead">إن كانت الناشئة بحثًا عن نموذجٍ يعمل، فمنهج الناشئة الرشيقة هو الطريقة المنضبطة لإجراء ذلك البحث: حلقةٌ سريعة من بناء شيءٍ صغير، وقياس كيف تستجيب السوق، وتعلّم ما تفعله تاليًا.</p>
+        <p>المحرّك دورةٌ تُلخَّص غالبًا بـ «ابنِ، قِس، تعلّم». فبدل بناء المنتج الكامل على قوّة الافتراضات، يبني الريادي أصغر شيءٍ يختبر أخطر افتراض، ويضعه أمام عملاء حقيقيين، ويقيس ما يفعلونه فعلًا، ويتعلّم هل صمد الافتراض. وهذا يحوّل رهان الإطلاق الكبير الخطر إلى سلسلة تجارب صغيرة رخيصة، كلٌّ تُقلّل عدم اليقين قبل استثمار المزيد.</p>
+        <ul>
+          <li><strong>المنتج الأدنى القابل للتطبيق:</strong> أصغر نسخةٍ تتيح اختبار افتراضٍ رئيس مع عملاء حقيقيين، لا المنتج المنتهي.</li>
+          <li><strong>التعلّم المُتحقَّق:</strong> تعلّمٌ يسنده ما يفعله العملاء فعلًا، لا ما يقولونه أو ما تأمله.</li>
+          <li><strong>ابنِ، قِس، تعلّم:</strong> الحلقة السريعة التي تحوّل الافتراضات لدليلٍ تجربةً تلو أخرى.</li>
+          <li><strong>محورة أو مثابرة:</strong> القرار الصادق، على الدليل، بتغيير الاتجاه أو الدفع أكثر على المسار الحالي.</li>
+        </ul>
+        <p>أصعب انضباطٍ وأثمنه في المنهج الاستعداد للمحورة: تغيير الاتجاه حين يقول الدليل إن المسار الحالي لا يعمل. فالرياديون يعشقون فكرتهم الأصلية، والإغراء تبرير النتائج المخيّبة بدل التصرّف بها. وقوّة المنهج أنه يفرض السؤال بصدقٍ، على دليلٍ حقيقي، فيغيّر المشروع مساره وما زال يملك الموارد لتجربة أفضل، بدل المثابرة على فكرةٍ فاشلة حتى ينفد المال.</p>
+        <div class="note"><strong>ملاحظة:</strong> قِس ما يفعله العملاء لا ما يقولونه. فالناس مهذّبون في المقابلات صادقون بسلوكهم، فالاختبار الحقيقي يضع شيئًا أمامهم ويراقب ما يفعلونه فعلًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="fit">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Finding Fit</h2>
+        <p class="lead">The journey of a startup passes through a sequence of fits, each a milestone that must be reached before the next makes sense. Trying to skip ahead, especially to growth, before the earlier fits are achieved is the most common way ventures waste their money.</p>
+        <p>The first milestone is problem-solution fit: confirming that a real, painful problem exists and that your proposed solution genuinely addresses it. Only then comes product-market fit: building a product that a definable market actually wants, evidenced by customers using it, paying for it, and telling others. Only after product-market fit does it make sense to focus on growth, scaling up something that already works. Each fit depends on the one before it, and each is confirmed by evidence, not by conviction.</p>
+        <ul>
+          <li><strong>Problem-solution fit:</strong> a real problem exists and your solution addresses it, confirmed before building much.</li>
+          <li><strong>Product-market fit:</strong> a defined market genuinely wants your product, shown by real usage and demand.</li>
+          <li><strong>Growth:</strong> scaling what works, only after fit is proven, because scaling before fit multiplies a mistake.</li>
+        </ul>
+        <p>The most expensive error in the whole journey is scaling before product-market fit. A venture that pours money into growth, hiring, marketing, and expansion, before it has proven the market wants its product is amplifying something that does not yet work, spending ever more to acquire customers who do not stay. Discipline means resisting the pressure to grow until the evidence of fit is real, because growth is a multiplier, and multiplying a business that has not found its fit only multiplies the losses.</p>
+        <div class="note"><strong>Note:</strong> Fit before growth, always. Scaling a venture before it has found product-market fit is the fastest way to turn a small, survivable problem into a large, fatal one.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>إيجاد الملاءمة</h2>
+        <p class="lead">رحلة الناشئة تمرّ بتسلسل ملاءماتٍ، كلٌّ معلمٌ يجب بلوغه قبل أن يعقل التالي. ومحاولة القفز، خاصةً للنمو، قبل بلوغ الملاءمات الأولى أشيع طرق إهدار المشاريع لمالها.</p>
+        <p>المعلم الأول ملاءمة المشكلة-الحل: تأكيد وجود مشكلةٍ حقيقية مؤلمة وأن حلّك المقترَح يعالجها فعلًا. وعندها فقط تأتي ملاءمة المنتج-السوق: بناء منتجٍ تريده سوقٌ قابلة للتحديد فعلًا، بدليل استخدام العملاء له ودفعهم وإخبارهم غيرهم. وبعد ملاءمة المنتج-السوق فقط يعقل التركيز على النمو، توسيع شيءٍ يعمل أصلًا. وكل ملاءمةٍ تعتمد على سابقتها، وتُؤكَّد بالدليل لا بالقناعة.</p>
+        <ul>
+          <li><strong>ملاءمة المشكلة-الحل:</strong> مشكلةٌ حقيقية موجودة وحلّك يعالجها، مؤكَّدةً قبل البناء الكثير.</li>
+          <li><strong>ملاءمة المنتج-السوق:</strong> سوقٌ محدَّدة تريد منتجك فعلًا، مُظهَرًا باستخدامٍ وطلبٍ حقيقيين.</li>
+          <li><strong>النمو:</strong> توسيع ما يعمل، بعد إثبات الملاءمة فقط، لأن التوسّع قبلها يضاعف خطأً.</li>
+        </ul>
+        <p>أغلى خطأٍ في الرحلة كلها التوسّع قبل ملاءمة المنتج-السوق. فمشروعٌ يصبّ المال في النمو، التوظيف والتسويق والتوسّع، قبل أن يُثبِت أن السوق تريد منتجه يضخّم شيئًا لا يعمل بعد، بإنفاقٍ أكثر فأكثر لاكتساب عملاء لا يبقون. والانضباط مقاومة ضغط النمو حتى يصير دليل الملاءمة حقيقيًا، لأن النمو مُضاعِف، ومضاعفة عملٍ لم يجد ملاءمته تضاعف الخسائر فقط.</p>
+        <div class="note"><strong>ملاحظة:</strong> الملاءمة قبل النمو، دائمًا. فتوسيع مشروعٍ قبل إيجاد ملاءمة المنتج-السوق أسرع طرق تحويل مشكلةٍ صغيرة قابلة للنجاة إلى كبيرةٍ قاتلة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="funding">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Funding &amp; Unit Economics</h2>
+        <p class="lead">A startup needs money to survive its search, and that money comes in stages, each matched to a level of proof. Understanding the funding ladder, and the unit economics that ultimately justify any funding, is essential to building a venture that lasts.</p>
+        <p>Funding typically escalates with evidence. In the earliest days a founder may self-fund or bootstrap, then raise a seed round to find product-market fit, then larger rounds to grow once fit is proven, each stage buying the time to reach the next milestone. But funding is fuel, not success, and raising money is a means to build a business, never the goal itself. A venture that treats fundraising as the achievement rather than what the money is meant to prove has confused the scoreboard for the game.</p>
+        <h3>Unit economics</h3>
+        <p>Underneath all funding sits a simple question: does each customer, on average, generate more value than it costs to acquire and serve. This is unit economics, often expressed as the lifetime value of a customer compared to the cost of acquiring one. If a customer is worth more over their life than it cost to win them, the business can grow profitably, and if not, growth only accelerates the losses. No amount of funding fixes broken unit economics, it only delays the reckoning, so proving the economics work at the level of a single customer is what makes a venture genuinely fundable.</p>
+        <div class="formula">Sustainable growth needs lifetime value of a customer &gt; the cost to acquire that customer</div>
+        <div class="conclusion-final"><strong>Bottom line:</strong> entrepreneurship is a disciplined search for a working model, mapped on the canvas, tested through the lean loop, advanced through problem-solution and product-market fit before growth, and funded in stages against unit economics that actually work.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>التمويل واقتصاديات الوحدة</h2>
+        <p class="lead">تحتاج الناشئة مالًا لتنجو من بحثها، وذلك المال يأتي على مراحل، كلٌّ مطابقةٌ لمستوى إثبات. وفهم سُلَّم التمويل، واقتصاديات الوحدة التي تبرّر آخرًا أي تمويل، جوهريٌ لبناء مشروعٍ يدوم.</p>
+        <p>يتصاعد التمويل عادةً مع الدليل. ففي الأيام الأولى قد يموّل المؤسِّس نفسه، ثم يجمع جولة تأسيسية لإيجاد ملاءمة المنتج-السوق، ثم جولاتٍ أكبر للنمو بعد إثبات الملاءمة، كل مرحلةٍ تشتري الوقت لبلوغ المعلم التالي. لكن التمويل وقودٌ لا نجاح، وجمع المال وسيلةٌ لبناء عملٍ لا الهدف نفسه. ومشروعٌ يعامل جمع التمويل كالإنجاز بدل ما يُفترَض أن يُثبِته المال خلط لوحة النتائج باللعبة.</p>
+        <h3>اقتصاديات الوحدة</h3>
+        <p>تحت كل تمويلٍ يجلس سؤالٌ بسيط: هل يولّد كل عميل، وسطيًا، قيمةً أكثر مما يكلّف اكتسابه وخدمته. وهذه اقتصاديات الوحدة، تُعبَّر عنها غالبًا بقيمة العميل مدى حياته مقارنةً بكلفة اكتسابه. فإن كان العميل يساوي عبر حياته أكثر مما كلّف كسبه، يستطيع العمل النمو بربح، وإلا فالنمو يُسرّع الخسائر فقط. ولا تمويلٌ يُصلِح اقتصاديات وحدةٍ مكسورة، بل يؤجّل الحساب، فإثبات أن الاقتصاديات تعمل على مستوى عميلٍ واحد هو ما يجعل المشروع قابلًا للتمويل حقًّا.</p>
+        <div class="formula">النمو المستدام يحتاج قيمة العميل مدى حياته &gt; كلفة اكتساب ذلك العميل</div>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> ريادة الأعمال بحثٌ منضبط عن نموذجٍ يعمل، مرسومٌ على النموذج، مُختبَرٌ عبر الحلقة الرشيقة، مُتقدّمٌ عبر ملاءمتَي المشكلة-الحل والمنتج-السوق قبل النمو، ومموَّلٌ على مراحل مقابل اقتصاديات وحدةٍ تعمل فعلًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">A startup succeeds by searching disciplinedly for a working model, testing assumptions cheaply, reaching fit before growth, and funding against real unit economics.</p>
+        <ul>
+          <li>Treat the venture as a search for a repeatable model, not the execution of a fixed plan.</li>
+          <li>Map the business on a canvas, treating every block as a hypothesis to test.</li>
+          <li>Run the build-measure-learn loop with minimum viable products, and pivot honestly on the evidence.</li>
+          <li>Reach problem-solution and product-market fit before scaling, because growth multiplies whatever it is applied to.</li>
+          <li>Raise funding in stages as a means, not a goal, and prove unit economics that actually work.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.strategyzer.com/library/the-business-model-canvas" target="_blank" rel="noopener">Strategyzer (Osterwalder), the Business Model Canvas.</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">Harvard Business School Online, entrepreneurship and strategy tools.</a></li>
+          <li><a href="https://hbr.org/2013/05/why-the-lean-start-up-changes-everything" target="_blank" rel="noopener">Steve Blank, Why the Lean Start-Up Changes Everything, HBR (2013).</a></li>
+          <li><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">ISO 9001:2015, Quality management systems (customer focus).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">الناشئة تنجح بالبحث المنضبط عن نموذجٍ يعمل، واختبار الافتراضات بثمنٍ رخيص، وبلوغ الملاءمة قبل النمو، والتمويل مقابل اقتصاديات وحدةٍ حقيقية.</p>
+        <ul>
+          <li>عامِل المشروع كبحثٍ عن نموذجٍ قابل للتكرار، لا تنفيذ خطةٍ ثابتة.</li>
+          <li>ارسم العمل على النموذج، مُعامِلًا كل لبنةٍ كفرضيةٍ تُختبَر.</li>
+          <li>أدِر حلقة «ابنِ، قِس، تعلّم» بمنتجاتٍ دنيا، وحُر بصدقٍ على الدليل.</li>
+          <li>ابلغ ملاءمتَي المشكلة-الحل والمنتج-السوق قبل التوسّع، لأن النمو يضاعف ما يُطبَّق عليه.</li>
+          <li>اجمع التمويل على مراحل كوسيلةٍ لا هدف، وأثبِت اقتصاديات وحدةٍ تعمل فعلًا.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.strategyzer.com/library/the-business-model-canvas" target="_blank" rel="noopener">Strategyzer (أوسترفالدر)، نموذج العمل التجاري.</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">هارفارد أونلاين، أدوات ريادة الأعمال والاستراتيجية.</a></li>
+          <li><a href="https://hbr.org/2013/05/why-the-lean-start-up-changes-everything" target="_blank" rel="noopener">ستيف بلانك، لماذا تغيّر الناشئة الرشيقة كل شيء، HBR (2013).</a></li>
+          <li><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">ISO 9001:2015، أنظمة إدارة الجودة (التركيز على العميل).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","model","lean","fit","funding","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

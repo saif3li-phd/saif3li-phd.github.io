@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top-Tier Management II: Managing Others</title>
+<meta name="description" content="Top-tier management, part two: managing others by delegating real ownership, setting direction, developing people, and holding them accountable on trust.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">LEADERSHIP &amp; MANAGEMENT &middot; FRAMEWORK</span><span data-lang="ar">القيادة والإدارة &middot; إطار</span></div>
+    <h1><span data-lang="en">Top-Tier Management II: Managing Others</span><span data-lang="ar">الإدارة الرفيعة الثاني: إدارة الآخرين</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="disciplines"><span data-lang="en">Disciplines</span><span data-lang="ar">الانضباطات</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Top-tier management, Part II</div>
+          <div><span>Scope:</span> Getting results through other people</div>
+          <div><span>Owner role:</span> Managers of teams and people</div>
+          <div><span>Review cadence:</span> Continuous, with regular one-to-ones</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">The second part of top-tier management is the shift that trips up more new managers than any other: learning to get results through other people rather than by doing the work yourself. A manager is no longer judged by what they personally produce, but by what their team produces, and that requires a fundamentally different set of skills from the ones that earned them the promotion.</p>
+        <p>This transition matters because it is where technically excellent people most often fail. The skills that make someone a star individual contributor, doing the work brilliantly themselves, are almost the opposite of what management requires: delegating instead of doing, developing others instead of outperforming them, and succeeding through the team rather than around it. Managers who never make this shift become bottlenecks, doing too much themselves, frustrating capable people, and capping the team at their own limits. Making it well multiplies their impact through everyone they lead.</p>
+        <p>This framework sets out the core disciplines of managing others, from delegating and setting direction, through developing and motivating people, to holding them accountable. It is my own synthesis, written in my own words and grounded in recognized management thinking, and it is the second of three connected parts.</p>
+        <div class="note"><strong>Note:</strong> The hardest promotion is from doing the work to getting it done through others. The skills that made you a great individual are not the ones that make you a great manager, and clinging to them makes you a bottleneck.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الإدارة الرفيعة، الجزء الثاني</div>
+          <div><span>النطاق:</span> تحقيق النتائج عبر الآخرين</div>
+          <div><span>دور المالك:</span> مديرو الفرق والناس</div>
+          <div><span>دورية المراجعة:</span> مستمرة، بلقاءاتٍ فردية منتظمة</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الجزء الثاني من الإدارة الرفيعة هو التحوّل الذي يُعثِر مديرين جددًا أكثر من أي شيءٍ آخر: تعلّم تحقيق النتائج عبر الآخرين بدل فعل العمل بنفسك. فالمدير لم يعُد يُحكَم عليه بما يُنتِجه شخصيًا، بل بما يُنتِجه فريقه، وذلك يتطلّب مجموعةً مختلفة جوهريًا من المهارات عن التي كسبت له الترقية.</p>
+        <p>يهمّ هذا الانتقال لأنه حيث يفشل الأكفاء تقنيًا غالبًا. فالمهارات التي تصنع مساهمًا فرديًا نجمًا، فعل العمل ببراعةٍ بنفسه، شبه نقيض ما تتطلّبه الإدارة: التفويض بدل الفعل، وتطوير الآخرين بدل التفوّق عليهم، والنجاح عبر الفريق لا حوله. والمديرون الذين لا يصنعون هذا التحوّل يصيرون عنق زجاجة، فاعلين الكثير بأنفسهم، محبِطين الأكفاء، وحادّين الفريق عند حدودهم هم. وصنعه جيدًا يضاعف أثرهم عبر كل من يقودون.</p>
+        <p>يعرض هذا الإطار الانضباطات الجوهرية لإدارة الآخرين، من التفويض ورسم الاتجاه، عبر تطوير الناس وتحفيزهم، إلى مساءلتهم. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في فكرٍ إداري معترف به، وهو الثاني من ثلاثة أجزاءٍ متصلة.</p>
+        <div class="note"><strong>ملاحظة:</strong> أصعب ترقيةٍ من فعل العمل إلى إنجازه عبر الآخرين. فالمهارات التي صنعتك فردًا عظيمًا ليست التي تصنعك مديرًا عظيمًا، والتشبّث بها يجعلك عنق زجاجة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="disciplines">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The People-Management Disciplines</h2>
+        <p class="lead">Managing others well rests on a handful of disciplines that, taken together, turn a group of individuals into a team that produces more than the sum of its parts.</p>
+        <p>The first is delegating: entrusting real work and authority to others, not just tasks but ownership, and resisting the urge to do it yourself or to micromanage. Delegation is how a manager multiplies capacity and develops people, and its hardest part is letting others do things differently, and sometimes less well at first, than you would. The second is giving clear direction: making sure each person understands what is expected, why it matters, and what good looks like, so effort is aligned rather than guessed at. Ambiguity is the enemy here, since people cannot hit a target they cannot see. The third is developing people: actively growing their skills and careers through stretching work, coaching, and honest feedback, which both improves the team and earns the loyalty of good people.</p>
+        <table>
+          <tr><th><span data-lang="en">Discipline</span><span data-lang="ar">الانضباط</span></th><th><span data-lang="en">What it achieves</span><span data-lang="ar">ماذا يحقّق</span></th></tr>
+          <tr><td><span data-lang="en">Delegate</span><span data-lang="ar">فوّض</span></td><td><span data-lang="en">multiply capacity and develop people</span><span data-lang="ar">مضاعفة السعة وتطوير الناس</span></td></tr>
+          <tr><td><span data-lang="en">Set direction</span><span data-lang="ar">ارسم الاتجاه</span></td><td><span data-lang="en">align effort by making expectations clear</span><span data-lang="ar">مواءمة الجهد بتوضيح التوقّعات</span></td></tr>
+          <tr><td><span data-lang="en">Develop</span><span data-lang="ar">طوّر</span></td><td><span data-lang="en">grow skills and earn loyalty</span><span data-lang="ar">تنمية المهارات وكسب الولاء</span></td></tr>
+          <tr><td><span data-lang="en">Hold accountable</span><span data-lang="ar">ساءِل</span></td><td><span data-lang="en">ensure commitments are met, fairly</span><span data-lang="ar">ضمان الوفاء بالالتزامات، بعدل</span></td></tr>
+        </table>
+        <p>The fourth discipline is holding people accountable: ensuring that commitments are met and addressing performance honestly, including the hard conversations that weak managers avoid. Accountability without development is harsh, and development without accountability is soft; good management combines them, caring about people while still expecting results. Underneath all four sits the manager's relationship with each person, built through regular attention, honest communication, and genuine interest in their success. The best managers know that people give their best not to a title but to a manager they trust and who is visibly invested in them, which is why managing others is, at its heart, less a set of techniques than a matter of trust and character applied consistently.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> managing others means getting results through people, by delegating real ownership, setting clear direction, developing capability, and holding people accountable fairly, all built on trust, so a manager multiplies their impact through the team rather than becoming the bottleneck that limits it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>انضباطات إدارة الناس</h2>
+        <p class="lead">إدارة الآخرين جيدًا تقوم على حفنة انضباطاتٍ تحوّل، مجتمعةً، مجموعةً من الأفراد لفريقٍ يُنتِج أكثر من مجموع أجزائه.</p>
+        <p>الأول التفويض: ائتمان عملٍ وصلاحيةٍ حقيقيين لغيرك، لا مهامًا فقط بل ملكية، ومقاومة نزعة فعله بنفسك أو الإدارة الجزئية. فالتفويض كيف يضاعف مديرٌ السعة ويطوّر الناس، وأصعب أجزائه ترك غيرك يفعلون الأشياء مختلفًا، وأحيانًا أقلّ جودةً أولًا، عمّا تفعل. والثاني منح اتجاهٍ واضح: التأكّد أن كل شخصٍ يفهم ما يُتوقَّع، ولماذا يهمّ، وكيف يبدو الجيد، فيُوائَم الجهد لا يُخمَّن. والغموض العدوّ هنا، إذ لا يستطيع الناس بلوغ هدفٍ لا يرونه. والثالث تطوير الناس: تنمية مهاراتهم ومساراتهم نشطًا عبر عملٍ ممدِّد وتوجيهٍ وتغذيةٍ أمينة، ما يحسّن الفريق ويكسب ولاء الأكفاء.</p>
+        <table>
+          <tr><th><span data-lang="en">الانضباط</span><span data-lang="ar">الانضباط</span></th><th><span data-lang="en">ماذا يحقّق</span><span data-lang="ar">ماذا يحقّق</span></th></tr>
+          <tr><td><span data-lang="en">فوّض</span><span data-lang="ar">فوّض</span></td><td><span data-lang="en">مضاعفة السعة وتطوير الناس</span><span data-lang="ar">مضاعفة السعة وتطوير الناس</span></td></tr>
+          <tr><td><span data-lang="en">ارسم الاتجاه</span><span data-lang="ar">ارسم الاتجاه</span></td><td><span data-lang="en">مواءمة الجهد بتوضيح التوقّعات</span><span data-lang="ar">مواءمة الجهد بتوضيح التوقّعات</span></td></tr>
+          <tr><td><span data-lang="en">طوّر</span><span data-lang="ar">طوّر</span></td><td><span data-lang="en">تنمية المهارات وكسب الولاء</span><span data-lang="ar">تنمية المهارات وكسب الولاء</span></td></tr>
+          <tr><td><span data-lang="en">ساءِل</span><span data-lang="ar">ساءِل</span></td><td><span data-lang="en">ضمان الوفاء بالالتزامات، بعدل</span><span data-lang="ar">ضمان الوفاء بالالتزامات، بعدل</span></td></tr>
+        </table>
+        <p>الانضباط الرابع مساءلة الناس: ضمان الوفاء بالالتزامات ومعالجة الأداء بأمانة، بما فيه المحادثات الصعبة التي يتجنّبها المديرون الضعفاء. والمساءلة بلا تطويرٍ قاسية، والتطوير بلا مساءلةٍ رخو؛ والإدارة الجيدة تجمعهما، مهتمّةً بالناس مع توقّع النتائج. وتحت الأربعة تجلس علاقة المدير بكل شخص، المبنيّة عبر انتباهٍ منتظم وتواصلٍ أمين واهتمامٍ حقيقي بنجاحهم. وأفضل المديرين يعرفون أن الناس يعطون أفضلهم لا للقبٍ بل لمديرٍ يثقون به ومستثمِرٍ فيهم ظاهرًا، ولهذا إدارة الآخرين، في قلبها، أقلّ كونها مجموعة تقنياتٍ منها مسألة ثقةٍ وخُلق مطبَّقة باتّساق.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> إدارة الآخرين تعني تحقيق النتائج عبر الناس، بتفويض ملكيةٍ حقيقية، ورسم اتجاهٍ واضح، وتطوير القدرة، ومساءلة الناس بعدل، كلها مبنيّة على الثقة، فيضاعف مديرٌ أثره عبر الفريق بدل أن يصير عنق الزجاجة الذي يحدّه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Managing others means multiplying your impact through a team, the second part of top-tier management.</p>
+        <ul>
+          <li>Make the shift from doing the work to getting results through people.</li>
+          <li>Delegate real ownership, resisting the urge to do it yourself or micromanage.</li>
+          <li>Set clear direction, since people cannot hit a target they cannot see.</li>
+          <li>Develop people through stretching work, coaching, and honest feedback.</li>
+          <li>Hold people accountable fairly, combining genuine care with real expectations.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2007/06/managing-yourself-and-others" target="_blank" rel="noopener">HBR, on managing people.</a></li>
+          <li><a href="https://www.gallup.com/cliftonstrengths/en/350764/great-manager.aspx" target="_blank" rel="noopener">Gallup, on what great managers do.</a></li>
+          <li><a href="https://hbr.org/2016/10/what-great-managers-do-daily" target="_blank" rel="noopener">HBR, on the daily work of great managers.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">إدارة الآخرين تعني مضاعفة أثرك عبر فريق، الجزء الثاني من الإدارة الرفيعة.</p>
+        <ul>
+          <li>اصنع التحوّل من فعل العمل إلى تحقيق النتائج عبر الناس.</li>
+          <li>فوّض ملكيةً حقيقية، مقاومًا نزعة فعله بنفسك أو الإدارة الجزئية.</li>
+          <li>ارسم اتجاهًا واضحًا، إذ لا يستطيع الناس بلوغ هدفٍ لا يرونه.</li>
+          <li>طوّر الناس عبر عملٍ ممدِّد وتوجيهٍ وتغذيةٍ أمينة.</li>
+          <li>ساءِل الناس بعدل، جامعًا اهتمامًا حقيقيًا مع توقّعاتٍ حقيقية.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2007/06/managing-yourself-and-others" target="_blank" rel="noopener">HBR، عن إدارة الناس.</a></li>
+          <li><a href="https://www.gallup.com/cliftonstrengths/en/350764/great-manager.aspx" target="_blank" rel="noopener">Gallup، عمّا يفعله المديرون العظماء.</a></li>
+          <li><a href="https://hbr.org/2016/10/what-great-managers-do-daily" target="_blank" rel="noopener">HBR، عن العمل اليومي للمديرين العظماء.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","disciplines","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

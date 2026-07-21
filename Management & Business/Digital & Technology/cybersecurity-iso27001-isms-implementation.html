@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISO 27001 ISMS Implementation &amp; Audit</title>
+<meta name="description" content="An operational framework for building and running an ISO/IEC 27001 ISMS: context, leadership, risk, controls, SoA, operation, audit, and improvement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">CYBERSECURITY &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الأمن السيبراني &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">ISO 27001 ISMS Implementation &amp; Audit</span><span data-lang="ar">تطبيق وتدقيق نظام إدارة أمن المعلومات ISO 27001</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="context"><span data-lang="en">Context &amp; Scope</span><span data-lang="ar">السياق والنطاق</span></a>
+    <a data-id="leadership"><span data-lang="en">Leadership</span><span data-lang="ar">القيادة</span></a>
+    <a data-id="risk"><span data-lang="en">Risk Assessment</span><span data-lang="ar">تقييم المخاطر</span></a>
+    <a data-id="controls"><span data-lang="en">Controls</span><span data-lang="ar">الضوابط</span></a>
+    <a data-id="statement"><span data-lang="en">SoA &amp; Plan</span><span data-lang="ar">بيان القابلية</span></a>
+    <a data-id="operation"><span data-lang="en">Operation</span><span data-lang="ar">التشغيل</span></a>
+    <a data-id="monitoring"><span data-lang="en">Audit &amp; Metrics</span><span data-lang="ar">التدقيق والقياس</span></a>
+    <a data-id="improvement"><span data-lang="en">Improvement</span><span data-lang="ar">التحسين</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Information security governance</div>
+          <div><span>Scope:</span> Building and running an ISMS to ISO/IEC 27001</div>
+          <div><span>Owner role:</span> Information security manager</div>
+          <div><span>Review cadence:</span> Management review at planned intervals, at least annually</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">An information security management system, or ISMS, is the deliberate, documented way an organization decides what to protect, how much protection each thing needs, and how it keeps that judgment current as the business and the threats change. ISO/IEC 27001 is the international standard that describes what a credible ISMS must contain.</p>
+        <p>The central idea is that security is a management system, not a pile of controls. Firewalls and passwords are means, but the standard asks a prior question: does the organization know its risks, has it decided how to treat them, and can it prove that the decisions are being followed and improved. An ISMS answers that question in a way an outsider can audit.</p>
+        <p>It helps to see the standard in two halves. The numbered clauses, roughly four through ten, describe the management system itself, the machinery of context, leadership, planning, support, operation, evaluation, and improvement, and these are mandatory. Annex A then offers a reference set of security controls to draw on when treating risk. Many newcomers rush to the control list and skip the management system, which is exactly backwards, because the clauses are what make the controls purposeful instead of arbitrary.</p>
+        <p>The standard is also built on a continual-improvement rhythm often summarized as plan, do, check, act: plan the system and its risk treatment, do the controls and processes, check through monitoring and audit, and act on what you learn. This page walks that rhythm by clause, so each section builds on the one before it rather than standing alone.</p>
+        <p>This framework is written to be reusable for any organization adopting the standard, whatever its size or sector, and it aligns to the current 2022 edition without reproducing its text. Where a clause interacts with a companion standard, such as the risk guidance of ISO/IEC 27005, that link is noted so the reader can go deeper.</p>
+        <div class="note"><strong>Note:</strong> Certification is the visible outcome, but the real product is a repeatable habit of knowing your risks and treating them on purpose rather than by accident. A certificate earned without that habit is fragile and tends to lapse at the first surveillance audit.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> حوكمة أمن المعلومات</div>
+          <div><span>النطاق:</span> بناء وتشغيل نظام ISMS وفق ISO/IEC 27001</div>
+          <div><span>دور المالك:</span> مدير أمن المعلومات</div>
+          <div><span>دورية المراجعة:</span> مراجعة إدارية على فترات مخطّطة، سنويًا على الأقل</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">نظام إدارة أمن المعلومات (ISMS) هو الطريقة المتعمَّدة الموثَّقة التي تقرّر بها المنشأة ما الذي تحميه، وكم من الحماية يحتاجه كل شيء، وكيف تُبقي ذلك الحكم محدَّثًا مع تغيّر العمل والتهديدات. وISO/IEC 27001 هو المعيار الدولي الذي يصف ما يجب أن يحتويه نظامٌ موثوق.</p>
+        <p>الفكرة المركزية أن الأمن نظام إدارة لا كومة ضوابط. الجدران النارية وكلمات المرور وسائل، لكن المعيار يسأل سؤالًا سابقًا: هل تعرف المنشأة مخاطرها، وهل قرّرت كيف تعالجها، وهل تستطيع إثبات أن القرارات تُتَّبع وتُحسَّن. ونظام ISMS يجيب عن ذلك بطريقة يستطيع طرفٌ خارجي تدقيقها.</p>
+        <p>يفيد رؤية المعيار في نصفين. البنود المرقَّمة، من الرابع إلى العاشر تقريبًا، تصف نظام الإدارة نفسه، آلة السياق والقيادة والتخطيط والدعم والتشغيل والتقييم والتحسين، وهي إلزامية. ثم يقدّم الملحق أ مجموعةً مرجعية من ضوابط الأمن للاستناد إليها عند معالجة الخطر. وكثير من المبتدئين يُسرع إلى قائمة الضوابط ويتخطّى نظام الإدارة، وهذا معكوسٌ تمامًا، لأن البنود هي ما يجعل الضوابط هادفةً لا اعتباطية.</p>
+        <p>ويقوم المعيار كذلك على إيقاع تحسينٍ مستمر يُلخَّص غالبًا بـ «خطّط، نفّذ، افحص، تصرّف»: خطّط النظام ومعالجة مخاطره، نفّذ الضوابط والعمليات، افحص بالمراقبة والتدقيق، وتصرّف بما تعلّمت. وتسير هذه الصفحة على ذلك الإيقاع بندًا بندًا، فيبني كل قسمٍ على سابقه لا أن يقف وحده.</p>
+        <p>وهذا الإطار مكتوب ليكون قابلًا لإعادة الاستخدام لأي منشأة تتبنّى المعيار، أيًّا كان حجمها أو قطاعها، ويتوافق مع إصدار 2022 الحالي دون نسخ نصّه. وحيث يتفاعل بندٌ مع معيارٍ رفيق، كإرشاد المخاطر في ISO/IEC 27005، تُذكَر تلك الصلة ليتعمّق القارئ.</p>
+        <div class="note"><strong>ملاحظة:</strong> الشهادة نتيجة ظاهرة، لكن المنتج الحقيقي عادةٌ قابلة للتكرار في معرفة مخاطرك ومعالجتها عن قصد لا مصادفة. وشهادةٌ تُنال بلا تلك العادة هشّةٌ وتميل للسقوط عند أول تدقيق رقابي.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="context">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Context &amp; Scope</h2>
+        <p class="lead">Before protecting anything, the ISMS defines what it covers and why. A scope drawn too wide collapses under its own weight, and one drawn too narrow leaves the crown jewels outside the fence. Getting the boundary right is the first real decision.</p>
+        <p>The standard asks the organization to understand its context: the internal and external issues that affect information security, and the interested parties whose requirements matter, such as regulators, customers, and partners. These inputs shape what the ISMS must achieve, so they are gathered first rather than assumed. Context is not a philosophical exercise, it is the raw material that later justifies why one risk was treated and another accepted.</p>
+        <p>Consider a worked illustration. A payments company operating across two countries has external issues that include two data-protection regimes and a demanding threat landscape, and internal issues that include a fast release cadence and a small security team. Its interested parties include a financial regulator that requires breach notification within a set time, and enterprise customers that demand a certificate before signing. Each of these translates directly into an ISMS requirement: the regulator drives an incident-notification capability, the customers drive certification scope, and the small team drives a pragmatic, prioritized control set rather than an exhaustive one.</p>
+        <h3>Defining the scope</h3>
+        <p>Scope is expressed in terms of the parts of the business, the locations, the information, and the technology the ISMS governs. Anything excluded should be excluded on purpose, with the reason recorded, because an undocumented exclusion is the gap an auditor and an attacker both look for. A common and defensible pattern is to scope the ISMS around a specific service or product line first, prove it works, and then extend, rather than boiling the ocean on day one.</p>
+        <p>Interfaces and dependencies deserve special care at the boundary. If the scope covers a customer-facing service but that service depends on a shared identity platform that sits outside the boundary, the dependency has to be named and its risk addressed through the supplier or the internal interface, otherwise the scope has a hidden hole exactly where trust crosses the line.</p>
+        <ul>
+          <li><strong>Internal issues:</strong> structure, culture, systems, and the maturity of existing controls, all of which shape what is realistic to achieve and how fast.</li>
+          <li><strong>External issues:</strong> the regulatory environment, the threat landscape, and contractual duties, which set hard requirements the ISMS cannot negotiate away.</li>
+          <li><strong>Interested parties:</strong> who has a legitimate requirement, and what specifically they require, captured precisely enough to test whether it is met.</li>
+          <li><strong>Boundary:</strong> the clear line between what is inside the ISMS and what is not, including the interfaces where the two meet.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Write the scope as a statement someone outside the team could read and immediately know whether a given system is covered. If reasonable people would disagree about whether a system is in scope, the scope is not yet finished.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>السياق والنطاق</h2>
+        <p class="lead">قبل حماية أي شيء، يعرّف النظام ما الذي يغطّيه ولماذا. فنطاقٌ واسع أكثر من اللازم ينهار تحت ثقله، وضيّقٌ أكثر من اللازم يترك أنفس الأصول خارج السور. وضبط الحدّ أول قرار حقيقي.</p>
+        <p>يطلب المعيار من المنشأة فهم سياقها: القضايا الداخلية والخارجية المؤثّرة في أمن المعلومات، والأطراف المعنيّة التي تهمّ متطلباتها، كالجهات المنظِّمة والعملاء والشركاء. وهذه المدخلات تُشكّل ما يجب أن يحققه النظام، لذا تُجمَع أولًا لا تُفترَض. والسياق ليس تمرينًا فلسفيًا، بل المادة الخام التي تبرّر لاحقًا لماذا عُولِج خطرٌ وقُبِل آخر.</p>
+        <p>تأمّل مثالًا موضّحًا. شركة مدفوعات تعمل في بلدين لها قضايا خارجية تشمل نظامَي حماية بيانات ومشهد تهديدٍ صعب، وقضايا داخلية تشمل وتيرة إصدارٍ سريعة وفريق أمنٍ صغير. وأطرافها المعنيّة تشمل جهةً مالية منظِّمة تُلزِم بالإبلاغ عن الاختراق خلال وقتٍ محدَّد، وعملاءَ مؤسسيين يطلبون شهادةً قبل التوقيع. وكلٌّ من هذه يُترجَم مباشرةً إلى متطلبٍ للنظام: الجهة المنظِّمة تفرض قدرة إبلاغٍ عن الحوادث، والعملاء يفرضون نطاق الشهادة، والفريق الصغير يفرض مجموعة ضوابط عملية مرتَّبة لا شاملة.</p>
+        <h3>تعريف النطاق</h3>
+        <p>يُعبَّر عن النطاق بأجزاء العمل والمواقع والمعلومات والتقنية التي يحكمها النظام. وأي مُستبعَد ينبغي استبعاده عن قصد مع تسجيل السبب، لأن الاستبعاد غير الموثَّق هو الثغرة التي يبحث عنها المدقّق والمهاجم معًا. ومن الأنماط الشائعة القابلة للدفاع أن يُحدَّد نطاق النظام حول خدمةٍ أو خط منتجٍ بعينه أولًا، ويُثبَت نجاحه، ثم يُوسَّع، بدل محاولة الإحاطة بكل شيء من اليوم الأول.</p>
+        <p>وتستحق الواجهات والاعتمادات عنايةً خاصة عند الحدّ. فإن غطّى النطاق خدمةً تواجه العميل لكنها تعتمد على منصّة هويةٍ مشتركة خارج الحدّ، فيجب تسمية الاعتماد ومعالجة خطره عبر المورّد أو الواجهة الداخلية، وإلا كان في النطاق ثقبٌ خفيّ حيث تعبر الثقة الخط بالضبط.</p>
+        <ul>
+          <li><strong>القضايا الداخلية:</strong> الهيكل والثقافة والأنظمة ونضج الضوابط القائمة، وكلها تُشكّل ما هو واقعي تحقيقه وبأي سرعة.</li>
+          <li><strong>القضايا الخارجية:</strong> البيئة التنظيمية ومشهد التهديد والالتزامات التعاقدية، وهي تضع متطلبات صارمة لا يستطيع النظام التفاوض على إسقاطها.</li>
+          <li><strong>الأطراف المعنيّة:</strong> مَن له متطلب مشروع، وما الذي يطلبه تحديدًا، مُلتقَطًا بدقةٍ تكفي لاختبار هل لُبّي.</li>
+          <li><strong>الحدّ:</strong> الخط الواضح بين ما هو داخل النظام وما هو خارجه، بما فيه الواجهات حيث يلتقيان.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> اكتب النطاق كعبارة يقرأها شخص خارج الفريق فيعرف فورًا هل نظامٌ معيّن مشمول أم لا. فإن اختلف عقلاء حول شمول نظامٍ ما، فالنطاق لم يكتمل بعد.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="leadership">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Leadership &amp; Policy</h2>
+        <p class="lead">An ISMS without visible leadership is paperwork. The standard makes top management accountable, not as a courtesy line, but because security decisions trade off against cost, speed, and convenience, and only leadership can make those trade-offs stick.</p>
+        <p>Leadership shows up in concrete ways: an information security policy that sets direction, clear roles and authorities, and the resources to actually run the system. The policy is short and directional, a statement of intent that the detailed controls then implement, not a technical manual. A good top-level policy fits on a page or two, states the organization's commitment and principles, and points to the standards and procedures that carry the detail, so it rarely needs to change even as the technical landscape churns beneath it.</p>
+        <p>The standard also expects leadership to integrate the ISMS into the organization's ordinary processes rather than running it as a side project. When security requirements are baked into how projects are approved, how systems are changed, and how suppliers are chosen, the ISMS becomes part of the business. When it lives only in the security team's documents, it is perpetually bolted on and perpetually resisted.</p>
+        <h3>Roles and authority</h3>
+        <p>Every part of the ISMS needs an owner with the authority to act. Ownership without authority produces a person who is blamed but cannot fix anything, which is worse than no owner at all. The standard expects roles, responsibilities, and authorities to be assigned and communicated, so that accountability is real rather than nominal. In practice this means naming who owns the risk process, who owns each significant control, and who has the authority to accept a risk on the organization's behalf.</p>
+        <p>That last authority matters more than it first appears. Risk acceptance is a business decision with real consequences, so the standard expects it to sit with someone senior enough to own the outcome. If a junior engineer can quietly accept a serious risk, the organization has an accountability gap that no control will close.</p>
+        <div class="note"><strong>Note:</strong> The clearest test of leadership commitment is whether security has a budget and a seat where decisions are made, not whether it has a policy document. Policies are easy to sign, resources and authority are what prove intent.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>القيادة والسياسة</h2>
+        <p class="lead">نظامٌ بلا قيادة ظاهرة أوراقٌ فحسب. يجعل المعيار الإدارة العليا مساءَلة، لا مجاملةً، بل لأن قرارات الأمن تُوازَن مقابل التكلفة والسرعة والراحة، ولا يستطيع تثبيت تلك الموازنات إلا القيادة.</p>
+        <p>تظهر القيادة بصور ملموسة: سياسة أمن معلومات تضع الاتجاه، وأدوار وصلاحيات واضحة، وموارد لتشغيل النظام فعلًا. والسياسة قصيرة توجيهية، بيان نيّةٍ تُنفّذه الضوابط التفصيلية لاحقًا، لا دليلًا تقنيًا. والسياسة العليا الجيدة تسع صفحةً أو صفحتين، تذكر التزام المنشأة ومبادئها، وتُحيل إلى المعايير والإجراءات التي تحمل التفصيل، فنادرًا ما تحتاج للتغيير ولو تبدّل المشهد التقني تحتها.</p>
+        <p>ويتوقّع المعيار أيضًا أن تدمج القيادة النظام في عمليات المنشأة الاعتيادية بدل تشغيله كمشروعٍ جانبي. فحين تُدمَج متطلبات الأمن في كيفية اعتماد المشاريع وتغيير الأنظمة واختيار المورّدين، يصير النظام جزءًا من العمل. وحين يعيش في وثائق فريق الأمن وحده، يبقى مُلحَقًا على الدوام ومُقاوَمًا على الدوام.</p>
+        <h3>الأدوار والصلاحية</h3>
+        <p>كل جزء من النظام يحتاج مالكًا له صلاحية التصرّف. فالملكية بلا صلاحية تُنتج شخصًا يُلام ولا يقدر أن يُصلح شيئًا، وهو أسوأ من غياب المالك أصلًا. ويتوقّع المعيار إسناد الأدوار والمسؤوليات والصلاحيات وإبلاغها، لتكون المساءلة حقيقيةً لا اسمية. وعمليًا يعني هذا تسمية مالك عملية المخاطر، ومالك كل ضابطٍ مهمّ، ومن له صلاحية قبول خطرٍ نيابةً عن المنشأة.</p>
+        <p>وتلك الصلاحية الأخيرة أهمّ مما تبدو أول وهلة. فقبول الخطر قرار عملٍ ذو عواقب حقيقية، لذا يتوقّع المعيار أن يكون بيد من هو كبيرٌ بما يكفي لتملّك النتيجة. فإن استطاع مهندسٌ مبتدئ قبول خطرٍ جسيم بهدوء، فلدى المنشأة فجوة مساءلةٍ لا يسدّها أي ضابط.</p>
+        <div class="note"><strong>ملاحظة:</strong> أوضح اختبار لالتزام القيادة هو هل للأمن ميزانية ومقعد حيث تُتَّخذ القرارات، لا هل لديه وثيقة سياسة. فالسياسات سهلة التوقيع، والموارد والصلاحية هي ما يُثبت النيّة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="risk">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Risk Assessment &amp; Treatment</h2>
+        <p class="lead">Risk is the engine of the whole system. Every control the organization adopts should trace back to a risk it is meant to reduce, because a control with no risk behind it is spending with no reason.</p>
+        <p>A risk assessment identifies what could go wrong, estimates how likely it is and how much it would hurt, and ranks the results so attention goes where it matters. The standard requires the method to be consistent, so that the same risk assessed twice produces comparable results, and repeatable, so that trends over time are meaningful rather than an artifact of who happened to run the assessment. A common, transparent way to express a risk level is the product of likelihood and impact, each on an agreed scale.</p>
+        <div class="formula">Risk level = likelihood &times; impact  (each rated on a defined scale, for example 1 to 5)</div>
+        <h4>Worked example</h4>
+        <p>A phishing-led account takeover is judged likelihood 4 out of 5 and impact 4 out of 5, giving a risk level of 16, which lands in the high band and demands treatment. A rare but severe data-center fire might be likelihood 1 and impact 5, a level of 5, which may be accepted or insured rather than heavily engineered against. The numbers do not decide for you, they order the conversation. What the scale must never do is let a single dimension hide: an event that is almost certain but trivial and one that is catastrophic but rare can share a middling score, so the register should show likelihood and impact separately, not only their product.</p>
+        <h4>Qualitative and quantitative</h4>
+        <p>The likelihood-times-impact method above is qualitative, quick to apply and good enough to rank most risks. Where a decision turns on money, a quantitative estimate can sharpen it: express the exposure as an expected annual loss, the probable frequency of the event multiplied by the probable loss per event, and compare that to the cost of the control. If a control costs a known amount per year and reduces an expected annual loss by more than that, the case is clear, and if it does not, the risk may be more sensibly accepted. Quantitative rigor is only as honest as its inputs, so it is a tool for the few high-stakes risks, not a ceremony to perform on all of them.</p>
+        <h3>Treating the risk</h3>
+        <p>Once ranked, each significant risk gets a treatment decision. The recognized options are to reduce it with controls, to avoid the activity that creates it, to share it through insurance or a partner, or to accept it knowingly when the cost of treatment exceeds the benefit. What the standard forbids is treating a risk by ignoring it. After treatment, a residual risk always remains, and that residual has to be assessed and formally accepted, because no control reduces a risk to zero and pretending otherwise is its own hazard.</p>
+        <ul>
+          <li><strong>Reduce:</strong> apply controls that lower likelihood, impact, or both, which is the most common response.</li>
+          <li><strong>Avoid:</strong> stop doing the thing that generates the risk, when the exposure is not worth the benefit.</li>
+          <li><strong>Share:</strong> transfer part of the exposure to a third party through insurance or contract, remembering that accountability does not transfer with it.</li>
+          <li><strong>Accept:</strong> record a conscious, authorized decision to live with the residual, owned by someone with the authority to own it.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Risk assessment is not a one-time project. It is repeated at planned intervals and whenever significant change occurs, because both the business and the threats keep moving, and a register that has not been touched in a year is describing an organization that no longer exists.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>تقييم المخاطر ومعالجتها</h2>
+        <p class="lead">المخاطر محرّك النظام كله. كل ضابط تتبنّاه المنشأة ينبغي أن يعود إلى خطرٍ يُراد تقليله، لأن ضابطًا بلا خطرٍ خلفه إنفاقٌ بلا سبب.</p>
+        <p>تقييم المخاطر يحدّد ما قد يسوء، ويقدّر احتماله ومقدار ضرره، ويرتّب النتائج ليذهب الاهتمام حيث يهمّ. ويشترط المعيار أن تكون الطريقة متّسقة، فيُنتج الخطر نفسه إن قُيِّم مرتين نتائج قابلة للمقارنة، وقابلة للتكرار، فتكون الاتجاهات عبر الزمن ذات معنى لا أثرًا لمن أجرى التقييم. ومن الطرق الشائعة الشفّافة للتعبير عن مستوى الخطر حاصلُ ضرب الاحتمال في الأثر، كلٌّ على مقياس متّفق عليه.</p>
+        <div class="formula">مستوى الخطر = الاحتمال &times; الأثر  (كلٌّ على مقياس محدَّد، مثلًا من 1 إلى 5)</div>
+        <h4>مثال محلول</h4>
+        <p>استيلاءٌ على حساب عبر تصيّد يُقدَّر احتماله 4 من 5 وأثره 4 من 5، فيعطي مستوى خطرٍ 16 يقع في النطاق العالي ويستوجب المعالجة. وحريقُ مركز بياناتٍ نادرٌ لكن شديد قد يكون احتماله 1 وأثره 5، بمستوى 5، وقد يُقبَل أو يُؤمَّن عليه بدل هندسةٍ ثقيلة ضدّه. الأرقام لا تقرّر عنك، بل ترتّب النقاش. والذي يجب ألّا يفعله المقياس أبدًا أن يُخفي بُعدًا مفردًا: فحدثٌ شبه مؤكَّد لكن تافه وآخر كارثي لكن نادر قد يتقاسمان درجةً متوسطة، لذا ينبغي أن يُظهر السجل الاحتمال والأثر منفصلين لا حاصل ضربهما فقط.</p>
+        <h4>النوعي والكمّي</h4>
+        <p>طريقة الاحتمال في الأثر أعلاه نوعية، سريعة التطبيق وكافية لترتيب أغلب المخاطر. وحيث يتوقّف قرارٌ على المال، قد يشحذه تقديرٌ كمّي: عبّر عن التعرّض بخسارةٍ سنوية متوقّعة، أي التكرار المحتمل للحدث مضروبًا في الخسارة المحتملة للحدث الواحد، وقارنها بكلفة الضابط. فإن كلّف الضابط مبلغًا معلومًا سنويًا وخفّض الخسارة السنوية المتوقّعة بأكثر منه، فالحجّة واضحة، وإن لم يفعل فقد يُقبَل الخطر بحكمةٍ أكبر. والصرامة الكمّية صادقةٌ بقدر مدخلاتها، فهي أداةٌ للقلّة عالية المخاطر لا طقسٌ يُؤدّى على كلها.</p>
+        <h3>معالجة الخطر</h3>
+        <p>بعد الترتيب، ينال كل خطرٍ مهمّ قرار معالجة. والخيارات المعترف بها: تقليله بالضوابط، أو تجنّب النشاط المولّد له، أو مشاركته عبر تأمينٍ أو شريك، أو قبوله عن علمٍ حين تفوق تكلفة المعالجة الفائدة. والذي يمنعه المعيار هو معالجة الخطر بتجاهله. وبعد المعالجة يبقى خطرٌ متبقٍّ دومًا، ويجب تقييم ذلك المتبقّي وقبوله رسميًا، لأن لا ضابط يخفض الخطر إلى صفر، والتظاهر بغير ذلك خطرٌ بذاته.</p>
+        <ul>
+          <li><strong>التقليل:</strong> تطبيق ضوابط تخفّض الاحتمال أو الأثر أو كليهما، وهي الأشيع.</li>
+          <li><strong>التجنّب:</strong> إيقاف الفعل المولّد للخطر، حين لا يستحق التعرّض الفائدة.</li>
+          <li><strong>المشاركة:</strong> نقل جزء من التعرّض إلى طرفٍ ثالث عبر تأمينٍ أو عقد، مع تذكّر أن المساءلة لا تنتقل معه.</li>
+          <li><strong>القبول:</strong> تسجيل قرارٍ واعٍ مُخوَّل بالتعايش مع المتبقّي، يملكه من له صلاحية تملّكه.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> تقييم المخاطر ليس مشروعًا لمرة واحدة، بل يُعاد على فترات مخطّطة وعند كل تغيّر جوهري، لأن العمل والتهديدات كليهما لا يتوقفان، وسجلٌ لم يُمَسّ منذ عام يصف منشأةً لم تعُد موجودة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="controls">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Controls (Annex A)</h2>
+        <p class="lead">The standard offers a reference set of controls to choose from when treating risk. In the 2022 edition this set is organized into four themes, and the point is not to apply all of them, but to select the ones your risks justify.</p>
+        <p>The current edition lists 93 controls (2022 record) grouped into organizational, people, physical, and technological themes. Grouping them this way makes coverage easier to reason about, because it shows at a glance whether you are leaning entirely on technology while neglecting people and process, which is where many real incidents begin. The 2022 edition also introduced attributes, a way of tagging each control by properties such as whether it is preventive, detective, or corrective, which lets an organization slice the control set along whatever dimension its risk story needs.</p>
+        <table>
+          <tr><th>Theme</th><th>Controls (2022 record)</th><th>Focus</th></tr>
+          <tr><td>Organizational</td><td>37</td><td>Policies, roles, supplier and information handling rules</td></tr>
+          <tr><td>People</td><td>8</td><td>Screening, awareness, responsibilities, and conduct</td></tr>
+          <tr><td>Physical</td><td>14</td><td>Facilities, equipment, and the physical environment</td></tr>
+          <tr><td>Technological</td><td>34</td><td>Access, cryptography, logging, and secure operations</td></tr>
+        </table>
+        <p>Each selected control should map back to a risk and forward to evidence that it works. A control that is chosen but never verified is a claim, not a safeguard, and the audit will treat it as such. It also helps to record, for each control, not just that it exists but how it is implemented, who operates it, and what evidence it produces, because the same control can be strong in one organization and hollow in another depending entirely on how it is run.</p>
+        <p>A frequent mistake is to treat Annex A as a checklist to be fully implemented. It is a menu, not a mandate. Selecting a control the risk does not justify wastes effort and creates evidence you must maintain forever, while excluding a control the risk does justify is a gap. The discipline is to let the risk assessment drive selection, then use Annex A to make sure no relevant category was overlooked.</p>
+        <div class="note"><strong>Note:</strong> The control count and grouping reflect the 2022 edition. Treat these as a version-stamped fact and confirm against the current edition when you apply them, since a future revision can change both the count and the structure.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الضوابط (الملحق أ)</h2>
+        <p class="lead">يقدّم المعيار مجموعةً مرجعية من الضوابط للاختيار منها عند معالجة الخطر. وفي إصدار 2022 تُنظَّم هذه المجموعة في أربعة محاور، والمقصود ليس تطبيقها كلها بل انتقاء ما تبرّره مخاطرك.</p>
+        <p>يُدرِج الإصدار الحالي 93 ضابطًا (سجل 2022) مجمّعة في محاور تنظيمية وبشرية ومادية وتقنية. وهذا التجميع يُسهّل التفكير في التغطية، لأنه يُظهر بلمحةٍ هل تتّكئ كليًا على التقنية مُهمِلًا الناس والعملية، وهي حيث تبدأ كثير من الحوادث الحقيقية. وأدخل إصدار 2022 كذلك «السمات»، وهي وسمُ كل ضابطٍ بخصائص كأن يكون وقائيًا أو كشفيًا أو تصحيحيًا، مما يتيح للمنشأة تقطيع مجموعة الضوابط على أي بُعدٍ تحتاجه قصّة مخاطرها.</p>
+        <table>
+          <tr><th>المحور</th><th>الضوابط (سجل 2022)</th><th>التركيز</th></tr>
+          <tr><td>تنظيمية</td><td>37</td><td>السياسات والأدوار وقواعد المورّدين وتداول المعلومات</td></tr>
+          <tr><td>بشرية</td><td>8</td><td>الفحص والتوعية والمسؤوليات والسلوك</td></tr>
+          <tr><td>مادية</td><td>14</td><td>المرافق والمعدات والبيئة المادية</td></tr>
+          <tr><td>تقنية</td><td>34</td><td>الوصول والتعمية والتسجيل والتشغيل الآمن</td></tr>
+        </table>
+        <p>كل ضابط مُنتقى ينبغي أن يعود إلى خطرٍ ويمضي إلى دليلٍ على أنه يعمل. فضابطٌ يُختار ولا يُتحقَّق منه ادعاءٌ لا وقاية، والتدقيق يعامله كذلك. ويفيد أن يُسجَّل لكل ضابطٍ لا مجرد وجوده بل كيف طُبِّق، ومن يُشغّله، وأي دليلٍ يُنتجه، لأن الضابط نفسه قد يكون قويًا في منشأةٍ وأجوف في أخرى تبعًا كليًا لكيفية تشغيله.</p>
+        <p>ومن الأخطاء الشائعة معاملة الملحق أ كقائمةٍ يجب تطبيقها كاملة. فهو قائمة اختيارٍ لا فرض. فانتقاء ضابطٍ لا يبرّره الخطر يهدر الجهد ويصنع دليلًا عليك صونه للأبد، واستبعاد ضابطٍ يبرّره الخطر فجوة. والانضباط أن يقود تقييمُ المخاطر الانتقاءَ، ثم يُستخدَم الملحق أ للتأكّد أن لا فئةً ذات صلة أُغفِلت.</p>
+        <div class="note"><strong>ملاحظة:</strong> عدد الضوابط وتجميعها يعكسان إصدار 2022. عامِلها كحقيقةٍ موسومة بالإصدار وتحقّق منها مقابل الإصدار الحالي عند التطبيق، فقد يغيّر تنقيحٌ قادم العدد والبنية معًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="statement">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Statement of Applicability &amp; Plan</h2>
+        <p class="lead">Two documents connect the risk work to the control work and make the whole system auditable: the Statement of Applicability and the risk treatment plan. Together they answer which controls you chose, why, and how you will put them in place.</p>
+        <p>The Statement of Applicability, or SoA, lists the reference controls and states for each whether it applies, the justification, and its implementation status. It is the single page an auditor turns to first, because it shows that control selection was a reasoned decision rather than a copied checklist. An included control needs a reason, and, just as importantly, an excluded one needs a reason too. A well-built SoA lets a reader trace the logic from a risk, to the decision to treat it, to the control chosen, without leaving the document.</p>
+        <h3>The risk treatment plan</h3>
+        <p>The treatment plan turns decisions into scheduled work: for each risk being treated, what will be done, by whom, by when, and how the residual risk will be judged acceptable. Without dates and owners the plan is a wish list, so those fields are what make it a plan at all. The plan is also where competing priorities get sequenced, because an organization can rarely treat every risk at once, and the order in which risks are addressed is itself a risk decision that leadership should see and endorse.</p>
+        <h3>Traceability in practice</h3>
+        <p>The value of these two documents is traceability: an unbroken line from each risk, to the control that treats it, to the evidence that the control works. When that line is intact, an audit becomes a matter of following threads rather than hunting for proof, and a gap anywhere on the line is visible immediately. Consider a single risk, unauthorized access to customer data: the register scores it, the treatment plan assigns access controls and encryption with owners and dates, the SoA marks those controls applicable with justification, and the operation produces access reviews and encryption evidence. Anyone can follow that thread end to end, which is exactly what both an auditor and a diligent security team want.</p>
+        <ul>
+          <li><strong>SoA:</strong> which controls apply, the justification, and current status, including justified exclusions.</li>
+          <li><strong>Treatment plan:</strong> the actions, owners, dates, sequence, and residual-risk sign-off.</li>
+          <li><strong>Traceability:</strong> a clear, unbroken line from each risk to its control to its evidence.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Keep the SoA and treatment plan current. They are living records, and an out-of-date SoA is one of the fastest ways to fail an audit, because it reveals at a glance that the system on paper and the system in operation have drifted apart.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>بيان القابلية وخطة المعالجة</h2>
+        <p class="lead">وثيقتان تربطان عمل المخاطر بعمل الضوابط وتجعلان النظام كله قابلًا للتدقيق: بيان القابلية للتطبيق وخطة معالجة المخاطر. وهما معًا يجيبان: أي الضوابط اخترت، ولماذا، وكيف ستُطبّقها.</p>
+        <p>بيان القابلية للتطبيق (SoA) يسرد الضوابط المرجعية ويذكر لكلٍّ منها هل ينطبق، والمبرّر، وحالة تطبيقه. وهو الصفحة الأولى التي يقصدها المدقّق، لأنه يُظهر أن انتقاء الضوابط قرارٌ مُعلَّل لا قائمةٌ منسوخة. فالضابط المُدرَج يحتاج سببًا، والأهم أن المُستبعَد يحتاج سببًا أيضًا. وبيانٌ مُحكَم يتيح للقارئ تتبّع المنطق من خطرٍ، إلى قرار معالجته، إلى الضابط المختار، دون مغادرة الوثيقة.</p>
+        <h3>خطة معالجة المخاطر</h3>
+        <p>تحوّل خطة المعالجة القرارات إلى عملٍ مجدوَل: لكل خطرٍ يُعالَج، ماذا سيُنفَّذ، وبمن، وبأي موعد، وكيف سيُحكَم على الخطر المتبقّي بأنه مقبول. وبلا مواعيد وملّاك تصير الخطة قائمة أمنيات، فتلك الحقول هي ما يجعلها خطةً أصلًا. والخطة أيضًا حيث تُرتَّب الأولويات المتنافسة، لأن المنشأة نادرًا ما تعالج كل خطرٍ دفعةً واحدة، وترتيب معالجة المخاطر نفسه قرار خطرٍ ينبغي أن تراه القيادة وتعتمده.</p>
+        <h3>التتبّع عمليًا</h3>
+        <p>قيمة هاتين الوثيقتين هي التتبّع: خطٌ غير منقطع من كل خطرٍ، إلى الضابط الذي يعالجه، إلى الدليل على أن الضابط يعمل. فحين يكون الخط سليمًا، يصير التدقيق تتبّعًا للخيوط لا بحثًا عن دليل، وأي فجوةٍ على الخط تظهر فورًا. تأمّل خطرًا واحدًا، وصولًا غير مصرَّح لبيانات العملاء: السجل يسجّله، وخطة المعالجة تُسنِد ضوابط الوصول والتعمية بملّاك ومواعيد، والبيان يَسِم تلك الضوابط منطبقةً بمبرّر، والتشغيل يُنتج مراجعات وصولٍ ودليل تعمية. ويستطيع أيٌّ تتبّع ذلك الخيط من طرفٍ لطرف، وهو بالضبط ما يريده المدقّق وفريق الأمن المجتهد.</p>
+        <ul>
+          <li><strong>بيان القابلية:</strong> أي الضوابط ينطبق، والمبرّر، والحالة الراهنة، بما فيها الاستبعادات المبرَّرة.</li>
+          <li><strong>خطة المعالجة:</strong> الإجراءات والملّاك والمواعيد والترتيب واعتماد الخطر المتبقّي.</li>
+          <li><strong>التتبّع:</strong> خطٌ واضح غير منقطع من كل خطرٍ إلى ضابطه إلى دليله.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> أبقِ البيان وخطة المعالجة محدَّثين. فهما سجلّان حيّان، وبيانٌ قديم من أسرع طرق الرسوب في التدقيق، لأنه يكشف بلمحةٍ أن النظام على الورق والنظام في التشغيل قد تباعدا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="operation">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Operation, Competence &amp; Awareness</h2>
+        <p class="lead">A designed system still has to run every day. Operation is where the plans become routine behavior, and where most ISMS programs quietly succeed or fail, long before any audit.</p>
+        <p>The standard expects the organization to plan and control the processes needed to meet its requirements, to keep documented information as evidence, and to control changes so that a well-intentioned modification does not silently break a control. Operation is not glamorous, but it is where the controls actually protect anything. A control designed perfectly and operated inconsistently offers the illusion of protection, which is more dangerous than a known gap because no one is watching for the failure.</p>
+        <h3>People make controls work</h3>
+        <p>Two clauses matter here more than their length suggests: competence and awareness. Competence means the people running controls actually have the skills to run them, evidenced by training, qualification, or demonstrated experience rather than assumed. Awareness means everyone else understands their part, why the policy exists, and what their own actions can cause. A technically perfect control operated by an untrained or unaware workforce is a control in name only, and awareness is often the cheapest, highest-return investment an ISMS can make, because the majority of incidents involve a human choice somewhere in the chain.</p>
+        <h3>Documented information and change</h3>
+        <p>Documented information is the evidence that processes ran as intended, and the standard is deliberately flexible about its form, asking only that it be controlled, current, and available where needed. The trap at both extremes is real: too little documentation and you cannot prove the system works, too much and it becomes a burden no one maintains, so the useful test is whether a document would actually be used or checked. Change control closes the loop, because most control failures are introduced by ordinary changes made without considering their security effect, and a simple habit of asking what a change does to the controls prevents a large share of self-inflicted incidents.</p>
+        <ul>
+          <li><strong>Competence:</strong> the right skills, evidenced by training and records, not assumed from job titles.</li>
+          <li><strong>Awareness:</strong> everyone knows the policy, their role, and the consequences of their choices.</li>
+          <li><strong>Documented information:</strong> controlled, current evidence that processes ran as intended.</li>
+          <li><strong>Change control:</strong> deliberate management of change so controls are not broken by accident.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Most control failures are not clever attacks defeating strong defenses, they are ordinary defenses that were never truly operated. Operation is where an ISMS earns or loses its value.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>التشغيل والكفاءة والتوعية</h2>
+        <p class="lead">النظام المُصمَّم لا يزال عليه أن يعمل كل يوم. التشغيل حيث تصير الخطط سلوكًا روتينيًا، وحيث تنجح أغلب البرامج أو تفشل بهدوء، قبل أي تدقيق بوقتٍ طويل.</p>
+        <p>يتوقّع المعيار أن تخطّط المنشأة وتضبط العمليات اللازمة لتلبية متطلباتها، وأن تحتفظ بمعلومات موثَّقة كدليل، وأن تضبط التغييرات حتى لا يكسر تعديلٌ حسن النية ضابطًا بصمت. التشغيل ليس برّاقًا، لكنه حيث تحمي الضوابط شيئًا فعلًا. وضابطٌ صُمِّم مثاليًا ويُشغَّل بلا اتّساق يمنح وهم الحماية، وهو أخطر من فجوةٍ معلومة لأن لا أحد يترقّب الفشل.</p>
+        <h3>الناس هم من يُشغّل الضوابط</h3>
+        <p>بندان هنا أهمّ مما يوحي طولهما: الكفاءة والتوعية. الكفاءة تعني أن مَن يُشغّل الضوابط يملك مهارات تشغيلها فعلًا، مُثبَتةً بتدريبٍ أو تأهيلٍ أو خبرةٍ مُبرهَنة لا مُفترَضة. والتوعية تعني أن الجميع يفهم دوره، ولماذا وُجدت السياسة، وما الذي قد تسبّبه أفعاله. فضابطٌ تقنيٌ مثالي يُشغّله موظفٌ غير مدرَّب أو غير واعٍ ضابطٌ بالاسم فقط، والتوعية غالبًا أرخص استثمارٍ وأعلاه عائدًا في النظام، لأن أغلب الحوادث تتضمّن اختيارًا بشريًا في مكانٍ ما من السلسلة.</p>
+        <h3>المعلومات الموثَّقة والتغيير</h3>
+        <p>المعلومات الموثَّقة دليلٌ على أن العمليات جرت كما قُصِد، والمعيار مرنٌ عمدًا في شكلها، طالبًا فقط أن تكون مضبوطة ومحدَّثة ومتاحة حيث تُحتاج. والفخّ عند الطرفين حقيقي: توثيقٌ أقلّ من اللازم فلا تستطيع إثبات عمل النظام، وأكثر من اللازم فيصير عبئًا لا يصونه أحد، فالاختبار المفيد هل ستُستخدَم الوثيقة أو تُراجَع فعلًا. وضبط التغيير يُغلق الحلقة، لأن أغلب إخفاقات الضوابط تُدخِلها تغييراتٌ عادية تُجرى دون مراعاة أثرها الأمني، وعادةٌ بسيطة بالسؤال عمّا يفعله التغيير بالضوابط تمنع نصيبًا كبيرًا من الحوادث ذاتية الإحداث.</p>
+        <ul>
+          <li><strong>الكفاءة:</strong> المهارات الصحيحة، موثَّقة بالتدريب والسجلات، لا مُفترَضة من المسميات.</li>
+          <li><strong>التوعية:</strong> الجميع يعرف السياسة ودوره وعواقب اختياراته.</li>
+          <li><strong>المعلومات الموثَّقة:</strong> دليلٌ مضبوط محدَّث على أن العمليات جرت كما قُصِد.</li>
+          <li><strong>ضبط التغيير:</strong> إدارةٌ متعمَّدة للتغيير حتى لا تُكسَر الضوابط مصادفةً.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> أغلب إخفاقات الضوابط ليست هجمات ذكية تهزم دفاعات قوية، بل دفاعات عادية لم تُشغَّل حقًا قط. والتشغيل حيث يكسب النظام قيمته أو يخسرها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="monitoring">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>Performance Evaluation &amp; Internal Audit</h2>
+        <p class="lead">A management system has to check itself. Performance evaluation is how the ISMS proves, with evidence rather than assertion, that its controls are present and working, and it feeds the improvement that keeps the system alive.</p>
+        <p>Three mechanisms carry this weight: monitoring and measurement, internal audit, and management review. Monitoring produces the numbers, internal audit tests whether the system conforms to plan, and management review is where leadership looks at the whole picture and decides what changes. Each is scheduled, not occasional, because a check that only happens after a problem is not a control. Together they form a layered assurance: measurement watches continuously, audit tests periodically and independently, and management review steers strategically.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">%</div><div class="lbl">Controls implemented vs. selected</div></div>
+          <div class="stat"><div class="num">Days</div><div class="lbl">Mean time to remediate findings</div></div>
+          <div class="stat"><div class="num">%</div><div class="lbl">Audit findings closed on time</div></div>
+        </div>
+        <h3>Internal audit</h3>
+        <p>Internal audit is a planned, impartial check that the ISMS meets both the standard and the organization's own requirements, and that it is effectively implemented. Impartiality matters: an auditor should not be checking their own work, or the exercise becomes self-congratulation. Findings are recorded, ranked, and driven to closure with owners and dates, exactly like incident actions. A mature program runs its audits on a risk-based schedule, looking hardest and most often at the areas where a failure would hurt most, rather than spreading attention evenly across everything.</p>
+        <h3>Management review</h3>
+        <p>Management review is where leadership formally examines the ISMS at planned intervals, considering the audit results, the metrics, the status of risks and actions, and any change in context, and then decides what to adjust. It is the clause that keeps the system connected to the business, because it is the moment leadership either confirms the direction still fits or changes it. A review that rubber-stamps without genuinely examining the inputs is a missed opportunity dressed as compliance.</p>
+        <div class="note"><strong>Note:</strong> Choose few metrics that would actually change a decision. A dashboard of numbers nobody acts on is measurement theater, not performance evaluation, and it quietly trains everyone to ignore the numbers that do matter.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>تقييم الأداء والتدقيق الداخلي</h2>
+        <p class="lead">نظام الإدارة عليه أن يفحص نفسه. تقييم الأداء هو كيف يُثبت النظام، بالدليل لا بالادعاء، أن ضوابطه موجودة وتعمل، وهو يُغذّي التحسين الذي يُبقي النظام حيًّا.</p>
+        <p>ثلاث آليات تحمل هذا العبء: المراقبة والقياس، والتدقيق الداخلي، والمراجعة الإدارية. المراقبة تُنتج الأرقام، والتدقيق الداخلي يختبر مطابقة النظام للخطة، والمراجعة الإدارية حيث تنظر القيادة إلى الصورة كاملةً وتقرّر ما يتغيّر. وكلٌّ منها مجدوَل لا عارض، لأن فحصًا لا يقع إلا بعد المشكلة ليس ضابطًا. وهي معًا تُشكّل ضمانًا متعدّد الطبقات: القياس يراقب باستمرار، والتدقيق يختبر دوريًا ومستقلًّا، والمراجعة الإدارية توجّه استراتيجيًا.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">%</div><div class="lbl">الضوابط المطبَّقة مقابل المختارة</div></div>
+          <div class="stat"><div class="num">أيام</div><div class="lbl">متوسط زمن معالجة الملاحظات</div></div>
+          <div class="stat"><div class="num">%</div><div class="lbl">ملاحظات التدقيق المُغلَقة في وقتها</div></div>
+        </div>
+        <h3>التدقيق الداخلي</h3>
+        <p>التدقيق الداخلي فحصٌ مخطّط محايد بأن النظام يفي بالمعيار وبمتطلبات المنشأة نفسها، وأنه مطبَّق بفعالية. والحياد مهمّ: لا ينبغي أن يدقّق المرء عمله هو، وإلا صار التمرين مديحًا للذات. وتُسجَّل الملاحظات وتُرتَّب وتُقاد للإغلاق بملّاك ومواعيد، تمامًا كإجراءات الحوادث. والبرنامج الناضج يُجري تدقيقاته على جدولٍ قائم على المخاطر، ناظرًا بأشدّ وأكثر إلى المجالات التي يؤذي فشلها أكثر، بدل توزيع الاهتمام بالتساوي على كل شيء.</p>
+        <h3>المراجعة الإدارية</h3>
+        <p>المراجعة الإدارية حيث تفحص القيادة النظام رسميًا على فتراتٍ مخطّطة، ناظرةً في نتائج التدقيق والمؤشرات وحالة المخاطر والإجراءات وأي تغيّرٍ في السياق، ثم تقرّر ما تُعدّله. وهي البند الذي يُبقي النظام موصولًا بالعمل، لأنها اللحظة التي تؤكّد فيها القيادة أن الاتجاه ما زال ملائمًا أو تغيّره. ومراجعةٌ تُختَم بالموافقة دون فحصٍ حقيقي للمدخلات فرصةٌ ضائعة متنكّرة كامتثال.</p>
+        <div class="note"><strong>ملاحظة:</strong> اختر مؤشرات قليلة تُغيّر قرارًا فعلًا. فلوحةٌ بأرقام لا يتحرك بها أحد مسرحُ قياسٍ لا تقييم أداء، وهي تدرّب الجميع بهدوء على تجاهل الأرقام التي تهمّ فعلًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="improvement">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Nine</span>
+        <h2>Improvement &amp; Certification</h2>
+        <p class="lead">The final clause closes the loop the whole standard is built around: when something does not conform, fix it, understand why it happened, and change the system so it is less likely to happen again.</p>
+        <p>A nonconformity triggers correction and corrective action. Correction addresses the immediate problem, while corrective action addresses the cause, so the same gap does not reopen next quarter. The distinction is easy to state and easy to skip under pressure: patching the specific server that was found unpatched is correction, fixing the patch process that let it fall behind is corrective action, and only the second one stops the finding from recurring across the estate. Continual improvement is the steady, deliberate raising of the system's effectiveness, and it is what distinguishes a living ISMS from a certificate on a wall.</p>
+        <h3>The certification cycle</h3>
+        <p>Independent certification typically runs in two stages: a stage 1 review of documentation and readiness, then a stage 2 audit of the ISMS in operation. Stage 1 checks that the system is designed and documented, and stage 2 checks that it is actually being run, which is why an organization can pass the first and fail the second if its paperwork outruns its practice. Certification is then maintained across a multi-year cycle with periodic surveillance audits and a full recertification at the end, so the badge reflects an ongoing system rather than a single good week.</p>
+        <p>Two audit outcomes are worth understanding. A minor nonconformity is a lapse that does not threaten the system's integrity and can be fixed on a reasonable timeline, while a major nonconformity is a fundamental failure that can block or suspend certification until it is addressed. The practical lesson is that surveillance audits are not a formality, they are the mechanism that keeps a certified system honest between full assessments, and treating them as such is what keeps the certificate from lapsing.</p>
+        <ul>
+          <li><strong>Nonconformity:</strong> where reality departs from the requirement, minor or major.</li>
+          <li><strong>Correction:</strong> fix the immediate instance.</li>
+          <li><strong>Corrective action:</strong> remove the underlying cause so it does not recur.</li>
+          <li><strong>Continual improvement:</strong> raise effectiveness on purpose, over time.</li>
+        </ul>
+        <div class="conclusion-final"><strong>Bottom line:</strong> the certificate is a snapshot, but the improvement loop is the asset. Build the loop, and the certificate follows and stays.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">التاسع</span>
+        <h2>التحسين ودورة الشهادة</h2>
+        <p class="lead">البند الأخير يُغلق الحلقة التي بُني حولها المعيار كله: حين لا يطابق شيءٌ، أصلِحه، وافهم لماذا وقع، وغيّر النظام ليقلّ احتمال وقوعه ثانيةً.</p>
+        <p>عدم المطابقة يُطلِق تصحيحًا وإجراءً تصحيحيًا. التصحيح يعالج المشكلة الآنية، أما الإجراء التصحيحي فيعالج السبب، حتى لا تُفتَح الثغرة نفسها في الربع القادم. والتمييز سهل القول سهل التخطّي تحت الضغط: ترقيع الخادم المُحدَّد الذي وُجِد غير مُرقَّع تصحيح، وإصلاح عملية الترقيع التي سمحت له بالتأخّر إجراءٌ تصحيحي، والثاني وحده يمنع تكرار الملاحظة عبر البيئة. والتحسين المستمر هو الرفع المتعمَّد الثابت لفعالية النظام، وهو ما يميّز نظامًا حيًّا عن شهادةٍ على جدار.</p>
+        <h3>دورة الشهادة</h3>
+        <p>يجري الاعتماد المستقل عادةً على مرحلتين: مراجعة مرحلة أولى للوثائق والجاهزية، ثم تدقيق مرحلة ثانية للنظام أثناء تشغيله. المرحلة الأولى تتحقّق أن النظام مُصمَّم وموثَّق، والثانية تتحقّق أنه يُشغَّل فعلًا، ولذا قد تنجح منشأةٌ في الأولى وتفشل في الثانية إن سبقت أوراقُها ممارستَها. ثم تُصان الشهادة عبر دورة متعددة السنوات بتدقيقات رقابية دورية وإعادة اعتماد كاملة في النهاية، فتعكس الشارةُ نظامًا مستمرًا لا أسبوعًا جيدًا واحدًا.</p>
+        <p>ونتيجتا تدقيقٍ تستحقان الفهم. فعدم المطابقة الطفيف زلّةٌ لا تهدّد سلامة النظام ويمكن إصلاحها في مدةٍ معقولة، أما الجسيم فإخفاقٌ جوهري قد يمنع الاعتماد أو يعلّقه حتى يُعالَج. والدرس العملي أن التدقيقات الرقابية ليست شكليةً، بل الآلية التي تُبقي النظام المعتمَد صادقًا بين التقييمات الكاملة، ومعاملتها كذلك هي ما يمنع سقوط الشهادة.</p>
+        <ul>
+          <li><strong>عدم المطابقة:</strong> حيث يفارق الواقعُ المتطلبَ، طفيفًا أو جسيمًا.</li>
+          <li><strong>التصحيح:</strong> إصلاح الحالة الآنية.</li>
+          <li><strong>الإجراء التصحيحي:</strong> إزالة السبب الكامن حتى لا يتكرّر.</li>
+          <li><strong>التحسين المستمر:</strong> رفع الفعالية عن قصد عبر الزمن.</li>
+        </ul>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الشهادة لقطةٌ، أما حلقة التحسين فهي الأصل. ابنِ الحلقة، وتتبعها الشهادة وتبقى.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Ten</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">An ISMS to ISO/IEC 27001 turns security from scattered controls into a governed, provable habit of knowing and treating risk.</p>
+        <ul>
+          <li>Read the standard as two halves: the mandatory management-system clauses, and the Annex A menu of controls to draw on.</li>
+          <li>Define a scope precise enough that anyone can tell what is inside it, including its interfaces.</li>
+          <li>Make leadership real through budget, authority, and assigned ownership, especially the authority to accept risk.</li>
+          <li>Drive every control from a ranked risk, record the choices in the SoA, and keep the risk-to-control-to-evidence line unbroken.</li>
+          <li>Operate the controls daily, prove they work through monitoring and internal audit, and close nonconformities at the cause.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022, Information security management systems, Requirements.</a></li>
+          <li><a href="https://www.iso.org/standard/iso-iec-27000-family" target="_blank" rel="noopener">ISO/IEC 27000 family, Information security management (overview).</a></li>
+          <li><a href="https://www.iso.org/standard/80585.html" target="_blank" rel="noopener">ISO/IEC 27005:2022, Guidance on managing information security risks.</a></li>
+          <li><a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener">NIST Cybersecurity Framework (CSF) 2.0 (2024 record).</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/30/r1/final" target="_blank" rel="noopener">NIST SP 800-30 Rev. 1, Guide for Conducting Risk Assessments.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">العاشر</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">نظام ISMS وفق ISO/IEC 27001 يحوّل الأمن من ضوابط متناثرة إلى عادةٍ محوكَمة قابلة للإثبات في معرفة المخاطر ومعالجتها.</p>
+        <ul>
+          <li>اقرأ المعيار نصفين: بنود نظام الإدارة الإلزامية، وقائمة الملحق أ من الضوابط للاستناد إليها.</li>
+          <li>عرّف نطاقًا دقيقًا يكفي ليعرف أي أحد ما بداخله، بما فيه واجهاته.</li>
+          <li>اجعل القيادة حقيقيةً بالميزانية والصلاحية والملكية المُسنَدة، خاصةً صلاحية قبول الخطر.</li>
+          <li>اجعل كل ضابط نابعًا من خطرٍ مرتَّب، وسجّل الاختيارات في البيان، وأبقِ خط الخطر-الضابط-الدليل غير منقطع.</li>
+          <li>شغّل الضوابط يوميًا، وأثبِت عملها بالمراقبة والتدقيق الداخلي، وأغلِق عدم المطابقة عند السبب.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022، أنظمة إدارة أمن المعلومات، المتطلبات.</a></li>
+          <li><a href="https://www.iso.org/standard/iso-iec-27000-family" target="_blank" rel="noopener">عائلة ISO/IEC 27000، إدارة أمن المعلومات (نظرة عامة).</a></li>
+          <li><a href="https://www.iso.org/standard/80585.html" target="_blank" rel="noopener">ISO/IEC 27005:2022، إرشاد إدارة مخاطر أمن المعلومات.</a></li>
+          <li><a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener">إطار NIST للأمن السيبراني (CSF) 2.0 (سجل 2024).</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/30/r1/final" target="_blank" rel="noopener">NIST SP 800-30 Rev. 1، دليل إجراء تقييمات المخاطر.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","context","leadership","risk","controls","statement","operation","monitoring","improvement","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

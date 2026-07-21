@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Development &amp; Growth</title>
+<meta name="description" content="An operational framework for business development: growth directions by risk, the value proposition, the pipeline, and partnerships for reach.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">CONSULTING &amp; STRATEGY &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الاستشارات والاستراتيجية &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Business Development &amp; Growth</span><span data-lang="ar">تطوير الأعمال والنمو</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="options"><span data-lang="en">Growth Options</span><span data-lang="ar">خيارات النمو</span></a>
+    <a data-id="value"><span data-lang="en">Value Proposition</span><span data-lang="ar">عرض القيمة</span></a>
+    <a data-id="pipeline"><span data-lang="en">The Pipeline</span><span data-lang="ar">خطّ الفرص</span></a>
+    <a data-id="partnerships"><span data-lang="en">Partnerships</span><span data-lang="ar">الشراكات</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Business development &amp; growth</div>
+          <div><span>Scope:</span> Creating durable new sources of revenue and growth</div>
+          <div><span>Owner role:</span> Growth lead, with product and commercial owners</div>
+          <div><span>Review cadence:</span> Pipeline review each month, growth strategy each quarter</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Business development is the work of creating new, durable sources of growth for an organization, whether by reaching new customers, entering new markets, launching new products, or building partnerships that open doors none of these could open alone. It is distinct from sales, which captures value from opportunities that already exist, in that it creates the opportunities in the first place.</p>
+        <p>The distinction matters because the two are often confused, and confusing them leads to neglecting the future. Sales works the existing pipeline to hit this quarter's number, while business development builds the pipelines and partnerships that will produce revenue quarters and years from now. An organization that pours everything into sales and nothing into development harvests its current opportunities efficiently while quietly failing to plant the next crop, and eventually runs out of things to sell.</p>
+        <p>This framework describes business development as a disciplined engine for growth, organized around the recognized options for growing a business and the pipeline that turns opportunity into revenue. It is written to be reusable across sectors and aligns to established growth thinking without reproducing any source text.</p>
+        <div class="note"><strong>Note:</strong> Sales captures today's opportunities, business development creates tomorrow's. An organization needs both, and starving development to feed sales is borrowing growth from the future to pay for the present.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> تطوير الأعمال والنمو</div>
+          <div><span>النطاق:</span> خلق مصادر نموٍّ جديدة دائمة</div>
+          <div><span>دور المالك:</span> قائد النمو، مع ملّاك المنتج والتجارة</div>
+          <div><span>دورية المراجعة:</span> مراجعة خطّ الفرص شهريًا، واستراتيجية النمو كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">تطوير الأعمال هو عمل خلق مصادر نموٍّ جديدة دائمة للمنشأة، سواء ببلوغ عملاء جدد، أو دخول أسواقٍ جديدة، أو إطلاق منتجاتٍ جديدة، أو بناء شراكاتٍ تفتح أبوابًا لا يفتحها أيٌّ من هذه وحده. وهو متمايز عن المبيعات، التي تلتقط القيمة من فرصٍ قائمة أصلًا، في أنه يخلق الفرص ابتداءً.</p>
+        <p>التمييز يهمّ لأن الاثنين يُخلَطان غالبًا، وخلطهما يقود لإهمال المستقبل. فالمبيعات تعمل على خطّ الفرص القائم لبلوغ رقم هذا الربع، وتطوير الأعمال يبني خطوط الفرص والشراكات التي ستُنتِج إيرادًا بعد أرباعٍ وسنين. ومنشأةٌ تصبّ كل شيءٍ في المبيعات ولا شيء في التطوير تحصد فرصها الحالية بكفاءةٍ بينما تفشل بهدوءٍ في زرع المحصول التالي، فينفد ما تبيعه آخرًا.</p>
+        <p>يصف هذا الإطار تطوير الأعمال كمحرّك نموٍّ منضبط، منظَّمًا حول الخيارات المعترف بها لتنمية عملٍ وخطّ الفرص الذي يحوّل الفرصة إلى إيراد. وهو قابل لإعادة الاستخدام عبر القطاعات ويتوافق مع فكر النمو المعتمَد دون نسخ أي نصّ مصدري.</p>
+        <div class="note"><strong>ملاحظة:</strong> المبيعات تلتقط فرص اليوم، وتطوير الأعمال يخلق فرص الغد. والمنشأة تحتاج الاثنين، وتجويع التطوير لإطعام المبيعات اقتراضُ نموٍّ من المستقبل لدفع ثمن الحاضر.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="options">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Directions of Growth</h2>
+        <p class="lead">Growth is not one thing, and the different ways to grow carry very different levels of risk. A recognized way to organize the options is by two questions: are you selling to existing or new markets, and are you selling existing or new products.</p>
+        <p>Crossing those two questions produces four growth directions, each riskier than the last. Selling more of your existing products to your existing markets is the safest, because you understand both. Taking existing products to new markets, or new products to existing markets, is riskier because one side is unfamiliar. Taking new products to new markets, diversification, is the riskiest of all, because both the product and the market are unknown at once. Knowing which direction a growth idea represents is the first step to judging its risk honestly.</p>
+        <table>
+          <tr><th></th><th>Existing product</th><th>New product</th></tr>
+          <tr><td>Existing market</td><td>Grow within: lowest risk</td><td>New products to known customers: moderate risk</td></tr>
+          <tr><td>New market</td><td>Known products to new customers: moderate risk</td><td>Diversification: highest risk</td></tr>
+        </table>
+        <p>The practical lesson is to be honest about which quadrant a growth initiative sits in, because ambition tends to disguise diversification as something safer. A plan to launch a new product in a new market is often presented as a natural extension, but it is the riskiest move there is, requiring the organization to learn two unfamiliar things at once. Sequencing growth, mastering the lower-risk directions before attempting the higher-risk ones, is how organizations grow durably rather than betting everything on an unfamiliar frontier.</p>
+        <div class="note"><strong>Note:</strong> Diversification, new product and new market at once, is the riskiest growth there is, because you are learning two unknowns simultaneously. Treat it with the caution its double uncertainty deserves.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>اتجاهات النمو</h2>
+        <p class="lead">النمو ليس شيئًا واحدًا، وطرق النمو المختلفة تحمل مستوياتٍ مختلفة جدًا من الخطر. وطريقةٌ معترف بها لتنظيم الخيارات بسؤالين: هل تبيع لأسواقٍ قائمة أم جديدة، وهل تبيع منتجاتٍ قائمة أم جديدة.</p>
+        <p>تقاطع هذين السؤالين يُنتِج أربعة اتجاهات نموٍّ، كلٌّ أخطر من سابقه. فبيع المزيد من منتجاتك القائمة لأسواقك القائمة الأأمن، لأنك تفهم كليهما. وأخذ منتجاتٍ قائمة لأسواقٍ جديدة، أو منتجاتٍ جديدة لأسواقٍ قائمة، أخطر لأن جانبًا غير مألوف. وأخذ منتجاتٍ جديدة لأسواقٍ جديدة، التنويع، أخطرها جميعًا، لأن المنتج والسوق مجهولان معًا. ومعرفة أي اتجاهٍ تمثّله فكرة نموٍّ أول خطوةٍ للحكم على خطرها بصدق.</p>
+        <table>
+          <tr><th></th><th>منتج قائم</th><th>منتج جديد</th></tr>
+          <tr><td>سوق قائمة</td><td>النمو من الداخل: أدنى خطر</td><td>منتجات جديدة لعملاء معلومين: خطر متوسط</td></tr>
+          <tr><td>سوق جديدة</td><td>منتجات معلومة لعملاء جدد: خطر متوسط</td><td>التنويع: أعلى خطر</td></tr>
+        </table>
+        <p>الدرس العملي الصدق حول أي رُبعٍ تجلس فيه مبادرة نموٍّ، لأن الطموح يميل لتنكير التنويع كشيءٍ أأمن. فخطة إطلاق منتجٍ جديد في سوقٍ جديدة تُقدَّم غالبًا كامتدادٍ طبيعي، لكنها أخطر حركةٍ موجودة، تتطلّب من المنشأة تعلّم أمرين غير مألوفين معًا. وتسلسل النمو، بإتقان الاتجاهات الأقلّ خطرًا قبل محاولة الأعلى، هو كيف تنمو المنشآت بدوامٍ بدل المراهنة بكل شيءٍ على تخمٍ غير مألوف.</p>
+        <div class="note"><strong>ملاحظة:</strong> التنويع، منتجٌ جديد وسوقٌ جديدة معًا، أخطر نموٍّ موجود، لأنك تتعلّم مجهولين آنيًا. عامِله بالحذر الذي يستحقّه عدم يقينه المزدوج.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="value">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Value Proposition</h2>
+        <p class="lead">Before any growth direction can succeed, the organization needs a compelling answer to a simple question: why would a customer choose this over the alternatives. The value proposition is that answer, and it is the foundation everything else is built on.</p>
+        <p>A strong value proposition connects a real customer need to a distinctive benefit the organization provides. It is not a description of the product's features, it is a statement of the value the customer gets, expressed in the customer's terms. The test of a value proposition is whether a customer, hearing it, would say yes, that is a problem I have and this clearly solves it better than what I use now. If the answer is a shrug, no amount of growth activity will succeed, because there is no real reason to choose.</p>
+        <h3>Product-market fit</h3>
+        <p>The moment a value proposition genuinely resonates with a market is called product-market fit, and it is the single most important milestone in growth. Before it, growth is a struggle because the organization is pushing something the market does not clearly want; after it, growth becomes far easier because the market is pulling. Trying to scale growth before achieving product-market fit is the most common and expensive growth mistake, because it pours resources into distributing something people do not yet want, which multiplies the cost of the misfit rather than the value.</p>
+        <div class="note"><strong>Note:</strong> Do not scale before you fit. Growth spending amplifies whatever it is applied to, so applying it to a weak value proposition amplifies the weakness, spending more to reach people who still will not choose you.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>عرض القيمة</h2>
+        <p class="lead">قبل أن ينجح أي اتجاه نموٍّ، تحتاج المنشأة جوابًا مقنعًا لسؤالٍ بسيط: لماذا يختار عميلٌ هذا على البدائل. وعرض القيمة هو ذلك الجواب، وهو الأساس الذي يُبنى عليه كل ما عداه.</p>
+        <p>عرض القيمة القوي يصل حاجة عميلٍ حقيقية بفائدةٍ مميَّزة تقدّمها المنشأة. وهو ليس وصفًا لميزات المنتج، بل بيانٌ للقيمة التي يحصل عليها العميل، مُعبَّرًا عنه بعبارات العميل. واختبار عرض القيمة هل يقول عميلٌ سامعًا له نعم، هذه مشكلةٌ عندي وهذا يحلّها بوضوحٍ أفضل مما أستخدم الآن. فإن كان الجواب هزّة كتف، لن ينجح أي نشاط نموٍّ، لأن لا سبب حقيقي للاختيار.</p>
+        <h3>ملاءمة المنتج للسوق</h3>
+        <p>اللحظة التي يتردّد فيها عرض القيمة حقًّا في سوقٍ تُسمّى ملاءمة المنتج للسوق، وهي أهمّ معلمٍ مفرد في النمو. فقبلها، النمو كفاحٌ لأن المنشأة تدفع شيئًا لا تريده السوق بوضوح؛ وبعدها، يصير النمو أسهل بكثير لأن السوق تجذب. ومحاولة توسيع النمو قبل بلوغ الملاءمة أشيع وأغلى خطأ نموٍّ، لأنها تصبّ الموارد في توزيع شيءٍ لا يريده الناس بعد، فتضاعف كلفة عدم الملاءمة لا القيمة.</p>
+        <div class="note"><strong>ملاحظة:</strong> لا توسّع قبل أن تلائم. فإنفاق النمو يضخّم ما يُطبَّق عليه، فتطبيقه على عرض قيمةٍ ضعيف يضخّم الضعف، بإنفاقٍ أكثر لبلوغ من لن يختاروك بعد.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="pipeline">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>The Growth Pipeline</h2>
+        <p class="lead">Growth is not a single event but a flow, and managing that flow is the daily work of business development. The pipeline is the model of that flow: how prospects move from first awareness to a closed relationship, and where they fall away along the way.</p>
+        <p>Opportunities move through stages, from a large number of potential prospects at the top, narrowing as they progress through interest, evaluation, and decision, to the smaller number that become customers at the bottom. Modeling this as a pipeline reveals two things: how many prospects you need at the top to produce a given number of customers at the bottom, and where in the journey you are losing the most, which is where improvement pays off most. A pipeline that loses most of its prospects at one particular stage is telling you exactly where to focus.</p>
+        <div class="formula">Customers = prospects &times; conversion rate at each stage, multiplied down the pipeline</div>
+        <h4>Worked example</h4>
+        <p>Suppose 1,000 prospects enter the top of the pipeline, 40% show interest, 25% of those evaluate seriously, and 20% of those become customers. The result is 1,000 &times; 0.40 &times; 0.25 &times; 0.20 = 20 customers. This arithmetic is powerful because it shows leverage: doubling the worst-performing conversion rate does more than adding prospects at the top, so the pipeline points directly at where effort creates the most growth. It also shows how many prospects the top must hold to hit a target, which turns a growth goal into a concrete pipeline requirement.</p>
+        <div class="note"><strong>Note:</strong> Improve the weakest stage, not the whole pipeline evenly. The stage where the most prospects fall away is where a fix multiplies through everything below it, and finding that stage is the whole point of modeling the pipeline.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>خطّ النمو</h2>
+        <p class="lead">النمو ليس حدثًا مفردًا بل تدفّقًا، وإدارة ذلك التدفّق هي العمل اليومي لتطوير الأعمال. وخطّ الفرص نموذج ذلك التدفّق: كيف ينتقل المحتملون من أول وعيٍ إلى علاقةٍ مُغلَقة، وأين يتساقطون في الطريق.</p>
+        <p>تنتقل الفرص عبر مراحل، من عددٍ كبير من المحتملين في الأعلى، تضيق مع تقدّمها عبر الاهتمام والتقييم والقرار، إلى العدد الأصغر الذي يصير عملاء في الأسفل. ونمذجة هذا كخطٍّ تكشف أمرين: كم محتملًا تحتاج في الأعلى لإنتاج عددٍ معطى من العملاء في الأسفل، وأين في الرحلة تخسر الأكثر، وهو حيث يؤتي التحسين أكبر ثماره. فخطٌّ يخسر أغلب محتمليه في مرحلةٍ بعينها يخبرك بالضبط أين تركّز.</p>
+        <div class="formula">العملاء = المحتملون &times; معدّل التحويل في كل مرحلة، مضروبًا نزولًا في الخطّ</div>
+        <h4>مثال محلول</h4>
+        <p>لنفترض أن 1,000 محتمل يدخلون أعلى الخطّ، 40٪ يُبدون اهتمامًا، و25٪ من هؤلاء يقيّمون بجدّية، و20٪ من هؤلاء يصيرون عملاء. الناتج 1,000 &times; 0.40 &times; 0.25 &times; 0.20 = 20 عميلًا. وهذا الحساب قوي لأنه يُظهِر الرافعة: مضاعفة أسوأ معدّل تحويلٍ تفعل أكثر من إضافة محتملين في الأعلى، فالخطّ يشير مباشرةً لأين يخلق الجهد أكثر نموّ. ويُظهِر أيضًا كم محتملًا يجب أن يحمل الأعلى لبلوغ هدف، فيحوّل هدف النمو لمتطلّب خطٍّ ملموس.</p>
+        <div class="note"><strong>ملاحظة:</strong> حسّن أضعف مرحلة، لا الخطّ كله بالتساوي. فالمرحلة التي يتساقط فيها أكثر المحتملين حيث يتضاعف الإصلاح عبر كل ما تحتها، وإيجاد تلك المرحلة كل مقصد نمذجة الخطّ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="partnerships">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Partnerships &amp; Channels</h2>
+        <p class="lead">Some growth an organization cannot reach alone, and partnerships are how it reaches beyond its own limits. A well-chosen partner can open a market, add a capability, or provide a channel that would take years and fortunes to build from scratch.</p>
+        <p>Partnerships create growth by combining complementary strengths. A company strong in product but weak in market access can partner with one strong in distribution, and each gains what it lacked. The key to a durable partnership is genuine mutual benefit: an arrangement that serves only one side will not last, because the other side has no reason to sustain it. The best partnerships are built where each partner is clearly better off together than apart, and where that remains true over time.</p>
+        <ul>
+          <li><strong>Complementary capability:</strong> partner to gain a strength you lack, rather than building it slowly yourself.</li>
+          <li><strong>Channel access:</strong> reach customers through a partner who already has the relationship and distribution.</li>
+          <li><strong>Market entry:</strong> enter an unfamiliar market with a partner who knows it, reducing the risk of the unknown.</li>
+          <li><strong>Mutual benefit:</strong> ensure both sides clearly gain, because a one-sided partnership will not endure.</li>
+        </ul>
+        <p>The risk in partnerships is dependence. A channel or partner that delivers a large share of your growth also holds power over you, and can raise its terms, compete with you, or fail, taking your growth with it. Managing partnerships means capturing their leverage while limiting the concentration risk, by not letting any single partner become so central that its choices control your fate, which echoes the concentration risk seen in supply chains.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> business development grows an organization durably by choosing growth directions honestly by risk, building a value proposition that fits before scaling, managing the pipeline at its weakest stage, and using partnerships for reach while guarding against dependence.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الشراكات والقنوات</h2>
+        <p class="lead">بعض النمو لا تبلغه المنشأة وحدها، والشراكات هي كيف تبلغ ما وراء حدودها. فشريكٌ مُختار جيدًا قد يفتح سوقًا، أو يضيف قدرة، أو يوفّر قناةً يستغرق بناؤها من الصفر سنينًا وثروات.</p>
+        <p>الشراكات تخلق النمو بجمع قوى متكاملة. فشركةٌ قوية في المنتج ضعيفة في بلوغ السوق تشارك أخرى قوية في التوزيع، فيكسب كلٌّ ما افتقر. ومفتاح الشراكة الدائمة نفعٌ متبادل حقيقي: فترتيبٌ يخدم جانبًا واحدًا لن يدوم، لأن الجانب الآخر بلا سببٍ لإدامته. وأفضل الشراكات تُبنى حيث يكون كل شريكٍ أفضل حالًا معًا منه منفردًا، وحيث يبقى ذلك صحيحًا عبر الزمن.</p>
+        <ul>
+          <li><strong>قدرةٌ متكاملة:</strong> شارِك لتكسب قوّةً تفتقرها، بدل بنائها ببطءٍ بنفسك.</li>
+          <li><strong>بلوغ القناة:</strong> ابلغ العملاء عبر شريكٍ يملك العلاقة والتوزيع أصلًا.</li>
+          <li><strong>دخول السوق:</strong> ادخل سوقًا غير مألوفة بشريكٍ يعرفها، مُقلِّلًا خطر المجهول.</li>
+          <li><strong>النفع المتبادل:</strong> اضمن كسب الجانبين بوضوح، لأن شراكةً أحادية لن تدوم.</li>
+        </ul>
+        <p>الخطر في الشراكات الاعتماد. فقناةٌ أو شريكٌ يسلّم نصيبًا كبيرًا من نموّك يملك أيضًا سلطةً عليك، وقد يرفع شروطه، أو ينافسك، أو يفشل آخذًا نموّك معه. وإدارة الشراكات تعني التقاط رافعتها مع حدّ خطر التركّز، بألّا تدع شريكًا واحدًا يصير مركزيًا حتى تتحكّم خياراته بمصيرك، وهو ما يردّد خطر التركّز في سلاسل الإمداد.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> تطوير الأعمال يُنمي المنشأة بدوامٍ باختيار اتجاهات النمو بصدقٍ حسب الخطر، وبناء عرض قيمةٍ يلائم قبل التوسّع، وإدارة الخطّ عند أضعف مرحلة، واستخدام الشراكات للبلوغ مع الحذر من الاعتماد.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Business development creates durable growth by choosing directions wisely, fitting before scaling, managing the pipeline, and partnering for reach.</p>
+        <ul>
+          <li>Distinguish development, which creates opportunity, from sales, which captures it, and invest in both.</li>
+          <li>Choose growth directions honestly by risk, treating diversification with the caution its double uncertainty demands.</li>
+          <li>Build a value proposition that genuinely fits the market before spending to scale it.</li>
+          <li>Model the pipeline, and improve the weakest stage where a fix multiplies through everything below.</li>
+          <li>Use partnerships for reach and capability, ensuring mutual benefit and guarding against dependence.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2008/01/the-five-competitive-forces-that-shape-strategy" target="_blank" rel="noopener">Michael Porter, competitive strategy foundations, HBR (2008).</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">Harvard Business School Online, growth and strategy frameworks.</a></li>
+          <li><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">ISO 9001:2015, Quality management systems (customer focus).</a></li>
+          <li><a href="https://www.coso.org/guidance-erm" target="_blank" rel="noopener">COSO, Enterprise Risk Management (strategy and risk of growth).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">تطوير الأعمال يخلق نموًّا دائمًا باختيار الاتجاهات بحكمة، والملاءمة قبل التوسّع، وإدارة الخطّ، والشراكة للبلوغ.</p>
+        <ul>
+          <li>ميّز التطوير، الذي يخلق الفرصة، عن المبيعات، التي تلتقطها، واستثمر في الاثنين.</li>
+          <li>اختر اتجاهات النمو بصدقٍ حسب الخطر، مُعامِلًا التنويع بحذر عدم يقينه المزدوج.</li>
+          <li>ابنِ عرض قيمةٍ يلائم السوق حقًّا قبل الإنفاق على توسيعه.</li>
+          <li>نمذِج الخطّ، وحسّن أضعف مرحلةٍ حيث يتضاعف الإصلاح عبر كل ما تحتها.</li>
+          <li>استخدم الشراكات للبلوغ والقدرة، بضمان النفع المتبادل والحذر من الاعتماد.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2008/01/the-five-competitive-forces-that-shape-strategy" target="_blank" rel="noopener">مايكل بورتر، أسس الاستراتيجية التنافسية، HBR (2008).</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">هارفارد أونلاين، أطر النمو والاستراتيجية.</a></li>
+          <li><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">ISO 9001:2015، أنظمة إدارة الجودة (التركيز على العميل).</a></li>
+          <li><a href="https://www.coso.org/guidance-erm" target="_blank" rel="noopener">COSO، إدارة مخاطر المؤسسة (استراتيجية وخطر النمو).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","options","value","pipeline","partnerships","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Management</title>
+<meta name="description" content="An operational framework for project management: constraints, lifecycle, planning and control, risk and stakeholders, and predictive versus agile.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">PM &amp; HR OPERATIONS &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">عمليات المشاريع والموارد &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Project Management</span><span data-lang="ar">إدارة المشاريع</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="constraints"><span data-lang="en">Constraints</span><span data-lang="ar">القيود</span></a>
+    <a data-id="lifecycle"><span data-lang="en">Lifecycle</span><span data-lang="ar">دورة الحياة</span></a>
+    <a data-id="planning"><span data-lang="en">Planning</span><span data-lang="ar">التخطيط</span></a>
+    <a data-id="risk"><span data-lang="en">Risk &amp; Stakeholders</span><span data-lang="ar">المخاطر وأصحاب المصلحة</span></a>
+    <a data-id="agile"><span data-lang="en">Predictive vs Agile</span><span data-lang="ar">التنبّئي مقابل الرشيق</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Project management</div>
+          <div><span>Scope:</span> Delivering a defined outcome on time, on budget, and to standard</div>
+          <div><span>Owner role:</span> Project manager, with a sponsor</div>
+          <div><span>Review cadence:</span> Continuous through the project, with stage gates</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">A project is a temporary effort undertaken to create a specific result, with a defined beginning and end, unlike the ongoing operations that run a business indefinitely. Project management is the discipline of delivering that result successfully, coordinating people, time, and resources toward a goal that has never been done in exactly this way before.</p>
+        <p>What makes projects distinct from ordinary work is that they are temporary and unique. Because a project has an end and produces something new, it cannot simply be run as a stable routine, it has to be planned, executed, and controlled as a one-time endeavor with its own risks and uncertainties. The project manager's job is to bring order to that inherent uncertainty, delivering a defined outcome despite the fact that no one has walked exactly this path before.</p>
+        <p>This framework describes project management as a structured discipline, from balancing the core constraints to planning and controlling delivery to choosing between predictive and adaptive approaches. It draws on the recognized project management body of knowledge and is written to be reusable across project types, without reproducing any source text.</p>
+        <div class="note"><strong>Note:</strong> A project is temporary and unique, which is exactly why it needs management. Ongoing operations can settle into routine, but a project is a one-time endeavor into partly unknown territory, and that is where disciplined project management earns its value.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> إدارة المشاريع</div>
+          <div><span>النطاق:</span> تسليم نتيجةٍ محدَّدة في الوقت والميزانية وبالمعيار</div>
+          <div><span>دور المالك:</span> مدير المشروع، مع راعٍ</div>
+          <div><span>دورية المراجعة:</span> مستمرة عبر المشروع، ببواباتٍ مرحلية</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">المشروع جهدٌ مؤقّت يُبذَل لخلق نتيجةٍ محدَّدة، ببدايةٍ ونهاية معرَّفتين، خلافًا للعمليات المستمرة التي تُدير عملًا بلا أجل. وإدارة المشاريع انضباط تسليم تلك النتيجة بنجاح، بتنسيق الناس والوقت والموارد نحو هدفٍ لم يُنجَز بهذه الطريقة بالضبط من قبل.</p>
+        <p>ما يميّز المشاريع عن العمل العادي أنها مؤقّتة وفريدة. فلأن للمشروع نهايةً ويُنتِج شيئًا جديدًا، لا يمكن تشغيله كروتينٍ ثابت، بل يجب تخطيطه وتنفيذه وضبطه كجهدٍ لمرةٍ واحدة بمخاطره وعدم يقينه. ومهمة مدير المشروع جلب النظام لذلك اللايقين الأصيل، بتسليم نتيجةٍ محدَّدة رغم أن لا أحد سلك هذا المسار بالضبط قبله.</p>
+        <p>يصف هذا الإطار إدارة المشاريع كانضباطٍ منظَّم، من موازنة القيود الأساسية إلى تخطيط التسليم وضبطه إلى الاختيار بين النهج التنبّئي والتكيّفي. ويستند إلى مرجع إدارة المشاريع المعترف به ومكتوب ليكون قابلًا لإعادة الاستخدام عبر أنواع المشاريع، دون نسخ أي نصّ مصدري.</p>
+        <div class="note"><strong>ملاحظة:</strong> المشروع مؤقّت وفريد، وهو بالضبط لماذا يحتاج إدارة. فالعمليات المستمرة تستقرّ روتينًا، لكن المشروع جهدٌ لمرةٍ واحدة في أرضٍ مجهولة جزئيًا، وهناك تكسب إدارة المشاريع المنضبطة قيمتها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="constraints">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Core Constraints</h2>
+        <p class="lead">Every project is governed by a set of competing constraints that must be balanced against each other. The classic three are scope, time, and cost, and the essential truth is that you cannot freely change one without affecting the others.</p>
+        <p>The relationship is a trade-off. If you want more scope, you generally need more time or more money. If you need to finish faster, you must usually cut scope or spend more. If you want to spend less, you accept less scope or more time. Quality sits within this triangle, affected by all three, because squeezing time and cost while holding scope constant almost always shows up as reduced quality. Understanding these trade-offs is the foundation of managing a project honestly, because it makes clear that a demand for more scope, sooner, for less money, is usually a demand that cannot be met.</p>
+        <ul>
+          <li><strong>Scope:</strong> what the project will actually deliver, which drives the time and cost required.</li>
+          <li><strong>Time:</strong> the schedule, which tightens as scope grows or budget shrinks.</li>
+          <li><strong>Cost:</strong> the budget, which rises with scope or with the need for speed.</li>
+          <li><strong>Quality:</strong> the standard of the result, which suffers when the other three are squeezed too hard.</li>
+        </ul>
+        <p>The practical value of the constraint model is that it forces honest conversations about trade-offs. When a stakeholder asks for more without giving more time or budget, the model makes the consequence explicit: something has to give, whether it is scope, schedule, cost, or quality. A project manager who understands this does not simply agree to impossible combinations, they surface the trade-off and let the sponsor decide which constraint to relax, which is far more honest and far more likely to end in a deliverable project.</p>
+        <div class="note"><strong>Note:</strong> You cannot fix scope, time, cost, and quality all at once. When one is forced, another must give, and a project manager's job is to make that trade-off visible and deliberate rather than letting it happen by accident, usually as failure.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>القيود الأساسية</h2>
+        <p class="lead">كل مشروعٍ تحكمه مجموعة قيودٍ متنافسة يجب موازنتها ضد بعضها. والثلاثة الكلاسيكية النطاق والوقت والكلفة، والحقيقة الجوهرية أنك لا تستطيع تغيير واحدٍ بحرّية دون التأثير في الأخريات.</p>
+        <p>العلاقة مقايضة. فإن أردت نطاقًا أكثر، تحتاج عمومًا وقتًا أكثر أو مالًا أكثر. وإن احتجت الإنهاء أسرع، تقصّ نطاقًا أو تنفق أكثر عادةً. وإن أردت إنفاقًا أقلّ، تقبل نطاقًا أقلّ أو وقتًا أكثر. والجودة تجلس داخل هذا المثلّث، متأثّرةً بالثلاثة، لأن عصر الوقت والكلفة مع تثبيت النطاق يظهر دومًا تقريبًا كجودةٍ منخفضة. وفهم هذه المقايضات أساس إدارة مشروعٍ بصدق، لأنه يوضّح أن طلب نطاقٍ أكثر، أعجل، بمالٍ أقلّ، عادةً طلبٌ لا يمكن تلبيته.</p>
+        <ul>
+          <li><strong>النطاق:</strong> ما سيسلّمه المشروع فعلًا، وهو يقود الوقت والكلفة المطلوبين.</li>
+          <li><strong>الوقت:</strong> الجدول، يضيق مع نموّ النطاق أو تقلّص الميزانية.</li>
+          <li><strong>الكلفة:</strong> الميزانية، ترتفع مع النطاق أو الحاجة للسرعة.</li>
+          <li><strong>الجودة:</strong> معيار النتيجة، تتضرّر حين تُعصَر الثلاثة الأخرى بشدّة.</li>
+        </ul>
+        <p>القيمة العملية لنموذج القيود أنه يفرض نقاشاتٍ صادقة عن المقايضات. فحين يطلب صاحب مصلحةٍ أكثر دون منح وقتٍ أو ميزانيةٍ أكثر، يجعل النموذج العاقبة صريحة: شيءٌ يجب أن يتنازل، نطاقًا أو جدولًا أو كلفةً أو جودة. ومدير مشروعٍ يفهم هذا لا يوافق ببساطةٍ على تركيباتٍ مستحيلة، بل يُظهِر المقايضة ويدع الراعي يقرّر أي قيدٍ يُرخي، وهو أصدق بكثير وأرجح للانتهاء بمشروعٍ قابل للتسليم.</p>
+        <div class="note"><strong>ملاحظة:</strong> لا تستطيع تثبيت النطاق والوقت والكلفة والجودة معًا. فحين يُفرَض واحد، يجب أن يتنازل آخر، ومهمة مدير المشروع جعل تلك المقايضة مرئية متعمَّدة لا أن تقع مصادفةً، عادةً كفشل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="lifecycle">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Project Lifecycle</h2>
+        <p class="lead">A project moves through a lifecycle from start to finish, and understanding its phases gives structure to the work. The recognized phases run from starting the project, through organizing and planning it, to carrying out the work, to closing it out.</p>
+        <p>Each phase has a distinct purpose. Initiation defines the project and authorizes it, answering why it exists and what it will achieve. Planning works out how it will be done, in enough detail to guide execution. Execution is where the work is actually performed and the deliverables produced. Monitoring and controlling runs alongside execution, tracking progress against the plan and correcting the path when they diverge. And closing formally ends the project, confirming the work is done and capturing what was learned.</p>
+        <ul>
+          <li><strong>Initiating:</strong> define and authorize the project, its purpose, and its high-level scope.</li>
+          <li><strong>Planning:</strong> work out how the project will be delivered, in scope, schedule, cost, and risk.</li>
+          <li><strong>Executing:</strong> perform the work and produce the deliverables the project exists to create.</li>
+          <li><strong>Monitoring and controlling:</strong> track progress against the plan and correct the path as needed.</li>
+          <li><strong>Closing:</strong> formally finish, confirm completion, and capture the lessons learned.</li>
+        </ul>
+        <p>The phase most often shortchanged is closing, and skipping it wastes the project's most valuable byproduct: its lessons. Once the deliverable is handed over, the pressure to move to the next project is strong, and the discipline of formally closing, confirming everything is complete and honestly reviewing what went well and what did not, is easy to skip. But an organization that never captures its project lessons repeats its project mistakes, which is why closing is not administrative housekeeping but the step that makes the next project better.</p>
+        <div class="note"><strong>Note:</strong> Do not skip closing. The pressure to move on is real, but the lessons captured at the end of a project are what stop the next one from repeating the same mistakes.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>دورة حياة المشروع</h2>
+        <p class="lead">يتحرّك المشروع عبر دورة حياةٍ من البداية للنهاية، وفهم أطوارها يمنح العمل بنية. والأطوار المعترف بها تمتد من بدء المشروع، عبر تنظيمه وتخطيطه، إلى تنفيذ العمل، إلى إغلاقه.</p>
+        <p>لكل طورٍ غرضٌ متمايز. البدء يعرّف المشروع ويُخوّله، مجيبًا لماذا وُجِد وما سيحقّق. والتخطيط يستخرج كيف سيُنجَز، بتفصيلٍ يكفي لتوجيه التنفيذ. والتنفيذ حيث يُؤدّى العمل فعلًا وتُنتَج المخرجات. والمراقبة والضبط يجريان بمحاذاة التنفيذ، متتبّعين التقدّم مقابل الخطة ومصحّحين المسار حين يتباعدان. والإغلاق يُنهي المشروع رسميًا، مؤكّدًا اكتمال العمل ومُلتقِطًا ما تُعلِّم.</p>
+        <ul>
+          <li><strong>البدء:</strong> عرّف المشروع وخوّله، غرضه ونطاقه العالي.</li>
+          <li><strong>التخطيط:</strong> استخرج كيف سيُسلَّم المشروع، نطاقًا وجدولًا وكلفةً وخطرًا.</li>
+          <li><strong>التنفيذ:</strong> أدِّ العمل وأنتِج المخرجات التي وُجِد المشروع لخلقها.</li>
+          <li><strong>المراقبة والضبط:</strong> تتبّع التقدّم مقابل الخطة وصحّح المسار حسب الحاجة.</li>
+          <li><strong>الإغلاق:</strong> أنهِ رسميًا، وأكّد الاكتمال، والتقِط الدروس.</li>
+        </ul>
+        <p>الطور الأكثر بخسًا الإغلاق، وتخطّيه يهدر أثمن ناتج للمشروع: دروسه. فبمجرّد تسليم المخرج، يقوى ضغط الانتقال للمشروع التالي، وانضباط الإغلاق الرسمي، بتأكيد اكتمال كل شيءٍ ومراجعة صادقة لما سار جيدًا وما لم يسر، سهل التخطّي. لكن منشأةً لا تلتقط دروس مشاريعها تكرّر أخطاءها، ولذا الإغلاق ليس ترتيبًا إداريًا بل الخطوة التي تجعل المشروع التالي أفضل.</p>
+        <div class="note"><strong>ملاحظة:</strong> لا تتخطَّ الإغلاق. فضغط المضيّ حقيقي، لكن الدروس المُلتقَطة في نهاية مشروعٍ هي ما يمنع التالي من تكرار الأخطاء نفسها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="planning">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Planning &amp; Control</h2>
+        <p class="lead">The heart of predictable delivery is good planning followed by honest control. Planning breaks the goal into manageable work and sequences it, while control tracks reality against that plan and corrects the inevitable drift.</p>
+        <p>Planning starts by defining the scope clearly, then breaking it down into the specific pieces of work needed to deliver it, often called a work breakdown. From that breakdown come the estimates of how long each piece takes and what it costs, which combine into a schedule and a budget. The value of breaking work down is that a large, daunting goal becomes a set of concrete, estimable tasks, and vague uncertainty becomes a plan that can be tracked. A goal that is not broken down cannot be estimated or managed, only hoped for.</p>
+        <ul>
+          <li><strong>Define scope:</strong> state clearly what is and is not included, the foundation for everything else.</li>
+          <li><strong>Break down the work:</strong> decompose the goal into specific, estimable pieces of work.</li>
+          <li><strong>Schedule and budget:</strong> estimate and sequence the work into a timeline and a cost.</li>
+          <li><strong>Track and correct:</strong> compare actual progress to the plan, and act on the difference.</li>
+        </ul>
+        <p>Control is where planning meets reality, and reality always diverges from the plan. The discipline is not to expect perfect adherence but to track progress honestly, see the divergence early, and correct the path while correction is still cheap. A project that discovers it is behind only near its deadline has failed at control, because it lost the chance to act when action was still possible. Regular, honest tracking against the plan is what turns a plan from a document written at the start into a tool that actively steers the project.</p>
+        <div class="note"><strong>Note:</strong> A plan is a tool for control, not a promise fixed at the start. Its value is in tracking reality against it early enough to correct the path while correction is still cheap.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>التخطيط والضبط</h2>
+        <p class="lead">قلب التسليم المتوقَّع تخطيطٌ جيد يتبعه ضبطٌ صادق. التخطيط يقسّم الهدف لعملٍ قابل للإدارة ويرتّبه، والضبط يتتبّع الواقع مقابل تلك الخطة ويصحّح الانحراف الحتمي.</p>
+        <p>يبدأ التخطيط بتعريف النطاق بوضوح، ثم تقسيمه لقطع العمل المحدَّدة اللازمة لتسليمه، تُسمّى غالبًا هيكل تقسيم العمل. ومن ذلك التقسيم تأتي تقديرات كم يستغرق كل قطعةٍ وكم يكلّف، وتتجمّع في جدولٍ وميزانية. وقيمة تقسيم العمل أن هدفًا كبيرًا مُرهِبًا يصير مجموعة مهامٍ ملموسة قابلة للتقدير، ولايقينًا غامضًا يصير خطةً قابلة للتتبّع. فهدفٌ لا يُقسَّم لا يُقدَّر ولا يُدار، بل يُؤمَل فقط.</p>
+        <ul>
+          <li><strong>عرّف النطاق:</strong> اذكر بوضوحٍ ما يُشمَل وما لا يُشمَل، أساس كل ما عداه.</li>
+          <li><strong>قسّم العمل:</strong> فكّك الهدف لقطع عملٍ محدَّدة قابلة للتقدير.</li>
+          <li><strong>الجدول والميزانية:</strong> قدّر ورتّب العمل في خطٍّ زمني وكلفة.</li>
+          <li><strong>تتبّع وصحّح:</strong> قارن التقدّم الفعلي بالخطة، وتصرّف بالفرق.</li>
+        </ul>
+        <p>الضبط حيث يلتقي التخطيط بالواقع، والواقع يتباعد دومًا عن الخطة. والانضباط ليس توقّع التزامٍ مثالي بل تتبّع التقدّم بصدقٍ، ورؤية التباعد مبكرًا، وتصحيح المسار والتصحيح ما زال رخيصًا. فمشروعٌ يكتشف تأخّره قرب موعده فقط أخفق في الضبط، لأنه خسر فرصة التصرّف والفعل ما زال ممكنًا. والتتبّع المنتظم الصادق مقابل الخطة هو ما يحوّل الخطة من وثيقةٍ كُتِبت في البداية إلى أداةٍ توجّه المشروع فعليًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> الخطة أداة ضبطٍ لا وعدٌ مثبَّت في البداية. قيمتها في تتبّع الواقع مقابلها مبكرًا بما يكفي لتصحيح المسار والتصحيح ما زال رخيصًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="risk">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Risk &amp; Stakeholders</h2>
+        <p class="lead">Two forces derail more projects than poor planning ever does: unmanaged risks and neglected stakeholders. Managing both deliberately is what separates a project that survives surprises and shifting expectations from one that is sunk by them.</p>
+        <p>Project risk management applies the same discipline as any risk work, focused on the project: identify what could go wrong, assess how likely and how damaging it would be, and plan responses in advance for the significant ones. The point is to think about the surprises before they happen, so that when a risk materializes there is already a plan rather than a panic. A project that has not thought about its risks is not risk-free, it is simply unprepared, and it will meet the same surprises as everyone else with none of the readiness.</p>
+        <p>Stakeholders are the people affected by or able to affect the project, and managing them is often the difference between success and failure. A technically perfect project can fail because a key stakeholder was not engaged, felt ignored, and withdrew support, or because expectations were never aligned and the delivered result, though exactly as specified, was not what people thought they were getting. Identifying stakeholders, understanding what each needs, and communicating with them appropriately throughout is not politics, it is a core project discipline, because a project delivers to people, and people who are surprised or ignored can stop it.</p>
+        <ul>
+          <li><strong>Identify risks and stakeholders early:</strong> know what could go wrong and who matters before it bites.</li>
+          <li><strong>Plan risk responses in advance:</strong> decide how to handle the significant risks before they occur.</li>
+          <li><strong>Engage stakeholders continuously:</strong> understand and manage their expectations throughout, not just at the end.</li>
+          <li><strong>Communicate deliberately:</strong> give each stakeholder the right information at the right time.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Projects are delivered to people, so a project that ignores its stakeholders can fail no matter how well the work is done. Aligning expectations early is as important as managing the work itself.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>المخاطر وأصحاب المصلحة</h2>
+        <p class="lead">قوّتان تُخرِجان مشاريع عن مسارها أكثر مما يفعل سوء التخطيط: مخاطر غير مُدارة وأصحاب مصلحةٍ مُهمَلون. وإدارة الاثنين عمدًا هي ما يفصل مشروعًا ينجو من المفاجآت والتوقّعات المتغيّرة عن آخر تُغرِقه.</p>
+        <p>إدارة مخاطر المشروع تطبّق انضباط أي عمل مخاطر، مركّزًا على المشروع: حدّد ما قد يسوء، وقيّم كم هو محتمل ومُضرّ، وخطّط استجاباتٍ مسبقًا للمهمّ منها. والمقصد التفكير في المفاجآت قبل وقوعها، فحين يتحقّق خطرٌ يكون ثمّة خطة لا ذعر. فمشروعٌ لم يفكّر في مخاطره ليس خاليًا منها، بل غير مُهيّأ، وسيلقى المفاجآت نفسها كالجميع بلا أي جاهزية.</p>
+        <p>أصحاب المصلحة هم المتأثّرون بالمشروع أو القادرون على التأثير فيه، وإدارتهم غالبًا الفرق بين النجاح والفشل. فمشروعٌ تقنيًا مثالي قد يفشل لأن صاحب مصلحةٍ رئيسًا لم يُشرَك، وشعر بالتجاهل، وسحب دعمه، أو لأن التوقّعات لم تُوائَم أبدًا والنتيجة المُسلَّمة، رغم مطابقتها للمواصفة بالضبط، لم تكن ما ظنّ الناس أنهم يحصلون عليه. وتحديد أصحاب المصلحة، وفهم ما يحتاجه كلٌّ، والتواصل معهم بمناسبةٍ طوال الوقت ليس سياسةً بل انضباط مشروعٍ جوهري، لأن المشروع يسلّم لناسٍ، ومن يُفاجَؤون أو يُتجاهَلون قد يوقفونه.</p>
+        <ul>
+          <li><strong>حدّد المخاطر وأصحاب المصلحة مبكرًا:</strong> اعرف ما قد يسوء ومن يهمّ قبل أن يعضّ.</li>
+          <li><strong>خطّط استجابات الخطر مسبقًا:</strong> قرّر كيف تعالج المخاطر المهمّة قبل وقوعها.</li>
+          <li><strong>أشرِك أصحاب المصلحة باستمرار:</strong> افهم وأدِر توقّعاتهم طوال الوقت لا في النهاية فقط.</li>
+          <li><strong>تواصل عمدًا:</strong> أعطِ كل صاحب مصلحةٍ المعلومة الصحيحة في الوقت الصحيح.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> المشاريع تُسلَّم لناس، فمشروعٌ يتجاهل أصحاب مصلحته قد يفشل مهما أُتقِن العمل. ومواءمة التوقّعات مبكرًا مهمّةٌ كإدارة العمل نفسه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="agile">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Predictive vs Adaptive</h2>
+        <p class="lead">Not every project should be managed the same way. The central choice is between a predictive approach, which plans the whole project up front, and an adaptive or agile approach, which delivers in short cycles and adjusts as it learns, and the right choice depends on how much is known at the start.</p>
+        <p>A predictive approach works well when the requirements are clear and stable, when you can define what to build up front and then execute the plan, such as constructing a building. An adaptive approach works better when the requirements are uncertain or likely to change, when it is wiser to build a little, get feedback, and adjust, than to commit to a detailed plan that will be wrong, such as developing a new software product. Agile delivers in short iterations, each producing something usable, so the project learns and corrects continuously rather than discovering at the end that the plan was flawed.</p>
+        <ul>
+          <li><strong>Predictive:</strong> plan the whole project up front, best when requirements are clear and stable.</li>
+          <li><strong>Adaptive or agile:</strong> deliver in short cycles and adjust, best when requirements are uncertain.</li>
+          <li><strong>Iteration:</strong> agile builds a little, gets feedback, and improves, reducing the risk of building the wrong thing.</li>
+          <li><strong>Hybrid:</strong> many real projects combine both, planning the stable parts and iterating the uncertain ones.</li>
+        </ul>
+        <p>The mistake is treating one approach as universally right. Forcing a detailed up-front plan onto a project full of unknowns produces a plan that is confidently wrong, while running a project with clear, fixed requirements as if it were uncertain adds needless overhead. The skilled project manager matches the approach to the nature of the work, and often blends them, using prediction where the path is clear and adaptation where it is not, which is exactly what the recognized guidance now supports.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> project management delivers a unique outcome by balancing scope, time, cost, and quality, planning and controlling the work, managing risk and stakeholders, and matching a predictive or adaptive approach to how much is known.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>التنبّئي مقابل التكيّفي</h2>
+        <p class="lead">ليس كل مشروعٍ يُدار بالطريقة نفسها. والاختيار المركزي بين نهجٍ تنبّئي، يخطّط المشروع كله مقدَّمًا، ونهجٍ تكيّفي أو رشيق، يسلّم في دوراتٍ قصيرة ويعدّل مع التعلّم، والاختيار الصحيح يعتمد على كم هو معلومٌ في البداية.</p>
+        <p>النهج التنبّئي يعمل جيدًا حين تكون المتطلبات واضحة ثابتة، حين تستطيع تعريف ما تبني مقدَّمًا ثم تنفيذ الخطة، كبناء مبنى. والنهج التكيّفي أفضل حين تكون المتطلبات غير مؤكَّدة أو مرجّحة التغيّر، حين يكون أحكم أن تبني قليلًا، وتأخذ تغذية، وتعدّل، من الالتزام بخطةٍ مفصّلة ستكون خاطئة، كتطوير منتج برمجياتٍ جديد. والرشيق يسلّم في تكراراتٍ قصيرة، كلٌّ يُنتِج شيئًا قابلًا للاستخدام، فيتعلّم المشروع ويصحّح باستمرارٍ بدل اكتشاف عيب الخطة في النهاية.</p>
+        <ul>
+          <li><strong>التنبّئي:</strong> خطّط المشروع كله مقدَّمًا، أفضل حين تكون المتطلبات واضحة ثابتة.</li>
+          <li><strong>التكيّفي أو الرشيق:</strong> سلّم في دوراتٍ قصيرة وعدّل، أفضل حين تكون المتطلبات غير مؤكَّدة.</li>
+          <li><strong>التكرار:</strong> الرشيق يبني قليلًا، يأخذ تغذية، ويحسّن، مُقلِّلًا خطر بناء الشيء الخطأ.</li>
+          <li><strong>الهجين:</strong> كثيرٌ من المشاريع الواقعية تجمع الاثنين، بتخطيط الأجزاء الثابتة وتكرار غير المؤكَّدة.</li>
+        </ul>
+        <p>الخطأ معاملة نهجٍ كصحيحٍ عالميًا. ففرض خطةٍ مفصّلة مقدَّمة على مشروعٍ مليء بالمجاهيل يُنتِج خطةً خاطئة بثقة، وتشغيل مشروعٍ بمتطلباتٍ واضحة ثابتة كأنه غير مؤكَّد يضيف عبئًا لا لزوم له. ومدير المشروع الماهر يطابق النهج لطبيعة العمل، ويمزجهما غالبًا، مستخدمًا التنبّؤ حيث المسار واضح والتكيّف حيث ليس كذلك، وهو بالضبط ما يسنده الإرشاد المعترف به الآن.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> إدارة المشاريع تسلّم نتيجةً فريدة بموازنة النطاق والوقت والكلفة والجودة، وتخطيط العمل وضبطه، وإدارة المخاطر وأصحاب المصلحة، ومطابقة نهجٍ تنبّئي أو تكيّفي لكم هو معلوم.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Project management delivers a unique, temporary outcome by balancing constraints, planning and controlling, managing risk and people, and choosing the right approach.</p>
+        <ul>
+          <li>Treat a project as a temporary, unique endeavor that needs deliberate management, unlike ongoing operations.</li>
+          <li>Balance scope, time, cost, and quality honestly, surfacing trade-offs rather than accepting impossible demands.</li>
+          <li>Move through the lifecycle with discipline, and never skip closing and its lessons.</li>
+          <li>Plan by breaking down the work, and control by tracking reality against the plan early.</li>
+          <li>Manage risk and stakeholders deliberately, and match a predictive or adaptive approach to what is known.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.pmi.org/standards/pmbok" target="_blank" rel="noopener">PMI, A Guide to the Project Management Body of Knowledge (PMBOK Guide).</a></li>
+          <li><a href="https://www.pmi.org/standards/agile" target="_blank" rel="noopener">PMI, Agile Practice Guide.</a></li>
+          <li><a href="https://www.iso.org/standard/50003.html" target="_blank" rel="noopener">ISO 21500, Guidance on project management.</a></li>
+          <li><a href="https://www.coso.org/guidance-erm" target="_blank" rel="noopener">COSO, Enterprise Risk Management (project risk).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">إدارة المشاريع تسلّم نتيجةً فريدة مؤقّتة بموازنة القيود، والتخطيط والضبط، وإدارة المخاطر والناس، واختيار النهج الصحيح.</p>
+        <ul>
+          <li>عامِل المشروع كجهدٍ مؤقّت فريد يحتاج إدارةً متعمَّدة، خلافًا للعمليات المستمرة.</li>
+          <li>وازِن النطاق والوقت والكلفة والجودة بصدق، مُظهِرًا المقايضات لا قابلًا بالمطالب المستحيلة.</li>
+          <li>تحرّك عبر دورة الحياة بانضباط، ولا تتخطَّ الإغلاق ودروسه.</li>
+          <li>خطّط بتقسيم العمل، واضبط بتتبّع الواقع مقابل الخطة مبكرًا.</li>
+          <li>أدِر المخاطر وأصحاب المصلحة عمدًا، وطابِق نهجًا تنبّئيًا أو تكيّفيًا لما هو معلوم.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.pmi.org/standards/pmbok" target="_blank" rel="noopener">PMI، دليل مرجع إدارة المشاريع (PMBOK Guide).</a></li>
+          <li><a href="https://www.pmi.org/standards/agile" target="_blank" rel="noopener">PMI، دليل الممارسة الرشيقة.</a></li>
+          <li><a href="https://www.iso.org/standard/50003.html" target="_blank" rel="noopener">ISO 21500، إرشاد إدارة المشاريع.</a></li>
+          <li><a href="https://www.coso.org/guidance-erm" target="_blank" rel="noopener">COSO، إدارة مخاطر المؤسسة (خطر المشروع).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","constraints","lifecycle","planning","risk","agile","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

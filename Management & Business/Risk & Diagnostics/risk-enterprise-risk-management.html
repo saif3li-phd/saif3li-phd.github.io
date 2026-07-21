@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enterprise Risk Management</title>
+<meta name="description" content="An operational framework for enterprise risk management: components, risk appetite, the identify-assess-respond process, integration, and reporting.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">FRAMEWORKS &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الأطر &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Enterprise Risk Management</span><span data-lang="ar">إدارة مخاطر المؤسسة</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="components"><span data-lang="en">Components</span><span data-lang="ar">المكوّنات</span></a>
+    <a data-id="appetite"><span data-lang="en">Risk Appetite</span><span data-lang="ar">شهية المخاطر</span></a>
+    <a data-id="process"><span data-lang="en">The Process</span><span data-lang="ar">العملية</span></a>
+    <a data-id="integration"><span data-lang="en">Integration</span><span data-lang="ar">الدمج</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Enterprise risk management (ERM)</div>
+          <div><span>Scope:</span> Managing risk across the whole organization as one portfolio</div>
+          <div><span>Owner role:</span> Chief risk officer, sponsored by the board</div>
+          <div><span>Review cadence:</span> Continuous, with an enterprise risk review each quarter</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Enterprise risk management is the practice of understanding and managing risk across an entire organization as a single connected portfolio, rather than letting each department handle its own risks in isolation. Its purpose is to give leadership one coherent view of the uncertainties that could threaten the organization's objectives, so that risk is weighed deliberately in every major decision.</p>
+        <p>The difference from ordinary risk management is the word enterprise. In a siloed approach, finance manages financial risk, operations manages operational risk, and IT manages technology risk, each competently but separately, so no one sees how they combine, and a risk that is small in each silo can be large in aggregate. ERM lifts the view to the whole organization, so that risks are compared on one scale, their interactions are visible, and scarce risk-management effort flows to what matters most across the enterprise, not just within each function.</p>
+        <p>This framework describes ERM as a governed, continuous capability, drawing on the integrated structure of the COSO ERM framework and the principles and process of ISO 31000. It is written to be reusable across sectors and aligns to both without reproducing their text.</p>
+        <div class="note"><strong>Note:</strong> ERM is not about avoiding risk, it is about taking the right risks knowingly. An organization that takes no risk earns no return, so the goal is to understand risk well enough to accept it deliberately where it is worth it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> إدارة مخاطر المؤسسة (ERM)</div>
+          <div><span>النطاق:</span> إدارة المخاطر عبر المنشأة كلها كمحفظةٍ واحدة</div>
+          <div><span>دور المالك:</span> رئيس المخاطر، برعاية المجلس</div>
+          <div><span>دورية المراجعة:</span> مستمرة، مع مراجعة مخاطر مؤسسيةٍ كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">إدارة مخاطر المؤسسة ممارسة فهم المخاطر وإدارتها عبر المنشأة كلها كمحفظةٍ واحدة متصلة، بدل ترك كل إدارةٍ تعالج مخاطرها بمعزل. وغرضها منح القيادة رؤيةً متماسكة واحدة لعدم اليقين الذي قد يهدّد أهداف المنشأة، فيُوزَن الخطر عن قصد في كل قرارٍ كبير.</p>
+        <p>الفرق عن إدارة المخاطر العادية كلمة «المؤسسة». ففي نهجٍ صومعي، تدير المالية الخطر المالي، والعمليات الخطر التشغيلي، والتقنية خطر التقنية، كلٌّ بكفاءةٍ لكن منفصلًا، فلا أحد يرى كيف تتجمّع، وخطرٌ صغير في كل صومعة قد يكون كبيرًا في المجموع. وERM ترفع الرؤية للمنشأة كلها، فتُقارَن المخاطر على مقياسٍ واحد، وتُرى تفاعلاتها، ويتدفّق جهد إدارة المخاطر النادر إلى الأهمّ عبر المؤسسة لا داخل كل وظيفةٍ فقط.</p>
+        <p>يصف هذا الإطار ERM كقدرةٍ محوكَمة مستمرة، مستندًا إلى البنية المتكاملة لإطار COSO ومبادئ وعملية ISO 31000. وهو قابل لإعادة الاستخدام عبر القطاعات ويتوافق مع كليهما دون نسخ نصّهما.</p>
+        <div class="note"><strong>ملاحظة:</strong> ERM ليست تجنّب الخطر، بل أخذ المخاطر الصحيحة عن علم. فمنشأةٌ لا تأخذ خطرًا لا تكسب عائدًا، فالهدف فهم الخطر بما يكفي لقبوله عن قصدٍ حيث يستحق.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="components">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Components of ERM</h2>
+        <p class="lead">A recognized way to structure ERM organizes it into interrelated components that together make risk management a continuous, integrated capability rather than a periodic report. Each component addresses a different part of embedding risk into how the organization runs.</p>
+        <p>The components run from the cultural foundation through to reporting. Governance and culture set the tone and the accountability for risk. Strategy and objective-setting weave risk into the choices the organization makes about its direction. Performance identifies, assesses, and responds to the risks to achieving objectives. Review and revision keep the whole thing current as conditions change. And information, communication, and reporting carry risk knowledge to where decisions are made. Read together, they describe risk management that lives inside strategy and operations, not beside them.</p>
+        <ul>
+          <li><strong>Governance and culture:</strong> the tone at the top and the shared attitudes that make risk everyone's concern.</li>
+          <li><strong>Strategy and objective-setting:</strong> considering risk as strategy is formed, not after it is set.</li>
+          <li><strong>Performance:</strong> identifying, assessing, prioritizing, and responding to the risks to objectives.</li>
+          <li><strong>Review and revision:</strong> checking whether risk management is still working and improving it.</li>
+          <li><strong>Information and reporting:</strong> communicating risk to decision-makers in usable form.</li>
+        </ul>
+        <p>The placement of strategy so early is the defining insight of modern ERM. Older approaches treated risk as something to assess after the strategy was chosen, but that is too late, because the biggest risk an organization faces is often the strategy itself. Considering risk while strategy is being formed, asking not only can we execute this but what could make this the wrong strategy, is where ERM adds the most value and where its absence has sunk the most companies.</p>
+        <div class="note"><strong>Note:</strong> The greatest risks are usually strategic, not operational. A perfectly executed strategy aimed at a declining market fails, so ERM has to reach into strategy, not just guard the operations beneath it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>مكوّنات ERM</h2>
+        <p class="lead">من الطرق المعترف بها لبناء ERM تنظيمها في مكوّناتٍ مترابطة تجعل إدارة المخاطر معًا قدرةً مستمرة متكاملة لا تقريرًا دوريًا. وكل مكوّنٍ يعالج جزءًا مختلفًا من دمج الخطر في كيف تعمل المنشأة.</p>
+        <p>تمتد المكوّنات من الأساس الثقافي إلى التقارير. الحوكمة والثقافة تضعان النبرة والمساءلة عن الخطر. والاستراتيجية ووضع الأهداف تنسجان الخطر في خيارات المنشأة حول اتجاهها. والأداء يحدّد مخاطر تحقيق الأهداف ويقيّمها ويستجيب لها. والمراجعة والتنقيح يُبقيان الكل محدَّثًا مع تغيّر الظروف. والمعلومات والتواصل والتقارير تحمل معرفة الخطر حيث تُتَّخذ القرارات. ومقروءةً معًا، تصف إدارة مخاطر تعيش داخل الاستراتيجية والعمليات لا بجانبهما.</p>
+        <ul>
+          <li><strong>الحوكمة والثقافة:</strong> النبرة من القمة والمواقف المشتركة التي تجعل الخطر شأن الجميع.</li>
+          <li><strong>الاستراتيجية ووضع الأهداف:</strong> مراعاة الخطر أثناء تشكيل الاستراتيجية لا بعد وضعها.</li>
+          <li><strong>الأداء:</strong> تحديد مخاطر الأهداف وتقييمها وترتيبها والاستجابة لها.</li>
+          <li><strong>المراجعة والتنقيح:</strong> فحص هل ما زالت إدارة المخاطر تعمل وتحسينها.</li>
+          <li><strong>المعلومات والتقارير:</strong> إيصال الخطر لصنّاع القرار بصورةٍ قابلة للاستخدام.</li>
+        </ul>
+        <p>وضعُ الاستراتيجية مبكرًا هكذا هو البصيرة المميِّزة لـ ERM الحديثة. فالنُهج الأقدم عاملت الخطر كشيءٍ يُقيَّم بعد اختيار الاستراتيجية، لكن ذلك متأخّر، لأن أكبر خطرٍ تواجهه منشأةٌ غالبًا الاستراتيجية نفسها. ومراعاة الخطر أثناء تشكيل الاستراتيجية، بالسؤال لا «هل نستطيع تنفيذ هذا» فقط بل «ما الذي قد يجعل هذه الاستراتيجية خاطئة»، حيث تضيف ERM أعظم قيمة وحيث أغرق غيابها أكثر الشركات.</p>
+        <div class="note"><strong>ملاحظة:</strong> أعظم المخاطر عادةً استراتيجية لا تشغيلية. فاستراتيجيةٌ مُنفَّذة بإتقانٍ موجَّهة لسوقٍ آفلة تفشل، فعلى ERM أن تصل إلى الاستراتيجية لا أن تحرس العمليات تحتها فقط.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="appetite">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Risk Appetite</h2>
+        <p class="lead">At the enterprise level, the single most important decision is how much risk the organization is willing to take in pursuit of its objectives. This risk appetite is the reference point against which every significant risk is judged.</p>
+        <p>Risk appetite translates the board's attitude to risk into a usable guide. It states, in terms the organization can act on, how much uncertainty it will accept overall and in specific areas, so that managers throughout the organization make decisions consistent with what leadership actually wants. Without a stated appetite, risk decisions are made inconsistently, some managers too cautious and others too bold, and the organization's actual risk-taking becomes an accidental sum of individual temperaments rather than a deliberate choice.</p>
+        <p>Appetite is most useful when it distinguishes between types of risk. An organization might have a healthy appetite for market and innovation risk, where taking risk is how it earns its return, while having almost no appetite for compliance or safety risk, where a failure is unacceptable regardless of the potential upside. Stating these differences explicitly stops the organization from accidentally trading a risk it should never take for a reward in an area where it should be bold.</p>
+        <div class="formula">Risk appetite guides every decision: is this risk within what the board has said we will accept, here?</div>
+        <div class="note"><strong>Note:</strong> Risk appetite is a board-level statement, but its value is at the front line. It only works if it is expressed concretely enough that a manager making a real decision can tell whether their choice is inside it or outside it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>شهية المخاطر</h2>
+        <p class="lead">على مستوى المؤسسة، أهمّ قرارٍ مفرد كم من الخطر مستعدّة المنشأة لأخذه سعيًا لأهدافها. وشهية المخاطر هذه هي المرجع الذي يُحكَم عليه كل خطرٍ مهمّ.</p>
+        <p>شهية المخاطر تترجم موقف المجلس من الخطر إلى دليلٍ قابل للاستخدام. تذكر، بعباراتٍ تستطيع المنشأة التصرّف بها، كم من عدم اليقين تقبل إجمالًا وفي مجالاتٍ بعينها، فيتّخذ المديرون عبر المنشأة قراراتٍ متّسقة مع ما تريده القيادة فعلًا. وبلا شهيةٍ مُعلَنة، تُتَّخذ قرارات الخطر بلا اتساق، بعض المديرين مفرطون في الحذر وآخرون في الجرأة، ويصير أخذ المنشأة للخطر مجموعًا عرضيًا لأمزجةٍ فردية لا خيارًا متعمَّدًا.</p>
+        <p>الشهية أنفع ما تكون حين تميّز بين أنواع الخطر. فقد يكون لمنشأةٍ شهيةٌ صحّية لخطر السوق والابتكار، حيث أخذ الخطر هو كيف تكسب عائدها، بينما لا تكاد تملك شهيةً لخطر الامتثال أو السلامة، حيث الفشل غير مقبولٍ مهما كان العائد المحتمل. وإعلان هذه الفروق صراحةً يمنع المنشأة من مقايضة خطرٍ ينبغي ألّا تأخذه أبدًا بعائدٍ في مجالٍ ينبغي أن تكون فيه جريئة.</p>
+        <div class="formula">شهية المخاطر توجّه كل قرار: هل هذا الخطر ضمن ما قال المجلس إننا سنقبله، هنا؟</div>
+        <div class="note"><strong>ملاحظة:</strong> شهية المخاطر بيانٌ على مستوى المجلس، لكن قيمتها في الخطّ الأمامي. ولا تعمل إلا إن عُبِّر عنها بعينيّةٍ تكفي ليعرف مديرٌ يتّخذ قرارًا حقيقيًا هل خياره داخلها أم خارجها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="process">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Identify, Assess, Respond</h2>
+        <p class="lead">Within the enterprise view, each risk is handled through the same disciplined process: find it, size it, decide what to do, and watch it. The process is familiar from risk management generally, but at the enterprise level it is applied consistently so that risks from every corner can be compared.</p>
+        <p>The steps build on each other. Identification finds the risks to the organization's objectives, across strategy, operations, finance, compliance, and beyond. Assessment sizes each by its likelihood and impact so they can be ranked on one scale. Response chooses how to treat each significant risk, to reduce, avoid, share, or accept it, exactly as in any risk framework. And monitoring keeps the picture current, because the enterprise risk profile shifts constantly. What ERM adds is consistency: because every function uses the same scale and process, a strategic risk and an operational one land in the same ranked list, and leadership can see the true top risks of the whole organization.</p>
+        <ul>
+          <li><strong>Identify:</strong> surface the risks to objectives from every part of the organization, not just the obvious ones.</li>
+          <li><strong>Assess:</strong> size each risk by likelihood and impact on one consistent enterprise scale.</li>
+          <li><strong>Respond:</strong> reduce, avoid, share, or accept each significant risk, with a named owner.</li>
+          <li><strong>Monitor:</strong> track the changing enterprise risk profile and re-run the cycle continuously.</li>
+        </ul>
+        <p>The portfolio view reveals what silos hide: interactions between risks. Two risks that are each individually acceptable can combine into one that is not, and a single event can trigger several risks at once, a pattern that only becomes visible when risks are looked at together. Seeing these connections, and the concentrations where many objectives depend on one thing going right, is the distinctive value that justifies the enterprise in enterprise risk management.</p>
+        <div class="note"><strong>Note:</strong> Aggregate before you conclude. The enterprise view exists to catch the risk that is invisible in any single silo but material to the organization as a whole.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>التحديد والتقييم والاستجابة</h2>
+        <p class="lead">ضمن رؤية المؤسسة، يُعالَج كل خطرٍ بالعملية المنضبطة نفسها: جِده، وقِسه، وقرّر ما تفعل، وراقبه. والعملية مألوفةٌ من إدارة المخاطر عمومًا، لكنها على مستوى المؤسسة تُطبَّق باتساقٍ لتُقارَن مخاطر كل ركن.</p>
+        <p>الخطوات تبني على بعضها. التحديد يجد مخاطر أهداف المنشأة، عبر الاستراتيجية والعمليات والمالية والامتثال وأبعد. والتقييم يقيس كلًّا باحتماله وأثره ليُرتَّب على مقياسٍ واحد. والاستجابة تختار كيف يُعالَج كل خطرٍ مهمّ، بالتقليل أو التجنّب أو المشاركة أو القبول، كأي إطار مخاطر. والمراقبة تُبقي الصورة محدَّثة، لأن ملف مخاطر المؤسسة ينزاح باستمرار. وما تضيفه ERM هو الاتساق: فلأن كل وظيفةٍ تستخدم المقياس والعملية نفسيهما، يقع خطرٌ استراتيجي وآخر تشغيلي في القائمة المرتَّبة نفسها، وترى القيادة أعلى مخاطر المنشأة كلها حقًّا.</p>
+        <ul>
+          <li><strong>التحديد:</strong> أظهِر مخاطر الأهداف من كل جزءٍ من المنشأة، لا الظاهرة فقط.</li>
+          <li><strong>التقييم:</strong> قِس كل خطرٍ باحتماله وأثره على مقياسٍ مؤسسي متّسق واحد.</li>
+          <li><strong>الاستجابة:</strong> قلّل أو تجنّب أو شارك أو اقبل كل خطرٍ مهمّ، بمالكٍ مُسمّى.</li>
+          <li><strong>المراقبة:</strong> تتبّع ملف مخاطر المؤسسة المتغيّر وأعِد الدورة باستمرار.</li>
+        </ul>
+        <p>رؤية المحفظة تكشف ما تُخفيه الصوامع: تفاعلات المخاطر. فخطران كلٌّ مقبول منفردًا قد يجتمعان في واحدٍ غير مقبول، وحدثٌ واحد قد يُطلِق عدّة مخاطر دفعةً، نمطٌ لا يظهر إلا حين يُنظَر للمخاطر معًا. ورؤية هذه الصلات، والتركّزات حيث تعتمد أهدافٌ كثيرة على صحّة شيءٍ واحد، هي القيمة المميِّزة التي تبرّر «المؤسسة» في إدارة مخاطر المؤسسة.</p>
+        <div class="note"><strong>ملاحظة:</strong> اجمع قبل أن تستنتج. فرؤية المؤسسة موجودةٌ لالتقاط الخطر الخفيّ في أي صومعةٍ مفردة لكنه جوهري للمنشأة ككل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="integration">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Integration &amp; Reporting</h2>
+        <p class="lead">ERM only delivers value if it is woven into how the organization actually makes decisions, not run as a parallel reporting exercise. Integration is what separates ERM that shapes the business from ERM that merely describes it.</p>
+        <p>Integrated ERM shows up when risk is a standing input to real decisions: a major investment carries a risk assessment, a strategic choice is tested against the risk appetite, and the board sees the enterprise risk profile alongside performance, not in a separate meeting no one connects to strategy. When ERM is instead a quarterly report produced by a risk team and filed, it consumes effort and changes nothing, which is the most common way ERM fails, not by getting the risks wrong but by having no path from knowing them to acting on them.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">Top</div><div class="lbl">Enterprise risks above appetite</div></div>
+          <div class="stat"><div class="num">KRI</div><div class="lbl">Indicators trending toward the line</div></div>
+          <div class="stat"><div class="num">%</div><div class="lbl">Risk responses completed on time</div></div>
+        </div>
+        <h3>Reporting that drives action</h3>
+        <p>Reporting is the bridge from risk knowledge to decision, and it works only when it is aimed at the audience that can act. The board needs the handful of enterprise risks that could threaten strategy, with a trend; an executive needs the risks and responses in their area. Key risk indicators, early-warning signals that a risk is rising, make reporting forward-looking rather than a record of what already went wrong. The test of ERM reporting is simple: has a risk report ever changed a decision. If not, the reporting is description, not management.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> enterprise risk management creates value by seeing risk across the whole organization as one portfolio, judging it against a stated appetite, embedding it in strategy and decisions, and reporting it so it actually changes what the organization does.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الدمج والتقارير</h2>
+        <p class="lead">ERM لا تسلّم قيمةً إلا إن نُسِجت في كيف تتّخذ المنشأة قراراتها فعلًا، لا أن تُدار كتمرين تقارير موازٍ. والدمج هو ما يفصل ERM التي تُشكّل العمل عن التي تصفه فحسب.</p>
+        <p>ERM المدمجة تظهر حين يكون الخطر مُدخَلًا دائمًا لقراراتٍ حقيقية: استثمارٌ كبير يحمل تقييم خطر، وخيارٌ استراتيجي يُختبَر مقابل شهية المخاطر، ويرى المجلس ملف مخاطر المؤسسة بمحاذاة الأداء، لا في اجتماعٍ منفصل لا يربطه أحد بالاستراتيجية. وحين تكون ERM بدل ذلك تقريرًا ربعيًا يُنتِجه فريق مخاطرٍ ويُحفَظ، تستهلك جهدًا ولا تغيّر شيئًا، وهو أشيع طرق فشلها، لا بإخطاء المخاطر بل بغياب مسارٍ من معرفتها إلى الفعل بها.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">الأعلى</div><div class="lbl">مخاطر مؤسسية فوق الشهية</div></div>
+          <div class="stat"><div class="num">KRI</div><div class="lbl">مؤشرات تتّجه نحو الخط</div></div>
+          <div class="stat"><div class="num">%</div><div class="lbl">استجابات خطرٍ أُنجزت في وقتها</div></div>
+        </div>
+        <h3>تقاريرٌ تقود الفعل</h3>
+        <p>التقارير جسرٌ من معرفة الخطر إلى القرار، ولا تعمل إلا حين تُوجَّه للجمهور القادر على الفعل. فالمجلس يحتاج حفنة مخاطر المؤسسة التي قد تهدّد الاستراتيجية، باتجاه؛ والتنفيذي يحتاج المخاطر والاستجابات في مجاله. ومؤشرات المخاطر الرئيسة، إشارات إنذارٍ مبكر بأن خطرًا يرتفع، تجعل التقارير استشرافيةً لا سجلًّا لما ساء أصلًا. واختبار تقارير ERM بسيط: هل غيّر تقرير خطرٍ قرارًا يومًا. فإن لا، فالتقارير وصفٌ لا إدارة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> إدارة مخاطر المؤسسة تخلق القيمة برؤية الخطر عبر المنشأة كلها كمحفظةٍ واحدة، والحكم عليه مقابل شهيةٍ مُعلَنة، ودمجه في الاستراتيجية والقرارات، والتبليغ عنه بحيث يغيّر فعلًا ما تفعله المنشأة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Enterprise risk management manages uncertainty across the whole organization as one portfolio, so risk is taken deliberately in service of objectives.</p>
+        <ul>
+          <li>Lift risk from silos to the enterprise so risks are compared, their interactions seen, and effort aimed at what matters most.</li>
+          <li>Embed risk in strategy from the start, because the biggest risks are usually strategic.</li>
+          <li>Set a clear risk appetite, distinguished by risk type, as the reference for every decision.</li>
+          <li>Apply one consistent identify-assess-respond-monitor process, and aggregate to reveal hidden interactions.</li>
+          <li>Integrate ERM into real decisions and report it forward with indicators, so it changes what the organization does.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.coso.org/guidance-erm" target="_blank" rel="noopener">COSO, Enterprise Risk Management, Integrating with Strategy and Performance (2017).</a></li>
+          <li><a href="https://www.iso.org/standard/65694.html" target="_blank" rel="noopener">ISO 31000:2018, Risk management, Guidelines.</a></li>
+          <li><a href="https://www.iso.org/standard/80585.html" target="_blank" rel="noopener">ISO/IEC 27005:2022, Guidance on managing information security risks.</a></li>
+          <li><a href="https://www.oecd.org/en/publications/g20-oecd-principles-of-corporate-governance-2023_ed750b30-en.html" target="_blank" rel="noopener">G20/OECD Principles of Corporate Governance, 2023 (board risk oversight).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">إدارة مخاطر المؤسسة تدير عدم اليقين عبر المنشأة كلها كمحفظةٍ واحدة، فيُؤخَذ الخطر عن قصدٍ خدمةً للأهداف.</p>
+        <ul>
+          <li>ارفع الخطر من الصوامع للمؤسسة لتُقارَن المخاطر وتُرى تفاعلاتها ويُوجَّه الجهد للأهمّ.</li>
+          <li>ادمج الخطر في الاستراتيجية من البداية، لأن أكبر المخاطر عادةً استراتيجية.</li>
+          <li>حدّد شهية مخاطرٍ واضحة، مميَّزة بنوع الخطر، كمرجعٍ لكل قرار.</li>
+          <li>طبّق عملية تحديدٍ وتقييمٍ واستجابةٍ ومراقبةٍ واحدة متّسقة، واجمع لكشف التفاعلات الخفية.</li>
+          <li>ادمج ERM في القرارات الحقيقية وبلّغ عنها استشرافيًا بمؤشرات، فتغيّر ما تفعله المنشأة.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.coso.org/guidance-erm" target="_blank" rel="noopener">COSO، إدارة مخاطر المؤسسة، الدمج مع الاستراتيجية والأداء (2017).</a></li>
+          <li><a href="https://www.iso.org/standard/65694.html" target="_blank" rel="noopener">ISO 31000:2018، إدارة المخاطر، الإرشادات.</a></li>
+          <li><a href="https://www.iso.org/standard/80585.html" target="_blank" rel="noopener">ISO/IEC 27005:2022، إرشاد إدارة مخاطر أمن المعلومات.</a></li>
+          <li><a href="https://www.oecd.org/en/publications/g20-oecd-principles-of-corporate-governance-2023_ed750b30-en.html" target="_blank" rel="noopener">مبادئ G20/OECD لحوكمة الشركات، 2023 (إشراف المجلس على المخاطر).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","components","appetite","process","integration","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

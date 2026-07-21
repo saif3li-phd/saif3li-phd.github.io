@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internal Audit &amp; Compliance</title>
+<meta name="description" content="An operational framework for internal audit and compliance: independence, the Three Lines Model, the audit process, and the compliance function.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">FRAMEWORKS &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الأطر &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Internal Audit &amp; Compliance</span><span data-lang="ar">المراجعة الداخلية والامتثال</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="threelines"><span data-lang="en">Three Lines</span><span data-lang="ar">الخطوط الثلاثة</span></a>
+    <a data-id="independence"><span data-lang="en">Independence</span><span data-lang="ar">الاستقلالية</span></a>
+    <a data-id="process"><span data-lang="en">The Process</span><span data-lang="ar">العملية</span></a>
+    <a data-id="compliance"><span data-lang="en">Compliance</span><span data-lang="ar">الامتثال</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Internal audit &amp; compliance</div>
+          <div><span>Scope:</span> Independent assurance that controls and compliance actually work</div>
+          <div><span>Owner role:</span> Chief audit executive, reporting to the audit committee</div>
+          <div><span>Review cadence:</span> Risk-based audit plan yearly, engagements throughout</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Internal audit is the organization's independent check that its controls, risk management, and governance actually work as intended. It exists to give the board and leadership honest, evidence-based assurance about whether the organization is really as well-controlled as management believes, and to advise on how to make it better.</p>
+        <p>The defining quality of internal audit is independence. Its value comes entirely from being able to look at any part of the organization and report what it finds without fear or favor, which is why it reports not to the management it examines but to the board, usually through the audit committee. An audit function that answers to the people it audits cannot be trusted to report their failings, so its independence is not a nicety, it is the entire basis of its usefulness.</p>
+        <p>This framework describes internal audit and the related compliance function as a governed assurance capability, drawing on the Three Lines Model and the professional standards of the Institute of Internal Auditors. It is written to be reusable across sectors and aligns to them without reproducing their text.</p>
+        <div class="note"><strong>Note:</strong> Internal audit does not run controls, it assures them. Confusing the two, letting audit design and operate the controls it later checks, destroys the independence that gives its assurance any value.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> المراجعة الداخلية والامتثال</div>
+          <div><span>النطاق:</span> ضمانٌ مستقلّ بأن الضوابط والامتثال تعمل فعلًا</div>
+          <div><span>دور المالك:</span> الرئيس التنفيذي للمراجعة، يرفع للجنة المراجعة</div>
+          <div><span>دورية المراجعة:</span> خطة مراجعةٍ قائمة على المخاطر سنويًا، ومهامٌ على مدار العام</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">المراجعة الداخلية هي فحص المنشأة المستقلّ بأن ضوابطها وإدارة مخاطرها وحوكمتها تعمل كما قُصِد فعلًا. وُجِدت لتمنح المجلس والقيادة ضمانًا صادقًا قائمًا على الدليل عمّا إن كانت المنشأة مضبوطةً حقًّا كما تظنّ الإدارة، ولتنصح بكيفية تحسينها.</p>
+        <p>السمة المميِّزة للمراجعة الداخلية الاستقلالية. فقيمتها كلها من قدرتها على النظر في أي جزءٍ من المنشأة والتبليغ عمّا تجده بلا خوفٍ ولا محاباة، ولذا ترفع لا للإدارة التي تفحصها بل للمجلس، عادةً عبر لجنة المراجعة. فوظيفة مراجعةٍ تخضع لمن تراجعهم لا يُوثَق بها لتبليغ إخفاقاتهم، فاستقلاليتها ليست ترفًا بل أساس فائدتها كله.</p>
+        <p>يصف هذا الإطار المراجعة الداخلية ووظيفة الامتثال المرتبطة كقدرة ضمانٍ محوكَمة، مستندًا إلى نموذج الخطوط الثلاثة والمعايير المهنية لمعهد المراجعين الداخليين. وهو قابل لإعادة الاستخدام عبر القطاعات ويتوافق معهما دون نسخ نصّهما.</p>
+        <div class="note"><strong>ملاحظة:</strong> المراجعة الداخلية لا تُشغّل الضوابط بل تضمنها. وخلط الاثنين، بترك المراجعة تصمّم وتشغّل الضوابط التي تفحصها لاحقًا، يُدمّر الاستقلالية التي تمنح ضمانها أي قيمة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="threelines">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Three Lines Model</h2>
+        <p class="lead">A recognized way to organize who does what in managing risk and controls is the Three Lines Model. It clarifies the distinct roles that together give an organization confidence its risks are being managed, without those roles blurring into one another.</p>
+        <p>The three lines describe three different relationships to risk. The first line is the operational management that owns and manages risk directly, the people running the business who take and control risk as part of their daily work. The second line is the functions that oversee and support risk management, such as risk and compliance, which set frameworks and monitor the first line. The third line is internal audit, which provides independent assurance on both, reporting to the governing body. Each line has a distinct job, and the model works because they are kept distinct.</p>
+        <table>
+          <tr><th>Line</th><th>Who</th><th>Role</th></tr>
+          <tr><td>First</td><td>Operational management</td><td>Owns and manages risk directly in the business</td></tr>
+          <tr><td>Second</td><td>Risk, compliance, and similar functions</td><td>Oversees, supports, and monitors risk management</td></tr>
+          <tr><td>Third</td><td>Internal audit</td><td>Provides independent assurance to the governing body</td></tr>
+        </table>
+        <p>The critical distinction is between the second and third lines, which are easy to confuse. The second line, such as compliance, is part of management and helps run the control environment, so it is not independent of it. The third line, internal audit, stands apart from management precisely so it can objectively assess whether the first and second lines are actually doing their jobs. Keeping the third line independent of the second is what preserves the value of the assurance it provides.</p>
+        <div class="note"><strong>Note:</strong> The first line owns the risk, always. Neither the second nor the third line can take that ownership away, and an organization where the business assumes risk is someone else's problem has misunderstood the model.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>نموذج الخطوط الثلاثة</h2>
+        <p class="lead">من الطرق المعترف بها لتنظيم من يفعل ماذا في إدارة المخاطر والضوابط نموذج الخطوط الثلاثة. يوضّح الأدوار المتمايزة التي تمنح المنشأة معًا ثقةً بأن مخاطرها تُدار، دون أن تختلط تلك الأدوار ببعضها.</p>
+        <p>تصف الخطوط الثلاثة ثلاث علاقاتٍ مختلفة بالخطر. الخط الأول الإدارة التشغيلية التي تملك الخطر وتديره مباشرةً، من يديرون العمل ويأخذون الخطر ويضبطونه ضمن عملهم اليومي. والخط الثاني الوظائف التي تشرف على إدارة المخاطر وتسندها، كالمخاطر والامتثال، التي تضع الأطر وتراقب الخط الأول. والخط الثالث المراجعة الداخلية، التي تقدّم ضمانًا مستقلًّا عليهما، رافعةً للجهة الحاكمة. ولكل خطٍّ عملٌ متمايز، والنموذج يعمل لأنها تُبقى متمايزة.</p>
+        <table>
+          <tr><th>الخط</th><th>مَن</th><th>الدور</th></tr>
+          <tr><td>الأول</td><td>الإدارة التشغيلية</td><td>تملك الخطر وتديره مباشرةً في العمل</td></tr>
+          <tr><td>الثاني</td><td>المخاطر والامتثال ووظائف مشابهة</td><td>تشرف على إدارة المخاطر وتسندها وتراقبها</td></tr>
+          <tr><td>الثالث</td><td>المراجعة الداخلية</td><td>تقدّم ضمانًا مستقلًّا للجهة الحاكمة</td></tr>
+        </table>
+        <p>التمييز الحاسم بين الخطين الثاني والثالث، وهما سهلا الخلط. فالخط الثاني، كالامتثال، جزءٌ من الإدارة ويساعد في تشغيل بيئة الضبط، فليس مستقلًّا عنها. والخط الثالث، المراجعة الداخلية، يقف منفصلًا عن الإدارة تحديدًا ليقيّم بموضوعيةٍ هل يؤدّي الخطان الأول والثاني عملهما فعلًا. وإبقاء الخط الثالث مستقلًّا عن الثاني هو ما يحفظ قيمة الضمان الذي يقدّمه.</p>
+        <div class="note"><strong>ملاحظة:</strong> الخط الأول يملك الخطر، دائمًا. ولا يستطيع الثاني ولا الثالث انتزاع تلك الملكية، ومنشأةٌ يظنّ فيها العمل أن الخطر مشكلة غيره أساءت فهم النموذج.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="independence">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Independence &amp; Objectivity</h2>
+        <p class="lead">Everything internal audit is worth rests on two related qualities: independence, its organizational freedom to do its work, and objectivity, the impartial mindset with which it does it. Protecting both is the first duty of an audit function.</p>
+        <p>Independence is structural. It comes from where internal audit sits and who it reports to: to be independent, the audit function must report functionally to the board or audit committee rather than to the management it examines, so that management cannot limit its scope, edit its findings, or punish it for uncomfortable conclusions. This reporting line is the single most important safeguard of internal audit, and its weakening is a reliable early sign that assurance is becoming theater.</p>
+        <p>Objectivity is personal and professional. Even a structurally independent function fails if its auditors are not impartial, so auditors must avoid conflicts of interest, such as auditing work they themselves designed or an area they recently ran. This is why a common rule prevents someone from auditing an activity they were responsible for until enough time has passed, because no one can objectively assess their own recent work.</p>
+        <div class="note"><strong>Note:</strong> Independence is about the function, objectivity is about the person. Both are required, because an independent function staffed by conflicted auditors, or objective auditors with no organizational independence, each fails in its own way.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الاستقلالية والموضوعية</h2>
+        <p class="lead">كل ما تستحقه المراجعة الداخلية يقوم على سمتين مترابطتين: الاستقلالية، حرّيتها التنظيمية لأداء عملها، والموضوعية، الذهنية المحايدة التي تؤدّيه بها. وحماية كليهما أول التزامٍ لوظيفة مراجعة.</p>
+        <p>الاستقلالية بنيوية. تأتي من أين تجلس المراجعة ولمن ترفع: فلتكون مستقلّة، يجب أن ترفع وظيفيًا للمجلس أو لجنة المراجعة لا للإدارة التي تفحصها، فلا تستطيع الإدارة تقييد نطاقها أو تحرير ملاحظاتها أو معاقبتها على استنتاجاتٍ مزعجة. وخطّ الرفع هذا أهمّ وقايةٍ مفردة للمراجعة الداخلية، وإضعافه علامةٌ مبكرة موثوقة على أن الضمان يصير مسرحًا.</p>
+        <p>الموضوعية شخصية ومهنية. فحتى وظيفةٌ مستقلّة بنيويًا تفشل إن لم يكن مراجعوها محايدين، فعلى المراجعين تجنّب تعارض المصالح، كمراجعة عملٍ صمّموه هم أو مجالٍ أداروه حديثًا. ولذا تمنع قاعدةٌ شائعة أحدًا من مراجعة نشاطٍ كان مسؤولًا عنه حتى يمرّ وقتٌ كافٍ، لأن لا أحد يقيّم عمله الحديث بموضوعية.</p>
+        <div class="note"><strong>ملاحظة:</strong> الاستقلالية عن الوظيفة، والموضوعية عن الشخص. وكلاهما مطلوب، لأن وظيفةً مستقلّة بمراجعين متعارضين، أو مراجعين موضوعيين بلا استقلاليةٍ تنظيمية، كلٌّ يفشل بطريقته.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="process">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>The Audit Process</h2>
+        <p class="lead">Internal audit does its work through a disciplined process, from deciding what to audit down to confirming that problems were fixed. Following it consistently is what makes audit findings credible rather than arbitrary.</p>
+        <p>The work begins with a risk-based plan. Because an audit function can never examine everything, it directs its limited attention to the areas of highest risk, so that scrutiny goes where a failure would hurt most rather than being spread evenly or driven by habit. From that plan, each individual audit, or engagement, follows its own cycle: planning the scope, gathering and testing evidence in fieldwork, reporting the findings, and following up to confirm they were addressed.</p>
+        <ul>
+          <li><strong>Risk-based plan:</strong> aim the year's audits at the areas of highest risk, not at everything equally.</li>
+          <li><strong>Planning:</strong> define the scope and objectives of each engagement, and how its evidence will be gathered.</li>
+          <li><strong>Fieldwork:</strong> gather and test evidence to reach conclusions supported by fact, not impression.</li>
+          <li><strong>Reporting:</strong> communicate findings ranked by significance, with clear, owned actions to fix them.</li>
+          <li><strong>Follow-up:</strong> confirm that agreed actions were actually completed, because a finding that is not closed changed nothing.</li>
+        </ul>
+        <p>Follow-up is the step most often neglected and most essential. An audit that identifies problems and reports them beautifully but never confirms they were fixed has produced a document, not an improvement. Tracking findings to genuine closure, rather than accepting a promise that they will be addressed, is what turns internal audit from a source of reports into a driver of real change.</p>
+        <div class="note"><strong>Note:</strong> A finding is not resolved when it is reported, it is resolved when it is fixed and confirmed. Rigorous follow-up is what separates an audit function that improves the organization from one that merely describes it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>عملية المراجعة</h2>
+        <p class="lead">تؤدّي المراجعة الداخلية عملها عبر عمليةٍ منضبطة، من قرار ما تُراجِعه نزولًا إلى تأكيد أن المشكلات أُصلِحت. واتّباعها باتساقٍ هو ما يجعل ملاحظات المراجعة موثوقةً لا اعتباطية.</p>
+        <p>يبدأ العمل بخطةٍ قائمة على المخاطر. فلأن وظيفة المراجعة لا تستطيع فحص كل شيءٍ أبدًا، توجّه اهتمامها المحدود لمجالات الخطر الأعلى، فيذهب التدقيق حيث يؤذي الفشل أكثر بدل توزيعه بالتساوي أو دفعه بالعادة. ومن تلك الخطة، تتبع كل مراجعةٍ فردية، أي مهمة، دورتها: تخطيط النطاق، وجمع الأدلة واختبارها في العمل الميداني، وتبليغ الملاحظات، والمتابعة لتأكيد معالجتها.</p>
+        <ul>
+          <li><strong>خطة قائمة على المخاطر:</strong> وجّه مراجعات العام لمجالات الخطر الأعلى، لا لكل شيءٍ بالتساوي.</li>
+          <li><strong>التخطيط:</strong> عرّف نطاق وأهداف كل مهمة، وكيف ستُجمَع أدلّتها.</li>
+          <li><strong>العمل الميداني:</strong> اجمع الأدلة واختبرها لبلوغ استنتاجاتٍ يسندها الواقع لا الانطباع.</li>
+          <li><strong>التبليغ:</strong> بلّغ الملاحظات مرتَّبةً بالأهمية، بإجراءاتٍ واضحة مملوكة لإصلاحها.</li>
+          <li><strong>المتابعة:</strong> أكّد أن الإجراءات المتّفق عليها أُنجِزت فعلًا، لأن ملاحظةً لا تُغلَق لم تغيّر شيئًا.</li>
+        </ul>
+        <p>المتابعة أكثر الخطوات إهمالًا وأشدّها ضرورة. فمراجعةٌ تحدّد المشكلات وتبلّغها ببراعةٍ لكنها لا تؤكّد إصلاحها أنتجت وثيقةً لا تحسينًا. وتتبّع الملاحظات لإغلاقٍ حقيقي، بدل قبول وعدٍ بمعالجتها، هو ما يحوّل المراجعة الداخلية من مصدر تقارير إلى محرّك تغييرٍ حقيقي.</p>
+        <div class="note"><strong>ملاحظة:</strong> الملاحظة لا تُحَلّ حين تُبلَّغ، بل حين تُصلَح وتُؤكَّد. والمتابعة الصارمة هي ما يفصل وظيفة مراجعةٍ تُحسّن المنشأة عن أخرى تصفها فحسب.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="compliance">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>The Compliance Function</h2>
+        <p class="lead">Alongside internal audit sits compliance, a related but distinct function. Where audit independently assures, compliance actively helps the organization meet its obligations, and understanding the difference keeps the assurance model honest.</p>
+        <p>Compliance is a second-line function: it is part of management, working to ensure the organization follows the laws, regulations, and internal policies that bind it. It does this by knowing the obligations, translating them into requirements the business can follow, building controls to meet them, and monitoring adherence. Because compliance is part of the control environment rather than independent of it, it cannot provide the same objective assurance that internal audit does, which is exactly why both are needed.</p>
+        <ul>
+          <li><strong>Know the obligations:</strong> maintain a complete, current view of the laws, regulations, and policies that apply.</li>
+          <li><strong>Translate them:</strong> turn obligations into specific requirements and controls the business can actually follow.</li>
+          <li><strong>Monitor adherence:</strong> check that the organization is meeting its obligations, and surface issues early.</li>
+          <li><strong>Advise and train:</strong> help the business understand and meet its obligations before they become breaches.</li>
+        </ul>
+        <p>The relationship between the two functions is complementary, not redundant. Compliance builds and runs the controls that keep the organization within its obligations, and internal audit independently checks whether those controls are actually effective. When an organization treats them as interchangeable, or lets one absorb the other, it loses either the active management of compliance or the independent assurance of audit, and both losses are dangerous.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> internal audit provides independent, objective assurance that the organization's controls, risk management, and compliance genuinely work, and its value depends entirely on the independence that lets it report the truth.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>وظيفة الامتثال</h2>
+        <p class="lead">بجانب المراجعة الداخلية يجلس الامتثال، وظيفةٌ مرتبطة لكن متمايزة. فحيث تضمن المراجعة باستقلالية، يساعد الامتثال المنشأة بنشاطٍ على الوفاء بالتزاماتها، وفهم الفرق يُبقي نموذج الضمان صادقًا.</p>
+        <p>الامتثال وظيفة خطٍّ ثانٍ: جزءٌ من الإدارة، يعمل لضمان اتّباع المنشأة القوانين والأنظمة والسياسات الداخلية التي تُلزِمها. يفعل ذلك بمعرفة الالتزامات، وترجمتها لمتطلباتٍ يتّبعها العمل، وبناء ضوابط للوفاء بها، ومراقبة الالتزام. ولأن الامتثال جزءٌ من بيئة الضبط لا مستقلٌّ عنها، لا يستطيع تقديم الضمان الموضوعي نفسه الذي تقدّمه المراجعة الداخلية، ولذا يُحتاج كلاهما تحديدًا.</p>
+        <ul>
+          <li><strong>اعرف الالتزامات:</strong> صُن رؤيةً كاملة محدَّثة للقوانين والأنظمة والسياسات المنطبقة.</li>
+          <li><strong>ترجمها:</strong> حوّل الالتزامات لمتطلباتٍ وضوابط محدَّدة يستطيع العمل اتّباعها فعلًا.</li>
+          <li><strong>راقب الالتزام:</strong> تحقّق من وفاء المنشأة بالتزاماتها، وأظهِر المشكلات مبكرًا.</li>
+          <li><strong>انصح ودرّب:</strong> ساعد العمل على فهم التزاماته والوفاء بها قبل أن تصير مخالفات.</li>
+        </ul>
+        <p>العلاقة بين الوظيفتين تكاملية لا مكرَّرة. فالامتثال يبني ويشغّل الضوابط التي تُبقي المنشأة ضمن التزاماتها، والمراجعة الداخلية تفحص باستقلاليةٍ هل تلك الضوابط فعّالة فعلًا. وحين تعاملهما منشأةٌ كمتبادَلين، أو تدع أحدهما يبتلع الآخر، تفقد إمّا الإدارة النشطة للامتثال أو الضمان المستقلّ للمراجعة، وكلا الخسارتين خطر.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> المراجعة الداخلية تقدّم ضمانًا مستقلًّا موضوعيًا بأن ضوابط المنشأة وإدارة مخاطرها وامتثالها تعمل حقًّا، وقيمتها تعتمد كليًا على الاستقلالية التي تتيح لها تبليغ الحقيقة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Internal audit gives the board independent assurance that controls and compliance work, and its whole value rests on its independence.</p>
+        <ul>
+          <li>Keep internal audit independent by reporting to the board, and objective by avoiding conflicts of interest.</li>
+          <li>Use the Three Lines Model, and never let the third line blur into the second it is meant to assure.</li>
+          <li>Work from a risk-based plan, and run each engagement from planning through fieldwork, reporting, and follow-up.</li>
+          <li>Track findings to genuine closure, because a finding is resolved only when it is fixed and confirmed.</li>
+          <li>Distinguish compliance, which manages obligations, from audit, which independently assures them.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.theiia.org/en/standards/2024-standards/" target="_blank" rel="noopener">The IIA, Global Internal Audit Standards (effective 2025 record).</a></li>
+          <li><a href="https://www.theiia.org/globalassets/documents/resources/the-iias-three-lines-model-an-update-of-the-three-lines-of-defense-july-2020/three-lines-model-updated-english.pdf" target="_blank" rel="noopener">The IIA, Three Lines Model (2020).</a></li>
+          <li><a href="https://www.coso.org/guidance-erm" target="_blank" rel="noopener">COSO, Enterprise Risk Management (control environment).</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022, Information security management systems (internal audit).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">المراجعة الداخلية تمنح المجلس ضمانًا مستقلًّا بأن الضوابط والامتثال تعمل، وقيمتها كلها تقوم على استقلاليتها.</p>
+        <ul>
+          <li>أبقِ المراجعة مستقلّة بالرفع للمجلس، وموضوعيةً بتجنّب تعارض المصالح.</li>
+          <li>استخدم نموذج الخطوط الثلاثة، ولا تدع الخط الثالث يختلط بالثاني الذي يُفترَض أن يضمنه.</li>
+          <li>اعمل من خطةٍ قائمة على المخاطر، وأدِر كل مهمةٍ من التخطيط عبر الميدان والتبليغ والمتابعة.</li>
+          <li>تتبّع الملاحظات لإغلاقٍ حقيقي، فالملاحظة تُحَلّ فقط حين تُصلَح وتُؤكَّد.</li>
+          <li>ميّز الامتثال، الذي يدير الالتزامات، عن المراجعة، التي تضمنها باستقلالية.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.theiia.org/en/standards/2024-standards/" target="_blank" rel="noopener">معهد المراجعين الداخليين، المعايير الدولية للمراجعة الداخلية (سجل 2025).</a></li>
+          <li><a href="https://www.theiia.org/globalassets/documents/resources/the-iias-three-lines-model-an-update-of-the-three-lines-of-defense-july-2020/three-lines-model-updated-english.pdf" target="_blank" rel="noopener">معهد المراجعين الداخليين، نموذج الخطوط الثلاثة (2020).</a></li>
+          <li><a href="https://www.coso.org/guidance-erm" target="_blank" rel="noopener">COSO، إدارة مخاطر المؤسسة (بيئة الضبط).</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022، أنظمة إدارة أمن المعلومات (المراجعة الداخلية).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","threelines","independence","process","compliance","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

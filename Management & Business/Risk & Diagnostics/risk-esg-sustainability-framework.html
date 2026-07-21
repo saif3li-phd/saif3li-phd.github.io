@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESG &amp; Sustainability Risk</title>
+<meta name="description" content="An operational framework for ESG risk: the three pillars, materiality, managing physical and transition risk, and standardized disclosure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">FRAMEWORKS &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الأطر &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">ESG &amp; Sustainability Risk</span><span data-lang="ar">مخاطر ESG والاستدامة</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="pillars"><span data-lang="en">The Pillars</span><span data-lang="ar">الركائز</span></a>
+    <a data-id="materiality"><span data-lang="en">Materiality</span><span data-lang="ar">الجوهرية</span></a>
+    <a data-id="risk"><span data-lang="en">ESG Risk</span><span data-lang="ar">مخاطر ESG</span></a>
+    <a data-id="reporting"><span data-lang="en">Reporting</span><span data-lang="ar">الإفصاح</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> ESG &amp; sustainability risk</div>
+          <div><span>Scope:</span> Managing and disclosing environmental, social, and governance risk</div>
+          <div><span>Owner role:</span> Sustainability lead, with board oversight</div>
+          <div><span>Review cadence:</span> Continuous, with a formal disclosure cycle each year</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">ESG stands for environmental, social, and governance, the three dimensions along which an organization's impact on the world, and the world's impact on the organization, are assessed. An ESG risk framework treats these not as a public-relations matter but as a genuine source of risk and value that belongs in the same disciplined management as any other.</p>
+        <p>The reason ESG has moved from optional to essential is that these factors have become financially material. A changing climate creates physical risk to assets and transition risk as markets and rules shift, social factors affect an organization's license to operate and its ability to attract talent and customers, and governance failures destroy value directly. What was once seen as separate from business risk is now understood to be a large and growing part of it, which is why investors and regulators increasingly demand that it be measured and disclosed.</p>
+        <p>This framework treats ESG as risk to be managed and disclosed, drawing on recognized reporting standards from the ISSB and GRI and connecting to the enterprise risk discipline. It is written to be reusable across sectors and aligns to those standards without reproducing their text.</p>
+        <div class="note"><strong>Note:</strong> ESG is not charity, it is risk management with a longer time horizon. The environmental and social factors an organization ignores today are frequently the financial risks that surprise it tomorrow.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> مخاطر ESG والاستدامة</div>
+          <div><span>النطاق:</span> إدارة المخاطر البيئية والاجتماعية والحوكمية والإفصاح عنها</div>
+          <div><span>دور المالك:</span> قائد الاستدامة، بإشراف المجلس</div>
+          <div><span>دورية المراجعة:</span> مستمرة، مع دورة إفصاحٍ رسمية كل عام</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">ESG اختصارٌ للبيئة والمجتمع والحوكمة، الأبعاد الثلاثة التي يُقيَّم عليها أثر المنشأة في العالم وأثر العالم فيها. وإطار مخاطر ESG يعامل هذه لا كشأن علاقاتٍ عامة بل كمصدر خطرٍ وقيمةٍ حقيقي ينتمي لنفس الإدارة المنضبطة كأي غيره.</p>
+        <p>سبب انتقال ESG من اختياري إلى جوهري أن هذه العوامل صارت ماليةً جوهرية. فمناخٌ متغيّر يخلق خطرًا ماديًا على الأصول وخطر تحوّلٍ مع تبدّل الأسواق والقواعد، والعوامل الاجتماعية تؤثّر في رخصة المنشأة للعمل وقدرتها على جذب المواهب والعملاء، وإخفاقات الحوكمة تُدمّر القيمة مباشرةً. وما كان يُرى منفصلًا عن خطر العمل صار يُفهَم جزءًا كبيرًا متناميًا منه، ولذا يطلب المستثمرون والجهات المنظِّمة تزايدًا أن يُقاس ويُفصَح عنه.</p>
+        <p>يعامل هذا الإطار ESG كخطرٍ يُدار ويُفصَح عنه، مستندًا إلى معايير الإفصاح المعترف بها من ISSB وGRI وواصلًا إياه بانضباط مخاطر المؤسسة. وهو قابل لإعادة الاستخدام عبر القطاعات ويتوافق مع تلك المعايير دون نسخ نصّها.</p>
+        <div class="note"><strong>ملاحظة:</strong> ESG ليست إحسانًا بل إدارة مخاطر بأفقٍ زمني أطول. فالعوامل البيئية والاجتماعية التي تتجاهلها المنشأة اليوم كثيرًا ما تكون المخاطر المالية التي تفاجئها غدًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="pillars">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Three Pillars</h2>
+        <p class="lead">ESG is not one thing but three connected dimensions, each capturing a different way an organization interacts with the wider world. Understanding what each covers is the starting point for managing the risk in it.</p>
+        <ul>
+          <li><strong>Environmental:</strong> how the organization affects and is affected by the natural world, including emissions, energy, water, waste, and exposure to climate change and resource scarcity.</li>
+          <li><strong>Social:</strong> how it treats people, including its own workforce, its supply chain, its customers, and the communities it operates in, covering safety, fairness, labor practices, and human rights.</li>
+          <li><strong>Governance:</strong> how it is directed and controlled, including board structure, ethics, transparency, and the accountability that the corporate governance framework describes in full.</li>
+        </ul>
+        <p>The three are connected, and weakness in one often shows up in the others. A governance failure, such as a board that ignores risk, is frequently what allows an environmental or social harm to occur unchecked, and a social failure, such as poor treatment of workers, can become an environmental or a financial one. Treating the three as a single connected system, rather than three separate reporting boxes, is what turns ESG from a compliance exercise into genuine risk management.</p>
+        <p>Governance is the pillar that underpins the other two, which is why it is often listed last but matters first. An organization with strong governance is equipped to identify and act on its environmental and social risks, while one with weak governance will mismanage them however good its intentions, because the capacity to manage any risk well depends on the governance that directs it.</p>
+        <div class="note"><strong>Note:</strong> The G in ESG enables the E and the S. Environmental and social performance rarely rises above the quality of the governance steering it, so a serious ESG program starts by getting governance right.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الركائز الثلاث</h2>
+        <p class="lead">ESG ليست شيئًا واحدًا بل ثلاثة أبعادٍ متصلة، كلٌّ يلتقط طريقةً مختلفة تتفاعل بها المنشأة مع العالم الأوسع. وفهم ما يغطّيه كلٌّ نقطة البداية لإدارة الخطر فيه.</p>
+        <ul>
+          <li><strong>البيئة:</strong> كيف تؤثّر المنشأة في العالم الطبيعي وتتأثّر به، بما فيه الانبعاثات والطاقة والماء والنفايات والتعرّض لتغيّر المناخ وشحّ الموارد.</li>
+          <li><strong>المجتمع:</strong> كيف تعامل الناس، بمن فيهم قواها العاملة وسلسلة إمدادها وعملاؤها والمجتمعات التي تعمل فيها، شاملًا السلامة والإنصاف وممارسات العمل وحقوق الإنسان.</li>
+          <li><strong>الحوكمة:</strong> كيف تُوجَّه وتُضبَط، بما فيه هيكل المجلس والأخلاق والشفافية والمساءلة التي يصفها إطار حوكمة الشركات كاملةً.</li>
+        </ul>
+        <p>الثلاثة متصلة، وضعفٌ في واحدٍ يظهر غالبًا في الأخريين. فإخفاق حوكمةٍ، كمجلسٍ يتجاهل الخطر، كثيرًا ما يسمح لأذىً بيئي أو اجتماعي بالوقوع دون ضبط، وإخفاقٌ اجتماعي، كسوء معاملة العمّال، قد يصير بيئيًا أو ماليًا. ومعاملة الثلاثة كنظامٍ متصل واحد، لا ثلاثة صناديق تقارير منفصلة، هو ما يحوّل ESG من تمرين امتثالٍ إلى إدارة مخاطر حقيقية.</p>
+        <p>الحوكمة الركيزة التي تُسند الأخريين، ولذا تُذكَر آخرًا وتهمّ أولًا. فمنشأةٌ بحوكمةٍ قوية مُهيّأة لتحديد مخاطرها البيئية والاجتماعية والتصرّف حيالها، وأخرى بحوكمةٍ ضعيفة ستُسيء إدارتها مهما حسنت نواياها، لأن القدرة على إدارة أي خطرٍ جيدًا تعتمد على الحوكمة التي توجّهه.</p>
+        <div class="note"><strong>ملاحظة:</strong> الحوكمة (G) تُمكّن البيئة (E) والمجتمع (S). فالأداء البيئي والاجتماعي نادرًا ما يرتفع فوق جودة الحوكمة الموجّهة له، فبرنامج ESG جادّ يبدأ بضبط الحوكمة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="materiality">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Materiality</h2>
+        <p class="lead">An organization cannot manage or report on every possible ESG issue, so the first discipline is deciding which ones actually matter. Materiality is the judgment of which issues are significant enough to warrant management and disclosure.</p>
+        <p>There are two lenses on materiality, and the difference between them shapes what an organization focuses on. Financial materiality asks which ESG issues could affect the organization's own financial performance, the outside-in view favored by investors and reflected in the ISSB standards. Impact materiality asks which of the organization's effects on the world are significant, the inside-out view emphasized by the GRI standards. Double materiality considers both, recognizing that an issue can matter because it affects the organization, because the organization affects it, or both.</p>
+        <ul>
+          <li><strong>Financial materiality:</strong> ESG issues that affect the organization's value, the focus of investor-oriented disclosure.</li>
+          <li><strong>Impact materiality:</strong> the organization's significant effects on the environment and society, the focus of stakeholder-oriented reporting.</li>
+          <li><strong>Double materiality:</strong> considering both directions, because the two are often linked and each drives real obligations.</li>
+        </ul>
+        <p>Getting materiality right is what keeps an ESG program focused and credible. An organization that tries to address every conceivable issue spreads itself too thin and reports a flood of data no one can use, while one that assesses materiality honestly concentrates its effort and its disclosure on the issues that genuinely matter to its business and its stakeholders. The materiality assessment is therefore the foundation the rest of the program rests on.</p>
+        <div class="note"><strong>Note:</strong> Materiality is where ESG becomes strategy. Deciding which few issues truly matter, rather than reporting on all of them, is what separates a meaningful ESG program from an exercise in producing unread reports.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الجوهرية</h2>
+        <p class="lead">لا تستطيع منشأةٌ إدارة كل قضية ESG ممكنة أو التبليغ عنها، فأول انضباطٍ تقرير أيها يهمّ فعلًا. والجوهرية هي الحكم على أي القضايا مهمّةٌ بما يكفي لتستحق الإدارة والإفصاح.</p>
+        <p>ثمّة عدستان على الجوهرية، والفرق بينهما يُشكّل ما تركّز عليه المنشأة. الجوهرية المالية تسأل أي قضايا ESG قد تؤثّر في الأداء المالي للمنشأة نفسها، الرؤية من الخارج للداخل التي يفضّلها المستثمرون وتعكسها معايير ISSB. وجوهرية الأثر تسأل أي آثار المنشأة في العالم مهمّة، الرؤية من الداخل للخارج التي تؤكّدها معايير GRI. والجوهرية المزدوجة تراعي الاثنتين، مُقرّةً أن قضيةً قد تهمّ لأنها تؤثّر في المنشأة، أو لأن المنشأة تؤثّر فيها، أو كليهما.</p>
+        <ul>
+          <li><strong>الجوهرية المالية:</strong> قضايا ESG التي تؤثّر في قيمة المنشأة، تركيز الإفصاح الموجَّه للمستثمر.</li>
+          <li><strong>جوهرية الأثر:</strong> آثار المنشأة المهمّة في البيئة والمجتمع، تركيز التقارير الموجَّهة لأصحاب المصلحة.</li>
+          <li><strong>الجوهرية المزدوجة:</strong> مراعاة الاتجاهين، لأنهما مرتبطان غالبًا ويفرض كلٌّ التزاماتٍ حقيقية.</li>
+        </ul>
+        <p>ضبط الجوهرية هو ما يُبقي برنامج ESG مركَّزًا وموثوقًا. فمنشأةٌ تحاول معالجة كل قضيةٍ متصوَّرة تُشتّت نفسها وتُبلّغ سيلًا من البيانات لا يستطيع أحد استخدامه، وأخرى تقيّم الجوهرية بصدقٍ تركّز جهدها وإفصاحها على القضايا التي تهمّ عملها وأصحاب مصلحتها حقًّا. وتقييم الجوهرية إذًا الأساس الذي يقوم عليه بقية البرنامج.</p>
+        <div class="note"><strong>ملاحظة:</strong> الجوهرية حيث تصير ESG استراتيجية. فتقرير أي القضايا القليلة تهمّ حقًّا، بدل التبليغ عنها كلها، هو ما يفصل برنامجًا ذا معنى عن تمرينٍ في إنتاج تقارير لا تُقرَأ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="risk">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Managing ESG Risk</h2>
+        <p class="lead">Once the material issues are identified, they are managed as risk, using the same enterprise risk discipline applied elsewhere. What is distinctive about ESG risk is its longer time horizon and its two directions of harm.</p>
+        <p>Climate offers the clearest example of how ESG risk splits. Physical risk is the direct harm from environmental change, such as damage to assets from extreme weather or disruption from resource scarcity. Transition risk is the harm from the shift to a lower-carbon economy, such as assets losing value, regulations raising costs, or customer preferences moving away from a product. An organization faces both, and managing them means understanding its exposure to each and treating it as it would any other significant risk, by reducing, avoiding, sharing, or knowingly accepting it.</p>
+        <ul>
+          <li><strong>Physical risk:</strong> direct harm from environmental change, often long-term and location-specific.</li>
+          <li><strong>Transition risk:</strong> harm from the shift in markets, regulation, and technology toward sustainability.</li>
+          <li><strong>Social and governance risk:</strong> harm from failures in labor practices, community relations, ethics, or oversight.</li>
+        </ul>
+        <p>The key to managing ESG risk well is to integrate it into enterprise risk management rather than running it as a separate silo. When ESG risks sit in the same register, judged on the same scale, and reviewed by the same governance forum as every other risk, they get the attention and the resources their materiality warrants. When they are kept apart in a sustainability team, they are easy for leadership to treat as someone else's concern, which is precisely how a material risk becomes an unmanaged one.</p>
+        <div class="note"><strong>Note:</strong> The longer time horizon of ESG risk is what makes it easy to neglect and dangerous to ignore. A risk that will matter greatly in ten years attracts little urgency today, which is exactly why it needs deliberate governance to keep it on the agenda.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>إدارة مخاطر ESG</h2>
+        <p class="lead">متى حُدِّدت القضايا الجوهرية، تُدار كخطرٍ، بنفس انضباط مخاطر المؤسسة المطبَّق في غيرها. والمميِّز لخطر ESG أفقه الزمني الأطول واتجاها أذاه.</p>
+        <p>المناخ يقدّم أوضح مثالٍ لكيفية انقسام خطر ESG. الخطر المادي هو الأذى المباشر من التغيّر البيئي، كتلف الأصول من الطقس المتطرّف أو الاضطراب من شحّ الموارد. وخطر التحوّل هو الأذى من الانتقال لاقتصادٍ أقلّ كربونًا، كفقدان الأصول قيمتها، أو رفع التنظيم الكلف، أو ابتعاد تفضيلات العملاء عن منتج. وتواجه المنشأة كليهما، وإدارتهما تعني فهم تعرّضها لكلٍّ ومعالجته كأي خطرٍ مهمّ آخر، بالتقليل أو التجنّب أو المشاركة أو القبول الواعي.</p>
+        <ul>
+          <li><strong>الخطر المادي:</strong> أذىً مباشر من التغيّر البيئي، غالبًا طويل الأمد ومرتبط بالموقع.</li>
+          <li><strong>خطر التحوّل:</strong> أذىً من تحوّل الأسواق والتنظيم والتقنية نحو الاستدامة.</li>
+          <li><strong>الخطر الاجتماعي والحوكمي:</strong> أذىً من إخفاقات ممارسات العمل أو علاقات المجتمع أو الأخلاق أو الإشراف.</li>
+        </ul>
+        <p>مفتاح إدارة خطر ESG جيدًا دمجه في إدارة مخاطر المؤسسة لا تشغيله كصومعةٍ منفصلة. فحين تجلس مخاطر ESG في السجل نفسه، مُقيَّمةً على المقياس نفسه، مُراجَعةً من منتدى الحوكمة نفسه كأي خطرٍ آخر، تنال الاهتمام والموارد التي تبرّرها جوهريّتها. وحين تُبقى منفصلةً في فريق استدامة، يسهُل على القيادة معاملتها كشأن غيرها، وهو بالضبط كيف يصير خطرٌ جوهري غير مُدار.</p>
+        <div class="note"><strong>ملاحظة:</strong> الأفق الزمني الأطول لخطر ESG هو ما يجعله سهل الإهمال خطير التجاهل. فخطرٌ سيهمّ كثيرًا بعد عشر سنين يجذب إلحاحًا قليلًا اليوم، وهو بالضبط لماذا يحتاج حوكمةً متعمَّدة لإبقائه على الأجندة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="reporting">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Measurement &amp; Disclosure</h2>
+        <p class="lead">ESG is increasingly something an organization must not only manage but disclose, in a standardized, comparable way. Reporting turns internal management into external accountability, and doing it credibly depends on measuring honestly.</p>
+        <p>A set of recognized standards now governs ESG disclosure. The ISSB standards focus on the sustainability risks and opportunities that are financially material to the organization, aimed at investors, while the GRI standards focus on the organization's broader impacts, aimed at all stakeholders. An organization typically decides which standards apply to it, sometimes both, and reports against them, so that its ESG performance can be compared and trusted rather than being a self-serving narrative.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">Material</div><div class="lbl">Issues significant enough to disclose</div></div>
+          <div class="stat"><div class="num">Metrics</div><div class="lbl">Consistent measures over time</div></div>
+          <div class="stat"><div class="num">Assurance</div><div class="lbl">Confidence the numbers are real</div></div>
+        </div>
+        <p>The credibility of ESG reporting rests on the same discipline as any other reporting: consistent measurement, clear definitions, and increasingly independent assurance that the numbers are real. As ESG data becomes material to investors and mandatory under regulation, the loose, promotional sustainability reporting of the past is giving way to rigor comparable to financial reporting, including the expectation that figures be as reliable and auditable as those in the accounts.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> an ESG framework treats environmental, social, and governance factors as material risk, focuses through honest materiality, manages the risk inside enterprise risk management, and discloses it with the rigor of financial reporting.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>القياس والإفصاح</h2>
+        <p class="lead">ESG صارت تزايدًا شيئًا على المنشأة لا إدارته فحسب بل الإفصاح عنه، بطريقةٍ موحَّدة قابلة للمقارنة. والتقارير تحوّل الإدارة الداخلية إلى مساءلةٍ خارجية، وفعلها بموثوقيةٍ يعتمد على القياس الصادق.</p>
+        <p>مجموعة معايير معترف بها تحوكم الآن إفصاح ESG. فمعايير ISSB تركّز على مخاطر الاستدامة وفرصها الجوهرية ماليًا للمنشأة، موجَّهةً للمستثمرين، بينما تركّز معايير GRI على آثار المنشأة الأوسع، موجَّهةً لكل أصحاب المصلحة. وتقرّر المنشأة عادةً أي المعايير تنطبق عليها، أحيانًا كليهما، وتُبلّغ وفقها، فيُقارَن أداؤها في ESG ويُوثَق به بدل أن يكون سرديةً تخدم الذات.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">جوهري</div><div class="lbl">قضايا مهمّة بما يكفي للإفصاح</div></div>
+          <div class="stat"><div class="num">مقاييس</div><div class="lbl">قياساتٌ متّسقة عبر الزمن</div></div>
+          <div class="stat"><div class="num">ضمان</div><div class="lbl">ثقةٌ بأن الأرقام حقيقية</div></div>
+        </div>
+        <p>مصداقية تقارير ESG تقوم على انضباط أي تقاريرٍ أخرى: قياسٌ متّسق، وتعريفاتٌ واضحة، وتزايدًا ضمانٌ مستقلّ بأن الأرقام حقيقية. ومع صيرورة بيانات ESG جوهريةً للمستثمرين وإلزاميةً تنظيميًا، تتراجع تقارير الاستدامة الفضفاضة الترويجية للماضي أمام صرامةٍ تُقارَن بالتقارير المالية، بما فيه توقّع أن تكون الأرقام موثوقةً قابلة للتدقيق كأرقام الحسابات.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> إطار ESG يعامل العوامل البيئية والاجتماعية والحوكمية كخطرٍ جوهري، يركّز عبر جوهريةٍ صادقة، ويدير الخطر داخل إدارة مخاطر المؤسسة، ويُفصِح عنه بصرامة التقارير المالية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">An ESG framework manages environmental, social, and governance factors as material, long-horizon risk, and discloses it with rigor.</p>
+        <ul>
+          <li>Treat ESG as financially material risk with a long time horizon, not as public relations.</li>
+          <li>Manage all three connected pillars, recognizing that governance underpins the environmental and social.</li>
+          <li>Focus through an honest materiality assessment, distinguishing financial from impact materiality.</li>
+          <li>Split and manage physical and transition risk inside enterprise risk management, not a separate silo.</li>
+          <li>Disclose against recognized standards, with the consistency and assurance of financial reporting.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.ifrs.org/news-and-events/news/2023/06/issb-issues-ifrs-s1-ifrs-s2/" target="_blank" rel="noopener">IFRS ISSB, IFRS S1 and IFRS S2 sustainability disclosure standards (2023 record).</a></li>
+          <li><a href="https://www.globalreporting.org/standards/" target="_blank" rel="noopener">GRI, Global Reporting Initiative sustainability standards.</a></li>
+          <li><a href="https://www.iso.org/standard/65694.html" target="_blank" rel="noopener">ISO 31000:2018, Risk management, Guidelines.</a></li>
+          <li><a href="https://www.oecd.org/en/publications/g20-oecd-principles-of-corporate-governance-2023_ed750b30-en.html" target="_blank" rel="noopener">G20/OECD Principles of Corporate Governance, 2023 (sustainability).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">إطار ESG يدير العوامل البيئية والاجتماعية والحوكمية كخطرٍ جوهري طويل الأفق، ويُفصِح عنه بصرامة.</p>
+        <ul>
+          <li>عامِل ESG كخطرٍ مالي جوهري بأفقٍ زمني طويل، لا كعلاقاتٍ عامة.</li>
+          <li>أدِر الركائز الثلاث المتصلة، مُقرًّا أن الحوكمة تُسند البيئي والاجتماعي.</li>
+          <li>ركّز عبر تقييم جوهريةٍ صادق، مميّزًا الجوهرية المالية عن جوهرية الأثر.</li>
+          <li>افصِل وأدِر الخطر المادي وخطر التحوّل داخل إدارة مخاطر المؤسسة، لا صومعةً منفصلة.</li>
+          <li>أفصِح وفق معايير معترف بها، باتساق وضمان التقارير المالية.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.ifrs.org/news-and-events/news/2023/06/issb-issues-ifrs-s1-ifrs-s2/" target="_blank" rel="noopener">IFRS ISSB، معايير الإفصاح IFRS S1 وS2 (سجل 2023).</a></li>
+          <li><a href="https://www.globalreporting.org/standards/" target="_blank" rel="noopener">GRI، معايير المبادرة العالمية للتقارير حول الاستدامة.</a></li>
+          <li><a href="https://www.iso.org/standard/65694.html" target="_blank" rel="noopener">ISO 31000:2018، إدارة المخاطر، الإرشادات.</a></li>
+          <li><a href="https://www.oecd.org/en/publications/g20-oecd-principles-of-corporate-governance-2023_ed750b30-en.html" target="_blank" rel="noopener">مبادئ G20/OECD لحوكمة الشركات، 2023 (الاستدامة).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","pillars","materiality","risk","reporting","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

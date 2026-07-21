@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Negotiation</title>
+<meta name="description" content="An operational framework for negotiation: interests versus positions, options for mutual gain, objective criteria, and knowing your best alternative.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">PM &amp; HR OPERATIONS &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">عمليات المشاريع والموارد &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Negotiation</span><span data-lang="ar">التفاوض</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="interests"><span data-lang="en">Interests</span><span data-lang="ar">المصالح</span></a>
+    <a data-id="batna"><span data-lang="en">BATNA</span><span data-lang="ar">البديل</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Negotiation</div>
+          <div><span>Scope:</span> Reaching agreements that serve your interests without needless conflict</div>
+          <div><span>Owner role:</span> Any negotiator, individually or on a team</div>
+          <div><span>Review cadence:</span> Prepare before, debrief after each negotiation</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Negotiation is the process of reaching an agreement between parties who have both shared and conflicting interests. It happens constantly, in deals, in projects, in daily work, and treating it as a skill to be learned rather than a talent you either have or lack is what separates people who consistently reach good agreements from those who rely on luck or force.</p>
+        <p>The central shift in modern negotiation thinking is from bargaining over positions to focusing on interests. When people negotiate by staking out positions and grinding toward a compromise, they often reach a poor deal or none at all, because positions are rigid and adversarial. When they instead look for the underlying interests behind each position, they frequently find that a solution exists which serves both sides better than either's opening position, turning a contest into a shared problem to be solved.</p>
+        <p>This framework describes negotiation as a learnable discipline based on principled negotiation, from preparing well to focusing on interests to knowing your alternatives. It draws on the recognized negotiation research of the Harvard Negotiation Project and is written to be reusable in any negotiation, without reproducing its text.</p>
+        <div class="note"><strong>Note:</strong> Negotiation is a skill, not a personality trait. The people who consistently reach good agreements are usually the ones who prepared best and focused on interests, not the loudest or the most aggressive.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> التفاوض</div>
+          <div><span>النطاق:</span> بلوغ اتفاقاتٍ تخدم مصالحك بلا صراعٍ لا لزوم له</div>
+          <div><span>دور المالك:</span> أي مفاوِض، فردًا أو ضمن فريق</div>
+          <div><span>دورية المراجعة:</span> تهيّؤ قبل، وتقييم بعد كل تفاوض</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">التفاوض عملية بلوغ اتفاقٍ بين أطرافٍ لهم مصالح مشتركة ومتعارضة معًا. يحدث باستمرار، في الصفقات والمشاريع والعمل اليومي، ومعاملته كمهارةٍ تُتعلَّم لا موهبةٍ تملكها أو تفتقرها هو ما يفصل من يبلغون اتفاقاتٍ جيدة باطّراد عمّن يعتمدون على الحظّ أو القوّة.</p>
+        <p>التحوّل المركزي في فكر التفاوض الحديث من المساومة على المواقف إلى التركيز على المصالح. فحين يفاوض الناس بتثبيت مواقف والطحن نحو تسوية، يبلغون غالبًا صفقةً رديئة أو لا صفقة، لأن المواقف جامدة عدائية. وحين ينظرون بدلًا من ذلك للمصالح الكامنة خلف كل موقف، يجدون كثيرًا أن حلًّا موجودًا يخدم الجانبين أفضل من موقف أيٍّ الافتتاحي، فيحوّلون تنافسًا إلى مشكلةٍ مشتركة تُحلّ.</p>
+        <p>يصف هذا الإطار التفاوض كانضباطٍ قابل للتعلّم مبني على التفاوض المبدئي، من حسن التهيّؤ إلى التركيز على المصالح إلى معرفة بدائلك. ويستند إلى بحث التفاوض المعترف به لمشروع هارفارد للتفاوض ومكتوب ليكون قابلًا لإعادة الاستخدام في أي تفاوض، دون نسخ نصّه.</p>
+        <div class="note"><strong>ملاحظة:</strong> التفاوض مهارةٌ لا سمة شخصية. فمن يبلغون اتفاقاتٍ جيدة باطّراد عادةً هم من تهيّؤوا أفضل وركّزوا على المصالح، لا الأعلى صوتًا أو الأشدّ عدوانية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="interests">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Interests, Not Positions</h2>
+        <p class="lead">The single most important idea in principled negotiation is to focus on interests rather than positions. A position is what someone says they want; an interest is why they want it, and it is at the level of interests that creative agreement becomes possible.</p>
+        <p>The distinction matters because positions often hide interests that could be satisfied in more than one way. Two people arguing over how to split a sum are taking positions, but if one needs cash now and the other cares about the total over time, an arrangement can satisfy both that neither position revealed. The classic illustration is two people fighting over an orange, splitting it in half, when one wanted the juice and the other the peel, and the whole of each would have satisfied both. Asking why, uncovering the interest behind the position, is what reveals these better solutions.</p>
+        <ul>
+          <li><strong>Position:</strong> what a party says they want, often a single, rigid demand.</li>
+          <li><strong>Interest:</strong> the underlying reason they want it, which can often be met in more than one way.</li>
+          <li><strong>Ask why:</strong> uncovering interests behind positions is what opens up creative solutions.</li>
+          <li><strong>Shared and different interests:</strong> parties usually share some interests and differ on others, and both create room for a deal.</li>
+        </ul>
+        <p>From focusing on interests flows the practice of inventing options for mutual gain. Rather than treating a negotiation as dividing a fixed pie, where one side's gain is the other's loss, the parties look for ways to expand the pie by trading on their different interests, giving each side more of what it values most. This turns negotiation from a battle into a joint search for value, and it is why the best negotiators spend their energy generating options rather than defending a position.</p>
+        <div class="note"><strong>Note:</strong> Behind opposed positions often lie compatible interests. The whole art is to ask why each side wants what it demands, because the answer frequently reveals a solution that serves both better than either opening position.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>المصالح لا المواقف</h2>
+        <p class="lead">أهمّ فكرةٍ مفردة في التفاوض المبدئي التركيز على المصالح لا المواقف. فالموقف ما يقول أحدٌ إنه يريده؛ والمصلحة لماذا يريده، وعلى مستوى المصالح يصير الاتفاق الخلّاق ممكنًا.</p>
+        <p>التمييز يهمّ لأن المواقف تُخفي غالبًا مصالح يمكن إرضاؤها بأكثر من طريقة. فشخصان يتجادلان كيف يقسمان مبلغًا يتّخذان مواقف، لكن إن احتاج أحدهما نقدًا الآن واهتمّ الآخر بالإجمالي عبر الزمن، فترتيبٌ يُرضي كليهما لم يكشفه أي موقف. والمثال الكلاسيكي شخصان يتقاتلان على برتقالة، فيقسمانها نصفين، بينما أراد أحدهما العصير والآخر القشر، وكاملُ كلٍّ كان ليُرضي الاثنين. والسؤال «لماذا»، كشف المصلحة خلف الموقف، هو ما يُظهِر هذه الحلول الأفضل.</p>
+        <ul>
+          <li><strong>الموقف:</strong> ما يقول طرفٌ إنه يريده، غالبًا مطلبٌ واحد جامد.</li>
+          <li><strong>المصلحة:</strong> السبب الكامن لإرادته، وغالبًا يمكن تلبيته بأكثر من طريقة.</li>
+          <li><strong>اسأل لماذا:</strong> كشف المصالح خلف المواقف هو ما يفتح الحلول الخلّاقة.</li>
+          <li><strong>مصالح مشتركة ومختلفة:</strong> الأطراف يشتركون في بعض المصالح ويختلفون في أخرى، وكلاهما يخلق مجالًا للصفقة.</li>
+        </ul>
+        <p>من التركيز على المصالح تتدفّق ممارسة ابتكار خياراتٍ للكسب المتبادل. فبدل معاملة التفاوض كتقسيم فطيرةٍ ثابتة، حيث كسب جانبٍ خسارة الآخر، ينظر الأطراف لطرقٍ لتوسيع الفطيرة بالمقايضة على مصالحهم المختلفة، مانحين كل جانبٍ أكثر مما يقدّره. وهذا يحوّل التفاوض من معركةٍ إلى بحثٍ مشترك عن القيمة، ولذا يقضي أفضل المفاوِضين طاقتهم في توليد الخيارات لا الدفاع عن موقف.</p>
+        <div class="note"><strong>ملاحظة:</strong> خلف المواقف المتعارضة تكمن غالبًا مصالح متوافقة. والفنّ كله سؤال لماذا يريد كل جانبٍ ما يطلبه، لأن الجواب كثيرًا يكشف حلًّا يخدم الاثنين أفضل من موقف أيٍّ افتتاحي.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="batna">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Know Your Alternative</h2>
+        <p class="lead">The most powerful concept in negotiation is knowing your best alternative to a negotiated agreement, sometimes called your BATNA. It is what you will do if this negotiation fails, and it is the true measure against which any proposed deal should be judged.</p>
+        <p>Your alternative is your source of power in a negotiation. If you have a strong alternative, a good option that does not depend on this deal, you can walk away from a bad offer, which frees you to hold out for a good one. If you have no alternative, you are dependent on reaching agreement, and that weakness shows. The discipline is to know your alternative clearly before you negotiate, and to work on improving it, because the better your alternative, the stronger your position, regardless of how the conversation goes.</p>
+        <ul>
+          <li><strong>Know it in advance:</strong> understand clearly what you will do if no agreement is reached, before you negotiate.</li>
+          <li><strong>It is your walk-away point:</strong> accept a deal only if it is better than your alternative, and reject it if it is worse.</li>
+          <li><strong>Improve it:</strong> a stronger alternative gives you more power, so develop it where you can.</li>
+          <li><strong>Consider theirs:</strong> understanding the other side's alternative tells you how much they need the deal.</li>
+        </ul>
+        <p>Knowing your alternative protects you from two opposite mistakes: accepting a deal worse than what you could get elsewhere, and rejecting a deal better than your real options out of stubbornness. Judged against a clear alternative, the decision becomes simple, take any agreement better than your alternative, and walk away from any that is worse. This turns the pressure and emotion of negotiation into a clear-headed comparison, which is why the negotiator who best knows their alternative is usually the calmest and the most effective in the room.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> negotiation is a learnable skill built on preparation, focusing on interests rather than positions, inventing options for mutual gain, using objective criteria, and above all knowing the alternative that gives you the power to walk away.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>اعرف بديلك</h2>
+        <p class="lead">أقوى مفهومٍ في التفاوض معرفة بديلك الأفضل لاتفاقٍ متفاوَض عليه، يُسمّى أحيانًا BATNA. وهو ما ستفعله إن فشل هذا التفاوض، وهو المقياس الحقيقي الذي يُحكَم عليه أي صفقةٍ مقترَحة.</p>
+        <p>بديلك مصدر قوّتك في تفاوض. فإن كان لك بديلٌ قوي، خيارٌ جيد لا يعتمد على هذه الصفقة، تستطيع الانسحاب من عرضٍ سيّئ، ما يحرّرك للصمود لأجل جيد. وإن لم يكن لك بديل، فأنت معتمدٌ على بلوغ الاتفاق، وذلك الضعف يظهر. والانضباط معرفة بديلك بوضوحٍ قبل أن تفاوض، والعمل على تحسينه، لأن كلما قوي بديلك قوي موقفك، بغضّ النظر عن سير الحديث.</p>
+        <ul>
+          <li><strong>اعرفه مسبقًا:</strong> افهم بوضوحٍ ما ستفعله إن لم يُبلَغ اتفاق، قبل أن تفاوض.</li>
+          <li><strong>هو نقطة انسحابك:</strong> اقبل صفقةً فقط إن كانت أفضل من بديلك، وارفضها إن كانت أسوأ.</li>
+          <li><strong>حسّنه:</strong> بديلٌ أقوى يمنحك قوّةً أكثر، فطوّره حيث تستطيع.</li>
+          <li><strong>اعتبر بديلهم:</strong> فهم بديل الجانب الآخر يخبرك كم يحتاجون الصفقة.</li>
+        </ul>
+        <p>معرفة بديلك تحميك من خطأين متعاكسين: قبول صفقةٍ أسوأ مما يمكنك الحصول عليه في مكانٍ آخر، ورفض صفقةٍ أفضل من خياراتك الحقيقية عنادًا. فمقيسًا ضد بديلٍ واضح، يصير القرار بسيطًا، اقبل أي اتفاقٍ أفضل من بديلك، وانسحب من أي أسوأ. وهذا يحوّل ضغط التفاوض وانفعاله إلى مقارنةٍ صافية الذهن، ولذا المفاوِض الأعرف ببديله عادةً الأهدأ والأكثر فاعليةً في الغرفة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> التفاوض مهارةٌ تُتعلَّم مبنيّة على التهيّؤ، والتركيز على المصالح لا المواقف، وابتكار خياراتٍ للكسب المتبادل، واستخدام معايير موضوعية، والأهمّ معرفة البديل الذي يمنحك قوّة الانسحاب.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Negotiation is a learnable skill of reaching good agreements through preparation, interests, options, criteria, and a strong alternative.</p>
+        <ul>
+          <li>Treat negotiation as a skill, and prepare thoroughly rather than relying on instinct or force.</li>
+          <li>Separate the people from the problem, attacking the issue without attacking the person.</li>
+          <li>Focus on interests, not positions, and invent options for mutual gain by trading on different interests.</li>
+          <li>Use objective criteria, so the agreement rests on fair standards rather than raw willpower.</li>
+          <li>Know your best alternative, because it is your source of power and your true measure of any deal.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.pon.harvard.edu/daily/negotiation-skills-daily/principled-negotiation-focus-interests-create-value/" target="_blank" rel="noopener">Harvard Program on Negotiation, principled negotiation.</a></li>
+          <li><a href="https://www.pon.harvard.edu/tag/batna/" target="_blank" rel="noopener">Harvard Program on Negotiation, BATNA.</a></li>
+          <li><a href="https://www.pmi.org/standards/pmbok" target="_blank" rel="noopener">PMI, PMBOK Guide (stakeholder and conflict management).</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">Harvard Business School Online, negotiation and strategy tools.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">التفاوض مهارةٌ تُتعلَّم لبلوغ اتفاقاتٍ جيدة عبر التهيّؤ والمصالح والخيارات والمعايير وبديلٍ قوي.</p>
+        <ul>
+          <li>عامِل التفاوض كمهارة، وتهيّأ جيدًا بدل الاعتماد على الغريزة أو القوّة.</li>
+          <li>افصل الناس عن المشكلة، بمهاجمة القضية دون مهاجمة الشخص.</li>
+          <li>ركّز على المصالح لا المواقف، وابتكر خياراتٍ للكسب المتبادل بالمقايضة على المصالح المختلفة.</li>
+          <li>استخدم معايير موضوعية، فيقوم الاتفاق على معاييرَ عادلة لا إرادةٍ خام.</li>
+          <li>اعرف بديلك الأفضل، فهو مصدر قوّتك ومقياسك الحقيقي لأي صفقة.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.pon.harvard.edu/daily/negotiation-skills-daily/principled-negotiation-focus-interests-create-value/" target="_blank" rel="noopener">برنامج هارفارد للتفاوض، التفاوض المبدئي.</a></li>
+          <li><a href="https://www.pon.harvard.edu/tag/batna/" target="_blank" rel="noopener">برنامج هارفارد للتفاوض، البديل الأفضل BATNA.</a></li>
+          <li><a href="https://www.pmi.org/standards/pmbok" target="_blank" rel="noopener">PMI، دليل PMBOK (إدارة أصحاب المصلحة والنزاع).</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">هارفارد أونلاين، أدوات التفاوض والاستراتيجية.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","interests","batna","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Development</title>
+<meta name="description" content="An original framework for business development: finding growth that is attractive and winnable, and capturing it through mutual partnerships.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">STRATEGY &amp; CONSULTING &middot; FRAMEWORK</span><span data-lang="ar">الاستراتيجية والاستشارات &middot; إطار</span></div>
+    <h1><span data-lang="en">Business Development</span><span data-lang="ar">تطوير الأعمال</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="opportunity"><span data-lang="en">Opportunity</span><span data-lang="ar">الفرصة</span></a>
+    <a data-id="partnerships"><span data-lang="en">Partnerships</span><span data-lang="ar">الشراكات</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Business development</div>
+          <div><span>Scope:</span> Creating long-term growth through partnerships and new markets</div>
+          <div><span>Owner role:</span> Business development and commercial leadership</div>
+          <div><span>Review cadence:</span> Quarterly pipeline review, annual strategy</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Business development is the work of creating long-term value and growth for an organization by finding and building new opportunities: new markets, new customers, new partnerships, and new ways to deliver value. It is broader than sales, which closes deals within an existing model, because business development is about expanding what the organization can sell, to whom, and how, in ways that open growth beyond the current path.</p>
+        <p>Business development matters because no market or model lasts forever. Existing products mature, markets saturate, and competitors catch up, so an organization that only harvests its current business is slowly declining even when today's numbers look healthy. Business development is the engine that keeps a pipeline of future growth alive, identifying where the next value will come from and building the relationships and capabilities to capture it before the current engine runs out.</p>
+        <p>This framework describes business development as a disciplined growth practice, from spotting opportunities, through building partnerships, to converting them into durable value. It is my own synthesis, written in my own words and grounded in recognized commercial practice, designed to be reusable across organizations.</p>
+        <div class="note"><strong>Note:</strong> Sales captures value from the business you already have; business development builds the business you will have next. An organization that only sells is living on its past.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> تطوير الأعمال</div>
+          <div><span>النطاق:</span> خلق نموٍّ طويل الأمد عبر الشراكات والأسواق الجديدة</div>
+          <div><span>دور المالك:</span> تطوير الأعمال والقيادة التجارية</div>
+          <div><span>دورية المراجعة:</span> مراجعة خطّ ربعية، واستراتيجية سنوية</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">تطوير الأعمال عمل خلق قيمةٍ ونموٍّ طويلَي الأمد للمنشأة بإيجاد وبناء فرصٍ جديدة: أسواق جديدة، عملاء جدد، شراكات جديدة، وطرق جديدة لتسليم القيمة. وهو أوسع من المبيعات التي تُغلِق صفقاتٍ ضمن نموذجٍ قائم، لأن تطوير الأعمال عن توسيع ما تستطيع المنشأة بيعه، ولمن، وكيف، بطرقٍ تفتح نموًّا وراء المسار الحالي.</p>
+        <p>يهمّ تطوير الأعمال لأن لا سوق ولا نموذج يدوم للأبد. فالمنتجات القائمة تنضج، والأسواق تتشبّع، والمنافسون يلحقون، فمنشأةٌ تحصد عملها الحالي فقط تتراجع ببطءٍ حتى حين تبدو أرقام اليوم صحّية. وتطوير الأعمال المحرّك الذي يُبقي خطّ نموٍّ مستقبلي حيًّا، محدِّدًا من أين ستأتي القيمة التالية وبانيًا العلاقات والقدرات لالتقاطها قبل أن ينفد المحرّك الحالي.</p>
+        <p>يصف هذا الإطار تطوير الأعمال كممارسة نموٍّ منضبطة، من رصد الفرص، عبر بناء الشراكات، إلى تحويلها لقيمةٍ دائمة. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في ممارسةٍ تجارية معترف بها، مصمَّمٌ ليكون قابلًا لإعادة الاستخدام عبر المنشآت.</p>
+        <div class="note"><strong>ملاحظة:</strong> المبيعات تلتقط قيمةً من العمل الذي تملكه أصلًا؛ وتطوير الأعمال يبني العمل الذي ستملكه تاليًا. ومنشأةٌ تبيع فقط تعيش على ماضيها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="opportunity">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Finding Growth Opportunities</h2>
+        <p class="lead">Business development begins with identifying where future growth could come from. Growth is not one thing; it comes in several distinct forms, and knowing them helps an organization search deliberately rather than waiting for opportunity to appear.</p>
+        <p>A useful way to see the options is by combining what you sell with whom you sell it to. You can sell more of existing offerings to existing markets, deepening penetration. You can take existing offerings into new markets, whether new geographies, segments, or channels. You can develop new offerings for existing customers, using the trust you already have. Or you can pursue genuinely new offerings for new markets, the boldest and riskiest path. Each route carries a different balance of opportunity and risk, and a healthy growth agenda usually blends several rather than betting everything on one.</p>
+        <table>
+          <tr><th><span data-lang="en">Direction</span><span data-lang="ar">الاتجاه</span></th><th><span data-lang="en">Move</span><span data-lang="ar">الحركة</span></th><th><span data-lang="en">Risk</span><span data-lang="ar">الخطر</span></th></tr>
+          <tr><td><span data-lang="en">Penetrate</span><span data-lang="ar">التغلغل</span></td><td><span data-lang="en">more of current offerings to current markets</span><span data-lang="ar">أكثر من العروض الحالية لأسواق حالية</span></td><td><span data-lang="en">low</span><span data-lang="ar">منخفض</span></td></tr>
+          <tr><td><span data-lang="en">New markets</span><span data-lang="ar">أسواق جديدة</span></td><td><span data-lang="en">current offerings to new segments or geographies</span><span data-lang="ar">عروض حالية لشرائح أو جغرافيات جديدة</span></td><td><span data-lang="en">medium</span><span data-lang="ar">متوسط</span></td></tr>
+          <tr><td><span data-lang="en">New offerings</span><span data-lang="ar">عروض جديدة</span></td><td><span data-lang="en">new products for existing customers</span><span data-lang="ar">منتجات جديدة لعملاء حاليين</span></td><td><span data-lang="en">medium</span><span data-lang="ar">متوسط</span></td></tr>
+          <tr><td><span data-lang="en">Diversify</span><span data-lang="ar">التنويع</span></td><td><span data-lang="en">new offerings for new markets</span><span data-lang="ar">عروض جديدة لأسواق جديدة</span></td><td><span data-lang="en">high</span><span data-lang="ar">مرتفع</span></td></tr>
+        </table>
+        <p>Spotting real opportunities requires looking outward with genuine curiosity: understanding unmet customer needs, watching how markets and technologies are shifting, and noticing where the organization's strengths could create value it is not yet capturing. The discipline is to evaluate opportunities honestly against two questions, is this attractive, and can we win here, rather than chasing every interesting idea. A pipeline of well-qualified opportunities, filtered for both attractiveness and fit, is the raw material from which durable growth is built.</p>
+        <div class="note"><strong>Note:</strong> Not every opportunity is your opportunity. The disciplined question is not only whether a market is attractive, but whether your organization has a real reason to win in it. Growth chased without fit is usually growth that loses money.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>إيجاد فرص النمو</h2>
+        <p class="lead">يبدأ تطوير الأعمال بتحديد من أين قد يأتي النموّ المستقبلي. والنموّ ليس شيئًا واحدًا؛ يأتي بأشكالٍ متمايزة عدّة، ومعرفتها تساعد المنشأة على البحث عمدًا بدل انتظار ظهور الفرصة.</p>
+        <p>طريقةٌ نافعة لرؤية الخيارات بدمج ما تبيعه مع من تبيعه له. تستطيع بيع أكثر من العروض الحالية لأسواقٍ حالية، معمّقًا التغلغل. وتستطيع أخذ العروض الحالية لأسواقٍ جديدة، جغرافياتٍ أو شرائح أو قنوات جديدة. وتستطيع تطوير عروضٍ جديدة لعملاء حاليين، مستخدمًا الثقة التي تملكها. أو تلاحق عروضًا جديدة فعلًا لأسواقٍ جديدة، أجرأ المسارات وأخطرها. وكل مسارٍ يحمل توازنًا مختلفًا من الفرصة والخطر، وأجندة نموٍّ صحّية عادةً تمزج عدّة بدل المراهنة بكل شيءٍ على واحد.</p>
+        <table>
+          <tr><th><span data-lang="en">الاتجاه</span><span data-lang="ar">الاتجاه</span></th><th><span data-lang="en">الحركة</span><span data-lang="ar">الحركة</span></th><th><span data-lang="en">الخطر</span><span data-lang="ar">الخطر</span></th></tr>
+          <tr><td><span data-lang="en">التغلغل</span><span data-lang="ar">التغلغل</span></td><td><span data-lang="en">أكثر من العروض الحالية لأسواق حالية</span><span data-lang="ar">أكثر من العروض الحالية لأسواق حالية</span></td><td><span data-lang="en">منخفض</span><span data-lang="ar">منخفض</span></td></tr>
+          <tr><td><span data-lang="en">أسواق جديدة</span><span data-lang="ar">أسواق جديدة</span></td><td><span data-lang="en">عروض حالية لشرائح أو جغرافيات جديدة</span><span data-lang="ar">عروض حالية لشرائح أو جغرافيات جديدة</span></td><td><span data-lang="en">متوسط</span><span data-lang="ar">متوسط</span></td></tr>
+          <tr><td><span data-lang="en">عروض جديدة</span><span data-lang="ar">عروض جديدة</span></td><td><span data-lang="en">منتجات جديدة لعملاء حاليين</span><span data-lang="ar">منتجات جديدة لعملاء حاليين</span></td><td><span data-lang="en">متوسط</span><span data-lang="ar">متوسط</span></td></tr>
+          <tr><td><span data-lang="en">التنويع</span><span data-lang="ar">التنويع</span></td><td><span data-lang="en">عروض جديدة لأسواق جديدة</span><span data-lang="ar">عروض جديدة لأسواق جديدة</span></td><td><span data-lang="en">مرتفع</span><span data-lang="ar">مرتفع</span></td></tr>
+        </table>
+        <p>رصد الفرص الحقيقية يتطلّب النظر خارجًا بفضولٍ صادق: فهم حاجات العملاء غير الملبّاة، ومراقبة كيف تتحوّل الأسواق والتقنيات، وملاحظة أين تستطيع قوى المنشأة خلق قيمةٍ لا تلتقطها بعد. والانضباط تقييم الفرص بأمانةٍ ضدّ سؤالين، هل هذه جذّابة، وهل نستطيع الفوز هنا، بدل مطاردة كل فكرةٍ مثيرة. وخطٌّ من فرصٍ مؤهَّلة جيدًا، مُرشَّحة للجاذبية والملاءمة معًا، المادة الخام التي يُبنى منها النموّ الدائم.</p>
+        <div class="note"><strong>ملاحظة:</strong> ليست كل فرصةٍ فرصتك. فالسؤال المنضبط ليس فقط هل السوق جذّاب، بل هل لمنشأتك سببٌ حقيقي للفوز فيه. والنموّ المُطارَد بلا ملاءمةٍ عادةً نموٌّ يخسر مالًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="partnerships">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Partnerships &amp; Relationships</h2>
+        <p class="lead">Much of business development happens through relationships and partnerships, because an organization rarely has everything it needs to capture a new opportunity alone. Partnering lets it combine strengths with others to reach further and faster than it could by itself.</p>
+        <p>Partnerships take many forms: alliances that combine complementary capabilities, channel relationships that extend reach, joint ventures that share risk in a new market, and supplier or customer relationships deepened into genuine collaboration. The logic is the same across them: each party brings something the other lacks, and together they create value neither could alone. A distribution partner brings market access a producer lacks; a technology partner brings a capability a brand-owner lacks. Done well, partnering is a way to grow without having to build every capability from scratch.</p>
+        <p>The key to lasting partnerships is that they must work for both sides. A relationship in which one party extracts value at the other's expense is unstable and short-lived, so durable business development builds partnerships on genuine mutual benefit, clear about what each side gives and gets, and grounded in trust built over time. This is why business development is, at its core, a relationship discipline: opportunities are found and captured through people, and the reputation an organization earns as a partner, fair, reliable, valuable to work with, becomes an asset that opens doors competitors cannot. The long game of trusted relationships usually beats the short game of one-sided deals.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> business development builds long-term growth by finding opportunities that are both attractive and winnable, and capturing them through partnerships and relationships built on genuine mutual benefit and trust, so the organization keeps opening new sources of value before its current ones run dry.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الشراكات والعلاقات</h2>
+        <p class="lead">كثيرٌ من تطوير الأعمال يحدث عبر العلاقات والشراكات، لأن المنشأة نادرًا ما تملك كل ما تحتاجه لالتقاط فرصةٍ جديدة وحدها. والشراكة تتيح لها دمج القوى مع غيرها لتصل أبعد وأسرع مما تستطيع بنفسها.</p>
+        <p>تأخذ الشراكات أشكالًا كثيرة: تحالفاتٌ تدمج قدراتٍ مكمّلة، وعلاقات قنواتٍ تمدّ الوصول، ومشاريع مشتركة تتقاسم الخطر في سوقٍ جديدة، وعلاقات مورّدين أو عملاء معمَّقة لتعاونٍ حقيقي. والمنطق ذاته عبرها: كل طرفٍ يجلب شيئًا يفتقده الآخر، ومعًا يخلقان قيمةً لا يستطيعها أيٌّ وحده. فشريك توزيعٍ يجلب وصولًا للسوق يفتقده منتج؛ وشريك تقنيةٍ يجلب قدرةً يفتقدها مالك علامة. ومفعولةً جيدًا، الشراكة طريقةٌ للنموّ دون بناء كل قدرةٍ من الصفر.</p>
+        <p>مفتاح الشراكات الدائمة أنها يجب أن تعمل للطرفين. فعلاقةٌ يستخرج فيها طرفٌ قيمةً على حساب الآخر غير مستقرّة وقصيرة العمر، فتطوير الأعمال الدائم يبني الشراكات على منفعةٍ متبادلة حقيقية، واضحًا عمّا يمنحه كل طرفٍ ويأخذه، ومؤصَّلًا في ثقةٍ تُبنى بالزمن. ولهذا تطوير الأعمال، في جوهره، انضباط علاقات: فالفرص تُوجَد وتُلتقَط عبر الناس، والسمعة التي تكسبها المنشأة كشريك، عادلٌ وموثوق وقيّم للعمل معه، تصير أصلًا يفتح أبوابًا لا يفتحها المنافسون. واللعبة الطويلة للعلاقات الموثوقة تغلب عادةً اللعبة القصيرة للصفقات أحادية الجانب.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> تطوير الأعمال يبني نموًّا طويل الأمد بإيجاد فرصٍ جذّابة وقابلة للفوز معًا، والتقاطها عبر شراكاتٍ وعلاقات مبنيّة على منفعةٍ متبادلة حقيقية وثقة، فتواصل المنشأة فتح مصادر قيمةٍ جديدة قبل أن تجفّ الحالية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Business development keeps a pipeline of future growth alive through opportunities and partnerships.</p>
+        <ul>
+          <li>Treat business development as building future growth, distinct from selling the current business.</li>
+          <li>Search deliberately across growth directions: penetration, new markets, new offerings, diversification.</li>
+          <li>Qualify opportunities by both attractiveness and fit, not by how interesting they sound.</li>
+          <li>Capture opportunities through partnerships that combine complementary strengths.</li>
+          <li>Build partnerships on genuine mutual benefit and trust, since one-sided deals do not last.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2011/07/the-new-ma-playbook" target="_blank" rel="noopener">HBR, on growth, alliances, and deals.</a></li>
+          <li><a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights" target="_blank" rel="noopener">McKinsey, on growth strategy.</a></li>
+          <li><a href="https://hbr.org/2004/07/mastering-the-management-system" target="_blank" rel="noopener">HBR, on aligning growth with execution.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">تطوير الأعمال يُبقي خطّ نموٍّ مستقبلي حيًّا عبر الفرص والشراكات.</p>
+        <ul>
+          <li>عامِل تطوير الأعمال كبناء نموٍّ مستقبلي، متمايزًا عن بيع العمل الحالي.</li>
+          <li>ابحث عمدًا عبر اتجاهات النموّ: التغلغل، الأسواق الجديدة، العروض الجديدة، التنويع.</li>
+          <li>أهّل الفرص بالجاذبية والملاءمة معًا، لا بكم تبدو مثيرة.</li>
+          <li>التقط الفرص عبر شراكاتٍ تدمج قوىً مكمّلة.</li>
+          <li>ابنِ الشراكات على منفعةٍ متبادلة حقيقية وثقة، إذ الصفقات أحادية الجانب لا تدوم.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2011/07/the-new-ma-playbook" target="_blank" rel="noopener">HBR، عن النموّ والتحالفات والصفقات.</a></li>
+          <li><a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights" target="_blank" rel="noopener">ماكنزي، عن استراتيجية النموّ.</a></li>
+          <li><a href="https://hbr.org/2004/07/mastering-the-management-system" target="_blank" rel="noopener">HBR، عن مواءمة النموّ مع التنفيذ.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","opportunity","partnerships","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

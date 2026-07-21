@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud-Native Platforms &amp; Kubernetes</title>
+<meta name="description" content="An operational framework for cloud-native platforms: containers, Kubernetes orchestration, cluster networking, reliability, security, and observability.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">INFORMATION TECHNOLOGY &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">تقنية المعلومات &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Cloud-Native Platforms &amp; Kubernetes</span><span data-lang="ar">المنصّات السحابية الأصيلة وKubernetes</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="containers"><span data-lang="en">Containers</span><span data-lang="ar">الحاويات</span></a>
+    <a data-id="orchestration"><span data-lang="en">Orchestration</span><span data-lang="ar">التنسيق</span></a>
+    <a data-id="networking"><span data-lang="en">Networking</span><span data-lang="ar">الشبكات</span></a>
+    <a data-id="reliability"><span data-lang="en">Reliability</span><span data-lang="ar">الموثوقية</span></a>
+    <a data-id="security"><span data-lang="en">Platform Security</span><span data-lang="ar">أمن المنصّة</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Cloud-native platforms &amp; operations</div>
+          <div><span>Scope:</span> Running containerized applications reliably and securely at scale</div>
+          <div><span>Owner role:</span> Platform engineering lead, with service owners</div>
+          <div><span>Review cadence:</span> Continuous operation, platform review each quarter</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Cloud-native is a way of building and running software that treats the underlying infrastructure as a fluid, automated resource rather than fixed machines. Applications are packaged into containers, run across a cluster of computers, and managed by a system that keeps them healthy automatically, so the platform absorbs failure and scale rather than a person handling each incident by hand.</p>
+        <p>The shift matters because it changes what operations means. In the old model, a service ran on a specific server that a person set up, patched, and rescued when it failed, so scale and reliability were manual and slow. In the cloud-native model, a service is described declaratively, the platform runs as many copies as needed across whatever machines are available, and it restarts, reschedules, and heals them without intervention. Operations moves from tending individual servers to governing an automated system.</p>
+        <p>This framework describes the operational essentials of a cloud-native platform, centered on Kubernetes as the de facto orchestration standard, and it borrows the least-privilege and monitoring discipline of the security frameworks. It aligns to the guidance of the cloud-native community without reproducing any source text, and is written to be reusable across environments.</p>
+        <div class="note"><strong>Note:</strong> Cloud-native trades the simplicity of a single server for the resilience and scale of an automated platform. That trade is worth it at scale, but the automation is only as safe as the way it is configured and governed.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> المنصّات السحابية الأصيلة وتشغيلها</div>
+          <div><span>النطاق:</span> تشغيل التطبيقات الحاوية بموثوقيةٍ وأمانٍ على نطاق</div>
+          <div><span>دور المالك:</span> قائد هندسة المنصّة، مع ملّاك الخدمات</div>
+          <div><span>دورية المراجعة:</span> تشغيلٌ مستمر، ومراجعة منصّةٍ كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">السحابي الأصيل طريقةٌ لبناء البرمجيات وتشغيلها تعامل البنية التحتية كموردٍ سائلٍ مُؤتمَت لا كآلاتٍ ثابتة. فتُحزَم التطبيقات في حاويات، وتعمل عبر عنقودٍ من الحواسيب، ويديرها نظامٌ يُبقيها سليمةً تلقائيًا، فتمتصّ المنصّةُ الفشلَ والنطاق بدل أن يعالج شخصٌ كل حادثةٍ يدويًا.</p>
+        <p>التحوّل يهمّ لأنه يغيّر معنى التشغيل. ففي النموذج القديم، تعمل خدمةٌ على خادمٍ بعينه يُعِدّه شخصٌ ويُرقّعه ويُنقذه حين يفشل، فكان النطاق والموثوقية يدويين بطيئين. وفي النموذج السحابي الأصيل، تُوصَف الخدمة تعريفيًا، وتُشغّل المنصّة ما يلزم من نُسخٍ عبر أي آلاتٍ متاحة، وتُعيد تشغيلها وجدولتها وشفاءها دون تدخّل. فينتقل التشغيل من رعاية خوادم مفردة إلى حوكمة نظامٍ مُؤتمَت.</p>
+        <p>يصف هذا الإطار أساسيات تشغيل منصّةٍ سحابية أصيلة، مُتمركزًا حول Kubernetes كمعيار التنسيق الفعلي، ويستعير انضباط أقلّ الصلاحية والمراقبة من أطر الأمن. ويتوافق مع إرشاد مجتمع السحابي الأصيل دون نسخ أي نصّ مصدري، ومكتوب ليكون قابلًا لإعادة الاستخدام عبر البيئات.</p>
+        <div class="note"><strong>ملاحظة:</strong> السحابي الأصيل يقايض بساطة الخادم الواحد بمرونة ونطاق منصّةٍ مُؤتمَتة. تلك المقايضة تستحق على نطاق، لكن الأتمتة آمنةٌ بقدر كيفية إعدادها وحوكمتها فقط.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="containers">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Containers</h2>
+        <p class="lead">The building block of cloud-native is the container: a package that bundles an application with everything it needs to run, so it behaves the same way wherever it is placed. Containers are the unit the whole platform schedules, scales, and heals.</p>
+        <p>A container solves an old, painful problem: software that works on one machine and breaks on another because the environments differ. By packaging the application together with its dependencies, a container carries its own environment with it, so it runs identically on a developer's laptop, in a test system, and in production. That consistency is what makes automated deployment across a fleet of machines reliable rather than a gamble.</p>
+        <h3>Immutability</h3>
+        <p>Containers are treated as immutable and disposable, which is a deliberate discipline, not a limitation. Rather than logging into a running container to fix or update it, you build a new version and replace the old one entirely. This sounds wasteful but is the source of much of the platform's reliability: every running copy is identical and known, there is no drift from manual tweaks, and rolling back is simply redeploying the previous version. A server you never modify by hand is a server that cannot accumulate the untracked changes that cause mysterious failures.</p>
+        <p>The contrast with a traditional virtual machine is instructive. A virtual machine emulates a whole computer including its own operating system, which is heavy and slow to start, while a container shares the host's operating system and packages only the application, which is light and starts in seconds. That lightness is what lets a platform run many containers per machine and start new ones instantly in response to load or failure.</p>
+        <div class="note"><strong>Note:</strong> Treat containers as cattle, not pets. You do not name, nurse, and repair each one, you replace it, and designing your operations around disposability is what unlocks automated healing and scaling.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الحاويات</h2>
+        <p class="lead">لبنة السحابي الأصيل هي الحاوية: حزمةٌ تجمع تطبيقًا مع كل ما يحتاجه للعمل، فيتصرّف بالطريقة نفسها أينما وُضِع. والحاويات هي الوحدة التي تجدولها المنصّة كلها وتوسّعها وتشفيها.</p>
+        <p>الحاوية تحلّ مشكلةً قديمة مؤلمة: برمجيةٌ تعمل على آلةٍ وتنكسر على أخرى لاختلاف البيئات. فبحزم التطبيق مع اعتماداته، تحمل الحاوية بيئتها معها، فتعمل بتطابقٍ على حاسب مطوّرٍ وفي نظام اختبارٍ وفي الإنتاج. وذلك الاتساق ما يجعل النشر المُؤتمَت عبر أسطولٍ من الآلات موثوقًا لا مقامرة.</p>
+        <h3>عدم القابلية للتغيير</h3>
+        <p>تُعامَل الحاويات كغير قابلةٍ للتغيير وقابلةٍ للاستبدال، وهو انضباطٌ متعمَّد لا قيد. فبدل الدخول لحاويةٍ عاملة لإصلاحها أو تحديثها، تبني نسخةً جديدة وتستبدل القديمة كليًا. يبدو هذا هدرًا لكنه مصدر كثيرٍ من موثوقية المنصّة: فكل نسخةٍ عاملة متطابقة ومعلومة، ولا انزياح من تعديلاتٍ يدوية، والتراجع مجرد إعادة نشر النسخة السابقة. وخادمٌ لا تعدّله يدويًا أبدًا خادمٌ لا يستطيع تراكم التغييرات غير المُتتبَّعة التي تُسبّب الأعطال الغامضة.</p>
+        <p>والمقارنة بآلةٍ افتراضية تقليدية مُفيدة. فالآلة الافتراضية تُحاكي حاسبًا كاملًا بنظام تشغيله، وهو ثقيلٌ بطيء البدء، بينما الحاوية تشارك نظام تشغيل المضيف وتحزم التطبيق فقط، وهو خفيفٌ يبدأ في ثوانٍ. وتلك الخفّة ما يتيح للمنصّة تشغيل حاوياتٍ كثيرة لكل آلةٍ وبدء جديدةٍ فورًا استجابةً للحمل أو الفشل.</p>
+        <div class="note"><strong>ملاحظة:</strong> عامِل الحاويات كقطيعٍ لا كحيواناتٍ أليفة. لا تُسمّي كلًّا وترعاه وتُصلِحه، بل تستبدله، وتصميم تشغيلك حول قابلية الاستبدال هو ما يُطلِق الشفاء والتوسّع المُؤتمَتين.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="orchestration">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Orchestration with Kubernetes</h2>
+        <p class="lead">Running one container is easy, running hundreds across many machines reliably is not, and that coordination problem is what an orchestrator solves. Kubernetes is the platform that decides where containers run, keeps the right number alive, and repairs the system when something breaks.</p>
+        <p>The core idea of Kubernetes is declarative desired state. Instead of issuing step-by-step commands, you describe the state you want, such as run five copies of this service, and the platform continuously works to make reality match that description. If a machine dies and takes two copies with it, Kubernetes notices the gap between desired and actual and starts two replacements elsewhere, without anyone being paged. This closed loop of compare-and-correct is the source of the platform's self-healing behavior.</p>
+        <ul>
+          <li><strong>Desired state:</strong> you declare what should be true, and the platform reconciles reality to it continuously.</li>
+          <li><strong>Scheduling:</strong> the platform decides which machine each container runs on, packing work efficiently across the cluster.</li>
+          <li><strong>Self-healing:</strong> failed containers are restarted and lost ones rescheduled automatically, without manual intervention.</li>
+          <li><strong>Scaling:</strong> the number of copies can grow and shrink with demand, automatically or on command.</li>
+        </ul>
+        <p>The declarative model also transforms how change is made. Because the entire desired state is described in configuration, that configuration can be version-controlled, reviewed, and applied like code, so a change to production is a reviewed edit to a file rather than a risky manual action on a live server. This is the foundation of modern, auditable operations, where what is running is always exactly what the reviewed configuration says.</p>
+        <div class="note"><strong>Note:</strong> Manage the platform through its declared configuration, never by manual changes to the live cluster. A manual fix that is not in the configuration will be quietly undone the next time the platform reconciles, or worse, it will persist as untracked drift.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>التنسيق بـ Kubernetes</h2>
+        <p class="lead">تشغيل حاويةٍ واحدة سهل، وتشغيل مئاتٍ عبر آلاتٍ كثيرة بموثوقيةٍ ليس كذلك، وتلك مشكلة التنسيق التي يحلّها المنسِّق. وKubernetes هو المنصّة التي تقرّر أين تعمل الحاويات، وتُبقي العدد الصحيح حيًّا، وتُصلِح النظام حين ينكسر شيء.</p>
+        <p>الفكرة الجوهرية لـ Kubernetes هي الحالة المرغوبة التعريفية. فبدل إصدار أوامر خطوةً خطوة، تصف الحالة التي تريدها، كأن «شغّل خمس نُسخٍ من هذه الخدمة»، وتعمل المنصّة باستمرار لتطابق الواقعَ ذلك الوصف. فإن ماتت آلةٌ وأخذت معها نسختين، يلاحظ Kubernetes الفجوة بين المرغوب والفعلي ويبدأ بديلين في مكانٍ آخر، دون استدعاء أحد. وحلقة المقارنة والتصحيح المغلقة هذه مصدر سلوك الشفاء الذاتي للمنصّة.</p>
+        <ul>
+          <li><strong>الحالة المرغوبة:</strong> تُعلِن ما ينبغي أن يكون صحيحًا، وتُطابِق المنصّة الواقعَ به باستمرار.</li>
+          <li><strong>الجدولة:</strong> تقرّر المنصّة على أي آلةٍ تعمل كل حاوية، مُحزِّمةً العمل بكفاءةٍ عبر العنقود.</li>
+          <li><strong>الشفاء الذاتي:</strong> الحاويات الفاشلة تُعاد تشغيلها والمفقودة تُعاد جدولتها تلقائيًا، دون تدخّل يدوي.</li>
+          <li><strong>التوسّع:</strong> عدد النُسخ يكبر ويصغر مع الطلب، تلقائيًا أو بأمر.</li>
+        </ul>
+        <p>والنموذج التعريفي يحوّل كذلك كيف يُجرى التغيير. فلأن الحالة المرغوبة كلها موصوفةٌ في إعدادٍ، يمكن التحكّم بإصدار ذلك الإعداد ومراجعته وتطبيقه كالشيفرة، فيصير تغييرُ الإنتاج تعديلًا مُراجَعًا لملفٍّ لا فعلًا يدويًا محفوفًا على خادمٍ حيّ. وهذا أساس التشغيل الحديث القابل للتدقيق، حيث ما يعمل دائمًا هو بالضبط ما يقوله الإعداد المُراجَع.</p>
+        <div class="note"><strong>ملاحظة:</strong> أدِر المنصّة عبر إعدادها المُعلَن، لا بتغييراتٍ يدوية على العنقود الحيّ. فإصلاحٌ يدوي ليس في الإعداد سيُلغى بهدوءٍ عند مطابقة المنصّة التالية، أو أسوأ، يبقى انزياحًا غير مُتتبَّع.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="networking">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Cluster Networking</h2>
+        <p class="lead">In a cluster, containers are constantly created, destroyed, and moved between machines, so the network that connects them cannot rely on fixed addresses. Cluster networking is the layer that lets services find and reach each other reliably despite that constant change.</p>
+        <p>The problem is that a container's address is temporary, it changes every time the container is replaced, so hard-coding one is hopeless. The platform solves this with a stable abstraction, a service, which provides a single, unchanging name and address for a set of interchangeable container copies. Other parts of the system talk to the service by name, and the platform routes each request to a healthy copy behind it, so callers never need to know or care where the copies actually are or how many exist.</p>
+        <ul>
+          <li><strong>Service:</strong> a stable name and address in front of a changing set of container copies, with requests balanced across the healthy ones.</li>
+          <li><strong>Ingress:</strong> the controlled entry point that lets outside traffic reach services inside the cluster, on defined routes.</li>
+          <li><strong>Service discovery:</strong> the automatic mechanism by which services find each other by name rather than address.</li>
+          <li><strong>Network policy:</strong> rules that control which services may talk to which, the network equivalent of least privilege.</li>
+        </ul>
+        <h3>Segmentation as a control</h3>
+        <p>By default, everything in a cluster can often talk to everything else, which is convenient and dangerous. Network policy applies least privilege to traffic: each service is allowed to communicate only with the specific services it genuinely needs, so a compromise of one service cannot freely reach the rest. This internal segmentation is one of the most valuable and most neglected security controls in a cluster, because it turns a flat network where one breach spreads everywhere into a set of compartments that contain it.</p>
+        <div class="note"><strong>Note:</strong> Design network policy as deny by default, allow by exception, exactly as you would access control. A cluster where every service can reach every other is one compromised container away from a cluster-wide incident.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>شبكة العنقود</h2>
+        <p class="lead">في العنقود، تُنشَأ الحاويات وتُدمَّر وتُنقَل بين الآلات باستمرار، فلا تستطيع الشبكة التي تصلها الاعتماد على عناوين ثابتة. وشبكة العنقود هي الطبقة التي تتيح للخدمات إيجاد بعضها والوصول إليها بموثوقيةٍ رغم ذلك التغيّر الدائم.</p>
+        <p>المشكلة أن عنوان الحاوية مؤقّت، يتغيّر كل مرةٍ تُستبدَل، فتثبيته عبثٌ. وتحلّ المنصّة هذا بتجريدٍ ثابت، «خدمة»، تقدّم اسمًا وعنوانًا واحدًا لا يتغيّر لمجموعةٍ من نُسخ الحاويات المتبادَلة. فتحادث بقية أجزاء النظام الخدمةَ بالاسم، وتوجّه المنصّة كل طلبٍ لنسخةٍ سليمة خلفها، فلا يحتاج المتّصلون أبدًا لمعرفة أو الاهتمام بأين النُسخ فعلًا أو كم عددها.</p>
+        <ul>
+          <li><strong>الخدمة:</strong> اسمٌ وعنوانٌ ثابت أمام مجموعةٍ متغيّرة من نُسخ الحاويات، بموازنة الطلبات عبر السليمة.</li>
+          <li><strong>المدخل (Ingress):</strong> نقطة الدخول المضبوطة التي تتيح لحركة الخارج بلوغ الخدمات داخل العنقود، على مساراتٍ محدَّدة.</li>
+          <li><strong>اكتشاف الخدمات:</strong> الآلية التلقائية التي تجد بها الخدمات بعضها بالاسم لا بالعنوان.</li>
+          <li><strong>سياسة الشبكة:</strong> قواعد تتحكّم بأي الخدمات يجوز أن تحادث أيًّا، وهي مكافئ أقلّ الصلاحية للشبكة.</li>
+        </ul>
+        <h3>التجزئة كضابط</h3>
+        <p>افتراضيًا، كثيرًا ما يستطيع كل شيءٍ في العنقود محادثة كل شيءٍ آخر، وهو مريحٌ وخطر. وسياسة الشبكة تطبّق أقلّ الصلاحية على الحركة: يُسمَح لكل خدمةٍ بالتواصل فقط مع الخدمات المحدَّدة التي تحتاجها فعلًا، فلا يستطيع اختراق خدمةٍ بلوغ البقية بحرّية. وهذه التجزئة الداخلية من أثمن الضوابط الأمنية وأكثرها إهمالًا في العنقود، لأنها تحوّل شبكةً مسطّحة ينتشر فيها اختراقٌ واحد لكل مكان إلى مقصوراتٍ تحتويه.</p>
+        <div class="note"><strong>ملاحظة:</strong> صمّم سياسة الشبكة كمنعٍ افتراضي وسماحٍ بالاستثناء، تمامًا كالتحكّم بالوصول. فعنقودٌ تصل فيه كل خدمةٍ لكل أخرى على بُعد حاويةٍ مخترَقة واحدة من حادثةٍ تعمّ العنقود.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="reliability">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Reliability &amp; Scaling</h2>
+        <p class="lead">The promise of a cloud-native platform is that it keeps services running through failure and adjusts to load without a person in the loop. That promise is delivered by a few mechanisms working together, and it is only as good as how they are configured.</p>
+        <p>Self-healing depends on the platform knowing whether a container is actually working, not just running. Health checks are the small probes the application exposes so the platform can ask, are you alive, and are you ready to serve. A container that fails its check is restarted or taken out of rotation automatically, so a hung process is replaced rather than left to silently drop requests. Without accurate health checks, self-healing is blind, and the platform will happily send traffic to a broken copy.</p>
+        <ul>
+          <li><strong>Health checks:</strong> probes that tell the platform whether a copy is alive and ready, so broken ones are replaced automatically.</li>
+          <li><strong>Replication:</strong> running multiple copies so the loss of one does not interrupt the service.</li>
+          <li><strong>Autoscaling:</strong> adding copies when load rises and removing them when it falls, matching capacity to demand.</li>
+          <li><strong>Rolling updates:</strong> replacing copies gradually so a new version is deployed with no downtime and can be rolled back if it misbehaves.</li>
+        </ul>
+        <p>Rolling updates deserve emphasis because they change the economics of releasing software. Instead of a risky, all-at-once cutover during a maintenance window, a new version replaces the old copies a few at a time while the service keeps serving, and if the new version fails its health checks, the rollout stops and reverses automatically. This makes deployment routine and low-risk, which in turn lets an organization release small changes often rather than large changes rarely, the pattern that correlates with both speed and stability.</p>
+        <div class="note"><strong>Note:</strong> The platform's automation is only as smart as its health checks. Invest in accurate liveness and readiness probes, because they are what turn running into working in the platform's eyes.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الموثوقية والتوسّع</h2>
+        <p class="lead">وعد المنصّة السحابية الأصيلة أنها تُبقي الخدمات عاملةً خلال الفشل وتتكيّف مع الحمل دون شخصٍ في الحلقة. ويُسلَّم ذلك الوعد بآلياتٍ قليلة تعمل معًا، وهو جيّدٌ بقدر كيفية إعدادها فقط.</p>
+        <p>الشفاء الذاتي يعتمد على معرفة المنصّة هل الحاوية تعمل فعلًا، لا مجرد أنها مُشغَّلة. وفحوص الصحّة هي المجسّات الصغيرة التي يكشفها التطبيق لتسأل المنصّة: هل أنت حيّ، وهل أنت جاهز للخدمة. وحاويةٌ تفشل فحصها تُعاد تشغيلها أو تُخرَج من الدوران تلقائيًا، فتُستبدَل عمليةٌ معلَّقة بدل تركها تُسقِط الطلبات بصمت. وبلا فحوص صحّةٍ دقيقة، الشفاء الذاتي أعمى، وترسل المنصّة الحركة بسرورٍ لنسخةٍ معطوبة.</p>
+        <ul>
+          <li><strong>فحوص الصحّة:</strong> مجسّاتٌ تخبر المنصّة هل نسخةٌ حيّة وجاهزة، فتُستبدَل المعطوبة تلقائيًا.</li>
+          <li><strong>التكرار:</strong> تشغيل نُسخٍ متعددة فلا يقطع فقدُ واحدةٍ الخدمة.</li>
+          <li><strong>التوسّع التلقائي:</strong> إضافة نُسخٍ حين يرتفع الحمل وإزالتها حين يهبط، مطابقةً السعة للطلب.</li>
+          <li><strong>التحديثات المتدحرجة:</strong> استبدال النُسخ تدريجيًا فتُنشَر نسخةٌ جديدة بلا انقطاعٍ ويمكن التراجع إن أساءت.</li>
+        </ul>
+        <p>وتستحق التحديثات المتدحرجة تأكيدًا لأنها تغيّر اقتصاد إصدار البرمجيات. فبدل تحوّلٍ محفوف دفعةً واحدة في نافذة صيانة، تستبدل نسخةٌ جديدة القديمةَ قليلًا قليلًا بينما تبقى الخدمة تخدم، وإن فشلت الجديدة فحوصها، يتوقّف الطرح ويتراجع تلقائيًا. وهذا يجعل النشر روتينيًا منخفض الخطر، مما يتيح للمنشأة إصدار تغييراتٍ صغيرة كثيرًا بدل كبيرةٍ نادرًا، وهو النمط المرتبط بالسرعة والاستقرار معًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> أتمتة المنصّة ذكيّةٌ بقدر فحوص صحّتها. استثمر في مجسّات حياةٍ وجاهزيةٍ دقيقة، فهي ما يحوّل «مُشغَّل» إلى «عامل» في عين المنصّة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="security">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Platform Security &amp; Observability</h2>
+        <p class="lead">A powerful automated platform is a powerful target, so cloud-native security applies the same least-privilege and monitoring principles as the security frameworks, adapted to the platform's specifics. Two concerns dominate: limiting what each part can do, and being able to see what is happening.</p>
+        <p>Least privilege runs through the platform at every level. Each container should run with only the permissions it needs, not as an all-powerful process, so a compromised container is limited in what it can do. Access to the platform's control system should be scoped by role, so people and services can change only what they are meant to. Secrets, the passwords and keys applications need, should be managed by the platform and injected securely rather than baked into container images where they leak. And the container images themselves are a supply chain that must be vetted, because an image built from a compromised base carries that compromise into the cluster.</p>
+        <ul>
+          <li><strong>Least-privilege workloads:</strong> containers run with minimal permissions, never as unrestricted processes.</li>
+          <li><strong>Scoped platform access:</strong> role-based control over who and what can change the cluster.</li>
+          <li><strong>Managed secrets:</strong> credentials handled by the platform and injected securely, never embedded in images.</li>
+          <li><strong>Image supply chain:</strong> container images vetted and scanned, because a trusted image is a trusted foundation.</li>
+        </ul>
+        <h3>Observability</h3>
+        <p>An automated platform that you cannot see into is impossible to operate or trust. Observability is the ability to understand what the system is doing from the outside, through three kinds of signal: metrics that measure how it is performing, logs that record what happened, and traces that follow a single request across the many services it touches. Together they turn an opaque, distributed system into one you can diagnose, so that when something goes wrong you can find where and why rather than guessing.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> a cloud-native platform delivers resilience and scale through containers, declarative orchestration, and automated healing, and it stays safe and operable only when least privilege, network segmentation, and observability are built in from the start.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>أمن المنصّة والرصد</h2>
+        <p class="lead">منصّةٌ مُؤتمَتة قوية هدفٌ قوي، فأمن السحابي الأصيل يطبّق مبادئ أقلّ الصلاحية والمراقبة نفسها من أطر الأمن، مُكيَّفةً لخصائص المنصّة. وهاجسان يسودان: تقييد ما يستطيع كل جزءٍ فعله، والقدرة على رؤية ما يجري.</p>
+        <p>أقلّ الصلاحية يسري في المنصّة عند كل مستوى. فينبغي أن تعمل كل حاويةٍ بالصلاحيات التي تحتاجها فقط، لا كعمليةٍ كليّة القدرة، فتكون الحاوية المخترَقة محدودةً فيما تفعل. والوصول لنظام تحكّم المنصّة ينبغي تحديده بالدور، فيغيّر الناس والخدمات فقط ما يُقصَد لهم. والأسرار، أي كلمات المرور والمفاتيح التي تحتاجها التطبيقات، ينبغي أن تديرها المنصّة وتُحقَن بأمانٍ لا أن تُخبَز في صور الحاويات حيث تتسرّب. وصور الحاويات نفسها سلسلة إمدادٍ يجب فحصها، لأن صورةً بُنيت من أساسٍ مخترَق تحمل ذلك الاختراق إلى العنقود.</p>
+        <ul>
+          <li><strong>أحمالٌ بأقلّ صلاحية:</strong> الحاويات تعمل بصلاحياتٍ دنيا، لا كعملياتٍ غير مقيَّدة.</li>
+          <li><strong>وصولٌ محدَّد للمنصّة:</strong> تحكّمٌ بالأدوار في من وما يستطيع تغيير العنقود.</li>
+          <li><strong>أسرارٌ مُدارة:</strong> بيانات دخولٍ تديرها المنصّة وتُحقَن بأمان، لا تُضمَّن في الصور.</li>
+          <li><strong>سلسلة إمداد الصور:</strong> صور الحاويات مفحوصة وممسوحة، لأن صورةً موثوقة أساسٌ موثوق.</li>
+        </ul>
+        <h3>الرصد</h3>
+        <p>منصّةٌ مُؤتمَتة لا تستطيع الرؤية داخلها يستحيل تشغيلها أو الثقة بها. والرصد هو القدرة على فهم ما يفعله النظام من الخارج، عبر ثلاثة أنواع إشارة: مقاييس تقيس كيف يؤدّي، وسجلات تسجّل ما حدث، وتتبّعاتٌ تلاحق طلبًا واحدًا عبر الخدمات الكثيرة التي يمسّها. وهي معًا تحوّل نظامًا موزَّعًا غامضًا إلى قابلٍ للتشخيص، فحين يسوء شيء تجد أين ولماذا لا أن تخمّن.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> المنصّة السحابية الأصيلة تسلّم المرونة والنطاق عبر الحاويات والتنسيق التعريفي والشفاء المُؤتمَت، وتبقى آمنةً وقابلةً للتشغيل فقط حين تُبنى أقلّ الصلاحية وتجزئة الشبكة والرصد من البداية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Cloud-native platforms deliver resilient, scalable operations by treating infrastructure as automated, declarative, and disposable, governed with the same security discipline as everything else.</p>
+        <ul>
+          <li>Package applications as immutable containers so they run identically everywhere and heal by replacement.</li>
+          <li>Orchestrate with declarative desired state, and manage the platform through version-controlled configuration, not manual changes.</li>
+          <li>Give services stable names, and segment traffic with network policy as least privilege for the network.</li>
+          <li>Rely on health checks, replication, autoscaling, and rolling updates for reliability and low-risk releases.</li>
+          <li>Build in least privilege, managed secrets, a vetted image supply chain, and observability from the start.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://kubernetes.io/docs/home/" target="_blank" rel="noopener">Kubernetes, official documentation.</a></li>
+          <li><a href="https://www.cncf.io/" target="_blank" rel="noopener">Cloud Native Computing Foundation (CNCF).</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" target="_blank" rel="noopener">NIST SP 800-53 Rev. 5, Security and Privacy Controls (least privilege).</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022, Information security management systems.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">المنصّات السحابية الأصيلة تسلّم تشغيلًا مرنًا قابلًا للتوسّع بمعاملة البنية التحتية كمُؤتمَتة وتعريفية وقابلة للاستبدال، محوكَمةً بانضباط الأمن نفسه كأي شيءٍ آخر.</p>
+        <ul>
+          <li>احزم التطبيقات كحاوياتٍ غير قابلة للتغيير فتعمل بتطابقٍ في كل مكان وتشفى بالاستبدال.</li>
+          <li>نسّق بالحالة المرغوبة التعريفية، وأدِر المنصّة عبر إعدادٍ مُتحكَّم بإصداره لا بتغييراتٍ يدوية.</li>
+          <li>امنح الخدمات أسماءً ثابتة، وجزّئ الحركة بسياسة الشبكة كأقلّ صلاحيةٍ للشبكة.</li>
+          <li>اعتمد على فحوص الصحّة والتكرار والتوسّع التلقائي والتحديثات المتدحرجة للموثوقية والإصدار منخفض الخطر.</li>
+          <li>ابنِ أقلّ الصلاحية والأسرار المُدارة وسلسلة إمداد صورٍ مفحوصة والرصد من البداية.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://kubernetes.io/docs/home/" target="_blank" rel="noopener">Kubernetes، التوثيق الرسمي.</a></li>
+          <li><a href="https://www.cncf.io/" target="_blank" rel="noopener">مؤسسة الحوسبة السحابية الأصيلة (CNCF).</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" target="_blank" rel="noopener">NIST SP 800-53 Rev. 5، ضوابط الأمن والخصوصية (أقلّ الصلاحية).</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022، أنظمة إدارة أمن المعلومات.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","containers","orchestration","networking","reliability","security","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

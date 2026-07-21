@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PMO Operating Model</title>
+<meta name="description" content="An operational framework for the PMO: types of office, core functions, and strategic portfolio management to run the right projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">PM &amp; HR OPERATIONS &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">عمليات المشاريع والموارد &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">PMO Operating Model</span><span data-lang="ar">نموذج تشغيل مكتب المشاريع</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="types"><span data-lang="en">Types</span><span data-lang="ar">الأنواع</span></a>
+    <a data-id="functions"><span data-lang="en">Functions</span><span data-lang="ar">الوظائف</span></a>
+    <a data-id="portfolio"><span data-lang="en">Portfolio</span><span data-lang="ar">المحفظة</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Project management office (PMO)</div>
+          <div><span>Scope:</span> Coordinating and improving how the organization delivers projects</div>
+          <div><span>Owner role:</span> PMO lead, reporting to leadership</div>
+          <div><span>Review cadence:</span> Portfolio review each quarter, PMO value review each year</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">A project management office, or PMO, is the function that coordinates and improves how an organization runs its projects as a whole, rather than leaving each project to succeed or fail on its own. It exists because an organization running many projects needs a shared way to set standards, oversee delivery, and make sure the right projects get the resources.</p>
+        <p>The reason a PMO adds value is that projects share problems that are better solved once, centrally, than repeatedly by every project team. Without a PMO, each project reinvents its own way of working, there is no consistent view of how the whole portfolio is performing, and projects compete for resources with no one deciding which matter most. A PMO brings coherence to this: common standards so teams do not start from scratch, a portfolio view so leadership can see and steer the whole, and governance so scarce resources go to the highest-priority work.</p>
+        <p>This framework describes the PMO as a governed capability, from choosing its type to defining its functions to managing the project portfolio and proving its value. It draws on recognized project management practice and connects to the project management framework, written to be reusable across organizations.</p>
+        <div class="note"><strong>Note:</strong> A PMO exists to make the whole organization better at projects, not to add bureaucracy to each one. When it becomes a source of overhead rather than help, it has lost its purpose and will rightly be resented.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> مكتب إدارة المشاريع (PMO)</div>
+          <div><span>النطاق:</span> تنسيق وتحسين كيف تسلّم المنشأة المشاريع</div>
+          <div><span>دور المالك:</span> قائد المكتب، يرفع للقيادة</div>
+          <div><span>دورية المراجعة:</span> مراجعة محفظة كل ربع، ومراجعة قيمة المكتب كل عام</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">مكتب إدارة المشاريع (PMO) هو الوظيفة التي تنسّق وتحسّن كيف تُدير المنشأة مشاريعها ككل، بدل ترك كل مشروعٍ ينجح أو يفشل وحده. وُجِد لأن منشأةً تُدير مشاريع كثيرة تحتاج طريقةً مشتركة لوضع المعايير والإشراف على التسليم وضمان حصول المشاريع الصحيحة على الموارد.</p>
+        <p>سبب إضافة المكتب للقيمة أن المشاريع تشترك في مشكلاتٍ حلّها مرةً مركزيًا أفضل من حلّها مرارًا بكل فريق. فبلا مكتب، يعيد كل مشروعٍ اختراع طريقة عمله، ولا رؤية متّسقة لكيف تؤدّي المحفظة كلها، وتتنافس المشاريع على الموارد بلا أحدٍ يقرّر أيها أهمّ. والمكتب يجلب تماسكًا لهذا: معايير مشتركة فلا تبدأ الفرق من الصفر، ورؤية محفظةٍ فترى القيادة الكل وتوجّهه، وحوكمةٌ فتذهب الموارد النادرة لأعلى العمل أولويةً.</p>
+        <p>يصف هذا الإطار المكتب كقدرةٍ محوكَمة، من اختيار نوعه إلى تعريف وظائفه إلى إدارة محفظة المشاريع وإثبات قيمته. ويستند إلى ممارسة إدارة المشاريع المعترف بها ويتّصل بإطار إدارة المشاريع، مكتوبًا ليكون قابلًا لإعادة الاستخدام عبر المنشآت.</p>
+        <div class="note"><strong>ملاحظة:</strong> المكتب وُجِد ليجعل المنشأة كلها أفضل في المشاريع، لا ليضيف بيروقراطيةً لكلٍّ. فحين يصير مصدر عبءٍ لا عون، فقد غرضه وسيُكرَه بحقّ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="types">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Types of PMO</h2>
+        <p class="lead">Not all PMOs do the same thing, and choosing the right type is the first decision. PMOs range from a light, supportive role to a firm, directive one, distinguished by how much control they exercise over the projects they serve.</p>
+        <p>A supportive PMO acts as a resource: it provides templates, guidance, and expertise, but leaves control with the project teams, offering help that projects can take or leave. A controlling PMO goes further, requiring projects to follow certain standards and processes and checking that they do, exercising real oversight. A directive PMO goes furthest, actually running the projects, with the project managers reporting into it. Each level of control suits a different situation, and the right choice depends on how much consistency the organization needs and how much autonomy its project teams should keep.</p>
+        <table>
+          <tr><th>Type</th><th>Role</th><th>Control</th></tr>
+          <tr><td>Supportive</td><td>Provides templates, guidance, and expertise</td><td>Low, help projects can take or leave</td></tr>
+          <tr><td>Controlling</td><td>Requires and checks compliance with standards</td><td>Medium, real oversight</td></tr>
+          <tr><td>Directive</td><td>Runs the projects directly</td><td>High, project managers report in</td></tr>
+        </table>
+        <p>The mistake is choosing a type that does not fit the organization. A directive PMO imposed on a culture of autonomous teams will be resisted and resented, while a merely supportive PMO in an organization that badly needs consistency will lack the authority to fix the problem. The right type matches the organization's maturity and need, and it often evolves over time, starting supportive to build credibility and gradually taking on more control as it earns trust and demonstrates value.</p>
+        <div class="note"><strong>Note:</strong> Match the PMO type to the organization, not to an ideal. Too much control where teams value autonomy breeds resistance; too little where consistency is needed leaves the real problem unsolved.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>أنواع المكتب</h2>
+        <p class="lead">ليست كل المكاتب تفعل الشيء نفسه، واختيار النوع الصحيح أول قرار. تتراوح المكاتب من دورٍ خفيف مُساند إلى صارمٍ آمر، مُميَّزةً بكم تمارس من تحكّمٍ في المشاريع التي تخدمها.</p>
+        <p>المكتب المُساند يعمل كمورد: يقدّم قوالب وإرشادًا وخبرة، لكنه يترك التحكّم لفرق المشاريع، عارضًا عونًا تأخذه المشاريع أو تتركه. والمكتب المُتحكِّم يمضي أبعد، مُلزِمًا المشاريع باتّباع معايير وعملياتٍ بعينها ومتحقّقًا أنها تفعل، مُمارِسًا إشرافًا حقيقيًا. والمكتب الآمر يمضي أبعد، مُدِيرًا المشاريع فعلًا، بمديري المشاريع يرفعون إليه. وكل مستوى تحكّمٍ يلائم موقفًا مختلفًا، والاختيار الصحيح يعتمد على كم من الاتساق تحتاج المنشأة وكم من الاستقلالية ينبغي أن تُبقي فرقها.</p>
+        <table>
+          <tr><th>النوع</th><th>الدور</th><th>التحكّم</th></tr>
+          <tr><td>مُساند</td><td>يقدّم قوالب وإرشادًا وخبرة</td><td>منخفض، عونٌ تأخذه المشاريع أو تتركه</td></tr>
+          <tr><td>مُتحكِّم</td><td>يُلزِم بالمعايير ويتحقّق منها</td><td>متوسط، إشرافٌ حقيقي</td></tr>
+          <tr><td>آمر</td><td>يُدير المشاريع مباشرةً</td><td>عالٍ، مديرو المشاريع يرفعون إليه</td></tr>
+        </table>
+        <p>الخطأ اختيار نوعٍ لا يلائم المنشأة. فمكتبٌ آمر يُفرَض على ثقافة فرقٍ مستقلّة سيُقاوَم ويُكرَه، ومكتبٌ مُساند فقط في منشأةٍ تحتاج الاتساق بشدّة سيفتقر للسلطة لإصلاح المشكلة. والنوع الصحيح يطابق نضج المنشأة وحاجتها، ويتطوّر غالبًا عبر الزمن، بادئًا مُسانِدًا لبناء المصداقية ومتّخذًا تحكّمًا أكثر تدريجيًا مع كسبه الثقة وإثباته القيمة.</p>
+        <div class="note"><strong>ملاحظة:</strong> طابِق نوع المكتب للمنشأة لا لمثال. فتحكّمٌ أكثر حيث تقدّر الفرق الاستقلالية يولّد مقاومة؛ وأقلّ حيث يُحتاج الاتساق يترك المشكلة الحقيقية بلا حلّ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="functions">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Core Functions</h2>
+        <p class="lead">Whatever its type, a PMO delivers value through a set of core functions. These are the specific services and controls through which it makes the whole organization better at projects rather than just adding a layer above them.</p>
+        <p>The functions cluster around a few themes. The PMO sets and maintains the standards, the common methods, templates, and tools that let teams work consistently and not reinvent the basics. It provides governance and oversight, tracking how projects are performing and surfacing those in trouble so they can be helped or stopped. It manages the portfolio, giving leadership a view of all projects together and helping decide which to fund. And it builds capability, developing the organization's project managers and improving its practice over time.</p>
+        <ul>
+          <li><strong>Standards and methods:</strong> common ways of working so teams do not start from scratch each time.</li>
+          <li><strong>Governance and oversight:</strong> tracking project health and surfacing trouble early enough to act.</li>
+          <li><strong>Portfolio management:</strong> a whole-organization view of projects and help deciding which to fund.</li>
+          <li><strong>Capability building:</strong> developing project managers and improving the organization's practice.</li>
+        </ul>
+        <p>The most valuable function, and the one that distinguishes a strategic PMO from an administrative one, is portfolio management. An administrative PMO reports on projects after the fact, while a strategic PMO helps the organization choose the right projects to run in the first place and steer resources toward them. This is the difference between a PMO that documents what is happening and one that shapes what happens, and it is where a PMO most directly connects the organization's projects to its strategy.</p>
+        <div class="note"><strong>Note:</strong> The highest-value PMO function is helping choose the right projects, not just reporting on the ones underway. A PMO that only tracks is administrative; one that shapes the portfolio is strategic.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الوظائف الأساسية</h2>
+        <p class="lead">أيًّا كان نوعه، يسلّم المكتب قيمةً عبر مجموعة وظائف أساسية. وهي الخدمات والضوابط المحدَّدة التي يجعل بها المنشأة كلها أفضل في المشاريع بدل مجرّد إضافة طبقةٍ فوقها.</p>
+        <p>تتجمّع الوظائف حول بضعة محاور. المكتب يضع المعايير ويصونها، الطرق والقوالب والأدوات المشتركة التي تتيح للفرق العمل باتساقٍ وعدم إعادة اختراع الأساسيات. ويقدّم الحوكمة والإشراف، متتبّعًا كيف تؤدّي المشاريع ومُظهِرًا المتعثّرة لتُعان أو تُوقَف. ويدير المحفظة، مانحًا القيادة رؤيةً لكل المشاريع معًا ومساعِدًا على تقرير أيها يُموَّل. ويبني القدرة، مطوّرًا مديري مشاريع المنشأة ومحسّنًا ممارستها عبر الزمن.</p>
+        <ul>
+          <li><strong>المعايير والطرق:</strong> طرق عملٍ مشتركة فلا تبدأ الفرق من الصفر كل مرة.</li>
+          <li><strong>الحوكمة والإشراف:</strong> تتبّع صحّة المشاريع وإظهار التعثّر مبكرًا بما يكفي للتصرّف.</li>
+          <li><strong>إدارة المحفظة:</strong> رؤيةٌ للمنشأة كلها للمشاريع ومساعدةٌ على تقرير أيها يُموَّل.</li>
+          <li><strong>بناء القدرة:</strong> تطوير مديري المشاريع وتحسين ممارسة المنشأة.</li>
+        </ul>
+        <p>أثمن وظيفةٍ، والتي تميّز مكتبًا استراتيجيًا عن إداري، إدارة المحفظة. فمكتبٌ إداري يُبلّغ عن المشاريع بعد وقوعها، ومكتبٌ استراتيجي يساعد المنشأة على اختيار المشاريع الصحيحة لتشغيلها أصلًا وتوجيه الموارد إليها. وهذا الفرق بين مكتبٍ يوثّق ما يجري وآخر يُشكّل ما يجري، وهو حيث يصل المكتب مباشرةً مشاريع المنشأة باستراتيجيتها.</p>
+        <div class="note"><strong>ملاحظة:</strong> أعلى وظائف المكتب قيمةً مساعدة اختيار المشاريع الصحيحة، لا مجرّد التبليغ عن الجارية. فمكتبٌ يتتبّع فقط إداري؛ ومكتبٌ يُشكّل المحفظة استراتيجي.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="portfolio">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Portfolio Management</h2>
+        <p class="lead">The portfolio is the whole set of projects an organization is running or considering, and managing it well is about choosing the right projects and giving them the resources, not just running well the ones already chosen. This is where a PMO connects project delivery to strategy.</p>
+        <p>Portfolio management addresses a problem that no single project can solve: an organization always has more possible projects than resources to do them, so it must choose. The discipline is to evaluate projects against each other, by their value, their fit with strategy, and their cost and risk, and to fund the ones that matter most while declining or stopping the rest. Doing a project well is worthless if it was the wrong project to do, so the portfolio decision, which projects to run at all, is often more important than how well any single one is executed.</p>
+        <ul>
+          <li><strong>Evaluate together:</strong> compare projects against each other on value, strategic fit, cost, and risk.</li>
+          <li><strong>Prioritize:</strong> fund the projects that matter most, and decline or defer the rest deliberately.</li>
+          <li><strong>Balance:</strong> keep a mix that fits the organization's capacity and risk appetite, not just the most attractive ideas.</li>
+          <li><strong>Stop the failing:</strong> end projects that are no longer worth continuing, freeing resources for better ones.</li>
+        </ul>
+        <p>The hardest and most valuable portfolio discipline is stopping projects. Organizations are far better at starting projects than stopping them, so failing or low-value projects continue to consume resources long past the point where they should have been ended, out of inertia or a reluctance to admit a mistake. A PMO that helps the organization stop the wrong projects, freeing their people and money for better ones, delivers value that is real but often invisible, because the cost avoided does not show up as an achievement the way a completed project does.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> a PMO makes an organization better at projects by choosing a fitting type, delivering standards, governance, and capability, and above all managing the portfolio to run the right projects, resource them well, and stop the ones that are not worth continuing.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>إدارة المحفظة</h2>
+        <p class="lead">المحفظة هي كل مجموعة المشاريع التي تُشغّلها المنشأة أو تنظر فيها، وإدارتها جيدًا عن اختيار المشاريع الصحيحة ومنحها الموارد، لا مجرّد تشغيل المُختارة أصلًا جيدًا. وهنا يصل المكتب تسليم المشاريع بالاستراتيجية.</p>
+        <p>إدارة المحفظة تعالج مشكلةً لا يحلّها أي مشروعٍ مفرد: للمنشأة دومًا مشاريع ممكنة أكثر من موارد فعلها، فيجب أن تختار. والانضباط تقييم المشاريع ضد بعضها، بقيمتها وملاءمتها للاستراتيجية وكلفتها وخطرها، وتمويل الأهمّ ورفض أو إيقاف الباقي. ففعل مشروعٍ جيدًا بلا قيمةٍ إن كان المشروع الخطأ، فقرار المحفظة، أي المشاريع تُشغَّل أصلًا، غالبًا أهمّ من كم يُنفَّذ أيٌّ مفرد جيدًا.</p>
+        <ul>
+          <li><strong>قيّم معًا:</strong> قارن المشاريع ضد بعضها بالقيمة والملاءمة الاستراتيجية والكلفة والخطر.</li>
+          <li><strong>رتّب:</strong> موّل المشاريع الأهمّ، وارفض أو أجّل الباقي عمدًا.</li>
+          <li><strong>وازِن:</strong> أبقِ مزيجًا يلائم طاقة المنشأة وشهيتها للخطر، لا أجمل الأفكار فقط.</li>
+          <li><strong>أوقِف الفاشل:</strong> أنهِ المشاريع التي لم تعُد تستحق المواصلة، مُحرِّرًا موارد لأفضل.</li>
+        </ul>
+        <p>أصعب انضباط محفظةٍ وأثمنه إيقاف المشاريع. فالمنشآت أبرع بكثير في بدء المشاريع من إيقافها، فتواصل مشاريع فاشلة أو منخفضة القيمة استهلاك الموارد أبعد بكثير من النقطة التي كان ينبغي إنهاؤها، قصورًا ذاتيًا أو تردّدًا في الاعتراف بخطأ. ومكتبٌ يساعد المنشأة على إيقاف المشاريع الخطأ، مُحرِّرًا ناسها ومالها لأفضل، يسلّم قيمةً حقيقية لكنها غالبًا خفيّة، لأن الكلفة المُتفاداة لا تظهر كإنجازٍ مثل مشروعٍ مكتمل.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> المكتب يجعل المنشأة أفضل في المشاريع باختيار نوعٍ ملائم، وتسليم المعايير والحوكمة والقدرة، والأهمّ إدارة المحفظة لتشغيل المشاريع الصحيحة، وتزويدها جيدًا، وإيقاف ما لا يستحق المواصلة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">A PMO makes an organization better at projects through a fitting type, core functions, and above all strategic portfolio management.</p>
+        <ul>
+          <li>Run a PMO to improve the whole organization's project delivery, not to add bureaucracy to each project.</li>
+          <li>Match the PMO type, supportive, controlling, or directive, to the organization's need and maturity.</li>
+          <li>Deliver the core functions of standards, governance, portfolio management, and capability building.</li>
+          <li>Treat portfolio management as the highest-value function, choosing the right projects and resourcing them.</li>
+          <li>Have the discipline to stop failing projects, freeing resources for better ones.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.pmi.org/standards/pmbok" target="_blank" rel="noopener">PMI, A Guide to the Project Management Body of Knowledge (PMBOK Guide).</a></li>
+          <li><a href="https://www.pmi.org/learning/library/pmo-organizational-value" target="_blank" rel="noopener">PMI, guidance on the value of the PMO.</a></li>
+          <li><a href="https://www.iso.org/standard/50003.html" target="_blank" rel="noopener">ISO 21500, Guidance on project management.</a></li>
+          <li><a href="https://www.coso.org/guidance-erm" target="_blank" rel="noopener">COSO, Enterprise Risk Management (portfolio and strategy).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">المكتب يجعل المنشأة أفضل في المشاريع عبر نوعٍ ملائم، ووظائف أساسية، والأهمّ إدارة محفظةٍ استراتيجية.</p>
+        <ul>
+          <li>أدِر المكتب لتحسين تسليم مشاريع المنشأة كلها، لا لإضافة بيروقراطيةٍ لكل مشروع.</li>
+          <li>طابِق نوع المكتب، مُساند أو مُتحكِّم أو آمر، لحاجة المنشأة ونضجها.</li>
+          <li>سلّم الوظائف الأساسية: المعايير والحوكمة وإدارة المحفظة وبناء القدرة.</li>
+          <li>عامِل إدارة المحفظة كأعلى الوظائف قيمةً، باختيار المشاريع الصحيحة وتزويدها.</li>
+          <li>امتلك انضباط إيقاف المشاريع الفاشلة، مُحرِّرًا موارد لأفضل.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.pmi.org/standards/pmbok" target="_blank" rel="noopener">PMI، دليل مرجع إدارة المشاريع (PMBOK Guide).</a></li>
+          <li><a href="https://www.pmi.org/learning/library/pmo-organizational-value" target="_blank" rel="noopener">PMI، إرشادٌ عن قيمة مكتب إدارة المشاريع.</a></li>
+          <li><a href="https://www.iso.org/standard/50003.html" target="_blank" rel="noopener">ISO 21500، إرشاد إدارة المشاريع.</a></li>
+          <li><a href="https://www.coso.org/guidance-erm" target="_blank" rel="noopener">COSO، إدارة مخاطر المؤسسة (المحفظة والاستراتيجية).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","types","functions","portfolio","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

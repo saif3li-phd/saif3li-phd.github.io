@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Equity &amp; Investment</title>
+<meta name="description" content="An operational framework for private equity and investment: types of private capital, the fund lifecycle, due diligence, value creation, and exit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">CONSULTING &amp; STRATEGY &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الاستشارات والاستراتيجية &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Private Equity &amp; Investment</span><span data-lang="ar">الملكية الخاصة والاستثمار</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="types"><span data-lang="en">Types</span><span data-lang="ar">الأنواع</span></a>
+    <a data-id="lifecycle"><span data-lang="en">Fund Lifecycle</span><span data-lang="ar">دورة الصندوق</span></a>
+    <a data-id="diligence"><span data-lang="en">Diligence &amp; Value</span><span data-lang="ar">العناية والقيمة</span></a>
+    <a data-id="exit"><span data-lang="en">Exit</span><span data-lang="ar">الخروج</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Private equity &amp; investment</div>
+          <div><span>Scope:</span> Investing in companies to create value and exit at a profit</div>
+          <div><span>Owner role:</span> Investment lead, with portfolio owners</div>
+          <div><span>Review cadence:</span> Deal-by-deal, with portfolio review each quarter</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Private equity is the business of investing in companies that are not traded on a public market, improving them, and eventually selling them for more than was paid. It is distinct from simply buying shares, because the investor typically takes a significant ownership stake and an active role in making the company more valuable, rather than passively hoping its price rises.</p>
+        <p>The defining feature is active ownership. A private equity investor does not just provide capital and wait, it buys enough of a company to influence how it is run, then works to increase its value through growth, efficiency, or better management, before exiting at a higher price. This is why private equity is often described as buying, building, and selling: the return comes not from market luck but from deliberately making the company worth more during the years it is held.</p>
+        <p>This framework describes private equity and its venture capital cousin as a disciplined investment process, from raising a fund through creating value to exiting. It is written to be reusable for understanding, working with, or operating within private capital, and aligns to recognized investment practice without reproducing any source text.</p>
+        <div class="note"><strong>Note:</strong> Private equity returns come from making a company genuinely more valuable, not from financial engineering alone. The best investors are as much operators as financiers, because value that is built lasts and value that is merely engineered does not.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الملكية الخاصة والاستثمار</div>
+          <div><span>النطاق:</span> الاستثمار في الشركات لخلق القيمة والخروج بربح</div>
+          <div><span>دور المالك:</span> قائد الاستثمار، مع ملّاك المحفظة</div>
+          <div><span>دورية المراجعة:</span> صفقةً صفقة، ومراجعة محفظةٍ كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الملكية الخاصة هي عمل الاستثمار في شركاتٍ لا تُتداوَل في سوقٍ عامة، وتحسينها، وبيعها آخرًا بأكثر مما دُفِع. وهي متمايزة عن مجرّد شراء أسهم، لأن المستثمر عادةً يأخذ حصّة ملكيةٍ كبيرة ودورًا نشطًا في جعل الشركة أثمن، بدل الأمل السلبي بارتفاع سعرها.</p>
+        <p>السمة المميِّزة الملكية النشطة. فمستثمر الملكية الخاصة لا يقدّم رأس المال وينتظر فقط، بل يشتري ما يكفي من شركةٍ ليؤثّر في كيف تُدار، ثم يعمل على زيادة قيمتها عبر النمو أو الكفاءة أو إدارةٍ أفضل، قبل الخروج بسعرٍ أعلى. ولذا تُوصَف الملكية الخاصة غالبًا بالشراء والبناء والبيع: العائد يأتي لا من حظّ السوق بل من جعل الشركة أثمن عمدًا خلال سنوات حيازتها.</p>
+        <p>يصف هذا الإطار الملكية الخاصة وابن عمّها رأس المال الجريء كعملية استثمارٍ منضبطة، من جمع صندوقٍ عبر خلق القيمة إلى الخروج. وهو قابل لإعادة الاستخدام لفهم رأس المال الخاص أو العمل معه أو ضمنه، ويتوافق مع الممارسة الاستثمارية المعترف بها دون نسخ أي نصّ مصدري.</p>
+        <div class="note"><strong>ملاحظة:</strong> عوائد الملكية الخاصة تأتي من جعل شركةٍ أثمن حقًّا، لا من الهندسة المالية وحدها. فأفضل المستثمرين مشغّلون بقدر ما هم مموّلون، لأن قيمةً تُبنى تدوم وقيمةً تُهندَس فقط لا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="types">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Types of Private Capital</h2>
+        <p class="lead">Private capital is not one thing, it changes character with the stage of the company it backs. The same underlying idea, invest, improve, exit, looks very different depending on whether the target is a fragile startup or an established business.</p>
+        <p>At the early end sits venture capital, which invests in young, high-risk companies with the potential for enormous growth, accepting that many will fail in exchange for the few that succeed spectacularly. In the middle sits growth capital, which invests in companies that have proven their model and need funding to expand faster. At the mature end sits the buyout, which acquires established, stable companies, often taking majority control to drive improvement. Each requires different skills, different risk tolerance, and a different definition of success.</p>
+        <table>
+          <tr><th>Type</th><th>Stage</th><th>Nature</th></tr>
+          <tr><td>Venture capital</td><td>Early, unproven</td><td>High risk, few big winners fund many losses</td></tr>
+          <tr><td>Growth capital</td><td>Proven, scaling</td><td>Funding expansion of a model that works</td></tr>
+          <tr><td>Buyout</td><td>Mature, stable</td><td>Control of established firms to drive value</td></tr>
+        </table>
+        <p>The risk profile differs sharply across the spectrum, and understanding it is essential. Venture capital expects most investments to fail and relies on rare, massive successes to produce its overall return, so it is a portfolio game of extreme outcomes. A buyout of a stable, cash-generating company is a very different proposition, with steadier, more predictable returns and less tolerance for total loss. Confusing the two, applying venture expectations to a buyout or buyout caution to venture, is a reliable way to misjudge risk and return.</p>
+        <div class="note"><strong>Note:</strong> Venture capital is a game of rare, enormous winners funding many losses; a buyout is a game of steady value creation with far less tolerance for failure. The two are different disciplines wearing the same label.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>أنواع رأس المال الخاص</h2>
+        <p class="lead">رأس المال الخاص ليس شيئًا واحدًا، بل يتغيّر طابعه مع مرحلة الشركة التي يسندها. فالفكرة الكامنة نفسها، استثمر وحسّن واخرج، تبدو مختلفةً جدًا بحسب هل الهدف ناشئةٌ هشّة أم عملٌ راسخ.</p>
+        <p>في الطرف المبكر يجلس رأس المال الجريء، الذي يستثمر في شركاتٍ فتيّة عالية الخطر بإمكان نموٍّ هائل، قابلًا بأن كثيرًا سيفشل مقابل القلّة التي تنجح ببهاء. وفي الوسط يجلس رأس مال النمو، الذي يستثمر في شركاتٍ أثبتت نموذجها وتحتاج تمويلًا للتوسّع أسرع. وفي الطرف الناضج يجلس الاستحواذ، الذي يشتري شركاتٍ راسخة مستقرّة، آخذًا غالبًا سيطرة الأغلبية لدفع التحسين. وكلٌّ يتطلّب مهاراتٍ مختلفة وتحمّل خطرٍ مختلف وتعريفًا مختلفًا للنجاح.</p>
+        <table>
+          <tr><th>النوع</th><th>المرحلة</th><th>الطبيعة</th></tr>
+          <tr><td>رأس المال الجريء</td><td>مبكرة، غير مُثبَتة</td><td>خطرٌ عالٍ، قلّة رابحة كبيرة تموّل خسائر كثيرة</td></tr>
+          <tr><td>رأس مال النمو</td><td>مُثبَتة، تتوسّع</td><td>تمويل توسّع نموذجٍ يعمل</td></tr>
+          <tr><td>الاستحواذ</td><td>ناضجة، مستقرّة</td><td>السيطرة على شركاتٍ راسخة لدفع القيمة</td></tr>
+        </table>
+        <p>ملف الخطر يختلف حادًّا عبر الطيف، وفهمه جوهري. فرأس المال الجريء يتوقّع فشل أغلب الاستثمارات ويعتمد على نجاحاتٍ نادرة ضخمة لإنتاج عائده الكلي، فهو لعبة محفظةٍ بنتائج متطرّفة. واستحواذ شركةٍ مستقرّة مولّدة للنقد أمرٌ مختلف جدًا، بعوائد أثبت وأكثر توقّعًا وتحمّلٍ أقل للخسارة الكاملة. وخلط الاثنين، بتطبيق توقّعات الجريء على استحواذ أو حذر الاستحواذ على الجريء، طريقةٌ موثوقة لسوء تقدير الخطر والعائد.</p>
+        <div class="note"><strong>ملاحظة:</strong> رأس المال الجريء لعبة رابحين نادرين هائلين يموّلون خسائر كثيرة؛ والاستحواذ لعبة خلق قيمةٍ ثابتة بتحمّلٍ أقلّ بكثير للفشل. والاثنان انضباطان مختلفان يرتديان الاسم نفسه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="lifecycle">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Fund Lifecycle</h2>
+        <p class="lead">Private equity is usually organized around a fund, a pool of money raised from investors and deployed over a defined life. Understanding the fund's lifecycle explains the behavior, incentives, and time pressures that shape how these investors act.</p>
+        <p>A fund moves through predictable phases over its life, typically around a decade. First it raises capital from investors, who commit money to be called as needed. Then it invests that capital over several years, acquiring a portfolio of companies. Then it manages and improves those companies, working to increase their value. Finally it exits them, selling each to return money to investors, ideally for substantially more than was put in. The whole structure is time-bound, which is why private equity investors are impatient for value: the clock is always running toward the exit.</p>
+        <ul>
+          <li><strong>Fundraising:</strong> raising committed capital from investors into the fund.</li>
+          <li><strong>Investing:</strong> deploying the capital into a portfolio of companies over an investment period.</li>
+          <li><strong>Managing:</strong> actively working to increase the value of the portfolio companies.</li>
+          <li><strong>Exiting:</strong> selling the companies to return capital and profit to investors.</li>
+        </ul>
+        <p>The fund's fixed lifespan drives much of the behavior that outsiders find distinctive. Because the money must eventually be returned, and the return is measured partly by how fast it is achieved, private equity owners push hard for value creation on a timeline, typically aiming to buy, improve, and sell a company within a handful of years. This urgency is a feature, not a flaw: it concentrates attention on the changes that most increase value in the time available, though it can also create pressure toward shorter-term thinking that must be balanced against building durable worth.</p>
+        <div class="note"><strong>Note:</strong> The fund's clock explains the investor's impatience. Money committed must be returned within the fund's life, so value has to be created on a schedule, which drives both the discipline and the pressure of private equity.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>دورة حياة الصندوق</h2>
+        <p class="lead">تُنظَّم الملكية الخاصة عادةً حول صندوق، بركة مالٍ تُجمَع من مستثمرين وتُوظَّف على مدى حياةٍ محدَّدة. وفهم دورة حياة الصندوق يفسّر السلوك والحوافز وضغوط الوقت التي تُشكّل كيف يتصرّف هؤلاء المستثمرون.</p>
+        <p>يتحرّك الصندوق عبر أطوارٍ متوقَّعة على مدى حياته، غالبًا نحو عقد. أولًا يجمع رأس المال من مستثمرين، يلتزمون مالًا يُطلَب عند الحاجة. ثم يستثمر ذلك المال على مدى سنوات، مكتسبًا محفظة شركات. ثم يدير تلك الشركات ويحسّنها، عاملًا على زيادة قيمتها. وأخيرًا يخرج منها، بائعًا كلًّا ليُعيد المال للمستثمرين، مثاليًا بأكثر بكثير مما وُضِع. والبنية كلها محدَّدة زمنيًا، ولذا مستثمرو الملكية الخاصة نافدو الصبر للقيمة: الساعة تجري دومًا نحو الخروج.</p>
+        <ul>
+          <li><strong>جمع التمويل:</strong> جمع رأس مالٍ ملتزَم من المستثمرين في الصندوق.</li>
+          <li><strong>الاستثمار:</strong> توظيف رأس المال في محفظة شركاتٍ على مدى فترة استثمار.</li>
+          <li><strong>الإدارة:</strong> العمل النشط على زيادة قيمة شركات المحفظة.</li>
+          <li><strong>الخروج:</strong> بيع الشركات لإعادة رأس المال والربح للمستثمرين.</li>
+        </ul>
+        <p>عمر الصندوق الثابت يقود كثيرًا من السلوك الذي يجده الخارجيون مميَّزًا. فلأن المال يجب أن يُعاد آخرًا، والعائد يُقاس جزئيًا بكم سرعة تحقيقه، يدفع ملّاك الملكية الخاصة بقوّةٍ لخلق القيمة على جدولٍ زمني، هادفين عادةً لشراء شركةٍ وتحسينها وبيعها خلال بضع سنوات. وهذا الإلحاح ميزةٌ لا عيب: يركّز الانتباه على التغييرات التي تزيد القيمة أكثر في الوقت المتاح، وإن كان قد يخلق ضغطًا نحو تفكيرٍ أقصر أمدًا يجب موازنته ببناء قيمةٍ دائمة.</p>
+        <div class="note"><strong>ملاحظة:</strong> ساعة الصندوق تفسّر نفاد صبر المستثمر. فمالٌ مُلتزَم يجب أن يُعاد ضمن حياة الصندوق، فيجب خلق القيمة على جدول، وهو ما يقود انضباط الملكية الخاصة وضغطها معًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="diligence">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Due Diligence &amp; Value Creation</h2>
+        <p class="lead">Between deciding to invest and profiting from it lie two disciplines that determine success: rigorous investigation before buying, and deliberate value creation after. Skipping the first or neglecting the second is how investments disappoint.</p>
+        <p>Due diligence is the deep investigation of a company before investing, to confirm that it is what it appears to be and worth what is being paid. It examines the finances, the market, the operations, the legal position, and the risks, so that the investor buys with eyes open rather than on a hopeful story. The discipline of diligence is to look hardest at the things that would most change the decision, and to be willing to walk away when the investigation reveals that the price does not match the reality.</p>
+        <h3>Creating value</h3>
+        <p>After the purchase, the real work is making the company more valuable, and there are broadly three ways to do it. Growth increases what the company earns by expanding its sales. Margin improvement increases what it keeps by running more efficiently. And better management or strategy improves how well the company is run overall. The best investments usually combine several of these, and the ones that rely only on paying a low price and selling at a higher one, without genuinely improving the company, are the most fragile, because they depend on market conditions rather than real gains.</p>
+        <ul>
+          <li><strong>Grow revenue:</strong> expand sales, enter new markets, or launch new products.</li>
+          <li><strong>Improve margins:</strong> run the company more efficiently so more of each sale is kept.</li>
+          <li><strong>Strengthen management:</strong> better leadership, strategy, and execution across the business.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Investigate hardest what would most change the decision, and be willing to walk away. The discipline to say no to a deal that does not hold up under scrutiny is as valuable as the ability to find a good one.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>العناية اللازمة وخلق القيمة</h2>
+        <p class="lead">بين قرار الاستثمار والربح منه يقع انضباطان يحدّدان النجاح: تحقيقٌ صارم قبل الشراء، وخلق قيمةٍ متعمَّد بعده. وتخطّي الأول أو إهمال الثاني هو كيف تخيّب الاستثمارات.</p>
+        <p>العناية اللازمة هي التحقيق العميق في شركةٍ قبل الاستثمار، لتأكيد أنها ما تبدو عليه وتساوي ما يُدفَع. تفحص المالية والسوق والعمليات والموقف القانوني والمخاطر، فيشتري المستثمر بعينين مفتوحتين لا على قصّةٍ آملة. وانضباط العناية النظر بأشدّ إلى ما قد يغيّر القرار أكثر، والاستعداد للانسحاب حين يكشف التحقيق أن السعر لا يطابق الواقع.</p>
+        <h3>خلق القيمة</h3>
+        <p>بعد الشراء، العمل الحقيقي جعل الشركة أثمن، وثمّة عمومًا ثلاث طرق لذلك. النمو يزيد ما تكسبه الشركة بتوسيع مبيعاتها. وتحسين الهامش يزيد ما تحتفظ به بتشغيلٍ أكفأ. وإدارةٌ أو استراتيجيةٌ أفضل تحسّن كيف تُدار الشركة إجمالًا. وأفضل الاستثمارات تجمع عادةً عدّةً من هذه، والتي تعتمد فقط على دفع سعرٍ منخفض والبيع بأعلى، دون تحسين الشركة حقًّا، أهشّها، لأنها تعتمد على ظروف السوق لا مكاسب حقيقية.</p>
+        <ul>
+          <li><strong>نمِّ الإيراد:</strong> وسّع المبيعات، أو ادخل أسواقًا جديدة، أو أطلق منتجاتٍ جديدة.</li>
+          <li><strong>حسّن الهوامش:</strong> شغّل الشركة أكفأ فيُحتفَظ بأكثر من كل بيعة.</li>
+          <li><strong>قوِّ الإدارة:</strong> قيادةٌ واستراتيجيةٌ وتنفيذٌ أفضل عبر العمل.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> حقّق بأشدّ فيما قد يغيّر القرار أكثر، وكن مستعدًّا للانسحاب. فانضباط قول لا لصفقةٍ لا تصمد للتدقيق قيّمٌ كالقدرة على إيجاد جيدة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="exit">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>The Exit</h2>
+        <p class="lead">An investment is only realized when it is sold, and the exit is where all the value created is finally converted into return. Planning the exit is not an afterthought, it shapes the whole investment from the beginning.</p>
+        <p>There are a few main ways to exit. The company can be sold to another company that wants it, a trade sale, which is common and often straightforward. It can be sold to another investor, such as a larger fund. Or it can be taken public, sold to investors on a stock market through an initial public offering, which can achieve a high value but is complex and depends on market conditions. The best exit route depends on the company, the market, and timing, and a skilled investor thinks about the likely exit before even making the investment, because a company that cannot be sold well is a poor investment however good it looks on paper.</p>
+        <ul>
+          <li><strong>Trade sale:</strong> selling to another company that values the business strategically.</li>
+          <li><strong>Secondary sale:</strong> selling to another financial investor, such as a larger fund.</li>
+          <li><strong>Public offering:</strong> selling shares to the public market, high potential value but complex and market-dependent.</li>
+        </ul>
+        <p>Timing the exit well is part of the discipline. Selling too early leaves value on the table, and holding too long risks the market turning or the value-creation opportunities running out, so the investor watches for the point where the company has been improved as much as it readily can be and conditions favor a sale. The fund's own clock adds pressure here, which is why disciplined exit planning, deciding in advance what a good exit looks like and working toward it, separates the returns that are realized from the ones that only ever existed on paper.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> private equity creates return by investing with rigorous diligence, matching its approach to the company's stage, actively building real value on the fund's clock, and exiting deliberately through the route and timing that convert that value into profit.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الخروج</h2>
+        <p class="lead">لا يتحقّق الاستثمار إلا حين يُباع، والخروج حيث تتحوّل كل القيمة المخلوقة آخرًا إلى عائد. وتخطيط الخروج ليس فكرةً لاحقة، بل يُشكّل الاستثمار كله من البداية.</p>
+        <p>ثمّة طرق رئيسة قليلة للخروج. يمكن بيع الشركة لشركةٍ أخرى تريدها، بيعٌ تجاري، وهو شائع وغالبًا مباشر. ويمكن بيعها لمستثمرٍ آخر، كصندوقٍ أكبر. أو طرحها للعامة، ببيعها لمستثمرين في سوق أسهمٍ عبر طرحٍ أولي، وهو قد يحقّق قيمةً عالية لكنه معقّد ويعتمد على ظروف السوق. وأفضل طريق خروجٍ يعتمد على الشركة والسوق والتوقيت، والمستثمر الماهر يفكّر في الخروج المرجَّح قبل حتى الاستثمار، لأن شركةً لا يمكن بيعها جيدًا استثمارٌ رديء مهما بدت جيدة على الورق.</p>
+        <ul>
+          <li><strong>بيعٌ تجاري:</strong> البيع لشركةٍ أخرى تقدّر العمل استراتيجيًا.</li>
+          <li><strong>بيعٌ ثانوي:</strong> البيع لمستثمرٍ مالي آخر، كصندوقٍ أكبر.</li>
+          <li><strong>طرحٌ عام:</strong> بيع الأسهم لسوقٍ عامة، قيمةٌ محتملة عالية لكنه معقّد ومعتمد على السوق.</li>
+        </ul>
+        <p>توقيت الخروج جيدًا جزءٌ من الانضباط. فالبيع مبكرًا يترك قيمةً على الطاولة، والإمساك طويلًا يخاطر بانقلاب السوق أو نفاد فرص خلق القيمة، فيترقّب المستثمر النقطة التي حُسِّنت فيها الشركة بقدر ما يسهُل وتُلائم الظروف البيع. وساعة الصندوق تضيف ضغطًا هنا، ولذا تخطيط الخروج المنضبط، بتقرير كيف يبدو الخروج الجيد مسبقًا والعمل نحوه، يفصل العوائد المُتحقَّقة عن التي وُجِدت على الورق فقط.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الملكية الخاصة تخلق العائد بالاستثمار بعنايةٍ صارمة، ومطابقة نهجها لمرحلة الشركة، وبناء قيمةٍ حقيقية بنشاطٍ على ساعة الصندوق، والخروج المتعمَّد عبر الطريق والتوقيت اللذين يحوّلان تلك القيمة إلى ربح.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Private equity creates return through active ownership: investing with rigor, building real value, and exiting deliberately, matched to the company's stage.</p>
+        <ul>
+          <li>Understand private equity as active ownership that builds value, not passive share-buying.</li>
+          <li>Match the approach to the stage, from high-risk venture to steady buyout, each a different discipline.</li>
+          <li>Recognize the fund's fixed clock as the source of both the discipline and the impatience for value.</li>
+          <li>Investigate rigorously before buying, and be willing to walk away when the price does not match reality.</li>
+          <li>Create real value through growth, margins, and management, and plan the exit from the start.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://guides.library.harvard.edu/law/private_equity" target="_blank" rel="noopener">Harvard Library, Private Equity, Venture Capital, and Hedge Funds guide.</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">Harvard Business School Online, investment and strategy tools.</a></li>
+          <li><a href="https://www.coso.org/guidance-erm" target="_blank" rel="noopener">COSO, Enterprise Risk Management (investment risk).</a></li>
+          <li><a href="https://hbr.org/2008/01/the-five-competitive-forces-that-shape-strategy" target="_blank" rel="noopener">Michael Porter, competitive analysis for investment diligence, HBR (2008).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">الملكية الخاصة تخلق العائد عبر الملكية النشطة: الاستثمار بصرامة، وبناء قيمةٍ حقيقية، والخروج المتعمَّد، مطابَقًا لمرحلة الشركة.</p>
+        <ul>
+          <li>افهم الملكية الخاصة كملكيةٍ نشطة تبني القيمة، لا شراء أسهمٍ سلبي.</li>
+          <li>طابِق النهج للمرحلة، من جريءٍ عالي الخطر إلى استحواذٍ ثابت، كلٌّ انضباطٌ مختلف.</li>
+          <li>أدرِك ساعة الصندوق الثابتة كمصدرٍ للانضباط ونفاد الصبر للقيمة معًا.</li>
+          <li>حقّق بصرامةٍ قبل الشراء، وكن مستعدًّا للانسحاب حين لا يطابق السعر الواقع.</li>
+          <li>اخلق قيمةً حقيقية عبر النمو والهوامش والإدارة، وخطّط الخروج من البداية.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://guides.library.harvard.edu/law/private_equity" target="_blank" rel="noopener">مكتبة هارفارد، دليل الملكية الخاصة ورأس المال الجريء وصناديق التحوّط.</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">هارفارد أونلاين، أدوات الاستثمار والاستراتيجية.</a></li>
+          <li><a href="https://www.coso.org/guidance-erm" target="_blank" rel="noopener">COSO، إدارة مخاطر المؤسسة (خطر الاستثمار).</a></li>
+          <li><a href="https://hbr.org/2008/01/the-five-competitive-forces-that-shape-strategy" target="_blank" rel="noopener">مايكل بورتر، التحليل التنافسي لعناية الاستثمار، HBR (2008).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","types","lifecycle","diligence","exit","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

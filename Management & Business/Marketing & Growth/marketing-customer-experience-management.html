@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Experience Management</title>
+<meta name="description" content="An operational framework for customer experience: the customer journey, voice of the customer, measurement, and continuous improvement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">MARKETING &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">التسويق &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Customer Experience Management</span><span data-lang="ar">إدارة تجربة العميل</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="journey"><span data-lang="en">The Journey</span><span data-lang="ar">الرحلة</span></a>
+    <a data-id="voice"><span data-lang="en">Voice of Customer</span><span data-lang="ar">صوت العميل</span></a>
+    <a data-id="measurement"><span data-lang="en">Measurement</span><span data-lang="ar">القياس</span></a>
+    <a data-id="improvement"><span data-lang="en">Improvement</span><span data-lang="ar">التحسين</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Customer experience (CX)</div>
+          <div><span>Scope:</span> Managing the whole experience a customer has with you</div>
+          <div><span>Owner role:</span> Experience owner, with journey owners</div>
+          <div><span>Review cadence:</span> Continuous listening, experience review each quarter</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Customer experience is the total impression a person forms of an organization across every interaction they have with it, from first hearing about it to using its product to seeking help. It is not any single touchpoint but the whole journey, and it is ultimately what determines whether a customer stays, leaves, or recommends you to others.</p>
+        <p>The reason experience matters more than ever is that customers increasingly choose on the basis of how it feels to deal with an organization, not just what it sells. A product can be matched by competitors, but the experience of dealing with a company, whether it is easy, respectful, and reliable, is harder to copy and often what customers remember. Managing experience deliberately, rather than leaving it to chance across dozens of disconnected interactions, is how an organization turns satisfied customers into loyal ones.</p>
+        <p>This framework describes customer experience as a managed discipline, from understanding the journey to listening to customers to measuring and improving the experience. It draws on recognized customer-satisfaction guidance and connects to the complaints framework, written to be reusable across services and sectors.</p>
+        <div class="note"><strong>Note:</strong> Customers judge you by the whole journey, not any single moment. A great product delivered through a frustrating experience still loses customers, because people remember how it felt to deal with you.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> تجربة العميل (CX)</div>
+          <div><span>النطاق:</span> إدارة التجربة الكاملة للعميل معك</div>
+          <div><span>دور المالك:</span> مالك التجربة، مع ملّاك الرحلات</div>
+          <div><span>دورية المراجعة:</span> إنصاتٌ مستمر، ومراجعة تجربةٍ كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">تجربة العميل هي الانطباع الكلّي الذي يكوّنه شخصٌ عن منشأةٍ عبر كل تفاعلٍ معها، من أول سماعٍ عنها إلى استخدام منتجها إلى طلب المساعدة. وهي ليست نقطة تماسٍ مفردة بل الرحلة كاملةً، وهي آخرًا ما يحدّد هل يبقى العميل أو يغادر أو يوصي بك.</p>
+        <p>سبب أهمية التجربة أكثر من أي وقتٍ أن العملاء يختارون تزايدًا بناءً على كيف يشعرون بالتعامل مع منشأةٍ، لا ما تبيعه فقط. فالمنتج يجاريه المنافسون، لكن تجربة التعامل مع شركةٍ، هل هي سهلة محترمة موثوقة، أصعب نسخًا وغالبًا ما يتذكّره العملاء. وإدارة التجربة عمدًا، بدل تركها للصدفة عبر عشرات التفاعلات المنفصلة، هي كيف تحوّل المنشأة عملاءَ راضين إلى أوفياء.</p>
+        <p>يصف هذا الإطار تجربة العميل كانضباطٍ مُدار، من فهم الرحلة إلى الإنصات للعملاء إلى قياس التجربة وتحسينها. ويستند إلى إرشاد رضا العملاء المعترف به ويتّصل بإطار الشكاوى، مكتوبًا ليكون قابلًا لإعادة الاستخدام عبر الخدمات والقطاعات.</p>
+        <div class="note"><strong>ملاحظة:</strong> يحكم عليك العملاء بالرحلة كاملةً لا بلحظةٍ مفردة. فمنتجٌ رائع يُسلَّم عبر تجربةٍ مُحبِطة يخسر العملاء رغمًا، لأن الناس يتذكّرون كيف شعروا بالتعامل معك.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="journey">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Customer Journey</h2>
+        <p class="lead">To manage an experience you have to see it as the customer does, as a journey through a series of touchpoints, not as your internal departments each handling a piece. Journey mapping is the discipline of laying out that whole path to find where it works and where it fails.</p>
+        <p>A customer journey runs through stages, from becoming aware of a need, to considering options, to buying, to using, to seeking support, and ideally to becoming an advocate. At each stage the customer interacts with the organization through touchpoints, a website, a store, a call, an app, each an opportunity to help or frustrate them. Mapping the journey means walking through it as the customer would and honestly assessing each touchpoint, which almost always reveals friction the organization, seeing only its own separate functions, never noticed.</p>
+        <ul>
+          <li><strong>Touchpoints:</strong> every point where the customer interacts with the organization, each shaping the overall impression.</li>
+          <li><strong>Moments of truth:</strong> the touchpoints that matter most to the customer, where the experience is made or broken.</li>
+          <li><strong>Pain points:</strong> the places in the journey where customers struggle, which are the priorities for improvement.</li>
+          <li><strong>Hand-offs:</strong> the transitions between functions, where experiences most often break because no one owns the whole.</li>
+        </ul>
+        <p>The most common experience failures happen at the hand-offs between the organization's own departments. A customer does not care that sales and support are separate teams, they experience one company, so when a hand-off drops information or forces them to repeat themselves, the experience fails at exactly the seam the organization cannot see from inside. This is why the journey must be owned end to end, by someone responsible for the whole path rather than a single stage.</p>
+        <div class="note"><strong>Note:</strong> Experiences break at the seams between departments. The customer sees one organization, so a journey that is smooth within each function but broken at the hand-offs still feels broken to them.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>رحلة العميل</h2>
+        <p class="lead">لإدارة تجربةٍ عليك رؤيتها كما يراها العميل، كرحلةٍ عبر سلسلة نقاط تماس، لا كإداراتك الداخلية كلٌّ تتولّى قطعة. ورسم الرحلة انضباط بسط ذلك المسار كاملًا لإيجاد أين يعمل وأين يُخفِق.</p>
+        <p>رحلة العميل تمرّ بمراحل، من الوعي بحاجةٍ، إلى النظر في الخيارات، إلى الشراء، إلى الاستخدام، إلى طلب الدعم، ومثاليًا إلى صيرورته مناصرًا. وفي كل مرحلةٍ يتفاعل العميل مع المنشأة عبر نقاط تماس، موقعٌ ومتجرٌ ومكالمةٌ وتطبيق، كلٌّ فرصةٌ لمساعدته أو إحباطه. ورسم الرحلة يعني السير فيها كما العميل والتقييم الصادق لكل نقطة تماس، وهو ما يكشف دومًا تقريبًا احتكاكًا لم تلحظه المنشأة، الرائية وظائفها المنفصلة فقط.</p>
+        <ul>
+          <li><strong>نقاط التماس:</strong> كل نقطةٍ يتفاعل فيها العميل مع المنشأة، كلٌّ تُشكّل الانطباع الكلّي.</li>
+          <li><strong>لحظات الحقيقة:</strong> نقاط التماس الأهمّ للعميل، حيث تُصنَع التجربة أو تُكسَر.</li>
+          <li><strong>نقاط الألم:</strong> الأماكن التي يعاني فيها العملاء في الرحلة، وهي أولويات التحسين.</li>
+          <li><strong>التسليمات:</strong> الانتقالات بين الوظائف، حيث تنكسر التجارب غالبًا لأن لا أحد يملك الكل.</li>
+        </ul>
+        <p>أشيع إخفاقات التجربة تقع عند التسليمات بين إدارات المنشأة نفسها. فالعميل لا يهمّه أن المبيعات والدعم فريقان منفصلان، بل يختبر شركةً واحدة، فحين يُسقِط تسليمٌ معلومةً أو يجبره على تكرار نفسه، تُخفِق التجربة عند اللحمة بالضبط التي لا تراها المنشأة من الداخل. ولذا يجب أن تُملَك الرحلة من طرفٍ لطرف، بمن هو مسؤول عن المسار كله لا مرحلةٍ واحدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> تنكسر التجارب عند اللحمات بين الإدارات. فالعميل يرى منشأةً واحدة، فرحلةٌ سلسة داخل كل وظيفة لكنها مكسورة عند التسليمات تبقى مكسورةً في نظره.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="voice">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Listening to Customers</h2>
+        <p class="lead">You cannot improve an experience you do not understand, and understanding comes from listening to customers systematically, not from assuming you know what they want. The voice of the customer is the organized practice of gathering and acting on what customers tell you.</p>
+        <p>Customers signal their experience in many ways: through direct feedback when asked, through complaints when something goes wrong, through their behavior such as whether they return or leave, and through what they say to others. A mature organization gathers all of these deliberately, treating each as a source of insight rather than noise. The complaints covered in the quality framework are one of the richest of these signals, because a complaint is a customer taking the trouble to tell you exactly where you failed.</p>
+        <ul>
+          <li><strong>Solicited feedback:</strong> what customers tell you when you ask, through surveys and interviews.</li>
+          <li><strong>Complaints:</strong> the unsolicited signal of specific failures, a gift of precise information.</li>
+          <li><strong>Behavioral signals:</strong> what customers do, such as repurchase or churn, which is more honest than what they say.</li>
+          <li><strong>Social signals:</strong> what customers say about you to others, in reviews and word of mouth.</li>
+        </ul>
+        <p>The discipline that makes listening valuable is acting on it. Gathering feedback and then not using it is worse than not gathering it, because it wastes the customer's effort and signals that their voice does not matter. The organizations that get value from listening close the loop: they gather the signal, find the patterns, change something, and where possible tell the customer that their feedback led to a change, which turns listening from a survey into a relationship.</p>
+        <div class="note"><strong>Note:</strong> Behavior is more honest than opinion. A customer may say they are satisfied in a survey and quietly stop buying, so watch what customers do, not only what they tell you.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الإنصات للعملاء</h2>
+        <p class="lead">لا تُحسّن تجربةً لا تفهمها، والفهم يأتي من الإنصات للعملاء منهجيًا، لا من افتراض معرفتك بما يريدون. وصوت العميل الممارسة المنظَّمة لجمع ما يخبرك به العملاء والتصرّف به.</p>
+        <p>يُشير العملاء إلى تجربتهم بطرقٍ كثيرة: بتغذيةٍ مباشرة عند السؤال، وبشكاوى حين يسوء شيء، وبسلوكهم كهل يعودون أو يغادرون، وبما يقولونه لغيرهم. والمنشأة الناضجة تجمع هذه كلها عمدًا، مُعاملةً كلًّا كمصدر بصيرةٍ لا ضجيج. والشكاوى المغطّاة في إطار الجودة من أغنى هذه الإشارات، لأن الشكوى عميلٌ يتكلّف إخبارك أين أخفقت بالضبط.</p>
+        <ul>
+          <li><strong>تغذيةٌ مطلوبة:</strong> ما يخبرك به العملاء عند السؤال، عبر الاستبيانات والمقابلات.</li>
+          <li><strong>الشكاوى:</strong> الإشارة غير المطلوبة لإخفاقاتٍ محدَّدة، هديةُ معلومةٍ دقيقة.</li>
+          <li><strong>الإشارات السلوكية:</strong> ما يفعله العملاء، كإعادة الشراء أو التسرّب، وهو أصدق مما يقولون.</li>
+          <li><strong>الإشارات الاجتماعية:</strong> ما يقوله العملاء عنك لغيرهم، في المراجعات والكلمة المنقولة.</li>
+        </ul>
+        <p>الانضباط الذي يجعل الإنصات قيّمًا التصرّف به. فجمع التغذية ثم عدم استخدامها أسوأ من عدم جمعها، لأنه يهدر جهد العميل ويُشير إلى أن صوته لا يهمّ. والمنشآت التي تجني قيمةً من الإنصات تُغلِق الحلقة: تجمع الإشارة، وتجد الأنماط، وتغيّر شيئًا، وحيثما أمكن تُخبر العميل أن تغذيته قادت لتغيير، وهو ما يحوّل الإنصات من استبيانٍ إلى علاقة.</p>
+        <div class="note"><strong>ملاحظة:</strong> السلوك أصدق من الرأي. فقد يقول عميلٌ إنه راضٍ في استبيانٍ ويتوقّف عن الشراء بهدوء، فراقب ما يفعله العملاء لا ما يقولونه فقط.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="measurement">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Measuring Experience</h2>
+        <p class="lead">Experience feels intangible, but it can be measured, and measuring it is what lets an organization track whether it is improving and where to focus. A few well-chosen metrics turn a vague sense of how customers feel into something manageable.</p>
+        <p>Different metrics capture different aspects of experience. Satisfaction measures how happy customers are with a specific interaction. Loyalty or advocacy measures whether they would recommend you, a strong predictor of future growth. Effort measures how easy or hard it was to deal with you, which often predicts loyalty better than satisfaction, because customers reward ease. No single number captures experience fully, so a balanced set, read together, gives the truest picture.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">CSAT</div><div class="lbl">Satisfaction with an interaction</div></div>
+          <div class="stat"><div class="num">NPS</div><div class="lbl">Likelihood to recommend, loyalty</div></div>
+          <div class="stat"><div class="num">CES</div><div class="lbl">How easy it was to deal with you</div></div>
+        </div>
+        <p>The most important discipline in measurement is to connect the number to a cause you can act on. A falling satisfaction score is only useful if you can trace it to the touchpoint or issue driving it, which is why experience metrics work best when paired with the journey map and the voice of the customer. A score on its own tells you that something is wrong, but only the qualitative signal behind it tells you what to fix, so the number and the story must be read together.</p>
+        <div class="note"><strong>Note:</strong> Effort often predicts loyalty better than satisfaction. Customers do not always reward delight, but they reliably punish difficulty, so making the experience easy is frequently the highest-return improvement.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>قياس التجربة</h2>
+        <p class="lead">تبدو التجربة غير ملموسة، لكن يمكن قياسها، وقياسها هو ما يتيح للمنشأة تتبّع هل تتحسّن وأين تركّز. وبضعة مقاييس مُنتقاة تحوّل شعورًا غامضًا بكيف يشعر العملاء إلى شيءٍ قابل للإدارة.</p>
+        <p>مقاييس مختلفة تلتقط جوانب مختلفة من التجربة. الرضا يقيس كم العملاء سعداء بتفاعلٍ بعينه. والولاء أو المناصرة يقيس هل يوصون بك، مؤشرٌ قوي للنمو القادم. والجهد يقيس كم سهُل أو صعُب التعامل معك، وهو غالبًا يتنبّأ بالولاء أفضل من الرضا، لأن العملاء يكافئون السهولة. ولا رقمٌ واحد يلتقط التجربة كاملةً، فمجموعةٌ متوازنة، مقروءةً معًا، تعطي أصدق صورة.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">CSAT</div><div class="lbl">الرضا عن تفاعل</div></div>
+          <div class="stat"><div class="num">NPS</div><div class="lbl">احتمال التوصية، الولاء</div></div>
+          <div class="stat"><div class="num">CES</div><div class="lbl">كم سهُل التعامل معك</div></div>
+        </div>
+        <p>أهمّ انضباطٍ في القياس وصل الرقم بسببٍ تستطيع التصرّف به. فدرجة رضا هابطة لا تفيد إلا إن تتبّعتها لنقطة التماس أو المشكلة المُسبِّبة، ولذا تعمل مقاييس التجربة أفضل ما تعمل مقرونةً بخريطة الرحلة وصوت العميل. فالدرجة وحدها تخبرك أن شيئًا خطأ، لكن الإشارة النوعية خلفها وحدها تخبرك ما تُصلِح، فيجب قراءة الرقم والقصة معًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> الجهد غالبًا يتنبّأ بالولاء أفضل من الرضا. فالعملاء لا يكافئون البهجة دومًا، لكنهم يعاقبون الصعوبة بموثوقية، فجعل التجربة سهلة كثيرًا أعلى تحسينٍ عائدًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="improvement">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Improving the Experience</h2>
+        <p class="lead">All the mapping, listening, and measuring is only worthwhile if it leads to a better experience. Improvement is where insight becomes action, closing the loop from understanding a problem to fixing it at the source.</p>
+        <p>Experience improvement works the same way as quality improvement: find the pain points that matter most, understand their root cause, change the process that creates them, and confirm the change worked. Because experience spans the whole journey, the highest-value improvements are often at the hand-offs and the moments of truth, the places where a small fix removes friction that every customer feels. The discipline is to prioritize by impact on the customer, fixing the pain points that affect the most people or the most important moments first.</p>
+        <ul>
+          <li><strong>Prioritize by impact:</strong> fix the pain points that affect the most customers or the most important moments.</li>
+          <li><strong>Fix the root cause:</strong> change the process that creates the poor experience, not just the individual instance.</li>
+          <li><strong>Design the moments of truth:</strong> invest most in the touchpoints that most shape the overall impression.</li>
+          <li><strong>Close the loop:</strong> confirm the change improved the experience, and tell customers their feedback mattered.</li>
+        </ul>
+        <p>The organizations that lead on experience treat it as a continuous discipline, not a project. Customer expectations rise over time, and competitors improve, so an experience that delights today becomes merely adequate tomorrow. Continuously mapping, listening, measuring, and improving, rather than fixing the experience once and moving on, is what keeps an organization ahead, and it is the same continuous-improvement loop that runs through quality and every other operational discipline.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> customer experience is managed by seeing the whole journey, listening systematically, measuring with a balanced set of metrics, and continuously improving at the root cause, especially at the hand-offs and moments that shape how customers feel.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>تحسين التجربة</h2>
+        <p class="lead">كل الرسم والإنصات والقياس لا يستحقّ إلا إن قاد لتجربةٍ أفضل. والتحسين حيث تصير البصيرة فعلًا، مُغلِقًا الحلقة من فهم مشكلةٍ إلى إصلاحها عند المصدر.</p>
+        <p>تحسين التجربة يعمل كتحسين الجودة نفسه: جِد نقاط الألم الأهمّ، وافهم سببها الجذري، وغيّر العملية المُنشِئة لها، وأكّد نجاح التغيير. ولأن التجربة تمتد عبر الرحلة كلها، أعلى التحسينات قيمةً غالبًا عند التسليمات ولحظات الحقيقة، الأماكن التي يُزيل فيها إصلاحٌ صغير احتكاكًا يشعر به كل عميل. والانضباط الترتيب بالأثر على العميل، بإصلاح نقاط الألم التي تمسّ أكثر الناس أو أهمّ اللحظات أولًا.</p>
+        <ul>
+          <li><strong>رتّب بالأثر:</strong> أصلِح نقاط الألم التي تمسّ أكثر العملاء أو أهمّ اللحظات.</li>
+          <li><strong>أصلِح السبب الجذري:</strong> غيّر العملية المُنشِئة للتجربة الرديئة، لا الحالة المفردة.</li>
+          <li><strong>صمّم لحظات الحقيقة:</strong> استثمر أكثر في نقاط التماس الأكثر تشكيلًا للانطباع الكلّي.</li>
+          <li><strong>أغلِق الحلقة:</strong> أكّد أن التغيير حسّن التجربة، وأخبِر العملاء أن تغذيتهم همّت.</li>
+        </ul>
+        <p>المنشآت الرائدة في التجربة تعاملها كانضباطٍ مستمر لا مشروع. فتوقّعات العملاء ترتفع عبر الزمن، والمنافسون يتحسّنون، فتجربةٌ تُبهِج اليوم تصير مجرّد كافية غدًا. والاستمرار في الرسم والإنصات والقياس والتحسين، بدل إصلاح التجربة مرةً والمضي، هو ما يُبقي المنشأة متقدّمة، وهو حلقة التحسين المستمر نفسها التي تسري في الجودة وكل انضباطٍ تشغيلي آخر.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> تُدار تجربة العميل برؤية الرحلة كاملةً، والإنصات منهجيًا، والقياس بمجموعة مقاييس متوازنة، والتحسين المستمر عند السبب الجذري، خاصةً عند التسليمات واللحظات التي تُشكّل كيف يشعر العملاء.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Customer experience is managed by understanding the whole journey, listening, measuring, and continuously improving where it matters most.</p>
+        <ul>
+          <li>Manage the whole journey as the customer sees it, owned end to end, not department by department.</li>
+          <li>Map the journey to find pain points and the hand-offs where experiences most often break.</li>
+          <li>Listen through feedback, complaints, and behavior, and always close the loop by acting on it.</li>
+          <li>Measure with a balanced set such as satisfaction, advocacy, and effort, tied to causes you can act on.</li>
+          <li>Improve continuously at the root cause, focusing on the moments of truth and the seams between functions.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.iso.org/standard/71582.html" target="_blank" rel="noopener">ISO 10004:2018, Monitoring and measuring customer satisfaction.</a></li>
+          <li><a href="https://www.iso.org/standard/71580.html" target="_blank" rel="noopener">ISO 10002:2018, Complaints handling in organizations.</a></li>
+          <li><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">ISO 9001:2015, Quality management systems (customer focus).</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">Harvard Business School Online, customer and strategy tools.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">تُدار تجربة العميل بفهم الرحلة كاملةً، والإنصات، والقياس، والتحسين المستمر حيث يهمّ أكثر.</p>
+        <ul>
+          <li>أدِر الرحلة كاملةً كما يراها العميل، مملوكةً من طرفٍ لطرف، لا إدارةً إدارة.</li>
+          <li>ارسم الرحلة لإيجاد نقاط الألم والتسليمات حيث تنكسر التجارب غالبًا.</li>
+          <li>أنصِت عبر التغذية والشكاوى والسلوك، وأغلِق الحلقة دومًا بالتصرّف به.</li>
+          <li>قِس بمجموعةٍ متوازنة كالرضا والمناصرة والجهد، مربوطةً بأسبابٍ تستطيع التصرّف بها.</li>
+          <li>حسّن باستمرارٍ عند السبب الجذري، مركّزًا على لحظات الحقيقة واللحمات بين الوظائف.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.iso.org/standard/71582.html" target="_blank" rel="noopener">ISO 10004:2018، مراقبة وقياس رضا العملاء.</a></li>
+          <li><a href="https://www.iso.org/standard/71580.html" target="_blank" rel="noopener">ISO 10002:2018، معالجة الشكاوى في المنظمات.</a></li>
+          <li><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">ISO 9001:2015، أنظمة إدارة الجودة (التركيز على العميل).</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">هارفارد أونلاين، أدوات العميل والاستراتيجية.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","journey","voice","measurement","improvement","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Governance &amp; Management</title>
+<meta name="description" content="An operational framework for data governance: roles, data quality, metadata and catalog, lineage, classification, lifecycle, and program metrics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">DATA MANAGEMENT &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">إدارة البيانات &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Data Governance &amp; Management</span><span data-lang="ar">حوكمة البيانات وإدارتها</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="roles"><span data-lang="en">Roles</span><span data-lang="ar">الأدوار</span></a>
+    <a data-id="quality"><span data-lang="en">Data Quality</span><span data-lang="ar">جودة البيانات</span></a>
+    <a data-id="metadata"><span data-lang="en">Metadata &amp; Catalog</span><span data-lang="ar">البيانات الوصفية</span></a>
+    <a data-id="lifecycle"><span data-lang="en">Classification</span><span data-lang="ar">التصنيف</span></a>
+    <a data-id="metrics"><span data-lang="en">Metrics</span><span data-lang="ar">المؤشرات</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Data governance &amp; management</div>
+          <div><span>Scope:</span> Managing data as a governed enterprise asset</div>
+          <div><span>Owner role:</span> Data governance lead, with data owners and stewards</div>
+          <div><span>Review cadence:</span> Continuous, with a data governance council each quarter</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Data governance is the system of decisions, roles, and standards that lets an organization treat its data as a managed asset rather than an accidental byproduct. It answers the questions that decide whether data can be trusted and used: who owns it, what it means, how good it is, who may see it, and how long it is kept.</p>
+        <p>The need is simple to state and hard to satisfy. Every organization runs on data, but most of that data grew up organically, scattered across systems built at different times by different teams, with the same concept named five ways and no single answer to what a customer even is. Governance imposes deliberate order on that sprawl, not for its own sake, but so the data can actually be relied on for decisions, analytics, and increasingly for AI.</p>
+        <p>This framework organizes data governance around the recognized knowledge areas of the discipline, with governance at the center coordinating the rest. It draws on the DAMA data management body of knowledge and aligns to the security and privacy frameworks it depends on, written to be reusable across sectors without reproducing any source text.</p>
+        <div class="note"><strong>Note:</strong> Data governance is often sold as a compliance chore, but its real payoff is trust. Decisions, analytics, and AI are only as good as the data beneath them, and governance is what makes that data worth trusting.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> حوكمة البيانات وإدارتها</div>
+          <div><span>النطاق:</span> إدارة البيانات كأصلٍ مؤسسي محوكَم</div>
+          <div><span>دور المالك:</span> قائد حوكمة البيانات، مع ملّاك البيانات وأمنائها</div>
+          <div><span>دورية المراجعة:</span> مستمرة، مع مجلس حوكمة بياناتٍ كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">حوكمة البيانات نظام القرارات والأدوار والمعايير الذي يتيح للمنشأة معاملة بياناتها كأصلٍ مُدار لا كناتجٍ عرضي. تجيب الأسئلة التي تقرّر هل يُوثَق بالبيانات وتُستخدَم: من يملكها، وما معناها، وكم جودتها، ومن يجوز له رؤيتها، وكم تُحفَظ.</p>
+        <p>الحاجة سهلة القول صعبة الوفاء. فكل منشأةٍ تجري على البيانات، لكن أغلبها نما عضويًا، مبعثرًا عبر أنظمةٍ بُنيت في أوقاتٍ مختلفة بفرقٍ مختلفة، بالمفهوم نفسه مُسمّىً خمس طرقٍ وبلا جوابٍ واحد حتى عمّا هو «العميل». والحوكمة تفرض نظامًا متعمَّدًا على ذلك التمدّد، لا لذاته، بل ليُعتمَد على البيانات فعلًا للقرارات والتحليلات، وتزايدًا للذكاء الاصطناعي.</p>
+        <p>ينظّم هذا الإطار حوكمة البيانات حول مجالات المعرفة المعترف بها للانضباط، بالحوكمة في المركز تنسّق البقية. ويستند إلى مرجع DAMA لإدارة البيانات ويتوافق مع أطر الأمن والخصوصية التي يعتمد عليها، مكتوبًا ليكون قابلًا لإعادة الاستخدام عبر القطاعات دون نسخ أي نصّ مصدري.</p>
+        <div class="note"><strong>ملاحظة:</strong> تُباع حوكمة البيانات غالبًا كالتزام امتثالٍ ثقيل، لكن عائدها الحقيقي الثقة. فالقرارات والتحليلات والذكاء لا تجود إلا بقدر البيانات تحتها، والحوكمة هي ما يجعل تلك البيانات جديرةً بالثقة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="roles">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Roles: Owners &amp; Stewards</h2>
+        <p class="lead">Governance fails without clear ownership, because data with no owner is data no one is responsible for keeping correct, secure, or meaningful. The first act of governance is to attach named roles to the data the organization depends on.</p>
+        <p>Three roles carry most of the weight, and separating them prevents the common muddle where everyone is vaguely responsible and therefore no one is. The data owner is a business leader accountable for a domain of data and the decisions about it, the data steward does the hands-on work of defining, monitoring, and improving it, and the data custodian is the technical role that stores and protects it. Owner decides, steward tends, custodian holds, and each answers a different question when something goes wrong.</p>
+        <ul>
+          <li><strong>Data owner:</strong> the accountable business leader for a data domain, who sets the rules and approves access and use.</li>
+          <li><strong>Data steward:</strong> the person who defines the data's meaning, watches its quality, and resolves the day-to-day issues.</li>
+          <li><strong>Data custodian:</strong> the technical role, often in IT, that stores, secures, and operates the systems the data lives in.</li>
+          <li><strong>Governance council:</strong> the forum where owners meet to set enterprise-wide standards and settle cross-domain disputes.</li>
+        </ul>
+        <p>The steward is the role most often missing and most quietly essential. Owners set direction and custodians run systems, but it is the steward who actually knows that this field means net revenue not gross, that these two customer records are the same person, and that this feed has been broken for a week. Without stewards, governance is a set of policies with no one turning them into daily reality.</p>
+        <div class="note"><strong>Note:</strong> Assign ownership to business roles, not to IT alone. IT can hold and protect data, but only the business can decide what it means and who should use it, and confusing the two is why many governance programs stall.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الأدوار: الملّاك والأمناء</h2>
+        <p class="lead">تفشل الحوكمة بلا ملكيةٍ واضحة، لأن بياناتٍ بلا مالكٍ بياناتٌ لا أحد مسؤولٌ عن إبقائها صحيحةً أو آمنة أو ذات معنى. وأول أفعال الحوكمة إسناد أدوارٍ مُسمّاة للبيانات التي تعتمد عليها المنشأة.</p>
+        <p>ثلاثة أدوارٍ تحمل أغلب الثقل، وفصلها يمنع الخلط الشائع حيث الجميع مسؤولٌ غموضًا فلا أحد. مالك البيانات قائد عملٍ مساءَل عن مجال بياناتٍ والقرارات حياله، وأمين البيانات يؤدّي العمل المباشر لتعريفها ومراقبتها وتحسينها، وحافظ البيانات الدور التقني الذي يخزّنها ويحميها. المالك يقرّر، والأمين يرعى، والحافظ يحفظ، وكلٌّ يجيب سؤالًا مختلفًا حين يسوء شيء.</p>
+        <ul>
+          <li><strong>مالك البيانات:</strong> قائد العمل المساءَل عن مجال بيانات، يضع القواعد ويعتمد الوصول والاستخدام.</li>
+          <li><strong>أمين البيانات:</strong> من يعرّف معنى البيانات، ويراقب جودتها، ويحلّ مشكلاتها اليومية.</li>
+          <li><strong>حافظ البيانات:</strong> الدور التقني، غالبًا في تقنية المعلومات، الذي يخزّن ويؤمّن ويشغّل الأنظمة التي تعيش فيها البيانات.</li>
+          <li><strong>مجلس الحوكمة:</strong> المنتدى الذي يجتمع فيه الملّاك لوضع معايير المنشأة وحسم النزاعات بين المجالات.</li>
+        </ul>
+        <p>الأمين هو الدور الأكثر غيابًا والأهمّ بهدوء. فالملّاك يضعون الاتجاه والحافظون يشغّلون الأنظمة، لكن الأمين هو من يعرف فعلًا أن هذا الحقل يعني الإيراد الصافي لا الإجمالي، وأن هذين السجلّين للعميل الشخص نفسه، وأن هذه التغذية معطوبة منذ أسبوع. وبلا أمناء، الحوكمة مجموعة سياساتٍ لا أحد يحوّلها لواقعٍ يومي.</p>
+        <div class="note"><strong>ملاحظة:</strong> أسنِد الملكية لأدوار العمل لا لتقنية المعلومات وحدها. فالتقنية تحفظ البيانات وتحميها، لكن العمل وحده يقرّر معناها ومن يستخدمها، والخلط بينهما سبب تعثّر كثير من برامج الحوكمة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="quality">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Data Quality</h2>
+        <p class="lead">Quality is where governance meets its most visible payoff. Data that is wrong, incomplete, or inconsistent quietly corrupts every decision made on it, and the cost is rarely traced back to its source, so it accumulates unseen.</p>
+        <p>Quality is not a single property but several measurable dimensions, and naming them turns a vague sense that the data is bad into specific, fixable problems. A record can be accurate but out of date, complete but inconsistent with another system, or valid in format but referring to something that no longer exists. Measuring each dimension separately shows where the real weakness is.</p>
+        <ul>
+          <li><strong>Accuracy:</strong> the data correctly describes the real-world thing it represents.</li>
+          <li><strong>Completeness:</strong> the data that should be present is present, with no critical gaps.</li>
+          <li><strong>Consistency:</strong> the same fact agrees across every system that holds it.</li>
+          <li><strong>Timeliness:</strong> the data is current enough for the decision it informs.</li>
+          <li><strong>Uniqueness:</strong> each real thing appears once, without duplicate records masquerading as separate entities.</li>
+          <li><strong>Validity:</strong> the data conforms to the format and rules its definition requires.</li>
+        </ul>
+        <h4>Worked example</h4>
+        <p>A company finds its customer count differs between two reports by twelve percent. Investigation shows the gap is duplicates: the same customer entered twice with slightly different spellings counts as two, inflating one system. That is a uniqueness failure, and it was silently distorting every per-customer metric until quality measurement exposed it. The fix is not a one-time cleanup but a rule and a steward that prevent duplicates from forming again, because quality that is cleaned once and not maintained simply decays back.</p>
+        <div class="note"><strong>Note:</strong> Fix quality at the source, not in the report. Cleaning data downstream every time it is used is endless and error-prone, while fixing the process that created the bad data solves it once for everyone.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>جودة البيانات</h2>
+        <p class="lead">الجودة حيث تلقى الحوكمة أظهر عائدٍ لها. فبياناتٌ خاطئة أو ناقصة أو غير متّسقة تُفسِد بهدوءٍ كل قرارٍ يُتَّخذ عليها، ونادرًا ما تُعزى الكلفة لمصدرها، فتتراكم دون أن تُرى.</p>
+        <p>الجودة ليست خاصيةً واحدة بل عدّة أبعادٍ قابلة للقياس، وتسميتها تحوّل شعورًا غامضًا بأن البيانات رديئة إلى مشكلاتٍ محدَّدة قابلة للإصلاح. فقد يكون سجلٌّ دقيقًا لكنه قديم، أو كاملًا لكنه غير متّسق مع نظامٍ آخر، أو صحيح الصيغة لكنه يشير لشيءٍ لم يعُد موجودًا. وقياس كل بُعدٍ منفصلًا يُظهر أين الضعف الحقيقي.</p>
+        <ul>
+          <li><strong>الدقة:</strong> تصف البيانات بصحّةٍ الشيء الواقعي الذي تمثّله.</li>
+          <li><strong>الاكتمال:</strong> البيانات التي ينبغي وجودها موجودة، بلا ثغراتٍ حرجة.</li>
+          <li><strong>الاتساق:</strong> الحقيقة نفسها تتّفق عبر كل نظامٍ يحملها.</li>
+          <li><strong>الحداثة:</strong> البيانات حديثةٌ بما يكفي للقرار الذي تُرشِده.</li>
+          <li><strong>التفرّد:</strong> كل شيءٍ حقيقي يظهر مرة، بلا سجلاتٍ مكرَّرة تتنكّر ككياناتٍ منفصلة.</li>
+          <li><strong>الصحّة:</strong> البيانات تطابق الصيغة والقواعد التي يتطلّبها تعريفها.</li>
+        </ul>
+        <h4>مثال محلول</h4>
+        <p>تجد شركةٌ عدد عملائها يختلف بين تقريرين بنسبة اثني عشر بالمئة. ويُظهر التحقيق أن الفجوة تكرارٌ: العميل نفسه أُدخِل مرتين بتهجئةٍ مختلفة قليلًا يُحسَب اثنين، فيضخّم نظامًا. وذلك إخفاق تفرّد، وكان يشوّه بصمتٍ كل مؤشرٍ لكل عميل حتى كشفه قياس الجودة. والعلاج ليس تنظيفًا لمرة بل قاعدةً وأمينًا يمنعان تكوّن التكرار ثانيةً، لأن جودةً تُنظَّف مرةً ولا تُصان تعود تتحلّل ببساطة.</p>
+        <div class="note"><strong>ملاحظة:</strong> أصلِح الجودة عند المصدر لا في التقرير. فتنظيف البيانات في المصبّ كل مرةٍ تُستخدَم لا ينتهي وعُرضةٌ للخطأ، بينما إصلاح العملية التي أنشأت البيانات الرديئة يحلّها مرةً للجميع.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="metadata">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Metadata, Catalog &amp; Lineage</h2>
+        <p class="lead">You cannot govern data you cannot find or understand. Metadata is data about data, the definitions, sources, and meanings that turn an anonymous column of numbers into something a person can use correctly and confidently.</p>
+        <p>A data catalog is the searchable inventory of an organization's data, where every important dataset is described: what it contains, what each field means, who owns it, where it comes from, and how good it is. The catalog is what turns a sprawling, opaque data estate into something navigable, so an analyst can find the right data and know they are using it as intended, rather than guessing from a column name and quietly getting it wrong.</p>
+        <h3>Lineage</h3>
+        <p>Data lineage is the record of where data came from and how it was transformed on its way to where it is used. It answers the question every serious data user eventually asks: where did this number come from. When a report shows a surprising figure, lineage lets you trace it back through every transformation to its source, so you can tell whether it is a real signal or a broken pipeline. Without lineage, a wrong number is a mystery, and trust in all the numbers erodes.</p>
+        <ul>
+          <li><strong>Business glossary:</strong> the agreed definitions of key terms, so revenue and customer mean one thing across the organization.</li>
+          <li><strong>Technical metadata:</strong> the structure, sources, and formats of the actual datasets.</li>
+          <li><strong>Catalog:</strong> the searchable place where people discover and understand available data.</li>
+          <li><strong>Lineage:</strong> the traceable path from source through transformation to use.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> A shared business glossary is deceptively powerful. Much of the disagreement in data is not about the numbers but about what the words mean, and agreeing the definitions once removes a whole class of recurring argument.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>البيانات الوصفية والفهرس والنسب</h2>
+        <p class="lead">لا تحوكم بياناتٍ لا تستطيع إيجادها أو فهمها. البيانات الوصفية بياناتٌ عن البيانات، التعريفات والمصادر والمعاني التي تحوّل عمودًا مجهولًا من الأرقام إلى شيءٍ يستطيع شخصٌ استخدامه بصحّةٍ وثقة.</p>
+        <p>فهرس البيانات هو الجرد القابل للبحث لبيانات المنشأة، حيث تُوصَف كل مجموعةٍ مهمّة: ماذا تحوي، وما معنى كل حقل، ومن يملكها، ومن أين تأتي، وكم جودتها. والفهرس ما يحوّل بيئة بياناتٍ متمدّدة غامضة إلى شيءٍ قابل للتنقّل، فيجد المحلّل البيانات الصحيحة ويعرف أنه يستخدمها كما قُصِد، بدل التخمين من اسم عمودٍ والخطأ بهدوء.</p>
+        <h3>النسب</h3>
+        <p>نسب البيانات سجلّ من أين جاءت وكيف حُوِّلت في طريقها إلى حيث تُستخدَم. يجيب السؤال الذي يسأله كل مستخدم بياناتٍ جادّ آخرًا: من أين جاء هذا الرقم. فحين يُظهر تقريرٌ رقمًا مفاجئًا، يتيح النسب تتبّعه عبر كل تحويلٍ إلى مصدره، فتعرف هل هو إشارةٌ حقيقية أم أنبوبٌ معطوب. وبلا نسب، الرقم الخاطئ لغزٌ، وتتآكل الثقة في كل الأرقام.</p>
+        <ul>
+          <li><strong>المعجم العملي:</strong> التعريفات المتّفق عليها للمصطلحات المفتاحية، فيعني «الإيراد» و«العميل» شيئًا واحدًا عبر المنشأة.</li>
+          <li><strong>البيانات الوصفية التقنية:</strong> بنية مجموعات البيانات الفعلية ومصادرها وصيغها.</li>
+          <li><strong>الفهرس:</strong> المكان القابل للبحث حيث يكتشف الناس البيانات المتاحة ويفهمونها.</li>
+          <li><strong>النسب:</strong> المسار القابل للتتبّع من المصدر عبر التحويل إلى الاستخدام.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> المعجم العملي المشترك قويٌ على نحوٍ خادع. فكثيرٌ من الخلاف في البيانات ليس حول الأرقام بل حول معنى الكلمات، والاتّفاق على التعريفات مرةً يزيل صنفًا كاملًا من الجدل المتكرّر.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="lifecycle">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Classification &amp; Lifecycle</h2>
+        <p class="lead">Not all data deserves the same treatment. Classification sorts data by how sensitive and how important it is, so that protection and handling match the stakes rather than applying one blunt standard to everything.</p>
+        <p>A simple classification scheme, a few levels from public through internal to sensitive and restricted, lets every other control be applied proportionately. The most sensitive data gets the strongest access limits, encryption, and monitoring, while low-sensitivity data is not burdened with controls it does not need. Without classification, an organization either over-protects everything, which is expensive and slows work, or under-protects the crown jewels, which is dangerous, and usually it does both in the wrong places.</p>
+        <h3>The data lifecycle</h3>
+        <p>Data has a life: it is created, used, stored, archived, and eventually destroyed, and governance applies at every stage. The most neglected stage is the last one. Organizations are good at creating and keeping data and poor at deleting it, so data accumulates far past its usefulness, becoming a growing cost and a growing liability. A retention schedule, deciding in advance how long each kind of data is kept and ensuring it is actually destroyed when that time passes, is what closes the lifecycle and connects governance directly to the privacy principle of storage limitation.</p>
+        <div class="note"><strong>Note:</strong> Retention is a decision to be made deliberately, not a default of keeping everything forever. Data you no longer need is pure risk and cost, and the discipline to delete it is as important as the discipline to protect it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>التصنيف ودورة الحياة</h2>
+        <p class="lead">ليست كل البيانات تستحق المعاملة نفسها. التصنيف يفرز البيانات بحسب حساسيتها وأهميتها، لتطابق الحمايةُ والتعامل الرهانَ بدل تطبيق معيارٍ واحد فظّ على كل شيء.</p>
+        <p>مخطط تصنيفٍ بسيط، بضعة مستوياتٍ من العام عبر الداخلي إلى الحسّاس والمقيَّد، يتيح تطبيق كل ضابطٍ آخر بتناسب. فأشدّ البيانات حساسيةً تنال أقوى حدود الوصول والتعمية والمراقبة، بينما لا تُثقَل البيانات منخفضة الحساسية بضوابط لا تحتاجها. وبلا تصنيف، إمّا تُفرِط المنشأة في حماية كل شيء، وهو باهظ ويُبطئ العمل، أو تُقصّر في حماية أنفس الأصول، وهو خطر، وعادةً تفعل الاثنين في الأماكن الخطأ.</p>
+        <h3>دورة حياة البيانات</h3>
+        <p>للبيانات حياة: تُنشَأ وتُستخدَم وتُخزَّن وتُؤرشَف وتُتلَف آخرًا، والحوكمة تنطبق في كل مرحلة. وأكثر المراحل إهمالًا الأخيرة. فالمنشآت بارعةٌ في إنشاء البيانات وحفظها ضعيفةٌ في حذفها، فتتراكم أبعد بكثير من فائدتها، مُصبِحةً كلفةً متنامية وعبئًا متناميًا. وجدول احتفاظٍ، يقرّر مسبقًا كم تُحفَظ كل نوعٍ من البيانات ويضمن إتلافها فعلًا عند انقضاء ذلك، هو ما يُغلق دورة الحياة ويصل الحوكمة مباشرةً بمبدأ الخصوصية في تحديد التخزين.</p>
+        <div class="note"><strong>ملاحظة:</strong> الاحتفاظ قرارٌ يُتَّخذ عن قصد، لا افتراض حفظ كل شيءٍ للأبد. فبياناتٌ لم تعُد تحتاجها خطرٌ وكلفةٌ صرف، وانضباط حذفها مهمٌّ كانضباط حمايتها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="metrics">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Metrics &amp; Operating the Program</h2>
+        <p class="lead">A governance program has to show it is working, and it does so through metrics that track whether data is getting more trustworthy and better managed over time, not through the volume of policies it has written.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">%</div><div class="lbl">Critical data with a named owner</div></div>
+          <div class="stat"><div class="num">%</div><div class="lbl">Key datasets meeting quality thresholds</div></div>
+          <div class="stat"><div class="num">%</div><div class="lbl">Important data described in the catalog</div></div>
+        </div>
+        <p>These measure the things that actually matter: whether data is owned, whether it is good enough, and whether people can find and understand it. A rising share of critical data with clear owners and passing quality checks is real progress, while a thick binder of governance policy that no one applies is not. Each metric should point to a specific gap to close, such as an unowned critical dataset or a feed failing its quality threshold.</p>
+        <h3>Start where it matters</h3>
+        <p>The commonest way governance fails is by trying to govern everything at once, which produces a slow, resented program that boils the ocean and delivers nothing. The alternative is to start with the data that matters most, the handful of critical domains that feed the biggest decisions, govern those well, show the value, and expand from a base of demonstrated success. Governance earns its mandate by making trusted data available where it counts, not by publishing standards for data no one uses.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> data governance turns scattered, untrusted data into a managed asset, by assigning ownership, measuring quality, cataloging meaning, classifying by sensitivity, and proving the value on the data that matters most.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>المؤشرات وتشغيل البرنامج</h2>
+        <p class="lead">على برنامج الحوكمة أن يُظهر أنه يعمل، ويفعل ذلك عبر مؤشراتٍ تتبّع هل تصير البيانات أجدر بالثقة وأفضل إدارةً عبر الزمن، لا عبر كم السياسات التي كتبها.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">%</div><div class="lbl">بياناتٌ حرجة لها مالكٌ مُسمّى</div></div>
+          <div class="stat"><div class="num">%</div><div class="lbl">مجموعاتٌ مفتاحية تفي بعتبات الجودة</div></div>
+          <div class="stat"><div class="num">%</div><div class="lbl">بياناتٌ مهمّة موصوفة في الفهرس</div></div>
+        </div>
+        <p>تقيس هذه ما يهمّ فعلًا: هل البيانات مملوكة، وهل هي جيّدة بما يكفي، وهل يستطيع الناس إيجادها وفهمها. فنصيبٌ متزايد من البيانات الحرجة بملّاكٍ واضحين وتفي بفحوص الجودة تقدّمٌ حقيقي، ومجلّدٌ سميك من سياسة حوكمةٍ لا يطبّقها أحد ليس كذلك. وكل مؤشرٍ ينبغي أن يشير إلى فجوةٍ محدَّدة تُغلَق، كمجموعةٍ حرجة بلا مالك أو تغذيةٍ تفشل عتبة جودتها.</p>
+        <h3>ابدأ حيث يهمّ</h3>
+        <p>أشيع طرق فشل الحوكمة محاولة حوكمة كل شيءٍ دفعةً واحدة، فتُنتِج برنامجًا بطيئًا مكروهًا يحاول الإحاطة بكل شيء ولا يسلّم شيئًا. والبديل البدء بالبيانات الأهمّ، حفنة المجالات الحرجة التي تُغذّي أكبر القرارات، حوكِمها جيدًا، وأظهِر القيمة، وتوسّع من قاعدة نجاحٍ مُبرهَن. والحوكمة تكسب ولايتها بإتاحة بياناتٍ موثوقة حيث تهمّ، لا بنشر معايير لبياناتٍ لا يستخدمها أحد.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> حوكمة البيانات تحوّل بياناتٍ مبعثرة غير موثوقة إلى أصلٍ مُدار، بإسناد الملكية، وقياس الجودة، وفهرسة المعنى، والتصنيف بالحساسية، وإثبات القيمة على البيانات الأهمّ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Data governance makes data a trustworthy asset by giving it owners, quality, meaning, and a managed lifecycle.</p>
+        <ul>
+          <li>Assign business ownership, and invest in the stewards who turn policy into daily reality.</li>
+          <li>Measure data quality across its dimensions, and fix problems at the source, not the report.</li>
+          <li>Build a catalog, a shared glossary, and lineage so people can find, understand, and trust data.</li>
+          <li>Classify data by sensitivity, and close the lifecycle with deliberate retention and deletion.</li>
+          <li>Track metrics that show growing trust, and start with the data that matters most.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.damadmbok.org/" target="_blank" rel="noopener">DAMA-DMBOK, Data Management Body of Knowledge.</a></li>
+          <li><a href="https://dama.org/learning-resources/dama-data-management-body-of-knowledge-dmbok/" target="_blank" rel="noopener">DAMA International, DMBOK knowledge areas.</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022, Information security management systems (data security).</a></li>
+          <li><a href="https://sdaia.gov.sa/en/SDAIA/about/Pages/RegulationsAndPolicies.aspx" target="_blank" rel="noopener">SDAIA, data and privacy regulations (governance context).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">حوكمة البيانات تجعل البيانات أصلًا جديرًا بالثقة بمنحها ملّاكًا وجودةً ومعنىً ودورة حياةٍ مُدارة.</p>
+        <ul>
+          <li>أسنِد ملكية العمل، واستثمر في الأمناء الذين يحوّلون السياسة لواقعٍ يومي.</li>
+          <li>قِس جودة البيانات عبر أبعادها، وأصلِح المشكلات عند المصدر لا في التقرير.</li>
+          <li>ابنِ فهرسًا ومعجمًا مشتركًا ونسبًا ليجد الناس البيانات ويفهموها ويثقوا بها.</li>
+          <li>صنّف البيانات بالحساسية، وأغلِق دورة الحياة باحتفاظٍ وحذفٍ متعمَّدين.</li>
+          <li>تتبّع مؤشرات تُظهر ثقةً متنامية، وابدأ بالبيانات الأهمّ.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.damadmbok.org/" target="_blank" rel="noopener">DAMA-DMBOK، مرجع إدارة البيانات.</a></li>
+          <li><a href="https://dama.org/learning-resources/dama-data-management-body-of-knowledge-dmbok/" target="_blank" rel="noopener">DAMA International، مجالات معرفة DMBOK.</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022، أنظمة إدارة أمن المعلومات (أمن البيانات).</a></li>
+          <li><a href="https://sdaia.gov.sa/en/SDAIA/about/Pages/RegulationsAndPolicies.aspx" target="_blank" rel="noopener">هيئة البيانات والذكاء الاصطناعي، لوائح البيانات والخصوصية (سياق الحوكمة).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","roles","quality","metadata","lifecycle","metrics","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

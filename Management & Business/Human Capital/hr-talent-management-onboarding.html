@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talent Management &amp; Onboarding</title>
+<meta name="description" content="An original framework for talent management and onboarding: selecting for real performance, integrating new hires well, and building talent for the future.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">HUMAN CAPITAL &middot; FRAMEWORK</span><span data-lang="ar">رأس المال البشري &middot; إطار</span></div>
+    <h1><span data-lang="en">Talent Management &amp; Onboarding</span><span data-lang="ar">إدارة المواهب والإعداد</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="selecting"><span data-lang="en">Selecting</span><span data-lang="ar">الاختيار</span></a>
+    <a data-id="onboarding"><span data-lang="en">Onboarding</span><span data-lang="ar">الإعداد</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Talent management &amp; onboarding</div>
+          <div><span>Scope:</span> Attracting, selecting, and integrating great people</div>
+          <div><span>Owner role:</span> HR, with hiring managers</div>
+          <div><span>Review cadence:</span> Per hire, with an annual talent review</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Talent management is the work of getting the right people into the right roles and setting them up to succeed: attracting strong candidates, selecting well, integrating new hires effectively, and building a pipeline of capable people for the future. It is arguably the highest-leverage of all people activities, because who an organization brings in, and how well it starts them, shapes everything that follows.</p>
+        <p>This matters because the difference between a great hire and a poor one is enormous, and it compounds. An excellent person in a role can be many times more productive than an average one, brings energy and ideas, and lifts those around them; a poor hire drains a manager's time, damages a team, and is painful and expensive to replace. And even a great hire can be lost through a weak start that leaves them confused, unsupported, or doubting their decision to join. Getting talent in and starting it well is therefore among the most consequential things an organization does.</p>
+        <p>This framework covers talent management across two decisive moments, selecting the right people and onboarding them well, and building talent for the long term. It is my own synthesis, written in my own words and grounded in recognized people practice, designed to be reusable across organizations.</p>
+        <div class="note"><strong>Note:</strong> Hiring is the highest-leverage decision a manager makes, and the cheapest to get wrong slowly. A great hire compounds in value for years; a poor one drains a team long before anyone admits the mistake.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> إدارة المواهب والإعداد</div>
+          <div><span>النطاق:</span> استقطاب واختيار ودمج الناس العظماء</div>
+          <div><span>دور المالك:</span> الموارد البشرية، مع المديرين المُوظِّفين</div>
+          <div><span>دورية المراجعة:</span> لكل توظيف، بمراجعة مواهب سنوية</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">إدارة المواهب عمل جلب الناس الصحيحين للأدوار الصحيحة وتهيئتهم للنجاح: استقطاب مرشّحين أقوياء، والاختيار الجيد، ودمج الجدد بفاعلية، وبناء خطّ ناسٍ قادرين للمستقبل. وهي أرجح أعلى أنشطة الناس رافعةً، لأن من تجلبه المنشأة، وكم تبدؤه جيدًا، يُشكّل كل ما يلي.</p>
+        <p>يهمّ هذا لأن الفرق بين توظيفٍ عظيم وآخر رديء هائل، ويتراكم. فشخصٌ ممتاز في دورٍ قد يكون أضعافًا أكثر إنتاجيةً من متوسّط، يجلب طاقةً وأفكارًا، ويرفع من حوله؛ وتوظيفٌ رديء يستنزف وقت المدير، ويضرّ فريقًا، ومؤلمٌ ومكلف استبداله. وحتى توظيفٌ عظيم قد يُفقَد ببدايةٍ ضعيفة تتركه محتارًا أو بلا سندٍ أو شاكًّا في قراره بالالتحاق. وجلب المواهب وبدؤها جيدًا إذًا من أثقل ما تفعله المنشأة عاقبةً.</p>
+        <p>يغطّي هذا الإطار إدارة المواهب عبر لحظتين حاسمتين، اختيار الناس الصحيحين وإعدادهم جيدًا، وبناء المواهب للمدى الطويل. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في ممارسة ناسٍ معترف بها، مصمَّمٌ ليكون قابلًا لإعادة الاستخدام عبر المنشآت.</p>
+        <div class="note"><strong>ملاحظة:</strong> التوظيف أعلى قراراتٍ يتّخذها المدير رافعةً، وأرخصها خطأً ببطء. فتوظيفٌ عظيم يتراكم قيمةً سنين؛ ورديء يستنزف فريقًا قبل أن يعترف أحدٌ بالخطأ بمدة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="selecting">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Selecting the Right People</h2>
+        <p class="lead">Good hiring starts long before an interview: with clarity about what the role truly needs, and continues with a selection process designed to predict actual performance rather than to reward interview skill.</p>
+        <p>The foundation is knowing what you are hiring for. That means being clear not just about the skills and experience a role requires, but about the behaviors and qualities that actually drive success in it, and, crucially, about fit with the team and organization. Vague or inflated requirements lead to hiring the wrong things well. On that basis, the selection process should be designed to gather real evidence about how a candidate will perform: structured interviews that ask everyone the same job-relevant questions, work samples or exercises that show them actually doing the work, and honest reference checks, rather than relying on gut feeling and how personable someone seems, which predicts performance poorly and lets bias creep in.</p>
+        <ul>
+          <li><strong>Define the role honestly:</strong> the skills, behaviors, and fit that truly drive success.</li>
+          <li><strong>Predict performance, not polish:</strong> use structured interviews and real work samples.</li>
+          <li><strong>Guard against bias:</strong> consistent, evidence-based selection reduces unfair and inaccurate calls.</li>
+          <li><strong>Sell as well as screen:</strong> great candidates are choosing you too, so treat them well.</li>
+        </ul>
+        <p>Two further truths shape good selection. First, it is a two-way choice: strong candidates are evaluating the organization as much as it is evaluating them, so the process should also attract and impress, treating candidates with respect and honesty even when they are not selected, since every candidate talks about their experience. Second, structured, consistent, evidence-based processes are not just fairer but more accurate: they reduce the bias and noise that make unstructured hiring little better than chance. An organization that hires with discipline, clear on what it needs and rigorous in how it assesses, steadily builds a stronger workforce than one that hires on instinct and hopes for the best.</p>
+        <div class="note"><strong>Note:</strong> Interviews reward being impressive in interviews, which is not the job. The best selection predicts real performance, through structured questions and samples of the actual work, not through a pleasant conversation.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>اختيار الناس الصحيحين</h2>
+        <p class="lead">التوظيف الجيد يبدأ قبل المقابلة بمدة: بوضوحٍ عمّا يحتاجه الدور فعلًا، ويستمرّ بعملية اختيارٍ مصمَّمة للتنبّؤ بالأداء الفعلي لا لمكافأة مهارة المقابلة.</p>
+        <p>الأساس معرفة لماذا توظّف. وهذا يعني الوضوح لا عن المهارات والخبرة التي يتطلّبها دورٌ فقط، بل عن السلوكيات والصفات التي تقود نجاحه فعلًا، وحاسمًا، عن الملاءمة مع الفريق والمنشأة. فالمتطلّبات الغامضة أو المتضخّمة تقود لتوظيف الأشياء الخطأ جيدًا. وعلى ذلك الأساس، ينبغي أن تُصمَّم عملية الاختيار لجمع دليلٍ حقيقي عن كيف سيؤدّي المرشّح: مقابلاتٌ منظَّمة تسأل الجميع الأسئلة ذات الصلة بالوظيفة ذاتها، وعيّنات عملٍ أو تمارين تُظهِرهم يفعلون العمل فعلًا، وفحوص مراجع أمينة، بدل الاعتماد على الشعور الغريزي وكم يبدو أحدٌ محبَّبًا، وهو يتنبّأ بالأداء رديئًا ويدع الانحياز يتسلّل.</p>
+        <ul>
+          <li><strong>عرّف الدور بأمانة:</strong> المهارات والسلوكيات والملاءمة التي تقود النجاح فعلًا.</li>
+          <li><strong>تنبّأ بالأداء لا اللمعان:</strong> استخدم مقابلاتٍ منظَّمة وعيّنات عملٍ حقيقية.</li>
+          <li><strong>احرس من الانحياز:</strong> اختيارٌ متّسق قائم على الدليل يقلّل الأحكام الظالمة وغير الدقيقة.</li>
+          <li><strong>بِع كما تفحص:</strong> المرشّحون العظماء يختارونك أيضًا، فعاملهم جيدًا.</li>
+        </ul>
+        <p>وحقيقتان أخريان تُشكّلان الاختيار الجيد. الأولى أنه اختيارٌ ثنائي الاتجاه: المرشّحون الأقوياء يقيّمون المنشأة بقدر ما تقيّمهم، فينبغي أن تجذب العملية وتُبهِر أيضًا، بمعاملة المرشّحين باحترامٍ وأمانة حتى حين لا يُختارون، إذ كل مرشّحٍ يتحدّث عن تجربته. والثانية أن العمليات المنظَّمة المتّسقة القائمة على الدليل ليست أعدل فقط بل أدقّ: تقلّل الانحياز والضوضاء التي تجعل التوظيف غير المنظَّم أفضل قليلًا من الصدفة. ومنشأةٌ توظّف بانضباط، واضحةً عمّا تحتاجه صارمةً في كيف تقيّم، تبني باطّرادٍ قوى عاملة أقوى من أخرى توظّف بالغريزة وتأمل الأفضل.</p>
+        <div class="note"><strong>ملاحظة:</strong> المقابلات تكافئ أن تكون مُبهِرًا في المقابلات، وليس ذلك الوظيفة. وأفضل اختيارٍ يتنبّأ بالأداء الفعلي، عبر أسئلةٍ منظَّمة وعيّنات من العمل الفعلي، لا عبر محادثةٍ لطيفة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="onboarding">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Onboarding &amp; Building Talent</h2>
+        <p class="lead">Selecting a great person is only half the job; the other half is starting them well and then developing talent over time, so that the potential you hired is actually realized.</p>
+        <p>Onboarding is the deliberate integration of a new hire, and it matters far more than the paperwork it is often reduced to. A new person needs several things quickly: the practical basics to actually work, clarity about their role and how success is defined, connection to their manager and team so they feel they belong, and early meaningful work they can succeed at, which builds confidence and shows their contribution matters. A strong start, in the first days and weeks, disproportionately shapes a person's engagement, productivity, and likelihood of staying; a weak one plants doubt that is hard to reverse. Crucially, onboarding is a management responsibility, not just an HR checklist, since it is the manager who provides the clarity, connection, and early work that truly integrate someone.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">90</div><div class="lbl"><span data-lang="en">the first days shape everything after</span><span data-lang="ar">الأيام الأولى تشكّل ما بعدها</span></div></div>
+          <div class="stat"><div class="num">70/20/10</div><div class="lbl"><span data-lang="en">most growth is on the job</span><span data-lang="ar">أغلب النموّ في العمل</span></div></div>
+          <div class="stat"><div class="num">1</div><div class="lbl"><span data-lang="en">pipeline ready before it is needed</span><span data-lang="ar">خطٌّ جاهز قبل الحاجة</span></div></div>
+        </div>
+        <p>Beyond the first weeks lies the longer work of building talent: developing people's capabilities over time and preparing them for larger roles. Most development happens not in classrooms but through challenging work, coaching, and feedback, so the organizations that grow talent best give people stretching assignments with support, rather than relying on training alone. This builds a pipeline of capable people ready to step up, which is cheaper and less risky than always recruiting from outside, and it signals to good people that growth is possible without leaving. The most strategic piece is succession: making sure key roles have prepared successors before they fall vacant, so a critical departure becomes a smooth transition rather than a crisis. Talent management, done fully, means not just hiring well today but continuously building the people the organization will need tomorrow.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> talent management turns hiring into lasting capability, by defining roles honestly and selecting for real performance, integrating new hires through a strong, management-led start, and then developing people through stretching work and building a pipeline and succession, so the organization keeps realizing and renewing the talent it needs.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الإعداد وبناء المواهب</h2>
+        <p class="lead">اختيار شخصٍ عظيم نصف العمل فقط؛ والنصف الآخر بدؤه جيدًا ثم تطوير المواهب بالزمن، فيتحقّق الإمكان الذي وظّفته فعلًا.</p>
+        <p>الإعداد الدمج المتعمَّد للموظف الجديد، ويهمّ أكثر بكثيرٍ من الأوراق التي يُختزَل إليها غالبًا. فالجديد يحتاج عدّة أشياء سريعًا: الأساسيات العملية ليعمل فعلًا، ووضوحًا عن دوره وكيف يُعرَّف النجاح، واتصالًا بمديره وفريقه فيشعر بالانتماء، وعملًا مبكرًا ذا معنى ينجح فيه، ما يبني الثقة ويُظهِر أن إسهامه يهمّ. وبدايةٌ قوية، في الأيام والأسابيع الأولى، تُشكّل بلا تناسبٍ مشاركة الشخص وإنتاجيته وترجيح بقائه؛ وضعيفةٌ تزرع شكًّا يصعب عكسه. وحاسمًا، الإعداد مسؤولية إدارةٍ لا مجرّد قائمة فحصٍ لموارد بشرية، إذ المدير من يوفّر الوضوح والاتصال والعمل المبكر التي تدمج أحدًا فعلًا.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">90</div><div class="lbl"><span data-lang="en">الأيام الأولى تشكّل ما بعدها</span><span data-lang="ar">الأيام الأولى تشكّل ما بعدها</span></div></div>
+          <div class="stat"><div class="num">70/20/10</div><div class="lbl"><span data-lang="en">أغلب النموّ في العمل</span><span data-lang="ar">أغلب النموّ في العمل</span></div></div>
+          <div class="stat"><div class="num">1</div><div class="lbl"><span data-lang="en">خطٌّ جاهز قبل الحاجة</span><span data-lang="ar">خطٌّ جاهز قبل الحاجة</span></div></div>
+        </div>
+        <p>وراء الأسابيع الأولى يقع العمل الأطول لبناء المواهب: تطوير قدرات الناس بالزمن وتهيئتهم لأدوارٍ أكبر. وأغلب التطوير يحدث لا في قاعاتٍ بل عبر عملٍ متحدٍّ وتوجيهٍ وتغذيةٍ راجعة، فالمنشآت التي تنمّي المواهب أفضل تمنح الناس مهامًا ممدِّدة بسند، بدل الاعتماد على التدريب وحده. وهذا يبني خطّ ناسٍ قادرين مستعدّين للصعود، أرخص وأقلّ خطرًا من التوظيف الخارجي دومًا، ويشير للجيدين أن النموّ ممكنٌ دون مغادرة. وأكثر القطع استراتيجيةً الخلافة: ضمان أن للأدوار الرئيسة خلفاء مُهيّئين قبل أن تشغر، فتصير مغادرةٌ حرجة انتقالًا سلسًا لا أزمة. وإدارة المواهب، مفعولةً كاملةً، تعني لا التوظيف الجيد اليوم فقط بل البناء المستمرّ للناس الذين ستحتاجهم المنشأة غدًا.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> إدارة المواهب تحوّل التوظيف لقدرةٍ دائمة، بتعريف الأدوار بأمانة والاختيار للأداء الحقيقي، ودمج الجدد ببدايةٍ قوية يقودها المدير، ثم تطوير الناس عبر عملٍ ممدِّد وبناء خطٍّ وخلافة، فتواصل المنشأة تحقيق المواهب التي تحتاجها وتجديدها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Talent management turns good hiring into lasting capability through selection, onboarding, and development.</p>
+        <ul>
+          <li>Treat hiring as the highest-leverage people decision, since a great hire compounds for years.</li>
+          <li>Define roles honestly and select for real performance, using structured interviews and work samples.</li>
+          <li>Remember selection is two-way: attract and respect candidates, since they are choosing too.</li>
+          <li>Onboard as a management-led experience, giving clarity, connection, and early meaningful work.</li>
+          <li>Build talent through stretching work, and plan succession before key roles fall vacant.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2019/05/recruiting" target="_blank" rel="noopener">HBR, on recruiting and selection.</a></li>
+          <li><a href="https://www.shrm.org/topics-tools/topics/talent-acquisition" target="_blank" rel="noopener">SHRM, talent acquisition resources.</a></li>
+          <li><a href="https://www.gallup.com/workplace/247076/onboarding-new-employees-perspective-paper.aspx" target="_blank" rel="noopener">Gallup, on onboarding.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">إدارة المواهب تحوّل التوظيف الجيد لقدرةٍ دائمة عبر الاختيار والإعداد والتطوير.</p>
+        <ul>
+          <li>عامِل التوظيف كأعلى قرارات الناس رافعةً، إذ توظيفٌ عظيم يتراكم سنين.</li>
+          <li>عرّف الأدوار بأمانة واختر للأداء الحقيقي، بمقابلاتٍ منظَّمة وعيّنات عمل.</li>
+          <li>تذكّر أن الاختيار ثنائي الاتجاه: اجذب المرشّحين واحترمهم، فهم يختارون أيضًا.</li>
+          <li>أعِدّ كتجربةٍ يقودها المدير، مانحًا الوضوح والاتصال وعملًا مبكرًا ذا معنى.</li>
+          <li>ابنِ المواهب عبر عملٍ ممدِّد، وخطّط للخلافة قبل أن تشغر الأدوار الرئيسة.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2019/05/recruiting" target="_blank" rel="noopener">HBR، عن التوظيف والاختيار.</a></li>
+          <li><a href="https://www.shrm.org/topics-tools/topics/talent-acquisition" target="_blank" rel="noopener">SHRM، موارد اكتساب المواهب.</a></li>
+          <li><a href="https://www.gallup.com/workplace/247076/onboarding-new-employees-perspective-paper.aspx" target="_blank" rel="noopener">Gallup، عن الإعداد.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","selecting","onboarding","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

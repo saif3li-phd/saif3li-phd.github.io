@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agents &amp; Intelligent Automation</title>
+<meta name="description" content="An operational framework for AI agents and automation: levels of autonomy, guardrails, human oversight, agent-specific security, and safe deployment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">ARTIFICIAL INTELLIGENCE &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الذكاء الاصطناعي &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">AI Agents &amp; Intelligent Automation</span><span data-lang="ar">وكلاء الذكاء الاصطناعي والأتمتة الذكية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="autonomy"><span data-lang="en">Levels of Autonomy</span><span data-lang="ar">مستويات الاستقلالية</span></a>
+    <a data-id="boundaries"><span data-lang="en">Boundaries</span><span data-lang="ar">الحدود</span></a>
+    <a data-id="oversight"><span data-lang="en">Oversight</span><span data-lang="ar">الإشراف</span></a>
+    <a data-id="security"><span data-lang="en">Security</span><span data-lang="ar">الأمن</span></a>
+    <a data-id="deployment"><span data-lang="en">Deployment</span><span data-lang="ar">النشر</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> AI agents &amp; intelligent automation</div>
+          <div><span>Scope:</span> Designing, deploying, and controlling AI systems that take actions</div>
+          <div><span>Owner role:</span> Automation owner, with a named human accountable per agent</div>
+          <div><span>Review cadence:</span> Continuous monitoring, formal review of each agent quarterly</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">An AI agent is a system that does not just answer, it acts. Given a goal, it can plan steps, call tools, and take actions in the world, from sending a message to updating a record to triggering another process, with limited or no human intervention between the goal and the outcome. That shift from advising to acting is what makes agents powerful and what makes them a distinct governance problem.</p>
+        <p>Automation is not new, but AI agents change its character. A traditional automation follows a fixed script, so its behavior is fully predictable and its failures are repeatable bugs. An agent decides how to reach a goal, so its path can vary, and a small misunderstanding of the goal can lead it to take a confident, wrong action at speed. The value is enormous, work that once needed a person can run continuously, but the control problem is that you are no longer reviewing an output, you are trusting a decision to act.</p>
+        <p>This framework treats agents as a controlled extension of AI governance: everything from the governance of AI applies, plus a specific discipline for the fact that these systems act. It aligns to the AI risk guidance of NIST and the management-system approach of ISO/IEC 42001, and borrows the least-privilege and monitoring logic of security operations, without reproducing any of their text.</p>
+        <div class="note"><strong>Note:</strong> The core question for any agent is not can it do this, but what happens when it does this wrong, and who catches it. Design the answer to that question before you grant the agent the ability to act.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> وكلاء الذكاء والأتمتة الذكية</div>
+          <div><span>النطاق:</span> تصميم أنظمة ذكاءٍ تتّخذ أفعالًا ونشرها وضبطها</div>
+          <div><span>دور المالك:</span> مالك الأتمتة، مع إنسانٍ مُسمّى مساءَل لكل وكيل</div>
+          <div><span>دورية المراجعة:</span> مراقبة مستمرة، ومراجعة رسمية لكل وكيلٍ كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">وكيل الذكاء نظامٌ لا يجيب فحسب بل يفعل. فبإعطائه هدفًا، يستطيع تخطيط خطوات، واستدعاء أدوات، واتّخاذ أفعالٍ في العالم، من إرسال رسالةٍ إلى تحديث سجلٍّ إلى إطلاق عمليةٍ أخرى، بتدخّلٍ بشري محدود أو معدوم بين الهدف والنتيجة. وذلك التحوّل من النصح إلى الفعل هو ما يجعل الوكلاء أقوياء وما يجعلهم مشكلة حوكمةٍ مميَّزة.</p>
+        <p>الأتمتة ليست جديدة، لكن وكلاء الذكاء يغيّرون طبيعتها. فالأتمتة التقليدية تتبع نصًّا ثابتًا، فسلوكها متوقَّع تمامًا وإخفاقاتها عللٌ متكرّرة. أما الوكيل فيقرّر كيف يبلغ الهدف، فقد يتباين مساره، وسوء فهمٍ صغير للهدف قد يقوده لاتّخاذ فعلٍ واثقٍ خاطئ بسرعة. والقيمة هائلة، فعملٌ كان يحتاج شخصًا يستطيع أن يجري باستمرار، لكن مشكلة الضبط أنك لم تعُد تراجع مخرجًا، بل تأتمن قرارًا بالفعل.</p>
+        <p>يعامل هذا الإطار الوكلاء كامتدادٍ مضبوط لحوكمة الذكاء: ينطبق كل ما في حوكمة الذكاء، مع انضباطٍ خاص لكون هذه الأنظمة تفعل. ويتوافق مع إرشاد مخاطر الذكاء من NIST ونهج نظام الإدارة في ISO/IEC 42001، ويستعير منطق أقلّ الصلاحية والمراقبة من عمليات الأمن، دون نسخ أي نصّ.</p>
+        <div class="note"><strong>ملاحظة:</strong> السؤال الجوهري لأي وكيل ليس هل يستطيع فعل هذا، بل ماذا يحدث حين يفعله خطأً، ومن يلتقطه. صمّم الجواب قبل أن تمنح الوكيل القدرة على الفعل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="autonomy">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Levels of Autonomy</h2>
+        <p class="lead">Not every agent should be trusted equally. Autonomy is a dial, not a switch, and the single most important design decision is how far to turn it for a given task, matched to how much the mistake would cost and how much you trust the agent.</p>
+        <p>It helps to think of autonomy as a ladder. At the bottom, the AI only suggests, and a human does everything. One rung up, the AI drafts an action and a human approves it before it happens. Higher still, the AI acts on its own but a human can review and reverse it afterward. At the top, the AI acts with no human in the loop at all. Each rung trades safety for speed, and the right rung depends entirely on the stakes of the action.</p>
+        <table>
+          <tr><th>Level</th><th>The AI</th><th>The human</th><th>Fits when</th></tr>
+          <tr><td>Suggest</td><td>Recommends only</td><td>Decides and acts</td><td>High stakes, low trust</td></tr>
+          <tr><td>Approve</td><td>Proposes the action</td><td>Approves before it runs</td><td>Consequential, reversible with effort</td></tr>
+          <tr><td>Act &amp; review</td><td>Acts, then reports</td><td>Can review and reverse</td><td>Moderate stakes, easily reversible</td></tr>
+          <tr><td>Full</td><td>Acts alone</td><td>Sets goals and monitors</td><td>Low stakes, high volume, easy to undo</td></tr>
+        </table>
+        <p>The discipline is to start low and earn the way up. A new agent begins by only suggesting, and as evidence accumulates that it is reliable for a task, its autonomy is raised deliberately, not by default. Granting full autonomy on day one, before any track record exists, is the most common and most avoidable way an agent causes harm.</p>
+        <div class="note"><strong>Note:</strong> Match autonomy to reversibility above all. An action that is easy to undo can tolerate more autonomy, while an irreversible action, sending money, deleting data, contacting a customer, deserves a human gate almost regardless of how good the agent seems.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>مستويات الاستقلالية</h2>
+        <p class="lead">ليس كل وكيلٍ يُؤتمَن بالتساوي. الاستقلالية قرصٌ لا مفتاح، وأهمّ قرار تصميمٍ مفرد كم تديره لمهمةٍ بعينها، مطابَقًا لكم سيكلّف الخطأ وكم تثق بالوكيل.</p>
+        <p>يفيد تصوّر الاستقلالية كسُلَّم. في الأسفل، يقترح الذكاء فقط، ويفعل الإنسان كل شيء. ودرجةً أعلى، يصيغ الذكاء فعلًا ويعتمده إنسانٌ قبل وقوعه. وأعلى، يفعل الذكاء وحده لكن يستطيع إنسانٌ مراجعته وعكسه بعدها. وفي القمة، يفعل الذكاء بلا إنسانٍ في الحلقة إطلاقًا. وكل درجةٍ تقايض الأمان بالسرعة، والدرجة الصحيحة تعتمد كليًا على رهان الفعل.</p>
+        <table>
+          <tr><th>المستوى</th><th>الذكاء</th><th>الإنسان</th><th>يلائم حين</th></tr>
+          <tr><td>يقترح</td><td>يوصي فقط</td><td>يقرّر ويفعل</td><td>رهانٌ عالٍ، ثقةٌ منخفضة</td></tr>
+          <tr><td>يعتمد</td><td>يقترح الفعل</td><td>يعتمده قبل تشغيله</td><td>ذو عواقب، قابل للعكس بجهد</td></tr>
+          <tr><td>يفعل ويراجَع</td><td>يفعل ثم يُبلّغ</td><td>يستطيع المراجعة والعكس</td><td>رهانٌ متوسط، سهل العكس</td></tr>
+          <tr><td>كامل</td><td>يفعل وحده</td><td>يضع الأهداف ويراقب</td><td>رهانٌ منخفض، حجمٌ كبير، سهل الإلغاء</td></tr>
+        </table>
+        <p>والانضباط أن تبدأ منخفضًا وتكسب الصعود. فوكيلٌ جديد يبدأ بالاقتراح فقط، ومع تراكم الدليل على موثوقيته لمهمة، تُرفَع استقلاليته عن قصد لا تلقائيًا. ومنح الاستقلالية الكاملة في اليوم الأول، قبل وجود أي سجلٍّ، أشيع وأسهل طرق إحداث الوكيل للأذى تفاديًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> طابِق الاستقلالية بقابلية العكس قبل كل شيء. ففعلٌ سهل الإلغاء يحتمل استقلاليةً أكثر، وفعلٌ لا رجعة فيه، إرسال مال، حذف بيانات، مراسلة عميل، يستحق بوابةً بشرية مهما بدا الوكيل جيدًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="boundaries">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Guardrails &amp; Boundaries</h2>
+        <p class="lead">An agent should be able to do exactly what its job needs and nothing more. Guardrails are the explicit limits on what an agent may access and do, and they are the primary defense when the agent, inevitably, tries to do something its designer did not intend.</p>
+        <p>The most important guardrail is least privilege, borrowed directly from security. An agent is given access only to the specific tools, data, and actions its task requires, so that even if it misbehaves, the blast radius is bounded by what it was allowed to touch. An agent that only needs to read a calendar should not hold the ability to send email or move money, because a capability it never uses in normal operation is a capability available for misuse when something goes wrong.</p>
+        <ul>
+          <li><strong>Scoped access:</strong> the minimum tools and data the task requires, granted explicitly, nothing broad or default.</li>
+          <li><strong>Action limits:</strong> hard boundaries on what the agent can do, such as a maximum transaction size or a list of forbidden operations.</li>
+          <li><strong>Human gates:</strong> mandatory approval checkpoints before high-consequence or irreversible actions.</li>
+          <li><strong>Circuit breakers:</strong> automatic stops when the agent behaves abnormally, such as acting too fast, too often, or outside expected patterns.</li>
+        </ul>
+        <p>Circuit breakers deserve emphasis because agents act at machine speed. A human making a mistake makes it once and notices, while an agent making a mistake can repeat it hundreds of times in seconds. A simple rule that halts the agent when its rate or pattern of actions crosses a threshold turns a potential runaway into a contained pause, and it is far cheaper to build in advance than to explain afterward.</p>
+        <div class="note"><strong>Note:</strong> Design guardrails assuming the agent will try to exceed them, not hoping it will not. The guardrail that only works when the agent behaves is not a guardrail, it is a suggestion.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الحواجز والحدود</h2>
+        <p class="lead">ينبغي أن يستطيع الوكيل فعل ما تحتاجه وظيفته بالضبط لا أكثر. الحواجز هي الحدود الصريحة على ما يصل إليه الوكيل وما يفعله، وهي الدفاع الأول حين يحاول الوكيل، حتمًا، فعل ما لم يقصده مصمّمه.</p>
+        <p>أهمّ حاجزٍ هو أقلّ الصلاحية، مستعارٌ مباشرةً من الأمن. فيُمنَح الوكيل وصولًا فقط للأدوات والبيانات والأفعال التي تتطلّبها مهمته، حتى لو أساء التصرّف يكون نطاق انفجاره محدودًا بما سُمِح له بمسّه. فوكيلٌ يحتاج فقط قراءة تقويمٍ ينبغي ألّا يملك القدرة على إرسال بريدٍ أو تحريك مال، لأن قدرةً لا يستخدمها في التشغيل الطبيعي قدرةٌ متاحة لإساءة الاستخدام حين يسوء شيء.</p>
+        <ul>
+          <li><strong>وصولٌ محدَّد النطاق:</strong> أدنى أدواتٍ وبياناتٍ تتطلّبها المهمة، مُمنوحةً صراحةً، لا شيء واسع أو افتراضي.</li>
+          <li><strong>حدود الفعل:</strong> حدودٌ صارمة على ما يفعله الوكيل، كحدٍّ أقصى لحجم معاملةٍ أو قائمة عملياتٍ محظورة.</li>
+          <li><strong>بوابات بشرية:</strong> نقاط اعتمادٍ إلزامية قبل الأفعال عالية العواقب أو التي لا رجعة فيها.</li>
+          <li><strong>قواطع دائرية:</strong> إيقافاتٌ تلقائية حين يتصرّف الوكيل شذوذًا، كالفعل بسرعةٍ أو تكرارٍ مفرط أو خارج الأنماط المتوقَّعة.</li>
+        </ul>
+        <p>وتستحق القواطع تأكيدًا لأن الوكلاء يفعلون بسرعة الآلة. فإنسانٌ يُخطئ يُخطئ مرةً وينتبه، ووكيلٌ يُخطئ قد يكرّره مئاتٍ في ثوانٍ. وقاعدةٌ بسيطة توقف الوكيل حين يتجاوز معدّل أفعاله أو نمطها عتبةً تحوّل انفلاتًا محتملًا إلى وقفةٍ محتواة، وبناؤها مسبقًا أرخص بكثير من تفسيرها لاحقًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> صمّم الحواجز مفترضًا أن الوكيل سيحاول تجاوزها، لا آملًا ألّا يفعل. فالحاجز الذي يعمل فقط حين يُحسِن الوكيل التصرّف ليس حاجزًا بل اقتراح.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="oversight">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Human Oversight &amp; Control</h2>
+        <p class="lead">Autonomy does not remove the human, it changes the human's job from doing the work to governing the system that does it. Effective oversight means a person can understand what the agent is doing, and can stop or correct it when needed.</p>
+        <p>Three capabilities make oversight real. The person must be able to see what the agent is doing, through a clear log of its actions and reasoning. They must be able to intervene, with a reliable way to pause, correct, or reverse the agent. And they must have the authority and the time to do so, rather than being nominally responsible for a system moving too fast to supervise. Remove any of the three and oversight becomes a name on an org chart with no power behind it.</p>
+        <h3>The kill switch</h3>
+        <p>Every agent that can act needs a reliable off switch, a single, well-known way to stop it immediately, and that switch has to work even when the agent is misbehaving. This sounds obvious, but it is often missing or untested, and an off switch nobody has tried is a hope, not a control. The switch should be tested deliberately, the same way a fire drill tests an evacuation, so that when it is needed in earnest it works the first time.</p>
+        <div class="note"><strong>Note:</strong> The person accountable for an agent must be able to explain, at any moment, what it is allowed to do and how to stop it. If no single named person can answer both, the agent is running without real oversight.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الإشراف البشري والتحكّم</h2>
+        <p class="lead">الاستقلالية لا تُزيل الإنسان، بل تغيّر وظيفته من أداء العمل إلى حوكمة النظام الذي يؤدّيه. والإشراف الفعّال يعني أن شخصًا يستطيع فهم ما يفعله الوكيل، وإيقافه أو تصحيحه عند الحاجة.</p>
+        <p>ثلاث قدراتٍ تجعل الإشراف حقيقيًا. على الشخص أن يستطيع رؤية ما يفعله الوكيل، عبر سجلٍّ واضح لأفعاله واستدلاله. وأن يستطيع التدخّل، بطريقةٍ موثوقة لإيقافه أو تصحيحه أو عكسه. وأن يملك الصلاحية والوقت لذلك، لا أن يكون مسؤولًا اسميًا عن نظامٍ يتحرّك أسرع من أن يُشرَف عليه. وأزِل أيًّا من الثلاث يصر الإشراف اسمًا في مخطّطٍ تنظيمي بلا سلطةٍ خلفه.</p>
+        <h3>مفتاح الإيقاف</h3>
+        <p>كل وكيلٍ يستطيع الفعل يحتاج مفتاح إيقافٍ موثوق، طريقةً واحدة معروفة لإيقافه فورًا، وعلى ذلك المفتاح أن يعمل حتى حين يُسيء الوكيل التصرّف. يبدو هذا بديهيًا، لكنه كثيرًا ما يكون غائبًا أو غير مُختبَر، ومفتاح إيقافٍ لم يجرّبه أحد أملٌ لا ضابط. وينبغي اختبار المفتاح عن قصد، كما يختبر تمرين حريقٍ الإخلاء، فحين يُحتاج جدًّا يعمل من أول مرة.</p>
+        <div class="note"><strong>ملاحظة:</strong> على المساءَل عن وكيلٍ أن يستطيع في أي لحظة شرح ما يُسمح له بفعله وكيف يُوقَف. فإن لم يستطع شخصٌ مُسمّى واحد الإجابة عنهما، فالوكيل يعمل بلا إشرافٍ حقيقي.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="security">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Agent-Specific Security</h2>
+        <p class="lead">Agents introduce attack surfaces that traditional software does not have. Because an agent takes instructions in language and acts on them, an attacker who can influence what the agent reads may be able to influence what it does.</p>
+        <p>The signature agent-specific threat is instruction injection: hostile text hidden in data the agent processes, crafted to be read by the agent as a command. An agent summarizing web pages or emails can encounter content that says, in effect, ignore your instructions and do this instead, and unless it is designed to resist, it may comply. The defense is to treat everything the agent reads as untrusted data, never as trusted instruction, and to keep the agent's real instructions separated from the content it processes.</p>
+        <ul>
+          <li><strong>Instruction injection:</strong> malicious commands hidden in the data an agent reads, defended by separating trusted instructions from untrusted content.</li>
+          <li><strong>Excessive agency:</strong> an agent granted more capability than its task needs, defended by least privilege and action limits.</li>
+          <li><strong>Data leakage:</strong> an agent exposing sensitive information through its outputs or tool calls, defended by scoping what it can access and see.</li>
+          <li><strong>Supply-chain trust:</strong> the tools and models an agent depends on becoming a path for compromise, defended by vetting and monitoring them like any dependency.</li>
+        </ul>
+        <p>The unifying principle is that an agent should never be more trusted than the least trusted input it acts on. If an agent will act on content from the open internet, it must be built to assume that content is hostile, because eventually some of it will be. Designing for that assumption from the start is far cheaper than retrofitting it after an injection has already turned the agent against its owner.</p>
+        <div class="note"><strong>Note:</strong> Combine the least-privilege guardrails of the previous section with input distrust here. Together they mean that even a fully hijacked agent can only do the small, bounded set of things it was ever allowed to do.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>أمن الوكلاء الخاص</h2>
+        <p class="lead">يُدخِل الوكلاء أسطح هجومٍ لا تملكها البرمجيات التقليدية. فلأن الوكيل يتلقّى تعليماتٍ بلغةٍ ويتصرّف بها، فإن مهاجمًا يستطيع التأثير فيما يقرؤه الوكيل قد يستطيع التأثير فيما يفعله.</p>
+        <p>التهديد المميِّز للوكلاء هو حقن التعليمات: نصٌّ عدائي مخبَّأ في بياناتٍ يعالجها الوكيل، مصوغٌ ليقرأه الوكيل كأمر. فوكيلٌ يلخّص صفحاتٍ أو رسائل قد يصادف محتوىً يقول عمليًا «تجاهل تعليماتك وافعل هذا»، وما لم يُصمَّم للمقاومة قد يمتثل. والدفاع أن يُعامَل كل ما يقرؤه الوكيل كبياناتٍ غير موثوقة لا تعليمًا موثوقًا، وأن تُفصَل تعليمات الوكيل الحقيقية عن المحتوى الذي يعالجه.</p>
+        <ul>
+          <li><strong>حقن التعليمات:</strong> أوامر خبيثة مخبّأة في بيانات يقرؤها الوكيل، يُدافَع عنها بفصل التعليمات الموثوقة عن المحتوى غير الموثوق.</li>
+          <li><strong>الوكالة المفرطة:</strong> وكيلٌ مُنِح قدرةً أكثر مما تحتاجه مهمته، يُدافَع عنها بأقلّ الصلاحية وحدود الفعل.</li>
+          <li><strong>تسرّب البيانات:</strong> وكيلٌ يكشف معلوماتٍ حساسة عبر مخرجاته أو استدعاءات أدواته، يُدافَع عنه بتحديد ما يصل إليه ويراه.</li>
+          <li><strong>ثقة سلسلة الإمداد:</strong> الأدوات والنماذج التي يعتمدها الوكيل تصير طريقًا للاختراق، يُدافَع عنها بفحصها ومراقبتها كأي اعتماد.</li>
+        </ul>
+        <p>والمبدأ الجامع أن الوكيل ينبغي ألّا يكون أوثق من أقلّ مدخلٍ يتصرّف عليه ثقةً. فإن كان الوكيل سيتصرّف على محتوىً من الإنترنت المفتوح، فيجب أن يُبنى مفترضًا أن المحتوى عدائي، لأن بعضه سيكون كذلك آخرًا. والتصميم لذلك الافتراض من البداية أرخص بكثير من تركيبه بعد أن يكون حقنٌ قد قلب الوكيل على مالكه.</p>
+        <div class="note"><strong>ملاحظة:</strong> اجمع حواجز أقلّ الصلاحية من القسم السابق مع عدم الثقة بالمدخلات هنا. فهما معًا يعنيان أن وكيلًا مختطَفًا بالكامل لا يستطيع إلا فعل المجموعة الصغيرة المحدودة التي سُمِح له بها أصلًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="deployment">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Safe Deployment &amp; Rollout</h2>
+        <p class="lead">An agent that works in a test does not automatically work in the world. Safe deployment is the disciplined path from a promising prototype to a trusted production system, and it is where most of the real risk is either contained or released.</p>
+        <p>The safest rollouts are gradual and reversible. An agent is first run in a mode where it acts but its actions are held for human approval, so its judgment can be observed without consequence. Then it is released to a small, low-stakes slice of real work, watched closely, and expanded only as it earns trust. At each step, the question is not whether the agent is perfect, but whether its failures are visible and bounded, so that a mistake is a lesson rather than a disaster.</p>
+        <ul>
+          <li><strong>Shadow mode:</strong> the agent proposes actions that are logged and reviewed but not executed, to observe its judgment safely.</li>
+          <li><strong>Limited pilot:</strong> a small, low-stakes, closely watched slice of real work, easy to pause.</li>
+          <li><strong>Graduated rollout:</strong> scope and autonomy expanded step by step as evidence of reliability accumulates.</li>
+          <li><strong>Continuous monitoring:</strong> live watch for drift, errors, and misuse, because an agent that was safe last month can drift into unsafe behavior.</li>
+        </ul>
+        <p>Monitoring after deployment is not optional, it is the larger half of the work. An agent operates in a changing world, and the conditions that made it reliable can shift, so the same measurement and incident discipline that governs any AI system applies continuously here, with the added urgency that this system is taking actions, not just making predictions.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> agents turn AI from something you read into something that acts for you, so the whole art is granting the ability to act in proportion to demonstrated, monitored trust, and never faster.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>النشر الآمن والطرح</h2>
+        <p class="lead">وكيلٌ يعمل في اختبارٍ لا يعمل تلقائيًا في العالم. والنشر الآمن هو الطريق المنضبط من نموذجٍ واعد إلى نظام إنتاجٍ موثوق، وهو حيث يُحتوى أغلب الخطر الحقيقي أو يُطلَق.</p>
+        <p>أأمن عمليات الطرح تدريجية وقابلة للعكس. فيُشغَّل الوكيل أولًا في وضعٍ يفعل فيه لكن تُحجَز أفعاله لاعتماد إنسانٍ، فيُلاحَظ حكمه بلا عاقبة. ثم يُطلَق لشريحةٍ صغيرة منخفضة الرهان من العمل الحقيقي، تُراقَب عن كثب، ويُوسَّع فقط مع كسبه الثقة. وفي كل خطوة، السؤال ليس هل الوكيل مثالي، بل هل إخفاقاته مرئية ومحدودة، فيكون الخطأ درسًا لا كارثة.</p>
+        <ul>
+          <li><strong>وضع الظلّ:</strong> يقترح الوكيل أفعالًا تُسجَّل وتُراجَع ولا تُنفَّذ، لملاحظة حكمه بأمان.</li>
+          <li><strong>تجربة محدودة:</strong> شريحةٌ صغيرة منخفضة الرهان مراقَبة عن كثب من العمل الحقيقي، سهلة الإيقاف.</li>
+          <li><strong>طرحٌ متدرّج:</strong> النطاق والاستقلالية يُوسَّعان خطوةً خطوة مع تراكم دليل الموثوقية.</li>
+          <li><strong>مراقبة مستمرة:</strong> ترقّبٌ حيّ للانزياح والأخطاء والإساءة، لأن وكيلًا كان آمنًا الشهر الماضي قد ينزاح لسلوكٍ غير آمن.</li>
+        </ul>
+        <p>المراقبة بعد النشر ليست اختيارية، بل النصف الأكبر من العمل. فالوكيل يعمل في عالمٍ متغيّر، والظروف التي جعلته موثوقًا قد تنزاح، لذا ينطبق هنا انضباط القياس والحوادث الذي يحوكم أي نظام ذكاءٍ باستمرار، بإلحاحٍ إضافي لأن هذا النظام يتّخذ أفعالًا لا يتنبّأ فحسب.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الوكلاء يحوّلون الذكاء من شيءٍ تقرؤه إلى شيءٍ يفعل عنك، فالفنّ كله منح القدرة على الفعل بقدر ثقةٍ مُبرهَنة ومراقَبة، ولا أسرع.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">AI agents deliver automation that decides and acts, so their governance is the disciplined granting of the ability to act in proportion to earned, monitored trust.</p>
+        <ul>
+          <li>Treat autonomy as a dial matched to stakes and reversibility, and start low, earning the way up.</li>
+          <li>Build guardrails, least privilege, action limits, human gates, and circuit breakers, assuming the agent will test them.</li>
+          <li>Make human oversight real with visibility, the ability to intervene, and a tested kill switch.</li>
+          <li>Defend the agent-specific attack surface, especially instruction injection, by distrusting every input.</li>
+          <li>Deploy gradually through shadow mode and limited pilots, and monitor continuously because the agent acts.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">NIST AI Risk Management Framework (AI RMF 1.0) (2023 record).</a></li>
+          <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener">ISO/IEC 42001:2023, Artificial intelligence management system.</a></li>
+          <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf" target="_blank" rel="noopener">NIST AI 100-1, AI Risk Management Framework (PDF).</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" target="_blank" rel="noopener">NIST SP 800-53 Rev. 5, Security and Privacy Controls (least privilege).</a></li>
+          <li><a href="https://oecd.ai/en/ai-principles" target="_blank" rel="noopener">OECD AI Principles (2019, updated 2024).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">وكلاء الذكاء يقدّمون أتمتةً تقرّر وتفعل، فحوكمتهم هي المنح المنضبط للقدرة على الفعل بقدر ثقةٍ مكسوبة ومراقَبة.</p>
+        <ul>
+          <li>عامِل الاستقلالية كقرصٍ مطابَقٍ للرهان وقابلية العكس، وابدأ منخفضًا واكسب الصعود.</li>
+          <li>ابنِ الحواجز، أقلّ الصلاحية وحدود الفعل والبوابات البشرية والقواطع، مفترضًا أن الوكيل سيختبرها.</li>
+          <li>اجعل الإشراف البشري حقيقيًا برؤيةٍ وقدرة تدخّلٍ ومفتاح إيقافٍ مُختبَر.</li>
+          <li>دافِع عن سطح الهجوم الخاص بالوكلاء، خاصةً حقن التعليمات، بعدم الثقة بكل مدخل.</li>
+          <li>انشر تدريجيًا عبر وضع الظلّ والتجارب المحدودة، وراقب باستمرار لأن الوكيل يفعل.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">إطار NIST لإدارة مخاطر الذكاء (AI RMF 1.0) (سجل 2023).</a></li>
+          <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener">ISO/IEC 42001:2023، نظام إدارة الذكاء الاصطناعي.</a></li>
+          <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf" target="_blank" rel="noopener">NIST AI 100-1، إطار إدارة مخاطر الذكاء (PDF).</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" target="_blank" rel="noopener">NIST SP 800-53 Rev. 5، ضوابط الأمن والخصوصية (أقلّ الصلاحية).</a></li>
+          <li><a href="https://oecd.ai/en/ai-principles" target="_blank" rel="noopener">مبادئ OECD للذكاء الاصطناعي (2019، محدَّثة 2024).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","autonomy","boundaries","oversight","security","deployment","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

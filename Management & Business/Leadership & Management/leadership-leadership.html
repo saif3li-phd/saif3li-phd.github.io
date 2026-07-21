@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leadership</title>
+<meta name="description" content="An original framework on leadership: mobilizing people by setting direction, aligning, and motivating them on a foundation of trust you can learn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">LEADERSHIP &amp; MANAGEMENT &middot; FRAMEWORK</span><span data-lang="ar">القيادة والإدارة &middot; إطار</span></div>
+    <h1><span data-lang="en">Leadership</span><span data-lang="ar">القيادة</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="whatleaders"><span data-lang="en">What Leaders Do</span><span data-lang="ar">ما يفعله القادة</span></a>
+    <a data-id="develop"><span data-lang="en">Developing</span><span data-lang="ar">التطوير</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Leadership</div>
+          <div><span>Scope:</span> Mobilizing people toward a shared goal</div>
+          <div><span>Owner role:</span> Leaders at every level, not only the top</div>
+          <div><span>Review cadence:</span> Continuous, with deliberate reflection</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Leadership is the work of mobilizing a group of people toward a goal they could not reach alone: setting a direction worth pursuing, aligning people behind it, and drawing out their best effort. It is distinct from management, which is about running things well, planning, organizing, controlling, because leadership is fundamentally about people and change, about taking a group somewhere new.</p>
+        <p>Leadership matters because organizations are made of people, and people are not machines to be operated but human beings to be motivated, aligned, and developed. A group with a clear, trusted leader can accomplish what a leaderless one cannot, not because the leader does the work, but because they create the conditions in which many people pull together in the same direction. In a world of constant change, the ability to lead, to give people direction and confidence through uncertainty, is among the most valuable of all capabilities.</p>
+        <p>This framework describes leadership as a practical discipline, distinguishing it from management, and setting out what leaders actually do and how leadership can be developed. It is my own synthesis, written in my own words and grounded in recognized leadership thinking, designed to be reusable across contexts.</p>
+        <div class="note"><strong>Note:</strong> Management is doing things right; leadership is doing the right things and taking people with you. Organizations need both, but they are not the same, and being good at one does not make you good at the other.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> القيادة</div>
+          <div><span>النطاق:</span> حشد الناس نحو هدفٍ مشترك</div>
+          <div><span>دور المالك:</span> القادة في كل مستوى، لا القمة فقط</div>
+          <div><span>دورية المراجعة:</span> مستمرة، بتأمّلٍ متعمَّد</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">القيادة عمل حشد مجموعةٍ من الناس نحو هدفٍ لا يبلغونه وحدهم: رسم اتجاهٍ يستحقّ الملاحقة، ومواءمة الناس خلفه، واستخراج أفضل جهدهم. وهي متمايزة عن الإدارة التي عن تشغيل الأشياء جيدًا، التخطيط والتنظيم والضبط، لأن القيادة أساسًا عن الناس والتغيير، عن أخذ مجموعةٍ لمكانٍ جديد.</p>
+        <p>تهمّ القيادة لأن المنشآت مصنوعة من الناس، والناس ليسوا آلاتٍ تُشغَّل بل بشرًا يُحفَّزون ويُوائمون ويُطوَّرون. ومجموعةٌ بقائدٍ واضح موثوق تستطيع إنجاز ما لا تستطيعه بلا قائد، لا لأن القائد يفعل العمل، بل لأنه يخلق الظروف التي يشدّ فيها كثيرون معًا في الاتجاه ذاته. وفي عالمٍ دائم التغيّر، القدرة على القيادة، على منح الناس اتجاهًا وثقةً عبر عدم اليقين، من أثمن القدرات كلها.</p>
+        <p>يصف هذا الإطار القيادة كانضباطٍ عملي، مميّزًا إياها عن الإدارة، وعارضًا ما يفعله القادة فعلًا وكيف تُطوَّر القيادة. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في فكرٍ قيادي معترف به، مصمَّمٌ ليكون قابلًا لإعادة الاستخدام عبر السياقات.</p>
+        <div class="note"><strong>ملاحظة:</strong> الإدارة فعل الأشياء بشكلٍ صحيح؛ والقيادة فعل الأشياء الصحيحة وأخذ الناس معك. المنشآت تحتاج الاثنين، لكنهما ليسا واحدًا، والبراعة في أحدهما لا تجعلك بارعًا في الآخر.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="whatleaders">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>What Leaders Actually Do</h2>
+        <p class="lead">Beyond the mystique, leadership comes down to a set of concrete things leaders do that cause a group to move together effectively. A few functions matter most.</p>
+        <p>The first is setting direction: giving people a clear, compelling sense of where the group is going and why it matters. People give their best when their work has meaning and a destination, and a leader's job is to provide that clarity, especially in uncertainty, when the natural human response is to freeze. The second is aligning people: getting individuals with different roles, views, and interests to pull in the same direction, through communication, shared purpose, and the resolution of conflicts that would otherwise scatter effort. The third is motivating and enabling: drawing out people's commitment and effort, removing obstacles, and giving them what they need to succeed, so that the group's collective capability is fully released rather than half-used.</p>
+        <ul>
+          <li><strong>Set direction:</strong> give a clear, meaningful sense of where the group is going and why.</li>
+          <li><strong>Align people:</strong> get different individuals pulling the same way through purpose and communication.</li>
+          <li><strong>Motivate and enable:</strong> draw out commitment, remove obstacles, and equip people to succeed.</li>
+          <li><strong>Build trust:</strong> earn the credibility and integrity on which all the rest depends.</li>
+        </ul>
+        <p>Underneath all of these sits trust, which is the true currency of leadership. People follow a leader they trust, one who is competent, has integrity, and genuinely cares about them and the goal, and no amount of authority or charisma substitutes for it. A leader without trust can command compliance but not commitment, and it is commitment, people choosing to give their best, that leadership is really after. This is why character matters as much as skill in leadership: the direction, alignment, and motivation a leader provides are only as strong as the trust that people place in them.</p>
+        <div class="note"><strong>Note:</strong> Authority can compel compliance, but only trust earns commitment. People will do the minimum for a boss they do not trust and their best for a leader they do, which is why trust is the foundation everything else rests on.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>ما يفعله القادة فعلًا</h2>
+        <p class="lead">وراء الهالة، القيادة تؤول لمجموعة أشياء ملموسة يفعلها القادة فتجعل مجموعةً تتحرّك معًا بفاعلية. وبضع وظائف تهمّ أكثر.</p>
+        <p>الأولى رسم الاتجاه: منح الناس إحساسًا واضحًا مقنعًا بأين تذهب المجموعة ولماذا يهمّ. فالناس يعطون أفضلهم حين يكون لعملهم معنى ووجهة، وعمل القائد توفير ذلك الوضوح، خاصةً في عدم اليقين، حين تكون الاستجابة البشرية الطبيعية التجمّد. والثانية مواءمة الناس: جعل أفرادٍ بأدوارٍ وآراءٍ ومصالح مختلفة يشدّون الاتجاه ذاته، عبر التواصل والغرض المشترك وحلّ الصراعات التي كانت لتبعثر الجهد. والثالثة التحفيز والتمكين: استخراج التزام الناس وجهدهم، وإزالة العوائق، ومنحهم ما يحتاجونه للنجاح، فتُطلَق قدرة المجموعة الجماعية كاملةً بدل استخدامها نصفًا.</p>
+        <ul>
+          <li><strong>ارسم الاتجاه:</strong> امنح إحساسًا واضحًا ذا معنى بأين تذهب المجموعة ولماذا.</li>
+          <li><strong>وائم الناس:</strong> اجعل أفرادًا مختلفين يشدّون الاتجاه ذاته بالغرض والتواصل.</li>
+          <li><strong>حفّز ومكّن:</strong> استخرج الالتزام، أزِل العوائق، وجهّز الناس للنجاح.</li>
+          <li><strong>ابنِ الثقة:</strong> اكسب المصداقية والنزاهة التي يعتمد عليها كل الباقي.</li>
+        </ul>
+        <p>تحت هذه كلها تجلس الثقة، عملة القيادة الحقيقية. فالناس يتبعون قائدًا يثقون به، كفؤًا وذا نزاهةٍ ويهتمّ بهم وبالهدف فعلًا، ولا قدر من السلطة أو الكاريزما يعوّضها. وقائدٌ بلا ثقةٍ يستطيع أمر الامتثال لا الالتزام، والالتزام، اختيار الناس منح أفضلهم، هو ما تسعى إليه القيادة فعلًا. ولهذا الخُلق يهمّ بقدر المهارة في القيادة: فالاتجاه والمواءمة والتحفيز الذي يوفّره القائد بقوّة الثقة التي يضعها الناس فيه فقط.</p>
+        <div class="note"><strong>ملاحظة:</strong> السلطة تُلزِم الامتثال، لكن الثقة وحدها تكسب الالتزام. فالناس يفعلون الأدنى لرئيسٍ لا يثقون به وأفضلهم لقائدٍ يثقون به، ولهذا الثقة الأساس الذي يقوم عليه كل ما عداه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="develop">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Styles &amp; Developing Leadership</h2>
+        <p class="lead">There is no single right way to lead. Effective leadership adapts to the situation, the people, and the challenge, and the good news is that it can be learned rather than being an innate gift reserved for a few.</p>
+        <p>Leaders vary in style, and the best adjust their approach to what the moment requires. Sometimes a situation calls for decisive, directive leadership, a crisis, a clear deadline, an inexperienced team; sometimes it calls for a collaborative, empowering approach that draws on the group's own capability; sometimes for a coaching stance focused on developing people over time. A rigid, one-note leader succeeds only when the situation happens to suit their style, while an adaptive leader reads what the people and the challenge need and responds accordingly. What stays constant is the purpose, direction, alignment, and trust; what varies is the means.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">3</div><div class="lbl"><span data-lang="en">core functions: direction, alignment, motivation</span><span data-lang="ar">وظائف: اتجاه، مواءمة، تحفيز</span></div></div>
+          <div class="stat"><div class="num">1</div><div class="lbl"><span data-lang="en">foundation: trust</span><span data-lang="ar">أساس: الثقة</span></div></div>
+          <div class="stat"><div class="num">&#8734;</div><div class="lbl"><span data-lang="en">learnable, not innate</span><span data-lang="ar">تُتعلَّم لا فطرية</span></div></div>
+        </div>
+        <p>Crucially, leadership is developed, not merely born. While people differ in natural inclination, the capabilities that make a good leader, self-awareness, communication, judgment, the ability to build trust and to develop others, are all learnable through experience, reflection, and deliberate practice. The most reliable path to becoming a better leader is to take on real responsibility, seek honest feedback, reflect on what worked and what did not, and keep growing. Leaders also develop other leaders: the deepest measure of leadership is not what a leader achieves personally, but the capability and the future leaders they leave behind, so that the group is stronger and better led after them than before.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> leadership mobilizes people by setting direction, aligning them, and motivating them, all resting on trust, and the best leaders adapt their style to the situation while developing themselves and other leaders over time, treating leadership as a learnable discipline rather than an innate gift.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الأنماط وتطوير القيادة</h2>
+        <p class="lead">لا طريقة صحيحة وحيدة للقيادة. القيادة الفعّالة تتكيّف مع الموقف والناس والتحدّي، والخبر السارّ أنها تُتعلَّم لا هبةً فطرية محجوزة لقلّة.</p>
+        <p>يتباين القادة في النمط، وأفضلهم يعدّلون نهجهم لما تتطلّبه اللحظة. فأحيانًا يستدعي موقفٌ قيادةً حازمة موجِّهة، أزمةٌ أو موعدٌ واضح أو فريقٌ قليل الخبرة؛ وأحيانًا يستدعي نهجًا تعاونيًا مُمكِّنًا يستفيد من قدرة المجموعة ذاتها؛ وأحيانًا موقف توجيهٍ مركّز على تطوير الناس بالزمن. وقائدٌ جامد أحادي النغمة ينجح فقط حين يصادف الموقف ملاءمة نمطه، بينما القائد المتكيّف يقرأ ما يحتاجه الناس والتحدّي ويستجيب وفقًا لذلك. وما يبقى ثابتًا الغرض، الاتجاه والمواءمة والثقة؛ وما يتباين الوسيلة.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">3</div><div class="lbl"><span data-lang="en">وظائف: اتجاه، مواءمة، تحفيز</span><span data-lang="ar">وظائف: اتجاه، مواءمة، تحفيز</span></div></div>
+          <div class="stat"><div class="num">1</div><div class="lbl"><span data-lang="en">أساس: الثقة</span><span data-lang="ar">أساس: الثقة</span></div></div>
+          <div class="stat"><div class="num">&#8734;</div><div class="lbl"><span data-lang="en">تُتعلَّم لا فطرية</span><span data-lang="ar">تُتعلَّم لا فطرية</span></div></div>
+        </div>
+        <p>وحاسمًا، القيادة تُطوَّر لا تُولَد فحسب. فمع اختلاف الناس في الميل الطبيعي، القدرات التي تصنع قائدًا جيدًا، الوعي بالذات والتواصل والحكم والقدرة على بناء الثقة وتطوير الآخرين، كلها تُتعلَّم عبر التجربة والتأمّل والممارسة المتعمَّدة. وأوثق طريقٍ لتصير قائدًا أفضل تحمّل مسؤوليةٍ حقيقية، وطلب تغذيةٍ راجعة أمينة، والتأمّل فيما نجح وما لم ينجح، ومواصلة النموّ. والقادة يطوّرون قادةً آخرين أيضًا: فأعمق مقياسٍ للقيادة ليس ما يحقّقه القائد شخصيًا، بل القدرة والقادة المستقبليون الذين يتركهم خلفه، فتكون المجموعة أقوى وأحسن قيادةً بعده منها قبله.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> القيادة تحشد الناس برسم الاتجاه ومواءمتهم وتحفيزهم، كلها قائمة على الثقة، وأفضل القادة يكيّفون نمطهم للموقف بينما يطوّرون أنفسهم وقادةً آخرين بالزمن، معاملين القيادة كانضباطٍ يُتعلَّم لا هبةً فطرية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Leadership mobilizes people toward a shared goal, and it is a learnable discipline built on trust.</p>
+        <ul>
+          <li>Distinguish leadership from management: one takes people somewhere new, the other runs things well.</li>
+          <li>Do the core work of a leader: set direction, align people, and motivate and enable them.</li>
+          <li>Build trust as the foundation, since it is trust, not authority, that earns real commitment.</li>
+          <li>Adapt your style to the situation and people, keeping the purpose constant while varying the means.</li>
+          <li>Develop yourself and other leaders, measuring leadership by the capability you leave behind.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2001/12/what-leaders-really-do" target="_blank" rel="noopener">John Kotter, What Leaders Really Do (HBR).</a></li>
+          <li><a href="https://hbr.org/2000/03/leadership-that-gets-results" target="_blank" rel="noopener">Daniel Goleman, Leadership That Gets Results (HBR).</a></li>
+          <li><a href="https://www.ccl.org/leadership-topics/" target="_blank" rel="noopener">Center for Creative Leadership resources.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">القيادة تحشد الناس نحو هدفٍ مشترك، وهي انضباطٌ يُتعلَّم قائم على الثقة.</p>
+        <ul>
+          <li>ميّز القيادة عن الإدارة: واحدةٌ تأخذ الناس لمكانٍ جديد، والأخرى تشغّل الأشياء جيدًا.</li>
+          <li>افعل عمل القائد الجوهري: ارسم الاتجاه، وائم الناس، وحفّزهم ومكّنهم.</li>
+          <li>ابنِ الثقة كأساس، إذ الثقة لا السلطة هي ما يكسب الالتزام الحقيقي.</li>
+          <li>كيّف نمطك للموقف والناس، مُبقيًا الغرض ثابتًا مبدّلًا الوسيلة.</li>
+          <li>طوّر نفسك وقادةً آخرين، قائسًا القيادة بالقدرة التي تتركها خلفك.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2001/12/what-leaders-really-do" target="_blank" rel="noopener">جون كوتر، ما يفعله القادة فعلًا (HBR).</a></li>
+          <li><a href="https://hbr.org/2000/03/leadership-that-gets-results" target="_blank" rel="noopener">دانيال غولمان، القيادة التي تحقّق النتائج (HBR).</a></li>
+          <li><a href="https://www.ccl.org/leadership-topics/" target="_blank" rel="noopener">مركز القيادة الإبداعية، موارد.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","whatleaders","develop","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

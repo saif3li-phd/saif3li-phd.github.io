@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Machine Learning</title>
+<meta name="description" content="An original framework on machine learning: how models learn patterns from data, the types of learning, and their real capabilities and limits.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">DIGITAL &amp; TECHNOLOGY &middot; FRAMEWORK</span><span data-lang="ar">الرقمنة والتقنية &middot; إطار</span></div>
+    <h1><span data-lang="en">Machine Learning</span><span data-lang="ar">التعلّم الآلي</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="howitlearns"><span data-lang="en">How It Learns</span><span data-lang="ar">كيف يتعلّم</span></a>
+    <a data-id="limits"><span data-lang="en">Capabilities</span><span data-lang="ar">القدرات</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Machine learning</div>
+          <div><span>Scope:</span> Systems that learn patterns from data</div>
+          <div><span>Owner role:</span> Data and technology teams, with the business</div>
+          <div><span>Review cadence:</span> Continuous, with model monitoring</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Machine learning is a way of building systems that learn to perform a task from examples, rather than being explicitly programmed with rules for it. Instead of a person writing step-by-step instructions, the system is shown many examples and discovers the patterns itself, producing a model that can then make predictions or decisions on new, unseen cases. It is the engine behind most of what is called artificial intelligence today.</p>
+        <p>Machine learning matters because it lets computers do things that are impossible to program by hand. Recognizing a face, understanding speech, detecting fraud, recommending a product, or forecasting demand all involve patterns far too complex and subtle for anyone to write explicit rules for, but learnable from enough examples. This ability to learn from data has made machine learning a general-purpose tool transforming industries, and understanding what it can and cannot do, and how it works at a conceptual level, is now important for anyone who leads or works in a data-rich organization.</p>
+        <p>This framework explains, without mathematics, how machine learning works, the main types of learning, and its real capabilities and limits. It is my own synthesis, written in my own words and grounded in recognized machine learning thinking, and it includes a worked illustration of how a model is built.</p>
+        <div class="note"><strong>Note:</strong> Machine learning does not follow rules a human wrote; it finds patterns in examples. This is its power, doing what cannot be hand-coded, and its risk, since it learns whatever the data teaches it, good or bad.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> التعلّم الآلي</div>
+          <div><span>النطاق:</span> أنظمةٌ تتعلّم الأنماط من البيانات</div>
+          <div><span>دور المالك:</span> فرق البيانات والتقنية، مع العمل</div>
+          <div><span>دورية المراجعة:</span> مستمرة، بمراقبة النماذج</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">التعلّم الآلي طريقة بناء أنظمةٍ تتعلّم أداء مهمّةٍ من أمثلة، بدل برمجتها صراحةً بقواعد لها. فبدل أن يكتب شخصٌ تعليماتٍ خطوةً بخطوة، يُعرَض على النظام أمثلةٌ كثيرة فيكتشف الأنماط بنفسه، مُنتِجًا نموذجًا يستطيع بعدها التنبّؤ أو القرار في حالاتٍ جديدة لم يرها. وهو المحرّك خلف أغلب ما يُسمّى ذكاءً اصطناعيًا اليوم.</p>
+        <p>يهمّ التعلّم الآلي لأنه يتيح للحواسيب فعل أشياء يستحيل برمجتها يدويًا. فالتعرّف على وجهٍ، وفهم كلام، وكشف احتيال، والتوصية بمنتج، والتنبّؤ بالطلب، كلها تتضمّن أنماطًا أعقد وأدقّ بكثيرٍ من أن يكتب أحدٌ قواعد صريحة لها، لكنها قابلة للتعلّم من أمثلةٍ كافية. وهذه القدرة على التعلّم من البيانات جعلت التعلّم الآلي أداةً عامة الغرض تحوّل الصناعات، وفهم ما يستطيع وما لا يستطيع، وكيف يعمل مفهوميًا، صار مهمًّا لأي من يقود أو يعمل في منشأةٍ غنية بالبيانات.</p>
+        <p>يشرح هذا الإطار، بلا رياضيات، كيف يعمل التعلّم الآلي، وأنواع التعلّم الرئيسة، وقدراته وحدوده الحقيقية. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في فكرٍ معترف به عن التعلّم الآلي، ويتضمّن رسمًا توضيحيًا لكيف يُبنى نموذج.</p>
+        <div class="note"><strong>ملاحظة:</strong> التعلّم الآلي لا يتبع قواعد كتبها إنسان؛ يجد أنماطًا في أمثلة. وهذه قوّته، فعل ما لا يمكن ترميزه يدويًا، وخطره، إذ يتعلّم ما تعلّمه إياه البيانات، جيدًا كان أو سيّئًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="howitlearns">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>How a Model Is Built</h2>
+        <p class="lead">At a conceptual level, building a machine learning model follows a clear sequence, shown below: gather data, train on it to learn the patterns, produce a model, and use that model to make predictions on new cases.</p>
+        <div style="text-align:center;margin:20px 0 8px;"><svg viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;max-width:420px;height:auto;font-family:&apos;IBM Plex Sans Arabic&apos;,sans-serif;"><rect x="90" y="14" width="300" height="52" rx="8" fill="#c9b8e8"/><text x="240" y="45" text-anchor="middle" font-size="14" font-weight="700" fill="#2E1A47">1 . Data (labelled examples)</text><line x1="240" y1="66" x2="240" y2="88" stroke="#7A4E9E" stroke-width="2"/><path d="M240 88 l-5 -8 l10 0 z" fill="#7A4E9E"/><rect x="90" y="88" width="300" height="52" rx="8" fill="#9270b5"/><text x="240" y="119" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">2 . Training (learn the patterns)</text><line x1="240" y1="140" x2="240" y2="162" stroke="#7A4E9E" stroke-width="2"/><path d="M240 162 l-5 -8 l10 0 z" fill="#7A4E9E"/><rect x="90" y="162" width="300" height="52" rx="8" fill="#6b4790"/><text x="240" y="193" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">3 . Model (the learned rules)</text><line x1="240" y1="214" x2="240" y2="236" stroke="#7A4E9E" stroke-width="2"/><path d="M240 236 l-5 -8 l10 0 z" fill="#7A4E9E"/><rect x="90" y="236" width="300" height="52" rx="8" fill="#4d2f6b"/><text x="240" y="267" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">4 . Prediction (on new data)</text></svg></div>
+        <p>It begins with data, and lots of it, because the examples are what the system learns from. In the most common type, supervised learning, each example is labelled with the correct answer: many images each tagged as cat or dog, many past loans each marked as repaid or defaulted. During training, the system adjusts itself repeatedly to get better at predicting the known answers from the examples, gradually discovering the patterns that connect the inputs to the outcomes. The result is a model: a distilled representation of those learned patterns that can be applied to new data. When a fresh case arrives, one the system has never seen, the model uses the patterns it learned to predict the answer.</p>
+        <p>Beyond this common supervised approach, there are other kinds of learning. In unsupervised learning, the data has no labels and the system finds structure on its own, such as grouping customers into natural segments. In reinforcement learning, a system learns by trial and error, taking actions and adjusting based on rewards, the approach behind game-playing and robotics. Across all of them, the essential idea is the same and worth holding onto: the system is not told the rules; it infers them from data, which is exactly why the quality, quantity, and representativeness of that data matter so much, since the model can only learn what its examples contain.</p>
+        <div class="note"><strong>Note:</strong> The model is only as good as its data. A machine learning system learns the patterns in its examples, including their gaps and biases, so garbage or skewed data produces a confident, systematic, and hard-to-spot kind of wrong.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>كيف يُبنى نموذج</h2>
+        <p class="lead">على مستوىً مفهومي، بناء نموذج تعلّمٍ آلي يتبع تسلسلًا واضحًا، مُبيَّنًا أدناه: اجمع البيانات، درّب عليها لتعلّم الأنماط، أنتِج نموذجًا، واستخدمه للتنبّؤ في حالاتٍ جديدة.</p>
+        <div style="text-align:center;margin:20px 0 8px;"><svg viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;max-width:420px;height:auto;font-family:&apos;IBM Plex Sans Arabic&apos;,sans-serif;"><rect x="90" y="14" width="300" height="52" rx="8" fill="#c9b8e8"/><text x="240" y="45" text-anchor="middle" font-size="14" font-weight="700" fill="#2E1A47">١ . البيانات (أمثلة موسومة)</text><line x1="240" y1="66" x2="240" y2="88" stroke="#7A4E9E" stroke-width="2"/><path d="M240 88 l-5 -8 l10 0 z" fill="#7A4E9E"/><rect x="90" y="88" width="300" height="52" rx="8" fill="#9270b5"/><text x="240" y="119" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">٢ . التدريب (تعلّم الأنماط)</text><line x1="240" y1="140" x2="240" y2="162" stroke="#7A4E9E" stroke-width="2"/><path d="M240 162 l-5 -8 l10 0 z" fill="#7A4E9E"/><rect x="90" y="162" width="300" height="52" rx="8" fill="#6b4790"/><text x="240" y="193" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">٣ . النموذج (القواعد المتعلَّمة)</text><line x1="240" y1="214" x2="240" y2="236" stroke="#7A4E9E" stroke-width="2"/><path d="M240 236 l-5 -8 l10 0 z" fill="#7A4E9E"/><rect x="90" y="236" width="300" height="52" rx="8" fill="#4d2f6b"/><text x="240" y="267" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">٤ . التنبّؤ (على بياناتٍ جديدة)</text></svg></div>
+        <p>يبدأ بالبيانات، وكثيرٍ منها، لأن الأمثلة هي ما يتعلّم منه النظام. وفي أشيع نوع، التعلّم المُشرَف، كل مثالٍ موسومٌ بالجواب الصحيح: صورٌ كثيرة كلٌّ مُعلَّمة قطة أو كلب، وقروضٌ ماضية كثيرة كلٌّ مُعلَّمة مسدَّدة أو متعثّرة. وأثناء التدريب، يعدّل النظام نفسه مرارًا ليتحسّن في التنبّؤ بالأجوبة المعلومة من الأمثلة، مكتشفًا تدريجيًا الأنماط التي تربط المدخلات بالنتائج. والنتيجة نموذج: تمثيلٌ مُقطَّر لتلك الأنماط المتعلَّمة يمكن تطبيقه على بياناتٍ جديدة. وحين تصل حالةٌ جديدة، لم يرها النظام قط، يستخدم النموذج الأنماط التي تعلّمها للتنبّؤ بالجواب.</p>
+        <p>وراء هذا النهج المُشرَف الشائع، ثمّة أنواع تعلّمٍ أخرى. ففي التعلّم غير المُشرَف، البيانات بلا وسوم والنظام يجد البنية بنفسه، كتجميع العملاء لشرائح طبيعية. وفي التعلّم المُعزَّز، يتعلّم نظامٌ بالتجربة والخطأ، متّخذًا أفعالًا ومعدّلًا بناءً على مكافآت، النهج خلف لعب الألعاب والروبوتات. وعبرها كلها، الفكرة الجوهرية ذاتها وتستحقّ التمسّك: النظام لا يُخبَر بالقواعد؛ يستنبطها من البيانات، وهو بالضبط لماذا جودة تلك البيانات وكمّها وتمثيلها تهمّ هكذا، إذ لا يستطيع النموذج تعلّم إلّا ما تحويه أمثلته.</p>
+        <div class="note"><strong>ملاحظة:</strong> النموذج بجودة بياناته فقط. فنظام تعلّمٍ آلي يتعلّم الأنماط في أمثلته، بما فيها فجواتها وانحيازاتها، فبياناتٌ رديئة أو منحرفة تُنتِج نوعًا واثقًا ومنهجيًا وصعب الاكتشاف من الخطأ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="limits">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>What It Can and Cannot Do</h2>
+        <p class="lead">Machine learning is genuinely powerful but not magic, and using it well requires an honest grasp of both what it does brilliantly and where it fails or misleads.</p>
+        <p>What it does well is find and apply complex patterns in data at a scale and speed no human can match: spotting fraud among millions of transactions, personalizing recommendations for millions of users, reading medical images, forecasting demand. Where there are enough good examples and a clear pattern to learn, machine learning can equal or exceed human performance and do it tirelessly. But it has real limits. It needs large amounts of relevant, good-quality data, and without that it cannot learn. It learns correlation, not understanding, so it can be confidently wrong in ways a person would not, and it does not truly grasp meaning or context. And it inherits whatever is in its data, so biased or unrepresentative data produces biased models that can quietly discriminate or fail for groups the data underrepresented.</p>
+        <ul>
+          <li><strong>Great at:</strong> complex pattern-finding at massive scale, from good, plentiful examples.</li>
+          <li><strong>Needs:</strong> large amounts of relevant, representative, good-quality data.</li>
+          <li><strong>Learns correlation, not understanding:</strong> it can be confidently and strangely wrong.</li>
+          <li><strong>Inherits its data's bias:</strong> skewed data quietly produces skewed, unfair models.</li>
+        </ul>
+        <p>These limits have practical implications for using machine learning responsibly. Because a model can be confidently wrong and reflect hidden bias, its outputs should be treated as powerful predictions to be checked, not infallible truths, especially in high-stakes decisions affecting people. Because it learns from data, investment in good, representative data matters more than clever algorithms. And because models can drift as the world changes, they need monitoring and updating rather than being deployed once and trusted forever. Used with this understanding, machine learning is a transformative tool that extends human capability; used naively, as an oracle whose answers are accepted without scrutiny, it can automate error and bias at scale. The skill is knowing where its pattern-finding power genuinely helps, and keeping human judgment firmly in the loop where it matters.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> machine learning builds models that learn complex patterns from data and apply them to new cases, powerful for pattern-finding at scale but limited by its dependence on data, its lack of true understanding, and its inheritance of bias, so it should be used as a checked, monitored tool with human judgment kept in the loop.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>ما يستطيع وما لا يستطيع</h2>
+        <p class="lead">التعلّم الآلي قوي فعلًا لكنه ليس سحرًا، واستخدامه جيدًا يتطلّب إمساكًا أمينًا لما يفعله ببراعةٍ وأين يفشل أو يضلّل معًا.</p>
+        <p>ما يفعله جيدًا إيجاد وتطبيق أنماطٍ معقّدة في البيانات بحجمٍ وسرعةٍ لا يضاهيهما إنسان: رصد احتيالٍ بين ملايين المعاملات، وتخصيص توصياتٍ لملايين المستخدمين، وقراءة صورٍ طبية، والتنبّؤ بالطلب. وحيث توجد أمثلةٌ جيدة كافية ونمطٌ واضح ليُتعلَّم، يستطيع التعلّم الآلي مساواة أداء الإنسان أو تجاوزه وفعله بلا كلل. لكن له حدودًا حقيقية. يحتاج كمياتٍ كبيرة من بياناتٍ ذات صلة جيدة الجودة، وبدونها لا يستطيع التعلّم. ويتعلّم الارتباط لا الفهم، فقد يكون واثقًا خاطئًا بطرقٍ لا يكونها إنسان، ولا يمسك المعنى أو السياق حقًّا. ويرث ما في بياناته، فبياناتٌ منحازة أو غير ممثِّلة تُنتِج نماذج منحازة قد تميّز بهدوءٍ أو تفشل لفئاتٍ قلّلت البيانات تمثيلها.</p>
+        <ul>
+          <li><strong>بارعٌ في:</strong> إيجاد أنماطٍ معقّدة على نطاقٍ هائل، من أمثلةٍ جيدة وفيرة.</li>
+          <li><strong>يحتاج:</strong> كمياتٍ كبيرة من بياناتٍ ذات صلة ممثِّلة جيدة الجودة.</li>
+          <li><strong>يتعلّم الارتباط لا الفهم:</strong> قد يكون واثقًا وغريبًا خاطئًا.</li>
+          <li><strong>يرث انحياز بياناته:</strong> بياناتٌ منحرفة تُنتِج بهدوءٍ نماذج منحرفة غير عادلة.</li>
+        </ul>
+        <p>لهذه الحدود آثارٌ عملية لاستخدام التعلّم الآلي بمسؤولية. فلأن نموذجًا قد يكون واثقًا خاطئًا ويعكس انحيازًا خفيًا، ينبغي معاملة مخرجاته كتنبّؤاتٍ قوية تُفحَص، لا حقائق معصومة، خاصةً في القرارات عالية المخاطر التي تمسّ الناس. ولأنه يتعلّم من البيانات، فالاستثمار في بياناتٍ جيدة ممثِّلة يهمّ أكثر من الخوارزميات الذكية. ولأن النماذج قد تنجرف مع تغيّر العالم، فتحتاج مراقبةً وتحديثًا بدل نشرها مرةً والوثوق بها للأبد. ومستخدَمًا بهذا الفهم، التعلّم الآلي أداةٌ محوّلة تمدّ قدرة الإنسان؛ ومستخدَمًا بسذاجة، كعرّافٍ تُقبَل أجوبته بلا تمحيص، قد يؤتمِت الخطأ والانحياز على نطاق. والمهارة معرفة أين تساعد قوّته في إيجاد الأنماط فعلًا، وإبقاء الحكم البشري في الحلقة حيث يهمّ.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> التعلّم الآلي يبني نماذج تتعلّم أنماطًا معقّدة من البيانات وتطبّقها على حالاتٍ جديدة، قويةً لإيجاد الأنماط على نطاقٍ لكن محدودةً باعتمادها على البيانات، وافتقارها للفهم الحقيقي، وإرثها للانحياز، فينبغي استخدامها كأداةٍ مفحوصة مُراقَبة بإبقاء الحكم البشري في الحلقة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Machine learning builds models that learn patterns from data, powerful but bounded by their data.</p>
+        <ul>
+          <li>Understand ML as learning patterns from examples, not following hand-written rules.</li>
+          <li>Follow the sequence: data, training, model, and prediction on new cases.</li>
+          <li>Invest in good, representative data, since a model can only learn what its examples contain.</li>
+          <li>Remember it learns correlation, not understanding, and can be confidently wrong.</li>
+          <li>Treat outputs as checked predictions, monitor for drift, and keep human judgment in the loop.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://developers.google.com/machine-learning" target="_blank" rel="noopener">Google, Machine Learning resources.</a></li>
+          <li><a href="https://hbr.org/2018/01/the-business-of-artificial-intelligence" target="_blank" rel="noopener">HBR, on the business of AI.</a></li>
+          <li><a href="https://www.nist.gov/artificial-intelligence" target="_blank" rel="noopener">NIST, on trustworthy AI.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">التعلّم الآلي يبني نماذج تتعلّم الأنماط من البيانات، قويةً لكن محدودةً ببياناتها.</p>
+        <ul>
+          <li>افهم التعلّم الآلي كتعلّم أنماطٍ من أمثلة، لا اتّباع قواعد مكتوبة يدويًا.</li>
+          <li>اتّبع التسلسل: بيانات، تدريب، نموذج، وتنبّؤ على حالاتٍ جديدة.</li>
+          <li>استثمر في بياناتٍ جيدة ممثِّلة، إذ لا يتعلّم النموذج إلّا ما تحويه أمثلته.</li>
+          <li>تذكّر أنه يتعلّم الارتباط لا الفهم، وقد يكون واثقًا خاطئًا.</li>
+          <li>عامِل المخرجات كتنبّؤاتٍ مفحوصة، راقِب الانجراف، وأبقِ الحكم البشري في الحلقة.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://developers.google.com/machine-learning" target="_blank" rel="noopener">جوجل، موارد التعلّم الآلي.</a></li>
+          <li><a href="https://hbr.org/2018/01/the-business-of-artificial-intelligence" target="_blank" rel="noopener">HBR، عن أعمال الذكاء الاصطناعي.</a></li>
+          <li><a href="https://www.nist.gov/artificial-intelligence" target="_blank" rel="noopener">NIST، عن الذكاء الاصطناعي الجدير بالثقة.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","howitlearns","limits","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

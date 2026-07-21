@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KPIs &amp; Performance Management</title>
+<meta name="description" content="An operational framework for KPIs and performance: what makes a good KPI, the balanced scorecard, cascading and alignment, targets, and pitfalls.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">FRAMEWORKS &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الأطر &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">KPIs &amp; Performance Management</span><span data-lang="ar">مؤشرات الأداء وإدارة الأداء</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="good"><span data-lang="en">A Good KPI</span><span data-lang="ar">المؤشر الجيد</span></a>
+    <a data-id="scorecard"><span data-lang="en">Balanced Scorecard</span><span data-lang="ar">بطاقة الأداء</span></a>
+    <a data-id="cascade"><span data-lang="en">Cascade</span><span data-lang="ar">التتالي</span></a>
+    <a data-id="pitfalls"><span data-lang="en">Pitfalls</span><span data-lang="ar">المزالق</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Performance measurement (KPIs)</div>
+          <div><span>Scope:</span> Measuring what matters and using it to steer the organization</div>
+          <div><span>Owner role:</span> Performance owner, with metric owners per objective</div>
+          <div><span>Review cadence:</span> Metric review monthly, strategic review each quarter</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">A key performance indicator, or KPI, is a measure chosen to tell you whether you are achieving what matters. Performance measurement is the discipline of choosing the few right measures, setting targets for them, and using the results to steer decisions, so that an organization manages by evidence rather than by impression.</p>
+        <p>The reason measurement matters is that attention follows measurement. What an organization measures and rewards is what its people will optimize, for better or worse, so the choice of KPIs is not a neutral technical exercise, it is a powerful act of direction. Choose the right measures and the organization pulls toward its goals, choose the wrong ones and it will diligently optimize the wrong thing, often at the expense of what actually mattered.</p>
+        <p>This framework describes how to build and use performance measures well, organized around the balanced scorecard approach that pairs financial with non-financial measures. It is written to be reusable across sectors and aligns to recognized performance-management thinking without reproducing any source text.</p>
+        <div class="note"><strong>Note:</strong> What gets measured gets managed, which is both the promise and the danger of KPIs. A measure directs effort powerfully, so a badly chosen one directs effort powerfully in the wrong direction.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> قياس الأداء (KPIs)</div>
+          <div><span>النطاق:</span> قياس ما يهمّ واستخدامه لتوجيه المنشأة</div>
+          <div><span>دور المالك:</span> مالك الأداء، مع ملّاك مؤشراتٍ لكل هدف</div>
+          <div><span>دورية المراجعة:</span> مراجعة مؤشراتٍ شهرية، ومراجعة استراتيجيةٍ كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">مؤشر الأداء الرئيس (KPI) مقياسٌ يُختار ليخبرك هل تحقّق ما يهمّ. وقياس الأداء انضباط اختيار المقاييس القليلة الصحيحة، ووضع أهدافٍ لها، واستخدام النتائج لتوجيه القرارات، فتدير المنشأة بالدليل لا بالانطباع.</p>
+        <p>سبب أهمية القياس أن الاهتمام يتبع القياس. فما تقيسه المنشأة وتكافئ عليه هو ما سيُحسّنه أهلها، للأفضل أو الأسوأ، فاختيار المؤشرات ليس تمرينًا تقنيًا محايدًا، بل فعل توجيهٍ قوي. اختر المقاييس الصحيحة تنجذب المنشأة لأهدافها، واختر الخطأ تُحسّن بجدٍّ الشيء الخطأ، غالبًا على حساب ما كان يهمّ فعلًا.</p>
+        <p>يصف هذا الإطار كيف تبني المقاييس وتستخدمها جيدًا، منظَّمًا حول نهج بطاقة الأداء المتوازن الذي يقرن المالي بغير المالي. وهو قابل لإعادة الاستخدام عبر القطاعات ويتوافق مع فكر إدارة الأداء المعترف به دون نسخ أي نصّ مصدري.</p>
+        <div class="note"><strong>ملاحظة:</strong> ما يُقاس يُدار، وهو وعد المؤشرات وخطرها معًا. فالمقياس يوجّه الجهد بقوة، فمقياسٌ سيّئ الاختيار يوجّه الجهد بقوةٍ في الاتجاه الخطأ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="good">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>What Makes a Good KPI</h2>
+        <p class="lead">Not every number is a KPI, and most dashboards contain far too many measures to be useful. A good KPI has specific qualities that make it worth the attention it demands, and knowing them is how you cut a sprawling list down to the vital few.</p>
+        <p>A useful measure is tied to an objective that matters, so it tracks something worth achieving rather than something merely easy to count. It is clearly defined, so everyone computes it the same way and it cannot be quietly gamed by redefinition. It is measurable with reasonable effort from data you actually have. And crucially, it is actionable: when it moves, someone can do something about it, because a measure no one can influence is information, not a performance indicator.</p>
+        <h3>Leading and lagging</h3>
+        <p>The most important distinction among measures is between leading and lagging indicators. A lagging indicator reports an outcome after it has happened, such as revenue or customer churn, and it tells you the result but too late to change it. A leading indicator moves earlier and predicts the outcome, such as sales pipeline or customer satisfaction, so it gives you time to act before the lagging number is set. A balanced set of KPIs needs both: lagging measures to confirm results and leading measures to steer toward them.</p>
+        <ul>
+          <li><strong>Tied to an objective:</strong> it measures progress toward something that genuinely matters.</li>
+          <li><strong>Clearly defined:</strong> one agreed formula, so it cannot drift or be gamed by redefinition.</li>
+          <li><strong>Actionable:</strong> when it changes, someone can respond, because an uninfluenceable metric is not a KPI.</li>
+          <li><strong>Balanced in time:</strong> leading indicators to steer, lagging indicators to confirm.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Fewer, better KPIs beat a crowded dashboard every time. If everything is a key indicator, nothing is, and the vital few get lost among the merely measurable.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>ما يصنع مؤشرًا جيدًا</h2>
+        <p class="lead">ليس كل رقمٍ مؤشرًا، وأغلب اللوحات تحوي مقاييس أكثر من أن تفيد. والمؤشر الجيد له خصائص محدَّدة تجعله يستحق الاهتمام الذي يطلبه، ومعرفتها هي كيف تقلّص قائمةً متمدّدة إلى القلّة الحيوية.</p>
+        <p>المقياس المفيد مرتبطٌ بهدفٍ يهمّ، فيتتبّع شيئًا يستحق التحقيق لا شيئًا سهل العدّ فحسب. ومُعرَّفٌ بوضوح، فيحسبه الجميع بالطريقة نفسها ولا يُتلاعَب به بإعادة التعريف. وقابلٌ للقياس بجهدٍ معقول من بياناتٍ تملكها فعلًا. والأهمّ، قابلٌ للتنفيذ: حين يتحرّك، يستطيع أحدٌ فعل شيءٍ حياله، لأن مقياسًا لا أحد يؤثّر فيه معلومةٌ لا مؤشر أداء.</p>
+        <h3>القائد والمتأخّر</h3>
+        <p>أهمّ تمييزٍ بين المقاييس بين المؤشرات القائدة والمتأخّرة. فالمؤشر المتأخّر يُبلّغ نتيجةً بعد وقوعها، كالإيراد أو تسرّب العملاء، فيخبرك النتيجة لكن متأخرًا عن تغييرها. والمؤشر القائد يتحرّك أبكر ويتنبّأ بالنتيجة، كخطّ المبيعات أو رضا العملاء، فيمنحك وقتًا للتصرّف قبل أن يُثبَّت الرقم المتأخّر. ومجموعة مؤشراتٍ متوازنة تحتاج كليهما: متأخّرة لتأكيد النتائج، وقائدة لتوجيه الوصول إليها.</p>
+        <ul>
+          <li><strong>مرتبطٌ بهدف:</strong> يقيس التقدّم نحو ما يهمّ حقًّا.</li>
+          <li><strong>مُعرَّفٌ بوضوح:</strong> صيغةٌ واحدة متّفق عليها، فلا ينزاح ولا يُتلاعَب به بإعادة التعريف.</li>
+          <li><strong>قابلٌ للتنفيذ:</strong> حين يتغيّر، يستطيع أحدٌ الاستجابة، لأن مقياسًا لا يُؤثَّر فيه ليس مؤشرًا.</li>
+          <li><strong>متوازنٌ زمنيًا:</strong> مؤشرات قائدة للتوجيه، ومتأخّرة للتأكيد.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> مؤشرات أقلّ وأفضل تغلب لوحةً مزدحمة كل مرة. فإن كان كل شيءٍ مؤشرًا رئيسًا، فلا شيء كذلك، وتضيع القلّة الحيوية بين ما هو مجرّد قابلٍ للقياس.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="scorecard">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Balanced Scorecard</h2>
+        <p class="lead">Measuring only financial results is like driving by looking in the rear-view mirror: it tells you where you have been, not where you are heading. The balanced scorecard was created to fix this by pairing financial measures with the non-financial ones that predict future performance.</p>
+        <p>The approach organizes measures into four connected perspectives that together give a complete picture. The financial perspective asks how the organization looks to its owners. The customer perspective asks how it looks to those it serves. The internal process perspective asks how well the work that creates value is running. And the learning and growth perspective asks whether the organization is building the capability to keep succeeding. The insight is that these are linked in a chain of cause and effect: investing in people and capability improves processes, better processes satisfy customers, and satisfied customers produce financial results.</p>
+        <table>
+          <tr><th>Perspective</th><th>Answers</th><th>Nature</th></tr>
+          <tr><td>Financial</td><td>How do we look to owners?</td><td>Mostly lagging</td></tr>
+          <tr><td>Customer</td><td>How do those we serve see us?</td><td>Mixed</td></tr>
+          <tr><td>Internal process</td><td>How well does the value-creating work run?</td><td>Leading</td></tr>
+          <tr><td>Learning &amp; growth</td><td>Are we building future capability?</td><td>Leading</td></tr>
+        </table>
+        <p>The power of the four perspectives is that they force a balance a purely financial view destroys. An organization can hit its financial targets this year by starving investment in its people, its processes, and its customers, and look excellent in the numbers while quietly consuming its own future. The non-financial perspectives make that trade-off visible, so leadership sees not just this year's result but whether it was bought at the expense of next year's.</p>
+        <div class="note"><strong>Note:</strong> Financial measures are necessary but lagging. Balancing them with customer, process, and capability measures is what turns a scorecard from a record of the past into a guide to the future.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>بطاقة الأداء المتوازن</h2>
+        <p class="lead">قياس النتائج المالية وحدها كالقيادة بالنظر في المرآة الخلفية: يخبرك أين كنت لا إلى أين تتّجه. وبطاقة الأداء المتوازن وُجِدت لإصلاح هذا بقرن المقاييس المالية بغير المالية التي تتنبّأ بالأداء القادم.</p>
+        <p>ينظّم النهج المقاييس في أربع منظوراتٍ متصلة تعطي معًا صورةً كاملة. المنظور المالي يسأل كيف تبدو المنشأة لمُلّاكها. ومنظور العميل يسأل كيف تبدو لمن تخدمهم. ومنظور العملية الداخلية يسأل كم يعمل العمل الخالق للقيمة جيدًا. ومنظور التعلّم والنمو يسأل هل تبني المنشأة القدرة على مواصلة النجاح. والبصيرة أن هذه مترابطةٌ في سلسلة سببٍ وأثر: الاستثمار في الناس والقدرة يحسّن العمليات، والعمليات الأفضل تُرضي العملاء، والعملاء الراضون يُنتِجون النتائج المالية.</p>
+        <table>
+          <tr><th>المنظور</th><th>يجيب</th><th>الطبيعة</th></tr>
+          <tr><td>المالي</td><td>كيف نبدو للمُلّاك؟</td><td>متأخّر غالبًا</td></tr>
+          <tr><td>العميل</td><td>كيف يرانا من نخدمهم؟</td><td>مختلط</td></tr>
+          <tr><td>العملية الداخلية</td><td>كم يعمل العمل الخالق للقيمة جيدًا؟</td><td>قائد</td></tr>
+          <tr><td>التعلّم والنمو</td><td>هل نبني قدرة المستقبل؟</td><td>قائد</td></tr>
+        </table>
+        <p>قوّة المنظورات الأربعة أنها تفرض توازنًا تُدمّره الرؤية المالية الصرفة. فتستطيع منشأةٌ بلوغ أهدافها المالية هذا العام بتجويع الاستثمار في ناسها وعملياتها وعملائها، فتبدو ممتازةً في الأرقام بينما تلتهم مستقبلها بهدوء. والمنظورات غير المالية تُظهر تلك المقايضة، فترى القيادة لا نتيجة العام فقط بل هل اشتُرِيت على حساب العام القادم.</p>
+        <div class="note"><strong>ملاحظة:</strong> المقاييس المالية لازمةٌ لكنها متأخّرة. وموازنتها بمقاييس العميل والعملية والقدرة هي ما يحوّل البطاقة من سجلٍّ للماضي إلى دليلٍ للمستقبل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="cascade">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Cascading &amp; Alignment</h2>
+        <p class="lead">Measures only create alignment if they connect the top of the organization to the front line. Cascading is how a high-level objective becomes a set of measures that each team and person can act on, so everyone's effort pulls in the same direction.</p>
+        <p>Cascading translates strategy down through levels. An enterprise objective becomes departmental measures, which become team measures, which become the goals of individuals, with each level's measures supporting the level above. Done well, a person can see how their own target connects to the organization's strategy, which is what turns a strategy from a document into daily behavior. Done badly, the cascade breaks, and local measures optimize local goals that do not add up to the enterprise's intent.</p>
+        <p>A widely used complement to this is the objectives-and-key-results approach, which pairs an ambitious qualitative objective with a few quantitative key results that measure progress toward it. Whatever the mechanism, the principle is the same: alignment comes from a clear line of sight from the individual measure up to the strategic objective, so that success at every level adds up to success overall rather than a collection of locally optimized parts that do not fit together.</p>
+        <div class="note"><strong>Note:</strong> Beware measures that optimize the part at the expense of the whole. When each department maximizes its own metric, the result can be worse for the organization, so cascaded measures must be designed to align, not compete.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>التتالي والمواءمة</h2>
+        <p class="lead">المقاييس لا تخلق مواءمةً إلا إن وصلت قمّة المنشأة بالخطّ الأمامي. والتتالي هو كيف يصير هدفٌ عالي المستوى مجموعة مقاييس يستطيع كل فريقٍ وشخص التصرّف بها، فينجذب جهد الجميع في الاتجاه نفسه.</p>
+        <p>التتالي يترجم الاستراتيجية نزولًا عبر المستويات. فهدف المؤسسة يصير مقاييس إدارات، تصير مقاييس فرق، تصير أهداف أفراد، بمقاييس كل مستوىً تسند الذي فوقه. وحين يُحسَن، يرى الشخص كيف يتّصل هدفه باستراتيجية المنشأة، وهو ما يحوّل الاستراتيجية من وثيقةٍ إلى سلوكٍ يومي. وحين يُساء، ينكسر التتالي، وتُحسّن المقاييس المحلية أهدافًا محلية لا تتجمّع إلى مقصد المؤسسة.</p>
+        <p>ومكمّلٌ واسع الاستخدام لهذا نهج الأهداف والنتائج الرئيسة، الذي يقرن هدفًا نوعيًا طموحًا ببضع نتائج رئيسة كمّية تقيس التقدّم نحوه. وأيًّا كانت الآلية، المبدأ واحد: المواءمة تأتي من خطّ رؤيةٍ واضح من المقياس الفردي صعودًا للهدف الاستراتيجي، فيتجمّع النجاح في كل مستوىً إلى نجاحٍ إجمالي لا مجموعة أجزاءٍ مُحسَّنة محليًا لا تتلاءم.</p>
+        <div class="note"><strong>ملاحظة:</strong> احذر مقاييس تُحسّن الجزء على حساب الكل. فحين تُعظّم كل إدارةٍ مؤشرها، قد تكون النتيجة أسوأ للمنشأة، فيجب أن تُصمَّم المقاييس المتتالية لتتوائم لا لتتنافس.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="pitfalls">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Targets &amp; Pitfalls</h2>
+        <p class="lead">A measure without a target is just a number, and a target without care can do more harm than good. Setting targets and avoiding the classic ways measurement goes wrong is what separates useful performance management from a source of dysfunction.</p>
+        <p>A good target is grounded in a baseline, the current level measured honestly, and set at a level that is challenging but achievable, because a target that is impossible demotivates and one that is trivial changes nothing. But the deeper danger is not in the target level, it is in what people do when a measure is tied to reward. Because attention follows measurement, a poorly chosen or crudely enforced KPI invites gaming: people hit the number while defeating its purpose.</p>
+        <ul>
+          <li><strong>Gaming:</strong> hitting the measure while missing its intent, such as closing support tickets fast by not really solving them.</li>
+          <li><strong>Vanity metrics:</strong> numbers that look impressive and rise reliably but do not connect to any real outcome.</li>
+          <li><strong>Tunnel vision:</strong> optimizing what is measured while neglecting the important things that are not.</li>
+          <li><strong>Perverse incentives:</strong> a measure that drives exactly the wrong behavior, because people optimize the metric, not the goal.</li>
+        </ul>
+        <p>The defense against these is to remember that the measure is a proxy for the goal, never the goal itself. When a measure becomes a target, it comes under pressure to be gamed, so measures should be balanced against each other, so that gaming one shows up in another, and reviewed for whether they still reflect the real objective. The moment a KPI and the goal it was meant to serve point in different directions, it is the KPI that must change.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> performance measurement steers an organization when it chooses a vital few actionable KPIs, balances them across perspectives and time, cascades them into aligned action, and never forgets that the measure serves the goal, not the reverse.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الأهداف والمزالق</h2>
+        <p class="lead">مقياسٌ بلا هدفٍ مجرّد رقم، وهدفٌ بلا عنايةٍ قد يضرّ أكثر مما ينفع. ووضع الأهداف وتجنّب الطرق الكلاسيكية التي يسوء بها القياس هو ما يفصل إدارة أداءٍ مفيدة عن مصدر خلل.</p>
+        <p>الهدف الجيد مؤسَّسٌ على خط أساسٍ، أي المستوى الحالي مُقاسًا بصدق، ومضبوطٌ على مستوىً متحدٍّ لكن قابل للتحقيق، لأن هدفًا مستحيلًا يُثبّط وتافهًا لا يغيّر شيئًا. لكن الخطر الأعمق ليس في مستوى الهدف، بل في ما يفعله الناس حين يُربَط المقياس بالمكافأة. فلأن الاهتمام يتبع القياس، مؤشرٌ سيّئ الاختيار أو خشِن الإنفاذ يدعو للتلاعب: يبلغ الناس الرقم بينما يهزمون غرضه.</p>
+        <ul>
+          <li><strong>التلاعب:</strong> بلوغ المقياس مع تفويت مقصده، كإغلاق تذاكر الدعم سريعًا دون حلّها فعلًا.</li>
+          <li><strong>مقاييس الغرور:</strong> أرقامٌ تبدو مُبهِرة وترتفع بموثوقيةٍ لكنها لا تتّصل بأي نتيجةٍ حقيقية.</li>
+          <li><strong>رؤية النفق:</strong> تحسين ما يُقاس مع إهمال المهمّ الذي لا يُقاس.</li>
+          <li><strong>الحوافز المنحرفة:</strong> مقياسٌ يقود بالضبط السلوك الخطأ، لأن الناس يُحسّنون المقياس لا الهدف.</li>
+        </ul>
+        <p>الدفاع ضد هذه تذكّر أن المقياس بديلٌ عن الهدف لا الهدف نفسه. فحين يصير المقياس هدفًا، يقع تحت ضغط التلاعب، فينبغي موازنة المقاييس ضد بعضها، فيظهر تلاعب أحدها في آخر، ومراجعتها هل ما زالت تعكس الهدف الحقيقي. ولحظة يشير مؤشرٌ والهدف الذي وُجِد لخدمته في اتجاهين مختلفين، فالمؤشر هو ما يجب أن يتغيّر.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> قياس الأداء يوجّه المنشأة حين يختار قلّةً حيوية من مؤشراتٍ قابلة للتنفيذ، ويوازنها عبر المنظورات والزمن، ويُتاليها إلى فعلٍ متوائم، ولا ينسى أبدًا أن المقياس يخدم الهدف لا العكس.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Performance measurement steers an organization by choosing the vital few measures that matter, balancing them, and using them to align action with strategy.</p>
+        <ul>
+          <li>Remember that attention follows measurement, so choosing KPIs is an act of direction, not a technical exercise.</li>
+          <li>Make each KPI tied to an objective, clearly defined, actionable, and balanced between leading and lagging.</li>
+          <li>Use the four balanced-scorecard perspectives so non-financial measures reveal the future, not just the financial past.</li>
+          <li>Cascade measures so individual targets connect to strategy and align rather than compete.</li>
+          <li>Set targets from an honest baseline, and guard against gaming, vanity metrics, and perverse incentives.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://balancedscorecard.org/bsc-basics-overview/" target="_blank" rel="noopener">Balanced Scorecard Institute, Balanced Scorecard basics (Kaplan &amp; Norton).</a></li>
+          <li><a href="https://hbr.org/1992/01/the-balanced-scorecard-measures-that-drive-performance-2" target="_blank" rel="noopener">Kaplan &amp; Norton, The Balanced Scorecard, Harvard Business Review, 1992.</a></li>
+          <li><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">ISO 9001:2015, Quality management systems (performance evaluation).</a></li>
+          <li><a href="https://www.coso.org/guidance-erm" target="_blank" rel="noopener">COSO, Enterprise Risk Management (performance and objectives).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">قياس الأداء يوجّه المنشأة باختيار القلّة الحيوية من المقاييس التي تهمّ، وموازنتها، واستخدامها لمواءمة الفعل بالاستراتيجية.</p>
+        <ul>
+          <li>تذكّر أن الاهتمام يتبع القياس، فاختيار المؤشرات فعل توجيهٍ لا تمرينٌ تقني.</li>
+          <li>اجعل كل مؤشرٍ مرتبطًا بهدف، مُعرَّفًا بوضوح، قابلًا للتنفيذ، متوازنًا بين القائد والمتأخّر.</li>
+          <li>استخدم منظورات بطاقة الأداء الأربعة لتكشف المقاييس غير المالية المستقبل لا الماضي المالي فقط.</li>
+          <li>تالِ المقاييس فتتّصل الأهداف الفردية بالاستراتيجية وتتوائم لا تتنافس.</li>
+          <li>اضبط الأهداف من خط أساسٍ صادق، واحذر التلاعب ومقاييس الغرور والحوافز المنحرفة.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://balancedscorecard.org/bsc-basics-overview/" target="_blank" rel="noopener">معهد بطاقة الأداء المتوازن، أساسيات البطاقة (كابلان ونورتون).</a></li>
+          <li><a href="https://hbr.org/1992/01/the-balanced-scorecard-measures-that-drive-performance-2" target="_blank" rel="noopener">كابلان ونورتون، بطاقة الأداء المتوازن، هارفارد بزنس ريفيو، 1992.</a></li>
+          <li><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">ISO 9001:2015، أنظمة إدارة الجودة (تقييم الأداء).</a></li>
+          <li><a href="https://www.coso.org/guidance-erm" target="_blank" rel="noopener">COSO، إدارة مخاطر المؤسسة (الأداء والأهداف).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","good","scorecard","cascade","pitfalls","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanban Method</title>
+<meta name="description" content="An original framework on Kanban: visualizing work, limiting work in progress, and improving flow, with a board illustration and a comparison to Scrum.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">PROJECT &amp; AGILE &middot; FRAMEWORK</span><span data-lang="ar">المشاريع والرشاقة &middot; إطار</span></div>
+    <h1><span data-lang="en">Kanban Method</span><span data-lang="ar">منهج كانبان</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="board"><span data-lang="en">The Board</span><span data-lang="ar">اللوحة</span></a>
+    <a data-id="practices"><span data-lang="en">Practices</span><span data-lang="ar">الممارسات</span></a>
+    <a data-id="compare"><span data-lang="en">Kanban vs Scrum</span><span data-lang="ar">كانبان وسكرم</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Kanban method</div>
+          <div><span>Scope:</span> Managing and improving the flow of work</div>
+          <div><span>Owner role:</span> Any team that has a flow of work</div>
+          <div><span>Review cadence:</span> Continuous, with periodic flow review</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Kanban is a method for managing work by making it visible, limiting how much is done at once, and continuously improving the flow from start to finish. Unlike Scrum, it does not use fixed-length sprints or prescribed roles; instead it starts from wherever a team is today and improves gradually, which makes it one of the gentlest and most widely applicable ways to work more effectively.</p>
+        <p>Kanban matters because a great deal of lost productivity comes not from people working too slowly but from work sitting idle, blocked, waiting, or half-finished, and from teams trying to do too many things at once. By making the flow of work visible and deliberately limiting the amount in progress, Kanban exposes these hidden problems and forces a team to finish things before starting new ones. The result is faster, smoother, more predictable delivery, achieved not by working harder but by managing the flow of work more intelligently.</p>
+        <p>This framework explains the principles of Kanban, how a Kanban board works, the core practices that make it effective, and how it compares to Scrum. It is my own synthesis, written in my own words and grounded in recognized Kanban thinking, and it includes a worked illustration of a board.</p>
+        <div class="note"><strong>Note:</strong> Most delay is not slow work; it is work waiting. Kanban makes the waiting visible, which is the first step to removing it, and often reveals that finishing faster has little to do with working harder.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> منهج كانبان</div>
+          <div><span>النطاق:</span> إدارة تدفّق العمل وتحسينه</div>
+          <div><span>دور المالك:</span> أي فريقٍ له تدفّق عمل</div>
+          <div><span>دورية المراجعة:</span> مستمرة، بمراجعة تدفّقٍ دورية</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">كانبان منهجٌ لإدارة العمل بجعله مرئيًا، وتحديد كم يُنجَز في آنٍ واحد، والتحسين المستمر للتدفّق من البداية للنهاية. وخلافًا لسكرم، لا يستخدم سبرنتاتٍ ثابتة الطول ولا أدوارًا موصوفة؛ بل يبدأ من حيث الفريق اليوم ويحسّن تدريجيًا، ما يجعله من أرقّ الطرق وأوسعها قابليةً للتطبيق للعمل بفاعليةٍ أكبر.</p>
+        <p>يهمّ كانبان لأن قدرًا كبيرًا من الإنتاجية الضائعة يأتي لا من عمل الناس ببطءٍ بل من عملٍ يجلس عاطلًا، محجوبًا أو منتظرًا أو نصف منجَز، ومن فرقٍ تحاول فعل أشياء كثيرة دفعةً واحدة. فبجعل تدفّق العمل مرئيًا وتحديد كمّ العمل الجاري عمدًا، يكشف كانبان هذه المشكلات الخفيّة ويُجبِر الفريق على إنهاء الأشياء قبل بدء جديدة. والنتيجة تسليمٌ أسرع وأنعم وأكثر قابليةً للتنبّؤ، مُحقَّقٌ لا بالعمل أشدّ بل بإدارة تدفّق العمل بذكاءٍ أكبر.</p>
+        <p>يشرح هذا الإطار مبادئ كانبان، وكيف تعمل لوحة كانبان، والممارسات الجوهرية التي تُنجِحه، وكيف يقارَن بسكرم. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في فكر كانبان المعترف به، ويتضمّن رسمًا توضيحيًا للوحة.</p>
+        <div class="note"><strong>ملاحظة:</strong> أغلب التأخير ليس عملًا بطيئًا؛ بل عملًا منتظرًا. وكانبان يجعل الانتظار مرئيًا، وهي أول خطوةٍ لإزالته، ويكشف غالبًا أن الإنهاء أسرع لا علاقة له كثيرًا بالعمل أشدّ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="board">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>How a Kanban Board Works</h2>
+        <p class="lead">The heart of Kanban is a visual board that shows every piece of work and where it sits in the process. The board below illustrates a simple flow, with a limit on how much work each active stage may hold at once.</p>
+        <div style="text-align:center;margin:20px 0 8px;"><svg viewBox="0 0 660 330" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;max-width:640px;height:auto;font-family:&apos;IBM Plex Sans Arabic&apos;,sans-serif;"><rect x="15" y="10" width="116" height="30" rx="6" fill="#7A4E9E"/><text x="73" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#F7F4EF">Backlog</text><rect x="15" y="46" width="116" height="268" rx="6" fill="#F1EAF8" stroke="#C9B8E8"/><rect x="23" y="56" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="23" y="56" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="23" y="88" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="23" y="88" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="23" y="120" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="23" y="120" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="144" y="10" width="116" height="30" rx="6" fill="#7A4E9E"/><text x="202" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#F7F4EF">To Do</text><rect x="144" y="46" width="116" height="268" rx="6" fill="#F1EAF8" stroke="#C9B8E8"/><rect x="152" y="56" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="152" y="56" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="152" y="88" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="152" y="88" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="152" y="120" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="152" y="120" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="273" y="10" width="116" height="30" rx="6" fill="#7A4E9E"/><text x="331" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#F7F4EF">In Progress</text><rect x="273" y="46" width="116" height="268" rx="6" fill="#F1EAF8" stroke="#C9B8E8"/><rect x="298" y="52" width="66" height="18" rx="9" fill="#EADFF6" stroke="#C9B8E8"/><text x="331" y="65" text-anchor="middle" font-size="10" font-weight="600" fill="#7A4E9E">WIP 3</text><rect x="281" y="78" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="281" y="78" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="281" y="110" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="281" y="110" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="281" y="142" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="281" y="142" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="281" y="174" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="281" y="174" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="402" y="10" width="116" height="30" rx="6" fill="#7A4E9E"/><text x="460" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#F7F4EF">Review</text><rect x="402" y="46" width="116" height="268" rx="6" fill="#F1EAF8" stroke="#C9B8E8"/><rect x="427" y="52" width="66" height="18" rx="9" fill="#EADFF6" stroke="#C9B8E8"/><text x="460" y="65" text-anchor="middle" font-size="10" font-weight="600" fill="#7A4E9E">WIP 2</text><rect x="410" y="78" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="410" y="78" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="410" y="110" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="410" y="110" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="410" y="142" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="410" y="142" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="531" y="10" width="116" height="30" rx="6" fill="#7A4E9E"/><text x="589" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#F7F4EF">Done</text><rect x="531" y="46" width="116" height="268" rx="6" fill="#F1EAF8" stroke="#C9B8E8"/><rect x="539" y="56" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="539" y="56" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="539" y="88" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="539" y="88" width="4" height="26" rx="2" fill="#7A4E9E"/><line x1="15" y1="326" x2="632" y2="326" stroke="#7A4E9E" stroke-width="2"/><path d="M632 326 l-9 -5 l0 10 z" fill="#7A4E9E"/><text x="330" y="322" text-anchor="middle" font-size="11" fill="#7A4E9E" font-style="italic">Flow: work is pulled left to right</text></svg></div>
+        <p>Each column represents a stage the work passes through, from a backlog of things not yet started, through active stages such as doing and reviewing, to done. Every item of work is a card that moves left to right across the board as it progresses, so at a glance anyone can see what is being worked on, what is waiting, and what is finished. This simple visibility is powerful on its own: work that was previously invisible, scattered across people's heads and inboxes, becomes a shared picture the whole team can see and manage.</p>
+        <p>The numbers on the active columns are work-in-progress limits, the maximum number of cards allowed in that stage at once. In the illustration, the in-progress and review stages are at their limits, which means no new work can enter them until something moves on. This is the crucial mechanism: by capping how much can be in progress, the board physically prevents the team from starting more than it can finish, and turns any bottleneck, a stage where work piles up against its limit, into something visible that the team must address. The board is not just a status display; it is an active tool that shapes behavior toward finishing rather than starting.</p>
+        <div class="note"><strong>Note:</strong> A Kanban board is not a to-do list on a wall; it is a system with rules. The work-in-progress limits are what turn a pretty board into a tool that actually changes how a team behaves.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>كيف تعمل لوحة كانبان</h2>
+        <p class="lead">قلب كانبان لوحةٌ بصرية تُظهِر كل قطعة عملٍ وأين تجلس في العملية. واللوحة أدناه تُوضِّح تدفّقًا بسيطًا، بحدٍّ لكم العمل الذي قد تحمله كل مرحلةٍ نشطة في آنٍ واحد.</p>
+        <div style="text-align:center;margin:20px 0 8px;"><svg viewBox="0 0 660 330" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;max-width:640px;height:auto;font-family:&apos;IBM Plex Sans Arabic&apos;,sans-serif;"><rect x="15" y="10" width="116" height="30" rx="6" fill="#7A4E9E"/><text x="73" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#F7F4EF">المتراكم</text><rect x="15" y="46" width="116" height="268" rx="6" fill="#F1EAF8" stroke="#C9B8E8"/><rect x="23" y="56" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="23" y="56" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="23" y="88" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="23" y="88" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="23" y="120" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="23" y="120" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="144" y="10" width="116" height="30" rx="6" fill="#7A4E9E"/><text x="202" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#F7F4EF">للعمل</text><rect x="144" y="46" width="116" height="268" rx="6" fill="#F1EAF8" stroke="#C9B8E8"/><rect x="152" y="56" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="152" y="56" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="152" y="88" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="152" y="88" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="152" y="120" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="152" y="120" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="273" y="10" width="116" height="30" rx="6" fill="#7A4E9E"/><text x="331" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#F7F4EF">قيد التنفيذ</text><rect x="273" y="46" width="116" height="268" rx="6" fill="#F1EAF8" stroke="#C9B8E8"/><rect x="298" y="52" width="66" height="18" rx="9" fill="#EADFF6" stroke="#C9B8E8"/><text x="331" y="65" text-anchor="middle" font-size="10" font-weight="600" fill="#7A4E9E">حد 3</text><rect x="281" y="78" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="281" y="78" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="281" y="110" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="281" y="110" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="281" y="142" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="281" y="142" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="281" y="174" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="281" y="174" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="402" y="10" width="116" height="30" rx="6" fill="#7A4E9E"/><text x="460" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#F7F4EF">المراجعة</text><rect x="402" y="46" width="116" height="268" rx="6" fill="#F1EAF8" stroke="#C9B8E8"/><rect x="427" y="52" width="66" height="18" rx="9" fill="#EADFF6" stroke="#C9B8E8"/><text x="460" y="65" text-anchor="middle" font-size="10" font-weight="600" fill="#7A4E9E">حد 2</text><rect x="410" y="78" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="410" y="78" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="410" y="110" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="410" y="110" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="410" y="142" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="410" y="142" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="531" y="10" width="116" height="30" rx="6" fill="#7A4E9E"/><text x="589" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#F7F4EF">منجز</text><rect x="531" y="46" width="116" height="268" rx="6" fill="#F1EAF8" stroke="#C9B8E8"/><rect x="539" y="56" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="539" y="56" width="4" height="26" rx="2" fill="#7A4E9E"/><rect x="539" y="88" width="100" height="26" rx="4" fill="#FFFFFF" stroke="#C9B8E8"/><rect x="539" y="88" width="4" height="26" rx="2" fill="#7A4E9E"/><line x1="15" y1="326" x2="632" y2="326" stroke="#7A4E9E" stroke-width="2"/><path d="M632 326 l-9 -5 l0 10 z" fill="#7A4E9E"/><text x="330" y="322" text-anchor="middle" font-size="11" fill="#7A4E9E" font-style="italic">التدفّق: يُسحب العمل من اليسار لليمين</text></svg></div>
+        <p>كل عمودٍ يمثّل مرحلةً يمرّ بها العمل، من متراكمٍ لأشياء لم تبدأ، عبر مراحل نشطة كالتنفيذ والمراجعة، إلى منجَز. وكل بند عملٍ بطاقةٌ تتحرّك من اليسار لليمين عبر اللوحة كلما تقدّم، فيرى أي أحدٍ بلمحةٍ ما يُعمَل عليه، وما ينتظر، وما أُنجِز. وهذه الرؤية البسيطة قوية بذاتها: فعملٌ كان خفيًا، مبعثرًا في رؤوس الناس وصناديق بريدهم، يصير صورةً مشتركة يراها الفريق كله ويديرها.</p>
+        <p>الأرقام على الأعمدة النشطة حدود العمل الجاري، الحدّ الأقصى لعدد البطاقات المسموح بها في تلك المرحلة دفعةً. وفي الرسم، مرحلتا التنفيذ والمراجعة عند حدّيهما، ما يعني أنه لا يمكن دخول عملٍ جديد إليهما حتى يمضي شيء. وهذه الآلية الحاسمة: فبتحديد كم يمكن أن يكون جاريًا، تمنع اللوحة الفريق فيزيائيًا من بدء أكثر مما يستطيع إنهاءه، وتحوّل أي عنق زجاجة، مرحلةً يتكدّس فيها العمل ضد حدّها، لشيءٍ مرئي يجب أن يعالجه الفريق. واللوحة ليست عرض حالةٍ فقط؛ بل أداةٌ نشطة تُشكّل السلوك نحو الإنهاء لا البدء.</p>
+        <div class="note"><strong>ملاحظة:</strong> لوحة كانبان ليست قائمة مهامٍ على جدار؛ بل نظامٌ بقواعد. وحدود العمل الجاري هي ما يحوّل لوحةً جميلة لأداةٍ تغيّر فعلًا كيف يتصرّف الفريق.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="practices">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Core Practices</h2>
+        <p class="lead">Kanban rests on a few core practices that work together to improve flow. Each is simple, and their combination is what produces faster, smoother, more predictable delivery.</p>
+        <p>The first is visualize the work: put everything on the board so the whole flow is visible, because you cannot manage what you cannot see. The second, and most distinctive, is limit work in progress: cap how much can be in each stage at once, which forces the team to finish before starting and stops the scattering of effort across too many things. The third is manage and improve flow: watch how work moves, find where it stalls or waits, and steadily remove those obstacles so the whole system flows faster. The fourth is make the rules explicit: agree clearly on how work moves through the board, what done means at each stage, so the team shares one understanding rather than many.</p>
+        <ul>
+          <li><strong>Visualize:</strong> make all the work and its flow visible on a shared board.</li>
+          <li><strong>Limit work in progress:</strong> cap each stage, forcing finishing before starting.</li>
+          <li><strong>Manage flow:</strong> find and remove the points where work stalls or waits.</li>
+          <li><strong>Improve continuously:</strong> use what the board reveals to steadily get better.</li>
+        </ul>
+        <p>Two ideas explain why limiting work in progress is so powerful. First, it makes bottlenecks visible: when a stage fills to its limit and work backs up behind it, the constraint on the whole system is suddenly obvious, and the team can focus its energy there rather than everywhere. Second, it improves speed through a simple relationship: the more things you work on at once, the longer each individual thing takes to finish, because attention is divided and work waits in queues. By deliberately doing less at once, a team paradoxically finishes each thing faster and delivers more overall. Over time, watching the flow and steadily removing obstacles turns Kanban into an engine of continuous improvement, driven by real data about where the work actually gets stuck.</p>
+        <div class="note"><strong>Note:</strong> The counterintuitive heart of Kanban: doing fewer things at once makes you finish faster. Divided attention and long queues are what slow delivery, and limiting work in progress attacks both at once.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الممارسات الجوهرية</h2>
+        <p class="lead">كانبان يقوم على بضع ممارساتٍ جوهرية تعمل معًا لتحسين التدفّق. كلٌّ بسيطة، وتركيبها هو ما يُنتِج تسليمًا أسرع وأنعم وأكثر قابليةً للتنبّؤ.</p>
+        <p>الأولى تصوير العمل: ضع كل شيءٍ على اللوحة فيصير التدفّق كله مرئيًا، لأنك لا تستطيع إدارة ما لا تراه. والثانية، والأكثر تميّزًا، تحديد العمل الجاري: حُدّ كم يمكن في كل مرحلةٍ دفعةً، ما يُجبِر الفريق على الإنهاء قبل البدء ويوقف بعثرة الجهد على أشياء كثيرة. والثالثة إدارة التدفّق وتحسينه: راقب كيف يتحرّك العمل، وجِد أين يتعثّر أو ينتظر، وأزِل تلك العوائق باطّرادٍ فيتدفّق النظام كله أسرع. والرابعة جعل القواعد صريحة: اتّفق بوضوحٍ على كيف يتحرّك العمل عبر اللوحة، وما يعنيه المنجَز في كل مرحلة، فيتشارك الفريق فهمًا واحدًا لا عدّة.</p>
+        <ul>
+          <li><strong>صوّر:</strong> اجعل كل العمل وتدفّقه مرئيًا على لوحةٍ مشتركة.</li>
+          <li><strong>حُدّ العمل الجاري:</strong> حُدّ كل مرحلة، مُجبِرًا الإنهاء قبل البدء.</li>
+          <li><strong>أدِر التدفّق:</strong> جِد وأزِل النقاط التي يتعثّر أو ينتظر فيها العمل.</li>
+          <li><strong>حسّن باستمرار:</strong> استخدم ما تكشفه اللوحة لتتحسّن باطّراد.</li>
+        </ul>
+        <p>فكرتان تفسّران لماذا تحديد العمل الجاري قوي هكذا. الأولى أنه يجعل أعناق الزجاجة مرئية: فحين تمتلئ مرحلةٌ لحدّها ويتكدّس العمل خلفها، يصير القيد على النظام كله واضحًا فجأةً، فيركّز الفريق طاقته هناك لا في كل مكان. والثانية أنه يحسّن السرعة عبر علاقةٍ بسيطة: كلما عملت على أشياء أكثر دفعةً، طال كل شيءٍ مفرد ليُنجَز، لأن الانتباه مقسَّم والعمل ينتظر في طوابير. فبفعل أقلّ دفعةً عمدًا، يُنهي الفريق كل شيءٍ أسرع مفارقةً ويسلّم أكثر إجمالًا. وبمرور الوقت، مراقبة التدفّق وإزالة العوائق باطّرادٍ تحوّل كانبان لمحرّك تحسينٍ مستمر، مدفوعٍ ببياناتٍ حقيقية عن أين يعلق العمل فعلًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> قلب كانبان المخالف للحدس: فعل أشياء أقلّ دفعةً يجعلك تُنهي أسرع. فالانتباه المقسَّم والطوابير الطويلة هما ما يبطّئ التسليم، وتحديد العمل الجاري يهاجم كليهما معًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="compare">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Kanban Compared to Scrum</h2>
+        <p class="lead">Kanban and Scrum are both agile, but they differ in structure and suit different situations. Understanding the contrast helps a team choose, or combine, them wisely.</p>
+        <table>
+          <tr><th><span data-lang="en">Aspect</span><span data-lang="ar">الجانب</span></th><th><span data-lang="en">Scrum</span><span data-lang="ar">سكرم</span></th><th><span data-lang="en">Kanban</span><span data-lang="ar">كانبان</span></th></tr>
+          <tr><td><span data-lang="en">Cadence</span><span data-lang="ar">الإيقاع</span></td><td><span data-lang="en">fixed-length sprints</span><span data-lang="ar">سبرنتات ثابتة</span></td><td><span data-lang="en">continuous flow</span><span data-lang="ar">تدفّق مستمر</span></td></tr>
+          <tr><td><span data-lang="en">Roles</span><span data-lang="ar">الأدوار</span></td><td><span data-lang="en">defined roles</span><span data-lang="ar">أدوار معرَّفة</span></td><td><span data-lang="en">no prescribed roles</span><span data-lang="ar">لا أدوار موصوفة</span></td></tr>
+          <tr><td><span data-lang="en">Change</span><span data-lang="ar">التغيير</span></td><td><span data-lang="en">avoided mid-sprint</span><span data-lang="ar">يُتجنّب أثناء السبرنت</span></td><td><span data-lang="en">welcome any time</span><span data-lang="ar">مُرحَّب في أي وقت</span></td></tr>
+          <tr><td><span data-lang="en">Adoption</span><span data-lang="ar">التبنّي</span></td><td><span data-lang="en">a defined change to adopt</span><span data-lang="ar">تغيير معرَّف يُتبنّى</span></td><td><span data-lang="en">start where you are, improve gradually</span><span data-lang="ar">ابدأ من حيث أنت وحسّن تدريجيًا</span></td></tr>
+        </table>
+        <p>Scrum works through fixed sprints, defined roles, and a rhythm that commits to a set of work for each cycle and resists change within it. Kanban has no sprints or prescribed roles; work flows continuously, new work can be pulled in whenever there is capacity, and change is welcome at any time. This makes Scrum a good fit for product development that benefits from a regular planning rhythm and a protected focus each cycle, while Kanban suits work with a continuous, unpredictable arrival of items, such as support, operations, or maintenance, where a fixed sprint commitment would be artificial.</p>
+        <p>Crucially, they are not rivals, and many teams combine them. A team can run Scrum sprints while using a board and work-in-progress limits to manage flow within each sprint, an approach sometimes called Scrumban. The honest guidance is to choose based on the nature of the work rather than fashion: use Scrum's cadence where a regular rhythm helps, use Kanban's continuous flow where work arrives unpredictably, and borrow freely from both. What matters is not the label but whether the team can see its work, limit how much it does at once, and continuously improve how the work flows.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> Kanban manages work by visualizing it, limiting work in progress, and improving flow, delivering faster and more predictably not through harder work but through finishing before starting, and it complements Scrum, chosen by the nature of the work rather than by fashion.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>كانبان مقارنًا بسكرم</h2>
+        <p class="lead">كانبان وسكرم كلاهما رشيق، لكنهما يختلفان بنيةً ويلائمان مواقف مختلفة. وفهم التباين يساعد فريقًا على اختيارهما، أو دمجهما، بحكمة.</p>
+        <table>
+          <tr><th><span data-lang="en">الجانب</span><span data-lang="ar">الجانب</span></th><th><span data-lang="en">سكرم</span><span data-lang="ar">سكرم</span></th><th><span data-lang="en">كانبان</span><span data-lang="ar">كانبان</span></th></tr>
+          <tr><td><span data-lang="en">الإيقاع</span><span data-lang="ar">الإيقاع</span></td><td><span data-lang="en">سبرنتات ثابتة</span><span data-lang="ar">سبرنتات ثابتة</span></td><td><span data-lang="en">تدفّق مستمر</span><span data-lang="ar">تدفّق مستمر</span></td></tr>
+          <tr><td><span data-lang="en">الأدوار</span><span data-lang="ar">الأدوار</span></td><td><span data-lang="en">أدوار معرَّفة</span><span data-lang="ar">أدوار معرَّفة</span></td><td><span data-lang="en">لا أدوار موصوفة</span><span data-lang="ar">لا أدوار موصوفة</span></td></tr>
+          <tr><td><span data-lang="en">التغيير</span><span data-lang="ar">التغيير</span></td><td><span data-lang="en">يُتجنّب أثناء السبرنت</span><span data-lang="ar">يُتجنّب أثناء السبرنت</span></td><td><span data-lang="en">مُرحَّب في أي وقت</span><span data-lang="ar">مُرحَّب في أي وقت</span></td></tr>
+          <tr><td><span data-lang="en">التبنّي</span><span data-lang="ar">التبنّي</span></td><td><span data-lang="en">تغيير معرَّف يُتبنّى</span><span data-lang="ar">تغيير معرَّف يُتبنّى</span></td><td><span data-lang="en">ابدأ من حيث أنت وحسّن تدريجيًا</span><span data-lang="ar">ابدأ من حيث أنت وحسّن تدريجيًا</span></td></tr>
+        </table>
+        <p>سكرم يعمل عبر سبرنتاتٍ ثابتة وأدوارٍ معرَّفة وإيقاعٍ يلتزم بمجموعة عملٍ لكل دورة ويقاوم التغيير فيها. وكانبان بلا سبرنتاتٍ أو أدوارٍ موصوفة؛ يتدفّق العمل باستمرار، ويمكن سحب عملٍ جديد متى وُجِدت سعة، والتغيير مُرحَّبٌ في أي وقت. وهذا يجعل سكرم ملائمًا لتطوير المنتجات الذي ينتفع بإيقاع تخطيطٍ منتظم وتركيزٍ محمي كل دورة، بينما يلائم كانبان عملًا بوصولٍ مستمر غير متوقَّع للبنود، كالدعم أو العمليات أو الصيانة، حيث يكون التزام سبرنتٍ ثابت مصطنعًا.</p>
+        <p>وحاسمًا، هما ليسا خصمين، وفرقٌ كثيرة تدمجهما. فيستطيع فريقٌ إجراء سبرنتات سكرم بينما يستخدم لوحةً وحدود عملٍ جارٍ لإدارة التدفّق داخل كل سبرنت، نهجٌ يُسمّى أحيانًا سكرمبان. والإرشاد الأمين الاختيار بناءً على طبيعة العمل لا الموضة: استخدم إيقاع سكرم حيث يساعد الإيقاع المنتظم، وتدفّق كانبان المستمر حيث يصل العمل غير متوقَّع، واستعِر بحرّيةٍ من كليهما. وما يهمّ ليس اللقب بل هل يستطيع الفريق رؤية عمله، وتحديد كم يفعل دفعةً، وتحسين كيف يتدفّق العمل باستمرار.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> كانبان يدير العمل بتصويره، وتحديد العمل الجاري، وتحسين التدفّق، مسلّمًا أسرع وأكثر تنبّؤًا لا بعملٍ أشدّ بل بالإنهاء قبل البدء، وهو يكمّل سكرم، مختارًا بطبيعة العمل لا بالموضة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Kanban improves delivery by visualizing work, limiting work in progress, and continuously improving flow.</p>
+        <ul>
+          <li>Visualize all the work on a board so the whole flow is shared and manageable.</li>
+          <li>Limit work in progress, forcing the team to finish before starting new work.</li>
+          <li>Use the board to make bottlenecks visible and focus effort where work stalls.</li>
+          <li>Remember that doing fewer things at once makes each finish faster.</li>
+          <li>Choose between Kanban, Scrum, or a blend based on the nature of the work.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.atlassian.com/agile/kanban" target="_blank" rel="noopener">Atlassian, on Kanban.</a></li>
+          <li><a href="https://kanban.university/kanban-guide/" target="_blank" rel="noopener">The Kanban Guide.</a></li>
+          <li><a href="https://www.scrum.org/resources/kanban-guide-scrum-teams" target="_blank" rel="noopener">Kanban Guide for Scrum Teams.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">كانبان يحسّن التسليم بتصوير العمل، وتحديد العمل الجاري، وتحسين التدفّق باستمرار.</p>
+        <ul>
+          <li>صوّر كل العمل على لوحةٍ فيصير التدفّق كله مشتركًا قابلًا للإدارة.</li>
+          <li>حُدّ العمل الجاري، مُجبِرًا الفريق على الإنهاء قبل بدء عملٍ جديد.</li>
+          <li>استخدم اللوحة لجعل أعناق الزجاجة مرئية وتركيز الجهد حيث يتعثّر العمل.</li>
+          <li>تذكّر أن فعل أشياء أقلّ دفعةً يجعل كل شيءٍ يُنهى أسرع.</li>
+          <li>اختر بين كانبان وسكرم أو مزيجٍ بناءً على طبيعة العمل.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.atlassian.com/agile/kanban" target="_blank" rel="noopener">Atlassian، عن كانبان.</a></li>
+          <li><a href="https://kanban.university/kanban-guide/" target="_blank" rel="noopener">دليل كانبان.</a></li>
+          <li><a href="https://www.scrum.org/resources/kanban-guide-scrum-teams" target="_blank" rel="noopener">دليل كانبان لفرق سكرم.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","board","practices","compare","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

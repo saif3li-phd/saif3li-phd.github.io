@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Analysis Tools &amp; Techniques</title>
+<meta name="description" content="An operational framework for business analysis: the knowledge areas, elicitation, analysis techniques, requirements, and solution evaluation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">FRAMEWORKS &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الأطر &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Business Analysis Tools &amp; Techniques</span><span data-lang="ar">أدوات وتقنيات تحليل الأعمال</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="areas"><span data-lang="en">Knowledge Areas</span><span data-lang="ar">مجالات المعرفة</span></a>
+    <a data-id="elicitation"><span data-lang="en">Elicitation</span><span data-lang="ar">الاستنباط</span></a>
+    <a data-id="techniques"><span data-lang="en">Techniques</span><span data-lang="ar">التقنيات</span></a>
+    <a data-id="requirements"><span data-lang="en">Requirements</span><span data-lang="ar">المتطلبات</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Business analysis</div>
+          <div><span>Scope:</span> Defining needs and recommending solutions that deliver value</div>
+          <div><span>Owner role:</span> Business analyst, bridging stakeholders and delivery</div>
+          <div><span>Review cadence:</span> Continuous through an initiative, with defined checkpoints</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Business analysis is the practice of understanding a business need clearly enough to define the right solution, and making sure that solution actually delivers the value intended. It is the discipline that sits between a vague problem and a concrete change, turning what people want into what should be built or done.</p>
+        <p>The reason business analysis matters is that most failed projects fail not in the building but in the understanding. A solution can be delivered perfectly and still be useless if it solved the wrong problem, met a misunderstood requirement, or ignored the people who had to use it. Business analysis is the work of getting the problem right before effort is spent on the solution, which is far cheaper than discovering the misunderstanding after the fact.</p>
+        <p>This framework describes business analysis as a toolkit of techniques applied through a clear process, organized around the knowledge areas of the recognized body of knowledge from the IIBA. It is written to be reusable across any kind of change initiative, from a software project to a process improvement, and aligns to that guidance without reproducing its text.</p>
+        <div class="note"><strong>Note:</strong> The most expensive mistakes are made before anything is built, in misunderstanding what was needed. Business analysis exists to catch those mistakes when they are still cheap to fix, on paper rather than in production.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> تحليل الأعمال</div>
+          <div><span>النطاق:</span> تعريف الحاجات والتوصية بحلولٍ تسلّم القيمة</div>
+          <div><span>دور المالك:</span> محلّل الأعمال، جسرٌ بين أصحاب المصلحة والتسليم</div>
+          <div><span>دورية المراجعة:</span> مستمرة عبر المبادرة، بنقاط تفتيشٍ محدَّدة</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">تحليل الأعمال ممارسة فهم حاجة العمل بوضوحٍ يكفي لتعريف الحل الصحيح، وضمان أن ذلك الحل يسلّم القيمة المقصودة فعلًا. وهو الانضباط الذي يجلس بين مشكلةٍ غامضة وتغييرٍ ملموس، محوّلًا ما يريده الناس إلى ما ينبغي بناؤه أو فعله.</p>
+        <p>سبب أهمية تحليل الأعمال أن أغلب المشاريع الفاشلة تفشل لا في البناء بل في الفهم. فقد يُسلَّم حلٌّ بإتقانٍ ويبقى عديم الفائدة إن حلّ المشكلة الخطأ، أو لبّى متطلبًا مُساءً فهمه، أو تجاهل من عليهم استخدامه. وتحليل الأعمال هو عمل ضبط المشكلة قبل إنفاق الجهد على الحل، وهو أرخص بكثير من اكتشاف سوء الفهم بعد وقوعه.</p>
+        <p>يصف هذا الإطار تحليل الأعمال كصندوق أدواتٍ من التقنيات يُطبَّق عبر عمليةٍ واضحة، منظَّمًا حول مجالات المعرفة لمرجع IIBA المعترف به. وهو قابل لإعادة الاستخدام عبر أي مبادرة تغيير، من مشروع برمجيات إلى تحسين عملية، ويتوافق مع ذلك الإرشاد دون نسخ نصّه.</p>
+        <div class="note"><strong>ملاحظة:</strong> أغلى الأخطاء تُرتكَب قبل بناء أي شيء، في سوء فهم ما كان مطلوبًا. وتحليل الأعمال وُجِد لالتقاط تلك الأخطاء وهي ما زالت رخيصة الإصلاح، على الورق لا في الإنتاج.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="areas">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Knowledge Areas</h2>
+        <p class="lead">The recognized body of knowledge organizes business analysis into knowledge areas that together cover the whole journey from planning the work to confirming the solution delivered value. Each area answers a different part of doing the job well.</p>
+        <p>The areas span the full lifecycle of understanding and solving a need. Planning and monitoring decides how the analysis itself will be done. Elicitation and collaboration gets the information from the people who have it. Requirements management organizes and maintains what was learned. Strategy analysis understands the current state and defines the desired one. Requirements analysis and design specifies the solution in detail. And solution evaluation confirms, after delivery, that value was actually achieved. Together they describe a complete, repeatable approach rather than an ad hoc gathering of requests.</p>
+        <ul>
+          <li><strong>Planning and monitoring:</strong> deciding how the analysis will be approached and governed.</li>
+          <li><strong>Elicitation and collaboration:</strong> drawing out and confirming information from stakeholders.</li>
+          <li><strong>Requirements life cycle management:</strong> organizing, tracing, and maintaining requirements over time.</li>
+          <li><strong>Strategy analysis:</strong> understanding the current state, the future state, and the gap between them.</li>
+          <li><strong>Requirements analysis and design:</strong> specifying and modeling the solution in enough detail to build.</li>
+          <li><strong>Solution evaluation:</strong> assessing whether a delivered solution actually delivers the intended value.</li>
+        </ul>
+        <p>The inclusion of solution evaluation is what makes the discipline honest. It is tempting to consider business analysis finished once the requirements are handed over, but that leaves the most important question unanswered: did the solution actually work. A discipline that defines needs but never checks whether they were met is guessing, and closing that loop is what lets business analysis learn and improve.</p>
+        <div class="note"><strong>Note:</strong> Business analysis does not end at the requirement, it ends at the value. The knowledge areas deliberately include confirming that the delivered solution solved the problem it was meant to.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>مجالات المعرفة</h2>
+        <p class="lead">ينظّم المرجع المعترف به تحليل الأعمال في مجالات معرفةٍ تغطّي معًا الرحلة كاملةً من تخطيط العمل إلى تأكيد أن الحل سلّم القيمة. وكل مجالٍ يجيب جزءًا مختلفًا من أداء العمل جيدًا.</p>
+        <p>تمتد المجالات عبر دورة حياة فهم الحاجة وحلّها. فالتخطيط والمراقبة يقرّر كيف سيُؤدّى التحليل نفسه. والاستنباط والتعاون يأخذ المعلومة ممن يملكونها. وإدارة المتطلبات تنظّم ما تعلّمناه وتصونه. وتحليل الاستراتيجية يفهم الحالة الراهنة ويعرّف المرغوبة. وتحليل المتطلبات والتصميم يحدّد الحل بالتفصيل. وتقييم الحل يؤكّد، بعد التسليم، أن القيمة تحقّقت فعلًا. وهي معًا تصف نهجًا كاملًا قابلًا للتكرار لا جمعًا عشوائيًا للطلبات.</p>
+        <ul>
+          <li><strong>التخطيط والمراقبة:</strong> تقرير كيف سيُقارَب التحليل ويُحوكَم.</li>
+          <li><strong>الاستنباط والتعاون:</strong> استخراج المعلومة من أصحاب المصلحة وتأكيدها.</li>
+          <li><strong>إدارة دورة حياة المتطلبات:</strong> تنظيم المتطلبات وتتبّعها وصونها عبر الزمن.</li>
+          <li><strong>تحليل الاستراتيجية:</strong> فهم الحالة الراهنة والمستقبلية والفجوة بينهما.</li>
+          <li><strong>تحليل المتطلبات والتصميم:</strong> تحديد الحل ونمذجته بتفصيلٍ يكفي للبناء.</li>
+          <li><strong>تقييم الحل:</strong> تقدير هل يسلّم حلٌّ مُسلَّم القيمة المقصودة فعلًا.</li>
+        </ul>
+        <p>إدراج تقييم الحل هو ما يجعل الانضباط صادقًا. فمن المغري اعتبار تحليل الأعمال منتهيًا متى سُلِّمت المتطلبات، لكن ذلك يترك أهمّ سؤالٍ بلا جواب: هل عمل الحل فعلًا. وانضباطٌ يعرّف الحاجات ولا يفحص هل لُبّيت يخمّن، وإغلاق تلك الحلقة هو ما يتيح لتحليل الأعمال أن يتعلّم ويتحسّن.</p>
+        <div class="note"><strong>ملاحظة:</strong> تحليل الأعمال لا ينتهي عند المتطلب بل عند القيمة. ومجالات المعرفة تشمل عمدًا تأكيد أن الحل المُسلَّم حلّ المشكلة التي وُجِد لها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="elicitation">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Elicitation: Getting the Truth</h2>
+        <p class="lead">The hardest part of understanding a need is that the people who have it often cannot fully articulate it. Elicitation is the skilled work of drawing out what stakeholders actually need, which is frequently different from what they first ask for.</p>
+        <p>The core challenge is that a stated request is not the same as a real need. A stakeholder asking for a faster report may really need a faster decision, which a different solution might serve better. A good analyst uses a range of techniques to get past the surface request to the underlying need, and chooses the technique to fit the situation, because no single method works for every person or problem.</p>
+        <ul>
+          <li><strong>Interviews:</strong> one-on-one conversations to explore a stakeholder's needs and reasoning in depth.</li>
+          <li><strong>Workshops:</strong> facilitated group sessions to build shared understanding and resolve differences directly.</li>
+          <li><strong>Observation:</strong> watching how work is actually done, which often differs from how people describe it.</li>
+          <li><strong>Prototyping:</strong> showing a rough version of the solution so people react to something concrete rather than an abstraction.</li>
+        </ul>
+        <p>Observation and prototyping matter because people are unreliable narrators of their own work. Ask someone how they do a task and they will describe the official process; watch them and you will see the workarounds, exceptions, and unspoken steps that the real requirement must account for. Likewise, people struggle to react to a written requirement but respond immediately to a prototype they can see, so showing something concrete surfaces needs that questions alone would never reach.</p>
+        <div class="note"><strong>Note:</strong> Never take the first request at face value. Ask why until you reach the underlying need, because building exactly what was asked for, when it was not what was needed, is a common and expensive way to fail.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الاستنباط: بلوغ الحقيقة</h2>
+        <p class="lead">أصعب أجزاء فهم الحاجة أن من يملكونها غالبًا لا يستطيعون التعبير عنها كاملةً. والاستنباط هو العمل الماهر في استخراج ما يحتاجه أصحاب المصلحة فعلًا، وهو كثيرًا ما يختلف عمّا يطلبونه أولًا.</p>
+        <p>التحدّي الجوهري أن الطلب المُعلَن ليس الحاجة الحقيقية نفسها. فصاحب مصلحةٍ يطلب تقريرًا أسرع قد يحتاج فعلًا قرارًا أسرع، وقد يخدمه حلٌّ مختلف أفضل. والمحلّل الجيد يستخدم مجموعة تقنياتٍ لتجاوز الطلب السطحي إلى الحاجة الكامنة، ويختار التقنية لتلائم الموقف، لأن لا طريقةً واحدة تعمل لكل شخصٍ أو مشكلة.</p>
+        <ul>
+          <li><strong>المقابلات:</strong> محادثاتٌ فردية لاستكشاف حاجات صاحب المصلحة واستدلاله بعمق.</li>
+          <li><strong>ورش العمل:</strong> جلساتٌ جماعية مُيسَّرة لبناء فهمٍ مشترك وحلّ الخلافات مباشرةً.</li>
+          <li><strong>الملاحظة:</strong> مشاهدة كيف يُؤدّى العمل فعلًا، وهو غالبًا يختلف عمّا يصفه الناس.</li>
+          <li><strong>النمذجة الأولية:</strong> عرض نسخةٍ خام من الحل ليتفاعل الناس مع شيءٍ ملموس لا تجريد.</li>
+        </ul>
+        <p>الملاحظة والنمذجة تهمّان لأن الناس رواةٌ غير موثوقين لعملهم. فاسأل أحدًا كيف يؤدّي مهمةً يصف العملية الرسمية؛ وشاهده ترَ الحلول الالتفافية والاستثناءات والخطوات غير المنطوقة التي يجب أن يراعيها المتطلب الحقيقي. وكذلك يعجز الناس عن التفاعل مع متطلبٍ مكتوب لكن يستجيبون فورًا لنموذجٍ يرونه، فعرض شيءٍ ملموس يُظهر حاجاتٍ لا تبلغها الأسئلة وحدها أبدًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> لا تأخذ الطلب الأول بظاهره. اسأل «لماذا» حتى تبلغ الحاجة الكامنة، لأن بناء ما طُلِب بالضبط، حين لم يكن هو المطلوب، طريقةٌ شائعة باهظة للفشل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="techniques">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Analysis Techniques</h2>
+        <p class="lead">Business analysis is supported by a large toolkit of techniques, dozens of them, each suited to a particular kind of question. The skill is not knowing them all but choosing the right few for the situation, because a technique applied to the wrong problem adds effort without insight.</p>
+        <p>The techniques group loosely by what they help you understand. Some help you understand the situation and strategy, some help you model how work flows, some help you dig into why a problem occurs, and some help you decide what to do about it. A capable analyst carries a working knowledge of several in each group and reaches for the one that fits the question in front of them.</p>
+        <table>
+          <tr><th>To understand</th><th>Useful techniques</th></tr>
+          <tr><td>The strategic situation</td><td>SWOT, PESTLE, business model analysis</td></tr>
+          <tr><td>How work flows</td><td>Process modeling, workflow mapping, use cases</td></tr>
+          <tr><td>Why a problem occurs</td><td>Root cause analysis, the five whys, fishbone diagram</td></tr>
+          <tr><td>What to prioritize</td><td>Prioritization matrices, cost-benefit analysis, decision analysis</td></tr>
+        </table>
+        <p>The two most broadly useful are process modeling and root cause analysis, because so many business problems are really process problems in disguise. Drawing how work actually flows, step by step, reveals the delays, handoffs, and rework that a verbal description hides, and asking repeatedly why a problem occurs reaches the underlying cause rather than the visible symptom. Between them, these two techniques address a large share of the questions a business analyst faces.</p>
+        <div class="note"><strong>Note:</strong> A technique is a lens, not a ritual. Choose the one that answers the question you actually have, and resist applying a favorite tool to every problem regardless of fit, which produces effort dressed up as analysis.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>تقنيات التحليل</h2>
+        <p class="lead">يسند تحليل الأعمال صندوق أدواتٍ كبير من التقنيات، عشرات منها، كلٌّ يلائم نوعًا من الأسئلة. والمهارة ليست معرفتها كلها بل اختيار القلّة الصحيحة للموقف، لأن تقنيةً تُطبَّق على المشكلة الخطأ تضيف جهدًا بلا بصيرة.</p>
+        <p>تتجمّع التقنيات فضفاضًا بحسب ما تساعدك على فهمه. فبعضها يساعدك على فهم الموقف والاستراتيجية، وبعضها على نمذجة كيف يتدفّق العمل، وبعضها على التنقيب في لماذا تقع مشكلة، وبعضها على تقرير ما تفعل حيالها. والمحلّل القادر يحمل معرفةً عملية بعدّةٍ في كل مجموعة ويمدّ يده للتي تلائم السؤال أمامه.</p>
+        <table>
+          <tr><th>لفهم</th><th>تقنيات مفيدة</th></tr>
+          <tr><td>الموقف الاستراتيجي</td><td>SWOT، PESTLE، تحليل نموذج العمل</td></tr>
+          <tr><td>كيف يتدفّق العمل</td><td>نمذجة العمليات، رسم سير العمل، حالات الاستخدام</td></tr>
+          <tr><td>لماذا تقع مشكلة</td><td>تحليل السبب الجذري، الأسئلة الخمسة، مخطط السمكة</td></tr>
+          <tr><td>ما الأولوية</td><td>مصفوفات الأولوية، تحليل الكلفة والفائدة، تحليل القرار</td></tr>
+        </table>
+        <p>الأوسع فائدةً نمذجة العمليات وتحليل السبب الجذري، لأن كثيرًا من مشكلات العمل مشكلات عملياتٍ متنكّرة. فرسم كيف يتدفّق العمل فعلًا، خطوةً خطوة، يكشف التأخيرات والتسليمات وإعادة العمل التي يُخفيها وصفٌ شفهي، والسؤال مرارًا لماذا تقع المشكلة يبلغ السبب الكامن لا العَرَض الظاهر. وبينهما، تعالج هاتان التقنيتان نصيبًا كبيرًا من أسئلة محلّل الأعمال.</p>
+        <div class="note"><strong>ملاحظة:</strong> التقنية عدسةٌ لا طقس. اختر التي تجيب سؤالك الفعلي، وقاوِم تطبيق أداةٍ مفضّلة على كل مشكلةٍ بلا ملاءمة، فذلك جهدٌ متنكّر كتحليل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="requirements">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Requirements &amp; Solution</h2>
+        <p class="lead">Once needs are understood, they must be turned into clear requirements, prioritized, and eventually checked against the delivered solution. This is where analysis becomes a durable record that guides building and, later, judges success.</p>
+        <p>A good requirement states what is needed clearly enough that different people read it the same way and can tell whether it has been met. Vague requirements are a primary source of failure, because they let the builder and the requester each imagine a different thing and only discover the mismatch when it is expensive to fix. Requirements also have to be prioritized, because not everything can be done at once, and a common approach sorts them by necessity: what the solution must have, should have, could have, and will not have this time.</p>
+        <ul>
+          <li><strong>Clear:</strong> unambiguous enough that everyone reads it the same way and can verify it.</li>
+          <li><strong>Prioritized:</strong> sorted by necessity, so the essential is delivered before the merely desirable.</li>
+          <li><strong>Traceable:</strong> linked back to the need it serves, so its purpose is never lost.</li>
+          <li><strong>Testable:</strong> written so that whether it was met can actually be confirmed.</li>
+        </ul>
+        <h3>Confirming value</h3>
+        <p>The final act is solution evaluation: after the solution is delivered, checking whether it actually met the need and delivered the value that justified it. This is the step that closes the loop and keeps the whole discipline honest, because a requirement met on paper is not the same as a problem solved in practice. An organization that never evaluates its solutions keeps building things that satisfy requirements while failing to satisfy needs, and never learns the difference.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> business analysis turns a vague problem into the right solution by eliciting the real need, choosing the right techniques to understand it, specifying clear prioritized requirements, and confirming that what was delivered genuinely delivered value.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>المتطلبات والحل</h2>
+        <p class="lead">متى فُهِمت الحاجات، يجب تحويلها لمتطلباتٍ واضحة، وترتيبها، وفحصها آخرًا مقابل الحل المُسلَّم. وهنا يصير التحليل سجلًّا دائمًا يوجّه البناء ويحكم لاحقًا على النجاح.</p>
+        <p>المتطلب الجيد يذكر ما هو مطلوب بوضوحٍ يكفي ليقرأه مختلف الناس بالطريقة نفسها ويعرفوا هل لُبّي. والمتطلبات الغامضة مصدرٌ أساسي للفشل، لأنها تدع الباني والطالب يتخيّل كلٌّ شيئًا مختلفًا ولا يكتشفان التباين إلا حين يكون إصلاحه باهظًا. وينبغي ترتيب المتطلبات أيضًا، لأن لا كل شيءٍ يُفعَل دفعةً، ونهجٌ شائع يفرزها بالضرورة: ما يجب أن يملكه الحل، وما ينبغي، وما يمكن، وما لن يكون هذه المرة.</p>
+        <ul>
+          <li><strong>واضح:</strong> غير غامضٍ بما يكفي ليقرأه الجميع سواءً ويتحقّقوا منه.</li>
+          <li><strong>مرتَّب:</strong> مفروزٌ بالضرورة، فيُسلَّم الأساسي قبل مجرّد المرغوب.</li>
+          <li><strong>قابل للتتبّع:</strong> مربوطٌ بالحاجة التي يخدمها، فلا يُفقَد غرضه.</li>
+          <li><strong>قابل للاختبار:</strong> مكتوبٌ بحيث يمكن تأكيد هل لُبّي فعلًا.</li>
+        </ul>
+        <h3>تأكيد القيمة</h3>
+        <p>الفعل الأخير تقييم الحل: بعد تسليمه، فحص هل لبّى الحاجة فعلًا وسلّم القيمة التي برّرته. وهذه الخطوة تُغلق الحلقة وتُبقي الانضباط كله صادقًا، لأن متطلبًا لُبّي على الورق ليس كمشكلةٍ حُلّت عمليًا. ومنشأةٌ لا تقيّم حلولها تبقى تبني أشياء تُرضي المتطلبات وتفشل في إرضاء الحاجات، ولا تتعلّم الفرق أبدًا.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> تحليل الأعمال يحوّل مشكلةً غامضة إلى الحل الصحيح باستنباط الحاجة الحقيقية، واختيار التقنيات الصحيحة لفهمها، وتحديد متطلباتٍ واضحة مرتَّبة، وتأكيد أن ما سُلِّم سلّم القيمة حقًّا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Business analysis defines the right solution to a real need, and confirms it delivered value, using a toolkit of techniques through a clear process.</p>
+        <ul>
+          <li>Get the problem right before spending on the solution, because the costliest mistakes are made in misunderstanding.</li>
+          <li>Work across the knowledge areas, all the way through to evaluating whether value was delivered.</li>
+          <li>Elicit the real need behind the stated request, using observation and prototypes, not just questions.</li>
+          <li>Choose techniques to fit the question, leaning on process modeling and root cause analysis.</li>
+          <li>Specify clear, prioritized, traceable, testable requirements, and confirm the solution against them.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.iiba.org/knowledgehub/business-analysis-body-of-knowledge-babok-guide/" target="_blank" rel="noopener">IIBA, A Guide to the Business Analysis Body of Knowledge (BABOK Guide).</a></li>
+          <li><a href="https://www.iiba.org/knowledgehub/business-analysis-body-of-knowledge-babok-guide/10-techniques/" target="_blank" rel="noopener">IIBA, BABOK Guide, Techniques.</a></li>
+          <li><a href="https://www.pmi.org/pmbok-guide-standards" target="_blank" rel="noopener">PMI, standards for requirements and business analysis.</a></li>
+          <li><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">ISO 9001:2015, Quality management systems (process approach).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">تحليل الأعمال يعرّف الحل الصحيح لحاجةٍ حقيقية، ويؤكّد أنه سلّم القيمة، مستخدمًا صندوق تقنياتٍ عبر عمليةٍ واضحة.</p>
+        <ul>
+          <li>اضبط المشكلة قبل الإنفاق على الحل، لأن أغلى الأخطاء تُرتكَب في سوء الفهم.</li>
+          <li>اعمل عبر مجالات المعرفة، وصولًا لتقييم هل سُلِّمت القيمة.</li>
+          <li>استنبط الحاجة الحقيقية خلف الطلب المُعلَن، بالملاحظة والنماذج لا الأسئلة فقط.</li>
+          <li>اختر التقنيات لتلائم السؤال، متّكئًا على نمذجة العمليات وتحليل السبب الجذري.</li>
+          <li>حدّد متطلباتٍ واضحة مرتَّبة قابلة للتتبّع والاختبار، وأكّد الحل مقابلها.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.iiba.org/knowledgehub/business-analysis-body-of-knowledge-babok-guide/" target="_blank" rel="noopener">IIBA، دليل مرجع تحليل الأعمال (BABOK Guide).</a></li>
+          <li><a href="https://www.iiba.org/knowledgehub/business-analysis-body-of-knowledge-babok-guide/10-techniques/" target="_blank" rel="noopener">IIBA، دليل BABOK، التقنيات.</a></li>
+          <li><a href="https://www.pmi.org/pmbok-guide-standards" target="_blank" rel="noopener">PMI، معايير المتطلبات وتحليل الأعمال.</a></li>
+          <li><a href="https://www.iso.org/standard/62085.html" target="_blank" rel="noopener">ISO 9001:2015، أنظمة إدارة الجودة (نهج العملية).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","areas","elicitation","techniques","requirements","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top-Tier Management III: Leading the Organization</title>
+<meta name="description" content="Top-tier management, part three: leading a whole organization through direction, structure, culture, and long-term stewardship of its future.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">LEADERSHIP &amp; MANAGEMENT &middot; FRAMEWORK</span><span data-lang="ar">القيادة والإدارة &middot; إطار</span></div>
+    <h1><span data-lang="en">Top-Tier Management III: Leading the Organization</span><span data-lang="ar">الإدارة الرفيعة الثالث: قيادة المنشأة</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="disciplines"><span data-lang="en">Disciplines</span><span data-lang="ar">الانضباطات</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Top-tier management, Part III</div>
+          <div><span>Scope:</span> Leading a whole organization, not just a team</div>
+          <div><span>Owner role:</span> Senior executives and organizational leaders</div>
+          <div><span>Review cadence:</span> Strategic cycle, with continuous stewardship</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">The third and highest part of top-tier management is leading a whole organization: not a team you can see and touch, but a large system of many people, functions, and moving parts that you can only influence indirectly. At this level the manager's work changes again, from getting results through a team to shaping the direction, structure, and culture of an entire enterprise, mostly through others they will never personally direct.</p>
+        <p>This matters because leading an organization requires a mindset that managing a team does not prepare you for. A team leader can know everyone and touch most of the work; an organizational leader cannot, and must instead lead through systems, structure, culture, and a small group of other leaders. Executives who bring team-level habits to the top, trying to control detail and be involved in everything, become bottlenecks at scale and fail to do the actual job of enterprise leadership: setting direction, building the organization, and stewarding it for the long term.</p>
+        <p>This framework sets out the distinct disciplines of leading an organization, from setting direction and shaping structure, through building culture, to stewardship and succession. It is my own synthesis, written in my own words and grounded in recognized management thinking, and it is the third of three connected parts.</p>
+        <div class="note"><strong>Note:</strong> Leading an organization is not managing a bigger team; it is leading through systems, structure, and culture. What you can no longer do personally, you must build the organization to do without you.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الإدارة الرفيعة، الجزء الثالث</div>
+          <div><span>النطاق:</span> قيادة منشأةٍ كاملة، لا فريقًا فقط</div>
+          <div><span>دور المالك:</span> كبار التنفيذيين وقادة المنشآت</div>
+          <div><span>دورية المراجعة:</span> الدورة الاستراتيجية، برعايةٍ مستمرة</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الجزء الثالث والأرفع من الإدارة الرفيعة قيادة منشأةٍ كاملة: لا فريقًا تراه وتلمسه، بل نظامًا كبيرًا من ناسٍ ووظائف وأجزاءٍ متحرّكة كثيرة لا تستطيع التأثير فيه إلّا مباشرةً غير مباشرة. وعند هذا المستوى يتغيّر عمل المدير ثانيةً، من تحقيق النتائج عبر فريقٍ إلى تشكيل اتجاه وهيكل وثقافة منشأةٍ بأكملها، أغلبه عبر آخرين لن يوجّههم شخصيًا أبدًا.</p>
+        <p>يهمّ هذا لأن قيادة منشأةٍ تتطلّب عقليةً لا تهيّئك لها إدارة فريق. فقائد فريقٍ يستطيع معرفة الجميع ولمس أغلب العمل؛ وقائد منشأةٍ لا يستطيع، وعليه بدلًا من ذلك القيادة عبر الأنظمة والهيكل والثقافة ومجموعةٍ صغيرة من قادةٍ آخرين. والتنفيذيون الذين يجلبون عادات مستوى الفريق للقمة، محاولين التحكّم بالتفصيل والانخراط في كل شيء، يصيرون عنق زجاجةٍ على المستوى الكبير ويخفقون في العمل الفعلي لقيادة المنشأة: رسم الاتجاه، وبناء المنشأة، ورعايتها للمدى الطويل.</p>
+        <p>يعرض هذا الإطار الانضباطات المتمايزة لقيادة منشأة، من رسم الاتجاه وتشكيل الهيكل، عبر بناء الثقافة، إلى الرعاية والخلافة. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في فكرٍ إداري معترف به، وهو الثالث من ثلاثة أجزاءٍ متصلة.</p>
+        <div class="note"><strong>ملاحظة:</strong> قيادة منشأةٍ ليست إدارة فريقٍ أكبر؛ بل قيادةٌ عبر الأنظمة والهيكل والثقافة. فما لم تعُد تستطيع فعله شخصيًا، عليك بناء المنشأة لتفعله بدونك.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="disciplines">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Leading the Whole Organization</h2>
+        <p class="lead">Leading an organization rests on a few high-leverage disciplines through which a leader shapes a system too large to manage directly. Each works indirectly, by shaping the conditions in which many others act.</p>
+        <p>The first is setting direction: giving the whole organization a clear, compelling sense of where it is going and why, a vision and strategy that thousands of people can align to without being individually directed. At scale, a leader's clarity about direction is what lets distributed decisions add up rather than cancel out. The second is shaping the organization itself: its structure, who does what and how they connect; its systems and processes, how work flows and decisions get made; and its allocation of resources toward priorities. A leader designs the machine so that the right things happen by default, rather than trying to make each right thing happen personally.</p>
+        <table>
+          <tr><th><span data-lang="en">Discipline</span><span data-lang="ar">الانضباط</span></th><th><span data-lang="en">Leads through</span><span data-lang="ar">يقود عبر</span></th></tr>
+          <tr><td><span data-lang="en">Set direction</span><span data-lang="ar">ارسم الاتجاه</span></td><td><span data-lang="en">vision and strategy many can align to</span><span data-lang="ar">رؤية واستراتيجية يتوائم معها كثيرون</span></td></tr>
+          <tr><td><span data-lang="en">Shape the organization</span><span data-lang="ar">شكّل المنشأة</span></td><td><span data-lang="en">structure, systems, and resource allocation</span><span data-lang="ar">الهيكل والأنظمة وتوزيع الموارد</span></td></tr>
+          <tr><td><span data-lang="en">Build culture</span><span data-lang="ar">ابنِ الثقافة</span></td><td><span data-lang="en">the values that guide unsupervised choices</span><span data-lang="ar">القيم التي توجّه القرارات غير المراقَبة</span></td></tr>
+          <tr><td><span data-lang="en">Steward for the long term</span><span data-lang="ar">ارعَ للمدى الطويل</span></td><td><span data-lang="en">health, leadership pipeline, and succession</span><span data-lang="ar">الصحة وخطّ القيادة والخلافة</span></td></tr>
+        </table>
+        <p>The third discipline is building culture, which at the top is one of a leader's most powerful tools. Culture, the shared values and norms that guide how people behave when no one is watching, shapes countless decisions no leader could ever oversee, and senior leaders shape it more than anyone through what they pay attention to, reward, tolerate, and model. The fourth is stewardship: leading the organization not just for this quarter but for the long term, tending its health, its capabilities, and its future leadership, and building a pipeline of leaders and a succession so the organization thrives beyond any individual's tenure. The deepest measure of top-tier leadership is precisely this: not what the leader achieved while in charge, but how well the organization is set up to succeed after they are gone.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> leading an organization means shaping a system too large to manage directly, by setting a clear direction, designing structure and systems so the right things happen by default, building a culture that guides unsupervised choices, and stewarding the enterprise and its future leaders, so it thrives long after the leader has moved on.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>قيادة المنشأة كاملةً</h2>
+        <p class="lead">قيادة منشأةٍ تقوم على بضعة انضباطاتٍ عالية الرافعة يشكّل بها قائدٌ نظامًا أكبر من أن يُدار مباشرةً. كلٌّ يعمل مباشرةً غير مباشرة، بتشكيل الظروف التي يتصرّف فيها كثيرون آخرون.</p>
+        <p>الأول رسم الاتجاه: منح المنشأة كلها إحساسًا واضحًا مقنعًا بأين تذهب ولماذا، رؤيةً واستراتيجية يستطيع آلاف الناس التوائم معها دون توجيهٍ فردي. وعلى المستوى الكبير، وضوح القائد عن الاتجاه ما يتيح للقرارات الموزّعة أن تتجمّع بدل أن تُلغي بعضها. والثاني تشكيل المنشأة نفسها: هيكلها، من يفعل ماذا وكيف يتّصلون؛ وأنظمتها وعملياتها، كيف يتدفّق العمل وتُصنَع القرارات؛ وتوزيعها للموارد نحو الأولويات. فالقائد يصمّم الآلة فتحدث الأشياء الصحيحة افتراضيًا، بدل محاولة جعل كل شيءٍ صحيح يحدث شخصيًا.</p>
+        <table>
+          <tr><th><span data-lang="en">الانضباط</span><span data-lang="ar">الانضباط</span></th><th><span data-lang="en">يقود عبر</span><span data-lang="ar">يقود عبر</span></th></tr>
+          <tr><td><span data-lang="en">ارسم الاتجاه</span><span data-lang="ar">ارسم الاتجاه</span></td><td><span data-lang="en">رؤية واستراتيجية يتوائم معها كثيرون</span><span data-lang="ar">رؤية واستراتيجية يتوائم معها كثيرون</span></td></tr>
+          <tr><td><span data-lang="en">شكّل المنشأة</span><span data-lang="ar">شكّل المنشأة</span></td><td><span data-lang="en">الهيكل والأنظمة وتوزيع الموارد</span><span data-lang="ar">الهيكل والأنظمة وتوزيع الموارد</span></td></tr>
+          <tr><td><span data-lang="en">ابنِ الثقافة</span><span data-lang="ar">ابنِ الثقافة</span></td><td><span data-lang="en">القيم التي توجّه القرارات غير المراقَبة</span><span data-lang="ar">القيم التي توجّه القرارات غير المراقَبة</span></td></tr>
+          <tr><td><span data-lang="en">ارعَ للمدى الطويل</span><span data-lang="ar">ارعَ للمدى الطويل</span></td><td><span data-lang="en">الصحة وخطّ القيادة والخلافة</span><span data-lang="ar">الصحة وخطّ القيادة والخلافة</span></td></tr>
+        </table>
+        <p>الانضباط الثالث بناء الثقافة، وهو عند القمة من أقوى أدوات القائد. فالثقافة، القيم والأعراف المشتركة التي توجّه كيف يسلك الناس حين لا أحد يراقب، تُشكّل قراراتٍ لا حصر لها لا يستطيع قائدٌ الإشراف عليها، وكبار القادة يشكّلونها أكثر من أي أحدٍ عبر ما ينتبهون إليه ويكافئونه ويحتملونه ويجسّدونه. والرابع الرعاية: قيادة المنشأة لا لهذا الربع فقط بل للمدى الطويل، بالعناية بصحّتها وقدراتها وقيادتها المستقبلية، وبناء خطّ قادةٍ وخلافةٍ فتزدهر المنشأة وراء ولاية أي فرد. وأعمق مقياسٍ للقيادة الرفيعة هو بالضبط هذا: لا ما حقّقه القائد أثناء توليه، بل كم المنشأة مهيّأة للنجاح بعد رحيله.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> قيادة منشأةٍ تعني تشكيل نظامٍ أكبر من أن يُدار مباشرةً، برسم اتجاهٍ واضح، وتصميم هيكلٍ وأنظمة فتحدث الأشياء الصحيحة افتراضيًا، وبناء ثقافةٍ توجّه القرارات غير المراقَبة، ورعاية المنشأة وقادتها المستقبليين، فتزدهر مدةً طويلة بعد أن يمضي القائد.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Leading an organization is the third part of top-tier management: shaping a whole system indirectly for the long term.</p>
+        <ul>
+          <li>Lead through systems, structure, and culture, since you cannot touch every part directly.</li>
+          <li>Set a clear direction that thousands of people can align to without individual instruction.</li>
+          <li>Design structure, systems, and resource allocation so the right things happen by default.</li>
+          <li>Shape culture deliberately, since it guides the countless choices no leader can oversee.</li>
+          <li>Steward the enterprise for the long term, building future leaders and a genuine succession.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2013/04/the-work-of-leadership" target="_blank" rel="noopener">HBR, The Work of Leadership.</a></li>
+          <li><a href="https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights" target="_blank" rel="noopener">McKinsey, on organization and culture.</a></li>
+          <li><a href="https://hbr.org/2005/07/level-5-leadership-the-triumph-of-humility-and-fierce-resolve" target="_blank" rel="noopener">Jim Collins, Level 5 Leadership (HBR).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">قيادة المنشأة الجزء الثالث من الإدارة الرفيعة: تشكيل نظامٍ كامل مباشرةً غير مباشرة للمدى الطويل.</p>
+        <ul>
+          <li>قُد عبر الأنظمة والهيكل والثقافة، إذ لا تستطيع لمس كل جزءٍ مباشرةً.</li>
+          <li>ارسم اتجاهًا واضحًا يتوائم معه آلاف الناس دون توجيهٍ فردي.</li>
+          <li>صمّم الهيكل والأنظمة وتوزيع الموارد فتحدث الأشياء الصحيحة افتراضيًا.</li>
+          <li>شكّل الثقافة عمدًا، إذ توجّه الخيارات التي لا حصر لها ولا يستطيع قائدٌ الإشراف عليها.</li>
+          <li>ارعَ المنشأة للمدى الطويل، بانيًا قادةً مستقبليين وخلافةً حقيقية.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2013/04/the-work-of-leadership" target="_blank" rel="noopener">HBR، عمل القيادة.</a></li>
+          <li><a href="https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights" target="_blank" rel="noopener">ماكنزي، عن المنظمة والثقافة.</a></li>
+          <li><a href="https://hbr.org/2005/07/level-5-leadership-the-triumph-of-humility-and-fierce-resolve" target="_blank" rel="noopener">جيم كولنز، قيادة المستوى الخامس (HBR).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","disciplines","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

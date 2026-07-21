@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>National Transformation &amp; Vision 2030</title>
+<meta name="description" content="An operational framework for national transformation: a structured vision, economic diversification, and disciplined national delivery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">CONSULTING &amp; STRATEGY &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الاستشارات والاستراتيجية &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">National Transformation &amp; Vision 2030</span><span data-lang="ar">التحول الوطني ورؤية 2030</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="vision"><span data-lang="en">The Vision</span><span data-lang="ar">الرؤية</span></a>
+    <a data-id="diversification"><span data-lang="en">Diversification</span><span data-lang="ar">التنويع</span></a>
+    <a data-id="delivery"><span data-lang="en">Delivery</span><span data-lang="ar">التسليم</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> National transformation &amp; strategy</div>
+          <div><span>Scope:</span> Steering large-scale, whole-of-nation change</div>
+          <div><span>Owner role:</span> National leadership, with delivery bodies</div>
+          <div><span>Review cadence:</span> Annual program cycle, with continuous delivery tracking</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">A national transformation is a deliberate, large-scale effort to change the trajectory of a whole country, its economy, its institutions, and often its society, over a long horizon. It applies the discipline of strategy at the largest possible scale, and its defining challenge is coordinating change across thousands of organizations toward a single shared direction.</p>
+        <p>What makes national transformation distinct from ordinary strategy is scale and complexity. A company answers to one leadership and one set of owners, but a nation must align many ministries, agencies, private companies, and citizens, each with their own interests and constraints, toward common goals. The core discipline is therefore not just deciding what to do, but building the mechanisms that translate a national vision into coordinated action across an entire system that no single office directly controls.</p>
+        <p>This framework describes national transformation as an operational discipline, using Saudi Arabia's Vision 2030 as a leading, publicly documented example of the approach. It is written to be reusable for understanding any large-scale transformation program, and aligns to the officially published vision and its programs without reproducing their text.</p>
+        <div class="note"><strong>Note:</strong> National transformation is strategy at the scale of a country, where the hardest part is not the vision but the coordinated delivery of it across a whole system of independent actors.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> التحول الوطني والاستراتيجية</div>
+          <div><span>النطاق:</span> توجيه تغييرٍ واسع على مستوى أمّةٍ كاملة</div>
+          <div><span>دور المالك:</span> القيادة الوطنية، مع جهات التنفيذ</div>
+          <div><span>دورية المراجعة:</span> دورة برنامجٍ سنوية، مع تتبّع تنفيذٍ مستمر</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">التحول الوطني جهدٌ متعمَّد واسع النطاق لتغيير مسار بلدٍ كامل، اقتصاده ومؤسساته وغالبًا مجتمعه، على أفقٍ طويل. يطبّق انضباط الاستراتيجية على أكبر نطاقٍ ممكن، وتحدّيه المميِّز تنسيق التغيير عبر آلاف المنظمات نحو اتجاهٍ مشترك واحد.</p>
+        <p>ما يميّز التحول الوطني عن الاستراتيجية العادية النطاق والتعقيد. فشركةٌ تُساءَل أمام قيادةٍ واحدة ومجموعة مُلّاك واحدة، لكن أمّةً يجب أن توائم وزاراتٍ وجهاتٍ وشركاتٍ خاصة ومواطنين كثيرين، لكلٍّ مصالحه وقيوده، نحو أهدافٍ مشتركة. فالانضباط الجوهري ليس تقرير ما يُفعَل فحسب، بل بناء الآليات التي تترجم رؤيةً وطنية إلى فعلٍ منسّق عبر نظامٍ كامل لا يتحكّم به مكتبٌ واحد مباشرةً.</p>
+        <p>يصف هذا الإطار التحول الوطني كانضباطٍ تشغيلي، مستخدمًا رؤية السعودية 2030 كمثالٍ رائد موثَّق علنًا للنهج. وهو قابل لإعادة الاستخدام لفهم أي برنامج تحوّلٍ واسع، ويتوافق مع الرؤية المنشورة رسميًا وبرامجها دون نسخ نصّها.</p>
+        <div class="note"><strong>ملاحظة:</strong> التحول الوطني استراتيجيةٌ بحجم بلد، حيث أصعب جزءٍ ليس الرؤية بل تسليمها المنسّق عبر نظامٍ كامل من فاعلين مستقلّين.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="vision">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>A Vision &amp; Its Themes</h2>
+        <p class="lead">Every national transformation starts with a vision: a clear, ambitious statement of the future the nation intends to build. A vision on its own is only a hope, but a well-structured one organizes that ambition into themes that give the whole effort direction and coherence.</p>
+        <p>Saudi Arabia's Vision 2030, launched in 2016 (2016 record), illustrates this structure. It organizes its ambition into three connected themes: a vibrant society, a thriving economy, and an ambitious nation. Each theme captures a dimension of the intended transformation, society, economy, and the effectiveness of the state itself, and together they describe a rounded future rather than a purely economic one. Structuring a vision this way matters because it signals that transformation is about how people live and how the country is governed, not only about financial numbers.</p>
+        <ul>
+          <li><strong>A vibrant society:</strong> quality of life, culture, health, and the strength of communities.</li>
+          <li><strong>A thriving economy:</strong> diversification, opportunity, employment, and investment.</li>
+          <li><strong>An ambitious nation:</strong> an effective, accountable government and an engaged citizenry.</li>
+        </ul>
+        <p>The value of themes is that they turn a single grand ambition into a small number of organizing ideas that everything else can hang from. Specific programs, targets, and projects each connect to a theme, so that a citizen or an official can see how a particular initiative serves the larger vision. Without such structure, a national vision risks becoming a long list of disconnected promises, and the themes are what give it the coherence to be led and communicated.</p>
+        <div class="note"><strong>Note:</strong> A vision needs structure to be actionable. Organizing ambition into a few clear themes is what lets thousands of separate initiatives be connected to, and judged against, a single national direction.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>رؤيةٌ ومحاورها</h2>
+        <p class="lead">كل تحوّلٍ وطني يبدأ برؤية: بيانٌ واضح طموح للمستقبل الذي تنوي الأمّة بناءه. والرؤية وحدها أملٌ فقط، لكن حسنة البناء تنظّم ذلك الطموح في محاورٍ تمنح الجهد كله اتجاهًا وتماسكًا.</p>
+        <p>رؤية السعودية 2030، المُطلَقة في 2016 (سجل 2016)، تُوضّح هذا البناء. تنظّم طموحها في ثلاثة محاور متصلة: مجتمعٌ حيوي، واقتصادٌ مزدهر، ووطنٌ طموح. وكل محورٍ يلتقط بُعدًا من التحوّل المقصود، المجتمع والاقتصاد وفاعلية الدولة نفسها، وهي معًا تصف مستقبلًا متكاملًا لا اقتصاديًا صرفًا. وبناء رؤيةٍ هكذا يهمّ لأنه يُشير إلى أن التحوّل عن كيف يعيش الناس وكيف يُحكَم البلد، لا عن الأرقام المالية فقط.</p>
+        <ul>
+          <li><strong>مجتمعٌ حيوي:</strong> جودة الحياة والثقافة والصحة وقوّة المجتمعات.</li>
+          <li><strong>اقتصادٌ مزدهر:</strong> التنويع والفرص والتوظيف والاستثمار.</li>
+          <li><strong>وطنٌ طموح:</strong> حكومةٌ فعّالة مساءَلة ومواطنون منخرطون.</li>
+        </ul>
+        <p>قيمة المحاور أنها تحوّل طموحًا كبيرًا واحدًا إلى عددٍ قليل من الأفكار المنظِّمة يتعلّق بها كل ما عداها. فالبرامج والأهداف والمشاريع المحدَّدة يتّصل كلٌّ بمحور، فيرى مواطنٌ أو مسؤول كيف تخدم مبادرةٌ بعينها الرؤية الأكبر. وبلا هذا البناء، تخاطر رؤيةٌ وطنية بأن تصير قائمةً طويلة من وعودٍ منفصلة، والمحاور هي ما يمنحها التماسك لتُقاد وتُبلَّغ.</p>
+        <div class="note"><strong>ملاحظة:</strong> الرؤية تحتاج بناءً لتكون قابلة للتنفيذ. وتنظيم الطموح في محاورٍ قليلة واضحة هو ما يتيح ربط آلاف المبادرات المنفصلة باتجاهٍ وطني واحد والحكم عليها به.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="diversification">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Economic Diversification</h2>
+        <p class="lead">At the economic heart of many national transformations is diversification: reducing an economy's dependence on a single source of income so that its prosperity does not rise and fall with one commodity or sector. It is a response to a specific, well-understood risk.</p>
+        <p>An economy that depends heavily on one resource, such as oil, is exposed to that resource's price and eventual decline. Its national income swings with a market it does not control, and its long-term future is tied to a source that may become less valuable over time. Diversification is the deliberate building of other engines of growth, new industries, services, tourism, technology, and a larger private sector, so that the economy has multiple sources of income and is resilient to the loss of any one.</p>
+        <ul>
+          <li><strong>Reduce dependence:</strong> lower the share of national income tied to a single resource or sector.</li>
+          <li><strong>Build new engines:</strong> deliberately develop new industries and services as alternative sources of growth.</li>
+          <li><strong>Grow the private sector:</strong> shift economic activity and employment toward a larger, more dynamic private sector.</li>
+          <li><strong>Attract investment:</strong> draw domestic and foreign investment into the new sectors that diversification requires.</li>
+        </ul>
+        <p>Diversification is difficult precisely because it means building strength in areas where a country does not yet have an advantage, which is the hardest kind of growth. It requires patient investment in new capabilities, education and skills, regulatory reform to make new sectors attractive, and time, because new industries do not mature quickly. This is why diversification is measured over a long horizon and pursued through many coordinated programs rather than a single project, and why the delivery mechanisms that keep such a long effort on track are as important as the strategy itself.</p>
+        <div class="note"><strong>Note:</strong> Diversification is building advantage where you do not yet have it, which is inherently slow and hard. It is measured in years and decades, which is exactly why it needs disciplined delivery to survive the long stretch before results appear.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>التنويع الاقتصادي</h2>
+        <p class="lead">في القلب الاقتصادي لكثيرٍ من التحوّلات الوطنية التنويع: خفض اعتماد اقتصادٍ على مصدر دخلٍ واحد حتى لا يرتفع رخاؤه ويهبط مع سلعةٍ أو قطاعٍ واحد. وهو استجابةٌ لخطرٍ محدَّد مفهوم جيدًا.</p>
+        <p>اقتصادٌ يعتمد بشدّة على موردٍ واحد، كالنفط، معرَّضٌ لسعر ذلك المورد وأفوله آخرًا. فدخله الوطني يتأرجح مع سوقٍ لا يتحكّم بها، ومستقبله البعيد مربوطٌ بمصدرٍ قد يقلّ قيمةً عبر الزمن. والتنويع هو البناء المتعمَّد لمحرّكات نموٍّ أخرى، صناعات وخدمات وسياحة وتقنية وقطاعٍ خاص أكبر، فيصير للاقتصاد مصادر دخلٍ متعددة ومرنٌ لفقد أيٍّ منها.</p>
+        <ul>
+          <li><strong>خفض الاعتماد:</strong> إنقاص نصيب الدخل الوطني المربوط بموردٍ أو قطاعٍ واحد.</li>
+          <li><strong>بناء محرّكات جديدة:</strong> تطوير صناعاتٍ وخدماتٍ جديدة عمدًا كمصادر نموٍّ بديلة.</li>
+          <li><strong>تنمية القطاع الخاص:</strong> نقل النشاط الاقتصادي والتوظيف نحو قطاعٍ خاص أكبر وأكثر حيوية.</li>
+          <li><strong>جذب الاستثمار:</strong> استقطاب الاستثمار المحلي والأجنبي للقطاعات الجديدة التي يتطلّبها التنويع.</li>
+        </ul>
+        <p>التنويع صعبٌ تحديدًا لأنه يعني بناء قوّةٍ في مجالاتٍ لا يملك فيها البلد ميزةً بعد، وهو أصعب أنواع النمو. يتطلّب استثمارًا صبورًا في قدراتٍ جديدة، وتعليمًا ومهارات، وإصلاحًا تنظيميًا يجعل القطاعات الجديدة جاذبة، ووقتًا، لأن الصناعات الجديدة لا تنضج سريعًا. ولذا يُقاس التنويع على أفقٍ طويل ويُلاحَق عبر برامج منسّقة كثيرة لا مشروعٍ واحد، ولذا آليات التسليم التي تُبقي جهدًا طويلًا كهذا على المسار مهمّةٌ كالاستراتيجية نفسها.</p>
+        <div class="note"><strong>ملاحظة:</strong> التنويع بناء ميزةٍ حيث لا تملكها بعد، وهو بطيءٌ صعب بطبعه. يُقاس بالسنين والعقود، وهو بالضبط لماذا يحتاج تسليمًا منضبطًا لينجو من المدى الطويل قبل ظهور النتائج.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="delivery">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Delivery &amp; Coordination</h2>
+        <p class="lead">The gap between a national vision and real change is bridged by delivery: the machinery that turns high-level goals into coordinated programs, tracks their progress, and holds many independent bodies accountable for their part. This is where most transformations succeed or fail.</p>
+        <p>Large transformations translate their vision into a structured hierarchy: overarching themes break down into specific programs, which break down into initiatives and projects with named owners, targets, and timelines. Dedicated delivery bodies, sometimes called delivery units or realization offices, coordinate across the many organizations involved, track progress against measurable targets, and surface where things are stalling so leadership can intervene. This is the cascade and measurement discipline of performance management applied at the scale of a nation.</p>
+        <ul>
+          <li><strong>Programs and initiatives:</strong> the vision broken into specific, owned, measurable pieces of work.</li>
+          <li><strong>National targets:</strong> clear metrics for each goal, so progress is tracked by evidence, not assertion.</li>
+          <li><strong>Delivery bodies:</strong> dedicated units that coordinate across organizations and drive execution.</li>
+          <li><strong>Accountability:</strong> named ownership and regular review, so a stalled program is seen and addressed.</li>
+        </ul>
+        <p>The distinctive difficulty at national scale is coordination across independent actors. No delivery unit directly commands a ministry, a private company, or a citizen, so delivery works through targets, transparency, and accountability rather than direct control. Making progress visible, publishing what is on track and what is behind, and connecting every initiative to a national target, creates a shared pressure toward the goals that substitutes for the single chain of command a company has and a nation does not.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> national transformation sets an ambitious vision structured into themes, tackles the economic core through patient diversification, and, above all, succeeds or fails on the delivery machinery that coordinates a whole system of independent actors toward shared, measured goals.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>التسليم والتنسيق</h2>
+        <p class="lead">الفجوة بين رؤيةٍ وطنية وتغييرٍ حقيقي يجسرها التسليم: الآلة التي تحوّل الأهداف العليا لبرامج منسّقة، وتتبّع تقدّمها، وتُساءِل جهاتٍ مستقلّة كثيرة عن دورها. وهنا تنجح أغلب التحوّلات أو تفشل.</p>
+        <p>التحوّلات الكبرى تترجم رؤيتها لتدرّجٍ منظَّم: محاورٌ شاملة تتفرّع لبرامج محدَّدة، تتفرّع لمبادرات ومشاريع بملّاك مُسمّين وأهدافٍ ومواعيد. وجهات تسليمٍ مخصَّصة، تُسمّى أحيانًا وحدات تسليمٍ أو مكاتب تحقيق، تنسّق عبر المنظمات الكثيرة المعنيّة، وتتبّع التقدّم مقابل أهدافٍ قابلة للقياس، وتُظهِر أين تتعثّر الأمور لتتدخّل القيادة. وهذا انضباط التتالي والقياس في إدارة الأداء مطبَّقًا بحجم أمّة.</p>
+        <ul>
+          <li><strong>البرامج والمبادرات:</strong> الرؤية مُقسَّمة لقطع عملٍ محدَّدة مملوكة قابلة للقياس.</li>
+          <li><strong>أهدافٌ وطنية:</strong> مؤشراتٌ واضحة لكل هدف، فيُتتبَّع التقدّم بالدليل لا الادعاء.</li>
+          <li><strong>جهات التسليم:</strong> وحداتٌ مخصَّصة تنسّق عبر المنظمات وتدفع التنفيذ.</li>
+          <li><strong>المساءلة:</strong> ملكيةٌ مُسمّاة ومراجعةٌ منتظمة، فيُرى برنامجٌ متعثّر ويُعالَج.</li>
+        </ul>
+        <p>الصعوبة المميِّزة على المستوى الوطني التنسيق عبر فاعلين مستقلّين. فلا وحدة تسليمٍ تأمر وزارةً أو شركةً خاصة أو مواطنًا مباشرةً، فيعمل التسليم عبر الأهداف والشفافية والمساءلة لا التحكّم المباشر. وجعل التقدّم مرئيًا، بنشر ما هو على المسار وما هو متأخّر، وربط كل مبادرةٍ بهدفٍ وطني، يخلق ضغطًا مشتركًا نحو الأهداف يعوّض سلسلة الأمر الواحدة التي تملكها شركةٌ ولا تملكها أمّة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> التحول الوطني يضع رؤيةً طموحة مبنيّة في محاور، ويعالج القلب الاقتصادي بتنويعٍ صبور، والأهمّ، ينجح أو يفشل على آلة التسليم التي تنسّق نظامًا كاملًا من فاعلين مستقلّين نحو أهدافٍ مشتركة مُقاسة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">National transformation is strategy at the scale of a country, succeeding through a structured vision, patient diversification, and above all disciplined delivery.</p>
+        <ul>
+          <li>Treat national transformation as strategy at scale, where coordinated delivery is the hardest part.</li>
+          <li>Structure the vision into a few clear themes that connect thousands of initiatives to one direction.</li>
+          <li>Address the economic core through diversification, understanding it is slow because it builds new advantage.</li>
+          <li>Build delivery machinery, programs, targets, delivery bodies, and accountability, to turn vision into action.</li>
+          <li>Coordinate independent actors through targets and transparency, not the direct control a company has.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.vision2030.gov.sa/en" target="_blank" rel="noopener">Saudi Vision 2030, official portal (2016 record, launched 2016).</a></li>
+          <li><a href="https://www.vision2030.gov.sa/en/overview" target="_blank" rel="noopener">Saudi Vision 2030, overview and themes.</a></li>
+          <li><a href="https://www.vision2030.gov.sa/en/explore/programs/national-transformation-program" target="_blank" rel="noopener">Vision 2030, National Transformation Program.</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">Harvard Business School Online, strategy and execution tools.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">التحول الوطني استراتيجيةٌ بحجم بلد، ينجح برؤيةٍ منظَّمة، وتنويعٍ صبور، والأهمّ تسليمٍ منضبط.</p>
+        <ul>
+          <li>عامِل التحول الوطني كاستراتيجيةٍ بحجم، حيث التسليم المنسّق أصعب جزء.</li>
+          <li>نظّم الرؤية في محاورٍ قليلة واضحة تصل آلاف المبادرات باتجاهٍ واحد.</li>
+          <li>عالِج القلب الاقتصادي بالتنويع، مُدرِكًا أنه بطيء لأنه يبني ميزةً جديدة.</li>
+          <li>ابنِ آلة التسليم، البرامج والأهداف وجهات التسليم والمساءلة، لتحويل الرؤية لفعل.</li>
+          <li>نسّق الفاعلين المستقلّين بالأهداف والشفافية، لا التحكّم المباشر الذي تملكه شركة.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.vision2030.gov.sa/en" target="_blank" rel="noopener">رؤية السعودية 2030، البوابة الرسمية (سجل 2016، أُطلِقت 2016).</a></li>
+          <li><a href="https://www.vision2030.gov.sa/en/overview" target="_blank" rel="noopener">رؤية السعودية 2030، النظرة العامة والمحاور.</a></li>
+          <li><a href="https://www.vision2030.gov.sa/en/explore/programs/national-transformation-program" target="_blank" rel="noopener">رؤية 2030، برنامج التحول الوطني.</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">هارفارد أونلاين، أدوات الاستراتيجية والتنفيذ.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","vision","diversification","delivery","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

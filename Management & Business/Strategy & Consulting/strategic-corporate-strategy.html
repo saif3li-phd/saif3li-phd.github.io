@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corporate Strategy</title>
+<meta name="description" content="An operational framework for corporate strategy: analysis, competitive positioning, where-to-play and how-to-win choices, and aligned execution.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">CONSULTING &amp; STRATEGY &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الاستشارات والاستراتيجية &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Corporate Strategy</span><span data-lang="ar">الاستراتيجية المؤسسية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="analysis"><span data-lang="en">Analysis</span><span data-lang="ar">التحليل</span></a>
+    <a data-id="positioning"><span data-lang="en">Positioning</span><span data-lang="ar">التموضع</span></a>
+    <a data-id="choices"><span data-lang="en">Choices</span><span data-lang="ar">الخيارات</span></a>
+    <a data-id="execution"><span data-lang="en">Execution</span><span data-lang="ar">التنفيذ</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Corporate strategy</div>
+          <div><span>Scope:</span> Choosing where to compete and how to win</div>
+          <div><span>Owner role:</span> Executive leadership, endorsed by the board</div>
+          <div><span>Review cadence:</span> Annual strategy cycle, with a formal review each quarter</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Strategy is the set of deliberate choices an organization makes about where it will compete and how it will win there. It is fundamentally about choice, and specifically about what to say no to, because a strategy that tries to be everything to everyone is not a strategy at all, just a wish to succeed.</p>
+        <p>The most common misunderstanding is to confuse strategy with a plan or a goal. Wanting to grow is a goal, not a strategy; a list of projects is a plan, not a strategy. Strategy is the reasoning that connects the two: the specific choices about which markets to serve, which customers to win, and what advantage will make winning them possible, from which the goals and plans then follow. Without those choices, an organization is simply working hard in every direction and calling the result a strategy.</p>
+        <p>This framework describes strategy as a disciplined sequence of analysis and choice, drawing on the established tools of competitive strategy such as Porter's five forces and the logic of where to play and how to win. It is written to be reusable across organizations and aligns to that recognized thinking without reproducing its text.</p>
+        <div class="note"><strong>Note:</strong> The essence of strategy is choosing what not to do. An organization that will not say no to any opportunity has no strategy, only a to-do list that grows until its resources are spread too thin to win anywhere.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الاستراتيجية المؤسسية</div>
+          <div><span>النطاق:</span> اختيار أين تنافس وكيف تفوز</div>
+          <div><span>دور المالك:</span> القيادة التنفيذية، باعتماد المجلس</div>
+          <div><span>دورية المراجعة:</span> دورة استراتيجية سنوية، ومراجعة رسمية كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الاستراتيجية مجموعة الخيارات المتعمَّدة التي تتّخذها المنشأة حول أين تنافس وكيف تفوز هناك. وهي في جوهرها عن الاختيار، وتحديدًا عمّا تقول له لا، لأن استراتيجيةً تحاول أن تكون كل شيءٍ للجميع ليست استراتيجيةً أصلًا، بل مجرّد أمنيةٍ بالنجاح.</p>
+        <p>أشيع سوء فهمٍ خلط الاستراتيجية بخطةٍ أو هدف. فإرادة النمو هدفٌ لا استراتيجية؛ وقائمة مشاريع خطةٌ لا استراتيجية. والاستراتيجية هي الاستدلال الذي يصل الاثنين: الخيارات المحدَّدة حول أي الأسواق تُخدَم، وأي العملاء يُكسَبون، وأي ميزةٍ ستجعل كسبهم ممكنًا، ومنها تتبع الأهداف والخطط. وبلا تلك الخيارات، المنشأة تعمل بجدٍّ في كل اتجاهٍ وتسمّي الناتج استراتيجية.</p>
+        <p>يصف هذا الإطار الاستراتيجية كتسلسلٍ منضبط من التحليل والاختيار، مستندًا إلى أدوات الاستراتيجية التنافسية المعتمَدة كقوى بورتر الخمس ومنطق «أين تلعب وكيف تفوز». وهو قابل لإعادة الاستخدام عبر المنشآت ويتوافق مع ذلك الفكر المعترف به دون نسخ نصّه.</p>
+        <div class="note"><strong>ملاحظة:</strong> جوهر الاستراتيجية اختيار ما لا تفعله. فمنشأةٌ لن تقول لا لأي فرصةٍ لا تملك استراتيجية، بل قائمة مهامٍ تكبر حتى تتبعثر مواردها فلا تفوز في أي مكان.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="analysis">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Understanding the Landscape</h2>
+        <p class="lead">Sound strategy begins with clear-eyed analysis of two things: the outside world the organization competes in, and the inside capabilities it competes with. Strategy that skips this and jumps straight to ambition is guessing.</p>
+        <p>The external analysis asks how attractive and how contested the organization's arena is. A well-known lens examines the competitive forces that determine how much profit an industry allows: the rivalry among existing competitors, the threat of new entrants, the threat of substitutes, and the bargaining power of both suppliers and customers. Together these forces explain why some industries are structurally profitable and others are brutal, and understanding them tells an organization where the profit pools are and how they are defended.</p>
+        <ul>
+          <li><strong>Rivalry:</strong> how intensely existing competitors fight, which erodes profit when it is high.</li>
+          <li><strong>New entrants:</strong> how easily newcomers can enter, which limits profit unless barriers protect it.</li>
+          <li><strong>Substitutes:</strong> whether a different kind of product could meet the same need, capping what can be charged.</li>
+          <li><strong>Supplier and buyer power:</strong> how much the parties on each side can squeeze the margin between them.</li>
+        </ul>
+        <h3>The inside view</h3>
+        <p>External analysis shows where value can be captured, but internal analysis shows whether this particular organization can capture it. The question is what the organization is genuinely good at, its distinctive capabilities and resources, and whether those provide an advantage that is valuable, rare, and hard to imitate. A profitable arena is worthless to an organization that has no advantage to compete in it, so strategy lives at the intersection of an attractive opportunity outside and a real capability inside.</p>
+        <div class="note"><strong>Note:</strong> Analyze the industry and yourself with equal honesty. The most common strategic error is to see an attractive market and assume you can win in it, without asking whether you have any real advantage there.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>فهم الميدان</h2>
+        <p class="lead">الاستراتيجية السليمة تبدأ بتحليلٍ صافي النظر لأمرين: العالم الخارجي الذي تنافس فيه المنشأة، والقدرات الداخلية التي تنافس بها. واستراتيجيةٌ تتخطّى هذا وتقفز للطموح مباشرةً تخمّن.</p>
+        <p>التحليل الخارجي يسأل كم ميدان المنشأة جاذبٌ ومتنازَع عليه. وعدسةٌ معروفة تفحص القوى التنافسية التي تحدّد كم من الربح تسمح به صناعة: التنافس بين المتنافسين الحاليين، وتهديد الداخلين الجدد، وتهديد البدائل، والقوة التفاوضية للمورّدين والعملاء معًا. وهذه القوى معًا تفسّر لماذا تكون بعض الصناعات مربحةً بنيويًا وأخرى قاسية، وفهمها يخبر المنشأة أين برك الربح وكيف تُدافَع.</p>
+        <ul>
+          <li><strong>التنافس:</strong> كم يتقاتل المتنافسون الحاليون بشدّة، وهو يُآكِل الربح حين يعلو.</li>
+          <li><strong>الداخلون الجدد:</strong> كم يسهُل دخول الوافدين، وهو يحدّ الربح ما لم تحمِه الحواجز.</li>
+          <li><strong>البدائل:</strong> هل يستطيع منتجٌ مختلف تلبية الحاجة نفسها، ما يسقّف ما يمكن تقاضيه.</li>
+          <li><strong>قوة المورّد والمشتري:</strong> كم يستطيع طرفا كل جانبٍ عصر الهامش بينهما.</li>
+        </ul>
+        <h3>النظرة الداخلية</h3>
+        <p>التحليل الخارجي يُظهِر أين يمكن التقاط القيمة، لكن الداخلي يُظهِر هل تستطيع هذه المنشأة بعينها التقاطها. والسؤال ما الذي تُتقِنه المنشأة حقًّا، قدراتها ومواردها المميِّزة، وهل توفّر ميزةً قيّمة نادرة يصعب تقليدها. فميدانٌ مربح لا قيمة له لمنشأةٍ بلا ميزةٍ تنافس بها، فالاستراتيجية تعيش عند تقاطع فرصةٍ جاذبة بالخارج وقدرةٍ حقيقية بالداخل.</p>
+        <div class="note"><strong>ملاحظة:</strong> حلّل الصناعة ونفسك بصدقٍ متساوٍ. فأشيع خطأٍ استراتيجي رؤية سوقٍ جاذبة وافتراض القدرة على الفوز فيها، دون سؤال هل لك ميزةٌ حقيقية هناك.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="positioning">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Competitive Positioning</h2>
+        <p class="lead">Having understood the landscape, the organization must decide how it intends to win. Competitive positioning is the choice of the fundamental basis on which it will offer more value than its rivals, and the classic insight is that trying to win on everything at once wins on nothing.</p>
+        <p>There are broadly two ways to create competitive advantage. One is to be the low-cost provider, running more efficiently than anyone else so you can compete on price and still profit. The other is to differentiate, offering something distinctive enough that customers will pay a premium for it. Both can succeed, but they require different, often opposing, choices about how the organization is built, which is why trying to do both at once usually produces an organization that is neither cheap enough nor distinctive enough to win.</p>
+        <ul>
+          <li><strong>Cost leadership:</strong> win by being the most efficient, so you can profit at prices rivals cannot match.</li>
+          <li><strong>Differentiation:</strong> win by offering something distinctive that customers value enough to pay more for.</li>
+          <li><strong>Focus:</strong> apply either approach to a narrow segment, serving it better than broad competitors can.</li>
+        </ul>
+        <p>The danger is being caught in the middle, neither the cost leader nor genuinely differentiated, which leaves an organization vulnerable to competitors who have chosen clearly. This is why strategy requires the discipline to commit: a differentiator must be willing to bear higher costs to deliver its distinction, and a cost leader must be willing to forgo features that would raise its cost, and an organization unwilling to accept either trade-off ends up making neither choice well.</p>
+        <div class="note"><strong>Note:</strong> Advantage comes from being different in a way that matters, not from being generally good. A position that any competitor could occupy is not a competitive advantage, it is just a place in the market.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>التموضع التنافسي</h2>
+        <p class="lead">بعد فهم الميدان، على المنشأة أن تقرّر كيف تنوي الفوز. والتموضع التنافسي اختيار الأساس الجوهري الذي ستقدّم عليه قيمةً أكثر من منافسيها، والبصيرة الكلاسيكية أن محاولة الفوز في كل شيءٍ دفعةً تفوز في لا شيء.</p>
+        <p>ثمّة عمومًا طريقان لخلق ميزةٍ تنافسية. أحدهما أن تكون مزوّد التكلفة الأدنى، تعمل بكفاءةٍ أكثر من أي أحدٍ فتنافس على السعر وتربح. والآخر أن تتمايز، بتقديم شيءٍ مميَّز بما يكفي ليدفع العملاء علاوةً عليه. وكلاهما ينجح، لكنهما يتطلّبان خياراتٍ مختلفة، متعارضة غالبًا، حول كيف تُبنى المنشأة، ولذا محاولة الاثنين معًا تُنتِج عادةً منشأةً لا رخيصة بما يكفي ولا مميَّزة بما يكفي للفوز.</p>
+        <ul>
+          <li><strong>قيادة التكلفة:</strong> افُز بأن تكون الأكفأ، فتربح بأسعارٍ لا يجاريها المنافسون.</li>
+          <li><strong>التمايز:</strong> افُز بتقديم شيءٍ مميَّز يقدّره العملاء بما يكفي ليدفعوا أكثر.</li>
+          <li><strong>التركيز:</strong> طبّق أيًّا من النهجين على شريحةٍ ضيّقة، تخدمها أفضل مما يقدر المنافسون العريضون.</li>
+        </ul>
+        <p>الخطر أن تُحبَس في الوسط، لا قائد تكلفةٍ ولا متمايزٌ حقًّا، ما يترك المنشأة عُرضةً لمنافسين اختاروا بوضوح. ولذا تتطلّب الاستراتيجية انضباط الالتزام: فالمتمايز يجب أن يقبل كلفةً أعلى ليسلّم تمايزه، وقائد التكلفة يجب أن يتخلّى عن ميزاتٍ ترفع كلفته، ومنشأةٌ ترفض قبول أي مقايضةٍ تنتهي لا تُحسِن أي اختيار.</p>
+        <div class="note"><strong>ملاحظة:</strong> الميزة من كونك مختلفًا بطريقةٍ تهمّ، لا من كونك جيدًا عمومًا. فموضعٌ يستطيع أي منافسٍ احتلاله ليس ميزةً تنافسية بل مجرّد مكانٍ في السوق.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="choices">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Where to Play, How to Win</h2>
+        <p class="lead">Strategy can be reduced to two connected choices that must fit each other: where the organization will compete, and how it will win where it does. Getting either wrong, or letting the two contradict, undoes the whole strategy.</p>
+        <p>Where to play defines the arena: which markets, which customer segments, which products and channels the organization will focus on, and, just as importantly, which it will deliberately not. How to win defines the advantage: the specific reason customers in that chosen arena will prefer this organization over the alternatives. The two must reinforce each other, because a winning formula in one arena often fails in another, and choosing where to play without a matching way to win is choosing a battlefield with no weapon.</p>
+        <p>A worked illustration shows the discipline. A company might choose to play only in the premium segment of its market, serving customers who value quality over price, and choose to win there through superior design and service that those customers will pay for. Those two choices fit: the where supports the how. The same company trying to also serve the budget segment, where its costly design and service are a disadvantage, would be making a where-to-play choice that contradicts its how-to-win, and would lose in the new arena while diluting its strength in the old one.</p>
+        <div class="note"><strong>Note:</strong> The where and the how must fit each other. A brilliant way to win in the wrong arena, or a well-chosen arena with no way to win, both fail, and strategy is the art of making the two choices consistent.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>أين تلعب وكيف تفوز</h2>
+        <p class="lead">يمكن اختزال الاستراتيجية في خيارين متصلين يجب أن يتلاءما: أين تنافس المنشأة، وكيف تفوز حيث تنافس. وإخطاء أيٍّ منهما، أو ترك الاثنين يتناقضان، يُبطِل الاستراتيجية كلها.</p>
+        <p>«أين تلعب» يعرّف الميدان: أي الأسواق، وأي شرائح العملاء، وأي المنتجات والقنوات ستركّز عليها المنشأة، والأهمّ، أيها لن تركّز عليها عمدًا. و«كيف تفوز» يعرّف الميزة: السبب المحدَّد الذي يجعل عملاء ذلك الميدان المختار يفضّلون هذه المنشأة على البدائل. ويجب أن يعزّز الاثنان بعضهما، لأن صيغة الفوز في ميدانٍ تفشل غالبًا في آخر، واختيار أين تلعب دون طريقة فوزٍ ملائمة اختيارُ ساحةٍ بلا سلاح.</p>
+        <p>ومثالٌ محلول يوضّح الانضباط. قد تختار شركةٌ اللعب فقط في الشريحة الفاخرة من سوقها، تخدم عملاءً يقدّرون الجودة على السعر، وتختار الفوز هناك بتصميمٍ وخدمةٍ متفوّقين يدفع لهما أولئك العملاء. وهذان الخياران يتلاءمان: «الأين» يسند «الكيف». والشركة نفسها إن حاولت أيضًا خدمة الشريحة الاقتصادية، حيث تصميمها وخدمتها المكلفان عيب، تكون تتّخذ خيار «أين تلعب» يناقض «كيف تفوز»، فتخسر في الميدان الجديد وتُميّع قوّتها في القديم.</p>
+        <div class="note"><strong>ملاحظة:</strong> «الأين» و«الكيف» يجب أن يتلاءما. فطريقة فوزٍ بارعة في الميدان الخطأ، أو ميدانٌ مُختار جيدًا بلا طريقة فوز، كلاهما يفشل، والاستراتيجية فنّ جعل الخيارين متّسقين.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="execution">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>From Strategy to Execution</h2>
+        <p class="lead">A strategy that is not executed is worthless, and execution is where most strategies fail. The gap between a clear strategy and daily action is bridged by alignment: making sure that the organization's structure, resources, and measures all point the same way the strategy does.</p>
+        <p>Execution requires the strategy to be translated into concrete priorities, resourced deliberately, and reinforced by how people are measured and rewarded. If the strategy says to win through customer intimacy but the organization measures and rewards only short-term sales volume, the measures will win and the strategy will lose, because people optimize what they are held to. Aligning the capabilities the organization builds, the initiatives it funds, and the metrics it tracks with the chosen strategy is what turns intent into reality.</p>
+        <ul>
+          <li><strong>Priorities:</strong> a small number of initiatives that the strategy makes most important, funded ahead of the rest.</li>
+          <li><strong>Resource allocation:</strong> deliberately shifting money and people toward the strategy, and away from what it deprioritizes.</li>
+          <li><strong>Capabilities:</strong> building the specific strengths the chosen way to win depends on.</li>
+          <li><strong>Aligned measures:</strong> tracking and rewarding what the strategy needs, so incentives pull with it, not against it.</li>
+        </ul>
+        <p>The hardest part of execution is stopping things. A new strategy usually implies that some existing activities no longer fit, and continuing to fund them starves the new priorities and signals that the strategy is not real. Deliberately withdrawing resources from what the strategy deprioritizes is as important as investing in what it favors, and an organization unwilling to stop anything cannot genuinely start something new.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> strategy is a coherent set of choices about where to compete and how to win, grounded in honest analysis, committed to a real basis of advantage, and made real through aligned execution that has the discipline to stop as well as to start.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>من الاستراتيجية إلى التنفيذ</h2>
+        <p class="lead">استراتيجيةٌ لا تُنفَّذ بلا قيمة، والتنفيذ حيث تفشل أغلب الاستراتيجيات. والفجوة بين استراتيجيةٍ واضحة وفعلٍ يومي يجسرها التوائم: ضمان أن هيكل المنشأة ومواردها ومقاييسها كلها تشير حيث تشير الاستراتيجية.</p>
+        <p>التنفيذ يتطلّب ترجمة الاستراتيجية لأولوياتٍ ملموسة، وتمويلها عن قصد، وترسيخها بكيف يُقاس الناس ويُكافأون. فإن قالت الاستراتيجية الفوز بالحميمية مع العميل بينما تقيس المنشأة وتكافئ حجم المبيعات القريب فقط، تفوز المقاييس وتخسر الاستراتيجية، لأن الناس يُحسّنون ما يُساءَلون عليه. ومواءمة القدرات التي تبنيها المنشأة والمبادرات التي تموّلها والمؤشرات التي تتتبّعها مع الاستراتيجية المختارة هو ما يحوّل النيّة لواقع.</p>
+        <ul>
+          <li><strong>الأولويات:</strong> عددٌ قليل من المبادرات تجعلها الاستراتيجية الأهمّ، تُموَّل قبل البقية.</li>
+          <li><strong>توزيع الموارد:</strong> نقلٌ متعمَّد للمال والناس نحو الاستراتيجية، وبعيدًا عمّا تخفّضه.</li>
+          <li><strong>القدرات:</strong> بناء القوى المحدَّدة التي تعتمد عليها طريقة الفوز المختارة.</li>
+          <li><strong>مقاييس متوائمة:</strong> تتبّع ومكافأة ما تحتاجه الاستراتيجية، فتشدّ الحوافز معها لا ضدّها.</li>
+        </ul>
+        <p>أصعب أجزاء التنفيذ إيقاف الأشياء. فاستراتيجيةٌ جديدة تعني عادةً أن بعض الأنشطة القائمة لم تعُد تلائم، ومواصلة تمويلها تُجوّع الأولويات الجديدة وتُشير إلى أن الاستراتيجية غير حقيقية. وسحب الموارد المتعمَّد ممّا تخفّضه الاستراتيجية مهمٌّ كالاستثمار فيما تفضّله، ومنشأةٌ ترفض إيقاف أي شيءٍ لا تستطيع حقًّا بدء شيءٍ جديد.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الاستراتيجية مجموعة خياراتٍ متماسكة حول أين تنافس وكيف تفوز، مؤسَّسة على تحليلٍ صادق، ملتزمة بأساس ميزةٍ حقيقي، ومُحقَّقة بتنفيذٍ متوائم له انضباط الإيقاف كما البدء.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Corporate strategy is a coherent set of choices about where to compete and how to win, made real through aligned execution.</p>
+        <ul>
+          <li>Treat strategy as choice, and accept that its essence is deciding what not to do.</li>
+          <li>Ground it in honest external and internal analysis, at the intersection of an attractive arena and a real capability.</li>
+          <li>Commit to a clear basis of advantage, cost or differentiation, rather than being caught in the middle.</li>
+          <li>Make where to play and how to win fit each other, so the arena and the advantage reinforce.</li>
+          <li>Execute through aligned priorities, resources, capabilities, and measures, with the discipline to stop as well as start.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2008/01/the-five-competitive-forces-that-shape-strategy" target="_blank" rel="noopener">Michael Porter, The Five Competitive Forces That Shape Strategy, HBR (2008).</a></li>
+          <li><a href="https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-forces.aspx" target="_blank" rel="noopener">Harvard Business School, Institute for Strategy and Competitiveness, The Five Forces.</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">Harvard Business School Online, strategy frameworks and tools.</a></li>
+          <li><a href="https://www.coso.org/guidance-erm" target="_blank" rel="noopener">COSO, Enterprise Risk Management (strategy and objective-setting).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">الاستراتيجية المؤسسية مجموعة خياراتٍ متماسكة حول أين تنافس وكيف تفوز، تُحقَّق بتنفيذٍ متوائم.</p>
+        <ul>
+          <li>عامِل الاستراتيجية كاختيار، واقبل أن جوهرها تقرير ما لا تفعله.</li>
+          <li>أسّسها على تحليلٍ خارجي وداخلي صادق، عند تقاطع ميدانٍ جاذب وقدرةٍ حقيقية.</li>
+          <li>التزم بأساس ميزةٍ واضح، تكلفةً أو تمايزًا، بدل الحبس في الوسط.</li>
+          <li>اجعل «أين تلعب» و«كيف تفوز» يتلاءمان، فيعزّز الميدان والميزة بعضهما.</li>
+          <li>نفّذ بأولوياتٍ وموارد وقدراتٍ ومقاييس متوائمة، بانضباط الإيقاف كما البدء.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2008/01/the-five-competitive-forces-that-shape-strategy" target="_blank" rel="noopener">مايكل بورتر، القوى التنافسية الخمس التي تُشكّل الاستراتيجية، HBR (2008).</a></li>
+          <li><a href="https://www.isc.hbs.edu/strategy/business-strategy/Pages/the-five-forces.aspx" target="_blank" rel="noopener">كلية هارفارد للأعمال، معهد الاستراتيجية والتنافسية، القوى الخمس.</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">هارفارد أونلاين، أطر وأدوات الاستراتيجية.</a></li>
+          <li><a href="https://www.coso.org/guidance-erm" target="_blank" rel="noopener">COSO، إدارة مخاطر المؤسسة (الاستراتيجية ووضع الأهداف).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","analysis","positioning","choices","execution","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

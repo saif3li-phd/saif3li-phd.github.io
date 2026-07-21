@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Resources Management</title>
+<meta name="description" content="An original framework for human resources management: competing through people across a coherent employee lifecycle grounded in strategy and fairness.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">HUMAN CAPITAL &middot; FRAMEWORK</span><span data-lang="ar">رأس المال البشري &middot; إطار</span></div>
+    <h1><span data-lang="en">Human Resources Management</span><span data-lang="ar">إدارة الموارد البشرية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="lifecycle"><span data-lang="en">Lifecycle</span><span data-lang="ar">دورة الحياة</span></a>
+    <a data-id="strategic"><span data-lang="en">Strategic HR</span><span data-lang="ar">موارد استراتيجية</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Human resources management</div>
+          <div><span>Scope:</span> Attracting, developing, and retaining an organization's people</div>
+          <div><span>Owner role:</span> HR, with every manager</div>
+          <div><span>Review cadence:</span> Continuous, with an annual people cycle</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Human resources management is the discipline of getting the most from an organization's people, by attracting the right ones, developing their capability, keeping them engaged, and building the policies and systems that let a workforce thrive. Since people are, for most organizations, both the largest cost and the true source of value, managing them well is not an administrative afterthought but a central driver of performance.</p>
+        <p>HR matters because an organization is only as good as its people and how they are led and supported. The best strategy fails without capable, motivated people to execute it, and even ordinary strategy can succeed with an exceptional team. Yet people are complex, they need to be recruited, developed, rewarded, and retained, and treated fairly and consistently, and doing all of this well across a whole organization requires deliberate systems, not just good intentions. Good HR turns a collection of individuals into a capable, committed workforce; poor HR lets talent walk out the door and problems fester.</p>
+        <p>This framework presents HR as a strategic discipline spanning the whole employee lifecycle, from bringing people in, through developing and rewarding them, to the fair systems that hold it together. It is my own synthesis, written in my own words and grounded in recognized people-management practice, designed to be reusable across organizations.</p>
+        <div class="note"><strong>Note:</strong> HR is not paperwork; it is how an organization competes through its people. In a world where strategies and technologies are quickly copied, the capability and commitment of a workforce is one of the hardest advantages to imitate.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> إدارة الموارد البشرية</div>
+          <div><span>النطاق:</span> استقطاب ناس المنشأة وتطويرهم وإبقاؤهم</div>
+          <div><span>دور المالك:</span> الموارد البشرية، مع كل مدير</div>
+          <div><span>دورية المراجعة:</span> مستمرة، بدورة ناسٍ سنوية</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">إدارة الموارد البشرية انضباط الحصول على أقصى ما لدى ناس المنشأة، باستقطاب الصحيحين، وتطوير قدرتهم، وإبقائهم منخرطين، وبناء السياسات والأنظمة التي تتيح لقوى عاملةٍ أن تزدهر. ولأن الناس، لأغلب المنشآت، أكبر كلفةٍ ومصدر القيمة الحقيقي معًا، فإدارتهم جيدًا ليست فكرةً إدارية لاحقة بل محرّك أداءٍ مركزي.</p>
+        <p>تهمّ الموارد البشرية لأن المنشأة بجودة ناسها وكيف يُقادون ويُسنَدون فقط. فأفضل استراتيجيةٍ تفشل بلا ناسٍ أكفاء محفَّزين لتنفيذها، وحتى استراتيجيةٌ عادية قد تنجح بفريقٍ استثنائي. ومع ذلك الناس معقّدون، يحتاجون استقطابًا وتطويرًا ومكافأةً وإبقاءً، ومعاملةً عادلة متّسقة، وفعل هذا كله جيدًا عبر منشأةٍ كاملة يتطلّب أنظمةً متعمَّدة، لا نوايا حسنة فقط. والموارد البشرية الجيدة تحوّل مجموعةً من الأفراد لقوى عاملة قادرة ملتزمة؛ والرديئة تدع المواهب تخرج من الباب والمشكلات تتفاقم.</p>
+        <p>يعرض هذا الإطار الموارد البشرية كانضباطٍ استراتيجي يمتدّ عبر دورة حياة الموظف كاملةً، من جلب الناس، عبر تطويرهم ومكافأتهم، إلى الأنظمة العادلة التي تربطها. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في ممارسة إدارة الناس المعترف بها، مصمَّمٌ ليكون قابلًا لإعادة الاستخدام عبر المنشآت.</p>
+        <div class="note"><strong>ملاحظة:</strong> الموارد البشرية ليست أوراقًا؛ بل كيف تنافس المنشأة عبر ناسها. وفي عالمٍ تُنسَخ فيه الاستراتيجيات والتقنيات سريعًا، قدرة قوى عاملةٍ والتزامها من أصعب الميزات تقليدًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="lifecycle">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Employee Lifecycle</h2>
+        <p class="lead">HR is best understood as managing the whole journey of a person's relationship with the organization, from before they join to after they leave. Each stage has its own work, and neglecting any one weakens the whole.</p>
+        <p>It begins with attracting and hiring: defining what the organization needs, drawing in qualified candidates, and selecting well, since a good hire is worth far more than an average one and a bad hire is costly to unwind. It continues with onboarding, integrating new people so they become productive and committed quickly rather than being left to sink or swim. Then comes the long middle of the relationship: developing people's skills and careers, managing and improving their performance, and rewarding them fairly through pay, benefits, and recognition. Finally there is retention and, eventually, departure, keeping good people, and handling exits, whether resignations or terminations, professionally and fairly.</p>
+        <table>
+          <tr><th><span data-lang="en">Stage</span><span data-lang="ar">المرحلة</span></th><th><span data-lang="en">The work</span><span data-lang="ar">العمل</span></th></tr>
+          <tr><td><span data-lang="en">Attract &amp; hire</span><span data-lang="ar">استقطاب وتوظيف</span></td><td><span data-lang="en">draw in and select the right people</span><span data-lang="ar">جذب واختيار الناس الصحيحين</span></td></tr>
+          <tr><td><span data-lang="en">Onboard</span><span data-lang="ar">إعداد</span></td><td><span data-lang="en">integrate new hires quickly and well</span><span data-lang="ar">دمج الجدد سريعًا وجيدًا</span></td></tr>
+          <tr><td><span data-lang="en">Develop &amp; reward</span><span data-lang="ar">تطوير ومكافأة</span></td><td><span data-lang="en">grow, manage, and fairly reward people</span><span data-lang="ar">تنمية وإدارة ومكافأة الناس بعدل</span></td></tr>
+          <tr><td><span data-lang="en">Retain &amp; exit</span><span data-lang="ar">إبقاء وخروج</span></td><td><span data-lang="en">keep good people, handle exits fairly</span><span data-lang="ar">إبقاء الجيدين، إدارة الخروج بعدل</span></td></tr>
+        </table>
+        <p>Seeing HR as a connected lifecycle matters because the stages depend on one another. Great hiring is wasted by poor onboarding; strong development is undone if pay is unfair; and an organization that treats departing people badly damages its reputation with those who remain and those it hopes to hire. The organizations that manage people best treat the whole journey as a coherent experience, so that each stage reinforces the next, and a person's entire relationship with the organization, from first contact to final day, builds capability, commitment, and a reputation that attracts more good people.</p>
+        <div class="note"><strong>Note:</strong> The stages are linked: excellent hiring is wasted by weak onboarding, and strong development is undone by unfair pay. HR fails when it does one stage well and neglects the rest, because the chain is only as strong as its weakest link.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>دورة حياة الموظف</h2>
+        <p class="lead">تُفهَم الموارد البشرية خيرَ فهمٍ كإدارة رحلة علاقة الشخص بالمنشأة كاملةً، من قبل التحاقه إلى بعد مغادرته. ولكل مرحلةٍ عملها، وإهمال أيٍّ يُضعِف الكلّ.</p>
+        <p>تبدأ بالاستقطاب والتوظيف: تعريف ما تحتاجه المنشأة، وجذب مرشّحين مؤهَّلين، والاختيار الجيد، إذ توظيفٌ جيد يساوي أكثر بكثيرٍ من متوسّط وتوظيفٌ سيّئ مكلف الحلّ. وتستمرّ بالإعداد، دمج الجدد فيصيرون منتجين وملتزمين سريعًا بدل تركهم يغرقون أو يسبحون. ثم يأتي وسط العلاقة الطويل: تطوير مهارات الناس ومساراتهم، وإدارة أدائهم وتحسينه، ومكافأتهم بعدل عبر الأجر والمزايا والتقدير. وأخيرًا الإبقاء، وآخِرًا المغادرة، إبقاء الجيدين، وإدارة الخروج، استقالةً أو إنهاءً، باحترافيةٍ وعدل.</p>
+        <table>
+          <tr><th><span data-lang="en">المرحلة</span><span data-lang="ar">المرحلة</span></th><th><span data-lang="en">العمل</span><span data-lang="ar">العمل</span></th></tr>
+          <tr><td><span data-lang="en">استقطاب وتوظيف</span><span data-lang="ar">استقطاب وتوظيف</span></td><td><span data-lang="en">جذب واختيار الناس الصحيحين</span><span data-lang="ar">جذب واختيار الناس الصحيحين</span></td></tr>
+          <tr><td><span data-lang="en">إعداد</span><span data-lang="ar">إعداد</span></td><td><span data-lang="en">دمج الجدد سريعًا وجيدًا</span><span data-lang="ar">دمج الجدد سريعًا وجيدًا</span></td></tr>
+          <tr><td><span data-lang="en">تطوير ومكافأة</span><span data-lang="ar">تطوير ومكافأة</span></td><td><span data-lang="en">تنمية وإدارة ومكافأة الناس بعدل</span><span data-lang="ar">تنمية وإدارة ومكافأة الناس بعدل</span></td></tr>
+          <tr><td><span data-lang="en">إبقاء وخروج</span><span data-lang="ar">إبقاء وخروج</span></td><td><span data-lang="en">إبقاء الجيدين، إدارة الخروج بعدل</span><span data-lang="ar">إبقاء الجيدين، إدارة الخروج بعدل</span></td></tr>
+        </table>
+        <p>رؤية الموارد البشرية كدورة حياةٍ متصلة تهمّ لأن المراحل تعتمد على بعضها. فتوظيفٌ رائع يُهدَر بإعدادٍ رديء؛ وتطويرٌ قوي يُنقَض إن كان الأجر غير عادل؛ ومنشأةٌ تعامل المغادرين بسوءٍ تضرّ سمعتها لدى الباقين ومن تأمل توظيفهم. والمنشآت التي تدير الناس أفضل تعامل الرحلة كلها كتجربةٍ متماسكة، فتعزّز كل مرحلةٍ التالية، وتبني علاقة الشخص بالمنشأة كاملةً، من أول اتصالٍ ليومه الأخير، القدرة والالتزام وسمعةً تجذب مزيدًا من الجيدين.</p>
+        <div class="note"><strong>ملاحظة:</strong> المراحل مترابطة: توظيفٌ ممتاز يُهدَر بإعدادٍ ضعيف، وتطويرٌ قوي يُنقَض بأجرٍ غير عادل. والموارد البشرية تفشل حين تُتقِن مرحلةً وتهمل الباقي، إذ السلسلة بقوّة أضعف حلقاتها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="strategic">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>HR as a Strategic Function</h2>
+        <p class="lead">Beyond running the lifecycle well, the highest form of HR is strategic: aligning the whole people system with the organization's goals, and building the culture and fairness on which everything else depends.</p>
+        <p>Strategic HR starts from the organization's strategy and asks what people, capabilities, and culture it will need to succeed, then builds them deliberately: hiring for the skills the future requires, developing capabilities before they are urgently needed, and shaping a workforce fit for where the organization is going, not just where it has been. It also recognizes that all the individual practices must fit together and reinforce the same behaviors. If the organization says it values teamwork but rewards only individual heroics, or preaches development but promotes only outsiders, the contradictions undermine everything. A coherent people system sends one consistent message through what it hires for, develops, rewards, and promotes.</p>
+        <p>Underpinning all of it is fairness and consistency. Because HR deals with people's livelihoods and sense of being valued, it must be, and be seen to be, fair: applying policies consistently, making decisions on legitimate grounds, and treating people with dignity. Perceived unfairness, in pay, promotion, or discipline, poisons engagement faster than almost anything, while a reputation for fairness earns the trust on which commitment rests. Good HR also protects the organization by ensuring it meets its legal and ethical obligations to its people. In the end, HR done strategically is how an organization builds its single most durable advantage: a capable, committed, fairly treated workforce that competitors cannot simply copy.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> human resources management builds an organization's advantage through its people, by managing the whole employee lifecycle as a coherent experience, aligning the people system with strategy, ensuring the practices reinforce one another, and grounding everything in fairness and consistency, so a workforce becomes a durable, hard-to-copy source of value.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الموارد البشرية كوظيفةٍ استراتيجية</h2>
+        <p class="lead">وراء تشغيل دورة الحياة جيدًا، أرفع أشكال الموارد البشرية استراتيجي: مواءمة نظام الناس كله مع أهداف المنشأة، وبناء الثقافة والعدل اللذين يعتمد عليهما كل ما عداه.</p>
+        <p>الموارد البشرية الاستراتيجية تبدأ من استراتيجية المنشأة وتسأل أي ناسٍ وقدراتٍ وثقافة ستحتاجها للنجاح، ثم تبنيها عمدًا: التوظيف للمهارات التي يتطلّبها المستقبل، وتطوير القدرات قبل الحاجة الملحّة إليها، وتشكيل قوى عاملة ملائمة لأين تذهب المنشأة، لا لأين كانت فقط. وتدرك أيضًا أن الممارسات الفردية كلها يجب أن تتلاءم وتعزّز السلوكيات ذاتها. فإن قالت المنشأة إنها تقدّر العمل الجماعي لكنها تكافئ البطولات الفردية فقط، أو وعظت بالتطوير لكنها تُرقّي الخارجيين فقط، قوّضت التناقضاتُ كلَّ شيء. ونظام ناسٍ متماسك يرسل رسالةً متّسقة واحدة عبر ما يوظّف له ويطوّره ويكافئه ويُرقّيه.</p>
+        <p>ويسند هذا كله العدل والاتّساق. فلأن الموارد البشرية تتعامل مع أرزاق الناس وإحساسهم بالتقدير، يجب أن تكون، وأن تُرى، عادلة: بتطبيق السياسات باتّساق، واتّخاذ القرارات على أسسٍ مشروعة، ومعاملة الناس بكرامة. والظلم المُدرَك، في الأجر أو الترقية أو الانضباط، يسمّم المشاركة أسرع من أي شيءٍ تقريبًا، وسمعة العدل تكسب الثقة التي يقوم عليها الالتزام. والموارد البشرية الجيدة تحمي المنشأة أيضًا بضمان وفائها بالتزاماتها القانونية والأخلاقية لناسها. وفي النهاية، الموارد البشرية المفعولة استراتيجيًا هي كيف تبني المنشأة أدوم ميزةٍ لها: قوى عاملة قادرة ملتزمة مُعامَلة بعدلٍ لا يستطيع المنافسون نسخها ببساطة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> إدارة الموارد البشرية تبني ميزة المنشأة عبر ناسها، بإدارة دورة حياة الموظف كاملةً كتجربةٍ متماسكة، ومواءمة نظام الناس مع الاستراتيجية، وضمان تعزيز الممارسات لبعضها، وتأصيل كل شيءٍ في العدل والاتّساق، فتصير قوى عاملةٌ مصدر قيمةٍ دائمًا صعب النسخ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">HR builds an organization's advantage through its people, across a coherent lifecycle grounded in fairness.</p>
+        <ul>
+          <li>Treat HR as strategic: an organization competes through the capability and commitment of its people.</li>
+          <li>Manage the whole lifecycle, from attracting and hiring to development, reward, retention, and exit.</li>
+          <li>Remember the stages are linked, so neglecting one undermines the others.</li>
+          <li>Align the people system with strategy, and make its practices reinforce the same behaviors.</li>
+          <li>Ground everything in fairness and consistency, since perceived unfairness poisons engagement fastest.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.shrm.org/topics-tools" target="_blank" rel="noopener">SHRM, human resources topics and tools.</a></li>
+          <li><a href="https://hbr.org/2015/07/why-we-love-to-hate-hr-and-what-hr-can-do-about-it" target="_blank" rel="noopener">HBR, on the strategic role of HR.</a></li>
+          <li><a href="https://www.gallup.com/workplace/" target="_blank" rel="noopener">Gallup, on engagement and people management.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">الموارد البشرية تبني ميزة المنشأة عبر ناسها، عبر دورة حياةٍ متماسكة مؤصَّلة في العدل.</p>
+        <ul>
+          <li>عامِل الموارد البشرية كاستراتيجية: المنشأة تنافس عبر قدرة ناسها والتزامهم.</li>
+          <li>أدِر دورة الحياة كاملةً، من الاستقطاب والتوظيف للتطوير والمكافأة والإبقاء والخروج.</li>
+          <li>تذكّر أن المراحل مترابطة، فإهمال واحدةٍ يقوّض الأخرى.</li>
+          <li>وائم نظام الناس مع الاستراتيجية، واجعل ممارساته تعزّز السلوكيات ذاتها.</li>
+          <li>أصّل كل شيءٍ في العدل والاتّساق، إذ الظلم المُدرَك يسمّم المشاركة أسرع.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.shrm.org/topics-tools" target="_blank" rel="noopener">SHRM، مواضيع وأدوات الموارد البشرية.</a></li>
+          <li><a href="https://hbr.org/2015/07/why-we-love-to-hate-hr-and-what-hr-can-do-about-it" target="_blank" rel="noopener">HBR، عن الدور الاستراتيجي للموارد البشرية.</a></li>
+          <li><a href="https://www.gallup.com/workplace/" target="_blank" rel="noopener">Gallup، عن المشاركة وإدارة الناس.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","lifecycle","strategic","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Payments &amp; Fintech Operations</title>
+<meta name="description" content="An operational framework for digital payments: the payment chain, securing card data, fraud and risk balance, reliability, reconciliation, and compliance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">INFORMATION TECHNOLOGY &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">تقنية المعلومات &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Digital Payments &amp; Fintech Operations</span><span data-lang="ar">المدفوعات الرقمية وعمليات التقنية المالية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="chain"><span data-lang="en">The Chain</span><span data-lang="ar">السلسلة</span></a>
+    <a data-id="security"><span data-lang="en">Security</span><span data-lang="ar">الأمن</span></a>
+    <a data-id="fraud"><span data-lang="en">Fraud &amp; Risk</span><span data-lang="ar">الاحتيال والمخاطر</span></a>
+    <a data-id="reliability"><span data-lang="en">Reliability</span><span data-lang="ar">الموثوقية</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Digital payments &amp; fintech operations</div>
+          <div><span>Scope:</span> Moving money digitally with security, reliability, and compliance</div>
+          <div><span>Owner role:</span> Payments product owner, with risk and operations owners</div>
+          <div><span>Review cadence:</span> Continuous monitoring, controls review each quarter</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">A digital payment is the movement of money from one party to another through electronic systems, and behind every tap or click sits a chain of participants and controls that must all work correctly for value to move safely. Understanding that chain is the foundation for operating, building on, or integrating with modern payments.</p>
+        <p>Payments look instantaneous to a customer but are anything but simple underneath. A single card payment involves the customer, the merchant, the merchant's bank, the customer's bank, and the card network that connects them, each playing a defined role, with the actual movement of funds often settling hours or days after the customer sees an approval. The apparent simplicity is the product of enormous coordinated infrastructure, and the operational discipline of payments is about keeping that infrastructure secure, reliable, and compliant.</p>
+        <p>This framework describes the operational essentials of digital payments as a reusable model, drawing on the security discipline of the companion frameworks and the recognized standards that govern card and financial data. It aligns to those standards without reproducing their text, and is written to apply across payment types and markets.</p>
+        <div class="note"><strong>Note:</strong> In payments, trust is the product. A payment system that is fast and cheap but occasionally loses money or leaks data has no future, because the entire value of the system rests on the near-certainty that money moves correctly and safely every time.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> المدفوعات الرقمية وعمليات التقنية المالية</div>
+          <div><span>النطاق:</span> تحريك المال رقميًا بأمانٍ وموثوقيةٍ وامتثال</div>
+          <div><span>دور المالك:</span> مالك منتج المدفوعات، مع ملّاك المخاطر والعمليات</div>
+          <div><span>دورية المراجعة:</span> مراقبةٌ مستمرة، ومراجعة ضوابطٍ كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الدفع الرقمي تحريكٌ للمال من طرفٍ لآخر عبر أنظمةٍ إلكترونية، وخلف كل نقرةٍ أو لمسة سلسلةٌ من المشاركين والضوابط يجب أن تعمل كلها بصحّةٍ لينتقل المال بأمان. وفهم تلك السلسلة أساس تشغيل المدفوعات الحديثة أو البناء عليها أو التكامل معها.</p>
+        <p>تبدو المدفوعات فوريةً للعميل لكنها أبعد ما تكون عن البساطة تحتها. فدفعة بطاقةٍ واحدة تشمل العميل والتاجر وبنك التاجر وبنك العميل وشبكة البطاقة التي تصلهم، كلٌّ بدورٍ محدَّد، مع تحريكٍ فعلي للأموال يُسوَّى غالبًا بعد ساعاتٍ أو أيامٍ من رؤية العميل للموافقة. والبساطة الظاهرة ناتج بنيةٍ تحتية ضخمة منسّقة، وانضباط تشغيل المدفوعات هو إبقاء تلك البنية آمنةً وموثوقةً وممتثلة.</p>
+        <p>يصف هذا الإطار أساسيات تشغيل المدفوعات الرقمية كنموذجٍ قابل لإعادة الاستخدام، مستندًا إلى انضباط الأمن في الأطر الرفيقة والمعايير المعترف بها التي تحوكم بيانات البطاقات والمال. ويتوافق مع تلك المعايير دون نسخ نصّها، ومكتوب لينطبق عبر أنواع المدفوعات والأسواق.</p>
+        <div class="note"><strong>ملاحظة:</strong> في المدفوعات، الثقة هي المنتج. فنظام دفعٍ سريع رخيص لكنه يفقد المال أحيانًا أو يسرّب البيانات لا مستقبل له، لأن قيمة النظام كلها تقوم على شبه اليقين بأن المال ينتقل بصحّةٍ وأمانٍ كل مرة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="chain">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Payment Chain</h2>
+        <p class="lead">Every card payment passes through a defined chain of participants, and knowing who does what is the map you need to reason about cost, risk, and failure. The roles are consistent even as the technology around them evolves.</p>
+        <p>The journey runs from the customer, who initiates the payment, through the merchant who receives it, to the merchant's acquiring bank, across the card network, to the customer's issuing bank, which holds the funds and makes the final decision to approve or decline. The approval that flashes back to the customer in a second is the result of this whole round trip, and the actual money moves later in a separate settlement process.</p>
+        <ul>
+          <li><strong>Cardholder:</strong> the customer initiating and authorizing the payment.</li>
+          <li><strong>Merchant:</strong> the business accepting the payment for goods or services.</li>
+          <li><strong>Acquirer:</strong> the merchant's bank, which receives the payment on their behalf.</li>
+          <li><strong>Network:</strong> the card scheme that routes the transaction between the two banks.</li>
+          <li><strong>Issuer:</strong> the customer's bank, which holds the funds and approves or declines.</li>
+        </ul>
+        <h3>Authorization, clearing, settlement</h3>
+        <p>The chain operates in stages that are easy to conflate but important to separate. Authorization is the instant check that the customer has the funds and the payment looks legitimate, producing the approval. Clearing is the exchange of the transaction details between the banks. Settlement is the actual movement of money, which happens later, often in batches. This is why a customer can see a payment approved immediately but a merchant receives the funds a day or two later, and why a payment can be authorized and then still fail to settle.</p>
+        <div class="note"><strong>Note:</strong> Authorization is a promise, settlement is the money. Operations and reconciliation exist precisely to make sure that every authorized payment eventually settles correctly, and to catch the ones that do not.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>سلسلة الدفع</h2>
+        <p class="lead">كل دفعة بطاقةٍ تمرّ بسلسلةٍ محدَّدة من المشاركين، ومعرفة من يفعل ماذا هي الخريطة التي تحتاجها للتفكير في الكلفة والخطر والفشل. والأدوار ثابتةٌ ولو تطوّرت التقنية حولها.</p>
+        <p>تمتد الرحلة من العميل الذي يبدأ الدفعة، عبر التاجر الذي يتلقّاها، إلى بنك التاجر المستحوِذ، عبر شبكة البطاقة، إلى بنك العميل المُصدِر، الذي يحوز الأموال ويتّخذ القرار النهائي بالموافقة أو الرفض. والموافقة التي تعود للعميل في ثانيةٍ نتيجةُ هذه الرحلة الكاملة ذهابًا وإيابًا، والمال الفعلي يتحرّك لاحقًا في عملية تسويةٍ منفصلة.</p>
+        <ul>
+          <li><strong>حامل البطاقة:</strong> العميل الذي يبدأ الدفعة ويصرّح بها.</li>
+          <li><strong>التاجر:</strong> العمل الذي يقبل الدفعة مقابل سلعٍ أو خدمات.</li>
+          <li><strong>المستحوِذ:</strong> بنك التاجر، الذي يتلقّى الدفعة نيابةً عنه.</li>
+          <li><strong>الشبكة:</strong> نظام البطاقة الذي يوجّه المعاملة بين البنكين.</li>
+          <li><strong>المُصدِر:</strong> بنك العميل، الذي يحوز الأموال ويوافق أو يرفض.</li>
+        </ul>
+        <h3>التفويض والمقاصّة والتسوية</h3>
+        <p>تعمل السلسلة على مراحل سهلة الخلط مهمّة الفصل. التفويض هو الفحص اللحظي بأن للعميل الأموال وأن الدفعة تبدو مشروعة، مُنتِجًا الموافقة. والمقاصّة هي تبادل تفاصيل المعاملة بين البنوك. والتسوية هي التحريك الفعلي للمال، ويقع لاحقًا، غالبًا في دفعاتٍ مجمّعة. ولذا يرى العميل الدفعة مُوافَقًا عليها فورًا بينما يتلقّى التاجر الأموال بعد يومٍ أو يومين، ولذا قد تُفوَّض دفعةٌ ثم تفشل تسويتها.</p>
+        <div class="note"><strong>ملاحظة:</strong> التفويض وعدٌ، والتسوية هي المال. والعمليات والمطابقة موجودةٌ تحديدًا لضمان أن كل دفعةٍ مُفوَّضة تُسوَّى آخرًا بصحّة، والتقاط ما لا يُسوَّى.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="security">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Securing Payment Data</h2>
+        <p class="lead">Payment data is among the most attacked data that exists, because it converts directly to money. Protecting it is not optional or general, it is governed by strict, specific standards, and the single most powerful strategy is to hold as little of it as possible.</p>
+        <p>The card industry defines a security standard for any organization that handles card data, setting requirements for how that data is stored, transmitted, and protected. The obligations are demanding, which is precisely why the best strategy is to reduce the scope of data you touch. Techniques such as tokenization, replacing a card number with a meaningless substitute that is useless if stolen, and routing payments so sensitive data never lands in your own systems, shrink both the risk and the compliance burden at once.</p>
+        <ul>
+          <li><strong>Minimize the data:</strong> never store card data you do not absolutely need, because data you do not hold cannot be stolen from you.</li>
+          <li><strong>Tokenize:</strong> replace sensitive card numbers with tokens that are worthless outside the system that issued them.</li>
+          <li><strong>Encrypt everywhere:</strong> protect payment data in transit and at rest so intercepting it yields nothing usable.</li>
+          <li><strong>Scope down:</strong> design flows so sensitive data passes through specialized, compliant providers rather than your general systems.</li>
+        </ul>
+        <p>The strategic insight is that compliance scope follows data. Every system that touches raw card data falls under the full weight of the security standard, so the organizations that handle payments most safely are usually the ones that arranged never to touch the raw data in the first place, letting a specialized provider carry that burden. Reducing what you hold is simultaneously the strongest security control and the cheapest path to compliance.</p>
+        <div class="note"><strong>Note:</strong> The safest card number is the one you never store. Design payment flows to minimize and tokenize sensitive data before you design the controls to protect it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>تأمين بيانات الدفع</h2>
+        <p class="lead">بيانات الدفع من أكثر البيانات تعرّضًا للهجوم، لأنها تتحوّل مباشرةً إلى مال. وحمايتها ليست اختيارية أو عامة، بل تحوكمها معايير صارمة محدَّدة، وأقوى استراتيجيةٍ مفردة حيازة أقلّ ما يمكن منها.</p>
+        <p>تحدّد صناعة البطاقات معيار أمنٍ لأي منشأةٍ تتعامل مع بيانات البطاقات، واضعةً متطلبات كيف تُخزَّن تلك البيانات وتُنقَل وتُحمى. والالتزامات صعبة، ولذا بالضبط فأفضل استراتيجيةٍ تقليل نطاق البيانات التي تمسّها. فتقنياتٌ كالترميز، أي استبدال رقم البطاقة ببديلٍ بلا معنى عديم الفائدة إن سُرِق، وتوجيه المدفوعات بحيث لا تحطّ البيانات الحساسة في أنظمتك أبدًا، تُقلّص الخطر وعبء الامتثال معًا.</p>
+        <ul>
+          <li><strong>قلّل البيانات:</strong> لا تخزّن بيانات بطاقةٍ لا تحتاجها قطعًا، لأن بياناتٍ لا تحوزها لا تُسرَق منك.</li>
+          <li><strong>رمّز:</strong> استبدل أرقام البطاقات الحساسة برموزٍ لا قيمة لها خارج النظام الذي أصدرها.</li>
+          <li><strong>عمِّ في كل مكان:</strong> احمِ بيانات الدفع نقلًا وتخزينًا فلا يُجدي اعتراضها شيئًا.</li>
+          <li><strong>قلّص النطاق:</strong> صمّم التدفّقات بحيث تمرّ البيانات الحساسة عبر مزوّدين متخصّصين ممتثلين لا أنظمتك العامة.</li>
+        </ul>
+        <p>البصيرة الاستراتيجية أن نطاق الامتثال يتبع البيانات. فكل نظامٍ يمسّ بيانات البطاقة الخام يقع تحت كامل ثقل معيار الأمن، فالمنشآت التي تعالج المدفوعات أأمن هي عادةً التي رتّبت ألّا تمسّ البيانات الخام أصلًا، تاركةً مزوّدًا متخصّصًا يحمل ذلك العبء. وتقليل ما تحوزه هو في آنٍ أقوى ضابط أمنٍ وأرخص مسار امتثال.</p>
+        <div class="note"><strong>ملاحظة:</strong> أأمن رقم بطاقةٍ هو الذي لا تخزّنه أبدًا. صمّم تدفّقات الدفع لتقليل البيانات الحساسة وترميزها قبل أن تصمّم ضوابط حمايتها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="fraud">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Fraud &amp; Transaction Risk</h2>
+        <p class="lead">Because payments move money, they attract fraud, and managing that fraud is a constant balance between stopping bad transactions and not blocking good ones. Too little control lets losses through, too much drives away legitimate customers, and the art is holding the line between them.</p>
+        <p>Fraud management works by assessing the risk of each transaction in real time, using signals such as the amount, the location, the device, the pattern of behavior, and how these compare to what is normal for that customer. A transaction that looks risky can be challenged with an extra check, declined, or flagged for review, while the vast majority that look normal pass without friction. The goal is not to eliminate fraud, which is impossible, but to keep it below a tolerable level at an acceptable cost in friction and false declines.</p>
+        <div class="formula">The balance: fraud losses prevented, weighed against good customers lost to false declines and added friction</div>
+        <h4>Worked example</h4>
+        <p>A rule that declines every transaction over a threshold from a new device would stop much fraud, but it would also decline a loyal customer buying a gift on a new phone, and that false decline has a real cost in lost sales and goodwill. A better approach adds a light extra check for that risky-looking case rather than a flat decline, catching fraud while letting the genuine customer through. The measure of a fraud program is this ratio: how much fraud it stops per legitimate customer it inconveniences.</p>
+        <p>Two other duties round out payment risk. Chargebacks, where a customer disputes a payment, must be handled through a defined process, and strong customer authentication, confirming the payer really is who they claim through more than one factor, both reduces fraud and is increasingly required by regulators, echoing the identity discipline from the security frameworks.</p>
+        <div class="note"><strong>Note:</strong> Measure fraud controls by both what they stop and what they cost in false declines. A control that blocks fraud by also blocking good customers can lose more than the fraud it prevents.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الاحتيال ومخاطر المعاملات</h2>
+        <p class="lead">لأن المدفوعات تحرّك المال، تجذب الاحتيال، وإدارته موازنةٌ دائمة بين إيقاف المعاملات السيئة وعدم منع الجيدة. فضبطٌ أقلّ من اللازم يمرّر الخسائر، وأكثر من اللازم يطرد العملاء الشرعيين، والفنّ إمساك الخط بينهما.</p>
+        <p>تعمل إدارة الاحتيال بتقييم خطر كل معاملةٍ لحظيًا، بإشاراتٍ كالمبلغ والموقع والجهاز ونمط السلوك وكيف تقارَن بما هو معتادٌ لذلك العميل. فمعاملةٌ تبدو خطرة يمكن تحدّيها بفحصٍ إضافي أو رفضها أو وسمها للمراجعة، بينما تمرّ الغالبية العظمى التي تبدو معتادةً بلا احتكاك. والهدف ليس إزالة الاحتيال، فهو مستحيل، بل إبقاؤه تحت مستوىً محتمَل بكلفةٍ مقبولة من الاحتكاك والرفض الكاذب.</p>
+        <div class="formula">الموازنة: خسائر احتيالٍ مُمنَعة، موزونةً بعملاء جيّدين خُسِروا بالرفض الكاذب والاحتكاك المُضاف</div>
+        <h4>مثال محلول</h4>
+        <p>قاعدةٌ ترفض كل معاملةٍ فوق عتبةٍ من جهازٍ جديد ستوقف احتيالًا كثيرًا، لكنها سترفض أيضًا عميلًا وفيًّا يشتري هديةً على هاتفٍ جديد، ولذلك الرفض الكاذب كلفةٌ حقيقية في مبيعاتٍ ونيّةٍ حسنة مفقودة. ونهجٌ أفضل يضيف فحصًا خفيفًا إضافيًا لتلك الحالة الخطرة المظهر بدل رفضٍ قاطع، فيلتقط الاحتيال ويمرّر العميل الحقيقي. ومقياس برنامج الاحتيال هذه النسبة: كم يوقف من احتيالٍ مقابل كل عميلٍ شرعي يُزعِجه.</p>
+        <p>التزامان آخران يكملان مخاطر الدفع. ردّ المبالغ (Chargeback)، حيث ينازع عميلٌ دفعة، يجب معالجته عبر عمليةٍ محدَّدة، والمصادقة القوية للعميل، أي تأكيد أن الدافع فعلًا من يدّعي عبر أكثر من عامل، تُقلّل الاحتيال وتُطلَب تنظيميًا تزايدًا، مُردِّدةً انضباط الهوية من أطر الأمن.</p>
+        <div class="note"><strong>ملاحظة:</strong> قِس ضوابط الاحتيال بما توقفه وما تكلّفه من رفضٍ كاذب معًا. فضابطٌ يمنع الاحتيال بمنع العملاء الجيّدين أيضًا قد يخسر أكثر من الاحتيال الذي يمنعه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="reliability">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Reliability, Reconciliation &amp; Compliance</h2>
+        <p class="lead">A payment system has to be right, not just available. Beyond keeping the service up, payments carry a duty to make sure every transaction is accounted for correctly and that the strict rules governing money are met.</p>
+        <p>Reliability in payments has a sharper edge than in most systems, because a failure at the wrong moment can take money without delivering value, or deliver value without taking money. This makes idempotency, the property that retrying a payment does not charge the customer twice, a critical design requirement rather than a nicety. Reconciliation is the discipline that catches what still slips through: systematically comparing what the organization's records say happened against what the banks and networks report, and investigating every difference, because in payments a small unexplained discrepancy can be a large real problem.</p>
+        <ul>
+          <li><strong>Idempotency:</strong> a retried or duplicated payment request results in one charge, never two, by design.</li>
+          <li><strong>Reconciliation:</strong> systematic matching of internal records against bank and network reports, with every gap investigated.</li>
+          <li><strong>Availability:</strong> resilient operation, because a payment system that is down is a business that cannot take money.</li>
+          <li><strong>Regulatory compliance:</strong> meeting the rules of financial regulators and card networks, which is a license to operate, not an option.</li>
+        </ul>
+        <p>Compliance in payments is not a separate function bolted on, it is woven through everything: the card data standard shapes the architecture, financial regulation shapes the controls, and strong authentication rules shape the customer experience. An organization operating in payments treats these not as external impositions but as the conditions of being trusted to move money at all, which connects payments directly back to the governance, risk, and compliance discipline of the security frameworks.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> digital payments succeed on trust, earned by understanding the chain, minimizing and protecting sensitive data, balancing fraud control against customer friction, and proving through reconciliation and compliance that money always moves correctly.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الموثوقية والمطابقة والامتثال</h2>
+        <p class="lead">نظام الدفع عليه أن يكون صحيحًا لا متاحًا فحسب. فوراء إبقاء الخدمة عاملة، تحمل المدفوعات مسؤولية ضمان أن كل معاملةٍ محسوبةٌ بصحّة وأن القواعد الصارمة التي تحوكم المال مُستوفاة.</p>
+        <p>الموثوقية في المدفوعات أحدّ منها في أغلب الأنظمة، لأن فشلًا في اللحظة الخطأ قد يأخذ المال دون تسليم قيمة، أو يسلّم قيمةً دون أخذ مال. وهذا يجعل «اللاتكرارية» (Idempotency)، أي خاصية أن إعادة محاولة دفعةٍ لا تشحن العميل مرتين، متطلَّب تصميمٍ حرجًا لا ترفًا. والمطابقة هي الانضباط الذي يلتقط ما يفلت: مقارنةٌ منهجية لما تقوله سجلات المنشأة بما تُبلّغه البنوك والشبكات، والتحقيق في كل فرق، لأن في المدفوعات قد يكون تباينٌ صغير غير مُفسَّر مشكلةً حقيقية كبيرة.</p>
+        <ul>
+          <li><strong>اللاتكرارية:</strong> طلب دفعٍ مُعاد أو مكرَّر يُنتِج شحنةً واحدة لا اثنتين، بالتصميم.</li>
+          <li><strong>المطابقة:</strong> مضاهاةٌ منهجية للسجلات الداخلية بتقارير البنوك والشبكات، بالتحقيق في كل فجوة.</li>
+          <li><strong>التوافر:</strong> تشغيلٌ مرن، لأن نظام دفعٍ متوقّف عملٌ لا يستطيع أخذ المال.</li>
+          <li><strong>الامتثال التنظيمي:</strong> الوفاء بقواعد الجهات المالية وشبكات البطاقات، وهو رخصة تشغيلٍ لا خيار.</li>
+        </ul>
+        <p>الامتثال في المدفوعات ليس وظيفةً منفصلة مُلحَقة، بل منسوجٌ عبر كل شيء: معيار بيانات البطاقة يشكّل البنية، والتنظيم المالي يشكّل الضوابط، وقواعد المصادقة القوية تشكّل تجربة العميل. ومنشأةٌ تعمل في المدفوعات تعامل هذه لا كفرضٍ خارجي بل كشروط أن تُؤتمَن على تحريك المال أصلًا، وهو ما يصل المدفوعات مباشرةً بانضباط الحوكمة والمخاطر والامتثال في أطر الأمن.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> المدفوعات الرقمية تنجح على الثقة، تُكسَب بفهم السلسلة، وتقليل البيانات الحساسة وحمايتها، وموازنة ضبط الاحتيال مقابل احتكاك العميل، والإثبات بالمطابقة والامتثال أن المال ينتقل بصحّةٍ دائمًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Digital payments move money safely by mastering the participant chain, protecting sensitive data, balancing fraud against friction, and proving correctness through reconciliation and compliance.</p>
+        <ul>
+          <li>Know the payment chain and separate authorization from settlement, because approval is a promise and settlement is the money.</li>
+          <li>Minimize and tokenize card data, since the safest and cheapest-to-comply data is the data you never hold.</li>
+          <li>Balance fraud control against false declines, measuring both what it stops and what it costs.</li>
+          <li>Design for idempotency and reconcile relentlessly, because unexplained discrepancies hide real losses.</li>
+          <li>Treat compliance and strong authentication as the license to move money, not optional extras.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener">PCI Security Standards Council, payment card data security standards.</a></li>
+          <li><a href="https://www.sama.gov.sa/en-US/RulesInstructions/Pages/Cybersecurity.aspx" target="_blank" rel="noopener">SAMA, rules and instructions for the financial sector (regulatory context).</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/63/b/4/final" target="_blank" rel="noopener">NIST SP 800-63B, Authentication (strong customer authentication).</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022, Information security management systems.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">المدفوعات الرقمية تحرّك المال بأمانٍ بإتقان سلسلة المشاركين، وحماية البيانات الحساسة، وموازنة الاحتيال مقابل الاحتكاك، وإثبات الصحّة بالمطابقة والامتثال.</p>
+        <ul>
+          <li>اعرف سلسلة الدفع وافصل التفويض عن التسوية، لأن الموافقة وعدٌ والتسوية هي المال.</li>
+          <li>قلّل ورمّز بيانات البطاقة، لأن أأمن البيانات وأرخصها امتثالًا هي التي لا تحوزها أبدًا.</li>
+          <li>وازِن ضبط الاحتيال مقابل الرفض الكاذب، بقياس ما يوقفه وما يكلّفه معًا.</li>
+          <li>صمّم للاتكرارية وطابِق بلا هوادة، لأن التباينات غير المُفسَّرة تُخفي خسائر حقيقية.</li>
+          <li>عامِل الامتثال والمصادقة القوية كرخصة تحريك المال، لا إضافاتٍ اختيارية.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.pcisecuritystandards.org/" target="_blank" rel="noopener">مجلس معايير أمن بيانات البطاقات PCI SSC.</a></li>
+          <li><a href="https://www.sama.gov.sa/en-US/RulesInstructions/Pages/Cybersecurity.aspx" target="_blank" rel="noopener">SAMA، قواعد وتعليمات القطاع المالي (سياق تنظيمي).</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/63/b/4/final" target="_blank" rel="noopener">NIST SP 800-63B، المصادقة (المصادقة القوية للعميل).</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022، أنظمة إدارة أمن المعلومات.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","chain","security","fraud","reliability","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

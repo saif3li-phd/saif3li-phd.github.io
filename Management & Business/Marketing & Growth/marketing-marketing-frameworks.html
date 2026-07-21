@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Frameworks</title>
+<meta name="description" content="An original framework of marketing frameworks: customer and value proposition, the marketing mix, and the funnel, with a worked funnel illustration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">MARKETING &amp; GROWTH &middot; FRAMEWORK</span><span data-lang="ar">التسويق والنمو &middot; إطار</span></div>
+    <h1><span data-lang="en">Marketing Frameworks</span><span data-lang="ar">أطر التسويق</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="customer"><span data-lang="en">Customer &amp; Value</span><span data-lang="ar">العميل والقيمة</span></a>
+    <a data-id="funnel"><span data-lang="en">The Funnel</span><span data-lang="ar">القُمع</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Marketing frameworks</div>
+          <div><span>Scope:</span> Structured thinking for marketing decisions</div>
+          <div><span>Owner role:</span> Marketing leadership, with the business</div>
+          <div><span>Review cadence:</span> Planning cycle, with continuous measurement</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Marketing frameworks are the structured mental models that turn marketing from guesswork into disciplined decision-making. They give a marketer reliable ways to answer the core questions of the field: who the customer is, what value to offer them, how to reach and persuade them, and how to keep them, so that marketing spend produces growth rather than noise.</p>
+        <p>These frameworks matter because marketing is easy to do busily and hard to do well. It is simple to run campaigns, post content, and spend budget; it is far harder to make sure all that activity is aimed at the right people, offering the right value, through the right channels, in a way that actually drives profitable growth. Frameworks provide the discipline that keeps marketing strategic: they force the marketer to think clearly about customers and value before rushing to tactics, and to measure whether the money is working.</p>
+        <p>This framework brings together the essential marketing models, from understanding the customer and the value proposition, through the classic marketing mix, to the funnel that maps the customer's journey. It is my own synthesis, written in my own words and grounded in recognized marketing thinking, and it includes a worked illustration of the funnel.</p>
+        <div class="note"><strong>Note:</strong> Marketing is not the same as advertising. Advertising is one tactic; marketing is the whole discipline of deciding who to serve, what to offer, and how, so that the business grows profitably.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> أطر التسويق</div>
+          <div><span>النطاق:</span> تفكيرٌ منظَّم لقرارات التسويق</div>
+          <div><span>دور المالك:</span> قيادة التسويق، مع العمل</div>
+          <div><span>دورية المراجعة:</span> دورة التخطيط، بقياسٍ مستمر</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">أطر التسويق النماذج الذهنية المنظَّمة التي تحوّل التسويق من تخمينٍ إلى صنع قرارٍ منضبط. تمنح المسوّق طرقًا موثوقة للإجابة على أسئلة المجال الجوهرية: من العميل، وأي قيمةٍ تُقدَّم له، وكيف يُبلَغ ويُقنَع، وكيف يُبقى، فيُنتِج إنفاق التسويق نموًّا لا ضجيجًا.</p>
+        <p>تهمّ هذه الأطر لأن التسويق سهلٌ فعله بانشغالٍ صعبٌ فعله جيدًا. فمن السهل إطلاق حملاتٍ ونشر محتوى وإنفاق ميزانية؛ ومن الأصعب بكثيرٍ ضمان أن كل ذلك النشاط مُصوَّب للناس الصحيحين، عارضًا القيمة الصحيحة، عبر القنوات الصحيحة، بطريقةٍ تقود نموًّا مربحًا فعلًا. والأطر توفّر الانضباط الذي يُبقي التسويق استراتيجيًا: تُجبِر المسوّق على التفكير بوضوحٍ في العملاء والقيمة قبل التسرّع للتكتيكات، وعلى قياس هل يعمل المال.</p>
+        <p>يجمع هذا الإطار نماذج التسويق الأساسية، من فهم العميل وعرض القيمة، عبر المزيج التسويقي الكلاسيكي، إلى القُمع الذي يرسم رحلة العميل. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في فكرٍ تسويقي معترف به، ويتضمّن رسمًا توضيحيًا للقُمع.</p>
+        <div class="note"><strong>ملاحظة:</strong> التسويق ليس كالإعلان. فالإعلان تكتيكٌ واحد؛ والتسويق كامل انضباط تقرير من تخدم وما تعرض وكيف، فينمو العمل بربحية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="customer">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Customer, Value &amp; the Mix</h2>
+        <p class="lead">All marketing starts from two questions that must be answered before any tactic: who exactly is the customer, and what value does the offering give them. Everything else is built on these answers.</p>
+        <p>The first discipline is understanding and choosing the customer. Not everyone is your customer, and trying to appeal to everyone usually appeals to no one, so marketing begins by segmenting the market into distinct groups, choosing which to target, and understanding those chosen customers deeply: their needs, their situation, and what they truly value. The second is the value proposition: a clear statement of the specific value the offering provides to those customers, why they should choose it over alternatives. A sharp value proposition, rooted in a real customer need and a genuine point of difference, is the heart of marketing; without it, no amount of clever promotion will work for long.</p>
+        <p>With customer and value defined, the classic marketing mix, often called the four Ps, organizes the decisions that deliver that value: the product itself and what it does; the price and what it signals; the place, meaning the channels through which it reaches customers; and the promotion, how it is communicated. The power of the mix is that these must fit together and reinforce the value proposition: a premium product needs a premium price, selective distribution, and communication that conveys quality, while a mass-market product needs the opposite. Marketing goes wrong when the elements contradict each other, a luxury message with a discount price, or a great product no one can find, so a central task is keeping the whole mix coherent and aligned with the value being offered.</p>
+        <div class="note"><strong>Note:</strong> Choose your customer before your tactics. Marketing that tries to reach everyone reaches no one; the discipline is deciding who you are for, and being genuinely valuable to them.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>العميل والقيمة والمزيج</h2>
+        <p class="lead">كل تسويقٍ يبدأ من سؤالين يجب الإجابة عليهما قبل أي تكتيك: من العميل بالضبط، وأي قيمةٍ يعطيه العرض. وكل ما عدا ذلك مبنيٌّ على هذين الجوابين.</p>
+        <p>الانضباط الأول فهم العميل واختياره. فليس الجميع عميلك، ومحاولة إرضاء الجميع لا تُرضي أحدًا عادةً، فيبدأ التسويق بتقسيم السوق لمجموعاتٍ متمايزة، واختيار أيّها يُستهدَف، وفهم أولئك العملاء المختارين عميقًا: حاجاتهم، ووضعهم، وما يُقدّرونه حقًّا. والثاني عرض القيمة: بيانٌ واضح للقيمة المحدَّدة التي يوفّرها العرض لأولئك العملاء، لماذا يختارونه على البدائل. وعرض قيمةٍ حادّ، متجذّرٌ في حاجةٍ حقيقية ونقطة تمايزٍ فعلية، قلب التسويق؛ وبدونه، لا قدر من الترويج الذكي سينجح طويلًا.</p>
+        <p>وبتعريف العميل والقيمة، ينظّم المزيج التسويقي الكلاسيكي، المسمّى غالبًا العناصر الأربعة، القرارات التي تسلّم تلك القيمة: المنتج نفسه وما يفعله؛ والسعر وما يشير إليه؛ والمكان، أي القنوات التي يبلغ بها العملاء؛ والترويج، كيف يُبلَّغ. وقوّة المزيج أن هذه يجب أن تتلاءم وتعزّز عرض القيمة: فمنتجٌ راقٍ يحتاج سعرًا راقيًا وتوزيعًا انتقائيًا وتواصلًا ينقل الجودة، ومنتج سوقٍ عام يحتاج العكس. ويخطئ التسويق حين تتناقض العناصر، رسالة فخامةٍ بسعر خصم، أو منتجٌ رائع لا يجده أحد، فمهمّةٌ مركزية إبقاء المزيج كله متماسكًا متوائمًا مع القيمة المعروضة.</p>
+        <div class="note"><strong>ملاحظة:</strong> اختر عميلك قبل تكتيكاتك. فتسويقٌ يحاول بلوغ الجميع لا يبلغ أحدًا؛ والانضباط تقرير لمن أنت، وأن تكون قيّمًا لهم فعلًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="funnel">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Marketing Funnel</h2>
+        <p class="lead">Customers do not go from strangers to loyal buyers in one step; they move through a journey, and the marketing funnel is the model that maps it. Picturing this journey lets a marketer see where people are being lost and act on it.</p>
+        <div style="text-align:center;margin:20px 0 8px;"><svg viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;max-width:520px;height:auto;font-family:&apos;IBM Plex Sans Arabic&apos;,sans-serif;"><polygon points="50,12 510,12 460,72 100,72" fill="#4d2f6b"/><text x="280" y="40" text-anchor="middle" font-size="15" font-weight="700" fill="#F7F4EF">Awareness</text><text x="280" y="58" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.85">they learn you exist</text><polygon points="100,80 460,80 410,140 150,140" fill="#6b4790"/><text x="280" y="108" text-anchor="middle" font-size="15" font-weight="700" fill="#F7F4EF">Consideration</text><text x="280" y="126" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.85">they weigh you up</text><polygon points="150,148 410,148 360,208 200,208" fill="#9270b5"/><text x="280" y="176" text-anchor="middle" font-size="15" font-weight="700" fill="#F7F4EF">Conversion</text><text x="280" y="194" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.85">they buy</text><polygon points="200,216 360,216 310,276 250,276" fill="#c9b8e8"/><text x="280" y="244" text-anchor="middle" font-size="15" font-weight="700" fill="#2E1A47">Loyalty</text><text x="280" y="262" text-anchor="middle" font-size="11" fill="#2E1A47" opacity="0.85">they stay and advocate</text></svg></div>
+        <p>The funnel narrows for a reason: at each stage, some of the people from the stage before drop away. Many become aware of a brand; fewer seriously consider it; fewer still convert into buyers; and a subset become loyal, repeat customers who advocate for it. Marketing's job is to move people down the funnel and to widen it where it is leaking, and different stages need different things: awareness needs reach and attention, consideration needs information and trust, conversion needs a clear reason and an easy path to buy, and loyalty needs a good experience and ongoing relationship. Treating all stages the same, blasting the same message at everyone, wastes effort, because a person just becoming aware needs something very different from one ready to buy.</p>
+        <p>The funnel's practical value is diagnostic. By measuring how many people are at each stage and where the biggest drop-offs happen, a marketer can see exactly where the problem is: a business with lots of awareness but few conversions has a different issue from one with few people aware at all, and each calls for a different response. This turns marketing from a vague activity into a measured system, where effort and money can be directed at the specific stage that is holding growth back, rather than spread thinly across all of them.</p>
+        <div class="note"><strong>Note:</strong> The funnel is a diagnostic tool, not just a picture. Its value is showing you the one stage where customers are leaking away, so you fix that instead of spending equally, and blindly, on all of them.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>قُمع التسويق</h2>
+        <p class="lead">العملاء لا يذهبون من غرباءَ لمشترين أوفياء في خطوةٍ واحدة؛ يتحرّكون عبر رحلة، وقُمع التسويق النموذج الذي يرسمها. وتصوّر هذه الرحلة يتيح للمسوّق رؤية أين يُفقَد الناس والعمل على ذلك.</p>
+        <div style="text-align:center;margin:20px 0 8px;"><svg viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;max-width:520px;height:auto;font-family:&apos;IBM Plex Sans Arabic&apos;,sans-serif;"><polygon points="50,12 510,12 460,72 100,72" fill="#4d2f6b"/><text x="280" y="40" text-anchor="middle" font-size="15" font-weight="700" fill="#F7F4EF">الوعي</text><text x="280" y="58" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.85">يعرفون أنك موجود</text><polygon points="100,80 460,80 410,140 150,140" fill="#6b4790"/><text x="280" y="108" text-anchor="middle" font-size="15" font-weight="700" fill="#F7F4EF">التفكير</text><text x="280" y="126" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.85">يوازنونك</text><polygon points="150,148 410,148 360,208 200,208" fill="#9270b5"/><text x="280" y="176" text-anchor="middle" font-size="15" font-weight="700" fill="#F7F4EF">التحويل</text><text x="280" y="194" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.85">يشترون</text><polygon points="200,216 360,216 310,276 250,276" fill="#c9b8e8"/><text x="280" y="244" text-anchor="middle" font-size="15" font-weight="700" fill="#2E1A47">الولاء</text><text x="280" y="262" text-anchor="middle" font-size="11" fill="#2E1A47" opacity="0.85">يبقون ويوصون</text></svg></div>
+        <p>القُمع يضيق لسبب: في كل مرحلةٍ يتساقط بعض ناس المرحلة السابقة. فكثيرون يَعُون علامة؛ وأقلّ يفكّرون فيها جديًا؛ وأقلّ يتحوّلون لمشترين؛ وشريحةٌ تصير عملاء أوفياء متكرّرين يوصون بها. ومهمّة التسويق تحريك الناس نزولًا في القُمع وتوسيعه حيث يتسرّب، والمراحل المختلفة تحتاج أشياء مختلفة: الوعي يحتاج بلوغًا وانتباهًا، والتفكير يحتاج معلوماتٍ وثقة، والتحويل يحتاج سببًا واضحًا ومسارًا سهلًا للشراء، والولاء يحتاج تجربةً جيدة وعلاقةً مستمرة. ومعاملة كل المراحل سواءً، بقصف الرسالة ذاتها على الجميع، تُهدِر الجهد، لأن من يَعِي للتوّ يحتاج شيئًا مختلفًا جدًا عمّن هو مستعدٌّ للشراء.</p>
+        <p>القيمة العملية للقُمع تشخيصية. فبقياس كم الناس في كل مرحلةٍ وأين تقع أكبر التساقطات، يرى المسوّق أين المشكلة بالضبط: فعملٌ بوعيٍ كثير وتحويلاتٍ قليلة له مشكلةٌ مختلفة عن عملٍ قليل الوعي أصلًا، وكلٌّ يستدعي استجابةً مختلفة. وهذا يحوّل التسويق من نشاطٍ غامض لنظامٍ مقيس، حيث يمكن توجيه الجهد والمال للمرحلة المحدَّدة التي تحبس النموّ، بدل نشرهما رقيقًا عبرها كلها.</p>
+        <div class="note"><strong>ملاحظة:</strong> القُمع أداة تشخيصٍ لا صورةٌ فقط. وقيمته إظهار المرحلة الوحيدة التي يتسرّب فيها العملاء، فتصلحها بدل الإنفاق بالتساوي، وعمياءَ، عليها كلها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Marketing frameworks bring discipline to marketing, from customer and value to the mix and the funnel.</p>
+        <ul>
+          <li>Start from the customer and a sharp value proposition, before any tactics.</li>
+          <li>Keep the marketing mix, product, price, place, and promotion, coherent and aligned with that value.</li>
+          <li>Use the funnel to map the customer journey from awareness to loyalty.</li>
+          <li>Tailor effort to each funnel stage, since a new prospect needs something different from a ready buyer.</li>
+          <li>Use the funnel as a diagnostic, directing money at the stage where growth is actually leaking.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.ama.org/marketing-news/" target="_blank" rel="noopener">American Marketing Association resources.</a></li>
+          <li><a href="https://hbr.org/topic/subject/marketing" target="_blank" rel="noopener">Harvard Business Review, marketing.</a></li>
+          <li><a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights" target="_blank" rel="noopener">McKinsey, on marketing and the customer journey.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">أطر التسويق تجلب الانضباط للتسويق، من العميل والقيمة للمزيج والقُمع.</p>
+        <ul>
+          <li>ابدأ من العميل وعرض قيمةٍ حادّ، قبل أي تكتيكات.</li>
+          <li>أبقِ المزيج التسويقي، المنتج والسعر والمكان والترويج، متماسكًا متوائمًا مع تلك القيمة.</li>
+          <li>استخدم القُمع لرسم رحلة العميل من الوعي للولاء.</li>
+          <li>فصّل الجهد لكل مرحلة قُمع، إذ مرتقبٌ جديد يحتاج شيئًا مختلفًا عن مشترٍ مستعد.</li>
+          <li>استخدم القُمع كتشخيص، موجّهًا المال للمرحلة التي يتسرّب فيها النموّ فعلًا.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.ama.org/marketing-news/" target="_blank" rel="noopener">جمعية التسويق الأمريكية، موارد.</a></li>
+          <li><a href="https://hbr.org/topic/subject/marketing" target="_blank" rel="noopener">هارفارد بزنس ريفيو، التسويق.</a></li>
+          <li><a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights" target="_blank" rel="noopener">ماكنزي، عن التسويق ورحلة العميل.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","customer","funnel","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

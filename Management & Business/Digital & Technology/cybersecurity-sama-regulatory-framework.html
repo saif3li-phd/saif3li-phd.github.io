@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regulatory Cybersecurity Framework (SAMA)</title>
+<meta name="description" content="An operational framework for a regulatory cyber program: four domains covering governance, risk, compliance, operations, third parties, and maturity.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">CYBERSECURITY &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الأمن السيبراني &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Regulatory Cybersecurity Framework (SAMA)</span><span data-lang="ar">الإطار السيبراني التنظيمي (SAMA)</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="domains"><span data-lang="en">The Domains</span><span data-lang="ar">المحاور</span></a>
+    <a data-id="governance"><span data-lang="en">Governance</span><span data-lang="ar">الحوكمة</span></a>
+    <a data-id="risk"><span data-lang="en">Risk &amp; Compliance</span><span data-lang="ar">المخاطر والامتثال</span></a>
+    <a data-id="operations"><span data-lang="en">Operations</span><span data-lang="ar">العمليات</span></a>
+    <a data-id="thirdparty"><span data-lang="en">Third Parties</span><span data-lang="ar">الأطراف الثالثة</span></a>
+    <a data-id="maturity"><span data-lang="en">Maturity</span><span data-lang="ar">النضج</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Regulatory cybersecurity (financial sector)</div>
+          <div><span>Scope:</span> Operating a cyber program to a financial regulator's framework</div>
+          <div><span>Owner role:</span> Chief information security officer</div>
+          <div><span>Review cadence:</span> Continuous, with maturity assessment on the regulator's cycle</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Financial regulators require the institutions they oversee to run cybersecurity to a defined standard, because a bank's cyber failure is not a private matter, it can shake confidence in the whole financial system. A regulatory cyber framework translates that public interest into specific, assessable obligations.</p>
+        <p>The framework of the Saudi central bank, SAMA, is a leading example in the region. It exists so that regulated financial institutions identify and address cyber risk in a common, comparable way, and it is built on recognized international standards while adding the supervisory expectation that maturity is measured and reported, not merely claimed.</p>
+        <p>This page describes how to operate to such a framework as a reusable model, organized around its four domains, and aligned to the publicly issued SAMA framework and the international standards it draws on, without reproducing their text.</p>
+        <div class="note"><strong>Note:</strong> A regulatory framework is a floor, not a ceiling. Meeting it is the minimum a supervised institution owes, and strong programs treat it as the baseline they build above.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الأمن السيبراني التنظيمي (القطاع المالي)</div>
+          <div><span>النطاق:</span> تشغيل برنامج سيبراني وفق إطار جهةٍ مالية منظِّمة</div>
+          <div><span>دور المالك:</span> رئيس أمن المعلومات</div>
+          <div><span>دورية المراجعة:</span> مستمرة، مع تقييم نضجٍ على دورة الجهة المنظِّمة</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">تُلزِم الجهات المالية المنظِّمة المؤسسات التي تشرف عليها بتشغيل الأمن السيبراني وفق معيارٍ محدَّد، لأن فشل بنكٍ سيبرانيًا ليس شأنًا خاصًا، بل قد يزعزع الثقة في النظام المالي كله. وإطارٌ سيبراني تنظيمي يترجم تلك المصلحة العامة إلى التزاماتٍ محدَّدة قابلة للتقييم.</p>
+        <p>إطار البنك المركزي السعودي (SAMA) مثالٌ رائد في المنطقة. وُجِد ليُحدّد ويعالج المؤسسات المالية المنظَّمة الخطرَ السيبراني بطريقةٍ موحَّدة قابلة للمقارنة، وهو مبنيٌ على معايير دولية معترف بها مع إضافة التوقّع الرقابي بأن يُقاس النضج ويُبلَّغ عنه، لا أن يُدَّعى فحسب.</p>
+        <p>تصف هذه الصفحة كيفية التشغيل وفق مثل هذا الإطار كنموذجٍ قابل لإعادة الاستخدام، منظَّمًا حول محاوره الأربعة، ومتوائمًا مع إطار SAMA المنشور والمعايير الدولية التي يستند إليها، دون نسخ نصّها.</p>
+        <div class="note"><strong>ملاحظة:</strong> الإطار التنظيمي أرضيةٌ لا سقف. فالوفاء به أدنى ما تدين به مؤسسةٌ مُشرَف عليها، والبرامج القوية تعامله كخطّ أساسٍ تبني فوقه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="domains">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Four Domains</h2>
+        <p class="lead">The framework organizes cybersecurity into four domains that together cover direction, decision, execution, and dependency. Splitting the work this way makes coverage easy to reason about and gaps easy to see.</p>
+        <p>The four domains are leadership and governance, risk management and compliance, operations and technology, and third-party considerations. Read together, they describe a complete program: leadership sets direction, risk and compliance decide and prove, operations and technology carry it out, and third-party management extends it to the parties the institution depends on.</p>
+        <table>
+          <tr><th>Domain</th><th>What it covers</th></tr>
+          <tr><td>Leadership &amp; governance</td><td>Direction, structures, policy, and accountable ownership</td></tr>
+          <tr><td>Risk management &amp; compliance</td><td>Identifying, treating, and evidencing cyber risk and obligations</td></tr>
+          <tr><td>Operations &amp; technology</td><td>The controls and processes that protect systems day to day</td></tr>
+          <tr><td>Third-party considerations</td><td>Managing the cyber risk introduced by suppliers and partners</td></tr>
+        </table>
+        <p>The design mirrors the recognized governance-management split and the risk cycle used across international standards, which is why an institution already aligned to ISO or NIST finds most of the work already done and mainly needs to map it to the regulator's structure and evidence expectations.</p>
+        <p>A subtle but important feature of a regulatory framework is that it is prescriptive where an international standard is permissive. ISO tells you to manage risk and lets you decide how, while a regulator often specifies the how, mandating particular controls, notification timelines, and maturity targets. This trades flexibility for comparability: the supervisor can hold every institution to the same measurable bar and compare them, which is the whole point of regulating a sector where one firm's failure can spread. Operating well under such a framework therefore means meeting specific requirements to the letter while still running the underlying risk management with genuine judgment, not just to the checklist.</p>
+        <div class="note"><strong>Note:</strong> The domains are not silos. A single control, such as access management, produces evidence relevant to governance, risk, and operations at once.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>المحاور الأربعة</h2>
+        <p class="lead">ينظّم الإطار الأمن السيبراني في أربعة محاور تغطّي معًا التوجيه والقرار والتنفيذ والاعتماد. وتقسيم العمل هكذا يُسهّل التفكير في التغطية ورؤية الفجوات.</p>
+        <p>المحاور الأربعة هي القيادة والحوكمة، وإدارة المخاطر والامتثال، والعمليات والتقنية، واعتبارات الأطراف الثالثة. ومقروءةً معًا تصف برنامجًا كاملًا: القيادة تضع التوجيه، والمخاطر والامتثال يقرّران ويُثبتان، والعمليات والتقنية تُنفّذ، وإدارة الأطراف الثالثة تمدّه إلى الجهات التي تعتمد عليها المؤسسة.</p>
+        <table>
+          <tr><th>المحور</th><th>ما يغطّيه</th></tr>
+          <tr><td>القيادة والحوكمة</td><td>التوجيه والهياكل والسياسة والملكية المساءَلة</td></tr>
+          <tr><td>إدارة المخاطر والامتثال</td><td>تحديد الخطر السيبراني والالتزامات ومعالجتها وإثباتها</td></tr>
+          <tr><td>العمليات والتقنية</td><td>الضوابط والعمليات التي تحمي الأنظمة يوميًا</td></tr>
+          <tr><td>اعتبارات الأطراف الثالثة</td><td>إدارة الخطر السيبراني الذي يُدخِله المورّدون والشركاء</td></tr>
+        </table>
+        <p>يعكس التصميم فصلَ الحوكمة عن الإدارة المعترف به ودورةَ المخاطر المستخدَمة عبر المعايير الدولية، ولذا تجد مؤسسةٌ متوائمة أصلًا مع ISO أو NIST أغلب العمل منجَزًا وتحتاج أساسًا ربطه بهيكل الجهة المنظِّمة وتوقّعات الإثبات.</p>
+        <p>ومن سماته الدقيقة المهمّة أن الإطار التنظيمي آمرٌ حيث يكون المعيار الدولي مُبيحًا. فـ ISO يطلب إدارة الخطر ويترك لك كيف، بينما تحدّد الجهة المنظِّمة غالبًا الكيفية، فتفرض ضوابط بعينها وأزمنة إبلاغٍ وأهداف نضج. وهذا يقايض المرونة بالقابلية للمقارنة: فتستطيع الجهة المشرفة إلزام كل مؤسسة بالحدّ القابل للقياس نفسه ومقارنتها، وهو مقصد تنظيم قطاعٍ قد ينتشر فيه فشل شركةٍ واحدة. ولذا فالتشغيل الجيد تحت مثل هذا الإطار يعني الوفاء بمتطلباتٍ محدَّدة بحذافيرها مع إدارة المخاطر الكامنة بحكمٍ حقيقي، لا امتثالًا لقائمة الفحص فحسب.</p>
+        <div class="note"><strong>ملاحظة:</strong> المحاور ليست صوامع. فضابطٌ واحد، كإدارة الوصول، يُنتج دليلًا يخصّ الحوكمة والمخاطر والعمليات دفعةً واحدة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="governance">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Leadership &amp; Governance</h2>
+        <p class="lead">The first domain makes cybersecurity a board-level responsibility, not a technical afterthought. In a regulated institution the expectation is explicit: senior leadership owns the cyber program and is answerable for it.</p>
+        <p>In practice this means a designated senior officer accountable for cybersecurity, a governance structure with a clear mandate, an endorsed cyber strategy and policy, and the resources to deliver them. The regulatory weight matters here, because it turns leadership involvement from good practice into a supervised obligation the institution must be able to demonstrate.</p>
+        <ul>
+          <li><strong>Accountable officer:</strong> a named senior owner of the cyber program.</li>
+          <li><strong>Governance structure:</strong> a committee with mandate, decision rights, and cadence.</li>
+          <li><strong>Strategy and policy:</strong> endorsed direction that the rest of the program implements.</li>
+          <li><strong>Resourcing:</strong> the budget and people to meet the obligations, not just the intent.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Under a regulator, leadership involvement must be evidenced. Minutes, endorsed policies, and decision records are the proof that governance is real rather than nominal.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>القيادة والحوكمة</h2>
+        <p class="lead">المحور الأول يجعل الأمن السيبراني مسؤوليةً على مستوى المجلس لا فكرةً تقنية لاحقة. وفي مؤسسةٍ منظَّمة يكون التوقّع صريحًا: القيادة العليا تملك البرنامج السيبراني وتُساءَل عنه.</p>
+        <p>عمليًا يعني هذا مسؤولًا تنفيذيًا مُعيَّنًا مساءَلًا عن الأمن السيبراني، وهيكل حوكمةٍ بولايةٍ واضحة، واستراتيجيةً وسياسةً سيبرانية معتمَدة، والموارد لتحقيقها. والثقل التنظيمي يهمّ هنا، لأنه يحوّل مشاركة القيادة من ممارسةٍ جيدة إلى التزامٍ مُشرَف عليه يجب أن تستطيع المؤسسة إثباته.</p>
+        <ul>
+          <li><strong>المسؤول المساءَل:</strong> مالكٌ تنفيذي مُسمّى للبرنامج السيبراني.</li>
+          <li><strong>هيكل الحوكمة:</strong> لجنة بولايةٍ وحقوق قرارٍ ودورية.</li>
+          <li><strong>الاستراتيجية والسياسة:</strong> توجيهٌ معتمَد يُنفّذه بقية البرنامج.</li>
+          <li><strong>الموارد:</strong> الميزانية والناس للوفاء بالالتزامات لا النيّة فقط.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> تحت جهةٍ منظِّمة، يجب إثبات مشاركة القيادة. فالمحاضر والسياسات المعتمَدة وسجلات القرار هي الدليل على أن الحوكمة حقيقية لا اسمية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="risk">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Risk Management &amp; Compliance</h2>
+        <p class="lead">The second domain applies the standard risk cycle inside a compliance envelope. The institution must not only manage cyber risk well, it must prove to a supervisor that it does, which raises the bar on evidence and consistency.</p>
+        <p>This means a documented risk methodology, a maintained risk register, defined risk appetite, and treatment tracked to closure, all in a form a regulator can examine. Compliance adds the obligation to map controls to the framework's requirements and to demonstrate coverage, so the risk work and the regulatory reporting draw on the same underlying evidence rather than running as separate exercises.</p>
+        <p>The evidence bar is the practical difference from an unregulated program. It is not enough that a control works, the institution must be able to show, on demand and for a past date, that it was working then, which means logs, records, and sign-offs retained over time rather than reconstructed for an inspection. A useful discipline is to ask of every control, if the supervisor asked us to prove this was operating three months ago, could we, and to fix the answer before the question is ever asked. Building that evidence trail into daily operation is what separates a program that passes examinations calmly from one that lurches from one pre-audit crisis to the next.</p>
+        <ul>
+          <li><strong>Methodology:</strong> a documented, repeatable way of assessing cyber risk.</li>
+          <li><strong>Register and appetite:</strong> a living record and a stated line for treatment.</li>
+          <li><strong>Control mapping:</strong> each requirement linked to the control that meets it and its evidence.</li>
+          <li><strong>Reporting:</strong> risk and compliance status presented to leadership and, as required, the regulator.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Under supervision, the difference between doing and proving becomes central. Build evidence into the process so demonstration is a byproduct, not a scramble before an inspection.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>إدارة المخاطر والامتثال</h2>
+        <p class="lead">المحور الثاني يطبّق دورة المخاطر المعيارية داخل غلافٍ امتثالي. فعلى المؤسسة ألّا تدير الخطر السيبراني جيدًا فحسب، بل أن تُثبت لجهةٍ مشرفة أنها تفعل، وهذا يرفع سقف الدليل والاتساق.</p>
+        <p>يعني هذا منهجية مخاطر موثَّقة، وسجل مخاطر مُصانًا، وشهية مخاطر محدَّدة، ومعالجةً تُتابَع للإغلاق، كلّها بصورةٍ تستطيع جهةٌ منظِّمة فحصها. والامتثال يضيف التزام ربط الضوابط بمتطلبات الإطار وإثبات التغطية، فيستمدّ عمل المخاطر والتقرير التنظيمي الدليل الأساسي نفسه بدل تشغيلهما كتمرينين منفصلين.</p>
+        <p>وسقف الدليل هو الفرق العملي عن برنامجٍ غير منظَّم. فلا يكفي أن يعمل الضابط، بل على المؤسسة أن تستطيع أن تُظهر، عند الطلب ولتاريخٍ ماضٍ، أنه كان يعمل حينها، وهذا يعني سجلات ومحاضر واعتماداتٍ محفوظة عبر الزمن لا مُعادة البناء لأجل تفتيش. وانضباطٌ مفيد أن تسأل عن كل ضابط: لو طلبت الجهة إثبات أنه كان يعمل قبل ثلاثة أشهر، أنقدر؟ وأن تُصلِح الجواب قبل أن يُطرَح السؤال أصلًا. وبناء ذلك الأثر في التشغيل اليومي هو ما يفصل برنامجًا يجتاز الفحوص بهدوء عن آخر يترنّح من أزمة ما قبل تدقيقٍ إلى التي تليها.</p>
+        <ul>
+          <li><strong>المنهجية:</strong> طريقةٌ موثَّقة قابلة للتكرار لتقييم الخطر السيبراني.</li>
+          <li><strong>السجل والشهية:</strong> سجلٌ حيّ وخطٌ مُعلَن للمعالجة.</li>
+          <li><strong>ربط الضوابط:</strong> كل متطلبٍ مرتبط بالضابط الذي يُلبّيه ودليله.</li>
+          <li><strong>التقارير:</strong> وضع المخاطر والامتثال معروضًا للقيادة، وللجهة المنظِّمة عند الطلب.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> تحت الإشراف يصير الفرق بين الفعل والإثبات محوريًا. ادمج الدليل في العملية ليكون الإثبات ناتجًا ثانويًا لا تدافعًا قبل التفتيش.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="operations">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Operations &amp; Technology</h2>
+        <p class="lead">The third domain is where protection actually happens. It covers the operational controls that defend systems every day, from access and network security to monitoring, incident response, and resilience.</p>
+        <p>This domain is broad because it holds the working machinery of security. It expects the institution to run the practical controls covered elsewhere in this portfolio, security operations and incident management, identity and access, and secure configuration, and to keep them effective rather than merely present. A regulated institution also weighs resilience heavily, because a financial service that cannot recover quickly harms customers and confidence at once.</p>
+        <ul>
+          <li><strong>Protective controls:</strong> access, network, endpoint, and cryptographic safeguards.</li>
+          <li><strong>Detection and response:</strong> monitoring and incident management that limit harm quickly.</li>
+          <li><strong>Resilience:</strong> the ability to keep critical services running and recover them fast.</li>
+          <li><strong>Secure operations:</strong> patching, configuration, and change control done consistently.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Operations is judged on effectiveness, not existence. A control that is documented but not operating reliably is a finding waiting to be written.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>العمليات والتقنية</h2>
+        <p class="lead">المحور الثالث حيث تقع الحماية فعلًا. يغطّي الضوابط التشغيلية التي تدافع عن الأنظمة كل يوم، من الوصول وأمن الشبكة إلى المراقبة والاستجابة للحوادث والمرونة.</p>
+        <p>هذا المحور واسع لأنه يحوي آلة الأمن العاملة. يتوقّع من المؤسسة تشغيل الضوابط العملية المغطّاة في مواضع أخرى من هذا البورتفوليو، عمليات الأمن والاستجابة للحوادث، والهوية والصلاحيات، والإعداد الآمن، وإبقاءها فعّالة لا موجودةً فحسب. والمؤسسة المنظَّمة تزن المرونة بثقلٍ أيضًا، لأن خدمةً مالية لا تتعافى سريعًا تؤذي العملاء والثقة معًا.</p>
+        <ul>
+          <li><strong>ضوابط وقائية:</strong> وقايات الوصول والشبكة والأجهزة الطرفية والتعمية.</li>
+          <li><strong>الكشف والاستجابة:</strong> مراقبةٌ وإدارة حوادث تحدّان الضرر سريعًا.</li>
+          <li><strong>المرونة:</strong> القدرة على إبقاء الخدمات الحرجة عاملةً وتعافيها سريعًا.</li>
+          <li><strong>التشغيل الآمن:</strong> ترقيعٌ وإعدادٌ وضبط تغييرٍ يُؤدّى باتساق.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> تُقيَّم العمليات على الفعالية لا الوجود. فضابطٌ موثَّق لا يعمل بموثوقية ملاحظةٌ تنتظر أن تُكتَب.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="thirdparty">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Third-Party Considerations</h2>
+        <p class="lead">The fourth domain recognizes that a modern financial institution runs on outsourced services, and that a supplier's weakness can become the institution's incident. It extends the cyber obligations outward to the parties the institution depends on.</p>
+        <p>Practically, this means assessing a third party's security before relying on it, writing security requirements and audit rights into the contract, and maintaining assurance for as long as the dependency lasts. Where a service is outsourced, the regulator's expectation is that accountability is not: the institution remains answerable for risk it has handed to a supplier.</p>
+        <ul>
+          <li><strong>Due diligence:</strong> assess a provider's security before onboarding, sized to the risk.</li>
+          <li><strong>Contractual controls:</strong> security terms, breach notification, and the right to audit.</li>
+          <li><strong>Ongoing assurance:</strong> periodic evidence the provider still meets the bar.</li>
+          <li><strong>Retained accountability:</strong> outsourcing the service does not outsource the responsibility.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Concentration risk is a supervisory concern. When many institutions depend on the same critical provider, that provider becomes systemically important, and its assurance deserves proportionate attention.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>اعتبارات الأطراف الثالثة</h2>
+        <p class="lead">المحور الرابع يُقرّ بأن مؤسسةً مالية حديثة تعمل على خدماتٍ مُسنَدة للخارج، وأن ضعف مورّدٍ قد يصير حادثة المؤسسة. وهو يمدّ الالتزامات السيبرانية للخارج إلى الجهات التي تعتمد عليها المؤسسة.</p>
+        <p>عمليًا يعني هذا تقييم أمن الطرف الثالث قبل الاعتماد عليه، وكتابة متطلبات الأمن وحقوق التدقيق في العقد، وصون الضمان ما دام الاعتماد قائمًا. وحيث تُسنَد خدمةٌ للخارج، يكون توقّع الجهة المنظِّمة أن المساءلة لا تُسنَد: فتبقى المؤسسة مُساءَلة عن خطرٍ سلّمته لمورّد.</p>
+        <ul>
+          <li><strong>العناية اللازمة:</strong> قيّم أمن المزوّد قبل التعاقد، بحجم الخطر.</li>
+          <li><strong>ضوابط تعاقدية:</strong> شروط أمنٍ وإبلاغ اختراقٍ وحقّ تدقيق.</li>
+          <li><strong>الضمان المستمر:</strong> دليلٌ دوري بأن المزوّد ما زال يفي بالحدّ.</li>
+          <li><strong>مساءلةٌ محفوظة:</strong> إسناد الخدمة للخارج لا يُسنِد المسؤولية.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> خطر التركّز شأنٌ رقابي. فحين تعتمد مؤسساتٌ كثيرة على المزوّد الحرج نفسه، يصير ذا أهميةٍ نظامية، ويستحق ضمانه اهتمامًا متناسبًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="maturity">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Maturity Assessment</h2>
+        <p class="lead">A defining feature of a regulatory framework is that compliance is measured on a maturity scale, not as a simple pass or fail. The institution assesses how well each control is embedded, and the regulator expects that assessment to be honest and improving.</p>
+        <p>A maturity scale describes control effectiveness in levels, from controls that exist only by individual effort, through defined and managed, to controls that are continuously improved. Placing each area on the scale turns compliance into a roadmap: the institution can see where it stands, agree a target, and plan the gap, and the supervisor can track progress over successive cycles.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">Target</div><div class="lbl">Maturity level set per domain</div></div>
+          <div class="stat"><div class="num">Gap</div><div class="lbl">Distance from current to target</div></div>
+          <div class="stat"><div class="num">Trend</div><div class="lbl">Improvement across assessment cycles</div></div>
+        </div>
+        <p>The value is in honest placement and steady movement. A flattering self-assessment produces a plan that closes nothing, while an honest one, even where uncomfortable, gives leadership and the regulator a real picture and a credible path forward.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> operating to a regulatory framework is running a full, evidenced cyber program whose maturity you can measure, defend, and steadily raise.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>تقييم النضج</h2>
+        <p class="lead">من سمات الإطار التنظيمي المميِّزة أن الامتثال يُقاس على مقياس نضجٍ لا كنجاحٍ أو رسوبٍ بسيط. فالمؤسسة تقيّم مدى ترسّخ كل ضابط، وتتوقّع الجهة المنظِّمة أن يكون ذلك التقييم صادقًا ومتحسّنًا.</p>
+        <p>مقياس النضج يصف فعالية الضابط بمستويات، من ضوابط توجد بجهدٍ فردي فقط، عبر المعرَّف والمُدار، إلى ضوابط تُحسَّن باستمرار. وتموضع كل مجالٍ على المقياس يحوّل الامتثال إلى خارطة طريق: ترى المؤسسة أين تقف، وتتّفق على هدف، وتخطّط الفجوة، وتتابع الجهة المشرفة التقدّم عبر دوراتٍ متتالية.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">هدف</div><div class="lbl">مستوى نضجٍ مُحدَّد لكل محور</div></div>
+          <div class="stat"><div class="num">فجوة</div><div class="lbl">المسافة من الحالي إلى الهدف</div></div>
+          <div class="stat"><div class="num">اتجاه</div><div class="lbl">التحسّن عبر دورات التقييم</div></div>
+        </div>
+        <p>القيمة في التموضع الصادق والحركة الثابتة. فتقييمٌ ذاتي مُطرٍ يُنتج خطةً لا تُغلق شيئًا، وصادقٌ ولو كان مزعجًا يمنح القيادة والجهة المنظِّمة صورةً حقيقية ومسارًا موثوقًا للأمام.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> التشغيل وفق إطارٍ تنظيمي هو إدارة برنامجٍ سيبراني كامل مُثبَت يمكنك قياس نضجه والدفاع عنه ورفعه باطّراد.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">A regulatory cyber framework turns cybersecurity into a supervised, evidenced obligation, organized here around four domains and a maturity scale.</p>
+        <ul>
+          <li>Treat the framework as a floor built on international standards, and build above it.</li>
+          <li>Make leadership accountable and evidence its involvement with records.</li>
+          <li>Run the risk cycle inside a compliance envelope, mapping controls to requirements.</li>
+          <li>Keep operational controls effective, and weigh resilience heavily.</li>
+          <li>Extend obligations to third parties, and measure maturity honestly each cycle.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.sama.gov.sa/en-US/RulesInstructions/CyberSecurity/Cyber%20Security%20Framework.pdf" target="_blank" rel="noopener">SAMA Cyber Security Framework, version 1.0 (2017 record).</a></li>
+          <li><a href="https://rulebook.sama.gov.sa/en/cyber-security-framework-3" target="_blank" rel="noopener">SAMA Rulebook, Cyber Security Framework circular.</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022, Information security management systems.</a></li>
+          <li><a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener">NIST Cybersecurity Framework (CSF) 2.0 (2024 record).</a></li>
+          <li><a href="https://www.iso.org/standard/80585.html" target="_blank" rel="noopener">ISO/IEC 27005:2022, Guidance on managing information security risks.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">إطارٌ سيبراني تنظيمي يحوّل الأمن السيبراني إلى التزامٍ مُشرَف عليه مُثبَت، منظَّمٍ هنا حول أربعة محاور ومقياس نضج.</p>
+        <ul>
+          <li>عامِل الإطار كأرضيةٍ مبنية على معايير دولية، وابنِ فوقه.</li>
+          <li>اجعل القيادة مساءَلة وأثبِت مشاركتها بالسجلات.</li>
+          <li>أدِر دورة المخاطر داخل غلافٍ امتثالي، بربط الضوابط بالمتطلبات.</li>
+          <li>أبقِ الضوابط التشغيلية فعّالة، وزِن المرونة بثقل.</li>
+          <li>مُدّ الالتزامات إلى الأطراف الثالثة، وقِس النضج بصدق كل دورة.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.sama.gov.sa/en-US/RulesInstructions/CyberSecurity/Cyber%20Security%20Framework.pdf" target="_blank" rel="noopener">إطار الأمن السيبراني لـ SAMA، الإصدار 1.0 (سجل 2017).</a></li>
+          <li><a href="https://rulebook.sama.gov.sa/en/cyber-security-framework-3" target="_blank" rel="noopener">كتيّب SAMA، تعميم إطار الأمن السيبراني.</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022، أنظمة إدارة أمن المعلومات.</a></li>
+          <li><a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener">إطار NIST للأمن السيبراني (CSF) 2.0 (سجل 2024).</a></li>
+          <li><a href="https://www.iso.org/standard/80585.html" target="_blank" rel="noopener">ISO/IEC 27005:2022، إرشاد إدارة مخاطر أمن المعلومات.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","domains","governance","risk","operations","thirdparty","maturity","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

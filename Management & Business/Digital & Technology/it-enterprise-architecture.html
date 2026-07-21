@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enterprise Architecture</title>
+<meta name="description" content="An operational framework for enterprise architecture: the four domains, baseline-target-roadmap, architecture governance, maturity, and value.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">INFORMATION TECHNOLOGY &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">تقنية المعلومات &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Enterprise Architecture</span><span data-lang="ar">البنية المؤسسية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="domains"><span data-lang="en">The Domains</span><span data-lang="ar">المجالات</span></a>
+    <a data-id="process"><span data-lang="en">The Process</span><span data-lang="ar">العملية</span></a>
+    <a data-id="governance"><span data-lang="en">Governance</span><span data-lang="ar">الحوكمة</span></a>
+    <a data-id="maturity"><span data-lang="en">Maturity</span><span data-lang="ar">النضج</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Enterprise architecture</div>
+          <div><span>Scope:</span> Aligning business, data, applications, and technology by design</div>
+          <div><span>Owner role:</span> Chief architect, with domain architects</div>
+          <div><span>Review cadence:</span> Architecture board on a regular cycle, roadmap review each quarter</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Enterprise architecture is the deliberate design of how an organization's business, information, applications, and technology fit together, so that the whole functions as a coherent system rather than an accumulation of disconnected parts. It is the discipline of making sure that what gets built serves the strategy, and that the pieces work together instead of against each other.</p>
+        <p>Every organization has an architecture whether it manages one or not. Left unmanaged, it grows by accident: each project solves its own problem in its own way, systems multiply, the same data is stored in a dozen places, and over years the estate becomes so tangled that change is slow, expensive, and risky. Enterprise architecture is the choice to shape that growth on purpose, trading some short-term project freedom for long-term coherence.</p>
+        <p>This framework describes enterprise architecture as a practical, governed capability, drawing on the widely used structure of TOGAF and the staged national methodology of Saudi Arabia's NORA. It is written to be reusable in any organization pursuing digital transformation, and aligns to both without reproducing their text.</p>
+        <div class="note"><strong>Note:</strong> Enterprise architecture earns its keep by making change cheaper and faster over time. If it becomes a bureaucracy that only slows projects down, it has forgotten its own purpose.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> البنية المؤسسية</div>
+          <div><span>النطاق:</span> مواءمة الأعمال والبيانات والتطبيقات والتقنية بالتصميم</div>
+          <div><span>دور المالك:</span> كبير المعماريين، مع معماريي المجالات</div>
+          <div><span>دورية المراجعة:</span> مجلس معماري على دورةٍ منتظمة، ومراجعة خارطة كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">البنية المؤسسية هي التصميم المتعمَّد لكيفية تلاؤم أعمال المنشأة ومعلوماتها وتطبيقاتها وتقنيتها معًا، ليعمل الكل كنظامٍ متماسك لا كتراكمٍ من أجزاء منفصلة. وهي انضباط ضمان أن ما يُبنى يخدم الاستراتيجية، وأن القطع تعمل معًا لا ضد بعضها.</p>
+        <p>لكل منشأةٍ بنيةٌ سواء أدارتها أم لا. فمتروكةً بلا إدارة، تنمو مصادفةً: كل مشروعٍ يحلّ مشكلته بطريقته، وتتكاثر الأنظمة، وتُخزَّن البيانات نفسها في عشرة أماكن، وعبر السنين تصير البيئة متشابكةً حتى يصير التغيير بطيئًا باهظًا محفوفًا بالخطر. والبنية المؤسسية هي اختيار تشكيل ذلك النمو عن قصد، بمقايضة بعض حرية المشروع القصيرة بتماسكٍ طويل الأمد.</p>
+        <p>يصف هذا الإطار البنية المؤسسية كقدرةٍ عملية محوكَمة، مستندًا إلى بنية TOGAF واسعة الاستخدام والمنهجية الوطنية المرحلية NORA في السعودية. وهو مكتوب ليكون قابلًا لإعادة الاستخدام في أي منشأةٍ تسعى للتحول الرقمي، ويتوافق مع كليهما دون نسخ نصّهما.</p>
+        <div class="note"><strong>ملاحظة:</strong> البنية المؤسسية تكسب قيمتها بجعل التغيير أرخص وأسرع عبر الزمن. فإن صارت بيروقراطيةً لا تُبطئ إلا المشاريع، فقد نسيت غرضها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="domains">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Four Architecture Domains</h2>
+        <p class="lead">Architecture is usually described in four layers that stack from purpose down to platform. Separating them lets each be reasoned about clearly, while their alignment is exactly the point of the whole discipline.</p>
+        <p>The layers answer four connected questions. Business architecture describes what the organization does, its capabilities, processes, and structure. Data architecture describes what information it needs and how that information is organized. Application architecture describes the software that supports the work. Technology architecture describes the infrastructure the software runs on. Read top to bottom, each layer exists to serve the one above it, which is why architecture insists on starting from the business rather than the technology.</p>
+        <table>
+          <tr><th>Domain</th><th>Answers</th><th>Concerned with</th></tr>
+          <tr><td>Business</td><td>What we do</td><td>Capabilities, processes, and organization</td></tr>
+          <tr><td>Data</td><td>What we need to know</td><td>Information, its meaning and structure</td></tr>
+          <tr><td>Application</td><td>What software supports it</td><td>Systems and how they interact</td></tr>
+          <tr><td>Technology</td><td>What it runs on</td><td>Infrastructure, networks, and platforms</td></tr>
+        </table>
+        <p>The layers matter because misalignment between them is where cost and failure hide. Software chosen without reference to the business capability it should support becomes shelfware, and infrastructure built without reference to the applications it must run becomes either a bottleneck or an expense. Architecture keeps the layers connected, so a decision at one level is made with awareness of its effect on the others, rather than in isolation.</p>
+        <div class="note"><strong>Note:</strong> Always start from the business layer. Technology chosen before the business need is understood is a solution looking for a problem, and it is the most common source of expensive, unused systems.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>مجالات البنية الأربعة</h2>
+        <p class="lead">تُوصَف البنية عادةً بأربع طبقاتٍ تتراكم من الغرض نزولًا إلى المنصّة. وفصلها يتيح التفكير في كلٍّ بوضوح، بينما مواءمتها هي بالضبط مقصد الانضباط كله.</p>
+        <p>تجيب الطبقات أربعة أسئلةٍ متصلة. بنية الأعمال تصف ما تفعله المنشأة، قدراتها وعملياتها وهيكلها. وبنية البيانات تصف أي معلوماتٍ تحتاجها وكيف تُنظَّم. وبنية التطبيقات تصف البرمجيات التي تسند العمل. وبنية التقنية تصف البنية التحتية التي تعمل عليها البرمجيات. ومقروءةً من الأعلى للأسفل، كل طبقةٍ توجد لتخدم التي فوقها، ولذا تُصرّ البنية على البدء من الأعمال لا التقنية.</p>
+        <table>
+          <tr><th>المجال</th><th>يجيب</th><th>يُعنى بـ</th></tr>
+          <tr><td>الأعمال</td><td>ماذا نفعل</td><td>القدرات والعمليات والتنظيم</td></tr>
+          <tr><td>البيانات</td><td>ما نحتاج معرفته</td><td>المعلومات ومعناها وبنيتها</td></tr>
+          <tr><td>التطبيقات</td><td>أي برمجياتٍ تسنده</td><td>الأنظمة وكيف تتفاعل</td></tr>
+          <tr><td>التقنية</td><td>على ماذا يعمل</td><td>البنية التحتية والشبكات والمنصّات</td></tr>
+        </table>
+        <p>الطبقات تهمّ لأن سوء المواءمة بينها حيث تختبئ الكلفة والفشل. فبرمجيةٌ تُختار دون مرجعيةٍ لقدرة الأعمال التي ينبغي أن تسندها تصير رفّيّةً غير مستخدَمة، وبنيةٌ تحتية تُبنى دون مرجعيةٍ للتطبيقات التي يجب أن تشغّلها تصير إمّا عنق زجاجةٍ أو نفقة. والبنية تُبقي الطبقات موصولة، فيُتَّخذ قرارٌ في مستوىً بوعيٍ بأثره في الأخرى، لا في عزلة.</p>
+        <div class="note"><strong>ملاحظة:</strong> ابدأ دائمًا من طبقة الأعمال. فتقنيةٌ تُختار قبل فهم حاجة العمل حلٌّ يبحث عن مشكلة، وهي أشيع مصادر الأنظمة الباهظة غير المستخدَمة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="process">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Baseline, Target &amp; Roadmap</h2>
+        <p class="lead">Architecture is developed through a repeatable cycle that moves an organization from where it is to where it wants to be, in deliberate steps. Whether framed as TOGAF's development method or NORA's staged methodology, the logic is the same.</p>
+        <p>The cycle rests on three artifacts. The baseline architecture is an honest picture of the current state, what systems, data, and processes actually exist today. The target architecture is the designed future state that would serve the strategy. The gap between them, made explicit, becomes the roadmap: the sequence of changes that carries the organization from baseline to target without trying to do everything at once.</p>
+        <ul>
+          <li><strong>Baseline:</strong> document the current state honestly, including the duplication and debt, because you cannot plan a route without knowing the starting point.</li>
+          <li><strong>Target:</strong> design the future state that the business strategy requires, at a level of detail that guides without over-specifying.</li>
+          <li><strong>Gap analysis:</strong> name the specific differences between baseline and target, which are the actual work to be done.</li>
+          <li><strong>Roadmap:</strong> sequence the changes into a realistic plan, prioritized by value and dependency.</li>
+        </ul>
+        <p>The honesty of the baseline is what most often decides success. There is a strong temptation to document the architecture as it was meant to be rather than as it is, but a target planned from a flattering baseline produces a roadmap that does not fit reality. Mapping the real, messy current state, including the systems no one wants to admit still run critical work, is unglamorous but indispensable.</p>
+        <div class="note"><strong>Note:</strong> A target architecture without a roadmap is a fantasy, and a roadmap without a target is busywork. The value is in the pair: a clear destination and a sequenced, affordable path to reach it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الأساس والهدف وخارطة الطريق</h2>
+        <p class="lead">تُطوَّر البنية عبر دورةٍ متكرّرة تنقل المنشأة من حيث هي إلى حيث تريد، بخطواتٍ متعمَّدة. وسواء أُطِّرت كمنهج تطوير TOGAF أو منهجية NORA المرحلية، المنطق واحد.</p>
+        <p>تقوم الدورة على ثلاثة مُخرَجات. البنية الأساس صورةٌ صادقة للحالة الراهنة، أي الأنظمة والبيانات والعمليات الموجودة اليوم فعلًا. والبنية الهدف الحالة المستقبلية المُصمَّمة التي تخدم الاستراتيجية. والفجوة بينهما، مُصرَّحًا بها، تصير خارطة الطريق: تسلسل التغييرات الذي يحمل المنشأة من الأساس إلى الهدف دون محاولة فعل كل شيءٍ دفعةً واحدة.</p>
+        <ul>
+          <li><strong>الأساس:</strong> وثّق الحالة الراهنة بصدق، بما فيها التكرار والدَّين، لأنك لا تخطّط مسارًا دون معرفة نقطة البداية.</li>
+          <li><strong>الهدف:</strong> صمّم الحالة المستقبلية التي تتطلّبها استراتيجية العمل، بتفصيلٍ يوجّه دون إفراطٍ في التحديد.</li>
+          <li><strong>تحليل الفجوة:</strong> سمِّ الفروق المحدَّدة بين الأساس والهدف، وهي العمل الفعلي المطلوب.</li>
+          <li><strong>خارطة الطريق:</strong> رتّب التغييرات في خطةٍ واقعية، مُرتَّبة بالقيمة والاعتماد.</li>
+        </ul>
+        <p>صدق الأساس هو ما يقرّر النجاح غالبًا. فثمّة إغراءٌ قوي بتوثيق البنية كما قُصِد لها لا كما هي، لكن هدفًا يُخطَّط من أساسٍ مُطرٍ يُنتِج خارطةً لا تلائم الواقع. ورسم الحالة الراهنة الحقيقية الفوضوية، بما فيها الأنظمة التي لا أحد يريد الاعتراف أنها ما زالت تشغّل عملًا حرجًا، غير برّاقٍ لكنه لا غنى عنه.</p>
+        <div class="note"><strong>ملاحظة:</strong> بنيةٌ هدفٌ بلا خارطة وهمٌ، وخارطةٌ بلا هدفٍ عملٌ عابث. القيمة في الزوج: وجهةٌ واضحة ومسارٌ مرتَّب ميسور للوصول إليها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="governance">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Architecture Governance</h2>
+        <p class="lead">A target architecture only holds if new work is steered to fit it, and that steering is architecture governance. Without it, every project quietly drifts back toward doing its own thing, and the target erodes one exception at a time.</p>
+        <p>Governance works through principles, standards, and a review point. Architecture principles are a small set of durable rules that express how the organization chooses to build, such as preferring reuse over rebuilding or buying proven solutions over custom ones. Standards make the principles concrete. A review board or equivalent checkpoint then examines significant new initiatives against them before they are funded, so alignment is decided at the start rather than discovered as a problem at the end.</p>
+        <ul>
+          <li><strong>Principles:</strong> a few durable rules that express how the organization chooses to build.</li>
+          <li><strong>Standards:</strong> the specific, mandated choices that make principles actionable.</li>
+          <li><strong>Review:</strong> a checkpoint where significant initiatives are checked for fit before commitment.</li>
+          <li><strong>Exceptions:</strong> a defined path to depart from the standard deliberately, with a recorded reason, rather than by stealth.</li>
+        </ul>
+        <p>The exception process is the part that keeps governance credible. A standard that can never be departed from will be ignored the first time it does not fit reality, so a good architecture practice allows deliberate, recorded exceptions where the case is genuine. This keeps the standard honest and the practice trusted, because it acknowledges that the architecture serves the business, not the reverse.</p>
+        <div class="note"><strong>Note:</strong> Govern with the lightest touch that holds the target. Heavy governance that reviews everything creates a queue and a reputation as a blocker, so focus scrutiny on the decisions large enough to matter.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>حوكمة البنية</h2>
+        <p class="lead">البنية الهدف لا تصمد إلا إن وُجِّه العمل الجديد ليلائمها، وذلك التوجيه حوكمة البنية. وبدونها ينزاح كل مشروعٍ بهدوءٍ عائدًا لفعل ما يريد، ويتآكل الهدف استثناءً تلو استثناء.</p>
+        <p>تعمل الحوكمة عبر مبادئ ومعايير ونقطة مراجعة. مبادئ البنية مجموعةٌ صغيرة من قواعد دائمة تعبّر عن كيف تختار المنشأة أن تبني، كتفضيل إعادة الاستخدام على إعادة البناء أو شراء حلولٍ مُثبَتة على تخصيصها. والمعايير تجعل المبادئ ملموسة. ثم يفحص مجلس مراجعةٍ أو نقطة تفتيشٍ مكافئة المبادرات الجديدة المهمّة مقابلها قبل تمويلها، فتُحسَم المواءمة في البداية لا تُكتشَف مشكلةً في النهاية.</p>
+        <ul>
+          <li><strong>المبادئ:</strong> قواعد دائمة قليلة تعبّر عن كيف تختار المنشأة أن تبني.</li>
+          <li><strong>المعايير:</strong> الخيارات المحدَّدة المفروضة التي تجعل المبادئ قابلة للتنفيذ.</li>
+          <li><strong>المراجعة:</strong> نقطة تفتيشٍ تُفحَص فيها المبادرات المهمّة للملاءمة قبل الالتزام.</li>
+          <li><strong>الاستثناءات:</strong> مسارٌ محدَّد للخروج عن المعيار عن قصد، بسببٍ مُسجَّل، لا خِلسةً.</li>
+        </ul>
+        <p>عملية الاستثناء هي ما يُبقي الحوكمة موثوقة. فمعيارٌ لا يُخرَج عنه أبدًا سيُتجاهَل أول مرةٍ لا يلائم فيها الواقع، لذا تسمح ممارسة بنيةٍ جيدة باستثناءاتٍ متعمَّدة مُسجَّلة حيث تكون الحالة حقيقية. وهذا يُبقي المعيار صادقًا والممارسة موثوقة، لأنه يُقرّ أن البنية تخدم العمل لا العكس.</p>
+        <div class="note"><strong>ملاحظة:</strong> احوكِم بأخفّ لمسةٍ تُثبّت الهدف. فحوكمةٌ ثقيلة تراجع كل شيءٍ تصنع طابورًا وسمعةً كمُعطِّل، فركّز التدقيق على القرارات الكبيرة بما يكفي لتهمّ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="maturity">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Maturity &amp; Value</h2>
+        <p class="lead">Architecture practices, like any capability, can be assessed for maturity, and doing so honestly turns a vague sense of how things are going into a plan for improvement. It also connects the discipline back to the value it is supposed to create.</p>
+        <p>A maturity assessment places the architecture practice on a scale from ad hoc, where architecture happens by individual effort if at all, up to a managed and optimizing practice that is embedded in how the organization plans and delivers. The point is not the label but the honest placement and a target: knowing the current level and where the organization needs to be turns improvement into a concrete plan rather than an aspiration.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">Reuse</div><div class="lbl">Systems and services shared, not duplicated</div></div>
+          <div class="stat"><div class="num">Speed</div><div class="lbl">Time for a new initiative to reach delivery</div></div>
+          <div class="stat"><div class="num">Fit</div><div class="lbl">Initiatives aligned to the target architecture</div></div>
+        </div>
+        <p>The value of architecture is easiest to see in what it prevents: duplicated systems that each cost money to run, incompatible tools that cannot share data, and slow, risky changes because no one understands how the parts connect. A mature practice shows up as an estate that is simpler, more reusable, and faster to change, which is the return that justifies the discipline. Where it cannot show that return, the practice should ask whether it is governing for coherence or merely for control.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> enterprise architecture is the deliberate design of a coherent estate, delivered through a baseline-to-target roadmap and held by light governance, and its worth is measured in change made cheaper, faster, and safer.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>النضج والقيمة</h2>
+        <p class="lead">ممارسات البنية، كأي قدرة، يمكن تقييم نضجها، وفعل ذلك بصدقٍ يحوّل شعورًا غامضًا بكيف تسير الأمور إلى خطة تحسين. ويصل الانضباط كذلك بالقيمة التي يُفترَض أن يخلقها.</p>
+        <p>تقييم النضج يضع ممارسة البنية على مقياسٍ من العشوائي، حيث تحدث البنية بجهدٍ فردي إن حدثت، إلى ممارسةٍ مُدارة ومُحسِّنة مدمَجة في كيف تخطّط المنشأة وتسلّم. والمقصد ليس المسمّى بل التموضع الصادق وهدف: فمعرفة المستوى الحالي وأين ينبغي أن تكون المنشأة تحوّل التحسين لخطةٍ ملموسة لا طموح.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">إعادة استخدام</div><div class="lbl">أنظمة وخدمات مشتركة لا مكرَّرة</div></div>
+          <div class="stat"><div class="num">سرعة</div><div class="lbl">زمن بلوغ مبادرةٍ جديدة للتسليم</div></div>
+          <div class="stat"><div class="num">ملاءمة</div><div class="lbl">مبادرات متوائمة مع البنية الهدف</div></div>
+        </div>
+        <p>قيمة البنية أسهل ما تُرى فيما تمنعه: أنظمةٌ مكرَّرة يكلّف كلٌّ تشغيله، وأدواتٌ غير متوافقة لا تتشارك البيانات، وتغييراتٌ بطيئة محفوفة لأن لا أحد يفهم كيف تتّصل الأجزاء. والممارسة الناضجة تظهر كبيئةٍ أبسط وأكثر قابلية لإعادة الاستخدام وأسرع تغيّرًا، وهو العائد الذي يبرّر الانضباط. وحيث لا تستطيع إظهار ذلك العائد، ينبغي أن تسأل الممارسة هل تحوكم للتماسك أم لمجرد التحكّم.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> البنية المؤسسية تصميمٌ متعمَّد لبيئةٍ متماسكة، يُسلَّم عبر خارطةٍ من الأساس للهدف وتُثبّته حوكمةٌ خفيفة، وقيمتها تُقاس بتغييرٍ صار أرخص وأسرع وأأمن.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Enterprise architecture keeps an organization's business and technology coherent by design, so change stays affordable as the organization grows.</p>
+        <ul>
+          <li>Design across the four domains, always starting from the business layer.</li>
+          <li>Develop through a repeatable cycle: honest baseline, designed target, explicit gap, sequenced roadmap.</li>
+          <li>Hold the target with light governance through principles, standards, review, and a real exception path.</li>
+          <li>Assess maturity honestly and set a target level tied to value.</li>
+          <li>Measure worth in reuse, speed, and fit, not in the volume of diagrams produced.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.opengroup.org/togaf" target="_blank" rel="noopener">The Open Group, TOGAF enterprise architecture framework.</a></li>
+          <li><a href="https://dga.gov.sa/en/programs/nea" target="_blank" rel="noopener">Digital Government Authority, National Enterprise Architecture (NORA).</a></li>
+          <li><a href="https://dga.gov.sa/sites/default/files/2024-03/Guideline%20for%20National%20Overall%20Reference%20Architecture%20(NORA)%20-%20V1.0.pdf" target="_blank" rel="noopener">DGA, Guideline for National Overall Reference Architecture, 2024 (2024 record).</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022, Information security management systems (technology domain).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">البنية المؤسسية تُبقي أعمال المنشأة وتقنيتها متماسكة بالتصميم، فيبقى التغيير ميسورًا مع نمو المنشأة.</p>
+        <ul>
+          <li>صمّم عبر المجالات الأربعة، بادئًا دائمًا من طبقة الأعمال.</li>
+          <li>طوّر عبر دورةٍ متكرّرة: أساسٌ صادق، هدفٌ مُصمَّم، فجوةٌ صريحة، خارطةٌ مرتَّبة.</li>
+          <li>ثبّت الهدف بحوكمةٍ خفيفة عبر المبادئ والمعايير والمراجعة ومسار استثناءٍ حقيقي.</li>
+          <li>قيّم النضج بصدق وحدّد مستوىً مستهدفًا مربوطًا بالقيمة.</li>
+          <li>قِس القيمة بإعادة الاستخدام والسرعة والملاءمة، لا بكمّ المخطّطات المُنتَجة.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.opengroup.org/togaf" target="_blank" rel="noopener">The Open Group، إطار البنية المؤسسية TOGAF.</a></li>
+          <li><a href="https://dga.gov.sa/en/programs/nea" target="_blank" rel="noopener">هيئة الحكومة الرقمية، البنية المؤسسية الوطنية (NORA).</a></li>
+          <li><a href="https://dga.gov.sa/sites/default/files/2024-03/Guideline%20for%20National%20Overall%20Reference%20Architecture%20(NORA)%20-%20V1.0.pdf" target="_blank" rel="noopener">هيئة الحكومة الرقمية، دليل البنية المرجعية الوطنية الشاملة 2024 (سجل 2024).</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022، أنظمة إدارة أمن المعلومات (مجال التقنية).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","domains","process","governance","maturity","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Data Protection &amp; Privacy</title>
+<meta name="description" content="An operational framework for personal data protection: principles, lawful basis, rights, obligations, cross-border transfer, and breach response.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">PRIVACY &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الخصوصية &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Personal Data Protection &amp; Privacy</span><span data-lang="ar">حماية البيانات الشخصية والخصوصية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="principles"><span data-lang="en">Principles</span><span data-lang="ar">المبادئ</span></a>
+    <a data-id="basis"><span data-lang="en">Lawful Basis</span><span data-lang="ar">الأساس القانوني</span></a>
+    <a data-id="rights"><span data-lang="en">Data Subject Rights</span><span data-lang="ar">حقوق صاحب البيانات</span></a>
+    <a data-id="obligations"><span data-lang="en">Obligations</span><span data-lang="ar">الالتزامات</span></a>
+    <a data-id="transfer"><span data-lang="en">Cross-Border</span><span data-lang="ar">النقل عبر الحدود</span></a>
+    <a data-id="breach"><span data-lang="en">Breach &amp; DPIA</span><span data-lang="ar">الاختراق والتقييم</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Personal data protection &amp; privacy</div>
+          <div><span>Scope:</span> Governing how an organization collects, uses, and protects personal data</div>
+          <div><span>Owner role:</span> Data protection officer, with business and system owners</div>
+          <div><span>Review cadence:</span> Continuous, with a formal privacy review each quarter</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Data protection is the discipline of handling personal data responsibly: collecting only what is needed, using it only for what was intended, keeping it safe, and respecting the rights of the people it describes. It is where an organization's duty to individuals and its legal obligations meet the daily reality of how data actually flows through its systems.</p>
+        <p>The subject of the discipline is personal data, meaning any information relating to an identifiable person. That definition is broad on purpose, because the harm from mishandling data does not depend on how sensitive a single field looks, it depends on what can be learned and done when data is combined. A name alone seems harmless, but joined to a location, a purchase history, and a health detail it becomes a profile that can expose or discriminate.</p>
+        <p>This framework describes an operational privacy program organized around the principles common to modern data protection regimes, illustrated with the structure of Saudi Arabia's Personal Data Protection Law and its regulator, and written to be reusable wherever similar obligations apply. It aligns to the published law and guidance without reproducing their text.</p>
+        <div class="note"><strong>Note:</strong> Privacy is not the enemy of using data, it is the condition that makes using data sustainable. An organization that handles personal data carelessly eventually loses the trust and the legal permission to use it at all.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> حماية البيانات الشخصية والخصوصية</div>
+          <div><span>النطاق:</span> حوكمة كيف تجمع المنشأة البيانات الشخصية وتستخدمها وتحميها</div>
+          <div><span>دور المالك:</span> مسؤول حماية البيانات، مع ملّاك العمل والأنظمة</div>
+          <div><span>دورية المراجعة:</span> مستمرة، مع مراجعة خصوصية رسمية كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">حماية البيانات انضباط التعامل المسؤول مع البيانات الشخصية: جمع ما يلزم فقط، واستخدامه لما قُصِد فقط، وإبقاؤه آمنًا، واحترام حقوق من تصفهم. وهي حيث يلتقي التزام المنشأة تجاه الأفراد والتزاماتها القانونية بواقع كيف تتدفّق البيانات فعلًا عبر أنظمتها.</p>
+        <p>موضوع الانضباط هو البيانات الشخصية، أي أي معلومةٍ تتعلّق بشخصٍ يمكن تحديده. وذلك التعريف واسعٌ عمدًا، لأن الأذى من سوء التعامل لا يعتمد على كم يبدو حقلٌ مفرد حساسًا، بل على ما يمكن معرفته وفعله حين تُدمَج البيانات. فاسمٌ وحده يبدو غير ضار، لكنه مقرونًا بموقعٍ وسجل شراءٍ وتفصيلٍ صحّي يصير ملفًّا قد يفضح أو يميّز.</p>
+        <p>يصف هذا الإطار برنامج خصوصيةٍ تشغيلي منظَّمًا حول المبادئ المشتركة لأنظمة حماية البيانات الحديثة، موضَّحًا ببنية نظام حماية البيانات الشخصية في السعودية وجهته المنظِّمة، ومكتوبًا ليكون قابلًا لإعادة الاستخدام حيثما تنطبق التزاماتٌ مشابهة. ويتوافق مع القانون والإرشاد المنشورين دون نسخ نصّهما.</p>
+        <div class="note"><strong>ملاحظة:</strong> الخصوصية ليست عدوّة استخدام البيانات، بل الشرط الذي يجعل استخدامها مستدامًا. فمنشأةٌ تتعامل مع البيانات الشخصية باستهتار تفقد آخرًا الثقة والإذن القانوني باستخدامها أصلًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="principles">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Core Principles</h2>
+        <p class="lead">Modern data protection rests on a small set of principles that together define responsible processing. They are not independent rules to be ticked off, they are a coherent standard, and a program that honors all of them handles data in a way individuals and regulators can trust.</p>
+        <ul>
+          <li><strong>Lawfulness and fairness:</strong> personal data is processed on a valid legal basis and in a way people would find reasonable, not through hidden or deceptive collection.</li>
+          <li><strong>Purpose limitation:</strong> data is collected for a specific, stated purpose and not later used for something incompatible with it without a fresh basis.</li>
+          <li><strong>Data minimization:</strong> only the data actually needed for the purpose is collected, because data you do not hold cannot be lost or misused.</li>
+          <li><strong>Accuracy:</strong> data is kept correct and up to date, since decisions made on wrong data harm the person they describe.</li>
+          <li><strong>Storage limitation:</strong> data is kept only as long as it is needed, then deleted, because indefinite retention is indefinite risk.</li>
+          <li><strong>Security:</strong> data is protected against loss, unauthorized access, and misuse, through the controls covered in the security frameworks.</li>
+          <li><strong>Accountability:</strong> the organization can demonstrate, with evidence, that it meets these principles, not merely claim it.</li>
+        </ul>
+        <p>Minimization deserves particular emphasis because it runs against a common instinct to collect everything that might one day be useful. That instinct is a liability: every extra field is a field to secure, to govern, and to answer for in a breach, and the cheapest way to protect data is to never collect it in the first place. A disciplined program asks of every data element not could this be useful, but is this necessary for the stated purpose.</p>
+        <div class="note"><strong>Note:</strong> Accountability turns the other principles from good intentions into an obligation. If you cannot show evidence that you minimize, limit, and secure data, then in the eyes of a regulator you do not.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>المبادئ الأساسية</h2>
+        <p class="lead">تقوم حماية البيانات الحديثة على مجموعةٍ صغيرة من المبادئ تُعرّف معًا المعالجة المسؤولة. وهي ليست قواعد مستقلّة تُؤشَّر، بل معيارٌ متماسك، وبرنامجٌ يحترمها كلها يتعامل مع البيانات بطريقةٍ يثق بها الأفراد والجهات المنظِّمة.</p>
+        <ul>
+          <li><strong>المشروعية والإنصاف:</strong> تُعالَج البيانات الشخصية على أساسٍ قانوني صحيح وبطريقةٍ يراها الناس معقولة، لا بجمعٍ خفيّ أو خادع.</li>
+          <li><strong>تحديد الغرض:</strong> تُجمَع البيانات لغرضٍ محدَّد مُعلَن ولا تُستخدَم لاحقًا لما يتعارض معه دون أساسٍ جديد.</li>
+          <li><strong>تقليل البيانات:</strong> تُجمَع فقط البيانات اللازمة فعلًا للغرض، لأن بياناتٍ لا تحوزها لا يمكن فقدها أو إساءتها.</li>
+          <li><strong>الدقة:</strong> تُبقى البيانات صحيحة ومحدَّثة، لأن قراراتٍ على بياناتٍ خاطئة تؤذي من تصفهم.</li>
+          <li><strong>تحديد التخزين:</strong> تُحفَظ البيانات بقدر الحاجة فقط، ثم تُحذَف، لأن الاحتفاظ اللامحدود خطرٌ لامحدود.</li>
+          <li><strong>الأمن:</strong> تُحمى البيانات من الفقد والوصول غير المصرَّح والإساءة، عبر الضوابط المغطّاة في أطر الأمن.</li>
+          <li><strong>المساءلة:</strong> تستطيع المنشأة أن تُظهر بالدليل أنها تفي بهذه المبادئ، لا أن تدّعيه فحسب.</li>
+        </ul>
+        <p>ويستحق التقليل تأكيدًا خاصًا لأنه يخالف غريزةً شائعة بجمع كل ما قد يفيد يومًا. وتلك الغريزة عبء: فكل حقلٍ إضافي حقلٌ يُؤمَّن ويُحوكَم ويُساءَل عنه في اختراق، وأرخص طريقة لحماية البيانات ألّا تُجمَع أصلًا. والبرنامج المنضبط يسأل عن كل عنصر بيانات ليس «هل قد يفيد» بل «هل هو لازمٌ للغرض المُعلَن».</p>
+        <div class="note"><strong>ملاحظة:</strong> المساءلة تحوّل بقية المبادئ من نوايا حسنة إلى التزام. فإن لم تستطع إظهار دليلٍ على أنك تُقلّل وتُحدّد وتُؤمّن البيانات، فأنت في نظر الجهة المنظِّمة لا تفعل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="basis">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Lawful Basis for Processing</h2>
+        <p class="lead">Every use of personal data needs a reason the law recognizes. Before processing anything, the organization has to be able to name the basis on which it is allowed, because processing without one is unlawful regardless of how careful the handling is.</p>
+        <p>The most familiar basis is consent, where the person freely agrees to a specific use after being clearly told what it is. Consent has to be a genuine choice, informed and revocable, which means it cannot be buried in dense terms, bundled so that refusing a minor use blocks an essential service, or made so hard to withdraw that agreement is effectively permanent. Consent that a person could not realistically refuse or reverse is not consent, it is the appearance of it.</p>
+        <p>Consent is not the only basis, and often not the best one. Processing may also be justified where it is necessary to perform a contract the person is party to, to meet a legal obligation, or to serve a legitimate interest that does not override the person's rights. Choosing the right basis matters, because relying on consent for something a person cannot really decline is weaker than relying on the actual necessity, and using the honest basis is both more robust and more respectful.</p>
+        <div class="note"><strong>Note:</strong> Decide and record the lawful basis for each processing activity before it starts. Reverse-engineering a justification after a complaint is both harder to defend and a sign that the basis was never really considered.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الأساس القانوني للمعالجة</h2>
+        <p class="lead">كل استخدام لبياناتٍ شخصية يحتاج سببًا يعترف به القانون. فقبل معالجة أي شيء، على المنشأة أن تستطيع تسمية الأساس الذي يُسمَح لها عليه، لأن المعالجة بلا أساسٍ غير مشروعة أيًّا كان حذر التعامل.</p>
+        <p>أشهر الأسس هو الموافقة، حيث يوافق الشخص بحريةٍ على استخدامٍ محدَّد بعد إخباره بوضوح بما هو. والموافقة يجب أن تكون خيارًا حقيقيًا، مطّلعًا وقابلًا للسحب، بمعنى ألّا تُدفَن في شروطٍ كثيفة، ولا تُحزَم بحيث يمنع رفضُ استخدامٍ ثانوي خدمةً أساسية، ولا يُصعَّب سحبها حتى تصير الموافقة دائمةً فعليًا. فموافقةٌ لا يستطيع الشخص واقعيًا رفضها أو عكسها ليست موافقة بل مظهرها.</p>
+        <p>والموافقة ليست الأساس الوحيد، وغالبًا ليست الأفضل. فقد تُبرَّر المعالجة أيضًا حيث تلزم لتنفيذ عقدٍ الشخص طرفٌ فيه، أو للوفاء بالتزامٍ قانوني، أو لخدمة مصلحةٍ مشروعة لا تتجاوز حقوق الشخص. واختيار الأساس الصحيح يهمّ، لأن الاتّكاء على الموافقة لأمرٍ لا يستطيع الشخص رفضه أضعف من الاتّكاء على اللزوم الفعلي، واستخدام الأساس الصادق أمتن وأكثر احترامًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> حدّد وسجّل الأساس القانوني لكل نشاط معالجةٍ قبل بدئه. فهندسة مبرّرٍ عكسيًا بعد شكوى أصعب دفاعًا ودليلٌ على أن الأساس لم يُنظَر فيه حقًّا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="rights">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Rights of the Individual</h2>
+        <p class="lead">Data protection gives individuals real, exercisable rights over their own data, and an organization has to be able to honor them within defined timelines. These rights are the mechanism through which a person keeps some control over information about themselves.</p>
+        <p>The rights are practical, not abstract. A person can ask what data an organization holds about them and why, correct it when it is wrong, ask for it to be deleted when there is no longer a valid reason to keep it, and withdraw a consent they previously gave. Where processing relies on consent, the right to withdraw it must be as easy to use as the consent was to give, otherwise the original consent was never truly free.</p>
+        <ul>
+          <li><strong>Right to be informed:</strong> to know that data is collected, for what purpose, and how it is used, in clear language up front.</li>
+          <li><strong>Right of access:</strong> to see the personal data held about them and confirm how it is being processed.</li>
+          <li><strong>Right to correction:</strong> to have inaccurate or incomplete data put right.</li>
+          <li><strong>Right to deletion:</strong> to have data erased when the purpose is served or the basis is gone.</li>
+          <li><strong>Right to withdraw consent:</strong> to revoke a previously given consent as easily as it was given.</li>
+        </ul>
+        <p>Honoring these rights is an operational capability, not just a policy statement. It requires knowing where personal data actually lives, which is often scattered across many systems, so that a deletion request can be fulfilled everywhere rather than in the one obvious database while copies persist elsewhere. An organization that cannot find all copies of a person's data cannot honestly claim to have deleted it, which is why the data-mapping work of governance underpins the rights.</p>
+        <div class="note"><strong>Note:</strong> Build a defined process for each right, with an owner and a timeline, before the first request arrives. Rights requests are not rare edge cases, they are a routine obligation, and handling them ad hoc is how deadlines and data get missed.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>حقوق الفرد</h2>
+        <p class="lead">تمنح حماية البيانات الأفراد حقوقًا حقيقية قابلة للممارسة على بياناتهم، وعلى المنشأة أن تستطيع الوفاء بها خلال مُهَلٍ محدَّدة. وهذه الحقوق الآلية التي يُبقي بها الشخص شيئًا من السيطرة على المعلومات عنه.</p>
+        <p>الحقوق عملية لا مجرّدة. فيستطيع الشخص أن يسأل ما البيانات التي تحوزها المنشأة عنه ولماذا، ويصحّحها حين تكون خاطئة، ويطلب حذفها حين لا يبقى سببٌ صحيح لحفظها، ويسحب موافقةً منحها سابقًا. وحيث تعتمد المعالجة على الموافقة، يجب أن يكون حقّ سحبها سهل الاستخدام كسهولة منحها، وإلا لم تكن الموافقة الأصلية حرّةً حقًّا.</p>
+        <ul>
+          <li><strong>حقّ العلم:</strong> أن يعرف أن البيانات تُجمَع، ولأي غرض، وكيف تُستخدَم، بلغةٍ واضحة مقدَّمًا.</li>
+          <li><strong>حقّ الوصول:</strong> أن يرى بياناته الشخصية المحفوظة ويؤكّد كيف تُعالَج.</li>
+          <li><strong>حقّ التصحيح:</strong> أن تُصحَّح بياناته غير الدقيقة أو الناقصة.</li>
+          <li><strong>حقّ الحذف:</strong> أن تُمحى بياناته حين يتحقّق الغرض أو يزول الأساس.</li>
+          <li><strong>حقّ سحب الموافقة:</strong> أن يُلغي موافقةً سابقة بسهولة منحها.</li>
+        </ul>
+        <p>والوفاء بهذه الحقوق قدرةٌ تشغيلية لا مجرد بيان سياسة. يتطلّب معرفة أين تعيش البيانات الشخصية فعلًا، وهي غالبًا مبعثرة عبر أنظمةٍ كثيرة، ليُنفَّذ طلب حذفٍ في كل مكان لا في قاعدة البيانات الظاهرة الواحدة بينما تبقى نسخٌ في غيرها. ومنشأةٌ لا تستطيع إيجاد كل نسخ بيانات شخصٍ لا تقدر أن تدّعي بصدقٍ أنها حذفتها، ولذا يسند عملُ رسم البيانات في الحوكمة هذه الحقوق.</p>
+        <div class="note"><strong>ملاحظة:</strong> ابنِ عمليةً محدَّدة لكل حقّ، بمالكٍ ومُهلة، قبل وصول أول طلب. فطلبات الحقوق ليست حالاتٍ نادرة، بل التزامٌ روتيني، ومعالجتها ارتجالًا هي كيف تُفوَّت المُهَل وتضيع البيانات.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="obligations">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Controller &amp; Processor Obligations</h2>
+        <p class="lead">Responsibility for personal data is assigned to defined roles. The controller decides why and how data is processed, the processor acts on the controller's behalf, and each carries obligations that make accountability concrete rather than diffuse.</p>
+        <p>The controller holds the primary duty: it chooses the purpose, sets the lawful basis, honors the rights, and answers to the regulator. A processor, such as a cloud provider or an outsourced service, processes data only on the controller's documented instructions and must protect it, and the relationship between them is set out in a contract so the obligations follow the data even as it moves to a third party. Handing data to a processor never hands away the controller's accountability for it.</p>
+        <ul>
+          <li><strong>Records of processing:</strong> a documented inventory of what data is held, why, where, and on what basis, which is the foundation everything else relies on.</li>
+          <li><strong>A responsible person:</strong> a designated data protection officer or equivalent, accountable for the program and reachable by regulators and individuals.</li>
+          <li><strong>Processor contracts:</strong> written terms binding any processor to protect the data and act only on instruction, with the right to verify.</li>
+          <li><strong>Registration and cooperation:</strong> meeting any obligation to register with or respond to the regulator, in Saudi Arabia the Data and AI Authority.</li>
+        </ul>
+        <p>The record of processing is the quiet backbone of the whole program. It is unglamorous, but without an accurate map of what data the organization holds and why, none of the other obligations can be met reliably: rights cannot be honored across unknown systems, breaches cannot be scoped, and minimization cannot be checked. Building and maintaining that record is the first practical step of a real privacy program.</p>
+        <div class="note"><strong>Note:</strong> The controller remains accountable even when a processor causes the harm. Choose processors carefully, bind them contractually, and verify them, because their failure will be attributed to you.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>التزامات المتحكّم والمعالِج</h2>
+        <p class="lead">تُسنَد مسؤولية البيانات الشخصية لأدوارٍ محدَّدة. المتحكّم يقرّر لماذا وكيف تُعالَج البيانات، والمعالِج يتصرّف نيابةً عنه، وكلٌّ يحمل التزاماتٍ تجعل المساءلة ملموسة لا مشتّتة.</p>
+        <p>المتحكّم يحمل الالتزام الأول: يختار الغرض، ويضع الأساس القانوني، ويفي بالحقوق، ويُجيب الجهة المنظِّمة. والمعالِج، كمزوّد سحابةٍ أو خدمةٍ مُسنَدة، يعالج البيانات فقط بتعليمات المتحكّم الموثَّقة وعليه حمايتها، والعلاقة بينهما تُبيَّن في عقدٍ لتتبع الالتزاماتُ البياناتِ ولو انتقلت لطرفٍ ثالث. وتسليم البيانات لمعالِجٍ لا يُسلّم أبدًا مساءلة المتحكّم عنها.</p>
+        <ul>
+          <li><strong>سجلات المعالجة:</strong> جردٌ موثَّق لما يُحفَظ من بيانات، ولماذا، وأين، وعلى أي أساس، وهو الأساس الذي يعتمد عليه كل ما عداه.</li>
+          <li><strong>شخصٌ مسؤول:</strong> مسؤول حماية بياناتٍ مُعيَّن أو ما يعادله، مساءَل عن البرنامج وقابل للوصول من الجهات والأفراد.</li>
+          <li><strong>عقود المعالِجين:</strong> شروطٌ مكتوبة تُلزِم أي معالِجٍ بحماية البيانات والتصرّف بالتعليمات فقط، مع حقّ التحقّق.</li>
+          <li><strong>التسجيل والتعاون:</strong> الوفاء بأي التزامٍ بالتسجيل لدى الجهة المنظِّمة أو الاستجابة لها، وفي السعودية هيئة البيانات والذكاء الاصطناعي.</li>
+        </ul>
+        <p>سجل المعالجة هو العمود الفقري الهادئ للبرنامج كله. غير برّاقٍ، لكن بلا خريطةٍ دقيقة لما تحوزه المنشأة من بياناتٍ ولماذا، لا يُوفى بأيٍّ من الالتزامات الأخرى بموثوقية: فالحقوق لا تُلبّى عبر أنظمةٍ مجهولة، والاختراقات لا يُحدَّد نطاقها، والتقليل لا يُفحَص. وبناء ذلك السجل وصونه أول خطوةٍ عملية لبرنامج خصوصيةٍ حقيقي.</p>
+        <div class="note"><strong>ملاحظة:</strong> يبقى المتحكّم مساءَلًا حتى حين يُسبّب المعالِج الأذى. اختر المعالِجين بعناية، وألزِمهم تعاقديًا، وتحقّق منهم، لأن فشلهم سيُنسَب إليك.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="transfer">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Cross-Border Data Transfer</h2>
+        <p class="lead">Data does not respect borders, but data protection law does. When personal data moves out of the country whose law protects it, that protection can be lost, so transfers are governed to make sure the data does not shed its safeguards by crossing a line on a map.</p>
+        <p>The core concern is simple: if data about a person is protected at home but sent to a place with weaker rules or none, the protection is hollow. Regimes address this by allowing transfers only under conditions that preserve protection, such as the destination having an adequate level of protection, or the transfer being covered by binding safeguards, or specific narrow exceptions. The practical duty is to know where your data goes, including where your processors and their sub-processors are located, because a transfer often happens invisibly through a supplier rather than by a deliberate export.</p>
+        <ul>
+          <li><strong>Know the flows:</strong> map where personal data physically goes, including through cloud services and sub-processors.</li>
+          <li><strong>Check the condition:</strong> confirm each cross-border transfer meets a permitted basis before it happens.</li>
+          <li><strong>Bind the safeguards:</strong> where required, put contractual or other protections in place so the data stays protected abroad.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> The most common cross-border transfer is not a dramatic export, it is routine use of a cloud service hosted elsewhere. Map your suppliers' locations, because that is where the obligation quietly bites.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>نقل البيانات عبر الحدود</h2>
+        <p class="lead">البيانات لا تحترم الحدود، لكن قانون حماية البيانات يحترمها. فحين تخرج بياناتٌ شخصية من بلد قانونه يحميها، قد تُفقَد تلك الحماية، لذا يُحوكَم النقل ليضمن ألّا تخلع البيانات وقاياتها بعبور خطٍّ على خريطة.</p>
+        <p>الهاجس الجوهري بسيط: إن كانت بيانات شخصٍ محمية في الوطن لكن أُرسِلت لمكانٍ بقواعد أضعف أو بلا قواعد، فالحماية جوفاء. وتعالج الأنظمة هذا بالسماح بالنقل فقط بشروطٍ تحفظ الحماية، كأن يكون للوجهة مستوى حمايةٍ كافٍ، أو يكون النقل مغطّىً بوقاياتٍ مُلزِمة، أو باستثناءاتٍ ضيّقة محدَّدة. والالتزام العملي معرفة أين تذهب بياناتك، بما فيه أين يقع معالِجوك ومعالِجوهم الفرعيون، لأن النقل يقع غالبًا خفيةً عبر مورّدٍ لا بتصديرٍ متعمَّد.</p>
+        <ul>
+          <li><strong>اعرف التدفّقات:</strong> ارسم أين تذهب البيانات الشخصية فعليًا، بما فيه عبر الخدمات السحابية والمعالِجين الفرعيين.</li>
+          <li><strong>تحقّق من الشرط:</strong> أكّد أن كل نقلٍ عبر الحدود يفي بأساسٍ مسموح قبل وقوعه.</li>
+          <li><strong>ألزِم الوقايات:</strong> حيث يلزم، ضع حمايةً تعاقدية أو غيرها لتبقى البيانات محمية في الخارج.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> أشيع نقلٍ عبر الحدود ليس تصديرًا دراميًا، بل استخدامًا روتينيًا لخدمةٍ سحابية مُستضافة في مكانٍ آخر. ارسم مواقع مورّديك، فهناك يعضّ الالتزام بهدوء.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="breach">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Breach Response &amp; Impact Assessment</h2>
+        <p class="lead">Two forward-looking duties complete the program: responding correctly when data is exposed, and assessing risk before a high-risk use begins. One handles the failure, the other tries to prevent it.</p>
+        <p>A personal data breach is any event that exposes, loses, or allows unauthorized access to personal data, and regimes typically require the organization to notify the regulator, and sometimes the affected individuals, within a defined time once a qualifying breach is known. That deadline is the reason breach response cannot be improvised: the clock starts when the breach is discovered, so the organization needs a ready process to assess the breach, decide whether it is notifiable, and notify in time, all under pressure. This is the incident response loop from security operations, pointed specifically at personal data.</p>
+        <h3>Privacy by design and impact assessment</h3>
+        <p>The preventive counterpart is to build privacy in from the start rather than bolting it on. Privacy by design means considering data protection as a system is being designed, choosing to minimize and protect data by default. Where a new use of data is likely to be high-risk to people, a data protection impact assessment examines that risk before the processing begins, identifies how to reduce it, and records the decision. Doing this early is far cheaper than discovering a privacy problem after a system is live and people's data is already exposed.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> a real privacy program is operational, not paper: it knows where personal data is, processes it on a clear basis, honors rights on a timeline, governs where data goes, and is ready to respond when something goes wrong.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>الاستجابة للاختراق وتقييم الأثر</h2>
+        <p class="lead">التزامان استشرافيان يكملان البرنامج: الاستجابة الصحيحة حين تنكشف البيانات، وتقييم الخطر قبل بدء استخدامٍ عالي الخطر. أحدهما يعالج الفشل، والآخر يحاول منعه.</p>
+        <p>اختراق البيانات الشخصية أي حدثٍ يكشف بياناتٍ شخصية أو يفقدها أو يتيح وصولًا غير مصرَّح إليها، وتُلزِم الأنظمة عادةً المنشأة بإبلاغ الجهة المنظِّمة، وأحيانًا الأفراد المتأثّرين، خلال وقتٍ محدَّد بمجرد العلم باختراقٍ مستوفٍ. وتلك المُهلة سبب أن الاستجابة لا تُرتجَل: فالساعة تبدأ عند اكتشاف الاختراق، فتحتاج المنشأة عمليةً جاهزة لتقييمه، وقرار هل يستوجب الإبلاغ، والإبلاغ في الوقت، كله تحت الضغط. وهذه حلقة الاستجابة للحوادث من عمليات الأمن، مُوجَّهة تحديدًا للبيانات الشخصية.</p>
+        <h3>الخصوصية بالتصميم وتقييم الأثر</h3>
+        <p>والنظير الوقائي هو بناء الخصوصية من البداية لا تركيبها لاحقًا. الخصوصية بالتصميم تعني مراعاة حماية البيانات أثناء تصميم النظام، واختيار تقليل البيانات وحمايتها افتراضيًا. وحيث يُرجَّح أن يكون استخدامٌ جديد عالي الخطر على الناس، يفحص تقييم أثر حماية البيانات ذلك الخطر قبل بدء المعالجة، ويحدّد كيف يُخفَّض، ويسجّل القرار. وفعل هذا مبكرًا أرخص بكثير من اكتشاف مشكلة خصوصيةٍ بعد تشغيل النظام وبيانات الناس مكشوفة أصلًا.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> برنامج الخصوصية الحقيقي تشغيليٌ لا ورقي: يعرف أين البيانات الشخصية، ويعالجها على أساسٍ واضح، ويفي بالحقوق في مُهلة، ويحوكم أين تذهب البيانات، ومستعدٌ للاستجابة حين يسوء شيء.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">A privacy program keeps an organization's use of personal data lawful, trusted, and sustainable, by honoring principles, rights, and obligations as daily operations.</p>
+        <ul>
+          <li>Handle personal data by the core principles, with minimization and accountability at the center.</li>
+          <li>Name and record a lawful basis for every processing activity before it starts.</li>
+          <li>Build operational processes to honor individual rights within their timelines.</li>
+          <li>Keep records of processing, bind processors, and govern where data crosses borders.</li>
+          <li>Be ready to respond to breaches on the clock, and assess privacy risk before high-risk uses begin.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://sdaia.gov.sa/en/SDAIA/about/Pages/RegulationsAndPolicies.aspx" target="_blank" rel="noopener">SDAIA, Saudi Personal Data Protection Law and regulations (2023 record).</a></li>
+          <li><a href="https://www.iso.org/standard/71670.html" target="_blank" rel="noopener">ISO/IEC 27701, Privacy information management (extension to ISO 27001).</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022, Information security management systems.</a></li>
+          <li><a href="https://oecd.ai/en/ai-principles" target="_blank" rel="noopener">OECD principles on privacy and data (context).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">برنامج الخصوصية يُبقي استخدام المنشأة للبيانات الشخصية مشروعًا وموثوقًا ومستدامًا، بالوفاء بالمبادئ والحقوق والالتزامات كعملياتٍ يومية.</p>
+        <ul>
+          <li>تعامل مع البيانات الشخصية بالمبادئ الأساسية، بالتقليل والمساءلة في المركز.</li>
+          <li>سمِّ وسجّل أساسًا قانونيًا لكل نشاط معالجةٍ قبل بدئه.</li>
+          <li>ابنِ عملياتٍ تشغيلية للوفاء بحقوق الأفراد خلال مُهَلها.</li>
+          <li>احتفظ بسجلات المعالجة، وألزِم المعالِجين، وحوكِم أين تعبر البيانات الحدود.</li>
+          <li>كن مستعدًّا للاستجابة للاختراقات على الساعة، وقيّم خطر الخصوصية قبل الاستخدامات عالية الخطر.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://sdaia.gov.sa/en/SDAIA/about/Pages/RegulationsAndPolicies.aspx" target="_blank" rel="noopener">هيئة البيانات والذكاء الاصطناعي، نظام حماية البيانات الشخصية ولوائحه (سجل 2023).</a></li>
+          <li><a href="https://www.iso.org/standard/71670.html" target="_blank" rel="noopener">ISO/IEC 27701، إدارة معلومات الخصوصية (امتداد لـ ISO 27001).</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022، أنظمة إدارة أمن المعلومات.</a></li>
+          <li><a href="https://oecd.ai/en/ai-principles" target="_blank" rel="noopener">مبادئ OECD حول الخصوصية والبيانات (سياق).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","principles","basis","rights","obligations","transfer","breach","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

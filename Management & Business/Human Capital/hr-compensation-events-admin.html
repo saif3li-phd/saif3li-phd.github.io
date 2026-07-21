@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compensation, Events &amp; Admin Writing</title>
+<meta name="description" content="An operational framework for total rewards and workplace operations: fair compensation, purpose-driven events, and clear administrative writing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">PM &amp; HR OPERATIONS &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">عمليات المشاريع والموارد &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Compensation, Events &amp; Admin Writing</span><span data-lang="ar">التعويض والفعاليات والكتابة الإدارية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="compensation"><span data-lang="en">Compensation</span><span data-lang="ar">التعويض</span></a>
+    <a data-id="operations"><span data-lang="en">Operations</span><span data-lang="ar">العمليات</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Total rewards &amp; workplace operations</div>
+          <div><span>Scope:</span> Compensation, events, and administrative writing</div>
+          <div><span>Owner role:</span> HR and operations, with finance</div>
+          <div><span>Review cadence:</span> Annual pay review, per-event planning</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Total rewards is everything an organization gives its people in return for their work, most visibly pay and benefits, but also the less tangible rewards of growth, recognition, and a good place to work. Alongside it sit the everyday workplace operations that keep an organization running smoothly: organizing events that bring people together, and writing the clear administrative documents that let work proceed. These are the practical, often underrated disciplines that shape daily experience.</p>
+        <p>These areas matter because they touch every employee, constantly. Compensation is a major driver of whether people feel fairly treated and choose to stay. Events shape culture and connection in ways that formal policy cannot. And administrative writing, the memos, announcements, and letters that carry an organization's decisions, determines whether those decisions are understood or garbled. Done well, these disciplines are almost invisible, and done badly they generate friction, confusion, and resentment out of all proportion to how simple they appear.</p>
+        <p>This framework covers three practical operational disciplines: designing fair compensation, organizing effective events, and writing clear administrative documents. It draws on recognized people and communication practice and is written to be reusable across organizations.</p>
+        <div class="note"><strong>Note:</strong> Pay, events, and everyday writing feel like small operational matters, but they touch every employee constantly and shape whether people feel fairly treated, connected, and clearly informed. Getting the simple things right compounds.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> المكافآت الكلّية وعمليات مكان العمل</div>
+          <div><span>النطاق:</span> التعويضات والفعاليات والكتابة الإدارية</div>
+          <div><span>دور المالك:</span> الموارد البشرية والعمليات، مع المالية</div>
+          <div><span>دورية المراجعة:</span> مراجعة أجرٍ سنوية، وتخطيط لكل فعالية</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">المكافآت الكلّية كل ما تمنحه المنشأة ناسها مقابل عملهم، أظهرها الأجر والمزايا، وأيضًا المكافآت الأقلّ ملموسيةً من نموٍّ وتقديرٍ ومكان عملٍ جيد. وبجانبها تجلس عمليات مكان العمل اليومية التي تُبقي المنشأة تسير بسلاسة: تنظيم الفعاليات التي تجمع الناس، وكتابة الوثائق الإدارية الواضحة التي تتيح للعمل أن يمضي. وهذه انضباطاتٌ عملية، مبخوسة القدر غالبًا، تُشكّل التجربة اليومية.</p>
+        <p>تهمّ هذه المجالات لأنها تمسّ كل موظفٍ باستمرار. فالتعويض محرّكٌ كبير لهل يشعر الناس بمعاملةٍ عادلة ويختارون البقاء. والفعاليات تُشكّل الثقافة والاتصال بطرقٍ لا تستطيعها السياسة الرسمية. والكتابة الإدارية، المذكّرات والإعلانات والخطابات التي تحمل قرارات المنشأة، تحدّد هل تُفهَم تلك القرارات أم تُشوَّه. ومُتقَنةً تكون هذه الانضباطات شبه خفية، ومُساءةً تولّد احتكاكًا وارتباكًا واستياءً يفوق بساطتها الظاهرة كثيرًا.</p>
+        <p>يغطّي هذا الإطار ثلاثة انضباطاتٍ عملية تشغيلية: تصميم تعويضٍ عادل، وتنظيم فعالياتٍ فعّالة، وكتابة وثائق إدارية واضحة. ويستند إلى ممارسة الناس والتواصل المعترف بها ومكتوب ليكون قابلًا لإعادة الاستخدام عبر المنشآت.</p>
+        <div class="note"><strong>ملاحظة:</strong> الأجر والفعاليات والكتابة اليومية تبدو مسائل تشغيلية صغيرة، لكنها تمسّ كل موظفٍ باستمرار وتُشكّل هل يشعر الناس بعدلٍ واتصالٍ وإبلاغٍ واضح. وإتقان البسيط يتراكم.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="compensation">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Fair Compensation</h2>
+        <p class="lead">Compensation is what an organization pays its people, and designing it well means balancing several kinds of fairness at once so that pay attracts, retains, and motivates without breaking the budget or breeding resentment.</p>
+        <p>Good compensation has to be fair in three directions simultaneously. It must be externally competitive, roughly in line with what the market pays for similar work, or people leave for better offers. It must be internally equitable, so that people in comparable roles are paid comparably and pay differences reflect real differences in responsibility, or a sense of unfairness poisons morale. And it must be affordable, sustainable within what the organization can actually pay. These three pulls often conflict, and the art of compensation design is balancing them deliberately rather than letting pay drift into inconsistency.</p>
+        <ul>
+          <li><strong>Externally competitive:</strong> broadly aligned with the market, or good people leave for better offers.</li>
+          <li><strong>Internally equitable:</strong> comparable roles paid comparably, with differences reflecting real differences.</li>
+          <li><strong>Affordable:</strong> sustainable within what the organization can actually pay over time.</li>
+          <li><strong>Transparent enough:</strong> based on a structure people can understand as fair, not seemingly arbitrary.</li>
+        </ul>
+        <p>Beyond base pay, total rewards includes benefits, bonuses tied to performance, and the non-financial rewards of growth and recognition. A common mistake is to treat pay as the only lever, competing on salary alone while neglecting the development, respect, and good management that research shows matter enormously to engagement. A well-designed reward system uses the whole range, offering competitive pay as a foundation but building retention and motivation on the fuller set of things that make people want to stay, most of which are not the number on the paycheck.</p>
+        <div class="note"><strong>Note:</strong> Pay must be fair in three directions at once, competitive outside, equitable inside, and affordable, and these often conflict. Designing compensation is the deliberate balancing of those pulls, not just picking a number.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>التعويض العادل</h2>
+        <p class="lead">التعويض ما تدفعه المنشأة ناسها، وتصميمه جيدًا يعني موازنة عدّة أنواع من العدل معًا فيجذب الأجر ويُبقي ويحفّز دون كسر الميزانية أو توليد استياء.</p>
+        <p>التعويض الجيد يجب أن يكون عادلًا في ثلاثة اتجاهاتٍ في آنٍ واحد. يجب أن يكون منافسًا خارجيًا، متماشيًا تقريبًا مع ما تدفعه السوق لعملٍ مماثل، وإلا غادر الناس لعروضٍ أفضل. ويجب أن يكون منصفًا داخليًا، فيُدفَع لمن في أدوارٍ متشابهة بتشابهٍ وتعكس فروق الأجر فروقًا حقيقية في المسؤولية، وإلا سمّم شعورُ الظلم الروحَ المعنوية. ويجب أن يكون مقدورًا، مستدامًا ضمن ما تستطيع المنشأة دفعه فعلًا. وهذه الجذبات الثلاث تتعارض غالبًا، وفنّ تصميم التعويض موازنتها عمدًا لا ترك الأجر ينجرف لتضاربٍ.</p>
+        <ul>
+          <li><strong>منافسٌ خارجيًا:</strong> متماشٍ عمومًا مع السوق، وإلا غادر الجيدون لعروضٍ أفضل.</li>
+          <li><strong>منصفٌ داخليًا:</strong> أدوارٌ متشابهة تُدفَع بتشابه، بفروقٍ تعكس فروقًا حقيقية.</li>
+          <li><strong>مقدور:</strong> مستدامٌ ضمن ما تستطيع المنشأة دفعه فعلًا بالزمن.</li>
+          <li><strong>شفّافٌ كفايةً:</strong> مبنيٌّ على هيكلٍ يفهمه الناس كعادل، لا يبدو اعتباطيًا.</li>
+        </ul>
+        <p>وراء الأجر الأساس، تشمل المكافآت الكلّية المزايا والمكافآت المربوطة بالأداء والمكافآت غير المالية من نموٍّ وتقدير. وخطأٌ شائع معاملة الأجر كالرافعة الوحيدة، بالتنافس بالراتب وحده مع إهمال التطوير والاحترام والإدارة الجيدة التي يُظهِر البحث أنها تهمّ المشاركة هائلًا. ونظام مكافآتٍ مُصمَّم جيدًا يستخدم المدى كله، عارضًا أجرًا منافسًا كأساس لكن بانيًا البقاء والتحفيز على المجموعة الأوفى من الأشياء التي تجعل الناس يريدون البقاء، وأغلبها ليس الرقم على قسيمة الراتب.</p>
+        <div class="note"><strong>ملاحظة:</strong> الأجر يجب أن يكون عادلًا في ثلاثة اتجاهاتٍ معًا، منافسًا خارجًا ومنصفًا داخلًا ومقدورًا، وهذه تتعارض غالبًا. وتصميم التعويض موازنة تلك الجذبات عمدًا لا مجرّد اختيار رقم.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="operations">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Events &amp; Administrative Writing</h2>
+        <p class="lead">Two everyday operational disciplines round out the workplace: organizing events that bring people together, and writing the administrative documents that carry an organization's business. Both are simple in principle and often done poorly in practice, and both reward a little deliberate care.</p>
+        <h3>Organizing events</h3>
+        <p>Whether a team offsite, a training day, or a company celebration, a good event is planned backward from a clear purpose. The organizer first asks what the event is actually for, connection, recognition, learning, or decision-making, and then designs everything, the format, the agenda, the logistics, to serve that purpose. Events fail when they have no clear purpose, when the logistics distract from the goal, or when they are organized as an obligation rather than designed as an experience. The disciplines are ordinary project management applied at small scale: define the outcome, plan the details, assign the responsibilities, and confirm the arrangements in advance, so that on the day people can focus on the purpose rather than on what went wrong.</p>
+        <h3>Administrative writing</h3>
+        <p>A great deal of organizational life runs on written documents: announcements, memos, letters, and notices that convey decisions and information. The single most important quality of such writing is clarity, that the reader understands exactly what is being said, what it means for them, and what if anything they need to do. Good administrative writing states its purpose up front, uses plain and precise language, is organized so the key point is easy to find, and respects the reader's time by being no longer than it needs to be. Poor administrative writing, vague, rambling, or burying the point, generates confusion, repeated questions, and mistakes, so the small effort of writing clearly pays back many times in avoided misunderstanding.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> compensation, events, and administrative writing are simple-seeming operational disciplines that touch everyone. Fair pay balanced across three tensions, events designed from a clear purpose, and writing built for clarity are the small things, done well, that make an organization run smoothly.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الفعاليات والكتابة الإدارية</h2>
+        <p class="lead">انضباطان تشغيليان يوميان يكمّلان مكان العمل: تنظيم الفعاليات التي تجمع الناس، وكتابة الوثائق الإدارية التي تحمل عمل المنشأة. وكلاهما بسيطٌ مبدئيًا ويُؤدَّى رديئًا عمليًا غالبًا، وكلاهما يكافئ قليلًا من العناية المتعمَّدة.</p>
+        <h3>تنظيم الفعاليات</h3>
+        <p>سواء خلوة فريقٍ أو يوم تدريبٍ أو احتفال شركة، الفعالية الجيدة مخطَّطة عكسيًا من غرضٍ واضح. فالمنظّم يسأل أولًا لماذا الفعالية فعلًا، اتصالًا أو تقديرًا أو تعلّمًا أو صنع قرار، ثم يصمّم كل شيء، الصيغة والجدول واللوجستيات، ليخدم ذلك الغرض. والفعاليات تفشل حين لا غرض واضح لها، حين تُلهي اللوجستيات عن الهدف، أو حين تُنظَّم كالتزامٍ لا تُصمَّم كتجربة. والانضباطات إدارة مشاريع عادية مطبَّقة على نطاقٍ صغير: عرّف النتيجة، خطّط التفاصيل، وزّع المسؤوليات، وأكّد الترتيبات مسبقًا، فيستطيع الناس يومَها التركيز على الغرض لا على ما فسد.</p>
+        <h3>الكتابة الإدارية</h3>
+        <p>قدرٌ كبير من حياة المنشأة يجري على وثائق مكتوبة: إعلاناتٌ ومذكّراتٌ وخطاباتٌ وإشعارات تنقل القرارات والمعلومات. وأهمّ صفةٍ مفردة لهذه الكتابة الوضوح، أن يفهم القارئ بالضبط ما يُقال، وما يعنيه له، وما عليه فعله إن كان ثمّة. والكتابة الإدارية الجيدة تذكر غرضها في المقدّمة، وتستخدم لغةً سهلة دقيقة، ومنظَّمة فتسهل رؤية النقطة الرئيسة، وتحترم وقت القارئ بألّا تطول أكثر من اللازم. والكتابة الرديئة، الغامضة أو المسهبة أو الدافنة للنقطة، تولّد ارتباكًا وأسئلةً مكرّرة وأخطاء، فالجهد الصغير للكتابة بوضوحٍ يسدّد أضعافًا في سوء فهمٍ مُتجنَّب.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> التعويض والفعاليات والكتابة الإدارية انضباطاتٌ تشغيلية تبدو بسيطة تمسّ الجميع. فأجرٌ عادل موزَّن عبر ثلاث توتّرات، وفعالياتٌ مصمَّمة من غرضٍ واضح، وكتابةٌ مبنية للوضوح هي الأشياء الصغيرة، مُتقَنةً، التي تجعل المنشأة تسير بسلاسة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Compensation, events, and administrative writing are simple-seeming disciplines that shape daily experience for everyone.</p>
+        <ul>
+          <li>Balance pay across three tensions at once: externally competitive, internally equitable, and affordable.</li>
+          <li>Use the whole range of total rewards, not salary alone, since growth and recognition drive retention too.</li>
+          <li>Plan every event backward from a clear purpose, then design format and logistics to serve it.</li>
+          <li>Write administrative documents for clarity: purpose up front, plain language, easy to find the point.</li>
+          <li>Treat these simple things with care, because done badly they generate friction out of all proportion.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.worldatwork.org/total-rewards-model" target="_blank" rel="noopener">WorldatWork, Total Rewards model.</a></li>
+          <li><a href="https://www.shrm.org/topics-tools/topics/compensation" target="_blank" rel="noopener">SHRM, compensation resources.</a></li>
+          <li><a href="https://www.plainlanguage.gov/guidelines/" target="_blank" rel="noopener">Federal Plain Language Guidelines, clear writing.</a></li>
+          <li><a href="https://hbr.org/2016/07/how-to-run-a-great-meeting" target="_blank" rel="noopener">Harvard Business Review, running effective gatherings.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">التعويض والفعاليات والكتابة الإدارية انضباطاتٌ تبدو بسيطة تُشكّل التجربة اليومية للجميع.</p>
+        <ul>
+          <li>وازِن الأجر عبر ثلاث توتّراتٍ معًا: منافسٌ خارجيًا ومنصفٌ داخليًا ومقدور.</li>
+          <li>استخدم مدى المكافآت الكلّية كله لا الراتب وحده، فالنموّ والتقدير يقودان البقاء أيضًا.</li>
+          <li>خطّط كل فعاليةٍ عكسيًا من غرضٍ واضح، ثم صمّم الصيغة واللوجستيات لخدمته.</li>
+          <li>اكتب الوثائق الإدارية للوضوح: الغرض في المقدّمة، لغةٌ سهلة، وسهولة رؤية النقطة.</li>
+          <li>عامِل هذه الأشياء البسيطة بعناية، فمُساءةً تولّد احتكاكًا يفوق بساطتها.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.worldatwork.org/total-rewards-model" target="_blank" rel="noopener">WorldatWork، نموذج المكافآت الكلّية.</a></li>
+          <li><a href="https://www.shrm.org/topics-tools/topics/compensation" target="_blank" rel="noopener">SHRM، موارد التعويض.</a></li>
+          <li><a href="https://www.plainlanguage.gov/guidelines/" target="_blank" rel="noopener">إرشادات اللغة الواضحة الفدرالية، الكتابة الواضحة.</a></li>
+          <li><a href="https://hbr.org/2016/07/how-to-run-a-great-meeting" target="_blank" rel="noopener">هارفارد بزنس ريفيو، إدارة اللقاءات الفعّالة.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","compensation","operations","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

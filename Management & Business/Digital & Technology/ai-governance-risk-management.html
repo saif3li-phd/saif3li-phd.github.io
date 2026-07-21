@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Governance &amp; Risk Management</title>
+<meta name="description" content="An operational framework for AI governance and risk: trustworthy-AI traits, the govern-map-measure-manage cycle, oversight, and regulation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">ARTIFICIAL INTELLIGENCE &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الذكاء الاصطناعي &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">AI Governance &amp; Risk Management</span><span data-lang="ar">حوكمة الذكاء الاصطناعي وإدارة مخاطره</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="why"><span data-lang="en">Why AI is Different</span><span data-lang="ar">لماذا يختلف</span></a>
+    <a data-id="principles"><span data-lang="en">Trustworthy AI</span><span data-lang="ar">الذكاء الجدير بالثقة</span></a>
+    <a data-id="govern"><span data-lang="en">Govern</span><span data-lang="ar">الحوكمة</span></a>
+    <a data-id="map"><span data-lang="en">Map</span><span data-lang="ar">الرسم</span></a>
+    <a data-id="measure"><span data-lang="en">Measure</span><span data-lang="ar">القياس</span></a>
+    <a data-id="manage"><span data-lang="en">Manage</span><span data-lang="ar">الإدارة</span></a>
+    <a data-id="regulation"><span data-lang="en">Regulation</span><span data-lang="ar">التنظيم</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Artificial intelligence governance</div>
+          <div><span>Scope:</span> Governing and managing the risk of AI systems across their lifecycle</div>
+          <div><span>Owner role:</span> AI governance lead, with model and product owners</div>
+          <div><span>Review cadence:</span> Continuous, with formal review of high-impact systems each quarter</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">AI governance is the deliberate way an organization decides where it will use artificial intelligence, on what terms, and with what safeguards, so that the benefit is captured without the harm running unchecked. It is the discipline that keeps a powerful, fast-moving technology aligned with the organization's values, obligations, and risk appetite.</p>
+        <p>The reason AI needs its own governance, rather than folding into general IT controls, is that AI systems fail in ways ordinary software does not. A traditional program does what it was told, so its errors are bugs to be fixed, while an AI model does what it learned, so its errors are patterns to be understood, and those patterns can be biased, opaque, and prone to drift as the world changes around them. Governing that requires a frame built for probability and learning, not just for code.</p>
+        <p>This framework organizes AI governance around two complementary references: the management-system approach of ISO/IEC 42001, which asks how an organization governs AI as an ongoing capability, and the risk approach of the NIST AI Risk Management Framework, whose functions of govern, map, measure, and manage give a practical cycle for handling the risk of any single system. It is written to be reusable across sectors and aligns to both without reproducing their text.</p>
+        <div class="note"><strong>Note:</strong> Good AI governance is not a brake on adoption, it is what makes fast adoption safe. The organizations that move quickest with AI are usually the ones that trust their guardrails enough to let people build.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> حوكمة الذكاء الاصطناعي</div>
+          <div><span>النطاق:</span> حوكمة أنظمة الذكاء الاصطناعي وإدارة مخاطرها عبر دورة حياتها</div>
+          <div><span>دور المالك:</span> قائد حوكمة الذكاء، مع ملّاك النماذج والمنتجات</div>
+          <div><span>دورية المراجعة:</span> مستمرة، مع مراجعة رسمية للأنظمة عالية الأثر كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">حوكمة الذكاء الاصطناعي هي الطريقة المتعمَّدة التي تقرّر بها المنشأة أين تستخدم الذكاء الاصطناعي، وبأي شروط، وبأي وقايات، لتُجنى الفائدة دون أن ينفلت الأذى. وهي الانضباط الذي يُبقي تقنيةً قويةً سريعة الحركة متوائمةً مع قيم المنشأة والتزاماتها وشهيتها للمخاطر.</p>
+        <p>وسبب حاجة الذكاء الاصطناعي لحوكمةٍ خاصة، بدل دمجه في ضوابط التقنية العامة، أن أنظمته تفشل بطرقٍ لا تفشل بها البرمجيات العادية. فالبرنامج التقليدي يفعل ما أُمِر به، فأخطاؤه عللٌ تُصلَح، أما نموذج الذكاء فيفعل ما تعلّمه، فأخطاؤه أنماطٌ تُفهَم، وتلك الأنماط قد تكون متحيّزة وغامضة وعُرضةً للانزياح مع تغيّر العالم حوله. وحوكمة ذلك تحتاج إطارًا مبنيًا للاحتمال والتعلّم لا للشيفرة فحسب.</p>
+        <p>ينظّم هذا الإطار حوكمة الذكاء حول مرجعين متكاملين: نهج نظام الإدارة في ISO/IEC 42001، الذي يسأل كيف تحوكم المنشأة الذكاء كقدرةٍ مستمرة، ونهج المخاطر في إطار NIST لإدارة مخاطر الذكاء، الذي تمنح وظائفه (الحوكمة والرسم والقياس والإدارة) دورةً عملية لمعالجة خطر أي نظامٍ مفرد. وهو قابل لإعادة الاستخدام عبر القطاعات ويتوافق مع كليهما دون نسخ نصّهما.</p>
+        <div class="note"><strong>ملاحظة:</strong> حوكمة الذكاء الجيدة ليست كابحًا للتبنّي، بل ما يجعل التبنّي السريع آمنًا. فالمنشآت الأسرع بالذكاء غالبًا هي التي تثق بحواجزها بما يكفي لتدع الناس يبنون.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="why">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Why AI Risk is Different</h2>
+        <p class="lead">Managing AI risk starts with respecting what makes it distinct. Four properties set AI apart from ordinary software, and each one creates a class of risk that traditional controls were never designed to catch.</p>
+        <ul>
+          <li><strong>It learns from data, so it inherits the data's flaws.</strong> A model trained on biased or unrepresentative data will reproduce and often amplify that bias, and the harm is not a coding error but a faithful reflection of a flawed input.</li>
+          <li><strong>It is often opaque, so its reasoning is hard to inspect.</strong> Many models cannot fully explain why they produced a given output, which makes errors hard to diagnose and decisions hard to justify, especially where a person is entitled to know why they were refused.</li>
+          <li><strong>It drifts, so it decays quietly over time.</strong> A model that was accurate at launch degrades as the world moves away from the data it learned on, and unlike a broken feature, this decay is silent and only shows up as slowly worsening outcomes.</li>
+          <li><strong>It can act, so its mistakes can propagate.</strong> As AI is given more autonomy, from recommending to deciding to acting, an error stops being a bad suggestion a human filters and becomes an action taken at machine speed and scale.</li>
+        </ul>
+        <p>A worked contrast makes the point. A traditional loan-approval rule that wrongly rejects an applicant has a bug in a known line of logic, findable and fixable. An AI loan model that wrongly rejects a class of applicants may be behaving exactly as trained, on historical data that encoded a past discrimination, so the fix is not in the code but in the data, the objective, and the oversight, none of which a conventional bug process would touch.</p>
+        <div class="note"><strong>Note:</strong> These properties are not reasons to avoid AI, they are the reasons to govern it deliberately. The controls that follow exist precisely because the old controls do not see these failures coming.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>لماذا يختلف خطر الذكاء</h2>
+        <p class="lead">إدارة خطر الذكاء تبدأ باحترام ما يميّزه. أربع خصائص تفصل الذكاء عن البرمجيات العادية، وكلٌّ تُنشئ صنفًا من الخطر لم تُصمَّم الضوابط التقليدية لالتقاطه.</p>
+        <ul>
+          <li><strong>يتعلّم من البيانات، فيرث عيوبها.</strong> نموذجٌ دُرِّب على بياناتٍ متحيّزة أو غير ممثِّلة سيُعيد إنتاج ذلك التحيّز ويضخّمه غالبًا، والأذى ليس خطأ برمجيًا بل انعكاسٌ أمين لمدخلٍ معيب.</li>
+          <li><strong>غامضٌ غالبًا، فيصعب فحص استدلاله.</strong> كثير من النماذج لا تشرح تمامًا لماذا أنتجت مخرجًا بعينه، مما يُصعّب تشخيص الأخطاء وتبرير القرارات، خاصةً حيث يحقّ لشخصٍ أن يعرف لماذا رُفِض.</li>
+          <li><strong>ينزاح، فيتحلّل بهدوءٍ عبر الزمن.</strong> نموذجٌ كان دقيقًا عند الإطلاق يتدهور مع ابتعاد العالم عن البيانات التي تعلّم عليها، وخلافًا لخاصيةٍ معطوبة، هذا التحلّل صامتٌ لا يظهر إلا كنتائج تسوء ببطء.</li>
+          <li><strong>يستطيع الفعل، فتنتشر أخطاؤه.</strong> مع منح الذكاء استقلاليةً أكبر، من التوصية إلى القرار إلى الفعل، يكفّ الخطأ عن كونه اقتراحًا سيئًا يُصفّيه بشرٌ ويصير فعلًا يُتَّخذ بسرعة الآلة ونطاقها.</li>
+        </ul>
+        <p>ومقارنةٌ محلولة توضّح النقطة. فقاعدة موافقة قرضٍ تقليدية ترفض متقدّمًا خطأً بها عللٌ في سطر منطقٍ معلوم، يُوجَد ويُصلَح. أما نموذج قرضٍ ذكيّ يرفض فئةً من المتقدّمين خطأً فقد يتصرّف كما دُرِّب بالضبط، على بياناتٍ تاريخية رمّزت تمييزًا ماضيًا، فالعلاج ليس في الشيفرة بل في البيانات والهدف والإشراف، ولا يمسّ أيًّا منها إجراء عللٍ تقليدي.</p>
+        <div class="note"><strong>ملاحظة:</strong> هذه الخصائص ليست أسبابًا لتجنّب الذكاء، بل أسباب حوكمته عن قصد. والضوابط التالية موجودةٌ تحديدًا لأن الضوابط القديمة لا ترى هذه الإخفاقات قادمة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="principles">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Characteristics of Trustworthy AI</h2>
+        <p class="lead">Governance needs a definition of what good looks like. Recognized guidance converges on a set of characteristics that together describe a trustworthy AI system, and they serve as the goals every control is meant to protect.</p>
+        <p>These characteristics are not independent, they trade off against each other, and naming them makes the trade-offs explicit rather than accidental. Pushing a model to be more accurate can make it less explainable, and tightening it for fairness can cost some raw performance, so governance is largely the work of deciding, for each use, which characteristics matter most and how far to balance them.</p>
+        <ul>
+          <li><strong>Valid and reliable:</strong> the system actually does what it claims, consistently, and its accuracy is measured rather than assumed.</li>
+          <li><strong>Safe:</strong> it does not create unreasonable risk to people, and it fails in ways that limit harm rather than amplify it.</li>
+          <li><strong>Secure and resilient:</strong> it withstands attack, including attacks specific to AI such as poisoned data or manipulated inputs, and recovers from disruption.</li>
+          <li><strong>Accountable and transparent:</strong> someone is answerable for the system, and enough about how it works is disclosed for that accountability to be real.</li>
+          <li><strong>Explainable and interpretable:</strong> its outputs can be understood well enough to justify a decision and to diagnose an error.</li>
+          <li><strong>Privacy-enhanced:</strong> it respects the data it uses, minimizing collection and protecting the people the data describes.</li>
+          <li><strong>Fair, with harmful bias managed:</strong> it does not systematically disadvantage groups, and the bias it does carry is measured and controlled.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Treat these as design targets, not slogans. For each AI use, write down which characteristics are critical and how you will measure them, so trustworthiness becomes testable rather than aspirational.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>خصائص الذكاء الجدير بالثقة</h2>
+        <p class="lead">تحتاج الحوكمة تعريفًا لما يبدو عليه الجيد. ويتلاقى الإرشاد المعترف به على مجموعة خصائص تصف معًا نظام ذكاءٍ جديرًا بالثقة، وهي تعمل كأهدافٍ يُراد لكل ضابطٍ حمايتها.</p>
+        <p>هذه الخصائص ليست مستقلّة، بل تتقايض فيما بينها، وتسميتها تجعل المقايضات صريحةً لا عرضية. فدفع النموذج لدقةٍ أعلى قد يجعله أقل قابليةً للشرح، وتشديده للإنصاف قد يكلّف بعض الأداء الخام، فالحوكمة إلى حدٍّ كبير عمل تقرير أي الخصائص أهمّ لكل استخدام وإلى أي مدى تُوازَن.</p>
+        <ul>
+          <li><strong>صحيح وموثوق:</strong> يفعل النظام فعلًا ما يدّعيه، باتساق، وتُقاس دقته لا تُفترَض.</li>
+          <li><strong>آمن:</strong> لا يُنشئ خطرًا غير معقول على الناس، ويفشل بطرقٍ تحدّ الأذى لا تضخّمه.</li>
+          <li><strong>محصَّن ومرن:</strong> يصمد للهجوم، بما فيه هجماتٌ خاصة بالذكاء كتسميم البيانات أو التلاعب بالمدخلات، ويتعافى من الاضطراب.</li>
+          <li><strong>مساءَل وشفّاف:</strong> ثمّة من يُساءَل عن النظام، ويُفصَح عن كيفية عمله بما يكفي لتكون تلك المساءلة حقيقية.</li>
+          <li><strong>قابل للشرح والتفسير:</strong> يُفهَم مخرجه بما يكفي لتبرير قرارٍ وتشخيص خطأ.</li>
+          <li><strong>معزِّز للخصوصية:</strong> يحترم البيانات التي يستخدمها، مُقلِّلًا الجمع وحاميًا من تصفهم البيانات.</li>
+          <li><strong>منصف بتحيّزٍ ضار مُدار:</strong> لا يُجحِف بمجموعاتٍ منهجيًا، والتحيّز الذي يحمله يُقاس ويُضبَط.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> عامِلها كأهداف تصميمٍ لا شعارات. فلكل استخدام ذكاء، دوّن أي الخصائص حرجة وكيف ستقيسها، لتصير الجدارة بالثقة قابلة للاختبار لا طموحًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="govern">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Govern: The Management System</h2>
+        <p class="lead">The govern function is the foundation the other three stand on. It establishes who is accountable for AI, what the organization's policy toward it is, and how risk decisions get made, so that individual systems are handled inside a consistent frame rather than case by case.</p>
+        <p>An AI management system, as described by ISO/IEC 42001, applies the familiar plan-do-check-act rhythm to AI as a whole. It asks the organization to set an AI policy, define roles and responsibilities, assess and treat AI risks and impacts, operate controls, and continually improve, exactly the management-system logic that governs information security, now pointed at the distinct risks of AI. This gives leadership a single place to state its intent and a single system to be held accountable against.</p>
+        <h3>What governance decides</h3>
+        <ul>
+          <li><strong>Acceptable use:</strong> where AI may and may not be used, and which uses are off-limits regardless of benefit.</li>
+          <li><strong>Roles and accountability:</strong> who owns each AI system and who can approve its deployment or retirement.</li>
+          <li><strong>Risk appetite for AI:</strong> how much uncertainty in accuracy, fairness, or autonomy the organization will accept, and where.</li>
+          <li><strong>Human oversight:</strong> which decisions must keep a human in the loop, and what authority that human actually has.</li>
+        </ul>
+        <p>Human oversight deserves emphasis because it is easily hollowed out. Requiring a human to approve an AI decision means little if that human faces a hundred decisions an hour with no real ability to review them, a pattern sometimes called rubber-stamp oversight. Genuine oversight gives the person the time, the information, and the authority to actually overrule the system, and governance is where that is either guaranteed or quietly abandoned.</p>
+        <div class="note"><strong>Note:</strong> The govern function is what makes the other three repeatable. Map, measure, and manage applied to one system without governance is a project, applied to every system inside a governance frame it is a capability.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الحوكمة: نظام الإدارة</h2>
+        <p class="lead">وظيفة الحوكمة هي الأساس الذي تقف عليه الثلاث الأخرى. تُحدّد مَن يُساءَل عن الذكاء، وما سياسة المنشأة حياله، وكيف تُتَّخذ قرارات الخطر، فتُعالَج الأنظمة المفردة داخل إطارٍ متّسق لا حالةً حالة.</p>
+        <p>نظام إدارة الذكاء، كما يصفه ISO/IEC 42001، يطبّق إيقاع «خطّط، نفّذ، افحص، تصرّف» المألوف على الذكاء ككل. يطلب من المنشأة وضع سياسة ذكاء، وتعريف الأدوار والمسؤوليات، وتقييم مخاطر الذكاء وآثاره ومعالجتها، وتشغيل الضوابط، والتحسين المستمر، وهو بالضبط منطق نظام الإدارة الذي يحوكم أمن المعلومات، مُوجَّهًا الآن لمخاطر الذكاء المميَّزة. وهذا يمنح القيادة مكانًا واحدًا لإعلان نيّتها ونظامًا واحدًا تُساءَل عليه.</p>
+        <h3>ما الذي تقرّره الحوكمة</h3>
+        <ul>
+          <li><strong>الاستخدام المقبول:</strong> أين يجوز استخدام الذكاء وأين لا، وأي الاستخدامات محظورة أيًّا كانت الفائدة.</li>
+          <li><strong>الأدوار والمساءلة:</strong> من يملك كل نظام ذكاء ومن يعتمد نشره أو تقاعده.</li>
+          <li><strong>شهية الخطر للذكاء:</strong> كم من عدم اليقين في الدقة أو الإنصاف أو الاستقلالية تقبل المنشأة، وأين.</li>
+          <li><strong>الإشراف البشري:</strong> أي القرارات يجب أن تُبقي إنسانًا في الحلقة، وأي صلاحيةٍ يملكها ذلك الإنسان فعلًا.</li>
+        </ul>
+        <p>ويستحق الإشراف البشري تأكيدًا لأنه يُفرَّغ بسهولة. فاشتراط موافقة إنسانٍ على قرار ذكاءٍ لا يعني الكثير إن واجه ذلك الإنسان مئة قرارٍ في الساعة بلا قدرةٍ حقيقية على مراجعتها، نمطٌ يُسمّى أحيانًا إشراف الختم الآلي. والإشراف الحقيقي يمنح الشخص الوقت والمعلومة والصلاحية لتجاوز النظام فعلًا، والحوكمة حيث يُضمَن ذلك أو يُهجَر بهدوء.</p>
+        <div class="note"><strong>ملاحظة:</strong> وظيفة الحوكمة هي ما يجعل الثلاث الأخرى قابلةً للتكرار. فالرسم والقياس والإدارة على نظامٍ واحد بلا حوكمة مشروع، وعلى كل نظامٍ داخل إطار حوكمة قدرة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="map">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Map: Understanding Context &amp; Risk</h2>
+        <p class="lead">Before a system can be measured or managed, its context has to be understood. The map function establishes what an AI system is for, who it affects, and what could go wrong, so that the later work targets real risks rather than imagined ones.</p>
+        <p>Mapping asks a set of grounding questions about a specific system: what decision or task it supports, who relies on its output, who is affected by its errors, and what the consequences of those errors would be. The answers frame everything downstream, because a model that recommends films and a model that screens job applicants carry utterly different risk even if they use the same technique, and only the context tells them apart.</p>
+        <h3>Intended use and misuse</h3>
+        <p>A crucial part of mapping is naming both the intended use and the foreseeable misuse. A system is designed for a purpose, but it will also be used in ways its designers did not intend, and some of those ways are harmful. Documenting the intended use sets the boundary of what the system was validated for, and documenting foreseeable misuse surfaces the risks of it being applied outside that boundary, which is where many real-world AI harms occur.</p>
+        <div class="note"><strong>Note:</strong> Map the impact on people, not just the technical failure modes. An AI risk is ultimately about who could be harmed and how, and a map that lists model metrics but no affected people has missed the point of the exercise.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الرسم: فهم السياق والخطر</h2>
+        <p class="lead">قبل أن يُقاس نظامٌ أو يُدار، يجب فهم سياقه. وظيفة الرسم تُحدّد لماذا وُجِد نظام الذكاء، ومن يتأثّر به، وما قد يسوء، ليستهدف العمل اللاحق مخاطر حقيقية لا متخيَّلة.</p>
+        <p>الرسم يطرح أسئلةً مؤسِّسة عن نظامٍ بعينه: أي قرارٍ أو مهمةٍ يسند، ومن يعتمد على مخرجه، ومن يتأثّر بأخطائه، وما عواقب تلك الأخطاء. والأجوبة تؤطّر كل ما يليه، لأن نموذجًا يوصي بأفلام ونموذجًا يفرز متقدّمين لوظيفة يحملان خطرًا مختلفًا تمامًا ولو استخدما التقنية نفسها، والسياق وحده يميّزهما.</p>
+        <h3>الاستخدام المقصود وإساءته</h3>
+        <p>جزءٌ حاسم من الرسم تسمية الاستخدام المقصود وإساءة الاستخدام المتوقَّعة معًا. فالنظام مُصمَّم لغرض، لكنه سيُستخدَم أيضًا بطرقٍ لم يقصدها مصمّموه، وبعضها ضار. وتوثيق الاستخدام المقصود يضع حدّ ما تحقّقنا من صلاحيته له، وتوثيق الإساءة المتوقَّعة يُظهر مخاطر تطبيقه خارج ذلك الحدّ، وهو حيث يقع كثير من أضرار الذكاء الواقعية.</p>
+        <div class="note"><strong>ملاحظة:</strong> ارسم الأثر على الناس لا أنماط الفشل التقنية فحسب. فخطر الذكاء في جوهره عمّن قد يُؤذى وكيف، ورسمٌ يسرد مؤشرات النموذج بلا أشخاصٍ متأثّرين فوّت مقصد التمرين.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="measure">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Measure: Evaluating the System</h2>
+        <p class="lead">A risk you cannot measure you cannot manage. The measure function evaluates an AI system against the trustworthy characteristics that matter for its use, turning vague concern into evidence.</p>
+        <p>Measurement goes well beyond a single accuracy number. A model can be highly accurate overall and still fail badly for a specific group, so measurement examines performance across the populations the system touches, tests robustness against unusual or adversarial inputs, and probes for the kinds of failure the map identified as consequential. The point is to know how and where the system fails before its failures are discovered by the people it affects.</p>
+        <div class="formula">Aggregate accuracy can hide subgroup failure: measure performance per affected group, not only overall</div>
+        <h4>Worked example</h4>
+        <p>A hiring model reports 92% accuracy, which sounds strong. Broken down, it is 96% accurate for one group and 78% for another, a gap that a single headline number completely hid. That 78% is not a rounding detail, it is a fairness and legal risk affecting real applicants, and it only became visible because measurement was designed to look per group. The aggregate figure was not wrong, it was simply the wrong question.</p>
+        <p>Measurement also has to be ongoing, because of drift. A system measured once at launch and never again will quietly decay, so the framework treats measurement as a repeated activity with thresholds that trigger review when performance or fairness slips below an agreed line.</p>
+        <div class="note"><strong>Note:</strong> Decide the measurement thresholds before deployment, and tie them to action. A metric that falls below its threshold should trigger a defined response, not just a note in a dashboard.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>القياس: تقييم النظام</h2>
+        <p class="lead">خطرٌ لا تستطيع قياسه لا تستطيع إدارته. وظيفة القياس تقيّم نظام الذكاء مقابل خصائص الجدارة بالثقة التي تهمّ لاستخدامه، فتحوّل القلق الغامض إلى دليل.</p>
+        <p>القياس يتجاوز رقم دقةٍ واحد بكثير. فقد يكون النموذج عالي الدقة إجمالًا ويفشل فشلًا شديدًا لمجموعةٍ بعينها، لذا يفحص القياس الأداء عبر الفئات التي يمسّها النظام، ويختبر الصمود أمام مدخلاتٍ غير معتادة أو عدائية، ويسبر أنواع الفشل التي حدّدها الرسم كذات عواقب. والمقصد معرفة كيف وأين يفشل النظام قبل أن يكتشف فشلَه مَن يتأثّرون به.</p>
+        <div class="formula">الدقة الإجمالية قد تُخفي فشل فئةٍ فرعية: قِس الأداء لكل فئةٍ متأثّرة لا الإجمالي فقط</div>
+        <h4>مثال محلول</h4>
+        <p>نموذج توظيفٍ يذكر دقةً 92%، تبدو قوية. وبالتفصيل، هي 96% لفئةٍ و78% لأخرى، فجوةٌ أخفاها رقمٌ رئيس واحد تمامًا. وذلك الـ78% ليس تفصيل تقريبٍ، بل خطر إنصافٍ وقانون يمسّ متقدّمين حقيقيين، ولم يَبِن إلا لأن القياس صُمِّم لينظر لكل فئة. والرقم الإجمالي لم يكن خطأً، بل كان السؤال الخطأ.</p>
+        <p>وعلى القياس أن يكون مستمرًا، بسبب الانزياح. فنظامٌ يُقاس مرةً عند الإطلاق ولا يُقاس بعدها يتحلّل بهدوء، لذا يعامل الإطار القياس كنشاطٍ متكرّر بعتباتٍ تُطلِق مراجعةً حين يهبط الأداء أو الإنصاف تحت خطٍّ متّفق عليه.</p>
+        <div class="note"><strong>ملاحظة:</strong> حدّد عتبات القياس قبل النشر، واربطها بإجراء. فمؤشرٌ يهبط تحت عتبته ينبغي أن يُطلِق استجابةً محدَّدة لا مجرد ملحوظةٍ في لوحة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="manage">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Manage: Treating &amp; Monitoring Risk</h2>
+        <p class="lead">The manage function acts on what mapping and measurement reveal. It prioritizes the risks that matter, applies treatments, and keeps watch after deployment, closing the loop that governance opened.</p>
+        <p>Treatment of AI risk uses the same options as any risk, reduce, avoid, share, or accept, but the specific controls are shaped by the technology. Reducing risk might mean improving training data, adding human oversight, constraining what the system can do, or limiting it to lower-stakes decisions. Avoiding might mean choosing not to automate a decision that is too consequential to hand over. The choice follows the risk, and the map and measure steps are what make that choice informed rather than a guess.</p>
+        <ul>
+          <li><strong>Prioritize:</strong> treat the systems and failures with the highest impact on people and the organization first.</li>
+          <li><strong>Constrain:</strong> limit an AI system's autonomy and scope to match how much you trust it, expanding as evidence grows.</li>
+          <li><strong>Oversee:</strong> place meaningful human review where the stakes justify it, with the authority to intervene.</li>
+          <li><strong>Monitor:</strong> watch deployed systems for drift, new failure modes, and misuse, because deployment is the start of the risk, not the end.</li>
+        </ul>
+        <h3>AI incidents</h3>
+        <p>AI systems have incidents too, and they need a response process like any other. An AI incident might be a model producing harmful outputs, a discovered bias, a data leak through the model, or a manipulation attack, and the organization should be able to detect it, contain it by constraining or pausing the system, understand it, and improve from it, exactly the incident loop from security operations applied to a new class of failure.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> govern sets the frame, map understands the system, measure reveals its behavior, and manage acts, and only run as a continuous loop do the four functions keep AI trustworthy as it and the world change.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>الإدارة: معالجة الخطر ومراقبته</h2>
+        <p class="lead">وظيفة الإدارة تتصرّف بما يكشفه الرسم والقياس. تُرتّب المخاطر التي تهمّ، وتطبّق المعالجات، وتراقب بعد النشر، فتُغلق الحلقة التي فتحتها الحوكمة.</p>
+        <p>معالجة خطر الذكاء تستخدم خيارات أي خطر، التقليل أو التجنّب أو المشاركة أو القبول، لكن الضوابط المحدَّدة تشكّلها التقنية. فتقليل الخطر قد يعني تحسين بيانات التدريب، أو إضافة إشرافٍ بشري، أو تقييد ما يستطيع النظام فعله، أو حصره في قراراتٍ أقل رهانًا. والتجنّب قد يعني اختيار عدم أتمتة قرارٍ أثقل من أن يُسلَّم. والاختيار يتبع الخطر، وخطوتا الرسم والقياس هما ما يجعل ذلك الاختيار مطّلعًا لا تخمينًا.</p>
+        <ul>
+          <li><strong>الترتيب:</strong> عالِج الأنظمة والإخفاقات الأعلى أثرًا على الناس والمنشأة أولًا.</li>
+          <li><strong>التقييد:</strong> حُدّ استقلالية نظام الذكاء ونطاقه بقدر ثقتك به، موسِّعًا مع نموّ الدليل.</li>
+          <li><strong>الإشراف:</strong> ضع مراجعةً بشرية ذات معنى حيث يبرّرها الرهان، بصلاحية التدخّل.</li>
+          <li><strong>المراقبة:</strong> راقب الأنظمة المنشورة بحثًا عن الانزياح وأنماط فشلٍ جديدة وإساءةٍ، لأن النشر بداية الخطر لا نهايته.</li>
+        </ul>
+        <h3>حوادث الذكاء</h3>
+        <p>لأنظمة الذكاء حوادث أيضًا، وتحتاج عملية استجابةٍ كأي غيرها. فحادثة ذكاءٍ قد تكون نموذجًا يُنتج مخرجاتٍ ضارة، أو تحيّزًا مُكتشَفًا، أو تسريب بياناتٍ عبر النموذج، أو هجوم تلاعب، وينبغي أن تستطيع المنشأة كشفها، واحتواءها بتقييد النظام أو إيقافه، وفهمها، والتحسّن منها، وهي بالضبط حلقة الحوادث من عمليات الأمن مطبَّقةً على صنف فشلٍ جديد.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الحوكمة تضع الإطار، والرسم يفهم النظام، والقياس يكشف سلوكه، والإدارة تتصرّف، ولا تُبقي الوظائف الأربع الذكاءَ جديرًا بالثقة مع تغيّره وتغيّر العالم إلا مُدارةً كحلقةٍ مستمرة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="regulation">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>The Regulatory Landscape</h2>
+        <p class="lead">AI governance no longer happens in a legal vacuum. A risk-based regulatory model is emerging worldwide, and an organization that governs AI well internally is also preparing for the obligations that are arriving externally.</p>
+        <p>The dominant regulatory pattern is to scale obligations to risk. Uses judged to pose unacceptable risk are prohibited, high-risk uses carry strict requirements for oversight, documentation, and quality, limited-risk uses need mainly transparency, and minimal-risk uses are largely unrestricted. This tiering means the first regulatory question about any AI use is simply how risky it is, which is exactly the question the map function already answers, so good governance and regulatory readiness pull in the same direction.</p>
+        <p>Underneath the specific laws sits a shared set of principles, articulated early by the OECD and echoed widely, that AI should be human-centered, transparent, robust, and accountable. These principles are the normative foundation much regulation is built on, so an organization that adopts them internally is aligning with the direction of travel rather than chasing each new law after it lands.</p>
+        <div class="note"><strong>Note:</strong> Classify your AI uses by risk tier now, before you are required to. The high-risk uses are where both the regulatory burden and the real-world harm concentrate, so knowing which of your systems are high-risk is the single most useful piece of regulatory preparation.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>المشهد التنظيمي</h2>
+        <p class="lead">لم تعُد حوكمة الذكاء تجري في فراغٍ قانوني. فنموذجٌ تنظيمي قائم على المخاطر يبرز عالميًا، ومنشأةٌ تحوكم الذكاء جيدًا داخليًا تُهيّئ نفسها أيضًا للالتزامات القادمة خارجيًا.</p>
+        <p>النمط التنظيمي السائد أن تُقاس الالتزامات بالخطر. فالاستخدامات المحكوم عليها بخطرٍ غير مقبول تُحظَر، وعالية الخطر تحمل متطلباتٍ صارمة للإشراف والتوثيق والجودة، ومحدودة الخطر تحتاج الشفافية أساسًا، وضئيلة الخطر غير مقيَّدة إلى حدٍّ كبير. وهذا التدرّج يعني أن أول سؤالٍ تنظيمي عن أي استخدام ذكاءٍ ببساطة كم هو خطر، وهو بالضبط ما تجيبه وظيفة الرسم، فالحوكمة الجيدة والجاهزية التنظيمية تشدّان في الاتجاه نفسه.</p>
+        <p>وتحت القوانين المحدَّدة تجلس مجموعة مبادئ مشتركة، صاغتها OECD مبكرًا ورُدِّدت واسعًا، بأن الذكاء ينبغي أن يكون متمحورًا حول الإنسان وشفّافًا ومتينًا ومساءَلًا. وهذه المبادئ الأساس المعياري الذي يُبنى عليه كثير من التنظيم، فمنشأةٌ تتبنّاها داخليًا تتوائم مع اتجاه السير بدل ملاحقة كل قانونٍ جديد بعد نزوله.</p>
+        <div class="note"><strong>ملاحظة:</strong> صنّف استخدامات الذكاء لديك بطبقة الخطر الآن، قبل أن يُطلَب منك. فالاستخدامات عالية الخطر حيث يتركّز العبء التنظيمي والأذى الواقعي معًا، فمعرفة أيٍّ من أنظمتك عالي الخطر أنفع قطعة تهيّؤٍ تنظيمي.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Nine</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">AI governance captures the benefit of AI while keeping its distinct risks in hand, by governing the capability and running a risk cycle over every system.</p>
+        <ul>
+          <li>Govern AI deliberately, because it learns, is opaque, drifts, and can act, in ways ordinary controls do not catch.</li>
+          <li>Define trustworthy-AI characteristics as testable design targets, and make their trade-offs explicit per use.</li>
+          <li>Run the govern, map, measure, manage cycle: set the frame, understand the system, evaluate it per affected group, and treat and monitor the risk.</li>
+          <li>Give human oversight real time, information, and authority, so it is not a rubber stamp.</li>
+          <li>Classify uses by risk tier to align with a risk-based regulatory landscape before it requires you to.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener">ISO/IEC 42001:2023, Artificial intelligence management system.</a></li>
+          <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">NIST AI Risk Management Framework (AI RMF 1.0) (2023 record).</a></li>
+          <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf" target="_blank" rel="noopener">NIST AI 100-1, AI Risk Management Framework (PDF).</a></li>
+          <li><a href="https://oecd.ai/en/ai-principles" target="_blank" rel="noopener">OECD AI Principles (2019, updated 2024).</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022, Information security management systems.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">التاسع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">حوكمة الذكاء تجني فائدته مع إبقاء مخاطره المميَّزة في اليد، بحوكمة القدرة وإدارة دورة خطرٍ على كل نظام.</p>
+        <ul>
+          <li>حوكِم الذكاء عن قصد، لأنه يتعلّم ويغمض وينزاح ويستطيع الفعل، بطرقٍ لا تلتقطها الضوابط العادية.</li>
+          <li>عرّف خصائص الذكاء الجدير بالثقة كأهداف تصميمٍ قابلة للاختبار، واجعل مقايضاتها صريحة لكل استخدام.</li>
+          <li>أدِر دورة الحوكمة والرسم والقياس والإدارة: ضع الإطار، افهم النظام، قيّمه لكل فئةٍ متأثّرة، وعالِج الخطر وراقبه.</li>
+          <li>امنح الإشراف البشري وقتًا ومعلومةً وصلاحيةً حقيقية، فلا يكون ختمًا آليًا.</li>
+          <li>صنّف الاستخدامات بطبقة الخطر لتتوائم مع مشهدٍ تنظيمي قائم على المخاطر قبل أن يُلزِمك.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener">ISO/IEC 42001:2023، نظام إدارة الذكاء الاصطناعي.</a></li>
+          <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">إطار NIST لإدارة مخاطر الذكاء (AI RMF 1.0) (سجل 2023).</a></li>
+          <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf" target="_blank" rel="noopener">NIST AI 100-1، إطار إدارة مخاطر الذكاء (PDF).</a></li>
+          <li><a href="https://oecd.ai/en/ai-principles" target="_blank" rel="noopener">مبادئ OECD للذكاء الاصطناعي (2019، محدَّثة 2024).</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022، أنظمة إدارة أمن المعلومات.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","why","principles","govern","map","measure","manage","regulation","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

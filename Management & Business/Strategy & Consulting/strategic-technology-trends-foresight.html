@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategic Technology Trends</title>
+<meta name="description" content="An operational framework for technology foresight: signal versus hype, the major converging forces, and proportionate responses across time horizons.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">CONSULTING &amp; STRATEGY &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">الاستشارات والاستراتيجية &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Strategic Technology Trends</span><span data-lang="ar">اتجاهات التقنية الاستراتيجية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="reading"><span data-lang="en">Reading Trends</span><span data-lang="ar">قراءة الاتجاهات</span></a>
+    <a data-id="forces"><span data-lang="en">Major Forces</span><span data-lang="ar">القوى الكبرى</span></a>
+    <a data-id="responding"><span data-lang="en">Responding</span><span data-lang="ar">الاستجابة</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Strategic technology foresight</div>
+          <div><span>Scope:</span> Reading technology trends and deciding how to respond</div>
+          <div><span>Owner role:</span> Strategy and technology leadership</div>
+          <div><span>Review cadence:</span> Trend scan each quarter, strategic response each year</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Strategic technology foresight is the discipline of watching how technology is changing, judging which changes actually matter to your organization, and deciding how to respond, early enough to gain advantage but not so early that you bet on something that fails. It is the difference between being shaped by technological change and shaping your response to it.</p>
+        <p>The challenge is not a shortage of trends but a flood of them, most of which are noise. Every year brings a wave of technologies described as revolutionary, and the hard task is separating the few that will genuinely reshape an industry from the many that will fade or arrive far later than promised. An organization that chases every trend exhausts itself and its budget, while one that ignores them all is eventually disrupted, so foresight is fundamentally about disciplined judgment, not enthusiasm.</p>
+        <p>This framework describes how to read and respond to technology trends as a repeatable capability, drawing on recognized foresight tools and the trend research of bodies such as Gartner and the World Economic Forum. It is written to be reusable across sectors and aligns to that thinking without reproducing any source text.</p>
+        <div class="note"><strong>Note:</strong> The goal is not to adopt every new technology, nor to ignore them, but to judge which few genuinely matter to you and to time your response. Foresight is disciplined judgment, not chasing the latest thing.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الاستشراف التقني الاستراتيجي</div>
+          <div><span>النطاق:</span> قراءة اتجاهات التقنية وتقرير كيف تستجيب</div>
+          <div><span>دور المالك:</span> قيادة الاستراتيجية والتقنية</div>
+          <div><span>دورية المراجعة:</span> مسح اتجاهاتٍ كل ربع، واستجابة استراتيجية كل عام</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الاستشراف التقني الاستراتيجي انضباط مراقبة كيف تتغيّر التقنية، والحكم على أي التغيّرات تهمّ منشأتك فعلًا، وتقرير كيف تستجيب، مبكرًا بما يكفي لكسب الميزة لكن ليس مبكرًا حتى تراهن على ما يفشل. وهو الفرق بين أن يُشكّلك التغيّر التقني وأن تُشكّل أنت استجابتك له.</p>
+        <p>التحدّي ليس شحّ الاتجاهات بل سيلها، وأغلبها ضجيج. فكل عامٍ يجلب موجةً من تقنياتٍ تُوصَف بالثورية، والمهمة الصعبة فصل القلّة التي ستعيد فعلًا تشكيل صناعةٍ عن الكثير الذي سيخبو أو يصل متأخرًا عن الوعد بكثير. ومنشأةٌ تطارد كل اتجاهٍ تُنهِك نفسها وميزانيتها، وأخرى تتجاهلها كلها تُزاح آخرًا، فالاستشراف في جوهره حكمٌ منضبط لا حماسة.</p>
+        <p>يصف هذا الإطار كيف تقرأ اتجاهات التقنية وتستجيب لها كقدرةٍ قابلة للتكرار، مستندًا إلى أدوات استشرافٍ معترف بها وأبحاث الاتجاهات لجهاتٍ كـ Gartner والمنتدى الاقتصادي العالمي. وهو قابل لإعادة الاستخدام عبر القطاعات ويتوافق مع ذلك الفكر دون نسخ أي نصّ مصدري.</p>
+        <div class="note"><strong>ملاحظة:</strong> الهدف ليس تبنّي كل تقنيةٍ جديدة ولا تجاهلها، بل الحكم على أي القلّة تهمّك فعلًا وتوقيت استجابتك. الاستشراف حكمٌ منضبط لا مطاردة لأحدث شيء.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="reading">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Signal Versus Hype</h2>
+        <p class="lead">The first skill of foresight is telling a real signal from hype. New technologies follow a familiar emotional pattern of inflated excitement followed by disappointment, and knowing that pattern is what stops an organization from investing at the peak of hype or abandoning a technology at the trough of disillusion.</p>
+        <p>A well-known model describes how expectations for a new technology tend to rise to a peak of inflated hype, fall into a trough of disillusionment as its limits become clear, and then climb a slower slope toward productive, realistic use. The lesson is that the loudest moment of excitement is often the worst time to judge a technology, because both the promise and the later disappointment are exaggerated. The technology that looks like it has failed after the hype fades is frequently the one quietly maturing into genuine usefulness.</p>
+        <ul>
+          <li><strong>The hype peak:</strong> maximum excitement and inflated claims, usually ahead of real capability.</li>
+          <li><strong>The disillusionment trough:</strong> disappointment as limits appear, often an unfairly negative moment.</li>
+          <li><strong>The productive slope:</strong> steady, realistic adoption as the technology genuinely matures.</li>
+        </ul>
+        <p>The practical discipline is to judge a technology by evidence of real use, not by the volume of excitement around it. The questions that cut through hype are simple: is anyone actually solving a real problem with this today, what does it genuinely cost and require, and what are its real limits. A technology that can answer those concretely is worth attention regardless of whether it is fashionable, and one that cannot, however loud the excitement, is not yet ready to bet on.</p>
+        <div class="note"><strong>Note:</strong> The peak of excitement is often the worst moment to judge a technology. Look past both the inflated promise and the later disappointment to the evidence of who is solving a real problem with it, and how.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الإشارة مقابل الضجيج</h2>
+        <p class="lead">أول مهارات الاستشراف تمييز إشارةٍ حقيقية عن ضجيج. فالتقنيات الجديدة تتبع نمطًا عاطفيًا مألوفًا من حماسٍ مُبالَغ يتبعه خيبة، ومعرفة ذلك النمط هي ما يمنع منشأةً من الاستثمار في ذروة الضجيج أو هجر تقنيةٍ في قاع الخيبة.</p>
+        <p>نموذجٌ معروف يصف كيف تميل التوقّعات لتقنيةٍ جديدة للارتفاع إلى ذروة ضجيجٍ مُبالَغ، ثم الهبوط إلى قاع خيبةٍ مع اتّضاح حدودها، ثم التسلّق على منحدرٍ أبطأ نحو استخدامٍ منتج واقعي. والدرس أن أعلى لحظات الحماس غالبًا أسوأ وقتٍ للحكم على تقنية، لأن الوعد والخيبة اللاحقة كليهما مُبالَغ. فالتقنية التي تبدو أنها فشلت بعد خبو الضجيج كثيرًا ما تكون التي تنضج بهدوءٍ إلى فائدةٍ حقيقية.</p>
+        <ul>
+          <li><strong>ذروة الضجيج:</strong> أقصى حماسٍ وادعاءاتٍ مُبالَغة، عادةً قبل القدرة الحقيقية.</li>
+          <li><strong>قاع الخيبة:</strong> خيبةٌ مع ظهور الحدود، غالبًا لحظةٌ سلبية بلا إنصاف.</li>
+          <li><strong>المنحدر المنتج:</strong> تبنٍّ ثابت واقعي مع نضج التقنية حقًّا.</li>
+        </ul>
+        <p>الانضباط العملي الحكم على تقنيةٍ بدليل الاستخدام الحقيقي، لا بحجم الحماس حولها. والأسئلة التي تخترق الضجيج بسيطة: هل يحلّ أحدٌ فعلًا مشكلةً حقيقية بهذا اليوم، وما كلفتها ومتطلباتها حقًّا، وما حدودها الحقيقية. فتقنيةٌ تجيب هذه بعينيّةٍ تستحق الانتباه سواءٌ كانت رائجة أم لا، وأخرى لا تستطيع، مهما علا الحماس، ليست جاهزةً للمراهنة عليها بعد.</p>
+        <div class="note"><strong>ملاحظة:</strong> ذروة الحماس غالبًا أسوأ لحظةٍ للحكم على تقنية. انظر إلى ما وراء الوعد المُبالَغ والخيبة اللاحقة، إلى دليل مَن يحلّ مشكلةً حقيقية بها، وكيف.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="forces">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Major Forces</h2>
+        <p class="lead">Beneath the constant churn of individual trends sit a few deeper forces that are genuinely reshaping most industries. Distinguishing these durable forces from passing fashions is what lets an organization focus its attention on what will still matter in a decade.</p>
+        <p>The dominant force of recent years is artificial intelligence, which is moving from a specialized tool to a general capability woven through products and operations, a shift covered in depth in this portfolio's AI frameworks. Around it sit reinforcing forces: the continued spread of cloud computing as the default way to build and run systems, the growing centrality of data as the fuel for both AI and decisions, and increasing automation as more work is done by systems rather than people. These are not separate trends but a connected shift, because AI depends on data, runs on cloud, and drives automation.</p>
+        <ul>
+          <li><strong>Artificial intelligence:</strong> moving from a niche capability to a general one embedded across the organization.</li>
+          <li><strong>Cloud computing:</strong> the default foundation on which modern systems are built and scaled.</li>
+          <li><strong>Data:</strong> the fuel for AI and analytics, making data governance a strategic capability.</li>
+          <li><strong>Automation:</strong> a growing share of work performed by systems, reshaping operations and roles.</li>
+        </ul>
+        <p>A recent shift worth noting is that the frontier of technology is broadening from purely digital to the physical: energy systems, materials, health, and manufacturing (2026 record, from leading trend research). The lesson for foresight is that the important forces are rarely a single technology in isolation, they are convergences where several developments reinforce one another, and the organizations that read trends well look for these convergences rather than betting on one isolated technology.</p>
+        <div class="note"><strong>Note:</strong> The forces that matter most are usually convergences, not single technologies. AI matters so much precisely because it combines with data, cloud, and automation, and reading trends well means spotting where several developments reinforce each other.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>القوى الكبرى</h2>
+        <p class="lead">تحت الدوران الدائم للاتجاهات المفردة تجلس قوىً أعمق قليلة تعيد فعلًا تشكيل أغلب الصناعات. وتمييز هذه القوى الدائمة عن الموضات العابرة هو ما يتيح لمنشأةٍ تركيز انتباهها على ما سيبقى مهمًّا بعد عقد.</p>
+        <p>القوّة المهيمنة في السنوات الأخيرة الذكاء الاصطناعي، الذي ينتقل من أداةٍ متخصّصة إلى قدرةٍ عامة منسوجة عبر المنتجات والعمليات، تحوّلٌ مُغطّىً بعمقٍ في أطر الذكاء بهذا البورتفوليو. وحوله تجلس قوىً معزِّزة: استمرار انتشار الحوسبة السحابية كالطريقة الافتراضية لبناء الأنظمة وتشغيلها، وتزايد مركزية البيانات كوقودٍ للذكاء والقرارات، وأتمتةٌ متنامية مع أداء عملٍ أكثر بالأنظمة لا الناس. وهذه ليست اتجاهاتٍ منفصلة بل تحوّلٌ متصل، لأن الذكاء يعتمد على البيانات، ويعمل على السحابة، ويقود الأتمتة.</p>
+        <ul>
+          <li><strong>الذكاء الاصطناعي:</strong> ينتقل من قدرةٍ متخصّصة إلى عامة مدمجة عبر المنشأة.</li>
+          <li><strong>الحوسبة السحابية:</strong> الأساس الافتراضي الذي تُبنى عليه الأنظمة الحديثة وتُوسَّع.</li>
+          <li><strong>البيانات:</strong> وقود الذكاء والتحليلات، ما يجعل حوكمة البيانات قدرةً استراتيجية.</li>
+          <li><strong>الأتمتة:</strong> نصيبٌ متنامٍ من العمل تؤدّيه الأنظمة، مُعيدًا تشكيل العمليات والأدوار.</li>
+        </ul>
+        <p>تحوّلٌ حديث يستحق الذكر أن تخم التقنية يتّسع من الرقمي الصرف إلى المادي: أنظمة الطاقة والمواد والصحة والتصنيع (سجل 2026، من بحث اتجاهاتٍ رائد). والدرس للاستشراف أن القوى المهمّة نادرًا ما تكون تقنيةً واحدة بمعزل، بل تقاطعاتٌ تعزّز فيها عدّة تطوّراتٍ بعضها، والمنشآت التي تقرأ الاتجاهات جيدًا تبحث عن هذه التقاطعات لا تراهن على تقنيةٍ معزولة واحدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> أهمّ القوى عادةً تقاطعاتٌ لا تقنياتٌ مفردة. فالذكاء يهمّ كثيرًا تحديدًا لأنه يجتمع مع البيانات والسحابة والأتمتة، وقراءة الاتجاهات جيدًا رصد أين تعزّز عدّة تطوّراتٍ بعضها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="responding">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Responding to Trends</h2>
+        <p class="lead">Reading trends is only useful if it leads to a wise response, and the wise response is rarely all-or-nothing. Between ignoring a trend and betting the organization on it lies a spectrum of measured responses, matched to how certain and how important the trend is.</p>
+        <p>A useful way to organize the response is by time horizon. Some effort goes to running and improving today's core business, some to building the promising opportunities that will matter soon, and some to exploring the emerging possibilities that might matter later. This three-horizon view lets an organization respond to a trend proportionately: an uncertain, early trend deserves a small exploratory bet, not a full commitment, while a trend that has clearly arrived deserves serious investment. The mistake is treating every trend the same, either betting big on everything or exploring nothing.</p>
+        <ul>
+          <li><strong>Watch:</strong> for early, uncertain trends, monitor and learn cheaply without committing.</li>
+          <li><strong>Experiment:</strong> for promising trends, run small, bounded pilots to build understanding and capability.</li>
+          <li><strong>Invest:</strong> for trends that have clearly arrived and matter to you, commit seriously and at scale.</li>
+          <li><strong>Match the bet to the certainty:</strong> size each response to how sure and how important the trend is.</li>
+        </ul>
+        <p>The discipline that ties this together is proportionality: the size of the response should match the certainty and the stakes, never the excitement. A cheap experiment on an uncertain trend preserves the option to move fast later without risking much now, and it is far wiser than either a large bet on something unproven or a refusal to engage at all. Foresight, done well, is a portfolio of appropriately sized bets across the horizons, continuously adjusted as trends prove themselves or fade.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> strategic technology foresight reads trends by separating signal from hype, focuses on the durable converging forces, and responds proportionately across time horizons, sizing each bet to the certainty and the stakes rather than the noise.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الاستجابة للاتجاهات</h2>
+        <p class="lead">قراءة الاتجاهات لا تفيد إلا إن قادت لاستجابةٍ حكيمة، والاستجابة الحكيمة نادرًا ما تكون كل شيءٍ أو لا شيء. فبين تجاهل اتجاهٍ والمراهنة بالمنشأة عليه يقع طيفٌ من استجاباتٍ مُقاسة، مطابَقة لكم الاتجاه مؤكَّدٌ ومهمّ.</p>
+        <p>طريقةٌ مفيدة لتنظيم الاستجابة بالأفق الزمني. فبعض الجهد يذهب لتشغيل عمل اليوم الأساسي وتحسينه، وبعضه لبناء الفرص الواعدة التي ستهمّ قريبًا، وبعضه لاستكشاف الإمكانات الناشئة التي قد تهمّ لاحقًا. ورؤية الآفاق الثلاثة هذه تتيح للمنشأة الاستجابة لاتجاهٍ بتناسب: فاتجاهٌ مبكر غير مؤكَّد يستحق رهانًا استكشافيًا صغيرًا لا التزامًا كاملًا، واتجاهٌ وصل بوضوحٍ يستحق استثمارًا جادًّا. والخطأ معاملة كل اتجاهٍ سواءً، إمّا المراهنة الكبيرة على كل شيءٍ أو استكشاف لا شيء.</p>
+        <ul>
+          <li><strong>راقب:</strong> للاتجاهات المبكرة غير المؤكَّدة، راقب وتعلّم برخصٍ دون التزام.</li>
+          <li><strong>جرّب:</strong> للاتجاهات الواعدة، أدِر تجارب صغيرة محدودة لبناء الفهم والقدرة.</li>
+          <li><strong>استثمر:</strong> للاتجاهات التي وصلت بوضوحٍ وتهمّك، التزم جادًّا وعلى نطاق.</li>
+          <li><strong>طابِق الرهان لليقين:</strong> قِس كل استجابةٍ لكم الاتجاه مؤكَّدٌ ومهمّ.</li>
+        </ul>
+        <p>الانضباط الجامع لهذا التناسب: حجم الاستجابة ينبغي أن يطابق اليقين والرهان، لا الحماس أبدًا. فتجربةٌ رخيصة على اتجاهٍ غير مؤكَّد تحفظ خيار التحرّك سريعًا لاحقًا دون مخاطرةٍ كبيرة الآن، وهي أحكم بكثير من رهانٍ كبير على غير مُثبَت أو رفض الانخراط أصلًا. والاستشراف، حين يُحسَن، محفظةُ رهاناتٍ مُقاسة بمناسبةٍ عبر الآفاق، تُعدَّل باستمرار مع إثبات الاتجاهات نفسها أو خبوّها.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الاستشراف التقني الاستراتيجي يقرأ الاتجاهات بفصل الإشارة عن الضجيج، ويركّز على القوى المتقاطعة الدائمة، ويستجيب بتناسبٍ عبر الآفاق الزمنية، مُقيسًا كل رهانٍ لليقين والرهان لا للضجيج.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Strategic technology foresight turns the flood of trends into wise, proportionate responses through disciplined judgment.</p>
+        <ul>
+          <li>Treat foresight as judgment, not enthusiasm, aiming to respond to change rather than be shaped by it.</li>
+          <li>Separate signal from hype, judging technologies by evidence of real use, not the volume of excitement.</li>
+          <li>Focus on the durable converging forces, AI with data, cloud, and automation, over passing fashions.</li>
+          <li>Respond across time horizons, watching, experimenting, or investing as the trend warrants.</li>
+          <li>Size every response to the certainty and the stakes, never to the noise around the trend.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026" target="_blank" rel="noopener">Gartner, Top Strategic Technology Trends for 2026 (2026 record).</a></li>
+          <li><a href="https://www.weforum.org/publications/top-10-emerging-technologies-of-2026/" target="_blank" rel="noopener">World Economic Forum, Top 10 Emerging Technologies of 2026.</a></li>
+          <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">NIST AI Risk Management Framework (responsible adoption).</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">Harvard Business School Online, strategy and innovation tools.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">الاستشراف التقني الاستراتيجي يحوّل سيل الاتجاهات إلى استجاباتٍ حكيمة متناسبة بحكمٍ منضبط.</p>
+        <ul>
+          <li>عامِل الاستشراف كحكمٍ لا حماسة، هادفًا للاستجابة للتغيّر لا أن يُشكّلك.</li>
+          <li>افصل الإشارة عن الضجيج، حاكمًا التقنيات بدليل الاستخدام الحقيقي لا حجم الحماس.</li>
+          <li>ركّز على القوى المتقاطعة الدائمة، الذكاء مع البيانات والسحابة والأتمتة، على الموضات العابرة.</li>
+          <li>استجب عبر الآفاق الزمنية، مراقبةً أو تجربةً أو استثمارًا بحسب ما يبرّره الاتجاه.</li>
+          <li>قِس كل استجابةٍ لليقين والرهان، لا للضجيج حول الاتجاه أبدًا.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026" target="_blank" rel="noopener">Gartner، أهمّ الاتجاهات التقنية الاستراتيجية لعام 2026 (سجل 2026).</a></li>
+          <li><a href="https://www.weforum.org/publications/top-10-emerging-technologies-of-2026/" target="_blank" rel="noopener">المنتدى الاقتصادي العالمي، أهمّ 10 تقنيات ناشئة 2026.</a></li>
+          <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">إطار NIST لإدارة مخاطر الذكاء (التبنّي المسؤول).</a></li>
+          <li><a href="https://online.hbs.edu/blog/post/strategy-frameworks-and-tools" target="_blank" rel="noopener">هارفارد أونلاين، أدوات الاستراتيجية والابتكار.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","reading","forces","responding","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

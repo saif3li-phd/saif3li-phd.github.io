@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Crises</title>
+<meta name="description" content="An original framework on financial crises: the recurring arc of credit boom, mania, trigger, and contagious crash, and why crises keep returning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">FINANCE &amp; ECONOMY &middot; FRAMEWORK</span><span data-lang="ar">المال والاقتصاد &middot; إطار</span></div>
+    <h1><span data-lang="en">Financial Crises</span><span data-lang="ar">الأزمات المالية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="anatomy"><span data-lang="en">Anatomy</span><span data-lang="ar">التشريح</span></a>
+    <a data-id="recur"><span data-lang="en">Why They Recur</span><span data-lang="ar">لماذا تعاود</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Financial crises</div>
+          <div><span>Scope:</span> Why financial systems break, and what follows</div>
+          <div><span>Owner role:</span> Policymakers, and anyone exposed to markets</div>
+          <div><span>Review cadence:</span> Studied continuously; crises recur</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">A financial crisis is a sudden, severe disruption of the financial system, when asset prices collapse, credit freezes, institutions fail, and the damage spreads through the wider economy. Though each crisis has its own trigger, they follow a strikingly similar pattern, and understanding that pattern is essential for anyone who wants to make sense of the booms and busts that periodically shake economies.</p>
+        <p>Financial crises matter because their effects reach far beyond banks and markets: they destroy jobs, savings, and businesses across the whole economy, and their consequences can last for years. They are also not rare accidents but a recurring feature of financial systems, appearing again and again across centuries and countries in different guises but with a common underlying logic. Understanding why they happen, how they unfold, and why they keep recurring is valuable not only for policymakers who must prevent and manage them, but for anyone whose livelihood or savings are exposed to an economy that will, sooner or later, experience another one.</p>
+        <p>This framework explains the anatomy of a financial crisis, why they recur, and what they reveal, illustrated by the typical cycle below. It is my own synthesis, written in my own words and grounded in recognized economic thinking, designed to help make sense of these recurring events.</p>
+        <div class="note"><strong>Note:</strong> Financial crises are not freak accidents; they are a recurring pattern. The details differ each time, but the underlying story, cheap credit, a bubble, a trigger, and a panic, repeats across centuries.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الأزمات المالية</div>
+          <div><span>النطاق:</span> لماذا تنكسر الأنظمة المالية وما يتبع</div>
+          <div><span>دور المالك:</span> صانعو السياسات، وكل مُعرَّض للأسواق</div>
+          <div><span>دورية المراجعة:</span> تُدرَس باستمرار؛ الأزمات تتكرّر</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الأزمة المالية اضطرابٌ مفاجئ حادّ للنظام المالي، حين تنهار أسعار الأصول، ويتجمّد الائتمان، وتفشل المؤسسات، وينتشر الضرر عبر الاقتصاد الأوسع. ومع أن لكل أزمةٍ شرارتها، فهي تتبع نمطًا متشابهًا لافتًا، وفهم ذلك النمط جوهري لمن يريد فهم فترات الرواج والكساد التي تهزّ الاقتصادات دوريًا.</p>
+        <p>تهمّ الأزمات المالية لأن آثارها تبلغ أبعد من البنوك والأسواق: تدمّر وظائف ومدّخرات وأعمالًا عبر الاقتصاد كله، وقد تدوم عواقبها سنين. وهي أيضًا ليست حوادث نادرة بل سمةٌ متكرّرة للأنظمة المالية، تظهر مرارًا عبر قرونٍ وبلدان بأزياءٍ مختلفة لكن بمنطقٍ كامن مشترك. وفهم لماذا تحدث، وكيف تنكشف، ولماذا تعاود، قيّمٌ لا لصانعي السياسات الذين عليهم منعها وإدارتها فقط، بل لكل من رزقه أو مدّخراته مُعرَّضة لاقتصادٍ سيختبر، عاجلًا أو آجلًا، أخرى.</p>
+        <p>يشرح هذا الإطار تشريح أزمةٍ مالية، ولماذا تتكرّر، وما تكشفه، مُوضَّحًا بالدورة النمطية أدناه. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في فكرٍ اقتصادي معترف به، مصمَّمٌ للمساعدة على فهم هذه الأحداث المتكرّرة.</p>
+        <div class="note"><strong>ملاحظة:</strong> الأزمات المالية ليست حوادث شاذّة؛ بل نمطٌ متكرّر. التفاصيل تختلف كل مرة، لكن القصة الكامنة، ائتمانٌ رخيص، فقّاعة، شرارة، وذعر، تتكرّر عبر القرون.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="anatomy">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Anatomy of a Crisis</h2>
+        <p class="lead">Most financial crises follow a recognizable arc, shown below, from an initial boom to a final crash and its spread. Seeing the stages makes the seemingly chaotic events of a crisis intelligible.</p>
+        <div style="text-align:center;margin:20px 0 8px;"><svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;max-width:480px;height:auto;font-family:&apos;IBM Plex Sans Arabic&apos;,sans-serif;"><rect x="60" y="14" width="400" height="58" rx="8" fill="#c9b8e8"/><text x="260" y="41" text-anchor="middle" font-size="14" font-weight="700" fill="#2E1A47">1 . Boom</text><text x="260" y="59" text-anchor="middle" font-size="11" fill="#2E1A47" opacity="0.9">cheap credit fuels rising asset prices</text><rect x="60" y="84" width="400" height="58" rx="8" fill="#9270b5"/><text x="260" y="111" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">2 . Mania</text><text x="260" y="129" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.9">borrowing and risk-taking pile up</text><rect x="60" y="154" width="400" height="58" rx="8" fill="#6b4790"/><text x="260" y="181" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">3 . Trigger</text><text x="260" y="199" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.9">confidence breaks; prices fall</text><rect x="60" y="224" width="400" height="58" rx="8" fill="#4d2f6b"/><text x="260" y="251" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">4 . Crash &amp; contagion</text><text x="260" y="269" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.9">fear, fire-sales, and a credit freeze spread</text></svg></div>
+        <p>It usually begins with a boom fueled by easy, cheap credit. When money is plentiful and lending is loose, people and institutions borrow to buy assets, whether houses, stocks, or something more exotic, and rising prices attract still more buyers. This becomes a mania, a self-reinforcing bubble in which prices detach from underlying value, borrowing piles up, risk-taking becomes reckless, and a widespread belief takes hold that prices can only keep rising. Warnings are dismissed, and the more prices climb, the more convinced everyone becomes, right up until the turn.</p>
+        <p>Then comes a trigger, some event that breaks the confidence: a large default, a failed institution, a shift in interest rates, or simply the dawning realization that prices are unsustainable. Once confidence cracks, the process runs violently in reverse. Prices fall, forcing those who borrowed to sell, which drives prices down further in a vicious spiral. Fear replaces greed, lenders stop lending, and a credit freeze spreads: institutions that seemed sound fail as their assets collapse and no one will lend to them, and the panic becomes contagious, jumping from one institution and market to the next. What was a financial event becomes an economic one, as frozen credit and failing institutions choke off the lending that businesses and households depend on, and the damage spreads into jobs, spending, and the real economy.</p>
+        <div class="note"><strong>Note:</strong> The engine of a crisis is leverage, borrowed money. It magnifies the boom on the way up and forces the selling that magnifies the crash on the way down, turning a price fall into a self-reinforcing collapse.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>تشريح أزمة</h2>
+        <p class="lead">أغلب الأزمات المالية تتبع قوسًا معروفًا، مُبيَّنًا أدناه، من رواجٍ أولي لانهيارٍ أخير وانتشاره. ورؤية المراحل تجعل أحداث الأزمة التي تبدو فوضوية مفهومة.</p>
+        <div style="text-align:center;margin:20px 0 8px;"><svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;max-width:480px;height:auto;font-family:&apos;IBM Plex Sans Arabic&apos;,sans-serif;"><rect x="60" y="14" width="400" height="58" rx="8" fill="#c9b8e8"/><text x="260" y="41" text-anchor="middle" font-size="14" font-weight="700" fill="#2E1A47">١ . الرواج</text><text x="260" y="59" text-anchor="middle" font-size="11" fill="#2E1A47" opacity="0.9">ائتمانٌ رخيص يغذّي ارتفاع أسعار الأصول</text><rect x="60" y="84" width="400" height="58" rx="8" fill="#9270b5"/><text x="260" y="111" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">٢ . الهوس</text><text x="260" y="129" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.9">يتكدّس الاقتراض والمجازفة</text><rect x="60" y="154" width="400" height="58" rx="8" fill="#6b4790"/><text x="260" y="181" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">٣ . الشرارة</text><text x="260" y="199" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.9">تنكسر الثقة؛ تهبط الأسعار</text><rect x="60" y="224" width="400" height="58" rx="8" fill="#4d2f6b"/><text x="260" y="251" text-anchor="middle" font-size="14" font-weight="700" fill="#F7F4EF">٤ . الانهيار والعدوى</text><text x="260" y="269" text-anchor="middle" font-size="11" fill="#F7F4EF" opacity="0.9">خوفٌ وبيعٌ قسري وتجمّد ائتمانٍ ينتشر</text></svg></div>
+        <p>تبدأ عادةً برواجٍ يغذّيه ائتمانٌ سهل رخيص. فحين يكون المال وفيرًا والإقراض فضفاضًا، يقترض الناس والمؤسسات لشراء الأصول، منازل أو أسهم أو شيءٍ أغرب، والأسعار المرتفعة تجذب مزيدًا من المشترين. ويصير هذا هوسًا، فقّاعةً ذاتية التعزيز تنفصل فيها الأسعار عن القيمة الكامنة، ويتكدّس الاقتراض، وتصير المجازفة متهوّرة، ويترسّخ اعتقادٌ واسع أن الأسعار لا تستطيع إلّا الاستمرار في الارتفاع. وتُرفَض التحذيرات، وكلما تسلّقت الأسعار ازداد الجميع اقتناعًا، حتى المنعطف تمامًا.</p>
+        <p>ثم تأتي شرارة، حدثٌ يكسر الثقة: تعثّرٌ كبير، أو مؤسسةٌ فاشلة، أو تحوّلٌ في أسعار الفائدة، أو مجرّد الإدراك المتنامي أن الأسعار غير مستدامة. وحالما تتصدّع الثقة، تجري العملية عكسيًا بعنف. تهبط الأسعار، مُجبِرةً من اقترضوا على البيع، ما يدفعها للأسفل أكثر في حلزونٍ مفرغ. ويحلّ الخوف محلّ الجشع، ويكفّ المقرضون عن الإقراض، وينتشر تجمّد ائتمان: مؤسساتٌ بدت سليمة تفشل إذ تنهار أصولها ولا أحد يقرضها، ويصير الذعر مُعديًا، قافزًا من مؤسسةٍ وسوقٍ للتالية. وما كان حدثًا ماليًا يصير اقتصاديًا، إذ يخنق الائتمان المتجمّد والمؤسسات الفاشلة الإقراض الذي تعتمد عليه الأعمال والأسر، وينتشر الضرر للوظائف والإنفاق والاقتصاد الحقيقي.</p>
+        <div class="note"><strong>ملاحظة:</strong> محرّك الأزمة الرافعة، المال المقترَض. يضخّم الرواج صعودًا ويفرض البيع الذي يضخّم الانهيار هبوطًا، محوّلًا هبوط سعرٍ لانهيارٍ ذاتي التعزيز.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="recur">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Why Crises Keep Recurring</h2>
+        <p class="lead">If the pattern is so recognizable, a fair question is why financial crises keep happening. The answer lies in deep features of human psychology and financial systems that are very hard to eliminate.</p>
+        <p>The first reason is human nature. Crises are driven by the timeless cycle of greed and fear: during good times, rising prices and easy money make people optimistic, forgetful of past crises, and willing to take ever greater risks, convinced that this time is different. When the turn comes, that same crowd psychology reverses into panic. This emotional cycle recurs because human nature does not change, and because each generation, and often the same generation, forgets the lessons of the last crisis once enough time has passed. A second reason is the inherent fragility of a system built on leverage and confidence: finance runs on borrowed money and trust, and any system where institutions are highly leveraged and depend on continued confidence is vulnerable to a sudden loss of that confidence, which can turn manageable problems into collapse.</p>
+        <p>A third reason is that the incentives within the system often encourage the very risk-taking that leads to crises. When individuals and institutions can capture the gains of risky bets while others, or the public, bear the losses when they go wrong, they are encouraged to take excessive risks, and regulation struggles to keep pace with ever-changing financial innovation. Understanding all this leads to a sober conclusion: while good regulation and prudent policy can make crises less frequent and less severe, the combination of human psychology, leverage, and incentives means they are very difficult to abolish entirely. The value of understanding the pattern is therefore not the illusion that crises can be permanently prevented, but the ability to recognize the warning signs, resist the manias, and be less surprised and less exposed when the cycle, as it eventually will, turns again.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> financial crises follow a recurring arc from credit-fueled boom to mania, trigger, and contagious crash, and they keep returning because human greed and fear, the fragility of a system built on leverage and confidence, and misaligned incentives are deeply rooted, so the wise response is to recognize the pattern and reduce exposure rather than to believe crises have been abolished.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>لماذا تعاود الأزمات</h2>
+        <p class="lead">إن كان النمط معروفًا هكذا، فسؤالٌ عادل لماذا تظلّ الأزمات المالية تحدث. والجواب في سماتٍ عميقة لعلم النفس البشري والأنظمة المالية يصعب جدًا إزالتها.</p>
+        <p>السبب الأول الطبيعة البشرية. فالأزمات تقودها دورة الجشع والخوف الأزلية: في الأوقات الجيدة، الأسعار المرتفعة والمال السهل يجعلان الناس متفائلين، ناسين الأزمات الماضية، ومستعدّين لأخذ مخاطر أكبر أبدًا، مقتنعين أن هذه المرة مختلفة. وحين يأتي المنعطف، ينقلب علم نفس الحشد ذاته لذعر. وهذه الدورة العاطفية تعاود لأن الطبيعة البشرية لا تتغيّر، ولأن كل جيل، وغالبًا الجيل ذاته، ينسى دروس الأزمة الأخيرة متى مرّ وقتٌ كافٍ. والسبب الثاني الهشاشة الأصيلة لنظامٍ مبنيٍّ على الرافعة والثقة: فالمال يجري على مالٍ مقترَض وثقة، وأي نظامٍ تكون فيه المؤسسات عالية الرفع وتعتمد على استمرار الثقة معرَّضٌ لفقدانٍ مفاجئ لتلك الثقة، قد يحوّل مشكلاتٍ محتمَلة لانهيار.</p>
+        <p>والسبب الثالث أن الحوافز داخل النظام غالبًا تشجّع المجازفة ذاتها التي تقود للأزمات. فحين يستطيع أفرادٌ ومؤسسات التقاط مكاسب رهاناتٍ خطرة بينما يتحمّل غيرهم، أو الجمهور، الخسائر حين تسوء، يُشجَّعون على أخذ مخاطر مفرطة، والتنظيم يكافح لمواكبة الابتكار المالي دائم التغيّر. وفهم هذا كله يقود لاستنتاجٍ رصين: فمع أن التنظيم الجيد والسياسة الحصيفة قد يجعلان الأزمات أقلّ تكرارًا وحدّة، فمزيج علم النفس البشري والرافعة والحوافز يعني أنها صعبة الإلغاء كليًا. وقيمة فهم النمط إذًا ليست وهم أن الأزمات يمكن منعها دائمًا، بل القدرة على إدراك علامات التحذير، ومقاومة الهوس، وأن تكون أقلّ مفاجأةً وأقلّ تعرّضًا حين تعاود الدورة، كما ستفعل آخِرًا، الانعطاف.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الأزمات المالية تتبع قوسًا متكرّرًا من رواجٍ يغذّيه الائتمان لهوسٍ فشرارةٍ فانهيارٍ مُعدٍ، وتظلّ تعاود لأن جشع الإنسان وخوفه، وهشاشة نظامٍ مبنيٍّ على الرافعة والثقة، والحوافز المنحرفة، عميقة الجذور، فالاستجابة الحكيمة إدراك النمط وتقليل التعرّض لا الاعتقاد أن الأزمات أُلغِيت.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Financial crises follow a recurring pattern rooted in credit, psychology, and incentives.</p>
+        <ul>
+          <li>Recognize the arc: a credit-fueled boom, a mania, a trigger, and a contagious crash.</li>
+          <li>See leverage as the engine that magnifies both the boom and the collapse.</li>
+          <li>Understand crises recur because of human greed and fear that forget past lessons.</li>
+          <li>Note the fragility of a system built on borrowed money and continued confidence.</li>
+          <li>Accept that crises can be softened but not abolished, so recognize warning signs and limit exposure.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.imf.org/en/Topics/financial-crises" target="_blank" rel="noopener">IMF, on financial crises.</a></li>
+          <li><a href="https://www.federalreservehistory.org/essays" target="_blank" rel="noopener">Federal Reserve History, on past crises.</a></li>
+          <li><a href="https://press.princeton.edu/books/paperback/9780691152646/this-time-is-different" target="_blank" rel="noopener">Reinhart &amp; Rogoff, This Time Is Different.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">الأزمات المالية تتبع نمطًا متكرّرًا متجذّرًا في الائتمان وعلم النفس والحوافز.</p>
+        <ul>
+          <li>أدرِك القوس: رواجٌ يغذّيه الائتمان، وهوس، وشرارة، وانهيارٌ مُعدٍ.</li>
+          <li>انظر للرافعة كالمحرّك الذي يضخّم الرواج والانهيار معًا.</li>
+          <li>افهم أن الأزمات تعاود بسبب جشع الإنسان وخوفه اللذين ينسيان الدروس الماضية.</li>
+          <li>لاحِظ هشاشة نظامٍ مبنيٍّ على مالٍ مقترَض وثقةٍ مستمرة.</li>
+          <li>اقبل أن الأزمات تُخفَّف لا تُلغى، فأدرِك علامات التحذير وحُدّ التعرّض.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.imf.org/en/Topics/financial-crises" target="_blank" rel="noopener">صندوق النقد الدولي، عن الأزمات المالية.</a></li>
+          <li><a href="https://www.federalreservehistory.org/essays" target="_blank" rel="noopener">تاريخ الاحتياطي الفدرالي، عن الأزمات الماضية.</a></li>
+          <li><a href="https://press.princeton.edu/books/paperback/9780691152646/this-time-is-different" target="_blank" rel="noopener">راينهارت وروجوف، هذه المرة مختلفة.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","anatomy","recur","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

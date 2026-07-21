@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERP Operations</title>
+<meta name="description" content="An operational framework for ERP: integrated modules on a single source of truth, implementation, customization discipline, and process governance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">INFORMATION TECHNOLOGY &middot; OPERATIONAL FRAMEWORK</span><span data-lang="ar">تقنية المعلومات &middot; إطار تشغيلي</span></div>
+    <h1><span data-lang="en">ERP Operations</span><span data-lang="ar">تشغيل تخطيط موارد المؤسسة</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="modules"><span data-lang="en">Modules</span><span data-lang="ar">الوحدات</span></a>
+    <a data-id="implementation"><span data-lang="en">Implementation</span><span data-lang="ar">التطبيق</span></a>
+    <a data-id="governance"><span data-lang="en">Governance</span><span data-lang="ar">الحوكمة</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Enterprise resource planning (ERP)</div>
+          <div><span>Scope:</span> Running the integrated system that manages core business operations</div>
+          <div><span>Owner role:</span> ERP program owner, with process and module owners</div>
+          <div><span>Review cadence:</span> Continuous operation, governance board each quarter</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">An enterprise resource planning system, or ERP, is the single integrated platform that runs an organization's core operations, finance, procurement, inventory, human resources, and more, on one shared set of data. Its purpose is to replace a patchwork of disconnected systems, each with its own version of the truth, with one system where a transaction entered once flows correctly through everything it touches.</p>
+        <p>The value and the difficulty both come from that integration. When a purchase is recorded, an ERP updates inventory, accounts payable, and the general ledger in one consistent motion, so the numbers always agree and no one is reconciling spreadsheets between departments. But the same integration means the system is deeply woven into how the whole organization works, so implementing or changing it is never purely a technical task, it is a change to the operating model of the business itself.</p>
+        <p>This framework treats ERP as an operational capability to be governed over its whole life, not a one-time installation. It draws on the process and governance discipline of the companion frameworks and is written to be reusable across ERP products and sectors, without reproducing any vendor's material.</p>
+        <div class="note"><strong>Note:</strong> An ERP is not software you install, it is a way of working you adopt. The technology is the easy part, and the organizations that struggle are almost always the ones that treated a business transformation as an IT project.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> تخطيط موارد المؤسسة (ERP)</div>
+          <div><span>النطاق:</span> تشغيل النظام المتكامل الذي يدير عمليات العمل الجوهرية</div>
+          <div><span>دور المالك:</span> مالك برنامج ERP، مع ملّاك العمليات والوحدات</div>
+          <div><span>دورية المراجعة:</span> تشغيلٌ مستمر، ومجلس حوكمةٍ كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">نظام تخطيط موارد المؤسسة (ERP) هو المنصّة المتكاملة الواحدة التي تدير عمليات المنشأة الجوهرية، المالية والمشتريات والمخزون والموارد البشرية وغيرها، على مجموعة بياناتٍ واحدة مشتركة. وغرضه استبدال رقعةٍ من أنظمةٍ منفصلة، لكلٍّ نسخته من الحقيقة، بنظامٍ واحد تتدفّق فيه معاملةٌ تُدخَل مرةً بصحّةٍ عبر كل ما تمسّه.</p>
+        <p>القيمة والصعوبة كلتاهما من ذلك التكامل. فحين تُسجَّل عملية شراء، يحدّث ERP المخزون والذمم الدائنة ودفتر الأستاذ العام في حركةٍ متّسقة واحدة، فتتّفق الأرقام دومًا ولا أحد يطابق جداول بين الإدارات. لكن التكامل نفسه يعني أن النظام منسوجٌ عميقًا في كيف تعمل المنشأة كلها، فتطبيقه أو تغييره ليس مهمةً تقنية صرفة أبدًا، بل تغييرٌ لنموذج تشغيل العمل ذاته.</p>
+        <p>يعامل هذا الإطار ERP كقدرةٍ تشغيلية تُحوكَم طوال حياتها، لا تركيبًا لمرة واحدة. ويستند إلى انضباط العمليات والحوكمة في الأطر الرفيقة، ومكتوب ليكون قابلًا لإعادة الاستخدام عبر منتجات ERP والقطاعات، دون نسخ مادة أي مورّد.</p>
+        <div class="note"><strong>ملاحظة:</strong> ERP ليس برمجيةً تُركّبها بل طريقة عملٍ تتبنّاها. التقنية هي الجزء السهل، والمنشآت التي تتعثّر هي دومًا تقريبًا التي عاملت تحوّلًا للعمل كمشروعٍ تقني.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="modules">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Modules &amp; the Single Source</h2>
+        <p class="lead">An ERP is organized into modules, each handling a business function, but its defining feature is that they all share one database. That shared data, not the modules themselves, is what turns separate functions into one coherent system.</p>
+        <p>Each module supports a domain: finance manages the ledger and reporting, procurement handles buying and suppliers, inventory tracks stock, human resources manages people and payroll, and so on. In a non-integrated world each of these would be a separate system, and moving information between them would mean exports, imports, and endless reconciliation. In an ERP they read and write the same underlying data, so a fact entered in one is immediately true in all.</p>
+        <ul>
+          <li><strong>Finance:</strong> the general ledger, payables, receivables, and the reporting that most other modules feed.</li>
+          <li><strong>Procurement:</strong> purchasing, suppliers, and the flow from requisition to payment.</li>
+          <li><strong>Inventory and supply chain:</strong> stock levels, movements, and fulfillment.</li>
+          <li><strong>Human resources:</strong> people, organization, and payroll.</li>
+        </ul>
+        <p>The single source of truth is the whole point, and also the whole risk. Because everything shares one dataset, a correct entry benefits every module at once, but an incorrect one propagates its error just as widely, and a poorly designed configuration can let one function's mistake corrupt another's numbers. This is why data quality and clear process ownership, covered elsewhere in this portfolio, are not optional add-ons to an ERP but preconditions for it to deliver value rather than confusion.</p>
+        <div class="note"><strong>Note:</strong> The integration that makes an ERP powerful also means errors travel. Getting master data, the shared definitions of customers, products, and accounts, right is the foundation everything else stands on.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الوحدات والمصدر الواحد</h2>
+        <p class="lead">يُنظَّم ERP في وحداتٍ، كلٌّ تتولّى وظيفة عمل، لكن سمته المميِّزة أنها كلها تشارك قاعدة بياناتٍ واحدة. وتلك البيانات المشتركة، لا الوحدات نفسها، هي ما يحوّل وظائف منفصلة إلى نظامٍ متماسك واحد.</p>
+        <p>كل وحدةٍ تسند مجالًا: المالية تدير الأستاذ والتقارير، والمشتريات تتولّى الشراء والمورّدين، والمخزون يتتبّع المخزون، والموارد البشرية تدير الناس والرواتب، وهكذا. في عالمٍ غير متكامل يكون كلٌّ نظامًا منفصلًا، ونقل المعلومات بينها يعني تصديرًا واستيرادًا ومطابقةً لا تنتهي. وفي ERP تقرأ وتكتب البيانات الكامنة نفسها، فحقيقةٌ تُدخَل في واحدةٍ تصير فورًا صحيحةً في الكل.</p>
+        <ul>
+          <li><strong>المالية:</strong> دفتر الأستاذ العام والدائنة والمدينة والتقارير التي تُغذّيها أغلب الوحدات.</li>
+          <li><strong>المشتريات:</strong> الشراء والمورّدون والتدفّق من الطلب إلى الدفع.</li>
+          <li><strong>المخزون وسلسلة الإمداد:</strong> مستويات المخزون وحركاته والتلبية.</li>
+          <li><strong>الموارد البشرية:</strong> الناس والتنظيم والرواتب.</li>
+        </ul>
+        <p>المصدر الواحد للحقيقة هو كل المقصد، وكل الخطر أيضًا. فلأن كل شيءٍ يشارك مجموعة بياناتٍ واحدة، قيدٌ صحيح ينفع كل وحدةٍ دفعةً، لكن خاطئًا ينشر خطأه بالسعة نفسها، وإعدادٌ سيّئ التصميم قد يدع خطأ وظيفةٍ يُفسِد أرقام أخرى. ولذا فجودة البيانات ووضوح ملكية العمليات، المغطّيان في مواضع أخرى من هذا البورتفوليو، ليسا إضافتين اختياريتين لـ ERP بل شرطين مسبقين ليسلّم قيمةً لا فوضى.</p>
+        <div class="note"><strong>ملاحظة:</strong> التكامل الذي يجعل ERP قويًا يعني أيضًا أن الأخطاء تسافر. وضبط البيانات الرئيسة، التعريفات المشتركة للعملاء والمنتجات والحسابات، أساسٌ يقف عليه كل ما عداه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="implementation">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Implementation Approach</h2>
+        <p class="lead">ERP implementations are famous for going over budget and past deadline, and the reasons are rarely technical. The central decision that shapes success is how far to change the software to fit the organization, versus changing the organization to fit the software.</p>
+        <p>Modern ERP products embody standard, proven ways of running common processes. An organization can adopt those standard processes, which is faster, cheaper, and easier to maintain, or it can customize the system to match its existing ways of working, which preserves familiarity but is expensive, fragile, and a burden at every future upgrade. The disciplined default is to adopt the standard and reserve customization for the few places where the organization's way is a genuine competitive advantage rather than merely a habit.</p>
+        <ul>
+          <li><strong>Adopt the standard:</strong> use the software's built-in processes wherever your way is not a real differentiator, for speed and maintainability.</li>
+          <li><strong>Customize sparingly:</strong> change the system only where a process is a genuine advantage worth the lasting cost.</li>
+          <li><strong>Clean the data first:</strong> migrate clean, reconciled data, because an ERP loaded with bad data starts broken.</li>
+          <li><strong>Phase the rollout:</strong> deliver in stages where feasible, so risk and change are absorbed in manageable pieces.</li>
+        </ul>
+        <p>Excessive customization is the most common and most expensive mistake. Each customization made to avoid changing a habit becomes code the organization must test, maintain, and re-apply every time the vendor updates the product, so a heavily customized ERP slowly becomes as unmaintainable as the tangle it replaced. The question to ask of every requested change is not can the system do this, but is our way here worth carrying forever.</p>
+        <div class="note"><strong>Note:</strong> Every customization is a permanent tax, paid again at each upgrade. Treat the standard process as the default and make customization earn its place, not the reverse.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>منهج التطبيق</h2>
+        <p class="lead">تطبيقات ERP مشهورةٌ بتجاوز الميزانية والموعد، وأسبابها نادرًا ما تكون تقنية. والقرار المركزي الذي يُشكّل النجاح كم تغيّر البرمجية لتلائم المنشأة، مقابل تغيير المنشأة لتلائم البرمجية.</p>
+        <p>منتجات ERP الحديثة تجسّد طرقًا قياسية مُثبَتة لتشغيل العمليات الشائعة. وتستطيع المنشأة تبنّي تلك العمليات القياسية، وهو أسرع وأرخص وأسهل صونًا، أو تخصيص النظام ليطابق طرقها القائمة، وهو يحفظ الألفة لكنه باهظٌ هشّ وعبءٌ عند كل ترقيةٍ قادمة. والافتراض المنضبط تبنّي القياسي وحصر التخصيص للأماكن القليلة التي تكون فيها طريقة المنشأة ميزةً تنافسية حقيقية لا مجرد عادة.</p>
+        <ul>
+          <li><strong>تبنَّ القياسي:</strong> استخدم عمليات البرمجية المدمجة حيثما لا تكون طريقتك مميِّزًا حقيقيًا، للسرعة والصون.</li>
+          <li><strong>خصّص باقتصاد:</strong> غيّر النظام فقط حيث تكون عمليةٌ ميزةً حقيقية تستحق الكلفة الدائمة.</li>
+          <li><strong>نظّف البيانات أولًا:</strong> رحّل بياناتٍ نظيفة مطابَقة، لأن ERP مُحمَّلًا ببياناتٍ رديئة يبدأ معطوبًا.</li>
+          <li><strong>مرحِل الطرح:</strong> سلّم على مراحل حيث أمكن، لتُمتَصّ المخاطر والتغيير في قطعٍ قابلة للإدارة.</li>
+        </ul>
+        <p>التخصيص المفرط أشيع الأخطاء وأغلاها. فكل تخصيصٍ يُصنَع لتفادي تغيير عادةٍ يصير شيفرةً على المنشأة اختبارها وصونها وإعادة تطبيقها كل مرةٍ يحدّث المورّد المنتج، فيصير ERP كثير التخصيص ببطءٍ صعب الصون كالتشابك الذي استبدله. والسؤال لكل تغييرٍ مطلوب ليس هل يستطيع النظام هذا، بل هل طريقتنا هنا تستحق الحمل للأبد.</p>
+        <div class="note"><strong>ملاحظة:</strong> كل تخصيصٍ ضريبةٌ دائمة، تُدفَع ثانيةً عند كل ترقية. عامِل العملية القياسية كالافتراض واجعل التخصيص يكسب مكانه، لا العكس.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="governance">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Process Ownership &amp; Governance</h2>
+        <p class="lead">Because an ERP spans the whole organization, no single department can own it, yet someone must. The answer is governance that assigns ownership of each end-to-end process and settles the conflicts that integration inevitably creates.</p>
+        <p>The defining challenge is that ERP processes cross departmental lines. The flow from ordering goods to paying for them touches procurement, receiving, and finance, so if each department optimizes only its own step, the end-to-end process satisfies no one. ERP governance assigns an owner to the whole process, not just its parts, with the authority to decide how the shared system supports it, so that trade-offs between departments are made deliberately rather than fought out through configuration.</p>
+        <ul>
+          <li><strong>Process owners:</strong> named accountability for each end-to-end process that crosses modules and departments.</li>
+          <li><strong>A governance board:</strong> the forum that sets shared standards, approves changes, and resolves cross-functional conflicts.</li>
+          <li><strong>Change control:</strong> a disciplined path for changing the system, because in an integrated platform a local change can have distant effects.</li>
+          <li><strong>Segregation of duties:</strong> access designed so no single person can both create and approve a sensitive transaction, a core control in a financial system.</li>
+        </ul>
+        <p>Segregation of duties deserves particular attention in an ERP because the system touches money. If one person can create a supplier, raise a purchase order to it, and approve its payment, the system enables fraud rather than preventing it. Designing access so that these steps require different people is one of the most important controls an ERP configuration carries, and it is a business decision about risk, not a technical afterthought.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> an ERP delivers value when it is run as a governed, cross-functional operating model on a single source of truth, adopted with discipline over customization and owned by process, not by department.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>ملكية العمليات والحوكمة</h2>
+        <p class="lead">لأن ERP يمتد عبر المنشأة كلها، لا تستطيع إدارةٌ واحدة تملّكه، لكن يجب أن يملكه أحد. والجواب حوكمةٌ تُسنِد ملكية كل عمليةٍ من طرفٍ لطرف وتحسم النزاعات التي يُنشئها التكامل حتمًا.</p>
+        <p>التحدّي المميِّز أن عمليات ERP تعبر خطوط الإدارات. فالتدفّق من طلب البضائع إلى دفع ثمنها يمسّ المشتريات والاستلام والمالية، فإن حسّنت كل إدارةٍ خطوتها فقط، لا تُرضي العمليةُ من طرفٍ لطرف أحدًا. وحوكمة ERP تُسنِد مالكًا للعملية كلها لا أجزائها، بصلاحية تقرير كيف يسندها النظام المشترك، فتُتَّخذ المقايضات بين الإدارات عن قصد لا تُتنازَع عبر الإعداد.</p>
+        <ul>
+          <li><strong>ملّاك العمليات:</strong> مساءلةٌ مُسمّاة لكل عمليةٍ من طرفٍ لطرف تعبر الوحدات والإدارات.</li>
+          <li><strong>مجلس حوكمة:</strong> المنتدى الذي يضع المعايير المشتركة ويعتمد التغييرات ويحلّ النزاعات بين الوظائف.</li>
+          <li><strong>ضبط التغيير:</strong> مسارٌ منضبط لتغيير النظام، لأن في منصّةٍ متكاملة قد يكون لتغييرٍ محلّي آثارٌ بعيدة.</li>
+          <li><strong>فصل المهام:</strong> وصولٌ مُصمَّم فلا يستطيع شخصٌ واحد إنشاء معاملةٍ حسّاسة واعتمادها، وهو ضابطٌ جوهري في نظامٍ مالي.</li>
+        </ul>
+        <p>فصل المهام يستحق عنايةً خاصة في ERP لأن النظام يمسّ المال. فإن استطاع شخصٌ إنشاء مورّدٍ ورفع أمر شراءٍ له واعتماد دفعه، مكّن النظامُ الاحتيالَ بدل منعه. وتصميم الوصول بحيث تتطلّب هذه الخطوات أشخاصًا مختلفين من أهمّ الضوابط التي يحملها إعداد ERP، وهو قرار عملٍ حول الخطر لا فكرةٌ تقنية لاحقة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> ERP يسلّم القيمة حين يُدار كنموذج تشغيلٍ محوكَم عابرٍ للوظائف على مصدر حقيقةٍ واحد، مُتبنّىً بانضباطٍ على التخصيص ومملوكٍ بالعملية لا بالإدارة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">An ERP turns disconnected operations into one integrated system on shared data, delivering value only when governed as a business capability rather than an install.</p>
+        <ul>
+          <li>Treat the ERP as an operating model, not software, because integration weaves it through the whole business.</li>
+          <li>Protect the single source of truth by getting master data and process ownership right first.</li>
+          <li>Adopt standard processes by default, and make every customization earn its permanent cost.</li>
+          <li>Migrate clean data and phase the rollout to keep risk manageable.</li>
+          <li>Govern by end-to-end process owners, with change control and segregation of duties as core controls.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022, Information security management systems (access and segregation).</a></li>
+          <li><a href="https://www.isaca.org/resources/cobit" target="_blank" rel="noopener">ISACA, COBIT for the governance of enterprise IT.</a></li>
+          <li><a href="https://www.pmi.org/pmbok-guide-standards" target="_blank" rel="noopener">PMI, PMBOK Guide (implementation as a governed program).</a></li>
+          <li><a href="https://www.damadmbok.org/" target="_blank" rel="noopener">DAMA-DMBOK, Data Management Body of Knowledge (master data).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">ERP يحوّل عملياتٍ منفصلة إلى نظامٍ متكامل واحد على بياناتٍ مشتركة، يسلّم القيمة فقط حين يُحوكَم كقدرة عملٍ لا تركيب.</p>
+        <ul>
+          <li>عامِل ERP كنموذج تشغيلٍ لا برمجية، لأن التكامل ينسجه عبر العمل كله.</li>
+          <li>احمِ المصدر الواحد للحقيقة بضبط البيانات الرئيسة وملكية العمليات أولًا.</li>
+          <li>تبنَّ العمليات القياسية افتراضيًا، واجعل كل تخصيصٍ يكسب كلفته الدائمة.</li>
+          <li>رحّل بياناتٍ نظيفة ومرحِل الطرح لإبقاء الخطر قابلًا للإدارة.</li>
+          <li>احوكِم بملّاك عملياتٍ من طرفٍ لطرف، بضبط التغيير وفصل المهام كضوابط جوهرية.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022، أنظمة إدارة أمن المعلومات (الوصول والفصل).</a></li>
+          <li><a href="https://www.isaca.org/resources/cobit" target="_blank" rel="noopener">ISACA، COBIT لحوكمة تقنية المؤسسة.</a></li>
+          <li><a href="https://www.pmi.org/pmbok-guide-standards" target="_blank" rel="noopener">PMI، دليل PMBOK (التطبيق كبرنامجٍ محوكَم).</a></li>
+          <li><a href="https://www.damadmbok.org/" target="_blank" rel="noopener">DAMA-DMBOK، مرجع إدارة البيانات (البيانات الرئيسة).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","modules","implementation","governance","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>
