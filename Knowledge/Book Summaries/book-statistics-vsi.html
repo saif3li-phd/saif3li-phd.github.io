@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Statistics: A Very Short Introduction</title>
+<meta name="description" content="A summary of David J. Hand's Statistics: A Very Short Introduction: reasoning from data, sampling, uncertainty, and reading claims critically.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">BOOK SUMMARY &middot; DATA REASONING</span><span data-lang="ar">ملخّص كتاب &middot; استدلال بالبيانات</span></div>
+    <h1><span data-lang="en">Statistics: A Very Short Introduction</span><span data-lang="ar">علم الإحصاء: مقدمة قصيرة</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="ideas"><span data-lang="en">Core Ideas</span><span data-lang="ar">الأفكار الأساسية</span></a>
+    <a data-id="reflection"><span data-lang="en">Reflection</span><span data-lang="ar">تأمّل</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>About This Summary</h2>
+        <div class="info-card">
+          <div><span>Book:</span> Statistics: A Very Short Introduction</div>
+          <div><span>Author:</span> David J. Hand</div>
+          <div><span>First published:</span> 2008</div>
+          <div><span>Field:</span> Statistics &amp; data reasoning</div>
+          <div><span>Summary by:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Statistics: A Very Short Introduction is David J. Hand's accessible guide to what statistics really is and why it matters. Written for readers with no mathematical background, it presents statistics not as a set of formulas but as a way of reasoning, the discipline of turning raw data into understanding while honestly accounting for uncertainty.</p>
+        <p>This page is my own summary and reflection on the book's main ideas, with all credit for the ideas belonging to the author. It is not a reproduction of the text, and readers wanting the full treatment should read the original.</p>
+        <p>The book matters because statistics is everywhere and widely misunderstood. Decisions in medicine, policy, business, and daily life rest on statistical claims, yet most people are never taught how to read them critically. Hand's aim is to make statistics intelligible to the ordinary reader, so they can understand what a number does and does not tell them, and become harder to mislead. In a world drowning in data, that literacy is a genuinely valuable skill.</p>
+        <div class="note"><strong>Note:</strong> This is a summary and reflection, not the book itself. The ideas belong to David J. Hand; the words here are mine, offered as an honest account of what the book teaches about reasoning with data.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>عن هذا الملخّص</h2>
+        <div class="info-card">
+          <div><span>الكتاب:</span> علم الإحصاء: مقدمة قصيرة جدًا</div>
+          <div><span>المؤلف:</span> ديفيد ج. هاند</div>
+          <div><span>أول نشر:</span> 2008</div>
+          <div><span>المجال:</span> الإحصاء والاستدلال بالبيانات</div>
+          <div><span>إعداد الملخّص:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">علم الإحصاء: مقدمة قصيرة جدًا دليل ديفيد هاند الميسَّر لما هو الإحصاء فعلًا ولماذا يهمّ. مكتوبٌ لقرّاء بلا خلفيةٍ رياضية، يقدّم الإحصاء لا كمجموعة صِيغ بل كطريقة استدلال، انضباط تحويل البيانات الخام لفهمٍ مع الحساب الأمين لعدم اليقين.</p>
+        <p>هذه الصفحة ملخّصي وتأمّلي الخاص لأفكار الكتاب الرئيسة، مع نسب كل فضل الأفكار لمؤلفها. وهي ليست نسخًا للنصّ، ومن أراد المعالجة الكاملة فليقرأ الأصل.</p>
+        <p>يهمّ الكتاب لأن الإحصاء في كل مكانٍ ويُساء فهمه واسعًا. فالقرارات في الطبّ والسياسات والأعمال والحياة اليومية تقوم على ادّعاءاتٍ إحصائية، ومع ذلك لا يُعلَّم أغلب الناس كيف يقرؤونها نقديًا. وهدف هاند جعل الإحصاء مفهومًا للقارئ العادي، فيفهم ما يقوله الرقم وما لا يقوله، ويصير أصعب تضليلًا. وفي عالمٍ يغرق في البيانات، تلك الثقافة مهارةٌ قيّمة فعلًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> هذا ملخّصٌ وتأمّل لا الكتاب نفسه. فالأفكار لديفيد هاند؛ والكلمات هنا لي، مقدَّمةً كحسابٍ أمين لما يعلّمه الكتاب عن الاستدلال بالبيانات.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="ideas">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Core Ideas</h2>
+        <p class="lead">The book explains statistics as a discipline of reasoning under uncertainty, and a few central ideas carry the whole account.</p>
+        <p>The first is that statistics is the science of extracting meaning from data. We rarely observe everything we care about; instead we take a sample and try to infer what is true of the whole, and statistics is the disciplined set of methods for doing this well, and for saying honestly how confident we can be. This is why probability is central: because our conclusions are drawn from limited observations, they carry uncertainty, and statistics is precisely the tool for measuring and reporting that uncertainty rather than pretending it away.</p>
+        <ul>
+          <li><strong>From data to meaning:</strong> statistics turns raw numbers into understanding about the world.</li>
+          <li><strong>Sample to whole:</strong> we infer the properties of a large population from a limited sample.</li>
+          <li><strong>Uncertainty is central:</strong> conclusions from data carry uncertainty, which statistics measures rather than hides.</li>
+          <li><strong>Data quality matters:</strong> conclusions are only as good as the data behind them, so how data is gathered is decisive.</li>
+        </ul>
+        <p>A second theme is that statistics can mislead as easily as it can illuminate, depending on how data is gathered, analyzed, and presented. Hand stresses that good conclusions depend on good data: a biased sample, a poorly framed question, or a misleading chart can produce numbers that look authoritative but are wrong. Understanding statistics therefore includes a critical dimension, learning to ask where the data came from, what was measured, and whether the conclusion really follows, which is what separates informed reading from being impressed by any number that carries a decimal point.</p>
+        <div class="note"><strong>Note:</strong> The heart of statistics is honest reasoning about uncertainty. A statistic is not a fact handed down but a conclusion drawn from limited data, and understanding it means knowing how much confidence it actually deserves.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الأفكار الأساسية</h2>
+        <p class="lead">يشرح الكتاب الإحصاء كانضباط استدلالٍ تحت عدم اليقين، وبضع أفكارٍ مركزية تحمل الحساب كله.</p>
+        <p>الأولى أن الإحصاء علم استخراج المعنى من البيانات. فنادرًا ما نلاحظ كل ما يهمّنا؛ بدل ذلك نأخذ عيّنة ونحاول استنتاج ما يصحّ على الكلّ، والإحصاء المجموعة المنضبطة من الطرق لفعل هذا جيدًا، ولقول كم نستطيع أن نثق بأمانة. ولهذا الاحتمال مركزي: لأن استنتاجاتنا مأخوذة من ملاحظاتٍ محدودة، تحمل عدم يقين، والإحصاء بالضبط أداة قياس ذلك اللايقين والإبلاغ عنه لا التظاهر بإزالته.</p>
+        <ul>
+          <li><strong>من البيانات للمعنى:</strong> الإحصاء يحوّل الأرقام الخام لفهمٍ عن العالم.</li>
+          <li><strong>من العيّنة للكلّ:</strong> نستنتج خصائص مجتمعٍ كبير من عيّنةٍ محدودة.</li>
+          <li><strong>عدم اليقين مركزي:</strong> استنتاجات البيانات تحمل عدم يقينٍ يقيسه الإحصاء لا يخفيه.</li>
+          <li><strong>جودة البيانات تهمّ:</strong> الاستنتاجات بجودة بياناتها فقط، فكيف تُجمَع البيانات حاسم.</li>
+        </ul>
+        <p>الموضوع الثاني أن الإحصاء قد يضلّل بسهولة إنارته، بحسب كيف تُجمَع البيانات وتُحلَّل وتُعرَض. ويشدّد هاند أن الاستنتاجات الجيدة تعتمد على بياناتٍ جيدة: عيّنةٌ منحازة، أو سؤالٌ سيّئ الصياغة، أو رسمٌ مضلِّل، قد تُنتِج أرقامًا تبدو موثوقة لكنها خاطئة. وفهم الإحصاء إذًا يتضمّن بُعدًا نقديًا، تعلّم السؤال من أين جاءت البيانات، وما قِيس، وهل يتبع الاستنتاج فعلًا، وهو ما يفصل القراءة الواعية عن الانبهار بأي رقمٍ يحمل فاصلةً عشرية.</p>
+        <div class="note"><strong>ملاحظة:</strong> قلب الإحصاء الاستدلال الأمين عن عدم اليقين. فالإحصائية ليست حقيقةً مُسلَّمة بل استنتاجٌ مأخوذ من بياناتٍ محدودة، وفهمها معرفة كم ثقةٍ تستحقّ فعلًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="reflection">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Reflection &amp; Value</h2>
+        <p class="lead">A fair summary notes what the book achieves and where its limits lie, so a reader knows what to expect from it.</p>
+        <p>The book's great strength is that it makes an intimidating subject genuinely approachable. It builds intuition before formulas, so a reader comes away understanding what statistics is for and how to think about it, rather than merely memorizing procedures. Its emphasis on uncertainty and on the critical reading of statistical claims is exactly what most people lack and most need, since we are constantly presented with numbers, in the news, in advertising, in policy debates, that we are ill-equipped to evaluate. As an antidote to statistical naivety, the book is valuable well beyond any academic setting.</p>
+        <p>Its natural limit is that it is an introduction, by design. It builds understanding and intuition, but it does not and cannot make the reader a practicing statistician, and anyone needing to actually perform analyses will require fuller and more technical study. That is not a flaw but a matter of scope: the book aims to make readers wiser consumers of statistics, not producers of them, and it succeeds at that aim. Read for what it is, it is one of the most useful things a non-specialist can read to become harder to fool.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> Statistics: A Very Short Introduction teaches statistics as honest reasoning about uncertainty, building the intuition to read statistical claims critically, an introduction that makes any reader a wiser and less deceivable consumer of data.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>تأمّلٌ وقيمة</h2>
+        <p class="lead">الملخّص العادل يذكر ما يحقّقه الكتاب وأين تقع حدوده، فيعرف القارئ ما يتوقّعه منه.</p>
+        <p>قوّة الكتاب العظيمة أنه يجعل موضوعًا مرهِبًا قريبًا فعلًا. فهو يبني الحدس قبل الصِيغ، فيخرج القارئ فاهمًا لماذا الإحصاء وكيف يفكّر فيه، لا حافظًا إجراءاتٍ فحسب. وتشديده على عدم اليقين وعلى القراءة النقدية للادّعاءات الإحصائية هو بالضبط ما يفتقده أغلب الناس ويحتاجونه، إذ تُعرَض علينا باستمرار أرقامٌ، في الأخبار والإعلان ونقاشات السياسات، لسنا مؤهَّلين لتقييمها. وكترياقٍ للسذاجة الإحصائية، الكتاب قيّمٌ أبعد من أي إطارٍ أكاديمي.</p>
+        <p>وحدّه الطبيعي أنه مقدّمة، بالتصميم. فهو يبني الفهم والحدس، لكنه لا يجعل ولا يستطيع جعل القارئ إحصائيًا ممارسًا، ومن يحتاج أداء تحليلاتٍ فعلًا سيحتاج دراسةً أوفى وأكثر تقنية. وليس هذا عيبًا بل مسألة نطاق: فالكتاب يهدف لجعل القرّاء مستهلكين أحكم للإحصاء لا منتجين له، وينجح في ذلك الهدف. ومقروءًا لما هو، من أنفع ما يقرؤه غير المختصّ ليصير أصعب خداعًا.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> علم الإحصاء: مقدمة قصيرة جدًا يعلّم الإحصاء كاستدلالٍ أمين عن عدم اليقين، بانيًا الحدس لقراءة الادّعاءات الإحصائية نقديًا، مقدّمةٌ تجعل أي قارئٍ مستهلكًا أحكم وأقلّ قابليةً للخداع بالبيانات.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">The book presents statistics as a way of reasoning honestly from data under uncertainty.</p>
+        <ul>
+          <li>See statistics as reasoning from data to meaning, not merely as a set of formulas.</li>
+          <li>Remember that we infer the whole from a sample, so conclusions always carry uncertainty.</li>
+          <li>Treat probability and uncertainty as central, measuring confidence rather than pretending to certainty.</li>
+          <li>Ask where data came from and how it was gathered, since conclusions are only as good as the data.</li>
+          <li>Read statistical claims critically, becoming a wiser and less deceivable consumer of numbers.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://global.oup.com/academic/product/statistics-a-very-short-introduction-9780199233564" target="_blank" rel="noopener">Oxford University Press, the book's official page.</a></li>
+          <li><a href="https://www.goodreads.com/book/show/5115533-statistics" target="_blank" rel="noopener">Statistics, overview and reader reviews.</a></li>
+          <li><a href="https://academic.oup.com/book/409" target="_blank" rel="noopener">The book on Oxford Academic.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">يقدّم الكتاب الإحصاء كطريقة استدلالٍ أمين من البيانات تحت عدم اليقين.</p>
+        <ul>
+          <li>انظر للإحصاء كاستدلالٍ من البيانات للمعنى، لا كمجموعة صِيغ فحسب.</li>
+          <li>تذكّر أننا نستنتج الكلّ من عيّنة، فالاستنتاجات تحمل عدم يقينٍ دومًا.</li>
+          <li>عامِل الاحتمال وعدم اليقين كمركزيين، بقياس الثقة لا التظاهر باليقين.</li>
+          <li>اسأل من أين جاءت البيانات وكيف جُمِعت، إذ الاستنتاجات بجودة بياناتها.</li>
+          <li>اقرأ الادّعاءات الإحصائية نقديًا، صائرًا مستهلكًا أحكم وأقلّ قابليةً للخداع.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://global.oup.com/academic/product/statistics-a-very-short-introduction-9780199233564" target="_blank" rel="noopener">مطبعة جامعة أكسفورد، الصفحة الرسمية للكتاب.</a></li>
+          <li><a href="https://www.goodreads.com/book/show/5115533-statistics" target="_blank" rel="noopener">الكتاب، نظرة عامة ومراجعات القرّاء.</a></li>
+          <li><a href="https://academic.oup.com/book/409" target="_blank" rel="noopener">الكتاب على Oxford Academic.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","ideas","reflection","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

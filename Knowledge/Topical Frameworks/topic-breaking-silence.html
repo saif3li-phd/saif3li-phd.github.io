@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When to Break Your Silence</title>
+<meta name="description" content="A framework for knowing when to break your silence: weighing the cost of silence against speaking, checking motive, and speaking so you are heard.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">KNOWLEDGE &middot; TOPICAL FRAMEWORK</span><span data-lang="ar">معرفة &middot; إطار موضوعي</span></div>
+    <h1><span data-lang="en">When to Break Your Silence</span><span data-lang="ar">متى تكسر صمتك</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="when"><span data-lang="en">When to Speak</span><span data-lang="ar">متى تتكلّم</span></a>
+    <a data-id="how"><span data-lang="en">How to Speak</span><span data-lang="ar">كيف تتكلّم</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Communication &amp; courage</div>
+          <div><span>Scope:</span> Knowing when and how to speak up</div>
+          <div><span>Focus:</span> Breaking silence responsibly and effectively</div>
+          <div><span>Use:</span> A framework for finding your voice</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">There are moments when staying silent is easier but wrong, and moments when speaking up would only cause harm. Knowing the difference, and having the courage and skill to break your silence when it matters, is a real capability. This framework is about when to give up your silence: how to judge when speaking is worth its cost, and how to do it well.</p>
+        <p>The idea matters because silence has consequences. People stay quiet about problems, disagreements, and wrongs for understandable reasons, fear, discomfort, not wanting trouble, but that silence can let mistakes go uncorrected, injustices continue, and important truths go unsaid. At the same time, not every thought needs voicing, and speaking carelessly can do damage. The skill lies in telling apart the silence that is prudent from the silence that is a failure of courage.</p>
+        <p>This is my own framework, written in my own words and drawing on established thinking about voice, psychological safety, and constructive communication. Its aim is practical: to help judge when breaking silence is the right thing, and to do it in a way that is heard rather than merely brave.</p>
+        <div class="note"><strong>Note:</strong> Silence is not always golden. Sometimes it is prudent, and sometimes it is a quiet failure to say what should be said. The skill is telling the two apart, and having the courage to speak when it is the latter.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> التواصل والشجاعة</div>
+          <div><span>النطاق:</span> معرفة متى وكيف ترفع صوتك</div>
+          <div><span>التركيز:</span> كسر الصمت بمسؤوليةٍ وفاعلية</div>
+          <div><span>الاستخدام:</span> إطارٌ لإيجاد صوتك</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">ثمّة لحظاتٌ يكون فيها الصمت أسهل لكنه خطأ، ولحظاتٌ يسبّب فيها الكلام ضررًا فقط. ومعرفة الفرق، وامتلاك الشجاعة والمهارة لكسر صمتك حين يهمّ، قدرةٌ حقيقية. هذا الإطار عن متى تتخلى عن صمتك: كيف تحكم متى يستحقّ الكلام كلفته، وكيف تفعله جيدًا.</p>
+        <p>تهمّ الفكرة لأن للصمت عواقب. فالناس يسكتون عن المشكلات والخلافات والأخطاء لأسبابٍ مفهومة، الخوف وعدم الارتياح وعدم الرغبة في متاعب، لكن ذلك الصمت قد يترك الأخطاء بلا تصحيح، والمظالم مستمرّة، والحقائق المهمّة غير مقولة. وفي الوقت ذاته، ليست كل فكرةٍ تحتاج نطقًا، والكلام المتهوّر قد يؤذي. والمهارة في تمييز الصمت الحصيف من الصمت الذي هو إخفاق شجاعة.</p>
+        <p>هذا إطاري الخاص، مكتوبٌ بكلماتي ومستندٌ لفكرٍ راسخ عن الصوت والأمان النفسي والتواصل البنّاء. وهدفه عملي: المساعدة على الحكم متى كسر الصمت هو الصواب، وفعله بطريقةٍ تُسمَع لا مجرّد شجاعة.</p>
+        <div class="note"><strong>ملاحظة:</strong> الصمت ليس ذهبًا دومًا. أحيانًا حصيف، وأحيانًا إخفاقٌ هادئ في قول ما ينبغي قوله. والمهارة تمييز الاثنين، وامتلاك الشجاعة للكلام حين يكون الثاني.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="when">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>When Silence Should Break</h2>
+        <p class="lead">The central judgment is when the cost of silence outweighs the cost of speaking. A few questions help tell the difference between prudent quiet and a failure of voice.</p>
+        <p>The first question is about stakes and harm: does the silence allow real harm, a serious mistake, an injustice, a danger, to continue? When staying quiet means letting something genuinely wrong or damaging proceed, the balance tilts strongly toward speaking, because here silence is not neutral but a form of participation. The second question is about whether you have something the situation needs: information others lack, a perspective not represented, an objection that should be weighed. If you hold something important that will otherwise go unsaid, your silence deprives the decision of something it needs.</p>
+        <ul>
+          <li><strong>Does silence permit harm?</strong> if staying quiet lets a real wrong or danger continue, lean strongly toward speaking.</li>
+          <li><strong>Do you hold something needed?</strong> information, a perspective, or an objection that will otherwise be missing.</li>
+          <li><strong>Is the motive sound?</strong> speak to help or correct, not merely to vent, win, or be seen.</li>
+          <li><strong>Is it prudent quiet instead?</strong> some things are better left unsaid, and restraint is not always cowardice.</li>
+        </ul>
+        <p>The third question tests your motive: are you speaking to help, correct, or protect, or merely to vent, to win, or to be seen? Voice in service of something beyond yourself is usually worth its cost; speaking to satisfy ego or score points often is not. And the fourth question guards the other side: is this instead a case for prudent restraint, a minor matter, a battle not worth fighting, a truth that would wound without helping? Not all silence is cowardice, and part of the skill is recognizing when holding back is the wiser and kinder path. Together these questions turn the choice from a reflex of fear or bravado into a considered judgment.</p>
+        <div class="note"><strong>Note:</strong> Silence in the face of real harm is not neutrality; it is a quiet form of consent. When staying quiet means letting a genuine wrong continue, the burden of justification shifts onto the silence, not the speaking.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>متى ينبغي كسر الصمت</h2>
+        <p class="lead">الحكم المركزي متى تفوق كلفة الصمت كلفة الكلام. وبضعة أسئلةٍ تساعد على تمييز الصمت الحصيف من إخفاق الصوت.</p>
+        <p>السؤال الأول عن المخاطر والضرر: هل يسمح الصمت بضررٍ حقيقي، خطأ جسيم، ظلم، خطر، بالاستمرار؟ فحين يعني السكوت ترك شيءٍ خاطئ أو ضارّ فعلًا يمضي، يميل الميزان بقوّةٍ نحو الكلام، لأن الصمت هنا ليس محايدًا بل شكلٌ من المشاركة. والسؤال الثاني عن هل تملك ما يحتاجه الموقف: معلومةً يفتقدها غيرك، منظورًا غير مُمثَّل، اعتراضًا ينبغي وزنه. فإن حملت شيئًا مهمًّا سيبقى غير مقولٍ لولاك، فصمتك يحرم القرار مما يحتاجه.</p>
+        <ul>
+          <li><strong>هل يسمح الصمت بضرر؟</strong> إن ترك السكوت خطأً أو خطرًا حقيقيًا يمضي، مِل بقوّةٍ للكلام.</li>
+          <li><strong>هل تملك ما يُحتاج؟</strong> معلومةٌ أو منظورٌ أو اعتراضٌ سيبقى غائبًا لولاك.</li>
+          <li><strong>هل الدافع سليم؟</strong> تكلّم لتساعد أو تصحّح، لا لمجرّد التنفيس أو الفوز أو الظهور.</li>
+          <li><strong>أم هو صمتٌ حصيف؟</strong> بعض الأشياء أفضل غير مقولة، والكبح ليس جبنًا دومًا.</li>
+        </ul>
+        <p>والسؤال الثالث يختبر دافعك: هل تتكلّم لتساعد أو تصحّح أو تحمي، أم لمجرّد التنفيس أو الفوز أو الظهور؟ فالصوت في خدمة شيءٍ أبعد منك يستحقّ كلفته عادةً؛ والكلام لإرضاء الأنا أو تسجيل نقاطٍ غالبًا لا. والسؤال الرابع يحرس الجانب الآخر: هل هذه بدلًا من ذلك حالة كبحٍ حصيف، أمرٌ ثانوي، معركةٌ لا تستحقّ الخوض، حقيقةٌ تجرح دون أن تساعد؟ فليس كل صمتٍ جبنًا، وجزءٌ من المهارة إدراك متى الكبح المسار الأحكم والألطف. ومعًا تحوّل هذه الأسئلة الاختيار من ردّة فعل خوفٍ أو تبجّح لحكمٍ متأنٍّ.</p>
+        <div class="note"><strong>ملاحظة:</strong> الصمت أمام ضررٍ حقيقي ليس حيادًا؛ شكلٌ هادئ من الموافقة. فحين يعني السكوت ترك خطأٍ حقيقي يمضي، ينتقل عبء التبرير للصمت لا للكلام.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="how">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Speaking So You Are Heard</h2>
+        <p class="lead">Deciding to speak is only half the task; doing it in a way that is actually heard is the other half, because courage without skill often changes nothing.</p>
+        <p>How you break silence largely determines whether it works. Speaking with hostility, blame, or contempt tends to make listeners defensive and to bury the point under the manner of its delivery, so that even a valid message is rejected. Breaking silence effectively usually means being direct but respectful, focusing on the issue rather than attacking the person, and framing the concern in terms the listener can hear, what is at stake, why it matters, what could be done. The aim is to be understood and to move things, not merely to have registered one's objection for the record.</p>
+        <p>Timing and setting matter too: the same words land differently in private than in public, in a calm moment than in a heated one. And the conditions around us shape how easy speaking is; environments where people are punished for candor breed silence, while those with a measure of safety draw out the honesty that helps everyone. Where we have influence over those conditions, fostering that safety for others is part of the same work. The honest synthesis is that finding your voice is two skills at once: the judgment to know when silence must break, and the craft to break it in a way that is heard, so that courage actually accomplishes something rather than merely being spent.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> breaking your silence well means judging when the cost of staying quiet outweighs the cost of speaking, checking that your motive is sound, and then speaking directly but respectfully, at the right time and in the right way, so that courage is translated into being genuinely heard.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الكلام لتُسمَع</h2>
+        <p class="lead">قرار الكلام نصف المهمّة فقط؛ وفعله بطريقةٍ تُسمَع فعلًا النصف الآخر، لأن الشجاعة بلا مهارةٍ لا تغيّر شيئًا غالبًا.</p>
+        <p>كيف تكسر الصمت يحدّد إلى حدٍّ كبير هل ينجح. فالكلام بعدائيةٍ أو لومٍ أو ازدراء يميل لجعل المستمعين دفاعيين ودفن النقطة تحت أسلوب إلقائها، فتُرفَض رسالةٌ صحيحة. وكسر الصمت الفعّال يعني عادةً أن تكون مباشرًا لكن محترمًا، مركّزًا على المسألة لا مهاجمًا الشخص، ومؤطّرًا القلق بعباراتٍ يسمعها المستمع، ما هو على المحكّ، لماذا يهمّ، ما يمكن فعله. والهدف أن تُفهَم وتحرّك الأمور، لا مجرّد تسجيل اعتراضك للسجلّ.</p>
+        <p>والتوقيت والسياق يهمّان أيضًا: الكلمات ذاتها تقع مختلفةً في الخاصّ عن العامّ، في لحظةٍ هادئة عن محتدمة. والظروف حولنا تُشكّل كم يسهل الكلام؛ فبيئاتٌ يُعاقَب فيها الناس على الصراحة تربّي الصمت، وتلك ذات قدرٍ من الأمان تستخرج الصدق الذي ينفع الجميع. وحيث لنا تأثيرٌ على تلك الظروف، فتعزيز ذلك الأمان لغيرنا جزءٌ من العمل ذاته. والتوليف الأمين أن إيجاد صوتك مهارتان معًا: الحكم لمعرفة متى يجب كسر الصمت، والحرفة لكسره بطريقةٍ تُسمَع، فتنجز الشجاعة شيئًا فعلًا لا أن تُنفَق فحسب.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> كسر صمتك جيدًا يعني الحكم متى تفوق كلفة السكوت كلفة الكلام، والتحقّق أن دافعك سليم، ثم الكلام مباشرًا لكن محترمًا، في الوقت والطريقة الصحيحين، فتُترجَم الشجاعة إلى أن تُسمَع حقًّا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Finding your voice is knowing when silence must break, and breaking it in a way that is heard.</p>
+        <ul>
+          <li>Weigh the cost of silence against the cost of speaking, and lean toward voice when silence permits harm.</li>
+          <li>Speak when you hold information, a perspective, or an objection the situation genuinely needs.</li>
+          <li>Check your motive: speak to help or correct, not merely to vent, win, or be seen.</li>
+          <li>Recognize prudent restraint too, since not all silence is cowardice.</li>
+          <li>Speak directly but respectfully, at the right time and in the right way, so you are actually heard.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2016/01/can-your-employees-really-speak-freely" target="_blank" rel="noopener">HBR, on speaking up and psychological safety.</a></li>
+          <li><a href="https://www.vitalsmarts.com/resource/crucial-conversations-book/" target="_blank" rel="noopener">Crucial Conversations, on high-stakes dialogue.</a></li>
+          <li><a href="https://amycedmondson.com/psychological-safety/" target="_blank" rel="noopener">Amy Edmondson, on voice and psychological safety.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">إيجاد صوتك معرفة متى يجب كسر الصمت، وكسره بطريقةٍ تُسمَع.</p>
+        <ul>
+          <li>زِن كلفة الصمت مقابل كلفة الكلام، ومِل للصوت حين يسمح الصمت بضرر.</li>
+          <li>تكلّم حين تملك معلومةً أو منظورًا أو اعتراضًا يحتاجه الموقف فعلًا.</li>
+          <li>افحص دافعك: تكلّم لتساعد أو تصحّح، لا لمجرّد التنفيس أو الفوز أو الظهور.</li>
+          <li>أدرِك الكبح الحصيف أيضًا، إذ ليس كل صمتٍ جبنًا.</li>
+          <li>تكلّم مباشرًا لكن محترمًا، في الوقت والطريقة الصحيحين، فتُسمَع فعلًا.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2016/01/can-your-employees-really-speak-freely" target="_blank" rel="noopener">HBR، عن رفع الصوت والأمان النفسي.</a></li>
+          <li><a href="https://www.vitalsmarts.com/resource/crucial-conversations-book/" target="_blank" rel="noopener">المحادثات الحاسمة، عن الحوار عالي المخاطر.</a></li>
+          <li><a href="https://amycedmondson.com/psychological-safety/" target="_blank" rel="noopener">إيمي إدموندسون، عن الصوت والأمان النفسي.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","when","how","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

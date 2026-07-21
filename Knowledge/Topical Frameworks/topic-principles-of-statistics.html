@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Principles of Statistics</title>
+<meta name="description" content="A foundational framework of statistical principles: honest description, inference from representative samples, explicit uncertainty, and data quality.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">KNOWLEDGE &middot; TOPICAL FRAMEWORK</span><span data-lang="ar">معرفة &middot; إطار موضوعي</span></div>
+    <h1><span data-lang="en">Principles of Statistics</span><span data-lang="ar">مبادئ الإحصاء</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="principles"><span data-lang="en">Principles</span><span data-lang="ar">المبادئ</span></a>
+    <a data-id="pitfalls"><span data-lang="en">Pitfalls</span><span data-lang="ar">المزالق</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Statistics fundamentals</div>
+          <div><span>Scope:</span> The core principles of statistical reasoning</div>
+          <div><span>Focus:</span> Description, inference, and uncertainty</div>
+          <div><span>Use:</span> A foundational framework for reading and using data</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Statistics is the discipline of collecting, summarizing, and drawing conclusions from data. Its principles are the foundation on which all data analysis rests, and understanding them is what separates using numbers thoughtfully from being fooled by them. This framework sets out the core principles in plain terms, as a foundation for anyone who works with data.</p>
+        <p>The principles matter because data is now central to almost every field, from business to science to public life, yet numbers are easy to misread and easy to misuse. A grasp of statistical principles lets a person summarize data honestly, understand what an analysis can and cannot claim, and recognize when a statistical argument is sound or misleading. These fundamentals are as much a tool for critical thinking as for calculation.</p>
+        <p>This is my own framework, written in my own words and drawing on established statistical thinking. It complements the companion summary of an introduction to statistics, focusing here on the underlying principles, description, inference, and uncertainty, that give the whole field its shape.</p>
+        <div class="note"><strong>Note:</strong> Statistics is not mainly about formulas; it is about reasoning honestly from limited data to general conclusions, while being clear about how much confidence those conclusions deserve.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> أساسيات الإحصاء</div>
+          <div><span>النطاق:</span> المبادئ الجوهرية للاستدلال الإحصائي</div>
+          <div><span>التركيز:</span> الوصف والاستدلال وعدم اليقين</div>
+          <div><span>الاستخدام:</span> إطارٌ تأسيسي لقراءة البيانات واستخدامها</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الإحصاء انضباط جمع البيانات وتلخيصها واستخلاص الاستنتاجات منها. ومبادئه الأساس الذي يقوم عليه كل تحليل بيانات، وفهمها هو ما يفصل استخدام الأرقام بتبصّرٍ عن الانخداع بها. يعرض هذا الإطار المبادئ الجوهرية بعباراتٍ واضحة، كأساسٍ لأي من يعمل بالبيانات.</p>
+        <p>تهمّ المبادئ لأن البيانات صارت محورية في كل مجالٍ تقريبًا، من الأعمال للعلوم للحياة العامة، ومع ذلك الأرقام سهلة سوء القراءة وسهلة سوء الاستخدام. وإمساك مبادئ الإحصاء يتيح للمرء تلخيص البيانات بأمانة، وفهم ما يستطيع التحليل ادّعاءه وما لا يستطيع، وإدراك متى تكون الحجّة الإحصائية سليمة أو مضلِّلة. وهذه الأساسيات أداة تفكيرٍ نقدي بقدر ما هي أداة حساب.</p>
+        <p>هذا إطاري الخاص، مكتوبٌ بكلماتي ومستندٌ لفكرٍ إحصائي راسخ. ويكمّل الملخّص المرافق لمقدّمةٍ في الإحصاء، مركّزًا هنا على المبادئ الكامنة، الوصف والاستدلال وعدم اليقين، التي تمنح المجال كله شكله.</p>
+        <div class="note"><strong>ملاحظة:</strong> الإحصاء ليس أساسًا عن الصِيغ؛ بل عن الاستدلال الأمين من بياناتٍ محدودة لاستنتاجاتٍ عامة، مع الوضوح كم ثقةٍ تستحقّها تلك الاستنتاجات.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="principles">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Core Principles</h2>
+        <p class="lead">Statistical reasoning rests on a few core principles that build on one another, from describing data, to inferring beyond it, to quantifying the uncertainty that inference always carries.</p>
+        <p>The first principle is description: summarizing data so its patterns become visible. Raw numbers are hard to grasp, so statistics offers ways to capture them, measures of a typical value such as the mean or median, measures of spread such as the range or standard deviation, and visual displays that reveal shape and outliers. A key lesson here is that any summary hides as well as reveals, so choosing an honest and appropriate summary matters, because the same data can be made to tell different stories through selective description. The second principle is inference: using data from a sample to draw conclusions about a larger population we cannot observe in full. This is the heart of statistics and its most powerful move, and also its most delicate, because the leap from sample to population is only valid if the sample is representative.</p>
+        <ul>
+          <li><strong>Description:</strong> summarize data with measures of center, spread, and shape, honestly chosen.</li>
+          <li><strong>Inference:</strong> use a representative sample to draw conclusions about a whole population.</li>
+          <li><strong>Uncertainty:</strong> quantify how confident a conclusion is, since inference is never certain.</li>
+          <li><strong>Data quality:</strong> conclusions are only as sound as the data and how it was collected.</li>
+        </ul>
+        <p>The third principle is uncertainty, which distinguishes statistics from ordinary arithmetic. Because inference generalizes from limited data, its conclusions are never certain, and statistics is precisely the machinery for measuring that uncertainty and stating it honestly, through ideas such as probability, confidence, and margin of error. A conclusion reported without any sense of its uncertainty is statistically incomplete. Underpinning all three principles is a fourth: data quality. No amount of sophisticated analysis can rescue conclusions drawn from biased, badly measured, or unrepresentative data, so how data is collected is as important as how it is analyzed. These principles together form the logic by which data becomes trustworthy knowledge.</p>
+        <div class="note"><strong>Note:</strong> The leap from a sample to a whole population is statistics' most powerful and most fragile move. It is valid only when the sample truly represents the population, which is why how data is gathered can matter more than how it is analyzed.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>المبادئ الجوهرية</h2>
+        <p class="lead">الاستدلال الإحصائي يقوم على بضعة مبادئ جوهرية يبني بعضها على بعض، من وصف البيانات، للاستدلال وراءها، لتكميم عدم اليقين الذي يحمله الاستدلال دومًا.</p>
+        <p>المبدأ الأول الوصف: تلخيص البيانات فتصير أنماطها مرئية. فالأرقام الخام صعبة الإمساك، فيعرض الإحصاء طرقًا لالتقاطها، مقاييس قيمةٍ نمطية كالمتوسط أو الوسيط، ومقاييس تشتّتٍ كالمدى أو الانحراف المعياري، وعروضٍ بصرية تكشف الشكل والقيم الشاذّة. ودرسٌ مفتاحي هنا أن أي تلخيصٍ يخفي كما يكشف، فاختيار تلخيصٍ أمين مناسب يهمّ، لأن البيانات ذاتها يمكن جعلها تروي قصصًا مختلفة عبر وصفٍ انتقائي. والمبدأ الثاني الاستدلال: استخدام بيانات عيّنةٍ لاستخلاص استنتاجاتٍ عن مجتمعٍ أكبر لا نستطيع ملاحظته كاملًا. وهذا قلب الإحصاء وحركته الأقوى، وأدقّها أيضًا، لأن القفزة من العيّنة للمجتمع صحيحة فقط إن كانت العيّنة ممثِّلة.</p>
+        <ul>
+          <li><strong>الوصف:</strong> لخّص البيانات بمقاييس المركز والتشتّت والشكل، مختارةً بأمانة.</li>
+          <li><strong>الاستدلال:</strong> استخدم عيّنةً ممثِّلة لاستخلاص استنتاجاتٍ عن مجتمعٍ كامل.</li>
+          <li><strong>عدم اليقين:</strong> كمِّم كم استنتاجٌ واثق، إذ الاستدلال ليس يقينيًا أبدًا.</li>
+          <li><strong>جودة البيانات:</strong> الاستنتاجات بسلامة البيانات وكيف جُمِعت فقط.</li>
+        </ul>
+        <p>والمبدأ الثالث عدم اليقين، وهو ما يميّز الإحصاء عن الحساب العادي. فلأن الاستدلال يعمّم من بياناتٍ محدودة، استنتاجاته ليست يقينية أبدًا، والإحصاء بالضبط آلية قياس ذلك اللايقين وذكره بأمانة، عبر أفكارٍ كالاحتمال والثقة وهامش الخطأ. واستنتاجٌ يُبلَّغ بلا أي إحساسٍ بعدم يقينه ناقصٌ إحصائيًا. ويسند المبادئ الثلاثة رابعٌ: جودة البيانات. فلا قدر من التحليل المتطوّر ينقذ استنتاجاتٍ مأخوذة من بياناتٍ منحازة أو رديئة القياس أو غير ممثِّلة، فكيف تُجمَع البيانات بأهمية كيف تُحلَّل. وهذه المبادئ معًا تشكّل المنطق الذي تصير به البيانات معرفةً موثوقة.</p>
+        <div class="note"><strong>ملاحظة:</strong> القفزة من عيّنةٍ لمجتمعٍ كامل حركة الإحصاء الأقوى والأهشّ. صحيحةٌ فقط حين تمثّل العيّنة المجتمع حقًّا، ولهذا قد يهمّ كيف تُجمَع البيانات أكثر من كيف تُحلَّل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="pitfalls">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Common Pitfalls</h2>
+        <p class="lead">Understanding the principles also means recognizing how they are commonly violated, because most statistical errors and deceptions come from breaking one of them.</p>
+        <p>A frequent pitfall is the biased or unrepresentative sample: drawing conclusions about a whole population from a sample that does not reflect it, which invalidates the inference no matter how the numbers are then processed. Another is confusing correlation with causation: observing that two things move together and wrongly concluding that one causes the other, when they may share a common cause or be linked by chance. A third is misleading description: choosing summaries or charts that technically use the data but create a false impression, such as a truncated axis that exaggerates a difference, or citing an average that hides a highly skewed distribution.</p>
+        <p>Perhaps the most pervasive pitfall is ignoring uncertainty, treating a single estimate as an exact fact rather than a figure with a range around it. A poll result, a growth rate, or a study finding all carry uncertainty, and presenting them as precise truths misleads even when no deception is intended. The practical value of knowing the principles is largely defensive: it lets a person ask the right questions of any statistic, where did the data come from, is the sample representative, does the summary mislead, is causation being assumed, and how uncertain is this really, and so tell sound statistical reasoning from the impressive-looking but hollow kind. Used this way, statistical literacy is one of the strongest protections against being misled by numbers.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> the core principles of statistics, honest description, valid inference from representative samples, explicit uncertainty, and sound data, are both a method for turning data into knowledge and a shield against the common ways numbers mislead, from biased samples to confused causation to hidden uncertainty.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>مزالق شائعة</h2>
+        <p class="lead">فهم المبادئ يعني أيضًا إدراك كيف تُنتهَك شائعًا، لأن أغلب الأخطاء والخدع الإحصائية تأتي من كسر أحدها.</p>
+        <p>مزلقٌ متكرّر العيّنة المنحازة أو غير الممثِّلة: استخلاص استنتاجاتٍ عن مجتمعٍ كامل من عيّنةٍ لا تعكسه، ما يُبطِل الاستدلال مهما عُولِجت الأرقام بعدها. وآخر خلط الارتباط بالسببية: ملاحظة أن شيئين يتحرّكان معًا والاستنتاج خطأً أن أحدهما يسبّب الآخر، وقد يشتركان في سببٍ مشترك أو يرتبطان بالصدفة. وثالثٌ الوصف المضلِّل: اختيار تلخيصاتٍ أو رسومٍ تستخدم البيانات تقنيًا لكنها تخلق انطباعًا زائفًا، كمحورٍ مبتور يبالغ في فرقٍ، أو ذكر متوسّطٍ يخفي توزيعًا شديد الالتواء.</p>
+        <p>ولعلّ أعمّ المزالق تجاهل عدم اليقين، معاملة تقديرٍ مفرد كحقيقةٍ دقيقة لا رقمٍ حوله مدى. فنتيجة استطلاعٍ أو معدّل نموٍّ أو اكتشاف دراسةٍ كلها تحمل عدم يقين، وعرضها كحقائق دقيقة يضلّل حتى حين لا يُقصَد خداع. والقيمة العملية لمعرفة المبادئ دفاعية إلى حدٍّ كبير: تتيح للمرء سؤال الأسئلة الصحيحة لأي إحصائية، من أين جاءت البيانات، هل العيّنة ممثِّلة، هل يضلّل التلخيص، هل تُفترَض السببية، وكم هذا غير يقيني فعلًا، فيميّز الاستدلال الإحصائي السليم من المبهر مظهرًا الأجوف. ومستخدَمةً هكذا، الثقافة الإحصائية من أقوى الحمايات ضدّ الانخداع بالأرقام.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> المبادئ الجوهرية للإحصاء، الوصف الأمين، والاستدلال الصحيح من عيّناتٍ ممثِّلة، وعدم اليقين الصريح، والبيانات السليمة، طريقةٌ لتحويل البيانات لمعرفة ودرعٌ ضدّ الطرق الشائعة لتضليل الأرقام، من العيّنات المنحازة للسببية المخلوطة لعدم اليقين المخفيّ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Statistical principles turn data into knowledge and guard against the common ways numbers mislead.</p>
+        <ul>
+          <li>Describe data honestly, remembering that every summary hides as well as reveals.</li>
+          <li>Infer from a sample to a population only when the sample truly represents it.</li>
+          <li>State uncertainty explicitly, since inference from limited data is never certain.</li>
+          <li>Judge data quality, because analysis cannot rescue biased or unrepresentative data.</li>
+          <li>Watch for the classic pitfalls: bad samples, confused causation, misleading charts, and hidden uncertainty.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.openintro.org/book/os/" target="_blank" rel="noopener">OpenIntro Statistics, an open foundational text.</a></li>
+          <li><a href="https://www.khanacademy.org/math/statistics-probability" target="_blank" rel="noopener">Khan Academy, statistics and probability.</a></li>
+          <li><a href="https://www.amstat.org/" target="_blank" rel="noopener">American Statistical Association resources.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">مبادئ الإحصاء تحوّل البيانات لمعرفة وتحرس من الطرق الشائعة لتضليل الأرقام.</p>
+        <ul>
+          <li>صِف البيانات بأمانة، متذكّرًا أن كل تلخيصٍ يخفي كما يكشف.</li>
+          <li>استدلّ من عيّنةٍ لمجتمعٍ فقط حين تمثّله العيّنة حقًّا.</li>
+          <li>اذكر عدم اليقين صراحةً، إذ الاستدلال من بياناتٍ محدودة ليس يقينيًا أبدًا.</li>
+          <li>احكم على جودة البيانات، فالتحليل لا ينقذ بياناتٍ منحازة أو غير ممثِّلة.</li>
+          <li>احذر المزالق الكلاسيكية: العيّنات السيّئة والسببية المخلوطة والرسوم المضلِّلة وعدم اليقين المخفيّ.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.openintro.org/book/os/" target="_blank" rel="noopener">OpenIntro Statistics، نصٌّ تأسيسي مفتوح.</a></li>
+          <li><a href="https://www.khanacademy.org/math/statistics-probability" target="_blank" rel="noopener">خان أكاديمي، الإحصاء والاحتمال.</a></li>
+          <li><a href="https://www.amstat.org/" target="_blank" rel="noopener">موارد الجمعية الإحصائية الأمريكية.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","principles","pitfalls","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

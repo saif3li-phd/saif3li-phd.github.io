@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Art of Being Understood</title>
+<meta name="description" content="A framework on why people misunderstand each other and how to build genuine mutual understanding by being clear, listening, and assuming good intent.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">KNOWLEDGE &middot; TOPICAL FRAMEWORK</span><span data-lang="ar">معرفة &middot; إطار موضوعي</span></div>
+    <h1><span data-lang="en">The Art of Being Understood</span><span data-lang="ar">التواصل والفهم المتبادل</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="why"><span data-lang="en">Why It Fails</span><span data-lang="ar">لماذا يفشل</span></a>
+    <a data-id="build"><span data-lang="en">Building It</span><span data-lang="ar">بناؤه</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Communication &amp; understanding</div>
+          <div><span>Scope:</span> Why people misunderstand, and how to be understood</div>
+          <div><span>Focus:</span> The gap between what is said and what is heard</div>
+          <div><span>Use:</span> A framework for genuine mutual understanding</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">A common complaint, they just do not understand, points to one of the most persistent human problems: the gap between what we mean and what others grasp. This framework is about that gap. It examines why people so often misunderstand one another, and what it takes to close the distance so that real understanding, in both directions, becomes possible.</p>
+        <p>The idea matters because so much conflict and frustration comes not from real disagreement but from misunderstanding, people talking past each other, hearing something other than what was meant, or assuming bad intent where there was none. Feeling that others do not understand you is painful and isolating, and the reflex to blame them for it usually makes things worse. Learning why understanding fails, and how to build it, is one of the most useful of all human skills.</p>
+        <p>This is my own framework, written in my own words and drawing on established thinking about communication and empathy. Its aim is practical: to move from the helpless feeling that others do not understand toward the active skill of making yourself understood and truly understanding others.</p>
+        <div class="note"><strong>Note:</strong> Most of the time others do not understand you not out of malice but because understanding is genuinely hard, and much of the responsibility for being understood, and for understanding, lies with us rather than with them.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> التواصل والفهم</div>
+          <div><span>النطاق:</span> لماذا يُساء الفهم، وكيف تُفهَم</div>
+          <div><span>التركيز:</span> الفجوة بين ما يُقال وما يُسمَع</div>
+          <div><span>الاستخدام:</span> إطارٌ للفهم المتبادل الحقيقي</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">شكوى شائعة، «ما يفهمون»، تشير لأحد أعند المشكلات الإنسانية: الفجوة بين ما نعنيه وما يمسكه غيرنا. هذا الإطار عن تلك الفجوة. يفحص لماذا يسيء الناس فهم بعضهم كثيرًا، وما يلزم لإغلاق المسافة فيصير الفهم الحقيقي، في الاتجاهين، ممكنًا.</p>
+        <p>تهمّ الفكرة لأن كثيرًا من الصراع والإحباط يأتي لا من خلافٍ حقيقي بل من سوء فهم، ناسٌ يتكلّمون متجاوزين بعضهم، يسمعون غير ما قُصِد، أو يفترضون سوء نيّةٍ حيث لا نيّة. والشعور بأن غيرك لا يفهمك مؤلمٌ ومُعزِل، وردّة فعل لومهم عليه تسوئ الأمور عادةً. وتعلّم لماذا يفشل الفهم، وكيف يُبنى، من أنفع المهارات الإنسانية كلها.</p>
+        <p>هذا إطاري الخاص، مكتوبٌ بكلماتي ومستندٌ لفكرٍ راسخ عن التواصل والتعاطف. وهدفه عملي: الانتقال من الشعور العاجز بأن غيرك لا يفهم نحو المهارة النشطة لجعل نفسك مفهومًا وفهم غيرك حقًّا.</p>
+        <div class="note"><strong>ملاحظة:</strong> غالبًا لا يفهمك غيرك لا عن خبثٍ بل لأن الفهم صعبٌ فعلًا، وكثيرٌ من مسؤولية أن تُفهَم، وأن تفهم، يقع علينا لا عليهم.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="why">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Why Understanding Fails</h2>
+        <p class="lead">Understanding fails for reasons that are structural, not merely personal, and seeing them clearly is the first step to overcoming them.</p>
+        <p>The most basic reason is that each of us sees the world from inside our own experience, knowledge, and assumptions, and we forget that others do not share them. We speak as if our context were obvious, leaving out what seems self-evident to us but is not to the listener, so the message that lands is missing pieces the speaker never noticed omitting. A second reason is that people hear through their own filters: the listener interprets our words in light of their mood, past, and expectations, so the meaning they construct can differ sharply from the one we sent, and neither party may realize the two have diverged.</p>
+        <ul>
+          <li><strong>The curse of our own view:</strong> we assume others share context that is obvious only to us.</li>
+          <li><strong>Listening through filters:</strong> people interpret words through their own mood, past, and expectations.</li>
+          <li><strong>Assuming intent:</strong> we read motives into others' words, often less charitable than the truth.</li>
+          <li><strong>Talking, not connecting:</strong> we focus on expressing our point rather than reaching the other person.</li>
+        </ul>
+        <p>A third reason is that we attribute intentions, filling the gap in understanding with an assumption about the other's motive that is often less generous than the truth, so a clumsy word is read as an insult, or silence as contempt. A fourth is that we are usually more focused on expressing our own point than on reaching the other person, treating communication as transmission rather than connection. What these have in common is that misunderstanding is the default, not the exception: given how differently two minds are furnished, the surprise is not that we misunderstand each other but that we ever manage not to. Recognizing this replaces blame with a more accurate and more workable picture.</p>
+        <div class="note"><strong>Note:</strong> We each assume our own context is obvious and read our own meaning into others' words. Misunderstanding is therefore the natural default, and mutual understanding is an achievement that takes deliberate effort from both sides.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>لماذا يفشل الفهم</h2>
+        <p class="lead">الفهم يفشل لأسبابٍ بنيوية لا شخصية فحسب، ورؤيتها بوضوحٍ أول خطوةٍ لتجاوزها.</p>
+        <p>الأجوهر أن كلًّا منا يرى العالم من داخل تجربته ومعرفته وافتراضاته، وننسى أن غيرنا لا يشاركها. فنتكلّم كأن سياقنا بديهي، تاركين ما يبدو لنا بيّنًا لكنه ليس كذلك للمستمع، فالرسالة التي تصل تنقصها قطعٌ لم يلحظ المتكلّم إسقاطها. والسبب الثاني أن الناس يسمعون عبر مرشّحاتهم: فالمستمع يفسّر كلماتنا في ضوء مزاجه وماضيه وتوقّعاته، فالمعنى الذي يبنيه قد يختلف بحدّةٍ عن الذي أرسلناه، وقد لا يدرك أيٌّ منهما أن الاثنين تباعدا.</p>
+        <ul>
+          <li><strong>لعنة رؤيتنا الخاصة:</strong> نفترض أن غيرنا يشارك سياقًا بديهيًا لنا وحدنا.</li>
+          <li><strong>السماع عبر مرشّحات:</strong> الناس يفسّرون الكلمات عبر مزاجهم وماضيهم وتوقّعاتهم.</li>
+          <li><strong>افتراض النيّة:</strong> نقرأ دوافع في كلمات غيرنا، غالبًا أقلّ كرمًا من الحقيقة.</li>
+          <li><strong>الكلام لا الاتصال:</strong> نركّز على التعبير عن نقطتنا لا الوصول للآخر.</li>
+        </ul>
+        <p>والسبب الثالث أننا ننسب النوايا، مالئين فجوة الفهم بافتراضٍ عن دافع الآخر غالبًا أقلّ سخاءً من الحقيقة، فكلمةٌ خرقاء تُقرأ إهانةً، أو صمتٌ ازدراءً. والرابع أننا عادةً أكثر تركيزًا على التعبير عن نقطتنا منّا على الوصول للآخر، معاملين التواصل كإرسالٍ لا اتصال. وما تشترك فيه هذه أن سوء الفهم هو الوضع الافتراضي لا الاستثناء: فبالنظر لكم يختلف عقلان في أثاثهما، المفاجئ ليس أننا نسيء فهم بعضنا بل أننا ننجح أحيانًا في ألّا نفعل. وإدراك هذا يستبدل باللوم صورةً أدقّ وأصلح للعمل.</p>
+        <div class="note"><strong>ملاحظة:</strong> كلٌّ منا يفترض أن سياقه بديهي ويقرأ معناه الخاص في كلمات غيره. فسوء الفهم إذًا الوضع الطبيعي، والفهم المتبادل إنجازٌ يتطلّب جهدًا متعمَّدًا من الطرفين.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="build">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Building Understanding</h2>
+        <p class="lead">If misunderstanding is the default, understanding has to be built deliberately, and it rests on effort in both directions: making yourself clear, and working to understand others.</p>
+        <p>To be understood, the key is to take responsibility for the listener's grasp rather than assuming your meaning is obvious. This means saying things clearly and simply, making your context explicit rather than leaving it assumed, and checking whether you have actually been understood instead of assuming you have. It helps to imagine how your words will land for this particular listener, with their filters and knowledge, and to adjust accordingly. Much of being misunderstood comes from speaking as if to ourselves; being understood comes from speaking with the other person's perspective in mind.</p>
+        <p>To understand others, the crucial move is genuine listening: attending to what the other person actually means rather than to your own reply, asking when you are unsure rather than assuming, and extending the charitable assumption that their intent is reasonable until shown otherwise. Reflecting back what you think they mean, and inviting correction, turns a guess into a shared understanding. Underlying both directions is a posture of humility and goodwill, accepting that your view is partial, that the other person's makes sense from where they stand, and that understanding is a joint effort rather than something you are owed. Practiced this way, the complaint they do not understand gradually gives way to the skill of building understanding, which resolves more conflict and eases more frustration than almost anything else.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> misunderstanding is the natural default because we each assume our own context and read our own meaning into others' words, so understanding must be built deliberately, by making yourself clear with the listener in mind, listening genuinely, assuming good intent, and treating understanding as a joint effort.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>بناء الفهم</h2>
+        <p class="lead">إن كان سوء الفهم الوضع الافتراضي، فالفهم يجب أن يُبنى عمدًا، ويقوم على جهدٍ في الاتجاهين: جعل نفسك واضحًا، والعمل على فهم غيرك.</p>
+        <p>لتُفهَم، المفتاح تحمّل مسؤولية إمساك المستمع بدل افتراض أن معناك بديهي. وهذا يعني قول الأشياء بوضوحٍ وبساطة، وجعل سياقك صريحًا بدل تركه مفترَضًا، والتحقّق هل فُهِمت فعلًا بدل افتراض أنك فُهِمت. ويساعد تخيّل كيف ستقع كلماتك لهذا المستمع بعينه، بمرشّحاته ومعرفته، والتعديل وفقًا لذلك. فكثيرٌ من سوء الفهم يأتي من الكلام كأنه لأنفسنا؛ وأن تُفهَم يأتي من الكلام بمنظور الآخر في الذهن.</p>
+        <p>ولفهم غيرك، الحركة الحاسمة الإصغاء الحقيقي: الانتباه لما يعنيه الآخر فعلًا لا لردّك أنت، والسؤال حين تشكّ بدل الافتراض، ومدّ الافتراض الكريم أن نيّته معقولة حتى يظهر خلاف ذلك. وعكس ما تظنّه يعنيه، ودعوته للتصحيح، يحوّل تخمينًا لفهمٍ مشترك. ويكمن تحت الاتجاهين موقف تواضعٍ وحسن نيّة، قبول أن رؤيتك جزئية، وأن رؤية الآخر منطقية من حيث يقف، وأن الفهم جهدٌ مشترك لا شيءٌ مستحقٌّ لك. ومُمارَسةً هكذا، شكوى «ما يفهمون» تفسح تدريجيًا لمهارة بناء الفهم، التي تحلّ صراعًا أكثر وتخفّف إحباطًا أكثر من أي شيءٍ تقريبًا.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> سوء الفهم الوضع الطبيعي لأن كلًّا منا يفترض سياقه ويقرأ معناه في كلمات غيره، فالفهم يجب أن يُبنى عمدًا، بجعل نفسك واضحًا بمنظور المستمع، والإصغاء الحقيقي، وافتراض حسن النيّة، ومعاملة الفهم كجهدٍ مشترك.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Misunderstanding is the default; genuine understanding is built by effort in both directions.</p>
+        <ul>
+          <li>Expect misunderstanding, since we each assume our own context and hear through our own filters.</li>
+          <li>Take responsibility for being understood: be clear, make context explicit, and check you were understood.</li>
+          <li>Speak with the specific listener's perspective in mind, not as if to yourself.</li>
+          <li>Listen genuinely to what others mean, ask when unsure, and assume reasonable intent.</li>
+          <li>Treat understanding as a joint effort built on humility and goodwill, not something you are owed.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2020/08/begin-with-trust" target="_blank" rel="noopener">HBR, on understanding and connection.</a></li>
+          <li><a href="https://www.vitalsmarts.com/resource/crucial-conversations-book/" target="_blank" rel="noopener">Crucial Conversations, on being heard and understood.</a></li>
+          <li><a href="https://www.apa.org/topics/communication" target="_blank" rel="noopener">On communication and empathic listening.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">سوء الفهم الوضع الافتراضي؛ والفهم الحقيقي يُبنى بجهدٍ في الاتجاهين.</p>
+        <ul>
+          <li>توقّع سوء الفهم، إذ كلٌّ منا يفترض سياقه ويسمع عبر مرشّحاته.</li>
+          <li>تحمّل مسؤولية أن تُفهَم: كن واضحًا، اجعل السياق صريحًا، وتحقّق أنك فُهِمت.</li>
+          <li>تكلّم بمنظور المستمع المحدَّد في الذهن، لا كأنه لنفسك.</li>
+          <li>أصغِ حقًّا لما يعنيه غيرك، اسأل حين تشكّ، وافترض نيّةً معقولة.</li>
+          <li>عامِل الفهم كجهدٍ مشترك مبنيٍّ على تواضعٍ وحسن نيّة، لا شيئًا مستحقًّا لك.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2020/08/begin-with-trust" target="_blank" rel="noopener">HBR، عن الفهم والاتصال.</a></li>
+          <li><a href="https://www.vitalsmarts.com/resource/crucial-conversations-book/" target="_blank" rel="noopener">المحادثات الحاسمة، عن أن تُسمَع وتُفهَم.</a></li>
+          <li><a href="https://www.apa.org/topics/communication" target="_blank" rel="noopener">عن التواصل والإصغاء المتعاطف.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","why","build","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

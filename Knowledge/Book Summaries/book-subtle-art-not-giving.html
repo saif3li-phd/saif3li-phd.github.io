@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Subtle Art of Not Giving a F*ck</title>
+<meta name="description" content="A summary and reflection on Mark Manson's The Subtle Art of Not Giving a F*ck: finite caring, chosen values, and responsibility versus fault.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">BOOK SUMMARY &middot; SELF-DEVELOPMENT</span><span data-lang="ar">ملخّص كتاب &middot; تطوير ذات</span></div>
+    <h1><span data-lang="en">The Subtle Art of Not Giving a F*ck</span><span data-lang="ar">فن اللامبالاة</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="ideas"><span data-lang="en">Core Ideas</span><span data-lang="ar">الأفكار الأساسية</span></a>
+    <a data-id="reflection"><span data-lang="en">Reflection</span><span data-lang="ar">تأمّل</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>About This Summary</h2>
+        <div class="info-card">
+          <div><span>Book:</span> The Subtle Art of Not Giving a F*ck</div>
+          <div><span>Author:</span> Mark Manson</div>
+          <div><span>First published:</span> 2016</div>
+          <div><span>Field:</span> Self-help &amp; personal philosophy</div>
+          <div><span>Summary by:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">The Subtle Art of Not Giving a F*ck is Mark Manson's counterintuitive take on living well. Against a self-help culture that urges relentless positivity, Manson argues that a good life comes not from caring about everything, but from choosing carefully what few things are actually worth caring about, and letting the rest go.</p>
+        <p>This page is my own summary and reflection on the book's argument, with all credit for the ideas belonging to the author. It is not a reproduction of the text, and its blunt title aside, the book makes a serious point that this summary tries to capture faithfully.</p>
+        <p>The book struck a nerve because it inverts a familiar promise. Most self-help says you can have it all if you just think positively enough; Manson says the opposite, that the demand to feel good about everything is itself a source of misery, and that accepting limitation, struggle, and the fact that you cannot care about everything is what actually makes room for a meaningful life. The provocative title carries a genuinely useful idea about where to spend your finite attention and concern.</p>
+        <div class="note"><strong>Note:</strong> This is a summary and reflection, not the book itself. The ideas belong to Mark Manson; the words here are mine, offered as an honest account of what the book argues beneath its deliberately provocative surface.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>عن هذا الملخّص</h2>
+        <div class="info-card">
+          <div><span>الكتاب:</span> فن اللامبالاة</div>
+          <div><span>المؤلف:</span> مارك مانسون</div>
+          <div><span>أول نشر:</span> 2016</div>
+          <div><span>المجال:</span> تطوير الذات والفلسفة الشخصية</div>
+          <div><span>إعداد الملخّص:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">فن اللامبالاة رؤية مارك مانسون المخالفة للحدس عن العيش الحسن. فضدّ ثقافة تطوير ذاتٍ تحثّ على إيجابيةٍ بلا هوادة، يحاجّ مانسون بأن الحياة الجيدة لا تأتي من الاهتمام بكل شيء، بل من الاختيار الدقيق لأي أشياءٍ قليلة تستحقّ الاهتمام فعلًا، وترك الباقي.</p>
+        <p>هذه الصفحة ملخّصي وتأمّلي الخاص لحجّة الكتاب، مع نسب كل فضل الأفكار لمؤلفها. وهي ليست نسخًا للنصّ، وعنوانها الصريح جانبًا، يطرح الكتاب نقطةً جادّة يحاول هذا الملخّص التقاطها بأمانة.</p>
+        <p>لمس الكتاب وترًا لأنه يقلب وعدًا مألوفًا. فأغلب تطوير الذات يقول تستطيع امتلاك كل شيءٍ إن فكّرت بإيجابيةٍ كافية؛ ويقول مانسون العكس، إن مطلب الشعور الحسن تجاه كل شيءٍ نفسه مصدر شقاء، وإن قبول المحدودية والكفاح وحقيقة أنك لا تستطيع الاهتمام بكل شيء هو ما يفسح فعلًا لحياةٍ ذات معنى. والعنوان الاستفزازي يحمل فكرةً نافعة فعلًا عن أين تنفق انتباهك واهتمامك المحدودَين.</p>
+        <div class="note"><strong>ملاحظة:</strong> هذا ملخّصٌ وتأمّل لا الكتاب نفسه. فالأفكار لمارك مانسون؛ والكلمات هنا لي، مقدَّمةً كحسابٍ أمين لما يحاجّ به الكتاب تحت سطحه الاستفزازي المتعمَّد.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="ideas">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Core Ideas</h2>
+        <p class="lead">Beneath the blunt language, the book builds a coherent argument out of a few connected ideas about attention, values, and responsibility.</p>
+        <p>The central idea is that our capacity to care is finite, so the question is not whether to care but what to care about. Manson argues that people exhaust themselves caring about too many things, many of them trivial or outside their control, and that maturity means reserving your limited concern for what truly matters to you. Choosing your values well, and refusing to spend yourself on everything else, is the subtle art the title names.</p>
+        <ul>
+          <li><strong>Caring is finite:</strong> you cannot care about everything, so choose deliberately what deserves your concern.</li>
+          <li><strong>Choose good values:</strong> anchor your life to values within your control, like honesty, not ones outside it, like popularity.</li>
+          <li><strong>Struggle gives meaning:</strong> a good life is not one without problems, but one with problems worth having.</li>
+          <li><strong>Radical responsibility:</strong> you are responsible for how you respond to what happens, even what is not your fault.</li>
+        </ul>
+        <p>Two further ideas support this. First, that problems never disappear, they only change, so the goal is not a problem-free life but better problems, ones that come from pursuing things you value. Second, that you are responsible for your responses even to things that are not your fault, a distinction Manson draws sharply: fault is about the past, but responsibility is about what you do now, and taking responsibility, rather than assigning blame, is what gives a person power over their own life. The book also urges an honest relationship with failure and with one's own limits, arguing that accepting them is liberating rather than defeating.</p>
+        <div class="note"><strong>Note:</strong> Manson's key move is separating fault from responsibility. You may not be at fault for what happened to you, but you are still responsible for how you respond, and that responsibility, uncomfortable as it is, is where personal power begins.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الأفكار الأساسية</h2>
+        <p class="lead">تحت اللغة الصريحة، يبني الكتاب حجّةً متماسكة من بضع أفكارٍ متصلة عن الانتباه والقيم والمسؤولية.</p>
+        <p>الفكرة المركزية أن قدرتنا على الاهتمام محدودة، فالسؤال ليس هل نهتمّ بل بماذا نهتمّ. ويحاجّ مانسون بأن الناس يُنهِكون أنفسهم بالاهتمام بأشياء كثيرة، كثيرٌ منها تافه أو خارج تحكّمهم، وأن النضج يعني حجز اهتمامك المحدود لما يهمّك حقًّا. واختيار قيمك جيدًا، ورفض إنفاق نفسك على كل ما عداها، هو الفنّ الخفيّ الذي يسمّيه العنوان.</p>
+        <ul>
+          <li><strong>الاهتمام محدود:</strong> لا تستطيع الاهتمام بكل شيء، فاختر عمدًا ما يستحقّ اهتمامك.</li>
+          <li><strong>اختر قيمًا جيدة:</strong> رسِّخ حياتك لقيمٍ ضمن تحكّمك، كالصدق، لا خارجه، كالشهرة.</li>
+          <li><strong>الكفاح يمنح المعنى:</strong> الحياة الجيدة ليست بلا مشكلات، بل بمشكلاتٍ تستحقّ أن تُمتلَك.</li>
+          <li><strong>المسؤولية الجذرية:</strong> أنت مسؤولٌ عن كيف تستجيب لما يحدث، حتى ما ليس خطأك.</li>
+        </ul>
+        <p>وتسند هذا فكرتان أخريان. الأولى أن المشكلات لا تختفي أبدًا، تتغيّر فقط، فالهدف ليس حياةً بلا مشكلات بل مشكلاتٍ أفضل، من السعي لأشياء تُقدّرها. والثانية أنك مسؤولٌ عن استجاباتك حتى لأشياء ليست خطأك، تمييزٌ يرسمه مانسون بحدّة: الخطأ عن الماضي، لكن المسؤولية عمّا تفعله الآن، وتحمّل المسؤولية، بدل توزيع اللوم، هو ما يمنح المرء قوةً على حياته. ويحثّ الكتاب أيضًا على علاقةٍ أمينة مع الفشل ومع حدود المرء، محاجًّا بأن قبولها محرِّرٌ لا مهزِم.</p>
+        <div class="note"><strong>ملاحظة:</strong> حركة مانسون المفتاحية فصل الخطأ عن المسؤولية. فقد لا تكون مخطئًا فيما جرى لك، لكنك ما زلت مسؤولًا عن كيف تستجيب، وتلك المسؤولية، مع عدم ارتياحها، حيث تبدأ القوة الشخصية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="reflection">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Reflection &amp; Critique</h2>
+        <p class="lead">A fair summary weighs the book honestly, since its bluntness is both its strength and the thing critics most often question.</p>
+        <p>The book's real value is that it says something true which softer self-help avoids: that a good life requires accepting struggle, limitation, and the impossibility of caring about everything. Its distinction between fault and responsibility is genuinely useful, offering a way to reclaim agency without pretending misfortune never happens. And its insistence that you choose your values deliberately, anchoring them to what you can control, is sound psychology delivered memorably. For readers worn out by relentless positivity, it is a bracing and clarifying corrective.</p>
+        <p>The fair criticism is that the provocative style can flatten nuance, and that some of its ideas, choose good values, take responsibility, accept that life is hard, are old wisdom in new packaging rather than novel discoveries. Read carelessly, the title's attitude can be mistaken for an excuse for indifference, when the book actually argues for caring intensely about a few right things. The honest reading is that its blunt surface delivers a genuinely useful and fairly traditional message about focus, values, and responsibility, and that the value lies in the message, not the shock.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> The Subtle Art of Not Giving a F*ck is a memorable case for spending your finite concern on a few chosen values, accepting struggle as the price of meaning, and separating fault from the responsibility that gives you power over your life.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>تأمّلٌ ونقد</h2>
+        <p class="lead">الملخّص العادل يزن الكتاب بأمانة، إذ صراحته قوّته وأكثر ما يشكّك فيه النقّاد معًا.</p>
+        <p>قيمة الكتاب الحقيقية أنه يقول شيئًا صحيحًا يتجنّبه تطوير الذات الأنعم: أن الحياة الجيدة تتطلّب قبول الكفاح والمحدودية واستحالة الاهتمام بكل شيء. وتمييزه بين الخطأ والمسؤولية نافعٌ فعلًا، عارضًا طريقًا لاستعادة الفاعلية دون التظاهر بأن المصائب لا تقع. وإصراره على أن تختار قيمك عمدًا، مرسّخًا إياها بما تستطيع التحكّم به، علم نفسٍ سليم مقدَّمٌ بطريقةٍ لا تُنسى. ولقرّاءٍ أنهكتهم الإيجابية بلا هوادة، هو تصحيحٌ منعش ومُوضِّح.</p>
+        <p>والنقد العادل أن الأسلوب الاستفزازي قد يسحق الفروق الدقيقة، وأن بعض أفكاره، اختر قيمًا جيدة، تحمّل المسؤولية، اقبل أن الحياة صعبة، حكمةٌ قديمة بتغليفٍ جديد لا اكتشافاتٍ مبتكرة. ومقروءًا بلا عناية، قد يُخطَأ موقف العنوان كعذرٍ للامبالاة، بينما يحاجّ الكتاب فعلًا للاهتمام بشدّةٍ ببضعة أشياء صحيحة. والقراءة الأمينة أن سطحه الصريح يسلّم رسالةً نافعة فعلًا وتقليدية إلى حدٍّ ما عن التركيز والقيم والمسؤولية، وأن القيمة في الرسالة لا الصدمة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> فن اللامبالاة حجّةٌ لا تُنسى لإنفاق اهتمامك المحدود على بضع قيمٍ مختارة، وقبول الكفاح كثمنٍ للمعنى، وفصل الخطأ عن المسؤولية التي تمنحك قوةً على حياتك.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">The book argues that a good life comes from choosing carefully what few things are worth caring about.</p>
+        <ul>
+          <li>Your capacity to care is finite; spend it deliberately on what truly matters, not on everything.</li>
+          <li>Choose values within your control, like honesty and effort, rather than ones outside it, like popularity.</li>
+          <li>Accept that problems never vanish; aim for better problems rather than a problem-free life.</li>
+          <li>Separate fault from responsibility, and take responsibility for your response to reclaim agency.</li>
+          <li>Read the provocative style for its serious message about focus and values, not as license for indifference.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://markmanson.net/books/subtle-art" target="_blank" rel="noopener">Mark Manson, the book's official page.</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/The_Subtle_Art_of_Not_Giving_a_Fuck" target="_blank" rel="noopener">The Subtle Art, overview and reception.</a></li>
+          <li><a href="https://www.goodreads.com/book/show/28257707-the-subtle-art-of-not-giving-a-f-ck" target="_blank" rel="noopener">Reader reviews and ratings.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">يحاجّ الكتاب بأن الحياة الجيدة تأتي من الاختيار الدقيق لأي أشياءٍ قليلة تستحقّ الاهتمام.</p>
+        <ul>
+          <li>قدرتك على الاهتمام محدودة؛ أنفقها عمدًا على ما يهمّ حقًّا، لا على كل شيء.</li>
+          <li>اختر قيمًا ضمن تحكّمك، كالصدق والجهد، لا خارجه، كالشهرة.</li>
+          <li>اقبل أن المشكلات لا تزول أبدًا؛ اهدف لمشكلاتٍ أفضل لا لحياةٍ بلا مشكلات.</li>
+          <li>افصل الخطأ عن المسؤولية، وتحمّل مسؤولية استجابتك لتستعيد الفاعلية.</li>
+          <li>اقرأ الأسلوب الاستفزازي لرسالته الجادّة عن التركيز والقيم، لا كرخصةٍ للامبالاة.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://markmanson.net/books/subtle-art" target="_blank" rel="noopener">مارك مانسون، الصفحة الرسمية للكتاب.</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/The_Subtle_Art_of_Not_Giving_a_Fuck" target="_blank" rel="noopener">فن اللامبالاة، نظرة عامة وتلقٍّ.</a></li>
+          <li><a href="https://www.goodreads.com/book/show/28257707-the-subtle-art-of-not-giving-a-f-ck" target="_blank" rel="noopener">مراجعات القرّاء وتقييماتهم.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","ideas","reflection","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laytahu Yaqra (I Wish He Would Read)</title>
+<meta name="description" content="A reflection on Ghada Azab's Laytahu Yaqra: a work of intimate literary prose about reading, writing, and the longing to be understood.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">BOOK SUMMARY &middot; LITERARY PROSE</span><span data-lang="ar">ملخّص كتاب &middot; نثر أدبي</span></div>
+    <h1><span data-lang="en">Laytahu Yaqra (I Wish He Would Read)</span><span data-lang="ar">ليته يقرأ</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="themes"><span data-lang="en">Themes</span><span data-lang="ar">الموضوعات</span></a>
+    <a data-id="reflection"><span data-lang="en">Reflection</span><span data-lang="ar">تأمّل</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>About This Summary</h2>
+        <div class="info-card">
+          <div><span>Book:</span> Laytahu Yaqra (I Wish He Would Read)</div>
+          <div><span>Author:</span> Ghada Azab</div>
+          <div><span>Genre:</span> Literary reflection &amp; prose</div>
+          <div><span>Theme:</span> Reading, writing, and feeling</div>
+          <div><span>Summary by:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Laytahu Yaqra is a work of reflective literary prose by the writer Ghada Azab. Rather than an argument or a how-to, it is a collection of felt reflections on writing, reading, longing, and the inner life, written in the intimate, emotional register that gives the book its appeal. Its title, roughly I Wish He Would Read, points to the ache of wanting to be understood through words.</p>
+        <p>This page is my own summary and reflection on the book's spirit and themes, with all credit for the writing belonging to the author. It is not a reproduction of the text, and because a literary work of this kind lives in its language, this summary can only describe its themes, not substitute for the experience of reading it.</p>
+        <p>The book resonated with readers because it speaks to a familiar longing: to be truly read, in both senses, to have one's words reach someone, and to be understood as a person. Azab writes from feeling rather than instruction, and the book's value lies less in ideas to be extracted than in an emotional companionship it offers, the sense of a writer putting into words something the reader has felt but not said.</p>
+        <div class="note"><strong>Note:</strong> This is a summary and reflection, not the book itself, and a literary work especially resists summary. The writing belongs to Ghada Azab; the words here are mine, describing the book's spirit rather than standing in for it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>عن هذا الملخّص</h2>
+        <div class="info-card">
+          <div><span>الكتاب:</span> ليته يقرأ</div>
+          <div><span>المؤلفة:</span> غادة عزب</div>
+          <div><span>النوع:</span> نثرٌ أدبي وخواطر</div>
+          <div><span>المحور:</span> القراءة والكتابة والشعور</div>
+          <div><span>إعداد الملخّص:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">ليته يقرأ عملٌ من النثر الأدبي المتأمّل للكاتبة غادة عزب. فبدل حجّةٍ أو دليل، هو مجموعة خواطر محسوسة عن الكتابة والقراءة والحنين والحياة الداخلية، مكتوبةٌ بالنبرة الحميمة العاطفية التي تمنح الكتاب جاذبيته. وعنوانه يشير لوجع الرغبة في أن يُفهَم المرء عبر الكلمات.</p>
+        <p>هذه الصفحة ملخّصي وتأمّلي الخاص لروح الكتاب وموضوعاته، مع نسب كل فضل الكتابة لمؤلفته. وهي ليست نسخًا للنصّ، ولأن عملًا أدبيًا كهذا يعيش في لغته، فهذا الملخّص لا يستطيع إلّا وصف موضوعاته، لا استبدال تجربة قراءته.</p>
+        <p>لمس الكتاب القرّاء لأنه يخاطب حنينًا مألوفًا: أن يُقرأ المرء حقًّا، بالمعنيين، أن تصل كلماته لأحد، وأن يُفهَم كإنسان. وتكتب عزب من الشعور لا التلقين، وقيمة الكتاب أقلّ في أفكارٍ تُستخرَج منها وأكثر في رفقةٍ عاطفية يقدّمها، إحساسٌ بكاتبةٍ تضع في كلماتٍ شيئًا شعر به القارئ ولم يقله.</p>
+        <div class="note"><strong>ملاحظة:</strong> هذا ملخّصٌ وتأمّل لا الكتاب نفسه، والعمل الأدبي يقاوم التلخيص خاصةً. فالكتابة لغادة عزب؛ والكلمات هنا لي، تصف روح الكتاب لا تنوب عنه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="themes">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Central Themes</h2>
+        <p class="lead">Because this is a literary rather than an instructional work, it offers moods and themes more than lessons, and a few threads run through its reflections.</p>
+        <p>The most central is the longing to be read and understood. The book returns again and again to writing as an act of reaching out, an attempt to be seen by another through words, and to the disappointment and hope wrapped up in whether that reaching finds its reader. Closely tied to this is the theme of writing itself as both a need and a solace: the author presents putting feeling into words not as a craft to be mastered but as an emotional necessity, a way of holding and understanding one's own inner life.</p>
+        <ul>
+          <li><strong>Longing to be understood:</strong> the wish, in the title, to have one's words truly reach and move another.</li>
+          <li><strong>Writing as need:</strong> putting feeling into words as an emotional necessity, not merely a craft.</li>
+          <li><strong>The inner life:</strong> attention to longing, memory, and emotion as worthy of careful expression.</li>
+          <li><strong>Intimacy of language:</strong> the sense that honest words can create a real connection between strangers.</li>
+        </ul>
+        <p>Running beneath these is a quiet attentiveness to the inner life, to longing, memory, and feeling treated as things worth pausing over and expressing with care. The book's implicit claim, made through its manner rather than stated outright, is that honest emotional writing can create a genuine intimacy between a writer and an unknown reader, that words can be a bridge between strangers. This is why readers describe it less as a book they learned from than as one that kept them company, articulating feelings they recognized as their own.</p>
+        <div class="note"><strong>Note:</strong> The book's power is not in ideas but in recognition. Its central gift is the experience of finding a feeling you have carried put honestly into words, the sense of being read even as you read.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الموضوعات المركزية</h2>
+        <p class="lead">لأن هذا عملٌ أدبي لا تلقيني، يقدّم أجواءً وموضوعاتٍ أكثر من دروس، وبضعة خيوطٍ تجري عبر خواطره.</p>
+        <p>أكثرها مركزيةً الحنين لأن يُقرأ المرء ويُفهَم. فالكتاب يعود مرارًا للكتابة كفعل مدّ يدٍ، محاولةٌ ليُرى المرء عبر الكلمات، وللخيبة والأمل الملفوفين في هل يجد ذلك المدّ قارئه. ويرتبط بهذا وثيقًا موضوع الكتابة نفسها كحاجةٍ وعزاء معًا: فتقدّم المؤلفة وضع الشعور في كلماتٍ لا كحرفةٍ تُتقَن بل كضرورةٍ عاطفية، طريقةٌ لحمل الحياة الداخلية وفهمها.</p>
+        <ul>
+          <li><strong>الحنين للفهم:</strong> الأمنية، في العنوان، أن تصل كلمات المرء لآخر وتحرّكه حقًّا.</li>
+          <li><strong>الكتابة كحاجة:</strong> وضع الشعور في كلماتٍ كضرورةٍ عاطفية لا مجرّد حرفة.</li>
+          <li><strong>الحياة الداخلية:</strong> انتباهٌ للحنين والذاكرة والشعور كجديرةٍ بتعبيرٍ متأنٍّ.</li>
+          <li><strong>حميمية اللغة:</strong> إحساسٌ أن الكلمات الصادقة تخلق اتصالًا حقيقيًا بين غرباء.</li>
+        </ul>
+        <p>ويجري تحت هذه انتباهٌ هادئ للحياة الداخلية، للحنين والذاكرة والشعور مُعامَلةً كأشياء تستحقّ التوقّف عندها والتعبير عنها بعناية. وادّعاء الكتاب الضمني، المُقدَّم بأسلوبه لا بتصريحٍ، أن الكتابة العاطفية الصادقة تخلق حميميةً حقيقية بين كاتبةٍ وقارئٍ مجهول، أن الكلمات جسرٌ بين غرباء. ولهذا يصفه القرّاء أقلّ ككتابٍ تعلّموا منه وأكثر كواحدٍ آنسهم، مفصحًا عن مشاعر عرفوها كمشاعرهم.</p>
+        <div class="note"><strong>ملاحظة:</strong> قوّة الكتاب ليست في أفكارٍ بل في التعرّف. وهبته المركزية تجربة أن تجد شعورًا حملته موضوعًا بصدقٍ في كلمات، إحساس أن تُقرأ بينما تقرأ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="reflection">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Reflection</h2>
+        <p class="lead">A fair note on a literary work considers what it offers and who it is for, rather than judging it by the standards of an argument.</p>
+        <p>The book's strength is emotional honesty and intimacy. For readers who love reflective, feeling-driven prose, it offers real companionship, the pleasure of language that names inner experience gently and truly. It does not try to instruct or prove, and it should not be judged as if it did; its success is measured by whether it moves the reader and makes them feel understood, and for its audience it does. That kind of writing has a value that practical books do not, the quiet consolation of shared feeling.</p>
+        <p>It is fair to say that a work like this is a matter of taste and season. Its emotional, unstructured register will speak deeply to some readers and leave others, who prefer ideas and structure, unmoved, and that is simply the nature of literary prose rather than a flaw. The honest way to approach it is not to look for takeaways to extract, which would miss the point, but to read it slowly, in the right mood, and let it do what it is for: to keep company and to put feeling into words. Read that way, its worth is real, even if it cannot be reduced to a list.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> Laytahu Yaqra is a work of intimate literary prose about the longing to be read and understood, valuable not for lessons to extract but for the companionship of feeling honestly expressed, best read slowly and in the right mood.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>تأمّل</h2>
+        <p class="lead">الملاحظة العادلة على عملٍ أدبي تنظر لما يقدّمه ولمن هو، لا تحكم عليه بمعايير حجّة.</p>
+        <p>قوّة الكتاب الصدق العاطفي والحميمية. فلقرّاءٍ يحبّون النثر المتأمّل المدفوع بالشعور، يقدّم رفقةً حقيقية، متعة لغةٍ تسمّي التجربة الداخلية برفقٍ وصدق. وهو لا يحاول التلقين أو الإثبات، ولا ينبغي الحكم عليه كأنه يفعل؛ فنجاحه يُقاس بهل يحرّك القارئ ويجعله يشعر بالفهم، ولجمهوره يفعل. ولتلك الكتابة قيمةٌ لا تملكها الكتب العملية، العزاء الهادئ للشعور المشترك.</p>
+        <p>ومن العدل القول إن عملًا كهذا مسألة ذوقٍ وموسم. فنبرته العاطفية غير المنظَّمة ستخاطب بعض القرّاء عميقًا وتترك آخرين، يفضّلون الأفكار والبنية، غير متحرّكين، وذلك ببساطةٍ طبيعة النثر الأدبي لا عيبٌ فيه. والطريقة الأمينة لمقاربته ليست البحث عن خلاصاتٍ تُستخرَج، ما يفوّت المقصد، بل قراءته ببطءٍ، في المزاج المناسب، وتركه يفعل ما هو له: أن يؤنس وأن يضع الشعور في كلمات. ومقروءًا هكذا، قيمته حقيقية، وإن تعذّر اختزالها لقائمة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> ليته يقرأ عملٌ من النثر الأدبي الحميم عن الحنين لأن يُقرأ المرء ويُفهَم، قيّمٌ لا لدروسٍ تُستخرَج بل لرفقة الشعور المعبَّر عنه بصدق، يُقرأ خيرَ قراءةٍ ببطءٍ وفي المزاج المناسب.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Notes &amp; References</h2>
+        <p class="lead">A literary work of reflective prose about reading, writing, and the longing to be understood.</p>
+        <ul>
+          <li>Approach it as literature to be experienced, not a book of lessons to be extracted.</li>
+          <li>Its central theme is the longing to be truly read and understood through words.</li>
+          <li>It treats writing as an emotional necessity and a way of holding one's inner life.</li>
+          <li>Its value is the companionship of shared feeling, honestly put into language.</li>
+          <li>Read it slowly and in the right mood, letting it move you rather than instruct you.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.goodreads.com/ar/book/show/23624093" target="_blank" rel="noopener">Laytahu Yaqra by Ghada Azab, overview and reviews.</a></li>
+          <li><a href="https://www.abjjad.com/" target="_blank" rel="noopener">Abjjad, Arabic reading community listing.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>ملاحظات ومراجع</h2>
+        <p class="lead">عملٌ أدبي من النثر المتأمّل عن القراءة والكتابة والحنين لأن يُفهَم المرء.</p>
+        <ul>
+          <li>قارِبه كأدبٍ يُعاش، لا كتاب دروسٍ تُستخرَج.</li>
+          <li>موضوعه المركزي الحنين لأن يُقرأ المرء ويُفهَم حقًّا عبر الكلمات.</li>
+          <li>يعامل الكتابة كضرورةٍ عاطفية وطريقةٍ لحمل الحياة الداخلية.</li>
+          <li>قيمته رفقة الشعور المشترك، موضوعًا بصدقٍ في اللغة.</li>
+          <li>اقرأه ببطءٍ وفي المزاج المناسب، تاركًا إياه يحرّكك لا يلقّنك.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.goodreads.com/ar/book/show/23624093" target="_blank" rel="noopener">ليته يقرأ لغادة عزب، نظرة عامة ومراجعات.</a></li>
+          <li><a href="https://www.abjjad.com/" target="_blank" rel="noopener">أبجد، مجتمع القراءة العربي.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","themes","reflection","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

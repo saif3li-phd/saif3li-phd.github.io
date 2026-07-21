@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Happy Employee: 101 Ways</title>
+<meta name="description" content="A summary and reflection on McGovern and Shelly's The Happy Employee: happiness as a driver of results, and how managers can build it deliberately.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">BOOK SUMMARY &middot; MANAGEMENT</span><span data-lang="ar">ملخّص كتاب &middot; إدارة</span></div>
+    <h1><span data-lang="en">The Happy Employee: 101 Ways</span><span data-lang="ar">الموظف السعيد: 101 طريقة</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="ideas"><span data-lang="en">Core Ideas</span><span data-lang="ar">الأفكار الأساسية</span></a>
+    <a data-id="reflection"><span data-lang="en">Reflection</span><span data-lang="ar">تأمّل</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>About This Summary</h2>
+        <div class="info-card">
+          <div><span>Book:</span> The Happy Employee: 101 Ways</div>
+          <div><span>Authors:</span> Julia McGovern &amp; Susan Shelly</div>
+          <div><span>First published:</span> 2008</div>
+          <div><span>Field:</span> Management &amp; people leadership</div>
+          <div><span>Summary by:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">The Happy Employee is a practical guide by Julia McGovern and Susan Shelly to attracting, retaining, and inspiring good people. Its premise is simple and well supported: that happy, engaged employees do better work and stay longer, and that managers can deliberately create the conditions that make people happy at work rather than leaving it to chance.</p>
+        <p>This page is my own summary and reflection on the book's approach and main ideas, with all credit for the ideas belonging to the authors. It is not a reproduction of the text, and readers wanting the full set of practical suggestions should read the original.</p>
+        <p>The book matters because employee happiness is often dismissed as soft or secondary, when in fact it drives the hard outcomes managers care about: productivity, quality, and retention. By framing happiness as something a manager can actively build, through recognition, fair treatment, growth, and a decent environment, the book turns a vague aspiration into a set of concrete practices, and makes the case that looking after people is not charity but sound management.</p>
+        <div class="note"><strong>Note:</strong> This is a summary and reflection, not the book itself. The ideas belong to Julia McGovern and Susan Shelly; the words here are mine, offered as an honest account of the book's practical approach.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>عن هذا الملخّص</h2>
+        <div class="info-card">
+          <div><span>الكتاب:</span> الموظف السعيد: 101 طريقة</div>
+          <div><span>المؤلفتان:</span> جوليا مكغفرن وسوزان شيلي</div>
+          <div><span>أول نشر:</span> 2008</div>
+          <div><span>المجال:</span> الإدارة وقيادة الناس</div>
+          <div><span>إعداد الملخّص:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الموظف السعيد دليلٌ عملي لجوليا مكغفرن وسوزان شيلي لجذب الناس الجيدين وإبقائهم وإلهامهم. وفرضيته بسيطة ومسنودة: أن الموظفين السعداء المنخرطين يعملون أفضل ويبقون أطول، وأن المديرين يستطيعون عمدًا خلق الظروف التي تُسعِد الناس في العمل بدل تركها للصدفة.</p>
+        <p>هذه الصفحة ملخّصي وتأمّلي الخاص لمنهج الكتاب وأفكاره الرئيسة، مع نسب كل فضل الأفكار لمؤلفتيه. وهي ليست نسخًا للنصّ، ومن أراد المجموعة الكاملة من الاقتراحات العملية فليقرأ الأصل.</p>
+        <p>يهمّ الكتاب لأن سعادة الموظف تُرفَض غالبًا كشيءٍ ناعم أو ثانوي، بينما هي فعلًا تقود النتائج الصلبة التي تهمّ المديرين: الإنتاجية والجودة والبقاء. فبتأطير السعادة كشيءٍ يستطيع المدير بناءه نشطًا، عبر التقدير والمعاملة العادلة والنمو وبيئةٍ لائقة، يحوّل الكتاب طموحًا غامضًا لمجموعة ممارساتٍ ملموسة، ويحاجّ بأن الاعتناء بالناس ليس إحسانًا بل إدارةٌ سليمة.</p>
+        <div class="note"><strong>ملاحظة:</strong> هذا ملخّصٌ وتأمّل لا الكتاب نفسه. فالأفكار لجوليا مكغفرن وسوزان شيلي؛ والكلمات هنا لي، مقدَّمةً كحسابٍ أمين لمنهج الكتاب العملي.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="ideas">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Core Ideas</h2>
+        <p class="lead">The book organizes many practical suggestions around a few underlying ideas about what actually makes people happy and committed at work.</p>
+        <p>The foundational claim is that happiness at work is a business asset, not a luxury. The authors connect employee happiness to concrete outcomes: happy people are more productive, provide better service, generate more ideas, and are far less likely to leave, so the cost of ignoring their happiness shows up as turnover, mediocrity, and lost knowledge. From this follows the book's practical thrust: because happiness drives results, creating it is part of a manager's job, not a distraction from it.</p>
+        <ul>
+          <li><strong>Happiness drives results:</strong> engaged, happy employees are more productive and far more likely to stay.</li>
+          <li><strong>It starts with hiring:</strong> attracting and selecting the right people is the first step to a happy workforce.</li>
+          <li><strong>Recognition and growth:</strong> people are happiest when their work is valued and they can develop.</li>
+          <li><strong>Environment and fairness:</strong> a respectful, fair workplace with a decent culture underpins everything else.</li>
+        </ul>
+        <p>The authors then spread this principle across the whole employee experience, from attracting and hiring the right people, through recognizing and developing them, to building a fair and respectful environment. Their recurring message is that the things which make people happy are mostly not expensive: being valued, being treated fairly, having the chance to grow, and working in a decent culture matter more than perks or pay above a fair level. This is both encouraging and demanding, because it means the responsibility rests less on budgets and more on how managers actually treat their people every day.</p>
+        <div class="note"><strong>Note:</strong> The book's core is that happiness is a driver of results, not a reward for them. Because engaged people perform and stay, building their happiness is sound management, and most of what does it costs attention rather than money.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الأفكار الأساسية</h2>
+        <p class="lead">ينظّم الكتاب اقتراحاتٍ عملية كثيرة حول بضع أفكارٍ كامنة عمّا يُسعِد الناس ويُلزِمهم في العمل فعلًا.</p>
+        <p>الادّعاء التأسيسي أن السعادة في العمل أصلٌ تجاري لا ترف. وتربط المؤلفتان سعادة الموظف بنتائج ملموسة: السعداء أكثر إنتاجية، ويقدّمون خدمةً أفضل، ويولّدون أفكارًا أكثر، وأقلّ ترجيحًا بكثير للمغادرة، فكلفة تجاهل سعادتهم تظهر كدورانٍ وظيفي ورداءةٍ ومعرفةٍ ضائعة. ومن هذا تتبع دفعة الكتاب العملية: لأن السعادة تقود النتائج، فخلقها جزءٌ من عمل المدير لا إلهاءٌ عنه.</p>
+        <ul>
+          <li><strong>السعادة تقود النتائج:</strong> الموظفون المنخرطون السعداء أكثر إنتاجية وأرجح بقاءً بكثير.</li>
+          <li><strong>تبدأ بالتوظيف:</strong> جذب الناس المناسبين واختيارهم أول خطوةٍ لقوى عاملةٍ سعيدة.</li>
+          <li><strong>التقدير والنمو:</strong> الناس أسعد حين يُقدَّر عملهم ويستطيعون التطوّر.</li>
+          <li><strong>البيئة والإنصاف:</strong> مكان عملٍ محترم عادل بثقافةٍ لائقة يسند كل ما عداه.</li>
+        </ul>
+        <p>ثم تنشر المؤلفتان هذا المبدأ عبر تجربة الموظف كاملةً، من جذب الناس المناسبين وتوظيفهم، عبر تقديرهم وتطويرهم، إلى بناء بيئةٍ عادلة محترمة. ورسالتهما المتكرّرة أن ما يُسعِد الناس أغلبه ليس مُكلفًا: الشعور بالقيمة، والمعاملة العادلة، وفرصة النمو، والعمل في ثقافةٍ لائقة يهمّ أكثر من الميزات أو الأجر فوق مستوىً عادل. وهذا مشجّعٌ ومتطلِّب معًا، لأنه يعني أن المسؤولية تقع أقلّ على الميزانيات وأكثر على كيف يعامل المديرون ناسهم كل يوم.</p>
+        <div class="note"><strong>ملاحظة:</strong> جوهر الكتاب أن السعادة محرّك نتائج لا مكافأةٌ عليها. ولأن المنخرطين يؤدّون ويبقون، فبناء سعادتهم إدارةٌ سليمة، وأغلب ما يفعلها يكلّف انتباهًا لا مالًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="reflection">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Reflection &amp; Critique</h2>
+        <p class="lead">A fair summary weighs what the book offers and where its practical, list-based format both helps and limits it.</p>
+        <p>The book's strength is that it is concrete and actionable. Rather than abstract theory, it offers a large set of specific, doable suggestions that a manager can apply immediately, which makes it genuinely useful for someone who accepts the premise and wants to know what to do on Monday morning. Its central argument, that happiness drives performance and that most of what creates it is within a manager's control, is well aligned with established research on engagement, and its practical, encouraging tone lowers the barrier to actually trying the ideas.</p>
+        <p>The fair criticism is that a list of 101 tips, by its nature, can feel scattered and can favor breadth over depth, so a reader may come away with many tactics but a less integrated understanding of why they work. Some suggestions will fit one workplace better than another, and the format leaves it to the reader to prioritize. The honest way to use the book is therefore to treat it as a practical toolkit rather than a theory, drawing on its concrete ideas while grounding them in the deeper understanding of engagement that explains which ones will matter most in a given setting.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> The Happy Employee makes a sound and practical case that employee happiness drives real results and is largely within a manager's control, offering a concrete toolkit best used alongside a deeper understanding of what engages people.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>تأمّلٌ ونقد</h2>
+        <p class="lead">الملخّص العادل يزن ما يقدّمه الكتاب وأين تساعده صيغته العملية القائمة على القوائم وتحدّه معًا.</p>
+        <p>قوّة الكتاب أنه ملموسٌ وقابل للتطبيق. فبدل نظريةٍ مجرّدة، يعرض مجموعة كبيرة من الاقتراحات المحدَّدة القابلة للفعل التي يطبّقها المدير فورًا، مما يجعله نافعًا فعلًا لمن يقبل الفرضية ويريد معرفة ماذا يفعل صباح الاثنين. وحجّته المركزية، أن السعادة تقود الأداء وأن أغلب ما يخلقها ضمن تحكّم المدير، متوائمةٌ جيدًا مع بحث المشاركة الراسخ، ونبرته العملية المشجّعة تخفض حاجز تجربة الأفكار فعلًا.</p>
+        <p>والنقد العادل أن قائمة 101 نصيحة، بطبعها، قد تبدو مبعثرة وقد تفضّل الاتّساع على العمق، فقد يخرج القارئ بتكتيكاتٍ كثيرة لكن بفهمٍ أقلّ تكاملًا لماذا تعمل. وبعض الاقتراحات يلائم مكان عملٍ أكثر من آخر، والصيغة تترك للقارئ ترتيب الأولويات. والطريقة الأمينة لاستخدام الكتاب إذًا معاملته كصندوق أدواتٍ عملي لا نظرية، بالاستفادة من أفكاره الملموسة مع تأصيلها في الفهم الأعمق للمشاركة الذي يفسّر أيّها يهمّ أكثر في سياقٍ معيّن.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الموظف السعيد يقدّم حجّةً سليمة وعملية بأن سعادة الموظف تقود نتائج حقيقية وأنها إلى حدٍّ كبير ضمن تحكّم المدير، عارضًا صندوق أدواتٍ ملموس يُستخدَم خيرَ استخدامٍ بجانب فهمٍ أعمق لما يُشرِك الناس.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">The book argues that employee happiness is a driver of results and is largely within a manager's control.</p>
+        <ul>
+          <li>Treat employee happiness as a business asset that drives productivity, quality, and retention.</li>
+          <li>Start with hiring, since attracting and selecting the right people underpins a happy workforce.</li>
+          <li>Value and develop people, because recognition and growth are central to happiness at work.</li>
+          <li>Build a fair, respectful environment, most of which costs attention rather than money.</li>
+          <li>Use the tips as a practical toolkit, grounded in a deeper understanding of what engages people.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.simonandschuster.com/books/The-Happy-Employee/Julia-McGovern/9781440515125" target="_blank" rel="noopener">The Happy Employee, publisher page.</a></li>
+          <li><a href="https://www.goodreads.com/book/show/21100106-the-happy-employee" target="_blank" rel="noopener">The Happy Employee, overview and reviews.</a></li>
+          <li><a href="https://www.gallup.com/workplace/236927/employee-engagement-drives-growth.aspx" target="_blank" rel="noopener">Gallup, evidence on engagement and results.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">يحاجّ الكتاب بأن سعادة الموظف محرّك نتائج وأنها إلى حدٍّ كبير ضمن تحكّم المدير.</p>
+        <ul>
+          <li>عامِل سعادة الموظف كأصلٍ تجاري يقود الإنتاجية والجودة والبقاء.</li>
+          <li>ابدأ بالتوظيف، إذ جذب الناس المناسبين واختيارهم يسند قوى عاملةً سعيدة.</li>
+          <li>قدّر الناس وطوّرهم، فالتقدير والنمو مركزيان للسعادة في العمل.</li>
+          <li>ابنِ بيئةً عادلة محترمة، أغلبها يكلّف انتباهًا لا مالًا.</li>
+          <li>استخدم النصائح كصندوق أدواتٍ عملي، مؤصَّلٍ في فهمٍ أعمق لما يُشرِك الناس.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.simonandschuster.com/books/The-Happy-Employee/Julia-McGovern/9781440515125" target="_blank" rel="noopener">الموظف السعيد، صفحة الناشر.</a></li>
+          <li><a href="https://www.goodreads.com/book/show/21100106-the-happy-employee" target="_blank" rel="noopener">الموظف السعيد، نظرة عامة ومراجعات.</a></li>
+          <li><a href="https://www.gallup.com/workplace/236927/employee-engagement-drives-growth.aspx" target="_blank" rel="noopener">Gallup، أدلّة على المشاركة والنتائج.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","ideas","reflection","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Power: Why Some Have It</title>
+<meta name="description" content="A summary and reflection on Jeffrey Pfeffer's Power: why performance is not enough, and how visibility, networks, and perception build influence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">BOOK SUMMARY &middot; LEADERSHIP</span><span data-lang="ar">ملخّص كتاب &middot; قيادة</span></div>
+    <h1><span data-lang="en">Power: Why Some Have It</span><span data-lang="ar">أسرار المناصب العليا</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="ideas"><span data-lang="en">Core Ideas</span><span data-lang="ar">الأفكار الأساسية</span></a>
+    <a data-id="reflection"><span data-lang="en">Reflection</span><span data-lang="ar">تأمّل</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>About This Summary</h2>
+        <div class="info-card">
+          <div><span>Book:</span> Power: Why Some People Have It and Others Don't</div>
+          <div><span>Author:</span> Jeffrey Pfeffer</div>
+          <div><span>First published:</span> 2010</div>
+          <div><span>Field:</span> Organizational behavior &amp; leadership</div>
+          <div><span>Summary by:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Power is Jeffrey Pfeffer's clear-eyed, sometimes uncomfortable account of how influence actually works inside organizations. A Stanford professor of organizational behavior, Pfeffer argues that power is not handed to the most deserving, but built by those who understand its dynamics and are willing to act on them, and that this is a skill anyone can learn.</p>
+        <p>This page is my own summary and reflection on the book's argument, with all credit for the ideas belonging to the author. It is not a reproduction of the text, and readers who want the full, evidence-backed treatment should read the original.</p>
+        <p>The book matters because it punctures a comforting myth: that if you simply do good work, recognition and advancement will follow. Pfeffer marshals research to argue that this is often false, that performance alone rarely secures a position, and that people who rise usually do specific, learnable things that others neglect. Whether one finds this bracing or cynical, understanding how power really operates is useful, if only to protect oneself from those who already understand it.</p>
+        <div class="note"><strong>Note:</strong> This is a summary and reflection, not the book itself. The ideas and research belong to Jeffrey Pfeffer; the words here are mine, offered as an honest account of a deliberately unsentimental argument.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>عن هذا الملخّص</h2>
+        <div class="info-card">
+          <div><span>الكتاب:</span> القوة: لماذا يملكها بعض الناس دون غيرهم</div>
+          <div><span>المؤلف:</span> جيفري فيفر</div>
+          <div><span>أول نشر:</span> 2010</div>
+          <div><span>المجال:</span> السلوك التنظيمي والقيادة</div>
+          <div><span>إعداد الملخّص:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">القوة حسابٌ صريح، غير مريحٍ أحيانًا، من جيفري فيفر عن كيف يعمل النفوذ فعلًا داخل المنشآت. وفيفر، أستاذ السلوك التنظيمي في ستانفورد، يحاجّ بأن القوة لا تُمنَح لأكثر الناس استحقاقًا، بل يبنيها من يفهمون ديناميكياتها ويستعدّون للتصرّف بموجبها، وأن هذه مهارةٌ يستطيع أي أحدٍ تعلّمها.</p>
+        <p>هذه الصفحة ملخّصي وتأمّلي الخاص لحجّة الكتاب، مع نسب كل فضل الأفكار لمؤلفها. وهي ليست نسخًا للنصّ، ومن أراد المعالجة الكاملة المسنودة بالأدلّة فليقرأ الأصل.</p>
+        <p>يهمّ الكتاب لأنه يثقب خرافةً مريحة: أنك إن أحسنت العمل فحسب تبعك التقدير والترقّي. ويحشد فيفر البحث ليحاجّ بأن هذا غالبًا زائف، وأن الأداء وحده نادرًا ما يؤمّن منصبًا، وأن من يصعدون يفعلون عادةً أشياء محدَّدة تُتعلَّم يهملها غيرهم. وسواء وجد المرء هذا منعشًا أم متشائمًا، ففهم كيف تعمل القوة فعلًا نافع، ولو لحماية النفس ممّن يفهمونها أصلًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> هذا ملخّصٌ وتأمّل لا الكتاب نفسه. فالأفكار والبحث لجيفري فيفر؛ والكلمات هنا لي، مقدَّمةً كحسابٍ أمين لحجّةٍ غير عاطفيةٍ عمدًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="ideas">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Core Ideas</h2>
+        <p class="lead">The book's argument is built from research on how careers actually unfold, and it centers on a few ideas that run against common belief about merit and advancement.</p>
+        <p>The foundational claim is that performance is necessary but not sufficient. Doing good work matters, but Pfeffer shows that it rarely translates automatically into power, because those who decide promotions are influenced by visibility, relationships, and perception at least as much as by results. From this follows his central practical point: those who rise take deliberate steps that others, believing merit will speak for itself, fail to take. They make their work visible, build networks of useful relationships, and manage how they are perceived.</p>
+        <ul>
+          <li><strong>Performance is not enough:</strong> good work rarely secures power on its own, because decisions turn on more than results.</li>
+          <li><strong>Get noticed:</strong> making your contributions visible to the right people matters as much as making them.</li>
+          <li><strong>Build networks:</strong> relationships, especially with the powerful, are a primary source of influence.</li>
+          <li><strong>Manage perception:</strong> how you are seen, your reputation and demeanor, shapes the power others grant you.</li>
+        </ul>
+        <p>Pfeffer also argues that certain personal qualities can be developed to build power, among them ambition, energy, focus, and a capacity to tolerate conflict, and that these often matter more than raw talent. He is candid that power-seeking can involve behavior many find distasteful, and he does not moralize about it; his aim is to describe the world as it is rather than as it should be. The reader is left to decide how far to act on the description, but is at least no longer naive about the rules of the game.</p>
+        <div class="note"><strong>Note:</strong> Pfeffer's uncomfortable core is that merit does not speak for itself. Those who advance make themselves visible, build relationships, and manage perception deliberately, while those who wait to be noticed for good work often wait a long time.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الأفكار الأساسية</h2>
+        <p class="lead">حجّة الكتاب مبنيّة من بحثٍ في كيف تنكشف المسارات المهنية فعلًا، وتتمحور حول بضع أفكارٍ تجري ضدّ المعتقد الشائع عن الجدارة والترقّي.</p>
+        <p>الادّعاء التأسيسي أن الأداء ضروري لكنه غير كافٍ. فإحسان العمل يهمّ، لكن فيفر يُظهِر أنه نادرًا ما يُترجَم تلقائيًا لقوة، لأن من يقرّرون الترقيات يتأثّرون بالظهور والعلاقات والإدراك بقدر تأثّرهم بالنتائج على الأقلّ. ومن هذا تتبع نقطته العملية المركزية: من يصعدون يتّخذون خطواتٍ متعمَّدة يخفق غيرهم، ظنًّا أن الجدارة ستتكلّم عن نفسها، في اتّخاذها. فيجعلون عملهم مرئيًا، ويبنون شبكات علاقاتٍ نافعة، ويديرون كيف يُدرَكون.</p>
+        <ul>
+          <li><strong>الأداء غير كافٍ:</strong> العمل الجيد نادرًا ما يؤمّن القوة وحده، لأن القرارات تدور على أكثر من النتائج.</li>
+          <li><strong>كن ملحوظًا:</strong> جعل إسهاماتك مرئية للناس المناسبين يهمّ بقدر صنعها.</li>
+          <li><strong>ابنِ شبكات:</strong> العلاقات، خاصةً بالأقوياء، مصدرٌ رئيس للنفوذ.</li>
+          <li><strong>أدِر الإدراك:</strong> كيف تُرى، سمعتك وهيئتك، يُشكّل القوة التي يمنحها غيرك لك.</li>
+        </ul>
+        <p>ويحاجّ فيفر أيضًا بأن صفاتٍ شخصية معيّنة يمكن تنميتها لبناء القوة، منها الطموح والطاقة والتركيز والقدرة على احتمال الصراع، وأن هذه غالبًا تهمّ أكثر من الموهبة الخام. وهو صريحٌ بأن السعي للقوة قد يتضمّن سلوكًا يجده كثيرون كريهًا، ولا يعِظ بشأنه؛ فهدفه وصف العالم كما هو لا كما ينبغي أن يكون. ويُترَك القارئ ليقرّر كم يتصرّف بموجب الوصف، لكنه على الأقلّ لم يعُد ساذجًا بقواعد اللعبة.</p>
+        <div class="note"><strong>ملاحظة:</strong> جوهر فيفر غير المريح أن الجدارة لا تتكلّم عن نفسها. فمن يتقدّمون يجعلون أنفسهم مرئيين، ويبنون علاقات، ويديرون الإدراك عمدًا، ومن ينتظرون أن يُلحَظوا لعملٍ جيد ينتظرون طويلًا غالبًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="reflection">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Reflection &amp; Critique</h2>
+        <p class="lead">A fair summary weighs the book honestly, because its unsentimental realism is both its strength and the source of legitimate unease.</p>
+        <p>The book's value is its bracing honesty about how organizations really work. It corrects a naive and widely held belief, that good work alone earns advancement, and it does so with research rather than mere assertion. Its practical advice, make your work visible, invest in relationships, manage how you are perceived, is sound and useful, and not inherently unethical: being noticed for genuine contribution and building real relationships are legitimate parts of professional life. For anyone who has watched a less capable colleague advance faster, the book offers a clarifying explanation.</p>
+        <p>The fair concern is that a purely instrumental view of power, detached from any purpose it serves, can slide into manipulation, and Pfeffer's refusal to moralize can read as endorsement. The honest way to use the book is to take its accurate description of how influence works, and to apply it in service of good ends and with integrity, using its insights to be effective and to protect oneself, without adopting the cynicism that treats every relationship as a lever. Understood that way, it makes a person wiser about organizational life without making them worse.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> Power is a clear-eyed account of how influence really works: performance is not enough, and those who rise make themselves visible, build relationships, and manage perception, insights best used with integrity and in service of worthwhile ends.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>تأمّلٌ ونقد</h2>
+        <p class="lead">الملخّص العادل يزن الكتاب بأمانة، إذ واقعيته غير العاطفية قوّته ومصدر قلقٍ مشروع معًا.</p>
+        <p>قيمة الكتاب صدقه المنعش عن كيف تعمل المنشآت فعلًا. فهو يصحّح معتقدًا ساذجًا واسع الانتشار، أن العمل الجيد وحده يكسب الترقّي، ويفعل ذلك ببحثٍ لا مجرّد ادّعاء. ونصيحته العملية، اجعل عملك مرئيًا، استثمر في العلاقات، أدِر كيف تُدرَك، سليمةٌ ونافعة، وليست لاأخلاقية بطبعها: فأن تُلحَظ لإسهامٍ حقيقي وتبني علاقاتٍ حقيقية جزءان مشروعان من الحياة المهنية. ولمن رأى زميلًا أقلّ كفاءةً يتقدّم أسرع، يقدّم الكتاب تفسيرًا مُوضِّحًا.</p>
+        <p>والقلق العادل أن نظرةً أداتية بحتة للقوة، منفصلةً عن أي غرضٍ تخدمه، قد تنزلق للتلاعب، ورفض فيفر الوعظ قد يُقرَأ كتأييد. والطريقة الأمينة لاستخدام الكتاب أخذ وصفه الدقيق لكيف يعمل النفوذ، وتطبيقه في خدمة غاياتٍ حسنة وبنزاهة، مستخدمًا رؤاه لتكون فعّالًا ولحماية نفسك، دون تبنّي التشاؤم الذي يعامل كل علاقةٍ كرافعة. ومفهومًا هكذا، يجعل المرء أحكم بالحياة التنظيمية دون جعله أسوأ.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> القوة حسابٌ صريح لكيف يعمل النفوذ فعلًا: الأداء غير كافٍ، ومن يصعدون يجعلون أنفسهم مرئيين ويبنون علاقاتٍ ويديرون الإدراك، رؤىً تُستخدَم خيرَ استخدامٍ بنزاهةٍ وفي خدمة غاياتٍ تستحقّ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Power argues that influence is built, not awarded, and that performance alone rarely secures it.</p>
+        <ul>
+          <li>Treat performance as necessary but not sufficient; results alone rarely translate into power.</li>
+          <li>Make your contributions visible to the people who decide, rather than assuming they will be noticed.</li>
+          <li>Invest in relationships and networks, a primary and legitimate source of influence.</li>
+          <li>Manage your reputation and demeanor, since perception shapes the power others grant you.</li>
+          <li>Apply these accurate insights with integrity and in service of good ends, not as license for manipulation.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://jeffreypfeffer.com/books/power-why-some-people-have-it-and-others-dont/" target="_blank" rel="noopener">Jeffrey Pfeffer, the book's official page.</a></li>
+          <li><a href="https://www.goodreads.com/book/show/8562119-power" target="_blank" rel="noopener">Power, overview and reader reviews.</a></li>
+          <li><a href="https://www.gsb.stanford.edu/faculty-research/faculty/jeffrey-pfeffer" target="_blank" rel="noopener">Jeffrey Pfeffer, Stanford GSB faculty page.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">القوة يحاجّ بأن النفوذ يُبنى لا يُمنَح، وأن الأداء وحده نادرًا ما يؤمّنه.</p>
+        <ul>
+          <li>عامِل الأداء كضروري لكن غير كافٍ؛ النتائج وحدها نادرًا ما تُترجَم لقوة.</li>
+          <li>اجعل إسهاماتك مرئية لمن يقرّرون، بدل افتراض أنها ستُلحَظ.</li>
+          <li>استثمر في العلاقات والشبكات، مصدرٌ رئيس ومشروع للنفوذ.</li>
+          <li>أدِر سمعتك وهيئتك، إذ الإدراك يُشكّل القوة التي يمنحها غيرك لك.</li>
+          <li>طبّق هذه الرؤى الدقيقة بنزاهةٍ وفي خدمة غاياتٍ حسنة، لا كرخصةٍ للتلاعب.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://jeffreypfeffer.com/books/power-why-some-people-have-it-and-others-dont/" target="_blank" rel="noopener">جيفري فيفر، الصفحة الرسمية للكتاب.</a></li>
+          <li><a href="https://www.goodreads.com/book/show/8562119-power" target="_blank" rel="noopener">القوة، نظرة عامة ومراجعات القرّاء.</a></li>
+          <li><a href="https://www.gsb.stanford.edu/faculty-research/faculty/jeffrey-pfeffer" target="_blank" rel="noopener">جيفري فيفر، صفحة عضو هيئة تدريس ستانفورد.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","ideas","reflection","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>

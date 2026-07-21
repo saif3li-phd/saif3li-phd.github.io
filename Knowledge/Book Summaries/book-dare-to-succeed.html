@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dare to Succeed</title>
+<meta name="description" content="A summary and reflection on Chegwin and De Clemente's Dare to Succeed: famous failures, persistence, and reframing setbacks as part of the path.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--purple:#2E1A47;--offwhite:#F7F4EF;--khuzama:#7A4E9E;--lavender:#C9B8E8;--platinum:#C9CBD1;--card-radius:12px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--purple);color:var(--offwhite);font-family:"IBM Plex Sans Arabic",Arial,Calibri,sans-serif;font-weight:400;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 60px;}
+
+  .sadu{display:flex;justify-content:center;gap:10px;padding:14px 0;}
+  .sadu span{width:16px;height:16px;transform:rotate(45deg);display:inline-block;}
+  .sadu span:nth-child(1){background:var(--platinum);}
+  .sadu span:nth-child(2){background:var(--khuzama);}
+  .sadu span:nth-child(3){background:var(--lavender);}
+  .sadu span:nth-child(4){background:var(--khuzama);}
+  .sadu span:nth-child(5){background:var(--platinum);}
+
+  header.cover{text-align:center;padding:24px 16px 20px;}
+  .kicker{text-transform:uppercase;letter-spacing:.24em;font-size:12px;color:var(--lavender);margin-bottom:14px;}
+  header.cover h1{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:33px;line-height:1.3;color:var(--offwhite);max-width:840px;margin:0 auto 12px;}
+  .byline{color:var(--lavender);font-size:15px;font-weight:500;}
+
+  nav.toc{border-top:1px solid rgba(201,203,209,.5);border-bottom:1px solid rgba(201,203,209,.5);padding:16px 0;margin:18px 0 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+  nav.toc a{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:13px;font-weight:500;text-decoration:none;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:7px 16px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  nav.toc a:hover,nav.toc a.active{background:var(--khuzama);color:var(--offwhite);}
+  nav.toc a.home{border-style:dashed;color:var(--platinum);border-color:var(--platinum);}
+  nav.toc a.home:hover{background:var(--platinum);color:var(--purple);}
+
+  .langseg{position:fixed;top:14px;right:14px;z-index:50;display:inline-flex;gap:2px;background:rgba(46,26,71,.65);border:1px solid var(--lavender);border-radius:999px;padding:3px;}
+  .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:transparent;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .langseg button.active{background:var(--khuzama);color:var(--offwhite);}
+
+  .page{display:none;animation:fade .4s ease;}
+  .page.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--offwhite);color:var(--purple);border-radius:var(--card-radius);padding:34px 38px;box-shadow:0 8px 26px rgba(0,0,0,.18);}
+  .chip{display:inline-block;background:var(--khuzama);color:var(--offwhite);font-family:"Noto Kufi Arabic",sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:16px;}
+  .card h2{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:25px;color:var(--purple);margin-bottom:14px;line-height:1.3;}
+  .card h3{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:700;font-size:20px;color:var(--khuzama);margin:26px 0 8px;}
+  .card h4{font-weight:500;font-size:15px;color:var(--khuzama);margin:18px 0 4px;}
+  .card p{margin-bottom:14px;}
+  .card .lead{font-size:17px;color:var(--purple);}
+  .card ul,.card ol{margin:0 0 14px 22px;}
+  .card li{margin-bottom:8px;}
+  .card li::marker{color:var(--khuzama);}
+  .card ul ul,.card ul ol{margin:8px 0 8px 20px;}
+  .card strong{color:var(--purple);font-weight:600;}
+  .card em{color:var(--khuzama);font-style:italic;}
+  .card a{color:var(--khuzama);text-decoration:none;border-bottom:2px solid var(--lavender);}
+  .card a:hover{border-bottom-color:var(--khuzama);}
+  .note,.conclusion-final{background:rgba(122,78,158,.10);border-left:4px solid var(--khuzama);border-radius:6px;padding:14px 18px;margin:18px 0;color:var(--purple);}
+  .note strong,.conclusion-final strong{color:var(--khuzama);}
+  .conclusion-final{font-weight:500;}
+  .info-card{border:1px solid var(--lavender);border-radius:10px;padding:16px 20px;margin:0 0 20px;background:rgba(201,184,232,.14);}
+  .info-card div{margin-bottom:4px;font-size:15px;}
+  .info-card span{color:var(--khuzama);font-weight:500;}
+  .refs li{margin-bottom:12px;}
+  .formula{background:rgba(122,78,158,.10);border:1px dashed var(--khuzama);border-radius:8px;padding:12px 16px;margin:12px 0;font-weight:600;color:var(--purple);}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px;margin:20px 0;}
+  .stat{flex:1;min-width:150px;border:1px solid var(--lavender);border-radius:10px;padding:16px 18px;background:rgba(201,184,232,.14);text-align:center;}
+  .stat .num{font-family:"Noto Kufi Arabic",Tahoma,sans-serif;font-weight:800;font-size:28px;color:var(--khuzama);line-height:1.1;}
+  .stat .lbl{font-size:13px;color:var(--purple);margin-top:6px;}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 20px;font-size:14px;}
+  th{background:var(--khuzama);color:var(--offwhite);font-weight:600;padding:9px 12px;text-align:left;}
+  td{border:1px solid var(--lavender);padding:9px 12px;vertical-align:top;color:var(--purple);}
+  tr:nth-child(even) td{background:rgba(201,184,232,.12);}
+  body.lang-ar th{text-align:right;}
+
+  .pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+  .pager button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:14px;font-weight:500;background:transparent;color:var(--lavender);border:1px solid var(--khuzama);border-radius:999px;padding:9px 22px;cursor:pointer;transition:background .2s ease,color .2s ease;}
+  .pager button:hover:not(:disabled){background:var(--khuzama);color:var(--offwhite);}
+  .pager button:disabled{opacity:.35;cursor:not-allowed;}
+
+  footer{text-align:center;padding-top:30px;}
+  footer .copy{color:var(--platinum);font-size:13px;letter-spacing:.04em;margin-top:6px;}
+
+  body.lang-en [data-lang="ar"]{display:none;}
+  body.lang-ar [data-lang="en"]{display:none;}
+  body.lang-ar{direction:rtl;}
+  body.lang-ar .card{text-align:right;}
+  body.lang-ar .card ul,body.lang-ar .card ol{margin:0 22px 14px 0;}
+  body.lang-ar .card ul ul,body.lang-ar .card ul ol{margin:8px 20px 8px 0;}
+  body.lang-ar .note,body.lang-ar .conclusion-final{border-left:0;border-right:4px solid var(--khuzama);}
+
+  @media(max-width:600px){header.cover h1{font-size:24px;}.card{padding:26px 22px;}.card h2{font-size:21px;}table{font-size:12px;}}
+
+  /* injected site top bar — Centered Editorial */
+  #langSeg{display:none !important}
+  .sitebar{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(41,23,63,.97),rgba(46,26,71,.9));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,203,209,.14);}
+  .sitebar-in{max-width:1080px;margin:0 auto;padding:20px 20px 0;text-align:center;}
+  .siteid{display:block;text-decoration:none;}
+  .sm-name{display:block;font-family:"Amiri",Georgia,serif;font-weight:700;font-size:22px;color:var(--offwhite);letter-spacing:.06em;line-height:1.2;margin:0;}
+  .sm-role{display:block;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:400;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum);margin:7px 0 0;line-height:1.5;max-width:none;}
+  .sm-role b{color:var(--lavender);font-weight:600;}
+  .sm-role .sm-sep{font-style:normal;opacity:.4;margin:0 7px;}
+  body.lang-ar .sm-role{letter-spacing:.05em;text-transform:none;font-size:12px;}
+  .siterule{height:1px;background:linear-gradient(90deg,transparent,rgba(201,203,209,.35),transparent);margin:17px 0 0;}
+  .sitenavrow{position:relative;display:flex;align-items:center;justify-content:center;padding:13px 0 16px;gap:8px;flex-wrap:wrap;}
+  .sitenav{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,32px);flex-wrap:wrap;}
+  .sitenav a{position:relative;font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:500;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-decoration:none;padding:4px 0;transition:color .25s;}
+  .sitenav a:hover{color:var(--offwhite);}
+  .sitenav a.cur{color:var(--lavender);}
+  body.lang-ar .sitenav a{letter-spacing:.02em;text-transform:none;font-size:14px;}
+  .sitebar .langseg{position:absolute;left:auto;right:auto;inset-inline-start:auto;inset-inline-end:0;top:50%;transform:translateY(-50%);margin:0;display:inline-flex;gap:2px;background:rgba(46,26,71,.5);border:1px solid var(--khuzama);border-radius:999px;padding:3px;}
+  .sitebar .langseg button{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:12px;font-weight:600;border:0;background:none;color:var(--lavender);padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .sitebar .langseg button.on{background:var(--khuzama);color:var(--offwhite);}
+  @media(max-width:900px){.sitebar .langseg{position:static;transform:none;margin-top:4px}}
+  @media(max-width:640px){.sm-role{display:none}}
+
+</style>
+</head>
+<body class="lang-en">
+<header class="sitebar">
+  <div class="sitebar-in">
+    <a class="siteid" href="../../../index.html?view=about" aria-label="Main">
+      <span class="sm-name">Saif Ali Alghamdi</span>
+      <span class="sm-role"><b>Transformation &amp; Growth Advisor</b><i class="sm-sep">|</i>AI • Digital • Marketing • R&amp;D</span>
+    </a>
+    <div class="siterule" aria-hidden="true"></div>
+    <div class="sitenavrow">
+      <nav class="sitenav">
+        <a href="../../../index.html?view=about"><span data-lang="en">MAIN</span><span data-lang="ar">الرئيسية</span></a>
+        <a href="../../../index.html?view=resume"><span data-lang="en">Résumé</span><span data-lang="ar">السيرة الذاتية</span></a>
+        <a class="cur" href="../../../index.html?view=insights"><span data-lang="en">Insights</span><span data-lang="ar">إضاءات</span></a>
+        <a href="../../../index.html?view=services"><span data-lang="en">Services</span><span data-lang="ar">خدمات</span></a>
+        <a href="https://dot.cards/saif" target="_blank" rel="noopener"><span data-lang="en">Digital Card</span><span data-lang="ar">البطاقة الرقمية</span></a>
+      </nav>
+      <div class="langseg" id="langseg" role="group" aria-label="Language">
+        <button type="button" data-set="en">EN</button>
+        <button type="button" data-set="ar">عربي</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="langseg" id="langSeg">
+  <button type="button" data-set="en">EN</button>
+  <button type="button" data-set="ar">عربي</button>
+</div>
+<div class="wrap">
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">BOOK SUMMARY &middot; MOTIVATION</span><span data-lang="ar">ملخّص كتاب &middot; تحفيز</span></div>
+    <h1><span data-lang="en">Dare to Succeed</span><span data-lang="ar">تجرّأ تنجح</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../../../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="ideas"><span data-lang="en">Core Ideas</span><span data-lang="ar">الأفكار الأساسية</span></a>
+    <a data-id="reflection"><span data-lang="en">Reflection</span><span data-lang="ar">تأمّل</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  </nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>About This Summary</h2>
+        <div class="info-card">
+          <div><span>Book:</span> Dare to Succeed</div>
+          <div><span>Authors:</span> Jeff Chegwin &amp; Carmela De Clemente</div>
+          <div><span>Genre:</span> Motivation &amp; success stories</div>
+          <div><span>Theme:</span> Learning from failure on the road to success</div>
+          <div><span>Summary by:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Dare to Succeed is a collection by Jeff Chegwin and Carmela De Clemente of real stories about how some of the world's most successful people, from Steve Jobs to Einstein and beyond, met failure and rejection before they triumphed. Its message is that mistakes and setbacks are not the opposite of success but often the road to it.</p>
+        <p>This page is my own summary and reflection on the book's theme and lessons, with all credit for the ideas and the stories belonging to the authors. It is not a reproduction of the text, and readers wanting the full set of stories should read the original.</p>
+        <p>The book resonates because it counters a paralyzing belief: that successful people succeeded smoothly, and that failure marks you as unfit for success. By gathering stories of famous figures who were rejected, fired, doubted, or bankrupted before they prevailed, the book reframes failure as a normal, even necessary, part of any ambitious path, and gives the reader permission to try, fail, and keep going.</p>
+        <div class="note"><strong>Note:</strong> This is a summary and reflection, not the book itself. The stories and framing belong to Jeff Chegwin and Carmela De Clemente; the words here are mine, offered as an honest account of the book's message.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>عن هذا الملخّص</h2>
+        <div class="info-card">
+          <div><span>الكتاب:</span> تجرّأ تنجح</div>
+          <div><span>المؤلفان:</span> جيف تشيغوين وكارميلا دي كليمنت</div>
+          <div><span>النوع:</span> تحفيز وقصص نجاح</div>
+          <div><span>المحور:</span> التعلّم من الفشل في طريق النجاح</div>
+          <div><span>إعداد الملخّص:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">تجرّأ تنجح مجموعةٌ لجيف تشيغوين وكارميلا دي كليمنت من قصصٍ حقيقية عن كيف لقي بعض أنجح الناس في العالم، من ستيف جوبز إلى أينشتاين وأبعد، الفشل والرفض قبل أن ينتصروا. ورسالتها أن الأخطاء والانتكاسات ليست نقيض النجاح بل طريقه غالبًا.</p>
+        <p>هذه الصفحة ملخّصي وتأمّلي الخاص لمحور الكتاب ودروسه، مع نسب كل فضل الأفكار والقصص لمؤلفيه. وهي ليست نسخًا للنصّ، ومن أراد المجموعة الكاملة من القصص فليقرأ الأصل.</p>
+        <p>يلمس الكتاب وترًا لأنه يعارض معتقدًا مشلًّا: أن الناجحين نجحوا بسلاسة، وأن الفشل يَسِمك بعدم الأهلية للنجاح. فبجمع قصص شخصياتٍ شهيرة رُفِضت أو طُرِدت أو شُكِّك فيها أو أفلست قبل أن تسود، يعيد الكتاب تأطير الفشل كجزءٍ طبيعي، بل لازم، من أي مسارٍ طموح، ويمنح القارئ إذنًا ليجرّب ويفشل ويواصل.</p>
+        <div class="note"><strong>ملاحظة:</strong> هذا ملخّصٌ وتأمّل لا الكتاب نفسه. فالقصص والتأطير لجيف تشيغوين وكارميلا دي كليمنت؛ والكلمات هنا لي، مقدَّمةً كحسابٍ أمين لرسالة الكتاب.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="ideas">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Core Ideas</h2>
+        <p class="lead">The book makes its case less through argument than through accumulated example, but the stories carry a few clear ideas about failure and success.</p>
+        <p>The central idea is that failure is a normal companion to achievement, not its enemy. Story after story shows people who are now icons being rejected, dismissed, or written off early on: the entrepreneur whose first venture collapsed, the artist turned away many times, the thinker dismissed as slow. The cumulative effect is to make an emotional and evidential case that if these celebrated figures failed repeatedly and still succeeded, then failure cannot be the disqualifying verdict we fear it to be.</p>
+        <ul>
+          <li><strong>Failure is normal:</strong> nearly everyone who achieved greatly failed, often badly, along the way.</li>
+          <li><strong>Persistence matters:</strong> what distinguished the successful was continuing after setbacks, not avoiding them.</li>
+          <li><strong>Reframe rejection:</strong> a no is information and a redirection, not a final judgment of your worth.</li>
+          <li><strong>Daring is required:</strong> success asks you to risk failure, so the willingness to try is itself decisive.</li>
+        </ul>
+        <p>From this flows the book's practical spirit, captured in its title: you have to dare in order to succeed. Because failure is part of the path, waiting until success is guaranteed means never starting, and the people in these stories succeeded precisely because they were willing to risk failing publicly and to persist when they did. The book's encouragement is therefore not blind optimism but a realistic reframing: failure will come, it does not disqualify you, and continuing through it is what turns setbacks into the story of an eventual success.</p>
+        <div class="note"><strong>Note:</strong> The book's message is that failure is not the opposite of success but part of its path. The famous names in its stories did not avoid failure; they persisted through it, which is exactly what daring to succeed requires.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الأفكار الأساسية</h2>
+        <p class="lead">يقدّم الكتاب حجّته بالمثال المتراكم أكثر من الحجاج، لكن القصص تحمل بضع أفكارٍ واضحة عن الفشل والنجاح.</p>
+        <p>الفكرة المركزية أن الفشل رفيقٌ طبيعي للإنجاز لا عدوّه. فقصةٌ بعد قصة تُظهِر أناسًا صاروا أيقوناتٍ يُرفَضون أو يُستبعَدون أو يُشطَبون باكرًا: الريادي الذي انهار مشروعه الأول، الفنّان الذي رُدَّ مرارًا، المفكّر الذي وُصِف بالبطء. والأثر التراكمي بناء حجّةٍ عاطفية واستدلالية أنه إن فشل هؤلاء المحتفى بهم مرارًا ونجحوا رغم ذلك، فالفشل لا يمكن أن يكون الحكم المُقصي الذي نخشاه.</p>
+        <ul>
+          <li><strong>الفشل طبيعي:</strong> كل من أنجز عظيمًا تقريبًا فشل، غالبًا بشدّة، في الطريق.</li>
+          <li><strong>المثابرة تهمّ:</strong> ما ميّز الناجحين المواصلة بعد الانتكاسات لا تجنّبها.</li>
+          <li><strong>أعِد تأطير الرفض:</strong> الرفض معلومة وإعادة توجيه، لا حكمًا نهائيًا على قيمتك.</li>
+          <li><strong>الجرأة مطلوبة:</strong> النجاح يطلب مجازفة الفشل، فالاستعداد للمحاولة نفسه حاسم.</li>
+        </ul>
+        <p>ومن هذا تنبع روح الكتاب العملية، الملتقَطة في عنوانه: عليك أن تتجرّأ لتنجح. فلأن الفشل جزءٌ من الطريق، فالانتظار حتى يُضمَن النجاح يعني ألّا تبدأ أبدًا، وأناس هذه القصص نجحوا بالضبط لأنهم استعدّوا لمجازفة الفشل علنًا وللمثابرة حين فشلوا. وتشجيع الكتاب إذًا ليس تفاؤلًا أعمى بل إعادة تأطيرٍ واقعية: الفشل آتٍ، لا يُقصيك، والمواصلة عبره هي ما يحوّل الانتكاسات لقصّة نجاحٍ آخِر.</p>
+        <div class="note"><strong>ملاحظة:</strong> رسالة الكتاب أن الفشل ليس نقيض النجاح بل جزءٌ من طريقه. فالأسماء الشهيرة في قصصه لم تتجنّب الفشل؛ ثابرت عبره، وهو بالضبط ما تتطلّبه الجرأة على النجاح.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="reflection">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Reflection &amp; Critique</h2>
+        <p class="lead">A fair summary notes both the real encouragement the book offers and the caution with which its stories should be read.</p>
+        <p>The book's value is emotional and motivating. Fear of failure stops many people from ever trying, and seeing that admired figures failed repeatedly is a genuine antidote to that fear. The core lesson, that failure is normal and that persistence through it is what distinguishes those who eventually succeed, is true and worth internalizing. For a reader paralyzed by the worry that a setback means they are not good enough, the book offers a real and useful shift in perspective, and its accessible, story-driven format makes that shift easy to absorb.</p>
+        <p>The fair caution is a well-known reasoning trap: stories of successful people who failed first are selected because they eventually succeeded, and they say nothing about the many who failed, persisted, and still did not make it. Persistence through failure is necessary for success but does not guarantee it, and a naive reading could encourage stubbornly continuing a hopeless path. The honest way to take the book is as encouragement to dare and to persevere, paired with the judgment to learn from failures and adjust, rather than as a promise that persistence alone always pays off.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> Dare to Succeed uses the failures of famous people to make a real and encouraging point, that failure is a normal part of the path and persistence is what matters, best paired with the judgment to learn and adapt rather than merely persist.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>تأمّلٌ ونقد</h2>
+        <p class="lead">الملخّص العادل يذكر التشجيع الحقيقي الذي يقدّمه الكتاب والحذر الذي تُقرأ به قصصه معًا.</p>
+        <p>قيمة الكتاب عاطفية ومحفِّزة. فخوف الفشل يمنع كثيرين من المحاولة أصلًا، ورؤية أن شخصياتٍ معجَبًا بها فشلت مرارًا ترياقٌ حقيقي لذلك الخوف. والدرس الجوهري، أن الفشل طبيعي وأن المثابرة عبره هي ما يميّز من ينجحون آخِرًا، صحيحٌ ويستحقّ الاستبطان. ولقارئٍ مشلولٍ بقلق أن الانتكاسة تعني أنه ليس جيدًا كفايةً، يقدّم الكتاب نقلةً حقيقية ونافعة في المنظور، وصيغته الميسَّرة القائمة على القصص تجعل تلك النقلة سهلة الاستيعاب.</p>
+        <p>والحذر العادل مطبٌّ استدلالي معروف: قصص الناجحين الذين فشلوا أولًا مُنتقاة لأنهم نجحوا آخِرًا، ولا تقول شيئًا عن الكثيرين الذين فشلوا وثابروا ومع ذلك لم يصلوا. فالمثابرة عبر الفشل ضرورية للنجاح لكنها لا تضمنه، وقراءةٌ ساذجة قد تشجّع المواصلة العنيدة لمسارٍ ميؤوس. والطريقة الأمينة لأخذ الكتاب كتشجيعٍ على الجرأة والمثابرة، مقرونًا بالحكمة للتعلّم من الفشل والتعديل، لا كوعدٍ بأن المثابرة وحدها تسدّد دومًا.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> تجرّأ تنجح يستخدم إخفاقات المشاهير ليطرح نقطةً حقيقية ومشجّعة، أن الفشل جزءٌ طبيعي من الطريق وأن المثابرة هي ما يهمّ، مقرونةً خيرَ اقترانٍ بالحكمة للتعلّم والتكيّف لا مجرّد المثابرة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">The book uses stories of famous failures to show that setbacks are part of the road to success.</p>
+        <ul>
+          <li>Accept that failure is a normal companion to achievement, not a sign you are unfit for it.</li>
+          <li>Persist through setbacks, since continuing after failure is what distinguished those who succeeded.</li>
+          <li>Reframe rejection as information and redirection rather than a final verdict on your worth.</li>
+          <li>Dare to try, because success requires risking the failure that waiting can never avoid.</li>
+          <li>Pair persistence with judgment: learn from failures and adapt rather than stubbornly repeating them.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.goodreads.com/ar/book/show/25664436" target="_blank" rel="noopener">Dare to Succeed, overview and reviews.</a></li>
+          <li><a href="https://www.daralsaqi.com/ar/" target="_blank" rel="noopener">Dar Al-Saqi, the book's publisher.</a></li>
+          <li><a href="https://www.dostor.org/2010035" target="_blank" rel="noopener">Press feature on the book's stories.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">يستخدم الكتاب قصص إخفاقاتٍ مشهورة ليُظهِر أن الانتكاسات جزءٌ من طريق النجاح.</p>
+        <ul>
+          <li>اقبل أن الفشل رفيقٌ طبيعي للإنجاز، لا علامةً على عدم أهليتك له.</li>
+          <li>ثابر عبر الانتكاسات، إذ المواصلة بعد الفشل هي ما ميّز من نجحوا.</li>
+          <li>أعِد تأطير الرفض كمعلومةٍ وإعادة توجيه لا حكمًا نهائيًا على قيمتك.</li>
+          <li>تجرّأ على المحاولة، فالنجاح يتطلّب مجازفة الفشل الذي لا يتجنّبه الانتظار أبدًا.</li>
+          <li>اقرن المثابرة بالحكمة: تعلّم من الإخفاقات وتكيّف لا تكرّرها بعناد.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.goodreads.com/ar/book/show/25664436" target="_blank" rel="noopener">تجرّأ تنجح، نظرة عامة ومراجعات.</a></li>
+          <li><a href="https://www.daralsaqi.com/ar/" target="_blank" rel="noopener">دار الساقي، ناشر الكتاب.</a></li>
+          <li><a href="https://www.dostor.org/2010035" target="_blank" rel="noopener">تغطية صحفية لقصص الكتاب.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var order = ["overview","ideas","reflection","takeaways"];
+    var toc = document.getElementById("toc");
+    var pills = Array.prototype.slice.call(toc.querySelectorAll("a[data-id]"));
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    function show(id){
+      if(order.indexOf(id) === -1){ id = order[0]; }
+      order.forEach(function(sid){ var s=document.getElementById(sid); if(s){ s.classList.toggle("active", sid===id); } });
+      pills.forEach(function(p){ p.classList.toggle("active", p.getAttribute("data-id") === id); });
+      var i = order.indexOf(id);
+      prevBtn.disabled = (i === 0); nextBtn.disabled = (i === order.length - 1);
+      prevBtn.onclick = function(){ if(i>0){ show(order[i-1]); } };
+      nextBtn.onclick = function(){ if(i<order.length-1){ show(order[i+1]); } };
+      if(history.replaceState){ history.replaceState(null, "", "#" + id); } else { location.hash = id; }
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+    pills.forEach(function(p){ p.addEventListener("click", function(e){ e.preventDefault(); show(p.getAttribute("data-id")); }); });
+    function setLang(l){
+      document.body.classList.remove("lang-en","lang-ar");
+      document.body.classList.add("lang-" + l);
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === "ar") ? "rtl" : "ltr";
+      Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.classList.toggle("active", b.getAttribute("data-set") === l); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#langSeg button"), function(b){ b.addEventListener("click", function(){ setLang(b.getAttribute("data-set")); }); });
+    setLang("en");
+    var start = (location.hash || "").replace("#","");
+    show(order.indexOf(start) !== -1 ? start : order[0]);
+  })();
+</script>
+<script>
+(function(){
+  if('scrollRestoration' in history){try{history.scrollRestoration='manual';}catch(e){}}
+  window.addEventListener('load',function(){ setTimeout(function(){ window.scrollTo(0,0); }, 40); });
+  var segBtns=[].slice.call(document.querySelectorAll('#langseg button')); if(!segBtns.length)return;
+  function apply(l){
+    document.body.classList.remove('lang-en','lang-ar');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l; document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    segBtns.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-set')===l);});
+    try{localStorage.setItem('siteLang',l);}catch(e){}
+  }
+  segBtns.forEach(function(b){ b.addEventListener('click',function(){ apply(b.getAttribute('data-set')); }); });
+  var q=new URLSearchParams(location.search).get('lang'), stored=null;
+  try{stored=localStorage.getItem('siteLang');}catch(e){}
+  apply(q==='ar'?'ar':(q==='en'?'en':(stored||'en')));
+})();
+</script>
+</body>
+</html>
