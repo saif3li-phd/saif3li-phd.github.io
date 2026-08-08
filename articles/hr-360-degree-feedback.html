@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>التغذية الراجعة 360 درجة · سيف الغامدي</title>
+<meta name="description" content="360-Degree Feedback">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2E1A47;--off:#F7F4EF;--khuzama:#7A4E9E;--lav:#C9B8E8;--plat:#C9CBD1;
+ --ink:var(--purple);--bg:var(--off);--panel:#fff;--muted:#6b6078;--line:rgba(46,26,71,.1);
+ --head:"IBM Plex Sans Arabic",sans-serif;--body:"IBM Plex Sans Arabic",sans-serif}
+body.dark{--bg:#241338;--ink:#F7F4EF;--panel:#35204f;--muted:#b7abcb;--line:rgba(201,203,209,.16);--khuzama:#A98BD6}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(46,26,71,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+/* ---- article body ---- */
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){background:var(--plat)}
+.cover .sadu span:nth-child(2),.cover .sadu span:nth-child(4),footer .sadu span:nth-child(2),footer .sadu span:nth-child(4){background:var(--lav)}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:inline-block;font-size:11px;color:var(--khuzama);background:color-mix(in srgb,var(--lav) 26%,transparent);border-radius:999px;padding:3px 12px;margin-bottom:6px}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"◆";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#3a2358,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#4a2f6b,#2a1740)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#e9e0f5}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(46,26,71,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+.chip{display:none}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+</style></head>
+<body dir="ltr">
+<span class="bloom b1"></span><span class="bloom b2"></span>
+<header class="topbar">
+  <div class="tools">
+    <div class="seg"><button id="langAr" class="on" onclick="setLang('ar')">ع</button><button id="langEn" onclick="setLang('en')">EN</button></div>
+    <button class="tbtn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'☀':'🌙'">🌙</button>
+  </div>
+  <a class="lockup" href="../index.html">
+    <span class="lk-name">Saif Ali Alghamdi</span>
+    <span class="lk-tag"><b>Transformation &amp; Growth Advisor</b><i>|</i><em>AI • Digital • Marketing • R&amp;D</em></span>
+  </a>
+  <div class="nav-sep"><span class="ln"></span><i class="s"></i><i></i><i class="mid"></i><i></i><i class="s"></i><span class="ln"></span></div>
+  <nav class="topnav">
+    <a href="../index.html" data-en="Home">الرئيسية</a>
+    <a href="../index.html?view=about" data-en="About">عنّي</a>
+    <a href="../index.html?view=resume" data-en="Resume">سيرتي</a>
+    <a href="../index.html?view=projects" data-en="Projects">مشاريعي</a>
+    <a class="cur" href="../index.html?view=insights" data-en="Insights">إضاءاتي</a>
+    <a href="../index.html#services" data-en="Services">خدماتي</a>
+    <a href="https://dot.cards/saif" target="_blank" rel="noopener" data-en="Digital Card">البطاقة الرقمية</a>
+  </nav>
+</header>
+<div class="art">
+
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">HUMAN CAPITAL · FRAMEWORK</span><span data-lang="ar">رأس المال البشري · إطار</span></div>
+    <h1><span data-lang="en">360-Degree Feedback</span><span data-lang="ar">التغذية الراجعة 360 درجة</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="howitworks"><span data-lang="en">How It Works</span><span data-lang="ar">كيف تعمل</span></a>
+    <a data-id="conditions"><span data-lang="en">Conditions</span><span data-lang="ar">الظروف</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  <a class="pdfchip" onclick="window.print()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12"/><path d="M6 11l6 6 6-6"/><path d="M5 21h14"/></svg>PDF</a></nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> 360-degree feedback</div>
+          <div><span>Scope:</span> Multi-source feedback for development</div>
+          <div><span>Owner role:</span> HR and the individual, with their circle</div>
+          <div><span>Review cadence:</span> Periodic, typically once or twice a year</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">360-degree feedback is a method of gathering feedback on a person from all around them, their manager, peers, direct reports, and sometimes customers, rather than from their manager alone. The name captures the idea: instead of a single top-down view, a person receives a full-circle picture of how they are experienced by the range of people they work with, which is often far richer and more accurate than any one perspective.</p>
+        <p>It matters because how we see ourselves is frequently not how others see us, and the people best placed to observe different aspects of our behavior are different: a manager sees results and judgment, peers see collaboration, direct reports see leadership and how we treat those with less power. Relying only on a manager's view misses much of this, and misses the blind spots a person most needs to know about. Gathered well, multi-source feedback surfaces patterns that a single viewpoint cannot, giving a person the honest, rounded picture that genuine development requires.</p>
+        <p>This framework explains how 360-degree feedback works, what makes it valuable, and the conditions under which it helps rather than harms. It is my own synthesis, written in my own words and grounded in recognized people practice, designed to be reusable across organizations.</p>
+        <div class="note"><strong>Note:</strong> The people around you see things about your behavior that you and your manager cannot. 360-degree feedback exists to gather that fuller picture, especially the blind spots you most need, and least want, to hear.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> التغذية الراجعة 360 درجة</div>
+          <div><span>النطاق:</span> تغذيةٌ متعدّدة المصادر للتطوير</div>
+          <div><span>دور المالك:</span> الموارد البشرية والفرد، مع دائرته</div>
+          <div><span>دورية المراجعة:</span> دورية، عادةً مرةً أو مرتين سنويًا</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">التغذية الراجعة 360 درجة طريقة جمع تغذيةٍ عن شخصٍ من كل من حوله، مديره وأقرانه ومرؤوسيه المباشرين وأحيانًا العملاء، لا من مديره وحده. والاسم يلتقط الفكرة: بدل نظرةٍ واحدة من أعلى لأسفل، يتلقّى الشخص صورةً كاملة الدائرة لكيف يُختبَر لدى طيف الناس الذين يعمل معهم، وهي غالبًا أغنى وأدقّ بكثيرٍ من أي منظورٍ واحد.</p>
+        <p>تهمّ لأن كيف نرى أنفسنا كثيرًا ليس كيف يرانا غيرنا، والناس الأقدر على ملاحظة جوانب مختلفة من سلوكنا مختلفون: المدير يرى النتائج والحكم، والأقران يرون التعاون، والمرؤوسون يرون القيادة وكيف نعامل من هم أقلّ قوّة. والاعتماد على نظرة المدير وحدها يفوّت كثيرًا من هذا، ويفوّت النقاط العمياء التي يحتاج الشخص معرفتها أكثر. ومجموعةً جيدًا، التغذية متعدّدة المصادر تُظهِر أنماطًا لا تستطيعها وجهة نظرٍ واحدة، مانحةً الشخص الصورة الأمينة المستديرة التي يتطلّبها التطوير الحقيقي.</p>
+        <p>يشرح هذا الإطار كيف تعمل التغذية 360 درجة، وما يجعلها قيّمة، والظروف التي تساعد فيها لا تؤذي. وهو توليفي الخاص، مكتوبٌ بكلماتي ومؤصَّل في ممارسة ناسٍ معترف بها، مصمَّمٌ ليكون قابلًا لإعادة الاستخدام عبر المنشآت.</p>
+        <div class="note"><strong>ملاحظة:</strong> الناس حولك يرون أشياء عن سلوكك لا تستطيعها أنت ومديرك. والتغذية 360 درجة موجودة لجمع تلك الصورة الأوفى، خاصةً النقاط العمياء التي تحتاج، وتكره، سماعها أكثر.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="howitworks">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>How 360 Feedback Works</h2>
+        <p class="lead">The mechanics of 360-degree feedback are simple, but the details determine whether it produces honest, useful insight or defensive, useless noise.</p>
+        <p>A person is assessed by a set of raters chosen from around them, typically their manager, several peers, and several direct reports, and sometimes others such as customers or partners. Each rater provides feedback on the person's behaviors and effectiveness, usually through a mix of ratings on defined competencies and written comments, and the responses are combined into a report that shows how the person is seen from each perspective and where views converge or diverge. To encourage honesty, feedback from peers and reports is usually anonymous and aggregated, so that no single rater can be identified, which is essential: people will not be candid about a boss or colleague if their individual answer can be traced back to them.</p>
+        <ul>
+          <li><strong>Multiple perspectives:</strong> manager, peers, direct reports, and sometimes customers.</li>
+          <li><strong>Anonymity for candor:</strong> peer and report feedback is aggregated so answers cannot be traced.</li>
+          <li><strong>Convergence and gaps:</strong> the value is in patterns across raters, not any single comment.</li>
+          <li><strong>Self versus others:</strong> the gap between how you see yourself and how others do is revealing.</li>
+        </ul>
+        <p>The most valuable output is not any single score but the patterns: where many people independently say the same thing, that is a strong signal worth acting on, while an isolated comment matters less. Especially revealing is the gap between a person's self-assessment and how others rate them, because a large gap points precisely to a blind spot, a way they affect others that they do not see. A leader who rates their own listening highly while their team rates it low has learned something they could not have discovered alone. The report is most useful when it turns this rich picture into a few clear themes a person can actually work on, rather than an overwhelming spreadsheet of numbers.</p>
+        <div class="note"><strong>Note:</strong> Look for patterns, not single comments. One critical remark may be noise, but when peers and reports independently point to the same thing, and it clashes with your self-view, you have found a blind spot worth addressing.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>كيف تعمل التغذية 360</h2>
+        <p class="lead">آليات التغذية 360 درجة بسيطة، لكن التفاصيل تحدّد هل تُنتِج رؤيةً أمينة نافعة أم ضوضاءً دفاعية عديمة الجدوى.</p>
+        <p>يُقيَّم شخصٌ من مجموعة مُقيّمين مختارين من حوله، عادةً مديره وعدّة أقران وعدّة مرؤوسين مباشرين، وأحيانًا آخرين كعملاء أو شركاء. ويقدّم كل مُقيّمٍ تغذيةً عن سلوكيات الشخص وفاعليته، عادةً عبر مزيجٍ من تقييماتٍ على كفاءاتٍ معرَّفة وتعليقاتٍ مكتوبة، وتُجمَع الردود في تقريرٍ يُظهِر كيف يُرى الشخص من كل منظور وأين تتقارب الآراء أو تتباعد. ولتشجيع الأمانة، تكون تغذية الأقران والمرؤوسين عادةً مجهولة ومجمَّعة، فلا يمكن تحديد مُقيّمٍ بعينه، وهذا جوهري: فالناس لن يكونوا صرحاء عن رئيسٍ أو زميل إن أمكن تتبّع إجابتهم الفردية إليهم.</p>
+        <ul>
+          <li><strong>منظورات متعدّدة:</strong> المدير والأقران والمرؤوسون وأحيانًا العملاء.</li>
+          <li><strong>الجهالة للصراحة:</strong> تغذية الأقران والمرؤوسين مجمَّعة فلا يمكن تتبّع الإجابات.</li>
+          <li><strong>التقارب والفجوات:</strong> القيمة في الأنماط عبر المُقيّمين، لا أي تعليقٍ واحد.</li>
+          <li><strong>الذات مقابل الآخرين:</strong> الفجوة بين كيف ترى نفسك وكيف يراك غيرك كاشفة.</li>
+        </ul>
+        <p>أثمن مخرجٍ ليس أي درجةٍ مفردة بل الأنماط: فحيث يقول كثيرون مستقلّين الشيء ذاته، تلك إشارةٌ قوية تستحقّ العمل، بينما تعليقٌ منعزل يهمّ أقلّ. والأكثر كشفًا الفجوة بين تقييم الشخص لنفسه وكيف يقيّمه غيره، لأن فجوةً كبيرة تشير بالضبط لنقطةٍ عمياء، طريقة يؤثّر بها في غيره لا يراها. فقائدٌ يقيّم إصغاءه عاليًا بينما يقيّمه فريقه منخفضًا تعلّم شيئًا ما كان ليكتشفه وحده. والتقرير أنفع حين يحوّل هذه الصورة الغنية لبضعة مواضيع واضحة يستطيع الشخص العمل عليها فعلًا، بدل جدولٍ ساحق من الأرقام.</p>
+        <div class="note"><strong>ملاحظة:</strong> ابحث عن الأنماط لا التعليقات المفردة. فملاحظةٌ ناقدة واحدة قد تكون ضوضاء، لكن حين يشير الأقران والمرؤوسون مستقلّين للشيء ذاته، ويصطدم بنظرتك لنفسك، وجدت نقطةً عمياء تستحقّ المعالجة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="conditions">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>When It Helps, and When It Harms</h2>
+        <p class="lead">360-degree feedback is a powerful tool that can backfire badly if used carelessly. Understanding the conditions for success, and the traps, is what separates a valuable development experience from a damaging one.</p>
+        <p>The single most important condition is that it be used for development, not for pay or punishment. When 360 feedback is tied to raises, promotions, or discipline, everything changes for the worse: raters become guarded or start scoring strategically, people game the system by rating friends generously and rivals harshly, and the honesty that makes it valuable evaporates. Used purely for a person's own growth, and kept separate from formal evaluation, it invites the candor that makes it useful. Other conditions matter too: raters should be people who genuinely observe the person's work; the questions should focus on specific, observable behaviors rather than vague personality judgments; and there must be enough raters that anonymity is real.</p>
+        <p>Equally important is what happens after the feedback is delivered. Handing someone a raw, critical report and walking away can be demoralizing and even harmful, so good practice supports the person in interpreting it, often with a coach or manager, to find the few themes worth acting on and turn them into a concrete development plan. Feedback without follow-up support and action changes nothing and can leave a person worse off, dwelling on criticism with no path forward. The honest view is therefore that 360-degree feedback is genuinely valuable, offering a rounded, honest picture no single source can, but only when it is used for growth, designed with care, and paired with real support to act on what it reveals. Used that way, it is one of the most powerful mirrors an organization can offer its people.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> 360-degree feedback gives a person a full-circle, honest view of how they are experienced that no single source can, and it works when used for development rather than pay, designed for candor and specific behaviors, and paired with support to turn the patterns it reveals, especially the blind spots, into real growth.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>متى تساعد، ومتى تؤذي</h2>
+        <p class="lead">التغذية 360 درجة أداةٌ قوية قد ترتدّ بسوءٍ إن استُخدِمت بلا عناية. وفهم ظروف النجاح، والمطبّات، هو ما يفصل تجربة تطويرٍ قيّمة عن أخرى ضارّة.</p>
+        <p>أهمّ شرطٍ مفرد أن تُستخدَم للتطوير لا للأجر أو العقاب. فحين تُربَط التغذية 360 بالزيادات أو الترقيات أو الانضباط، يتغيّر كل شيءٍ للأسوأ: يصير المُقيّمون متحفّظين أو يبدؤون التسجيل استراتيجيًا، ويلعب الناس بالنظام بتقييم الأصدقاء بسخاءٍ والمنافسين بقسوة، وتتبخّر الأمانة التي تجعلها قيّمة. ومستخدَمةً بحتًا لنموّ الشخص، ومفصولةً عن التقييم الرسمي، تدعو للصراحة التي تجعلها نافعة. وظروفٌ أخرى تهمّ أيضًا: ينبغي أن يكون المُقيّمون من يلاحظون عمل الشخص فعلًا؛ وأن تركّز الأسئلة على سلوكياتٍ محدَّدة ملحوظة لا أحكام شخصيةٍ غامضة؛ وأن يكون المُقيّمون كُثُرًا كفايةً فتكون الجهالة حقيقية.</p>
+        <p>وبأهميةٍ مساوية ما يحدث بعد تسليم التغذية. فمناولة أحدٍ تقريرًا خامًا ناقدًا والمضيّ قد يكون محبِطًا بل ضارًّا، فالممارسة الجيدة تسند الشخص في تفسيره، غالبًا مع مدرّبٍ أو مدير، لإيجاد المواضيع القليلة التي تستحقّ العمل وتحويلها لخطّة تطويرٍ ملموسة. والتغذية بلا سندٍ ومتابعةٍ وفعل لا تغيّر شيئًا وقد تترك الشخص أسوأ حالًا، مجترًّا النقد بلا مسارٍ للأمام. والنظرة الأمينة إذًا أن التغذية 360 درجة قيّمة فعلًا، عارضةً صورةً مستديرة أمينة لا يستطيعها مصدرٌ واحد، لكن فقط حين تُستخدَم للنموّ، وتُصمَّم بعناية، وتُقرَن بسندٍ حقيقي للعمل بما تكشف. ومستخدَمةً هكذا، هي من أقوى المرايا التي تستطيع منشأةٌ تقديمها لناسها.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> التغذية 360 درجة تمنح الشخص نظرةً كاملة الدائرة أمينة لكيف يُختبَر لا يستطيعها مصدرٌ واحد، وتعمل حين تُستخدَم للتطوير لا للأجر، ومصمَّمةً للصراحة والسلوكيات المحدَّدة، ومقرونةً بسندٍ لتحويل الأنماط التي تكشفها، خاصةً النقاط العمياء، لنموٍّ حقيقي.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">360-degree feedback offers a rounded, honest picture for development, when designed and used with care.</p>
+        <ul>
+          <li>Gather feedback from all around a person, since different observers see different behaviors.</li>
+          <li>Use it for development, not for pay or punishment, or the honesty that makes it valuable disappears.</li>
+          <li>Protect anonymity for peers and reports, since people will not be candid if answers can be traced.</li>
+          <li>Look for patterns and self-versus-other gaps, which point precisely to blind spots.</li>
+          <li>Pair the report with support to act, since feedback without follow-up changes nothing.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2015/09/getting-360-degree-feedback-right" target="_blank" rel="noopener">HBR, Getting 360-Degree Feedback Right.</a></li>
+          <li><a href="https://www.ccl.org/leadership-topics/feedback/" target="_blank" rel="noopener">Center for Creative Leadership, on feedback.</a></li>
+          <li><a href="https://www.shrm.org/topics-tools/topics/performance-management" target="_blank" rel="noopener">SHRM, on feedback and performance.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">التغذية 360 درجة تعرض صورةً مستديرة أمينة للتطوير، حين تُصمَّم وتُستخدَم بعناية.</p>
+        <ul>
+          <li>اجمع التغذية من كل من حول الشخص، إذ مُلاحِظون مختلفون يرون سلوكياتٍ مختلفة.</li>
+          <li>استخدمها للتطوير لا للأجر أو العقاب، وإلّا اختفت الأمانة التي تجعلها قيّمة.</li>
+          <li>احمِ جهالة الأقران والمرؤوسين، إذ لن يكون الناس صرحاء إن أمكن تتبّع الإجابات.</li>
+          <li>ابحث عن الأنماط وفجوات الذات مقابل الآخرين، التي تشير بالضبط للنقاط العمياء.</li>
+          <li>اقرن التقرير بسندٍ للعمل، إذ التغذية بلا متابعةٍ لا تغيّر شيئًا.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://hbr.org/2015/09/getting-360-degree-feedback-right" target="_blank" rel="noopener">HBR، إتقان التغذية 360 درجة.</a></li>
+          <li><a href="https://www.ccl.org/leadership-topics/feedback/" target="_blank" rel="noopener">مركز القيادة الإبداعية، عن التغذية الراجعة.</a></li>
+          <li><a href="https://www.shrm.org/topics-tools/topics/performance-management" target="_blank" rel="noopener">SHRM، عن التغذية والأداء.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">← Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next →</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright © 2026 Saif Alghamdi</div>
+  </footer>
+
+
+</div>
+<script>
+var TITLE_AR="التغذية الراجعة 360 درجة";
+var TITLE_EN="360-Degree Feedback";
+
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('.topnav [data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+}
+
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(i,scroll){
+  if(i<0)i=0;if(i>SLIDES.length-1)i=SLIDES.length-1;CURS=i;
+  SLIDES.forEach(function(s,k){s.classList.toggle('act',k===i);});
+  TOCA.forEach(function(a){a.classList.toggle('act',SLIDES[CURS].id===a.getAttribute('data-id'));});
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.style.visibility=(CURS===0?'hidden':'visible');
+  if(nb)nb.style.visibility=(CURS===SLIDES.length-1?'hidden':'visible');
+  if(scroll){var t=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+    var y=t.offsetTop-(tb?tb.offsetHeight:0)-14;if(window.scrollY>y)window.scrollTo({top:y,behavior:'smooth'});}
+}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+showSlide(0,false);
+setLang('en');
+
+
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+</body></html>
