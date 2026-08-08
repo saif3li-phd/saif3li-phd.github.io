@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>إدارة الحياة · سيف الغامدي</title>
+<meta name="description" content="Life Management">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2E1A47;--off:#F7F4EF;--khuzama:#7A4E9E;--lav:#C9B8E8;--plat:#C9CBD1;
+ --ink:var(--purple);--bg:var(--off);--panel:#fff;--muted:#6b6078;--line:rgba(46,26,71,.1);
+ --head:"IBM Plex Sans Arabic",sans-serif;--body:"IBM Plex Sans Arabic",sans-serif}
+body.dark{--bg:#241338;--ink:#F7F4EF;--panel:#35204f;--muted:#b7abcb;--line:rgba(201,203,209,.16);--khuzama:#A98BD6}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(46,26,71,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+/* ---- article body ---- */
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){background:var(--plat)}
+.cover .sadu span:nth-child(2),.cover .sadu span:nth-child(4),footer .sadu span:nth-child(2),footer .sadu span:nth-child(4){background:var(--lav)}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:inline-block;font-size:11px;color:var(--khuzama);background:color-mix(in srgb,var(--lav) 26%,transparent);border-radius:999px;padding:3px 12px;margin-bottom:6px}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"◆";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#3a2358,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#4a2f6b,#2a1740)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#e9e0f5}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(46,26,71,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+.chip{display:none}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+</style></head>
+<body dir="ltr">
+<span class="bloom b1"></span><span class="bloom b2"></span>
+<header class="topbar">
+  <div class="tools">
+    <div class="seg"><button id="langAr" class="on" onclick="setLang('ar')">ع</button><button id="langEn" onclick="setLang('en')">EN</button></div>
+    <button class="tbtn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'☀':'🌙'">🌙</button>
+  </div>
+  <a class="lockup" href="../index.html">
+    <span class="lk-name">Saif Ali Alghamdi</span>
+    <span class="lk-tag"><b>Transformation &amp; Growth Advisor</b><i>|</i><em>AI • Digital • Marketing • R&amp;D</em></span>
+  </a>
+  <div class="nav-sep"><span class="ln"></span><i class="s"></i><i></i><i class="mid"></i><i></i><i class="s"></i><span class="ln"></span></div>
+  <nav class="topnav">
+    <a href="../index.html" data-en="Home">الرئيسية</a>
+    <a href="../index.html?view=about" data-en="About">عنّي</a>
+    <a href="../index.html?view=resume" data-en="Resume">سيرتي</a>
+    <a href="../index.html?view=projects" data-en="Projects">مشاريعي</a>
+    <a class="cur" href="../index.html?view=insights" data-en="Insights">إضاءاتي</a>
+    <a href="../index.html#services" data-en="Services">خدماتي</a>
+    <a href="https://dot.cards/saif" target="_blank" rel="noopener" data-en="Digital Card">البطاقة الرقمية</a>
+  </nav>
+</header>
+<div class="art">
+
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">KNOWLEDGE · TOPICAL FRAMEWORK</span><span data-lang="ar">معرفة · إطار موضوعي</span></div>
+    <h1><span data-lang="en">Life Management</span><span data-lang="ar">إدارة الحياة</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="pillars"><span data-lang="en">Pillars</span><span data-lang="ar">الركائز</span></a>
+    <a data-id="apply"><span data-lang="en">In Practice</span><span data-lang="ar">في الممارسة</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  <a class="pdfchip" onclick="window.print()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12"/><path d="M6 11l6 6 6-6"/><path d="M5 21h14"/></svg>PDF</a></nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Personal effectiveness</div>
+          <div><span>Scope:</span> Managing time, energy, and priorities across a life</div>
+          <div><span>Focus:</span> Aligning daily action with what matters most</div>
+          <div><span>Use:</span> A personal framework for life management</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Life management is the practice of directing your time, energy, and attention toward what matters most to you, rather than letting them be consumed by whatever is loudest or most immediate. It is broader than time management, because it starts not with the calendar but with the question of what a well-lived life means for you, and then works backward to how you spend your days.</p>
+        <p>The idea matters because most people are busy, but being busy is not the same as living well. Without a deliberate approach, our time is claimed by urgent demands, other people's priorities, and easy distractions, leaving too little for the things we would say, on reflection, matter most. Life management is the discipline of resisting that drift, so that how you actually spend your life comes closer to how you would choose to.</p>
+        <p>This is my own framework, written in my own words and drawing on established thinking about priorities, time, and personal productivity. Its aim is practical: to offer a way of ordering a life around what matters, so that daily action and deep values are not strangers to each other.</p>
+        <div class="note"><strong>Note:</strong> Time management asks how to fit more in; life management asks what is worth fitting in at all. The second question comes first, because doing unimportant things efficiently is still a poor use of a life.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الفاعلية الشخصية</div>
+          <div><span>النطاق:</span> إدارة الوقت والطاقة والأولويات عبر الحياة</div>
+          <div><span>التركيز:</span> مواءمة الفعل اليومي مع الأهمّ</div>
+          <div><span>الاستخدام:</span> إطارٌ شخصي لإدارة الحياة</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">إدارة الحياة ممارسة توجيه وقتك وطاقتك وانتباهك نحو الأهمّ لك، بدل تركها تُستهلَك بما هو أعلى صوتًا أو أكثر إلحاحًا. وهي أوسع من إدارة الوقت، لأنها تبدأ لا من التقويم بل من سؤال ماذا تعني حياةٌ حسنة العيش لك، ثم تعمل عكسيًا نحو كيف تقضي أيامك.</p>
+        <p>تهمّ الفكرة لأن أغلب الناس مشغولون، لكن الانشغال ليس كالعيش الحسن. فبلا نهجٍ متعمَّد، يُطالَب وقتنا بمطالبَ عاجلة وأولويات الآخرين ومشتّتاتٍ سهلة، تاركةً القليل جدًا للأشياء التي نقول، عند التأمّل، إنها الأهمّ. وإدارة الحياة انضباط مقاومة ذلك الانجراف، فيقترب كيف تقضي حياتك فعلًا من كيف تختار أن تقضيها.</p>
+        <p>هذا إطاري الخاص، مكتوبٌ بكلماتي ومستندٌ لفكرٍ راسخ عن الأولويات والوقت والإنتاجية الشخصية. وهدفه عملي: تقديم طريقةٍ لترتيب حياةٍ حول الأهمّ، فلا يكون الفعل اليومي والقيم العميقة غريبَين عن بعضهما.</p>
+        <div class="note"><strong>ملاحظة:</strong> إدارة الوقت تسأل كيف تُدخِل أكثر؛ وإدارة الحياة تسأل ما يستحقّ الإدخال أصلًا. والسؤال الثاني يأتي أولًا، لأن فعل أشياء غير مهمّة بكفاءةٍ يبقى استخدامًا رديئًا للحياة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="pillars">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Pillars of Life Management</h2>
+        <p class="lead">Managing a life well rests on a few connected pillars, moving from clarity about what matters, through prioritizing, to protecting time and energy for it.</p>
+        <p>The first pillar is clarity of values and direction. Before you can order your time, you have to know what you are ordering it around: the roles, relationships, and goals that genuinely matter to you. Without this, productivity has no compass. The second pillar is prioritization, and its hardest lesson is the difference between the urgent and the important. Urgent things demand attention now; important things contribute most to what you value, and the two often diverge. Much of a life is lost to urgent but unimportant matters, so a central skill is deliberately protecting time for what is important before the urgent crowds it out.</p>
+        <ul>
+          <li><strong>Clarity of direction:</strong> know the values, roles, and goals your time should serve.</li>
+          <li><strong>Urgent vs. important:</strong> defend time for what is important, not just what is loud.</li>
+          <li><strong>Manage energy, not just time:</strong> match demanding work to when you have the focus for it.</li>
+          <li><strong>Say no to protect yes:</strong> every commitment declined protects time for what matters more.</li>
+        </ul>
+        <p>The third pillar is managing energy, not just time. Hours are not interchangeable: attention and willpower vary through the day, so matching your most demanding work to your best hours, and protecting rest, matters as much as scheduling. The fourth is the discipline of saying no. Because time is finite, every yes to one thing is a no to another, and a life well managed depends on declining lesser demands, however reasonable, so that the best things have room. Taken together, these pillars turn life management from mere busyness into a deliberate alignment of how you spend your days with what you actually value.</p>
+        <div class="note"><strong>Note:</strong> The urgent is the great enemy of the important. Left to default, our days fill with things that demand attention now, crowding out the things that matter most but never shout, which is why the important must be protected on purpose.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>ركائز إدارة الحياة</h2>
+        <p class="lead">إدارة حياةٍ جيدًا تقوم على بضع ركائز متصلة، تنتقل من الوضوح عن الأهمّ، عبر ترتيب الأولويات، لحماية الوقت والطاقة له.</p>
+        <p>الركيزة الأولى وضوح القيم والاتجاه. فقبل أن تستطيع ترتيب وقتك، عليك معرفة حول ماذا ترتّبه: الأدوار والعلاقات والأهداف التي تهمّك حقًّا. وبلا هذا، لا بوصلة للإنتاجية. والركيزة الثانية ترتيب الأولويات، وأصعب دروسه الفرق بين العاجل والمهمّ. فالعاجل يطلب الانتباه الآن؛ والمهمّ يسهم أكثر فيما تُقدّره، والاثنان يتباعدان غالبًا. ويُفقَد كثيرٌ من الحياة لأمورٍ عاجلة غير مهمّة، فمهارةٌ مركزية حماية الوقت للمهمّ عمدًا قبل أن يزحمه العاجل.</p>
+        <ul>
+          <li><strong>وضوح الاتجاه:</strong> اعرف القيم والأدوار والأهداف التي ينبغي أن يخدمها وقتك.</li>
+          <li><strong>العاجل مقابل المهمّ:</strong> ادفع عن وقتٍ للمهمّ، لا لما هو عالي الصوت فقط.</li>
+          <li><strong>أدِر الطاقة لا الوقت فقط:</strong> طابق العمل المتطلِّب مع وقت تركيزك.</li>
+          <li><strong>قل لا لتحمي نعم:</strong> كل التزامٍ مرفوض يحمي وقتًا للأهمّ.</li>
+        </ul>
+        <p>والركيزة الثالثة إدارة الطاقة لا الوقت فقط. فالساعات ليست متبادلة: الانتباه والإرادة يتغيّران عبر اليوم، فمطابقة عملك الأكثر تطلّبًا لأفضل ساعاتك، وحماية الراحة، تهمّ بقدر الجدولة. والرابعة انضباط قول لا. فلأن الوقت محدود، كل نعمٍ لشيءٍ لا لآخر، وحياةٌ مُدارة جيدًا تعتمد على رفض المطالب الأدنى، مهما كانت معقولة، فيكون للأشياء الأفضل مكان. ومجتمعةً، تحوّل هذه الركائز إدارة الحياة من مجرّد انشغالٍ لمواءمةٍ متعمَّدة بين كيف تقضي أيامك وما تُقدّره فعلًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> العاجل عدوّ المهمّ الأكبر. فمتروكةً للوضع الافتراضي، تمتلئ أيامنا بأشياء تطلب الانتباه الآن، مزاحمةً الأشياء الأهمّ التي لا تصرخ أبدًا، ولهذا يجب حماية المهمّ عمدًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="apply">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Life Management in Practice</h2>
+        <p class="lead">The pillars become useful only when translated into simple, repeatable practices that keep daily action tied to what matters.</p>
+        <p>A practical rhythm helps: periodically stepping back to clarify what matters and set priorities, then regularly, ideally weekly, planning the coming period so that time is reserved for the important before the urgent fills it. This means scheduling the few things that genuinely matter first, rather than hoping they fit around everything else, since what is not deliberately planned tends to be crowded out. On a daily level, it helps to identify the small number of things that would make the day a success and to protect focus for them against the constant pull of distraction and other people's urgencies.</p>
+        <p>Two cautions keep the practice honest. First, life management is not about optimizing every minute; rest, relationships, and unstructured time are among the important things, not obstacles to productivity, and a life scheduled to the second is badly managed in its own way. The goal is alignment, not maximal output. Second, the system should serve the life, not the reverse: the value of any method is only whether it helps you spend your time on what you value, and a tool that becomes an end in itself has failed. Held lightly and used consistently, life management is simply the ongoing effort to make your days reflect your priorities.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> life management means clarifying what matters, protecting time and energy for the important over the merely urgent, and learning to say no, so that how you spend your days reflects what you truly value, without mistaking a busy or over-optimized life for a well-lived one.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>إدارة الحياة عمليًا</h2>
+        <p class="lead">الركائز تصير نافعة فقط حين تُترجَم لممارساتٍ بسيطة مكرَّرة تُبقي الفعل اليومي مربوطًا بالأهمّ.</p>
+        <p>إيقاعٌ عملي يساعد: التراجع دوريًا لتوضيح الأهمّ وضبط الأولويات، ثم بانتظامٍ، أسبوعيًا مثاليًا، تخطيط الفترة القادمة فيُحجَز الوقت للمهمّ قبل أن يملأه العاجل. وهذا يعني جدولة الأشياء القليلة التي تهمّ حقًّا أولًا، بدل أمل أن تتلاءم حول كل ما عداها، إذ ما لا يُخطَّط عمدًا يميل للازدحام خارجًا. وعلى المستوى اليومي، يساعد تحديد العدد الصغير من الأشياء التي تجعل اليوم نجاحًا وحماية التركيز لها ضد شدّ المشتّتات وعجلات الآخرين المستمرّة.</p>
+        <p>وتحذيران يُبقيان الممارسة أمينة. الأول أن إدارة الحياة ليست تحسين كل دقيقة؛ فالراحة والعلاقات والوقت غير المهيكل من الأشياء المهمّة لا عوائق للإنتاجية، وحياةٌ مجدوَلة للثانية مُدارة سيئًا بطريقتها. فالهدف المواءمة لا أقصى ناتج. والثاني أن النظام ينبغي أن يخدم الحياة لا العكس: فقيمة أي طريقةٍ فقط هل تساعدك على قضاء وقتك في ما تُقدّره، وأداةٌ تصير غايةً بذاتها قد فشلت. ومحمولةً بخفّةٍ ومستخدَمةً باتّساق، إدارة الحياة ببساطةٍ الجهد المستمرّ لجعل أيامك تعكس أولوياتك.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> إدارة الحياة تعني توضيح الأهمّ، وحماية الوقت والطاقة للمهمّ على العاجل فحسب، وتعلّم قول لا، فيعكس كيف تقضي أيامك ما تُقدّره حقًّا، دون خلط حياةٍ مشغولة أو مفرطة التحسين بحياةٍ حسنة العيش.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Life management aligns how you spend your time and energy with what matters most to you.</p>
+        <ul>
+          <li>Start with clarity about your values and direction, so your time has a compass.</li>
+          <li>Defend time for the important, since the urgent will otherwise crowd it out.</li>
+          <li>Manage energy as well as time, matching demanding work to your best hours and protecting rest.</li>
+          <li>Learn to say no, because every commitment declined protects room for what matters more.</li>
+          <li>Keep the system serving the life: aim for alignment, not maximal output or scheduled-to-the-second days.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.franklincovey.com/the-7-habits/" target="_blank" rel="noopener">The 7 Habits, on urgent versus important and roles.</a></li>
+          <li><a href="https://www.eisenhower.me/eisenhower-matrix/" target="_blank" rel="noopener">The Eisenhower matrix, prioritizing by urgency and importance.</a></li>
+          <li><a href="https://hbr.org/2007/10/manage-your-energy-not-your-time" target="_blank" rel="noopener">Manage Your Energy, Not Your Time (HBR).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">إدارة الحياة تُوائم كيف تقضي وقتك وطاقتك مع الأهمّ لك.</p>
+        <ul>
+          <li>ابدأ بوضوح قيمك واتجاهك، فيكون لوقتك بوصلة.</li>
+          <li>ادفع عن وقتٍ للمهمّ، إذ العاجل سيزحمه خارجًا لولا ذلك.</li>
+          <li>أدِر الطاقة كالوقت، بمطابقة العمل المتطلِّب لأفضل ساعاتك وحماية الراحة.</li>
+          <li>تعلّم قول لا، فكل التزامٍ مرفوض يحمي مكانًا للأهمّ.</li>
+          <li>أبقِ النظام يخدم الحياة: اهدف للمواءمة لا لأقصى ناتجٍ أو أيامٍ مجدوَلة للثانية.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.franklincovey.com/the-7-habits/" target="_blank" rel="noopener">العادات السبع، عن العاجل مقابل المهمّ والأدوار.</a></li>
+          <li><a href="https://www.eisenhower.me/eisenhower-matrix/" target="_blank" rel="noopener">مصفوفة أيزنهاور، ترتيب الأولويات بالإلحاح والأهمية.</a></li>
+          <li><a href="https://hbr.org/2007/10/manage-your-energy-not-your-time" target="_blank" rel="noopener">أدِر طاقتك لا وقتك (HBR).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">← Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next →</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright © 2026 Saif Alghamdi</div>
+  </footer>
+
+
+</div>
+<script>
+var TITLE_AR="إدارة الحياة";
+var TITLE_EN="Life Management";
+
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('.topnav [data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+}
+
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(i,scroll){
+  if(i<0)i=0;if(i>SLIDES.length-1)i=SLIDES.length-1;CURS=i;
+  SLIDES.forEach(function(s,k){s.classList.toggle('act',k===i);});
+  TOCA.forEach(function(a){a.classList.toggle('act',SLIDES[CURS].id===a.getAttribute('data-id'));});
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.style.visibility=(CURS===0?'hidden':'visible');
+  if(nb)nb.style.visibility=(CURS===SLIDES.length-1?'hidden':'visible');
+  if(scroll){var t=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+    var y=t.offsetTop-(tb?tb.offsetHeight:0)-14;if(window.scrollY>y)window.scrollTo({top:y,behavior:'smooth'});}
+}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+showSlide(0,false);
+setLang('en');
+
+
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+</body></html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>احترم نفسك واضبط حدودك · سيف الغامدي</title>
+<meta name="description" content="Self-Respect & Boundaries">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2E1A47;--off:#F7F4EF;--khuzama:#7A4E9E;--lav:#C9B8E8;--plat:#C9CBD1;
+ --ink:var(--purple);--bg:var(--off);--panel:#fff;--muted:#6b6078;--line:rgba(46,26,71,.1);
+ --head:"IBM Plex Sans Arabic",sans-serif;--body:"IBM Plex Sans Arabic",sans-serif}
+body.dark{--bg:#241338;--ink:#F7F4EF;--panel:#35204f;--muted:#b7abcb;--line:rgba(201,203,209,.16);--khuzama:#A98BD6}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(46,26,71,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+/* ---- article body ---- */
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){background:var(--plat)}
+.cover .sadu span:nth-child(2),.cover .sadu span:nth-child(4),footer .sadu span:nth-child(2),footer .sadu span:nth-child(4){background:var(--lav)}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:inline-block;font-size:11px;color:var(--khuzama);background:color-mix(in srgb,var(--lav) 26%,transparent);border-radius:999px;padding:3px 12px;margin-bottom:6px}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"◆";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#3a2358,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#4a2f6b,#2a1740)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#e9e0f5}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(46,26,71,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+.chip{display:none}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+</style></head>
+<body dir="ltr">
+<span class="bloom b1"></span><span class="bloom b2"></span>
+<header class="topbar">
+  <div class="tools">
+    <div class="seg"><button id="langAr" class="on" onclick="setLang('ar')">ع</button><button id="langEn" onclick="setLang('en')">EN</button></div>
+    <button class="tbtn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'☀':'🌙'">🌙</button>
+  </div>
+  <a class="lockup" href="../index.html">
+    <span class="lk-name">Saif Ali Alghamdi</span>
+    <span class="lk-tag"><b>Transformation &amp; Growth Advisor</b><i>|</i><em>AI • Digital • Marketing • R&amp;D</em></span>
+  </a>
+  <div class="nav-sep"><span class="ln"></span><i class="s"></i><i></i><i class="mid"></i><i></i><i class="s"></i><span class="ln"></span></div>
+  <nav class="topnav">
+    <a href="../index.html" data-en="Home">الرئيسية</a>
+    <a href="../index.html?view=about" data-en="About">عنّي</a>
+    <a href="../index.html?view=resume" data-en="Resume">سيرتي</a>
+    <a href="../index.html?view=projects" data-en="Projects">مشاريعي</a>
+    <a class="cur" href="../index.html?view=insights" data-en="Insights">إضاءاتي</a>
+    <a href="../index.html#services" data-en="Services">خدماتي</a>
+    <a href="https://dot.cards/saif" target="_blank" rel="noopener" data-en="Digital Card">البطاقة الرقمية</a>
+  </nav>
+</header>
+<div class="art">
+
+
+  <header class="cover">
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">KNOWLEDGE · TOPICAL FRAMEWORK</span><span data-lang="ar">معرفة · إطار موضوعي</span></div>
+    <h1><span data-lang="en">Self-Respect &amp; Boundaries</span><span data-lang="ar">احترم نفسك واضبط حدودك</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  </header>
+
+  <nav class="toc" id="toc">
+    <a class="home" href="../index.html?view=insights"><span data-lang="en">Back to Insights</span><span data-lang="ar">إلى الإضاءات</span></a>
+    <a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a>
+    <a data-id="boundaries"><span data-lang="en">Boundaries</span><span data-lang="ar">الحدود</span></a>
+    <a data-id="balance"><span data-lang="en">Balance</span><span data-lang="ar">التوازن</span></a>
+    <a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a>
+  <a class="pdfchip" onclick="window.print()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12"/><path d="M6 11l6 6 6-6"/><path d="M5 21h14"/></svg>PDF</a></nav>
+
+  <section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Self-respect &amp; boundaries</div>
+          <div><span>Scope:</span> Being kind without being taken advantage of</div>
+          <div><span>Focus:</span> Assertiveness, limits, and healthy self-regard</div>
+          <div><span>Use:</span> A framework for standing up for yourself</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">There is a folk warning that if you make yourself too soft, you will be swallowed, the way a thin porridge is easily consumed. This framework is about the opposite of that: keeping enough firmness that your kindness is not mistaken for weakness. It is about self-respect and boundaries, being generous and decent without letting others walk over you.</p>
+        <p>The idea matters because many good, agreeable people struggle exactly here. Wanting to be kind, helpful, and liked, they say yes when they should say no, tolerate mistreatment they should refuse, and give until they are depleted, and others, consciously or not, take advantage. The problem is not the kindness itself but the absence of limits around it, and the remedy is not to become harsh but to add a backbone to the good heart.</p>
+        <p>This is my own framework, written in my own words and drawing on established thinking about assertiveness and healthy boundaries. Its aim is practical: to help decent people protect themselves, so that their generosity is a choice they make from strength rather than a habit others exploit.</p>
+        <div class="note"><strong>Note:</strong> The goal is not to stop being kind, but to stop being a pushover. Kindness without boundaries invites exploitation; kindness with boundaries is generosity offered from strength, which is respected rather than consumed.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> احترام الذات والحدود</div>
+          <div><span>النطاق:</span> أن تكون لطيفًا دون أن يُستغَلّ فيك</div>
+          <div><span>التركيز:</span> الحزم والحدود واحترام الذات الصحّي</div>
+          <div><span>الاستخدام:</span> إطارٌ للوقوف مع نفسك</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">ثمّة تحذيرٌ شعبي أنك إن جعلت نفسك ليّنًا أكثر من اللازم، ابتُلِعت، كما تُؤكَل العصيدة الرقيقة بسهولة. هذا الإطار عن نقيض ذلك: إبقاء حزمٍ كافٍ فلا يُخطَأ لطفك ضعفًا. إنه عن احترام الذات والحدود، أن تكون كريمًا لائقًا دون أن تدع غيرك يدوسك.</p>
+        <p>تهمّ الفكرة لأن كثيرًا من الطيبين المُسايِرين يكافحون هنا بالضبط. فرغبةً في اللطف والمساعدة والمحبّة، يقولون نعم حين ينبغي لا، ويحتملون سوء معاملةٍ ينبغي رفضه، ويعطون حتى يُستنزَفوا، وغيرهم، عن وعيٍ أو لا، يستغلّ. والمشكلة ليست اللطف نفسه بل غياب الحدود حوله، والعلاج ليس أن تصير قاسيًا بل إضافة عمودٍ فقري للقلب الطيّب.</p>
+        <p>هذا إطاري الخاص، مكتوبٌ بكلماتي ومستندٌ لفكرٍ راسخ عن الحزم والحدود الصحّية. وهدفه عملي: مساعدة اللائقين على حماية أنفسهم، فيكون كرمهم اختيارًا يفعلونه من قوّةٍ لا عادةً يستغلّها غيرهم.</p>
+        <div class="note"><strong>ملاحظة:</strong> الهدف ليس التوقّف عن اللطف، بل التوقّف عن كونك لقمةً سائغة. فاللطف بلا حدودٍ يدعو للاستغلال؛ واللطف بحدودٍ كرمٌ يُقدَّم من قوّة، يُحترَم لا يُستهلَك.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="boundaries">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Building Healthy Boundaries</h2>
+        <p class="lead">Protecting yourself without becoming hard rests on a set of skills centered on boundaries: knowing your limits, communicating them, and holding them.</p>
+        <p>The first step is knowing your own limits, becoming clear about what you will and will not accept, what you can give without depleting yourself, and what treatment you will not tolerate. Many people are exploited simply because they have never defined these lines even to themselves, so they drift into overcommitment and mistreatment without a point at which they say enough. The second step is the ability to say no. A clear, calm, guilt-free no is the basic tool of self-protection, and much of being taken advantage of comes from an inability to refuse, often from a fear of disappointing others or of conflict. Learning that no is a complete sentence, and that declining a request is not an act of cruelty, is foundational.</p>
+        <ul>
+          <li><strong>Know your limits:</strong> define clearly what you will accept, what you can give, and what you will not tolerate.</li>
+          <li><strong>Say no clearly:</strong> a calm, guilt-free refusal is the basic tool of self-protection.</li>
+          <li><strong>Communicate boundaries:</strong> state your limits plainly rather than expecting others to guess them.</li>
+          <li><strong>Hold them consistently:</strong> a boundary that collapses under pressure teaches others it is not real.</li>
+        </ul>
+        <p>The third step is communicating boundaries plainly rather than expecting others to intuit them, and the fourth, hardest, is holding them consistently. A boundary that dissolves the moment someone pushes back teaches people that it is negotiable, so calm consistency, not aggression, is what makes a limit real. None of this requires hostility; boundaries are most effective when set firmly but without anger, as simple statements of what you will and will not do. Done this way, boundaries actually improve relationships, because people know where they stand with you and come to respect a person who respects themselves, whereas those with no limits often find that endless accommodation earns not gratitude but diminishing regard.</p>
+        <div class="note"><strong>Note:</strong> A boundary you do not enforce is just a complaint. Others learn what you will actually tolerate from what you consistently allow, not from what you say, which is why calmly holding a limit matters more than announcing it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>بناء حدودٍ صحّية</h2>
+        <p class="lead">حماية نفسك دون أن تصير قاسيًا تقوم على مجموعة مهاراتٍ محورها الحدود: معرفة حدودك، وإبلاغها، والتمسّك بها.</p>
+        <p>الخطوة الأولى معرفة حدودك، الوضوح عمّا ستقبله ولن تقبله، وما تستطيع منحه دون استنزاف نفسك، وأي معاملةٍ لن تحتملها. فكثيرون يُستغَلّون ببساطةٍ لأنهم لم يعرّفوا هذه الخطوط حتى لأنفسهم، فينجرفون لالتزامٍ زائد وسوء معاملةٍ بلا نقطةٍ يقولون عندها كفى. والخطوة الثانية القدرة على قول لا. فلا واضحة هادئة بلا ذنبٍ الأداة الأساس لحماية الذات، وكثيرٌ من الاستغلال يأتي من عجزٍ عن الرفض، غالبًا من خوف إحباط الآخرين أو الصراع. وتعلّم أن لا جملةٌ كاملة، وأن رفض طلبٍ ليس فعل قسوة، تأسيسي.</p>
+        <ul>
+          <li><strong>اعرف حدودك:</strong> عرّف بوضوحٍ ما ستقبله وما تستطيع منحه وما لن تحتمله.</li>
+          <li><strong>قل لا بوضوح:</strong> رفضٌ هادئ بلا ذنبٍ الأداة الأساس لحماية الذات.</li>
+          <li><strong>أبلِغ حدودك:</strong> اذكر حدودك صراحةً بدل توقّع أن يخمّنها غيرك.</li>
+          <li><strong>تمسّك بها باتّساق:</strong> حدٌّ ينهار تحت الضغط يعلّم غيرك أنه غير حقيقي.</li>
+        </ul>
+        <p>والخطوة الثالثة إبلاغ الحدود صراحةً بدل توقّع أن يحدسها غيرك، والرابعة، الأصعب، التمسّك بها باتّساق. فحدٌّ يذوب لحظة يدفع أحدٌ يعلّم الناس أنه قابل للتفاوض، فالاتّساق الهادئ، لا العدوانية، هو ما يجعل الحدّ حقيقيًا. ولا شيء من هذا يتطلّب عدائية؛ فالحدود أفعل حين تُوضَع بحزمٍ لكن بلا غضب، كعباراتٍ بسيطة عمّا ستفعله ولن تفعله. ومفعولةً هكذا، الحدود تحسّن العلاقات فعلًا، لأن الناس يعرفون أين يقفون معك ويحترمون من يحترم نفسه، بينما من لا حدود لهم يجدون غالبًا أن المسايرة اللانهائية تكسب لا الامتنان بل تناقص التقدير.</p>
+        <div class="note"><strong>ملاحظة:</strong> حدٌّ لا تُنفِذه مجرّد شكوى. فالناس يتعلّمون ما ستحتمله فعلًا مما تسمح به باتّساقٍ لا مما تقوله، ولهذا التمسّك الهادئ بالحدّ يهمّ أكثر من إعلانه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="balance">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Firmness Without Hardness</h2>
+        <p class="lead">A fair framework guards both sides, because the cure for being a pushover can overshoot into harshness, and neither extreme serves you well.</p>
+        <p>The first caution is not to confuse boundaries with selfishness or aggression. Standing up for yourself does not mean refusing to help, disregarding others, or treating every request as an imposition. Healthy self-respect coexists with genuine generosity and care; the difference is that the generosity is chosen, not extracted, and coexists with limits. Someone who has overcorrected into refusing all requests and suspecting all kindness has traded one problem for another. The point is balance: firm enough not to be exploited, warm enough to remain a good person.</p>
+        <p>The second caution is to keep judging each situation on its merits rather than applying a blanket rule. Sometimes the right thing is to give generously, tolerate an imperfection, or let a small slight pass, and reflexible good judgment, not rigid self-defense, is the mark of maturity. The aim of this whole framework is not to make you guarded and hard, but to give a fundamentally decent person the backbone to match their heart, so that their kindness flows from choice and strength. Held that way, self-respect and generosity are not opposites but partners: you give freely because you can also decline freely, and that is what keeps your goodness from being consumed.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> protecting yourself means adding firm, calmly held boundaries to a good heart, knowing your limits, saying no without guilt, and enforcing your lines consistently, so that your kindness is generosity offered from strength rather than weakness others exploit, while avoiding the opposite trap of becoming hard.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>حزمٌ بلا قسوة</h2>
+        <p class="lead">الإطار العادل يحرس الجانبين، لأن علاج كونك لقمةً سائغة قد يتجاوز لقسوة، ولا طرفٌ يخدمك جيدًا.</p>
+        <p>التحذير الأول ألّا تخلط الحدود بالأنانية أو العدوانية. فالوقوف مع نفسك لا يعني رفض المساعدة أو تجاهل الآخرين أو معاملة كل طلبٍ كعبء. واحترام الذات الصحّي يتعايش مع كرمٍ وعنايةٍ حقيقيين؛ الفرق أن الكرم مختار لا مُنتزَع، ويتعايش مع حدود. ومن أفرط تصحيحًا لرفض كل الطلبات والارتياب بكل لطفٍ بادل مشكلةً بأخرى. والمقصد التوازن: حازمٌ كفايةً ألّا تُستغَلّ، دافئٌ كفايةً لتبقى شخصًا طيّبًا.</p>
+        <p>والتحذير الثاني إبقاء الحكم على كل موقفٍ بحسبه لا تطبيق قاعدةٍ شاملة. فأحيانًا الصواب أن تعطي بكرم، أو تحتمل نقصًا، أو تدع إساءةً صغيرة تمرّ، والحكم الجيد المرن، لا الدفاع الجامد عن الذات، علامة النضج. وهدف هذا الإطار كله ليس جعلك متحفّظًا قاسيًا، بل منح شخصٍ لائقٍ جوهرًا عمودًا فقريًا يوازي قلبه، فيتدفّق لطفه من اختيارٍ وقوّة. ومحمولًا هكذا، احترام الذات والكرم ليسا نقيضين بل شريكين: تعطي بحرّيةٍ لأنك تستطيع الرفض بحرّيةٍ أيضًا، وذلك ما يحفظ طيبتك من أن تُستهلَك.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> حماية نفسك تعني إضافة حدودٍ حازمة مُمسَكة بهدوءٍ لقلبٍ طيّب، بمعرفة حدودك، وقول لا بلا ذنب، وإنفاذ خطوطك باتّساق، فيصير لطفك كرمًا مُقدَّمًا من قوّةٍ لا ضعفًا يستغلّه غيرك، مع تجنّب الفخّ المقابل، أن تصير قاسيًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Self-respect means adding firm boundaries to a good heart, so your kindness is not exploited.</p>
+        <ul>
+          <li>Know your limits clearly: what you will accept, what you can give, and what you will not tolerate.</li>
+          <li>Learn to say no calmly and without guilt, since refusal is not an act of cruelty.</li>
+          <li>Communicate boundaries plainly and hold them consistently, since inconsistency teaches others to push.</li>
+          <li>Set limits firmly but without anger, so boundaries strengthen relationships rather than damage them.</li>
+          <li>Avoid overcorrecting into harshness; the aim is firmness with warmth, not guardedness.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.apa.org/topics/anger/assertiveness" target="_blank" rel="noopener">On assertiveness and healthy self-expression.</a></li>
+          <li><a href="https://www.psychologytoday.com/us/basics/boundaries" target="_blank" rel="noopener">On personal boundaries and why they matter.</a></li>
+          <li><a href="https://hbr.org/2019/09/how-to-say-no-to-taking-on-more-work" target="_blank" rel="noopener">HBR, on saying no and protecting your capacity.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">احترام الذات يعني إضافة حدودٍ حازمة لقلبٍ طيّب، فلا يُستغَلّ لطفك.</p>
+        <ul>
+          <li>اعرف حدودك بوضوح: ما ستقبله، وما تستطيع منحه، وما لن تحتمله.</li>
+          <li>تعلّم قول لا بهدوءٍ وبلا ذنب، إذ الرفض ليس فعل قسوة.</li>
+          <li>أبلِغ حدودك صراحةً وتمسّك بها باتّساق، إذ عدم الاتّساق يعلّم غيرك الدفع.</li>
+          <li>ضع الحدود بحزمٍ لكن بلا غضب، فتقوّي الحدود العلاقات لا تضرّها.</li>
+          <li>تجنّب الإفراط تصحيحًا لقسوة؛ الهدف حزمٌ بدفءٍ لا تحفّظ.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.apa.org/topics/anger/assertiveness" target="_blank" rel="noopener">عن الحزم والتعبير الصحّي عن الذات.</a></li>
+          <li><a href="https://www.psychologytoday.com/us/basics/boundaries" target="_blank" rel="noopener">عن الحدود الشخصية ولماذا تهمّ.</a></li>
+          <li><a href="https://hbr.org/2019/09/how-to-say-no-to-taking-on-more-work" target="_blank" rel="noopener">HBR، عن قول لا وحماية طاقتك.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">← Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next →</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  <footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright © 2026 Saif Alghamdi</div>
+  </footer>
+
+
+</div>
+<script>
+var TITLE_AR="احترم نفسك واضبط حدودك";
+var TITLE_EN="Self-Respect & Boundaries";
+
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('.topnav [data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+}
+
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(i,scroll){
+  if(i<0)i=0;if(i>SLIDES.length-1)i=SLIDES.length-1;CURS=i;
+  SLIDES.forEach(function(s,k){s.classList.toggle('act',k===i);});
+  TOCA.forEach(function(a){a.classList.toggle('act',SLIDES[CURS].id===a.getAttribute('data-id'));});
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.style.visibility=(CURS===0?'hidden':'visible');
+  if(nb)nb.style.visibility=(CURS===SLIDES.length-1?'hidden':'visible');
+  if(scroll){var t=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+    var y=t.offsetTop-(tb?tb.offsetHeight:0)-14;if(window.scrollY>y)window.scrollTo({top:y,behavior:'smooth'});}
+}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+showSlide(0,false);
+setLang('en');
+
+
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+</body></html>
