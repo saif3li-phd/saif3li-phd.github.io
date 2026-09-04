@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Action Research &amp; Design Science</title>
+<meta name="description" content="Action research and design science in depth: the plan-act-observe-reflect cycle, the artifact and design principles, rigour standards, and known failures.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Research design and methodology</span><span data-lang="ar">تصميم البحث ومنهجيته</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">RESEARCH DESIGN &amp; METHODOLOGY · PhD</span><span data-lang="ar">تصميم البحث ومنهجيته · دكتوراه</span></div>
+    <h1><span data-lang="en">Action Research &amp; Design Science</span><span data-lang="ar">البحث الإجرائي وعلم التصميم</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Research design and methodology</span><span data-lang="ar">تصميم البحث ومنهجيته</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">9 min</span><span data-lang="ar">٩ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="cycle"><span data-lang="en">The AR Cycle</span><span data-lang="ar">دورة البحث الإجرائي</span></a></li><li><a data-id="dsr"><span data-lang="en">Design Science</span><span data-lang="ar">علم التصميم</span></a></li><li><a data-id="rigour"><span data-lang="en">Rigour & Failures</span><span data-lang="ar">الصرامة والإخفاقات</span></a></li><li><a data-id="example"><span data-lang="en">Worked Example</span><span data-lang="ar">مثال تطبيقي</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Strategies:</span> Action research and design science research</div>
+          <div><span>Shared commitment:</span> Producing knowledge by intervening, not only by observing</div>
+          <div><span>Key authorities:</span> Lewin; Reason &amp; Bradbury; Hevner; Peffers</div>
+          <div><span>Level:</span> Doctoral research methodology</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Most research strategies observe a world they try not to disturb. Action research and design science research do the opposite on principle: they change something and study the change, holding that certain kinds of knowledge, above all knowledge about how to make things work in real settings, can only be produced by attempting it. Both therefore answer questions beginning how can, which the observational strategies cannot reach.</p>
+        <p>The two are cousins rather than twins. Action research, whose founding formulation is credited to Kurt Lewin, works with the people affected by a problem to change their own situation, cycling through plan, act, observe, and reflect, and it treats the improvement of practice and the production of knowledge as one activity rather than two. Design science research, developed largely in information systems and engineering, builds an artifact, a method, a model, a system, a set of design principles, and evaluates it against the problem it was built to solve, contributing design knowledge that others can reuse. One centres participation and local emancipation; the other centres the artifact and its transferable design principles, and both stand on the pragmatist ground this portal covers elsewhere, where knowledge is judged by what it enables.</p>
+        <p>For a doctoral researcher these strategies are attractive and demanding in equal measure. Attractive because they suit practitioner-scholars studying their own field and because they produce visible practical value alongside the thesis. Demanding because the dual obligation, real change and defensible knowledge, doubles the ways a study can fail, and because both are frequently mistaken for consultancy with a literature review attached. This framework sets out the action research cycle and its participatory logic, the design science cycle and artifact evaluation, the rigour standards each is judged by, the characteristic failures, and a worked example. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> The line between these strategies and consultancy is a single question: what would another researcher, in another organization, be able to use from your study? If the answer is only that one organization improved, it was a good project and not yet research.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الاستراتيجيتان:</span> البحث الإجرائي وعلم التصميم</div>
+          <div><span>الالتزام المشترك:</span> إنتاج المعرفة بالتدخل لا بالملاحظة وحدها</div>
+          <div><span>المراجع الرئيسية:</span> لوين؛ ريزون وبرادبري؛ هيفنر؛ بيفرز</div>
+          <div><span>المستوى:</span> منهجية البحث لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">معظم استراتيجيات البحث تلاحظ عالمًا تحاول ألا تزعجه. والبحث الإجرائي وعلم التصميم يفعلان العكس مبدئيًا: فهما يغيّران شيئًا ويدرسان التغيير، على أساس أن أنواعًا من المعرفة، وعلى رأسها المعرفة بكيفية إنجاح الأشياء في بيئات حقيقية، لا يمكن إنتاجها إلا بمحاولتها. ولذلك يجيبان أسئلة تبدأ بـ«كيف يمكن»، وهي أسئلة لا تبلغها الاستراتيجيات الملاحِظة.</p>
+        <p>وهما ابنا عم لا توأمان. فالبحث الإجرائي، الذي تُنسَب صياغته المؤسِّسة إلى كورت لوين، يعمل مع المتأثرين بمشكلة لتغيير وضعهم هم، متنقلًا عبر دورات التخطيط والتنفيذ والملاحظة والتأمل، ويعامل تحسين الممارسة وإنتاج المعرفة نشاطًا واحدًا لا نشاطين. وعلم التصميم، المطوَّر أساسًا في نظم المعلومات والهندسة، يبني أثرًا مصنوعًا، منهجًا أو نموذجًا أو نظامًا أو مجموعة مبادئ تصميم، ويقيّمه مقابل المشكلة التي بُني لحلّها، فيسهم بمعرفة تصميمية يستطيع آخرون إعادة استخدامها. أحدهما يمركز المشاركة والتحرر المحلي؛ والآخر يمركز الأثر المصنوع ومبادئ تصميمه القابلة للنقل، وكلاهما يقف على الأرضية البراغماتية التي تغطيها هذه البوابة في موضع آخر، حيث تُحكَم المعرفة بما تتيحه.</p>
+        <p>وهاتان الاستراتيجيتان لباحث الدكتوراه جذّابتان ومطالِبتان بالقدر نفسه. جذّابتان لأنهما تناسبان الممارس الباحث الذي يدرس حقله هو، ولأنهما تنتجان قيمة عملية مرئية إلى جانب الأطروحة. ومطالِبتان لأن الالتزام المزدوج، تغييرٌ حقيقي ومعرفةٌ يمكن الدفاع عنها، يضاعف طرق فشل الدراسة، ولأن كليهما كثيرًا ما يُخلَط بالاستشارة مع مراجعة أدبيات ملحقة. يعرض هذا الإطار دورة البحث الإجرائي ومنطقها التشاركي، ودورة علم التصميم وتقييم الأثر المصنوع، ومعايير الصرامة التي يُحكَم بها كل منهما، والإخفاقات المميزة، ومثالًا تطبيقيًا. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> الخط الفاصل بين هاتين الاستراتيجيتين والاستشارة سؤال واحد: ما الذي سيستطيع باحث آخر، في منظمة أخرى، استخدامه من دراستك؟ فإن كان الجواب أن منظمة واحدة تحسّنت فقط، فقد كان مشروعًا جيدًا ولم يكن بحثًا بعد.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="cycle">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Action Research Cycle</h2>
+        <p class="lead">Action research proceeds in cycles, and the cycling is the method: knowledge accumulates because each attempt is evaluated and the evaluation reshapes the next attempt, as the figure shows.</p>
+        <svg viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><circle cx="190" cy="175" r="118" fill="none" stroke="#DEDEDE" stroke-width="2" stroke-dasharray="6 5"/><circle cx="190.0" cy="57.0" r="46" fill="#2D2D2D"/><text x="190.0" y="61.0" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">Plan</text><circle cx="308.0" cy="175.0" r="46" fill="#9A1C1C"/><text x="308.0" y="179.0" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">Act</text><circle cx="190.0" cy="293.0" r="46" fill="#B34747"/><text x="190.0" y="297.0" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">Observe</text><circle cx="72.0" cy="175.0" r="46" fill="#C97A7A"/><text x="72.0" y="179.0" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">Reflect</text><text x="190" y="180" text-anchor="middle" font-size="14" font-weight="700" fill="#A32020">1</text><circle cx="500" cy="175" r="118" fill="none" stroke="#DEDEDE" stroke-width="2" stroke-dasharray="6 5"/><circle cx="500.0" cy="57.0" r="46" fill="#2D2D2D"/><text x="500.0" y="61.0" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">Plan</text><circle cx="618.0" cy="175.0" r="46" fill="#9A1C1C"/><text x="618.0" y="179.0" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">Act</text><circle cx="500.0" cy="293.0" r="46" fill="#B34747"/><text x="500.0" y="297.0" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">Observe</text><circle cx="382.0" cy="175.0" r="46" fill="#C97A7A"/><text x="382.0" y="179.0" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">Reflect</text><text x="500" y="180" text-anchor="middle" font-size="14" font-weight="700" fill="#A32020">2</text><line x1="320" y1="175" x2="360" y2="175" stroke="#A32020" stroke-width="2.5"/><path d="M372 175 l-12 -6 l0 12 z" fill="#A32020"/><text x="360" y="365" text-anchor="middle" font-size="12" fill="#A32020">each cycle feeds the next: what reflection learns reshapes the next plan</text></svg>
+        <p>Planning begins with a diagnosis developed jointly with participants rather than delivered to them, because a problem defined by management alone will produce an intervention that treats the symptom management can see. The plan states the intended change, its rationale drawn from theory, and, crucially, what would count as evidence that it worked, decided before acting rather than after. Action implements the change in the real setting with all its interruptions, and the discipline here is documentation: what was actually done, by whom, what was adapted along the way and why, since the gap between planned and enacted intervention is often the study's most informative data. Observation gathers evidence through whatever methods fit, interviews, metrics, observation, documents, and it deliberately looks for unintended consequences as well as intended ones. Reflection interprets the evidence with participants, asks what this says about the theory as well as about the workplace, and produces the next cycle's plan.</p>
+        <p>Three variants matter. Participatory action research pushes the participation commitment furthest, treating participants as co-researchers who share in framing, analysis, and decisions about the findings, in the emancipatory tradition connected to the critical paradigm. Insider action research, common in doctoral work, is conducted by someone already employed in the setting, which grants access and tacit understanding while raising the sharpest role and ethics questions this page returns to below. Canonical action research, associated with information systems, formalizes the cycle with an explicit research agreement, a client-researcher contract specifying roles, theory, and exit conditions, precisely so that the study's research obligations survive the organization's changing priorities.</p>
+        <div class="note"><strong>Note:</strong> Fix the success criteria in the planning stage of each cycle. Deciding after the fact what would have counted as improvement is the single most common way action research loses its evidential value.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>دورة البحث الإجرائي</h2>
+        <p class="lead">يمضي البحث الإجرائي في دورات، والدوران هو المنهج: فالمعرفة تتراكم لأن كل محاولة تُقيَّم ويعيد التقييم تشكيل المحاولة التالية، كما يبيّن الشكل.</p>
+        <svg viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><circle cx="190" cy="175" r="118" fill="none" stroke="#DEDEDE" stroke-width="2" stroke-dasharray="6 5"/><circle cx="190.0" cy="57.0" r="46" fill="#2D2D2D"/><text x="190.0" y="61.0" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">التخطيط</text><circle cx="308.0" cy="175.0" r="46" fill="#9A1C1C"/><text x="308.0" y="179.0" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">التنفيذ</text><circle cx="190.0" cy="293.0" r="46" fill="#B34747"/><text x="190.0" y="297.0" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">الملاحظة</text><circle cx="72.0" cy="175.0" r="46" fill="#C97A7A"/><text x="72.0" y="179.0" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">التأمل</text><text x="190" y="180" text-anchor="middle" font-size="14" font-weight="700" fill="#A32020">1</text><circle cx="500" cy="175" r="118" fill="none" stroke="#DEDEDE" stroke-width="2" stroke-dasharray="6 5"/><circle cx="500.0" cy="57.0" r="46" fill="#2D2D2D"/><text x="500.0" y="61.0" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">التخطيط</text><circle cx="618.0" cy="175.0" r="46" fill="#9A1C1C"/><text x="618.0" y="179.0" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">التنفيذ</text><circle cx="500.0" cy="293.0" r="46" fill="#B34747"/><text x="500.0" y="297.0" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">الملاحظة</text><circle cx="382.0" cy="175.0" r="46" fill="#C97A7A"/><text x="382.0" y="179.0" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">التأمل</text><text x="500" y="180" text-anchor="middle" font-size="14" font-weight="700" fill="#A32020">2</text><line x1="320" y1="175" x2="360" y2="175" stroke="#A32020" stroke-width="2.5"/><path d="M372 175 l-12 -6 l0 12 z" fill="#A32020"/><text x="360" y="365" text-anchor="middle" font-size="12" fill="#A32020">كل دورة تغذّي التالية: ما يتعلمه التأمل يعيد تشكيل الخطة التالية</text></svg>
+        <p>يبدأ التخطيط بتشخيص يُطوَّر بالاشتراك مع المشاركين لا يُسلَّم إليهم، لأن مشكلة تعرّفها الإدارة وحدها ستنتج تدخلًا يعالج العَرَض الذي تراه الإدارة. والخطة تذكر التغيير المقصود، ومسوّغه المستمد من النظرية، والأهم ما الذي سيُعَدّ دليلًا على نجاحه، محدَّدًا قبل التنفيذ لا بعده. والتنفيذ يطبّق التغيير في البيئة الحقيقية بكل انقطاعاتها، والانضباط هنا التوثيق: ما الذي جرى فعلًا، ومن فعله، وما الذي كُيِّف في أثناء الطريق ولماذا، لأن الفجوة بين التدخل المخطط والمنفَّذ كثيرًا ما تكون أكثر بيانات الدراسة إفادة. والملاحظة تجمع الأدلة بأي مناهج تناسب، مقابلات ومؤشرات وملاحظة ووثائق، وتبحث عمدًا عن العواقب غير المقصودة كما عن المقصودة. والتأمل يؤوّل الأدلة مع المشاركين، ويسأل ماذا يقول هذا عن النظرية كما عن مكان العمل، وينتج خطة الدورة التالية.</p>
+        <p>وثلاثة أنواع مهمة. البحث الإجرائي التشاركي يدفع التزام المشاركة إلى أقصاه، معاملًا المشاركين باحثين شركاء يشاركون في التأطير والتحليل والقرارات بشأن النتائج، في التقليد التحرري المتصل بالنموذج النقدي. والبحث الإجرائي من الداخل، وهو شائع في أعمال الدكتوراه، يجريه من يعمل أصلًا في البيئة، وهذا يمنح الوصول والفهم الضمني بينما يثير أحدّ أسئلة الدور والأخلاقيات التي تعود إليها هذه الصفحة أدناه. والبحث الإجرائي القانوني، المرتبط بنظم المعلومات، يُضفي رسمية على الدورة باتفاقية بحث صريحة، عقد بين العميل والباحث يحدد الأدوار والنظرية وشروط الخروج، وذلك بالضبط لكي تنجو التزامات الدراسة البحثية من تبدّل أولويات المنظمة.</p>
+        <div class="note"><strong>ملاحظة:</strong> ثبّت معايير النجاح في مرحلة التخطيط من كل دورة. فتقرير ما كان سيُعَدّ تحسّنًا بعد وقوع الأمر هو أشيع طريقة يفقد بها البحث الإجرائي قيمته الاستدلالية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="dsr">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Design Science and the Artifact</h2>
+        <p class="lead">Design science research asks a different question of intervention: not how do we improve this situation with these people, but what artifact solves this class of problem, and what general design knowledge does building it produce.</p>
+        <p>Its process, formalized in the widely used methodology of Peffers and colleagues, runs through six activities: identify the problem and motivate, define the objectives of a solution, design and develop the artifact, demonstrate it in a suitable context, evaluate it against the objectives, and communicate the results. The artifact itself can be a construct, a vocabulary or concept, a model, an abstraction of relationships, a method, a procedure for doing something, or an instantiation, a working system, and doctoral work commonly produces a method or model together with a prototype that demonstrates it. The iteration is real: evaluation feeds back into design, and multiple build-evaluate cycles are expected rather than exceptional.</p>
+        <p>The intellectual anchor is Hevner's relevance and rigour cycles. The relevance cycle connects the research to a real environment, taking requirements from actual problems and returning artifacts to be tested there, which is what keeps design science from producing elegant solutions to problems nobody has. The rigour cycle connects it to the existing knowledge base, drawing on prior theory and methods and, critically, adding back to it: the thesis's contribution is not the artifact alone but the design knowledge it embodies, usually expressed as design principles stated at a level of abstraction another researcher could apply elsewhere. Evaluation deserves the same care as measurement in a survey: the criteria are derived from the stated objectives, the evaluation method is chosen and defended, naturalistic evaluation in a real setting or artificial evaluation in a controlled one, and negative results are reported, since an artifact that failed to solve the problem it targeted teaches design knowledge too.</p>
+        <div class="note"><strong>Note:</strong> In design science the thesis contribution lives in the design principles, not in the artifact. Write them explicitly, in a form portable to other contexts, or the study reads as a software project with citations.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>علم التصميم والأثر المصنوع</h2>
+        <p class="lead">يسأل علم التصميم سؤالًا مختلفًا عن التدخل: لا «كيف نحسّن هذا الوضع مع هؤلاء الناس»، بل «أي أثر مصنوع يحلّ هذا الصنف من المشكلات، وأي معرفة تصميمية عامة ينتجها بناؤه».</p>
+        <p>وعمليته، المصوغة رسميًا في المنهجية الواسعة الاستخدام لبيفرز وزملائه، تمرّ بستة أنشطة: تحديد المشكلة والتحفيز، وتعريف أهداف الحل، وتصميم الأثر المصنوع وتطويره، وعرضه في سياق مناسب، وتقييمه مقابل الأهداف، ونشر النتائج. والأثر المصنوع نفسه قد يكون بناءً، أي مفردة أو مفهومًا، أو نموذجًا، أي تجريدًا لعلاقات، أو منهجًا، أي إجراءً لفعل شيء، أو تجسيدًا، أي نظامًا عاملًا، وأعمال الدكتوراه تنتج عادةً منهجًا أو نموذجًا مع نموذج أولي يعرضه. والتكرار حقيقي: فالتقييم يعود إلى التصميم، ودورات بناء وتقييم متعددة متوقعة لا استثنائية.</p>
+        <p>والمرساة الفكرية دورتا الملاءمة والصرامة عند هيفنر. فدورة الملاءمة تصل البحث ببيئة حقيقية، آخذةً المتطلبات من مشكلات فعلية ومعيدةً الآثار المصنوعة لتُختبَر هناك، وهذا ما يمنع علم التصميم من إنتاج حلول أنيقة لمشكلات لا يملكها أحد. ودورة الصرامة تصله بقاعدة المعرفة القائمة، مستفيدةً من النظريات والمناهج السابقة، والأهم مضيفةً إليها: فإسهام الأطروحة ليس الأثر المصنوع وحده بل المعرفة التصميمية التي يجسّدها، معبَّرًا عنها عادةً بمبادئ تصميم مصوغة على مستوى تجريد يستطيع باحث آخر تطبيقه في مكان آخر. والتقييم يستحق العناية نفسها التي يستحقها القياس في مسح: فالمعايير تُشتَق من الأهداف المعلنة، وطريقة التقييم تُختار ويُدافَع عنها، تقييمًا طبيعيًا في بيئة حقيقية أو اصطناعيًا في بيئة مضبوطة، وتُبلَّغ النتائج السلبية، لأن أثرًا مصنوعًا أخفق في حل المشكلة التي استهدفها يعلّم معرفة تصميمية كذلك.</p>
+        <div class="note"><strong>ملاحظة:</strong> في علم التصميم يقيم إسهام الأطروحة في مبادئ التصميم لا في الأثر المصنوع. اكتبها صراحةً، بصيغة قابلة للنقل إلى سياقات أخرى، وإلا قُرئت الدراسة مشروعًا برمجيًا باستشهادات.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="rigour">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Rigour, Ethics, and Characteristic Failures</h2>
+        <p class="lead">Interventionist strategies are judged by standards of their own, and knowing them is what separates a defensible thesis from a well-run project, since the usual criteria do not transfer unmodified.</p>
+        <p>Neither strategy claims statistical generalization, and neither should pretend to. Action research is judged by workability, did the change actually improve the situation on criteria set in advance; by participation, was it genuinely done with rather than to; by the dual outcome, did it produce both practical improvement and knowledge that speaks to theory; and by the transparency of the cycles, with the audit trail of plans, actions, adaptations, and reflections open to inspection. Design science is judged by artifact utility against stated objectives, by the rigour of the evaluation, and by the generality and clarity of the design principles extracted. Both claim analytic rather than statistical generalization, in the case-study logic covered elsewhere in this portal: the contribution transfers as theory and principle, not as a population estimate.</p>
+        <p>The characteristic failures are well documented. Consultancy in disguise: real change delivered, no theoretical engagement, no knowledge claim beyond this organization. Theory as decoration: a literature review at the front, an intervention in the middle, and no traffic between them, when the test is whether theory shaped the intervention and the intervention talked back to theory. Single-cycle truncation: one round completed and the thesis written, forfeiting exactly the learning that the cycling exists to produce. Success bias: reporting the cycle that worked, when failed cycles are frequently the most instructive material a thesis of this kind possesses. And the insider's role conflict, the sharpest ethical issue here: the researcher who is also an employee holds power over participants, hears things as a researcher they would have to act on as a colleague, and may have a career stake in the intervention succeeding, so the role boundaries, consent under that power, and the treatment of unwelcome findings must be designed and declared in advance, in the pattern this portal's ethics page sets out.</p>
+        <div class="note"><strong>Note:</strong> Report the cycle that failed. In interventionist research a failed cycle followed by a reasoned redesign is stronger evidence of knowledge production than a first attempt that happened to work.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الصرامة والأخلاقيات والإخفاقات المميزة</h2>
+        <p class="lead">تُحكَم الاستراتيجيتان التدخليتان بمعايير خاصة بهما، ومعرفتها هي ما يفصل أطروحة يمكن الدفاع عنها عن مشروع حسن الإدارة، لأن المعايير المعتادة لا تنتقل دون تعديل.</p>
+        <p>لا تدّعي أي منهما التعميم الإحصائي، ولا ينبغي لأي منهما التظاهر بذلك. فالبحث الإجرائي يُحكَم بقابلية التطبيق، هل حسّن التغيير الوضع فعلًا وفق معايير وُضعت مسبقًا؛ وبالمشاركة، هل جرى فعلًا «مع» لا «على»؛ وبالمخرَج المزدوج، هل أنتج تحسّنًا عمليًا ومعرفةً تخاطب النظرية معًا؛ وبشفافية الدورات، بسجل تدقيق من الخطط والأفعال والتكييفات والتأملات مفتوح للفحص. وعلم التصميم يُحكَم بمنفعة الأثر المصنوع مقابل الأهداف المعلنة، وبصرامة التقييم، وبعمومية مبادئ التصميم المستخلصة ووضوحها. وكلاهما يدّعي تعميمًا تحليليًا لا إحصائيًا، بمنطق دراسة الحالة المغطى في موضع آخر من هذه البوابة: فالإسهام ينتقل نظريةً ومبدأً، لا تقديرًا لمجتمع سكاني.</p>
+        <p>والإخفاقات المميزة موثّقة جيدًا. الاستشارة متنكرة: تغيير حقيقي مُنجَز، بلا اشتباك نظري، وبلا ادّعاء معرفي يتجاوز هذه المنظمة. والنظرية زينةً: مراجعة أدبيات في المقدمة، وتدخل في الوسط، ولا حركة بينهما، بينما الاختبار هل شكّلت النظريةُ التدخلَ وهل ردّ التدخلُ على النظرية. وبتر الدورة الواحدة: جولة واحدة تكتمل وتُكتَب الأطروحة، فيُفرَّط بالضبط في التعلّم الذي وُجد الدوران لإنتاجه. وانحياز النجاح: الإبلاغ عن الدورة التي نجحت، بينما تكون الدورات الفاشلة كثيرًا أكثر المواد تعليمًا مما تملكه أطروحة من هذا النوع. وتضارب دور الباحث من الداخل، وهو أحدّ قضية أخلاقية هنا: فالباحث الذي هو موظف أيضًا يملك سلطة على المشاركين، ويسمع بصفته باحثًا أشياء كان سيجب عليه التصرف حيالها بصفته زميلًا، وقد يكون له مصلحة مهنية في نجاح التدخل، فيجب تصميم حدود الأدوار والموافقة تحت تلك السلطة ومعالجة النتائج غير المرغوبة وإعلانها مسبقًا، على النمط الذي تعرضه صفحة الأخلاقيات في هذه البوابة.</p>
+        <div class="note"><strong>ملاحظة:</strong> أبلغ عن الدورة التي فشلت. ففي البحث التدخلي تكون دورة فاشلة يتبعها إعادة تصميم مسبَّبة دليلًا على إنتاج المعرفة أقوى من محاولة أولى صادف أنها نجحت.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="example">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>A Worked Example, and Choosing Between Them</h2>
+        <p class="lead">One problem, two strategies, two different theses. Setting the same starting point against both choices is the clearest way to see what each buys and what each costs.</p>
+        <p>The starting point: a government agency's data quality is poor, and previous training programmes have not fixed it. The action research thesis works with the analysts and their supervisors across three cycles. Cycle one diagnoses jointly, and the participants' framing displaces the sponsor's, the problem is not analyst carelessness but a review step that makes correction cost more than submission, so the planned intervention changes the workflow rather than the training. Cycle one's action is implemented, observed through error rates and interviews, and reflection finds partial improvement plus an unintended effect, supervisors' workload rose. Cycle two redesigns accordingly and fails on a different constraint, and that failed cycle is reported in full. Cycle three succeeds, and the thesis's knowledge contribution is a theorized account of why quality interventions aimed at individual behaviour fail where the cost structure of correction is the binding constraint, which speaks to the wider literature on compliance rather than to this agency alone.</p>
+        <p>The design science thesis takes the same problem and builds instead. Objectives are derived from the problem and the literature, an artifact is designed, a data quality triage method with an accompanying prototype dashboard, and it is demonstrated in one department and evaluated naturalistically against pre-stated criteria in two more, with a further build-evaluate iteration after the first evaluation exposes a false-positive burden. The contribution is the method plus four design principles stated portably: make correction cheaper than submission at the point of entry, surface error cost to the person who can prevent it, and so on, each with the empirical evidence behind it. The choice between the two follows the question, not the taste: action research where the problem is situated and its solution requires the participation of those living it; design science where the problem represents a class and the aim is a reusable solution. Both are legitimate doctoral strategies, and both fail in the same way if the knowledge claim is left implicit while the practical work absorbs all the attention.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> action research and design science produce knowledge by intervening: one through participatory cycles of plan, act, observe, and reflect, the other through build and evaluate iterations that yield portable design principles. Both demand two outputs, real change and defensible knowledge, fixed criteria set in advance, honest reporting of failed cycles, and explicit handling of the researcher's role.</div>
+        <div class="refs"><ul>
+          <li>Reason &amp; Bradbury, <a href="https://uk.sagepub.com/en-gb/eur/the-sage-handbook-of-action-research/book228854" target="_blank" rel="noopener">The SAGE Handbook of Action Research</a>.</li>
+          <li>Coghlan &amp; Brannick, <a href="https://uk.sagepub.com/en-gb/eur/doing-action-research-in-your-own-organization/book258994" target="_blank" rel="noopener">Doing Action Research in Your Own Organization</a>.</li>
+          <li>Hevner, March, Park &amp; Ram, <a href="https://www.jstor.org/stable/25148625" target="_blank" rel="noopener">Design Science in Information Systems Research</a>.</li>
+          <li>Peffers et al., <a href="https://www.tandfonline.com/doi/abs/10.2753/MIS0742-1222240302" target="_blank" rel="noopener">A Design Science Research Methodology for Information Systems Research</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>مثال تطبيقي، والاختيار بينهما</h2>
+        <p class="lead">مشكلة واحدة، واستراتيجيتان، وأطروحتان مختلفتان. ووضع نقطة البداية نفسها أمام الخيارين أوضح طريقة لرؤية ما يشتريه كل منهما وما يكلّفه.</p>
+        <p>نقطة البداية: جودة البيانات في جهاز حكومي ضعيفة، وبرامج التدريب السابقة لم تصلحها. أطروحة البحث الإجرائي تعمل مع المحللين ومشرفيهم عبر ثلاث دورات. الدورة الأولى تشخّص بالاشتراك، ويزيح تأطير المشاركين تأطير الجهة الراعية، فالمشكلة ليست إهمال المحللين بل خطوة مراجعة تجعل التصحيح أغلى من التقديم، فيغيّر التدخل المخطط سير العمل لا التدريب. ويُنفَّذ فعل الدورة الأولى، ويُلاحَظ عبر معدلات الأخطاء والمقابلات، ويجد التأمل تحسّنًا جزئيًا مع أثر غير مقصود، إذ ارتفع عبء عمل المشرفين. والدورة الثانية تعيد التصميم تبعًا لذلك وتفشل على قيد مختلف، وتُبلَّغ تلك الدورة الفاشلة كاملةً. والدورة الثالثة تنجح، ويكون إسهام الأطروحة المعرفي حسابًا منظَّرًا لماذا تفشل تدخلات الجودة الموجَّهة إلى السلوك الفردي حيث تكون بنية تكلفة التصحيح هي القيد الملزم، وهو ما يخاطب أدبيات الامتثال الأوسع لا هذا الجهاز وحده.</p>
+        <p>وأطروحة علم التصميم تأخذ المشكلة نفسها وتبني بدل ذلك. تُشتَق الأهداف من المشكلة والأدبيات، ويُصمَّم أثر مصنوع، منهج فرز لجودة البيانات مع لوحة مؤشرات أولية مصاحبة، ويُعرَض في إدارة واحدة ويُقيَّم تقييمًا طبيعيًا مقابل معايير معلنة مسبقًا في إدارتين أخريين، مع تكرار بناء وتقييم إضافي بعد أن يكشف التقييم الأول عن عبء إنذارات كاذبة. والإسهام هو المنهج مع أربعة مبادئ تصميم مصوغة بقابلية نقل: اجعل التصحيح أرخص من التقديم عند نقطة الإدخال، وأظهر تكلفة الخطأ لمن يستطيع منعه، وهكذا، لكل مبدأ دليله التجريبي خلفه. والاختيار بين الاثنين يتبع السؤال لا الذوق: البحث الإجرائي حيث تكون المشكلة مموضَعة ويتطلب حلها مشاركة من يعيشونها؛ وعلم التصميم حيث تمثّل المشكلة صنفًا ويكون الهدف حلًّا قابلًا لإعادة الاستخدام. وكلاهما استراتيجية دكتوراه مشروعة، وكلاهما يفشل بالطريقة نفسها إذا تُرك الادّعاء المعرفي ضمنيًا بينما يمتص العمل العملي الانتباه كله.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> البحث الإجرائي وعلم التصميم ينتجان المعرفة بالتدخل: أحدهما عبر دورات تشاركية من التخطيط والتنفيذ والملاحظة والتأمل، والآخر عبر تكرارات بناء وتقييم تعطي مبادئ تصميم قابلة للنقل. وكلاهما يطلب مخرَجَين، تغييرًا حقيقيًا ومعرفةً يمكن الدفاع عنها، ومعايير ثابتة موضوعة مسبقًا، وإبلاغًا أمينًا عن الدورات الفاشلة، ومعالجة صريحة لدور الباحث.</div>
+        <div class="refs"><ul>
+          <li>ريزون وبرادبري، <a href="https://uk.sagepub.com/en-gb/eur/the-sage-handbook-of-action-research/book228854" target="_blank" rel="noopener">دليل سيج للبحث الإجرائي</a>.</li>
+          <li>كوغلان وبرانيك، <a href="https://uk.sagepub.com/en-gb/eur/doing-action-research-in-your-own-organization/book258994" target="_blank" rel="noopener">إجراء البحث الإجرائي في منظمتك</a>.</li>
+          <li>هيفنر ومارش وبارك ورام، <a href="https://www.jstor.org/stable/25148625" target="_blank" rel="noopener">علم التصميم في بحوث نظم المعلومات</a>.</li>
+          <li>بيفرز وآخرون، <a href="https://www.tandfonline.com/doi/abs/10.2753/MIS0742-1222240302" target="_blank" rel="noopener">منهجية بحث علم التصميم لنظم المعلومات</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="theory-construction-model-building.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Theory Construction &amp; Model Building</span><span data-lang="ar">بناء النظرية والنماذج</span></a><a href="design-experimental-quasi.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Experimental &amp; Quasi-Experimental Design</span><span data-lang="ar">التصاميم التجريبية وشبه التجريبية</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="البحث الإجرائي وعلم التصميم";
+var TITLE_EN="Action Research &amp; Design Science";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

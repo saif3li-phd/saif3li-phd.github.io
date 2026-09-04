@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theory Construction &amp; Model Building</title>
+<meta name="description" content="Theory construction and model building in depth: concepts, relationships, a grammar of models, heuristics for generating theory, and how theory is judged.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Reasoning and theory</span><span data-lang="ar">الاستدلال والنظرية</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">REASONING &amp; THEORY · PhD</span><span data-lang="ar">الاستدلال والنظرية · دكتوراه</span></div>
+    <h1><span data-lang="en">Theory Construction &amp; Model Building</span><span data-lang="ar">بناء النظرية والنماذج</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Reasoning and theory</span><span data-lang="ar">الاستدلال والنظرية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">10 min</span><span data-lang="ar">١٠ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="concepts"><span data-lang="en">Concepts</span><span data-lang="ar">المفاهيم</span></a></li><li><a data-id="relations"><span data-lang="en">Relationships</span><span data-lang="ar">العلاقات</span></a></li><li><a data-id="models"><span data-lang="en">Model Building</span><span data-lang="ar">بناء النماذج</span></a></li><li><a data-id="heuristics"><span data-lang="en">Generating Theory</span><span data-lang="ar">توليد النظرية</span></a></li><li><a data-id="judging"><span data-lang="en">Judging Theory</span><span data-lang="ar">الحكم على النظرية</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Theory construction and model building</div>
+          <div><span>Covers:</span> What theory is, concepts, relationships, models, and the craft of building them</div>
+          <div><span>Use:</span> Making a genuine theoretical contribution in a thesis</div>
+          <div><span>Level:</span> Doctoral research methodology</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">A doctorate is, by definition, a contribution to knowledge, and in most fields that means a contribution to theory: a new concept, a new relationship, a revised model, a better explanation. Yet theory construction is the least taught skill in research training. Students learn elaborate methods for testing theories and almost nothing about where theories come from, as if good ideas simply arrive. This framework treats theorizing as what it actually is, a learnable craft with materials, techniques, and standards of workmanship.</p>
+        <p>Start with what a theory is. As Mintzberg put it, data do not generate theory, only researchers do: data describe the patterns observed, while theory explains why those patterns are observed or expected. A theory is an attempt to make sense of the observable world by ordering the relationships among elements the theorist has chosen to attend to. It is built from two kinds of material: concepts, the named categories that carve up the phenomenon, and relationships, the proposed connections among them, above all causal connections that say why one thing brings about another. A model is the organized expression of a theory, often visual, that lays out its concepts and relationships in a form that can be examined, communicated, and tested.</p>
+        <p>Good theory earns its keep by doing three jobs at once. It explains, providing the account of why that description alone cannot give. It predicts, telling us what to expect in cases not yet observed, which is what exposes it to testing. And it guides, telling researchers what to look at and practitioners what to act on, since a phenomenon without theory is just a heap of particulars. A thesis whose contribution is theoretical must therefore show precisely which of these jobs its new or revised theory does better than what existed before.</p>
+        <p>This framework sets out the anatomy of a theory, the craft of forming good concepts, the types of relationships that connect them, a diagrammed grammar of model building, the heuristics that generate new theory, and the standards by which theoretical contributions are judged. It is my own synthesis, written in my own words and grounded in recognized scholarship, including the theory-construction tradition of Jaccard and Jacoby.</p>
+        <div class="note"><strong>Note:</strong> Description tells you what is there; theory tells you why it hangs together and what will happen next. If your thesis cannot state its why in two sentences, the theoretical contribution is not yet built.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> بناء النظرية والنماذج</div>
+          <div><span>يغطّي:</span> ما النظرية، والمفاهيم، والعلاقات، والنماذج، وحِرفة بنائها</div>
+          <div><span>الاستخدام:</span> تقديم إسهام نظري حقيقي في الأطروحة</div>
+          <div><span>المستوى:</span> منهجية بحث لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الدكتوراه، بالتعريف، إسهام في المعرفة، وفي أغلب الحقول يعني ذلك إسهامًا في النظرية: مفهوم جديد، علاقة جديدة، نموذج منقَّح، تفسير أفضل. ومع ذلك، بناء النظرية أقلّ المهارات تدريسًا في تدريب البحث. يتعلّم الطلاب مناهج مفصّلة لاختبار النظريات ولا شيء تقريبًا عن من أين تأتي النظريات، كأن الأفكار الجيدة تصل ببساطة. يعامل هذا الإطار التنظير كما هو فعلًا: حِرفة قابلة للتعلّم بموادّ وتقنيات ومعايير إتقان.</p>
+        <p>ابدأ بما هي النظرية. كما قال منتزبرغ، البيانات لا تولّد النظرية، الباحثون فقط يفعلون: تصف البيانات الأنماط الملحوظة، بينما تفسّر النظرية لماذا تُلاحَظ تلك الأنماط أو تُتوقَّع. النظرية محاولة لجعل العالم الملحوظ ذا معنًى بترتيب العلاقات بين عناصر اختار المنظِّر الانتباه إليها. وتُبنى من نوعَين من المادّة: المفاهيم، الفئات المذكورة التي تقطّع الظاهرة، والعلاقات، الوصلات المقترحة بينها، وقبل الكلّ الوصلات السببية التي تقول لماذا يُحدِث شيء آخر. والنموذج التعبير المنظَّم عن نظرية، بصريًا غالبًا، يعرض مفاهيمها وعلاقاتها بصيغة يمكن فحصها وإيصالها واختبارها.</p>
+        <p>وتستحقّ النظرية الجيدة مكانها بأداء ثلاث مهامّ معًا. تفسّر، مقدّمةً حساب «اللماذا» الذي لا يعطيه الوصف وحده. وتتنبّأ، مخبرةً ما نتوقّع في حالات لم تُلاحَظ بعد، وهو ما يعرّضها للاختبار. وتوجّه، مخبرةً الباحثين بماذا ينظرون والممارسين بماذا يعملون، إذ الظاهرة بلا نظرية مجرّد كومة جزئيات. فأطروحة إسهامها نظري يجب أن تُظهِر بدقّة أي هذه المهامّ تؤدّيها نظريتها الجديدة أو المنقَّحة أفضل ممّا وُجد قبلها.</p>
+        <p>يعرض هذا الإطار تشريح النظرية، وحِرفة تكوين مفاهيم جيدة، وأنواع العلاقات الرابطة بينها، وقواعد بناء النماذج بمخطط، والاستدلالات المولِّدة لنظرية جديدة، والمعايير التي تُحكَم بها الإسهامات النظرية. وقد أعددت هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة، ومنها تقليد بناء النظرية لجاكار وجاكوبي.</p>
+        <div class="note"><strong>ملاحظة:</strong> الوصف يخبرك بما هناك؛ والنظرية تخبرك لماذا يتماسك وماذا سيحدث تاليًا. إن لم تستطع أطروحتك قول «لماذاها» في جملتَين، فالإسهام النظري لم يُبن بعد.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="concepts">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Concepts: The Bricks of Theory</h2>
+        <p class="lead">Theories are built from concepts, and weak concepts doom a theory before any data arrive. The craft of concept formation deserves the same care that later goes into measurement, because a fuzzy concept can be measured with great precision and still mean nothing.</p>
+        <p>A concept is a named abstraction that groups instances by what matters about them: leadership, trust, absorptive capacity, resistance. Good concepts share identifiable virtues. They are clearly bounded, so one can say what falls inside and outside; a concept of employee engagement that quietly includes satisfaction, commitment, and effort at once explains everything and nothing. They are internally homogeneous, grouping things alike in the relevant respect rather than bundling separate phenomena under one label. They sit at a deliberate level of abstraction: abstract enough to travel beyond one setting, concrete enough to touch observable reality, and the theorist should be able to move the ladder both ways, giving instances when asked and giving the general class when asked. And they earn their place, either by capturing something existing concepts miss or by cutting a known phenomenon more usefully.</p>
+        <p>Two disciplines keep concept work honest. The first is conceptual definition before operational definition: say what the concept is before saying how it will be measured, because measurement choices inherit and hide conceptual choices. The second is boundary interrogation: for any proposed concept, ask what the nearest neighbours are, engagement versus commitment, trust versus perceived reliability, and state what distinguishes them; if nothing does, the field does not need the new term. Much of what looks like theoretical progress is actually concept proliferation, new labels for old things, and examiners are alert to it. Conversely, a genuinely new, well-bounded concept, absorptive capacity is a famous example, can organize a whole research programme, which is why concept formation is the highest-leverage move in theory construction.</p>
+        <div class="note"><strong>Note:</strong> Run the neighbour test on every key concept in your thesis: name its two nearest existing concepts and state, in one sentence each, how yours differs. If a sentence cannot be written, merge the concepts and save the examiner the trouble.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>المفاهيم: لبنات النظرية</h2>
+        <p class="lead">تُبنى النظريات من مفاهيم، والمفاهيم الضعيفة تُهلِك النظرية قبل وصول أي بيانات. وتستحقّ حِرفة تكوين المفاهيم العناية ذاتها التي تذهب لاحقًا للقياس، لأن مفهومًا ضبابيًا يمكن قياسه بدقّة عظيمة ويظلّ لا يعني شيئًا.</p>
+        <p>المفهوم تجريد مسمًّى يجمع الأمثلة بما يهمّ فيها: القيادة، الثقة، القدرة الاستيعابية، المقاومة. والمفاهيم الجيدة تتشارك فضائل معروفة. فهي واضحة الحدود، يمكن القول ما يقع داخلها وخارجها؛ ومفهوم اندماج موظفين يضمّ بصمت الرضا والالتزام والجهد معًا يفسّر كل شيء ولا شيء. وهي متجانسة داخليًا، تجمع أشياء متشابهة في الجانب المعني لا تحزم ظواهر منفصلة تحت وسم واحد. وتجلس في مستوى تجريد مقصود: مجرّدة كفايةً لتسافر وراء بيئة واحدة، وملموسة كفايةً لتلمس الواقع الملحوظ، وعلى المنظِّر أن يستطيع تحريك السلّم بالاتجاهين، معطيًا أمثلةً حين يُسأل ومعطيًا الفئة العامة حين يُسأل. وهي تستحقّ مكانها، إمّا بالتقاط ما تفوّته المفاهيم القائمة وإمّا بتقطيع ظاهرة معروفة تقطيعًا أنفع.</p>
+        <p>وانضباطان يُبقيان عمل المفاهيم أمينًا. الأول التعريف المفهومي قبل الإجرائي: قل ما المفهوم قبل قول كيف سيُقاس، لأن خيارات القياس ترث الخيارات المفهومية وتخفيها. والثاني استجواب الحدود: لأي مفهوم مقترح، اسأل ما أقرب الجيران، الاندماج مقابل الالتزام، الثقة مقابل الوثوقية المدرَكة، واذكر ما يميّزها؛ فإن لم يميّزها شيء، لم يحتج الحقل المصطلح الجديد. فكثير ممّا يبدو تقدّمًا نظريًا هو فعليًا تكاثر مفاهيم، وسوم جديدة لأشياء قديمة، والممتحِنون متيقّظون له. وبالعكس، مفهوم جديد فعلًا واضح الحدود، القدرة الاستيعابية مثال شهير، يستطيع تنظيم برنامج بحث كامل، ولهذا كان تكوين المفاهيم الحركة الأعلى رافعةً في بناء النظرية.</p>
+        <div class="note"><strong>ملاحظة:</strong> أجر اختبار الجيران على كل مفهوم مفتاح في أطروحتك: سمّ أقرب مفهومَين قائمَين واذكر، بجملة لكلّ، كيف يختلف مفهومك. إن استعصت الجملة، فادمج المفاهيم ووفّر على الممتحِن العناء.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="relations">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Relationships: The Mortar</h2>
+        <p class="lead">Concepts alone are a vocabulary; theory begins when they are connected. The connections come in a small number of types, and fluency in them is what lets a theorist say precisely what they are claiming, and lets an examiner see precisely what would test it.</p>
+        <p>The elementary relationship is direct causation: X raises or lowers Y. Even here precision pays: is the claimed effect linear, so each increment of X moves Y equally, or does it bend, with diminishing returns or a threshold below which nothing happens, or is it curvilinear, helpful up to a point and harmful past it, as stress famously is for performance? Each shape is a different theory with different implications. Beyond direct effects sit three workhorse structures. Mediation answers how: X changes Y through M, as when training improves performance by raising self-efficacy; the mediator is the mechanism, and specifying it converts a bare correlation into an explanation. Moderation answers when and for whom: W strengthens, weakens, or reverses the X-to-Y link, as when the effect of feedback on improvement depends on psychological safety. And reciprocal or feedback relations answer what happens over time: X shapes Y which returns to shape X, the loop structure behind spirals of trust, conflict, and momentum.</p>
+        <p>Two further distinctions guard against common confusions. Correlation without causal commitment is a legitimate but weaker claim, and a theorist should say plainly which they intend, since dressing correlational claims in causal language is the most frequent overclaim in theses. And spuriousness is the standing rival: any claimed X-to-Y link can be challenged by a third variable causing both, so a well-built theory names the plausible confounds and explains why the causal reading survives them. A theory stated in this grammar, effects with shapes, mechanisms, conditions, loops, and rivals addressed, is already halfway to its research design, because every element implies what data would support or embarrass it.</p>
+        <div class="note"><strong>Note:</strong> Force every arrow in your theory to answer three questions: through what mechanism, under what conditions, and against which rival explanation? An arrow that cannot answer is decoration, not theory.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>العلاقات: الملاط</h2>
+        <p class="lead">المفاهيم وحدها مفردات؛ والنظرية تبدأ حين تُوصَل. والوصلات تأتي بعدد صغير من الأنواع، والطلاقة فيها ما يتيح للمنظِّر قول ما يدّعيه بدقّة، وللممتحِن رؤية ما سيختبره بدقّة.</p>
+        <p>العلاقة الأولية السببية المباشرة: X يرفع Y أو يخفضه. وحتى هنا تُجزي الدقّة: أالأثر المدّعى خطّي، كل زيادة في X تحرّك Y بالتساوي، أم ينحني، بعوائد متناقصة أو عتبة لا يحدث تحتها شيء، أم منحنيّ، نافع حتى نقطة وضارّ بعدها، كما الضغط شهيرًا للأداء؟ كل شكل نظرية مختلفة بمستلزمات مختلفة. ووراء الآثار المباشرة ثلاث بُنى عاملة. الوساطة تجيب «كيف»: X يغيّر Y عبر M، كما حين يحسّن التدريب الأداء برفع الكفاءة الذاتية؛ والوسيط هو الآلية، وتحديده يحوّل ارتباطًا عاريًا إلى تفسير. والتعديل يجيب «متى ولمن»: W يقوّي وصلة X-Y أو يضعفها أو يعكسها، كما حين يعتمد أثر التغذية الراجعة على التحسّن على الأمان النفسي. والعلاقات التبادلية أو الراجعة تجيب «ماذا يحدث عبر الزمن»: X يشكّل Y الذي يعود فيشكّل X، بنية الحلقة خلف لوالب الثقة والصراع والزخم.</p>
+        <p>وتمييزان إضافيان يحرسان من خلط شائع. الارتباط بلا التزام سببي ادّعاء مشروع لكنه أضعف، وعلى المنظِّر القول صراحةً أيّهما يقصد، إذ إلباس الادّعاءات الارتباطية لغةً سببية أكثر التجاوزات تكرارًا في الأطروحات. والزيف المنافس الدائم: أي وصلة X-Y مدّعاة يمكن تحدّيها بمتغيّر ثالث يسبّب كليهما، فالنظرية حسنة البناء تسمّي المربكات المعقولة وتفسّر لماذا تنجو القراءة السببية منها. ونظرية مصوغة بهذه القواعد، آثار بأشكال، وآليات، وشروط، وحلقات، ومنافسون عولجوا، هي في منتصف الطريق لتصميمها البحثي سلفًا، لأن كل عنصر يستلزم أي بيانات ستدعمها أو تُحرِجها.</p>
+        <div class="note"><strong>ملاحظة:</strong> أجبِر كل سهم في نظريتك على إجابة ثلاثة أسئلة: عبر أي آلية، وتحت أي شروط، وضدّ أي تفسير منافس؟ سهم لا يجيب زينة لا نظرية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="models">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>From Theory to Model</h2>
+        <p class="lead">A model is a theory made visible: concepts as boxes, relationships as arrows, the whole claim on one page. Drawing the model is not an afterthought for the defence slides; it is a thinking tool that exposes gaps no prose can hide. The diagram shows the grammar.</p>
+        <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><rect x="40" y="120" width="170" height="54" rx="10" fill="#2D2D2D"/><text x="125" y="152" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">X&#160;&#160;Cause</text><rect x="275" y="120" width="170" height="54" rx="10" fill="#9A1C1C"/><text x="360" y="152" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">M&#160;&#160;Mechanism</text><rect x="510" y="120" width="170" height="54" rx="10" fill="#2D2D2D"/><text x="595" y="152" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Y&#160;&#160;Outcome</text><rect x="275" y="20" width="170" height="50" rx="10" fill="#B34747"/><text x="360" y="50" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">W&#160;&#160;Moderator</text><line x1="210" y1="147" x2="265" y2="147" stroke="#A32020" stroke-width="2.5"/><path d="M275 147 l-12 -6 l0 12 z" fill="#A32020"/><line x1="445" y1="147" x2="500" y2="147" stroke="#A32020" stroke-width="2.5"/><path d="M510 147 l-12 -6 l0 12 z" fill="#A32020"/><line x1="360" y1="70" x2="360" y2="110" stroke="#A32020" stroke-width="2" stroke-dasharray="5 4"/><path d="M360 120 l-6 -10 l12 0 z" fill="#A32020"/><text x="360" y="230" text-anchor="middle" font-size="12" fill="#A32020">X changes Y through M; W strengthens or weakens the path</text></svg>
+        <p>The discipline of the diagram is that everything must be committed. Prose can say X influences Y in complex, context-dependent ways and sound sophisticated; the diagram must decide whether the arrow exists, which way it points, what mediates it, and what moderates it. Building the model therefore proceeds by interrogation. List the concepts and defend each one's place, cutting any that no arrow touches. Draw the causal spine, the main path from driver to outcome, then ask of every arrow the mechanism question, inserting mediators until each arrow is explained rather than asserted. Ask the boundary question of the whole: for what settings, populations, and time frames is this model claimed to hold? Every theory has a domain, and stating it is a strength, not a confession. Finally ask the rival question: what alternative model, different arrows among the same boxes, would a skeptic draw, and what evidence separates yours from theirs?</p>
+        <p>Well-built models exhibit recognizable virtues. Parsimony: as few concepts and arrows as the explanation truly needs, because each element must be measured and defended, and a model that explains ninety percent with four boxes beats one that explains ninety-two with fourteen. Coherence: the parts form one story, not a collage of borrowed fragments. Testability: the arrows imply observations that could fail, honouring the falsifiability standard. And fertility: the model suggests next questions beyond the present study. A thesis model with these virtues does silent work everywhere, organizing the literature review around its concepts, dictating the measures, structuring the analysis, and giving the contribution a shape the examiner can hold in mind.</p>
+        <div class="note"><strong>Note:</strong> If you cannot draw your theory, you do not yet have one; you have themes. The struggle to draw it, deciding what boxes exist and where arrows point, is not documentation of theorizing. It is the theorizing.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>من النظرية إلى النموذج</h2>
+        <p class="lead">النموذج نظرية صارت مرئية: المفاهيم صناديق، والعلاقات أسهم، والادّعاء كله في صفحة واحدة. ورسم النموذج ليس فكرةً لاحقة لشرائح المناقشة؛ بل أداة تفكير تكشف فجوات لا يخفيها نثر. والمخطط يُظهِر القواعد.</p>
+        <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><rect x="40" y="120" width="170" height="54" rx="10" fill="#2D2D2D"/><text x="125" y="152" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">X&#160;&#160;السبب</text><rect x="275" y="120" width="170" height="54" rx="10" fill="#9A1C1C"/><text x="360" y="152" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">M&#160;&#160;الآلية</text><rect x="510" y="120" width="170" height="54" rx="10" fill="#2D2D2D"/><text x="595" y="152" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Y&#160;&#160;النتيجة</text><rect x="275" y="20" width="170" height="50" rx="10" fill="#B34747"/><text x="360" y="50" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">W&#160;&#160;المعدِّل</text><line x1="210" y1="147" x2="265" y2="147" stroke="#A32020" stroke-width="2.5"/><path d="M275 147 l-12 -6 l0 12 z" fill="#A32020"/><line x1="445" y1="147" x2="500" y2="147" stroke="#A32020" stroke-width="2.5"/><path d="M510 147 l-12 -6 l0 12 z" fill="#A32020"/><line x1="360" y1="70" x2="360" y2="110" stroke="#A32020" stroke-width="2" stroke-dasharray="5 4"/><path d="M360 120 l-6 -10 l12 0 z" fill="#A32020"/><text x="360" y="230" text-anchor="middle" font-size="12" fill="#A32020">X يغيّر Y عبر M؛ وW يقوّي المسار أو يضعفه</text></svg>
+        <p>انضباط المخطط أن كل شيءٍ يجب أن يُلتزَم. يستطيع النثر قول «يؤثّر X في Y بطرقٍ معقّدة تعتمد على السياق» ويبدو متقنًا؛ والمخطط يجب أن يقرّر أيوجد السهم، وأي اتجاهٍ يشير، وما يتوسّطه، وما يعدّله. لذا يمضي بناء النموذج بالاستجواب. اسرد المفاهيم ودافع عن مكان كلٍّ، قاطعًا أيّ ما لا يلمسه سهم. ارسم العمود السببي، المسار الرئيس من المحرّك للنتيجة، ثم اسأل كل سهمٍ سؤال الآلية، مُدخِلًا الوسطاء حتى يُفسَّر كل سهمٍ لا يُجزَم. واسأل الكلّ سؤال الحدود: لأي بيئاتٍ وفئاتٍ وأطر زمنيةٍ يُدّعى صمود هذا النموذج؟ فلكل نظريةٍ مجال، وذكره قوّةٌ لا اعتراف. وأخيرًا اسأل سؤال المنافس: أي نموذجٍ بديل، أسهمٌ مختلفة بين الصناديق ذاتها، سيرسمه متشكّك، وأي دليلٍ يفصل نموذجك عن نموذجه؟</p>
+        <p>والنماذج حسنة البناء تُظهِر فضائل معروفة. الاقتصاد: أقلّ ما يحتاجه التفسير فعلًا من مفاهيم وأسهم، لأن كل عنصرٍ يجب قياسه والدفاع عنه، ونموذجٌ يفسّر تسعين بالمئة بأربعة صناديق يغلب واحدًا يفسّر اثنين وتسعين بأربعة عشر. والتماسك: الأجزاء تشكّل قصّةً واحدة لا كولاج شظايا مستعارة. والقابلية للاختبار: الأسهم تستلزم ملاحظاتٍ قد تفشل، احترامًا لمعيار قابلية التكذيب. والخصوبة: النموذج يقترح الأسئلة التالية وراء الدراسة الحاضرة. ونموذج أطروحةٍ بهذه الفضائل يعمل صامتًا في كل مكان، منظّمًا مراجعة الأدبيات حول مفاهيمه، ومُمليًا القياسات، ومهيكلًا التحليل، ومانحًا الإسهام شكلًا يستطيع الممتحِن حمله في ذهنه.</p>
+        <div class="note"><strong>ملاحظة:</strong> إن لم تستطع رسم نظريتك، فليست لديك واحدةٌ بعد؛ لديك مواضيع. وصراع رسمها، تقرير أي الصناديق توجد وأين تشير الأسهم، ليس توثيقًا للتنظير. إنه التنظير.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="heuristics">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Where New Theory Comes From</h2>
+        <p class="lead">The creative act of theorizing can be provoked. Jaccard and Jacoby catalogued dozens of heuristics, deliberate mental operations that generate theoretical ideas, and a working set of them belongs in every doctoral researcher's toolkit.</p>
+        <p>The most productive family works by perspective shift. Analogical thinking imports the structure of a well-understood domain into a poorly understood one: treating organizational attention as a scarce resource imported economics into psychology and built a theory; asking what else works like this is the move. Inversion takes the accepted causal story and reverses it as an experiment: everyone assumes satisfaction drives performance, so theorize performance driving satisfaction and see what the world would look like; sometimes the reversed story finds its own evidence. The extreme-case heuristic pushes a variable to its limit, zero trust, infinite information, instant feedback, because behaviour at the extremes exposes mechanisms invisible in the middle range. And the counterfactual asks why an expected phenomenon is absent: theorizing why some overloaded teams do not burn out can yield more novelty than explaining once more why others do.</p>
+        <p>A second family works by confrontation with anomaly. The paradox heuristic hunts for places where two well-supported findings contradict each other and builds the theory that dissolves the contradiction, which is how much celebrated theory begins. The deviant-case heuristic seeks the observations existing theory cannot digest, treating them not as noise but as the growth points of the field. And the boundary-probe deliberately applies a theory outside its stated domain to find where and why it breaks, since the shape of a theory's failure is information about the deeper mechanism. None of these operations replaces knowledge of the literature or immersion in the phenomenon; they operate on that material. But they convert waiting for inspiration into a schedule of deliberate experiments in thought, which is what a craft, as opposed to a talent, makes possible.</p>
+        <div class="note"><strong>Note:</strong> Keep a theorizing notebook and run one heuristic per week against your phenomenon: an analogy, an inversion, an extreme case, a paradox. Most entries will die; the one that survives is likely to be your contribution.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>من أين تأتي النظرية الجديدة</h2>
+        <p class="lead">فعل التنظير الخلّاق يمكن استفزازه. فهرس جاكار وجاكوبي عشرات الاستدلالات، عمليات ذهنية مقصودة تولّد أفكارًا نظرية، ومجموعة عاملة منها تنتمي لعدّة كل باحث دكتوراه.</p>
+        <p>العائلة الأكثر إنتاجًا تعمل بتحويل المنظور. التفكير القياسي يستورد بنية مجال مفهوم جيدًا إلى آخر مفهوم بسوء: معاملة الانتباه التنظيمي موردًا نادرًا استوردت الاقتصاد إلى علم النفس وبنت نظرية؛ وسؤال «ما الذي يعمل مثل هذا أيضًا؟» هو الحركة. والعكس يأخذ القصّة السببية المقبولة ويعكسها تجربةً: الجميع يفترض أن الرضا يقود الأداء، فنظِّر أن الأداء يقود الرضا وانظر كيف سيبدو العالم؛ أحيانًا تجد القصّة المعكوسة دليلها الخاص. واستدلال الحالة القصوى يدفع متغيّرًا لحدّه، ثقة صفرية، معلومات لانهائية، تغذية فورية، لأن السلوك عند الأطراف يكشف آليات غير مرئية في المدى الأوسط. والمضادّ الواقعي يسأل لماذا تغيب ظاهرة متوقَّعة: فتنظير لماذا لا تحترق بعض الفرق المثقلة قد يعطي جِدّةً أكثر من تفسير مرةً أخرى لماذا تحترق غيرها.</p>
+        <p>وعائلة ثانية تعمل بمواجهة الشذوذ. استدلال المفارقة يصطاد المواضع التي تتناقض فيها نتيجتان مدعومتان جيدًا ويبني النظرية التي تحلّ التناقض، وهكذا يبدأ كثير من النظرية المحتفى بها. واستدلال الحالة المنحرفة يطلب الملاحظات التي لا تستطيع النظرية القائمة هضمها، معاملًا إياها لا ضجيجًا بل نقاط نموّ الحقل. ومسبار الحدود يطبّق نظريةً عمدًا خارج مجالها المذكور ليجد أين ولماذا تنكسر، إذ شكل فشل النظرية معلومة عن الآلية الأعمق. لا تحلّ أيّ من هذه العمليات محلّ معرفة الأدبيات أو الانغماس في الظاهرة؛ فهي تعمل على تلك المادّة. لكنها تحوّل انتظار الإلهام إلى جدول تجارب فكر مقصودة، وهو ما تتيحه الحِرفة، خلافًا للموهبة.</p>
+        <div class="note"><strong>ملاحظة:</strong> احتفظ بدفتر تنظير وأجر استدلالًا واحدًا أسبوعيًا على ظاهرتك: قياسًا، عكسًا، حالةً قصوى، مفارقة. أغلب المداخل ستموت؛ والناجي منها الأرجح أن يكون إسهامك.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="judging">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Standards, Pitfalls, and References</h2>
+        <p class="lead">Theoretical contributions are judged by standards a researcher can apply to their own work before anyone else does. Knowing them, and the recurring failures they catch, is the final piece of the craft.</p>
+        <p>The classic virtues form a short list. Explanatory power: the theory accounts for more of the phenomenon, or accounts for it more deeply, than rivals. Parsimony: it does so with no more machinery than necessary. Testability: it forbids something, so evidence could count against it. Scope with stated boundaries: it claims a domain and names it. Coherence: internal consistency and fit with established neighbouring knowledge, where departures are argued rather than ignored. Fertility: it opens questions and enables successors. Real contributions rarely max every virtue; a deep, narrow mechanism theory and a broad, parsimonious framework trade different virtues, and a thesis should say which trade it has chosen and why.</p>
+        <p>The recurring pitfalls are equally nameable. Labelling is not explaining: renaming a phenomenon, however elegantly, adds vocabulary, not theory; the test is whether the new term carries a mechanism. Boxes-and-arrows inflation: models whose complexity outruns any possible test, everything connected to everything, which gesture at sophistication while forbidding nothing. Borrowed authority: importing a fashionable theory as decoration without letting it constrain the design. Unfalsifiable flexibility: theory stated so elastically that any finding confirms it, which purchases safety at the cost of saying nothing. And the missing why: hypotheses asserted from past findings rather than derived from a mechanism, the single most common weakness examiners report. The corrective habit for all five is the same: state the mechanism, draw the model, name the domain, and specify what evidence would count against you. A thesis that does those four things has made a theoretical contribution in the full sense, whatever its empirical results.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> theory is explanation built from well-formed concepts joined by committed relationships, expressed in a drawable model, generated by deliberate heuristics, and judged by power, parsimony, testability, and fertility. Build it as a craft, and the contribution chapter of the thesis writes itself.</div>
+        <div class="refs"><ul>
+          <li>Jaccard &amp; Jacoby, <a href="https://www.guilford.com/books/Theory-Construction-and-Model-Building-Skills/Jaccard-Jacoby/9781462542437" target="_blank" rel="noopener">Theory Construction and Model-Building Skills</a>.</li>
+          <li>Shah &amp; Corley (2006), <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1467-6486.2006.00662.x" target="_blank" rel="noopener">Building Better Theory by Bridging the Quantitative-Qualitative Divide</a>.</li>
+          <li>Stanford Encyclopedia of Philosophy, <a href="https://plato.stanford.edu/entries/scientific-explanation/" target="_blank" rel="noopener">Scientific Explanation</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>المعايير والمطبّات والمراجع</h2>
+        <p class="lead">تُحكَم الإسهامات النظرية بمعايير يستطيع الباحث تطبيقها على عمله قبل أن يفعل غيره. ومعرفتها، والإخفاقات المتكرّرة التي تلتقطها، القطعة الأخيرة من الحِرفة.</p>
+        <p>الفضائل الكلاسيكية قائمة قصيرة. القوّة التفسيرية: تحسب النظرية من الظاهرة أكثر، أو تحسبها أعمق، من المنافسين. والاقتصاد: تفعل ذلك بلا آلة فوق الضرورة. والقابلية للاختبار: تمنع شيئًا، فيستطيع الدليل أن يُحسَب ضدّها. والنطاق بحدود مذكورة: تدّعي مجالًا وتسمّيه. والتماسك: اتساق داخلي وملاءمة للمعرفة المجاورة الراسخة، حيث تُحاجّ المفارقات لا تُتجاهَل. والخنحوة: تفتح أسئلةً وتمكّن خلفاء. نادرًا ما تُعظِّم الإسهامات الحقيقية كل فضيلة؛ فنظرية آلية عميقة ضيّقة وإطار عريض مقتصد يتبادلان فضائل مختلفة، وعلى الأطروحة قول أي مبادلة اختارت ولماذا.</p>
+        <p>والمطبّات المتكرّرة قابلة للتسمية بالمثل. الوسم ليس تفسيرًا: إعادة تسمية ظاهرة، مهما أنِقت، تضيف مفردات لا نظرية؛ والاختبار أيحمل المصطلح الجديد آلية. وتضخّم الصناديق والأسهم: نماذج يفوق تعقيدها أي اختبار ممكن، كل شيء موصول بكل شيء، تُلوّح بالإتقان بينما لا تمنع شيئًا. والسلطة المستعارة: استيراد نظرية رائجة زينةً دون تركها تقيّد التصميم. والمرونة غير القابلة للتكذيب: نظرية مصوغة بمطاطية تجعل أي نتيجة تؤكّدها، فتشتري الأمان بثمن قول لا شيء. واللماذا الغائبة: فرضيات تُجزَم من نتائج سابقة لا تُشتقّ من آلية، الضعف الأشيع الذي يبلّغ عنه الممتحِنون. والعادة المصحّحة للخمسة واحدة: اذكر الآلية، وارسم النموذج، وسمّ المجال، وحدّد أي دليل سيُحسَب ضدّك. وأطروحة تفعل الأربعة قدّمت إسهامًا نظريًا بالمعنى الكامل، أيًّا كانت نتائجها التجريبية.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> النظرية تفسير يُبنى من مفاهيم حسنة التكوين توصلها علاقات ملتزَمة، يُعبَّر عنه بنموذج قابل للرسم، يولَّد باستدلالات مقصودة، ويُحكَم بالقوّة والاقتصاد والقابلية للاختبار والخنحوة. ابنِها حِرفةً، يكتب فصل الإسهام في الأطروحة نفسه.</div>
+        <div class="refs"><ul>
+          <li>جاكار وجاكوبي، <a href="https://www.guilford.com/books/Theory-Construction-and-Model-Building-Skills/Jaccard-Jacoby/9781462542437" target="_blank" rel="noopener">مهارات بناء النظرية والنماذج</a>.</li>
+          <li>شاه وكورلي (2006)، <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1467-6486.2006.00662.x" target="_blank" rel="noopener">بناء نظرية أفضل بجسر الفجوة الكمّية-النوعية</a>.</li>
+          <li>موسوعة ستانفورد للفلسفة، <a href="https://plato.stanford.edu/entries/scientific-explanation/" target="_blank" rel="noopener">التفسير العلمي</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="reason-deduction-induction-abduction.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Reasoning: Deduction, Induction &amp; Abduction</span><span data-lang="ar">الاستدلال: الاستنباط والاستقراء وما بعدهما</span></a><a href="design-action-research-design-science.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Action Research &amp; Design Science</span><span data-lang="ar">البحث الإجرائي وعلم التصميم</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="بناء النظرية والنماذج";
+var TITLE_EN="Theory Construction &amp; Model Building";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

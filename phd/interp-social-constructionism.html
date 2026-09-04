@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social Constructionism</title>
+<meta name="description" content="Social constructionism in depth: how social reality is built, externalization to internalization, the role of language, and its research use.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Interpretivist approaches</span><span data-lang="ar">المقاربات التفسيرية</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">INTERPRETIVIST APPROACHES · PhD</span><span data-lang="ar">المقاربات التفسيرية · دكتوراه</span></div>
+    <h1><span data-lang="en">Social Constructionism</span><span data-lang="ar">البنائية الاجتماعية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Interpretivist approaches</span><span data-lang="ar">المقاربات التفسيرية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">9 min</span><span data-lang="ar">٩ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="process"><span data-lang="en">The Process</span><span data-lang="ar">العملية</span></a></li><li><a data-id="language"><span data-lang="en">Language</span><span data-lang="ar">اللغة</span></a></li><li><a data-id="legitimation"><span data-lang="en">Legitimation</span><span data-lang="ar">الشرعنة</span></a></li><li><a data-id="example"><span data-lang="en">Worked Example</span><span data-lang="ar">مثال مشتغَل</span></a></li><li><a data-id="spectrum"><span data-lang="en">Spectrum & Use</span><span data-lang="ar">الطيف والاستخدام</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Approach:</span> Social constructionism</div>
+          <div><span>Sits within:</span> The interpretivist paradigm</div>
+          <div><span>Core question:</span> How is this piece of social reality built, maintained, and changed by people together?</div>
+          <div><span>Level:</span> Doctoral research methodology</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Social constructionism is the interpretivist approach that studies how the things we treat as social reality are made. Its founding observation is that a great deal of what feels solid and given in our world, money, marriage, management, national borders, job titles, even categories like childhood or mental illness, exists and has the character it has only because people collectively create, sustain, and agree on it. These things are real in their effects, but their reality is a social achievement, built and maintained through shared meaning, language, and practice.</p>
+        <p>The approach was given its classic formulation by Peter Berger and Thomas Luckmann, whose book The Social Construction of Reality argued that social order is a human product that comes to confront its own makers as if it were an objective fact. People create institutions; the institutions harden and are passed to the next generation, who experience them as simply the way the world is; and this experienced objectivity in turn shapes what people do, completing a circle in which society makes people and people make society. Understanding this circle is the constructionist project.</p>
+        <p>For a doctoral researcher, social constructionism is the right lens whenever the research question is about how a social category, institution, identity, or shared understanding comes to exist and be taken for granted: how an organization constructs what counts as good performance, how a profession constructs its idea of competence, how a market category or a strategic label emerges and stabilizes. It shifts the question from what is X to how did X get built and how is it held in place, which is often the more revealing question.</p>
+        <p>This framework sets out the core argument of constructionism, the process by which realities are constructed, the crucial role of language, the spectrum from moderate to strong constructionism, and its research use and limits. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> To say something is socially constructed is not to say it is unreal or trivial. Money is constructed and utterly real in its effects. The point is that its reality depends on collective agreement, and what is built by agreement can, in principle, be built differently.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المقاربة:</span> البنائية الاجتماعية</div>
+          <div><span>تندرج ضمن:</span> النموذج التفسيري</div>
+          <div><span>السؤال الجوهري:</span> كيف يُبنى هذا الجزء من الواقع الاجتماعي ويُصان ويتغيّر بالناس معًا؟</div>
+          <div><span>المستوى:</span> منهجية بحث لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">البنائية الاجتماعية هي المقاربة التفسيرية التي تدرس كيف تُصنَع الأشياء التي نعاملها واقعًا اجتماعيًا. وملاحظتها المؤسِّسة أن كثيرًا ممّا يبدو صلبًا ومعطًى في عالمنا، المال والزواج والإدارة والحدود الوطنية والمسمّيات الوظيفية، بل فئات كالطفولة أو المرض النفسي، يوجد ويحمل طابعه فقط لأن الناس يخلقونه ويديمونه ويتّفقون عليه جماعيًا. هذه الأشياء حقيقية في آثارها، لكن حقيقتها إنجاز اجتماعي، يُبنى ويُصان عبر المعنى المشترك واللغة والممارسة.</p>
+        <p>أعطى الصياغة الكلاسيكية للمقاربة بيتر برغر وتوماس لوكمان، اللذان جادل كتابهما «البناء الاجتماعي للواقع» بأن النظام الاجتماعي نتاج إنساني يعود فيواجه صانعيه كأنه واقعة موضوعية. يخلق الناس المؤسّسات؛ وتتصلّب المؤسّسات وتُمرَّر للجيل التالي، الذي يختبرها ببساطة «هكذا هو العالم»؛ وهذه الموضوعية المختبَرة تشكّل بدورها ما يفعله الناس، مكمّلةً دائرةً يصنع فيها المجتمع الناس ويصنع الناس المجتمع. وفهم هذه الدائرة هو المشروع البنائي.</p>
+        <p>وبالنسبة لباحث الدكتوراه، البنائية الاجتماعية العدسة الصحيحة كلما كان سؤال البحث عن كيف تصل فئة اجتماعية أو مؤسّسة أو هوية أو فهم مشترك للوجود والتسليم به: كيف تبني منظمة ما يُعَدّ أداءً جيدًا، وكيف تبني مهنة فكرتها عن الكفاءة، وكيف تنشأ فئة سوق أو وسم استراتيجي وتستقرّ. تنقل السؤال من «ما هو X» إلى «كيف بُني X وكيف يُثبَّت»، وهو غالبًا السؤال الأكثر كشفًا.</p>
+        <p>يعرض هذا الإطار الحجّة الجوهرية للبنائية، والعملية التي تُبنى بها الوقائع، والدور الحاسم للغة، والطيف من البنائية المعتدلة إلى القوية، واستخدامها البحثي وحدودها. وقد أعددت هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> القول إن شيئًا مبنيّ اجتماعيًا ليس قولًا إنه غير حقيقي أو تافه. فالمال مبنيّ وحقيقيّ تمامًا في آثاره. المقصد أن حقيقته تعتمد على اتفاق جماعي، وما يُبنى بالاتفاق يمكن، مبدئيًا، بناؤه مختلفًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="process">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>How Realities Get Built</h2>
+        <p class="lead">Berger and Luckmann described the construction of social reality as a continuous three-moment process, and the description remains the clearest account of how human agreements harden into objective-seeming worlds.</p>
+        <p>The first moment is externalization: people act on the world, creating practices, arrangements, and ways of doing things. A group solves a recurring problem in a particular way; a routine emerges; roles form around it. The second moment is objectivation: these humanly created patterns take on a life of their own, becoming institutions that are experienced as external, objective realities. The routine becomes the procedure; the roles become positions; the way we happen to do things becomes the way things are done. Language and typification do much of this work, packaging fluid activity into named, stable categories that can be talked about, taught, and enforced. The third moment is internalization: new members, above all the next generation, are socialized into the institutional world and absorb it as reality itself, not as one arrangement among possible others. What began as a human invention is now encountered as objective fact.</p>
+        <p>The process is circular and ongoing. Internalized meanings guide new action, which externalizes and reinforces or gradually modifies the institutions, which are again internalized, and so on. Two consequences matter for research. First, every institution has a history: what is taken for granted today was built, and can be traced. Second, institutions require maintenance: they persist only as long as people continue to enact and legitimate them, which is why shared stories, justifications, and everyday practices that keep an arrangement feeling natural are themselves proper objects of study. When maintenance falters, what seemed solid can change with remarkable speed.</p>
+        <div class="note"><strong>Note:</strong> Society makes people, and people make society, in one continuous circle. Externalization, objectivation, and internalization are not stages that end but moments of a process running all the time, which is why social reality needs constant maintenance and why it can change.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>كيف تُبنى الوقائع</h2>
+        <p class="lead">وصف برغر ولوكمان بناء الواقع الاجتماعي عمليةً مستمرة بثلاث لحظات، ويبقى الوصف أوضح حساب لكيف تتصلّب الاتفاقات الإنسانية إلى عوالم تبدو موضوعية.</p>
+        <p>اللحظة الأولى التخريج: يفعل الناس في العالم، خالقين ممارسات وترتيبات وطرق فعل. تحلّ جماعة مشكلةً متكرّرة بطريقة معيّنة؛ فينشأ روتين؛ وتتشكّل أدوار حوله. واللحظة الثانية التوضيع: تأخذ هذه الأنماط المخلوقة إنسانيًا حياةً خاصة، صائرةً مؤسّسات تُختبَر وقائع خارجية موضوعية. يصير الروتين الإجراء؛ والأدوار مناصب؛ و«طريقتنا المصادفة في الفعل» «الطريقة التي تُفعَل بها الأشياء». وتؤدّي اللغة والتنميط كثيرًا من هذا العمل، معلّبةً النشاط السائل في فئات مسمّاة مستقرّة يمكن الحديث عنها وتعليمها وفرضها. واللحظة الثالثة الاستدخال: يُنشَّأ الأعضاء الجدد، وقبل الكلّ الجيل التالي، في العالم المؤسّسي ويمتصّونه بوصفه الواقع نفسه، لا ترتيبًا من ممكنات أخرى. فما بدأ اختراعًا إنسانيًا يُلاقى الآن واقعةً موضوعية.</p>
+        <p>والعملية دائرية جارية. فالمعاني المستدخَلة توجّه فعلًا جديدًا، يخرّج ويعزّز المؤسّسات أو يعدّلها تدريجيًا، فتُستدخَل مجدّدًا، وهكذا. ونتيجتان تهمّان البحث. أولًا، لكل مؤسّسة تاريخ: فالمسلَّم به اليوم بُني، ويمكن تتبّعه. وثانيًا، المؤسّسات تحتاج صيانة: تدوم فقط ما دام الناس يمارسونها ويشرعنونها، ولهذا كانت القصص المشتركة والتبريرات والممارسات اليومية التي تُبقي ترتيبًا يبدو طبيعيًا هي نفسها موضوعات دراسة لائقة. وحين تتعثّر الصيانة، يمكن لما بدا صلبًا أن يتغيّر بسرعة لافتة.</p>
+        <div class="note"><strong>ملاحظة:</strong> المجتمع يصنع الناس، والناس يصنعون المجتمع، في دائرة واحدة مستمرة. التخريج والتوضيع والاستدخال ليست مراحل تنتهي بل لحظات عملية تجري طوال الوقت، ولهذا يحتاج الواقع الاجتماعي صيانةً دائمة ولهذا يستطيع التغيّر.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="language">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Language as the Builder</h2>
+        <p class="lead">If social reality is built, language is the principal building material. Constructionism assigns language a role far beyond describing the world: it is the medium through which social worlds are created, stabilized, and contested.</p>
+        <p>The key move is to see that language does not merely label a reality that exists independently of it; in the social realm, naming and categorizing help bring realities into being and give them their shape. To call a set of behaviours leadership, an arrangement a family, a payment a salary rather than a gift, or a person a manager, a patient, or an offender, is not to report a neutral fact but to place something within a web of shared meanings that carries expectations, rights, and consequences. Categories organize perception: once a label exists and circulates, people see instances of it, act toward them accordingly, and thereby make the category ever more real. This is why struggles over words, over definitions, titles, and classifications, are never merely semantic; they are struggles over what the social world will contain.</p>
+        <p>For research, this gives language a double status: it is both data and mechanism. As data, the talk, texts, and documents of a setting reveal the categories through which its members construct their world. As mechanism, language is how construction happens, so studying how terms emerge, spread, harden into taken-for-granted labels, and are challenged is studying social construction in action. This is the constructionist rationale behind approaches that analyze conversation, rhetoric, naming, and storytelling in organizations and societies: the way people talk is not commentary on the real action, it is a large part of the real action.</p>
+        <div class="note"><strong>Note:</strong> In the social world, categories are not found, they are made, and language is the making. Watch what a new label does after it appears: it gathers instances, expectations, and institutions around it, which is construction happening in plain sight.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>اللغة بوصفها البنّاء</h2>
+        <p class="lead">إن كان الواقع الاجتماعي يُبنى، فاللغة مادّة البناء الرئيسة. تمنح البنائية اللغة دورًا يتجاوز وصف العالم بكثير: فهي الوسيط الذي تُخلَق عبره العوالم الاجتماعية وتُثبَّت وتُنازَع.</p>
+        <p>الحركة المفتاح رؤية أن اللغة لا تسِم واقعًا موجودًا مستقلًّا عنها فحسب؛ ففي الحقل الاجتماعي، التسمية والتصنيف تساعدان على إيجاد الوقائع ومنحها شكلها. فأن تسمّي مجموعة سلوكيات قيادةً، وترتيبًا أسرةً، ودفعةً راتبًا لا هديةً، وشخصًا مديرًا أو مريضًا أو جانيًا، ليس إبلاغًا عن واقعة محايدة بل وضع شيء في شبكة معانٍ مشتركة تحمل توقّعات وحقوقًا ونتائج. والفئات تنظّم الإدراك: فمتى وُجد وسم وانتشر، رأى الناس أمثلته، وتصرّفوا نحوها تبعًا، فجعلوا الفئة أكثر حقيقيةً باستمرار. لهذا لا تكون الصراعات على الكلمات، على التعاريف والألقاب والتصنيفات، دلاليةً فحسب أبدًا؛ بل صراعات على ما سيحويه العالم الاجتماعي.</p>
+        <p>وللبحث، يمنح هذا اللغة وضعًا مزدوجًا: فهي بيانات وآلية معًا. كبيانات، يكشف كلام بيئة ونصوصها ووثائقها الفئات التي يبني بها أعضاؤها عالمهم. وكآلية، اللغة كيف يحدث البناء، فدراسة كيف تنشأ المصطلحات وتنتشر وتتصلّب إلى وسوم مسلَّم بها وتُتحدّى هي دراسة البناء الاجتماعي وهو يعمل. وهذا المسوّغ البنائي خلف المقاربات التي تحلّل المحادثة والبلاغة والتسمية والحكي في المنظمات والمجتمعات: فطريقة حديث الناس ليست تعليقًا على الفعل الحقيقي، بل جزء كبير من الفعل الحقيقي.</p>
+        <div class="note"><strong>ملاحظة:</strong> في العالم الاجتماعي، الفئات لا تُوجَد بل تُصنَع، واللغة هي الصنع. راقب ما يفعله وسم جديد بعد ظهوره: يجمع حوله أمثلةً وتوقّعات ومؤسّسات، وهذا بناء يحدث على مرأى الجميع.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="legitimation">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Legitimation: Keeping Constructions Standing</h2>
+        <p class="lead">A construction, once built, must be defended. Berger and Luckmann gave the name legitimation to the machinery of explanation and justification that keeps institutions credible, and analyzing this machinery is one of the most productive things a constructionist study can do.</p>
+        <p>Legitimation answers two questions on behalf of an institution: what is this, and why should it be this way? It operates at escalating levels. At the simplest level, the vocabulary itself legitimates: calling a practice standard procedure or best practice already clothes it in normalcy. Above that sit proverbs, maxims, and folk wisdom, the little sayings by which people reassure one another that the arrangement makes sense. Higher still are explicit theories, bodies of professional or academic knowledge that explain and justify a sector of the institutional order, the way management theory legitimates hierarchies or economic theory legitimates markets. At the highest level stand what Berger and Luckmann called symbolic universes: overarching frames of meaning, religious, national, or ideological, that place the whole institutional order within a grand scheme, so that challenging an institution comes to feel like challenging reality itself.</p>
+        <p>Two further mechanisms complete the picture. Reification is the forgetting of authorship: a human arrangement comes to be experienced as a fact of nature, the way things simply are, at which point questioning it seems absurd rather than merely disloyal. And therapy and nihilation are the machinery for handling deviants: therapy explains why the doubter is mistaken or unwell and works to bring them back inside the shared reality, while nihilation denies the legitimacy of competing definitions altogether, treating rival constructions as ignorance, madness, or malice. A researcher who watches for these mechanisms, in documents, in meetings, in the explanations people give newcomers, can map exactly how a particular reality keeps itself in place.</p>
+        <div class="note"><strong>Note:</strong> Reification is the strongest form of construction: the point at which people forget the arrangement was ever made. Whenever you hear that is just how things are, you are listening to a construction that has successfully erased its own history.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الشرعنة: إبقاء البناءات قائمة</h2>
+        <p class="lead">البناء، متى بُني، يجب الدفاع عنه. أعطى برغر ولوكمان اسم الشرعنة لآلة التفسير والتبرير التي تُبقي المؤسّسات ذات مصداقية، وتحليل هذه الآلة من أكثر ما تستطيع دراسة بنائية فعله إنتاجًا.</p>
+        <p>تجيب الشرعنة سؤالَين نيابةً عن مؤسّسة: ما هذا، ولماذا ينبغي أن يكون هكذا؟ وتعمل بمستويات متصاعدة. في أبسط مستوى، تشرعن المفردات نفسها: فتسمية ممارسة «إجراءً معياريًا» أو «أفضل ممارسة» تُلبِسها الطبيعية سلفًا. وفوقها تجلس الأمثال والحِكم وحكمة العامّة، الأقوال الصغيرة التي يطمئن بها الناس بعضهم أن الترتيب معقول. وأعلى منها النظريات الصريحة، أجسام معرفة مهنية أو أكاديمية تفسّر وتبرّر قطاعًا من النظام المؤسّسي، كما تشرعن نظرية الإدارة الهرميات أو النظرية الاقتصادية الأسواق. وفي المستوى الأعلى يقف ما سمّاه برغر ولوكمان الأكوان الرمزية: أطر معنًى شاملة، دينية أو وطنية أو أيديولوجية، تضع النظام المؤسّسي كله ضمن مخطط كبير، فيصير تحدّي مؤسّسة شعورًا بتحدّي الواقع نفسه.</p>
+        <p>وآليتان إضافيتان تكملان الصورة. التشييء نسيان التأليف: يصل ترتيب إنساني ليُختبَر واقعة طبيعة، «هكذا الأشياء ببساطة»، وعندها يبدو التشكيك فيه عبثيًا لا مجرّد خيانة. والعلاج والإعدام آلة معالجة المنحرفين: يفسّر العلاج لماذا الشاكّ مخطئ أو معتلّ ويعمل على إعادته داخل الواقع المشترك، بينما ينكر الإعدام شرعية التعريفات المنافسة كليًا، معاملًا البناءات المنافسة جهلًا أو جنونًا أو خبثًا. والباحث الذي يراقب هذه الآليات، في الوثائق والاجتماعات والتفسيرات التي تُعطى للوافدين، يستطيع رسم كيف يُبقي واقع معيّن نفسه في مكانه بالضبط.</p>
+        <div class="note"><strong>ملاحظة:</strong> التشييء أقوى صور البناء: النقطة التي ينسى عندها الناس أن الترتيب صُنع أصلًا. فكلما سمعت «هكذا هي الأشياء ببساطة»، فأنت تستمع لبناء نجح في محو تاريخه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="example">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>A Worked Example: Performance</h2>
+        <p class="lead">To see the whole apparatus in motion, follow a single construction from birth to taken-for-grantedness: the idea of employee performance in an organization. Every constructionist concept introduced so far appears in this one story.</p>
+        <p>Begin with externalization. At some point, managers facing the practical problem of judging work devised categories: targets, ratings, competencies, a scale from underperforming to exceptional. These were choices among many possible ways of seeing work, made by particular people at particular times. Objectivation follows as the categories are written into forms, software, calendars, and job descriptions. The annual review cycle appears; the rating scale acquires official definitions; the phrase high performer begins to circulate as if it named a natural kind of person. What began as one way of describing work has become the way work is, embedded in artifacts that outlive their designers. Internalization completes the circle when employees absorb the categories into their own self-understanding, judging themselves as ahead or behind, experiencing the rating not as an arbitrary convention but as a verdict on who they are.</p>
+        <p>Legitimation hums throughout: the vocabulary of objectivity and fairness, the folk wisdom that what gets measured gets managed, the theories of performance management taught in business schools, all explain why this arrangement is right and necessary. Reification arrives when nobody remembers that the five-point scale was a choice; alternatives become literally hard to imagine. And when someone questions the system, therapy and nihilation appear on schedule: the doubter is coached into alignment, or their critique is dismissed as sour grapes. A constructionist study of this setting would trace each moment, ask whose interests the construction serves, examine the maintenance work it requires, and note the moments of contest when the arrangement wobbles, thereby making a familiar organizational fact strange enough to be seen clearly.</p>
+        <div class="note"><strong>Note:</strong> Run this exercise on any taken-for-granted category in your own research setting: who built it, what holds it up, who benefits, and what would count as it changing. Those four questions are a complete constructionist research design in miniature.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>مثال مشتغَل: الأداء</h2>
+        <p class="lead">لرؤية الجهاز كله في حركة، تتبّع بناءً واحدًا من الولادة إلى التسليم به: فكرة «أداء الموظف» في منظمة. فكل مفهوم بنائي قُدِّم حتى الآن يظهر في هذه القصّة الواحدة.</p>
+        <p>ابدأ بالتخريج. في لحظة ما، ابتكر مديرون يواجهون مشكلة الحكم على العمل العملية فئات: أهدافًا وتقييمات وجدارات ومقياسًا من «دون الأداء» إلى «استثنائي». كانت هذه خيارات بين طرق ممكنة كثيرة لرؤية العمل، صنعها أناس معيّنون في أوقات معيّنة. ويتبع التوضيع حين تُكتَب الفئات في النماذج والبرمجيات والتقاويم وتوصيفات الوظائف. تظهر دورة المراجعة السنوية؛ ويكتسب مقياس التقييم تعاريف رسمية؛ وتبدأ عبارة «عالي الأداء» بالتداول كأنها تسمّي نوعًا طبيعيًا من الناس. فما بدأ طريقةً واحدة لوصف العمل صار «الطريقة التي هو عليها العمل»، مضمَّنًا في مصنوعات تعمّر بعد مصمّميها. ويكمل الاستدخال الدائرة حين يمتصّ الموظفون الفئات في فهمهم الذاتي، حاكمين على أنفسهم متقدّمين أو متأخّرين، مختبرين التقييم لا عرفًا اعتباطيًا بل حكمًا على من هم.</p>
+        <p>والشرعنة تهمهم طوال الوقت: مفردات الموضوعية والعدالة، وحكمة «ما يُقاس يُدار»، ونظريات إدارة الأداء المدرَّسة في كليات الأعمال، كلها تفسّر لماذا هذا الترتيب صحيح وضروري. ويصل التشييء حين لا يتذكّر أحد أن مقياس الخمس درجات كان خيارًا؛ وتصير البدائل صعبة التخيّل حرفيًا. وحين يشكّك أحد في النظام، يظهر العلاج والإعدام في موعدهما: يُدرَّب الشاكّ نحو الاصطفاف، أو يُنبَذ نقده حصرمًا. ودراسة بنائية لهذه البيئة ستتتبّع كل لحظة، وتسأل مصالح مَن يخدم البناء، وتفحص عمل الصيانة الذي يتطلّبه، وتلحظ لحظات المنازعة حين يترنّح الترتيب، جاعلةً بذلك واقعةً تنظيمية مألوفة غريبةً كفايةً لتُرى بوضوح.</p>
+        <div class="note"><strong>ملاحظة:</strong> أجر هذا التمرين على أي فئة مسلَّم بها في بيئة بحثك: من بناها، وما الذي يُبقيها، ومن يستفيد، وما الذي سيُعَدّ تغيّرًا لها. هذه الأسئلة الأربعة تصميم بحث بنائي كامل مصغَّر.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="spectrum">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Moderate to Strong, and Research Use</h2>
+        <p class="lead">Constructionism comes in degrees, and a researcher invoking it must say how far they take it, because the moderate and strong versions carry different commitments and attract different criticisms.</p>
+        <p>Moderate constructionism claims that social realities, institutions, categories, identities, meanings, are humanly built, while leaving the physical world's independence intact. This is the position most organizational and social research needs: it licenses studying how performance standards, professions, markets, or identities are constructed without denying that mountains and molecules exist unconstructed. Strong constructionism extends the claim toward knowledge in general, arguing that even our scientific accounts of nature are through-and-through social products, since they are made with humanly built concepts, instruments, and institutions. This stronger claim generates real philosophical debate, and critics press the point that it risks sliding into a relativism where no account is better than another; defenders reply that recognizing knowledge as socially produced does not mean all products are equal, since some withstand testing and argument far better than others. A doctoral researcher rarely needs the strong version, and claiming only the moderate one avoids battles irrelevant to most research questions.</p>
+        <p>In use, constructionist research asks characteristic questions and uses interpretive methods to answer them. It studies the history of a category or institution, how it was assembled and by whom; the maintenance work, the stories, rituals, documents, and everyday practices that keep it feeling natural; the contests, where alternative constructions struggle for acceptance; and the consequences, who gains and who loses from reality being built this way. Its strengths are the power to make the familiar strange, revealing choice and history inside what seemed given, and its natural fit with studies of institutions, identity, and change. Its limits are those of interpretivism generally, plus the specific risk of overreach: not everything is usefully analyzed as a construction, and the approach illuminates most where collective meaning genuinely does the work.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> social constructionism studies how human agreement builds the social world, through externalization, objectivation, and internalization, with language as the principal material. Take the moderate version, ask how a reality was built and how it is maintained, and the approach will make the taken-for-granted visible and researchable.</div>
+        <div class="refs"><ul>
+          <li>Berger &amp; Luckmann, <a href="https://www.penguinrandomhouse.com/books/301046/the-social-construction-of-reality-by-peter-l-berger-and-thomas-luckmann/" target="_blank" rel="noopener">The Social Construction of Reality</a>.</li>
+          <li>Stanford Encyclopedia of Philosophy, <a href="https://plato.stanford.edu/entries/social-construction-naturalistic/" target="_blank" rel="noopener">Naturalistic Approaches to Social Construction</a>.</li>
+          <li>Stanford Encyclopedia of Philosophy, <a href="https://plato.stanford.edu/entries/social-ontology/" target="_blank" rel="noopener">Social Ontology</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>من المعتدلة إلى القوية، والاستخدام</h2>
+        <p class="lead">تأتي البنائية بدرجات، وعلى الباحث المستحضِر لها قول إلى أي مدًى يأخذها، لأن الصيغتَين المعتدلة والقوية تحملان التزامات مختلفة وتجذبان نقودًا مختلفة.</p>
+        <p>تدّعي البنائية المعتدلة أن الوقائع الاجتماعية، المؤسّسات والفئات والهويات والمعاني، مبنيّة إنسانيًا، تاركةً استقلال العالم الفيزيائي سليمًا. وهذا الموقف الذي يحتاجه أغلب البحث التنظيمي والاجتماعي: يرخّص دراسة كيف تُبنى معايير الأداء والمهن والأسواق أو الهويات دون إنكار أن الجبال والجزيئات توجد غير مبنيّة. وتمدّ البنائية القوية الادّعاء نحو المعرفة عمومًا، مجادلةً بأن حتى حساباتنا العلمية للطبيعة منتجات اجتماعية حتى النخاع، إذ تُصنَع بمفاهيم وأدوات ومؤسّسات مبنيّة إنسانيًا. وهذا الادّعاء الأقوى يولّد جدالًا فلسفيًا حقيقيًا، ويضغط النقّاد نقطة أنه يخاطر بالانزلاق لنسبية لا يكون فيها حساب أفضل من آخر؛ ويردّ المدافعون بأن الاعتراف بأن المعرفة تُنتَج اجتماعيًا لا يعني تساوي كل المنتجات، إذ بعضها يصمد للاختبار والحجاج أفضل بكثير من غيره. ونادرًا ما يحتاج باحث الدكتوراه الصيغة القوية، وادّعاء المعتدلة فقط يتفادى معارك لا تخصّ أغلب أسئلة البحث.</p>
+        <p>وفي الاستخدام، يسأل البحث البنائي أسئلةً مميّزة ويستخدم مناهج تفسيرية للإجابة عنها. يدرس تاريخ فئة أو مؤسّسة، كيف جُمِّعت ومَن جمّعها؛ وعمل الصيانة، القصص والطقوس والوثائق والممارسات اليومية التي تُبقيها تبدو طبيعية؛ والمنازعات، حيث تتصارع بناءات بديلة على القبول؛ والنتائج، من يكسب ومن يخسر من بناء الواقع هكذا. وقوّته القدرة على جعل المألوف غريبًا، كاشفًا الخيار والتاريخ داخل ما بدا معطًى، وملاءمته الطبيعية لدراسات المؤسّسات والهوية والتغيير. وحدوده حدود التفسيرية عمومًا، زائدًا خطر التمدّد الخاص: فليس كل شيء يُحلَّل نافعًا بوصفه بناءً، والمقاربة تضيء أكثر حيث يؤدّي المعنى الجماعي العمل فعلًا.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> البنائية الاجتماعية تدرس كيف يبني الاتفاق الإنساني العالم الاجتماعي، عبر التخريج والتوضيع والاستدخال، واللغة المادّة الرئيسة. خذ الصيغة المعتدلة، واسأل كيف بُنيت واقعة وكيف تُصان، تجعل المقاربة المسلَّم به مرئيًا وقابلًا للبحث.</div>
+        <div class="refs"><ul>
+          <li>برغر ولوكمان، <a href="https://www.penguinrandomhouse.com/books/301046/the-social-construction-of-reality-by-peter-l-berger-and-thomas-luckmann/" target="_blank" rel="noopener">البناء الاجتماعي للواقع</a>.</li>
+          <li>موسوعة ستانفورد للفلسفة، <a href="https://plato.stanford.edu/entries/social-construction-naturalistic/" target="_blank" rel="noopener">المقاربات الطبيعانية للبناء الاجتماعي</a>.</li>
+          <li>موسوعة ستانفورد للفلسفة، <a href="https://plato.stanford.edu/entries/social-ontology/" target="_blank" rel="noopener">الأنطولوجيا الاجتماعية</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="interp-phenomenology.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Phenomenology</span><span data-lang="ar">الظواهرية</span></a><a href="interp-symbolic-interactionism.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Symbolic Interactionism</span><span data-lang="ar">التفاعلية الرمزية</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="البنائية الاجتماعية";
+var TITLE_EN="Social Constructionism";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conceptual &amp; Theoretical Frameworks</title>
+<meta name="description" content="Conceptual frameworks in depth: theoretical versus conceptual, adopt or adapt or build, constructing and diagramming one, and using it across the thesis.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Reasoning and theory</span><span data-lang="ar">الاستدلال والنظرية</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">REASONING &amp; THEORY · PhD</span><span data-lang="ar">الاستدلال والنظرية · دكتوراه</span></div>
+    <h1><span data-lang="en">Conceptual &amp; Theoretical Frameworks</span><span data-lang="ar">الأطر المفاهيمية والنظرية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Reasoning and theory</span><span data-lang="ar">الاستدلال والنظرية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">7 min</span><span data-lang="ar">٧ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="sources"><span data-lang="en">Where They Come From</span><span data-lang="ar">مصادرها</span></a></li><li><a data-id="building"><span data-lang="en">Building One</span><span data-lang="ar">البناء</span></a></li><li><a data-id="using"><span data-lang="en">Using It & Example</span><span data-lang="ar">الاستخدام ومثال</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Conceptual and theoretical frameworks</div>
+          <div><span>Covers:</span> The distinction, sources, construction, diagramming, and use</div>
+          <div><span>Use:</span> Building the study's thinking map and defending it</div>
+          <div><span>Level:</span> Doctoral research design</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">The conceptual framework is the study's map of its own thinking: the concepts it takes to matter, the relationships it expects among them, and the boundaries within which it expects those relationships to hold. It is what stands between a research question and a design, translating an abstract unknown into something specific enough to be measured, observed, or interpreted, which is why a thesis without a clear framework so often reads as a collection of activities rather than a study.</p>
+        <p>Two terms are used, often interchangeably and wrongly. A theoretical framework adopts an existing theory as the study's lens, the thesis stands on self-determination theory, or on institutional theory, and inherits its constructs, propositions, and boundary conditions wholesale. A conceptual framework is the researcher's own construction, assembled from several theories, empirical findings, context knowledge, and reasoning, into a map built for this question specifically. Most doctoral studies need both: an acknowledged theoretical base, and a conceptual framework that adapts, extends, or combines bases for the particular problem at hand.</p>
+        <p>The framework is not decoration, and its most common failure is that it appears in chapter two and never returns. A living framework does five jobs: it defines what the study will and will not examine, generates the questions or hypotheses, dictates what data must be collected, structures the analysis, and gives the findings chapter its shape, so that the conclusion can report the framework revised. This page covers the distinction, where frameworks come from, how to construct one step by step, how to diagram it honestly, and how to use it through the whole thesis, with a worked example. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Test your framework by deleting it: if chapters four and five would read exactly the same without it, it is decoration. A real framework leaves fingerprints on every later chapter.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> الأطر المفاهيمية والنظرية</div>
+          <div><span>يغطّي:</span> التمييز، والمصادر، والبناء، والرسم، والاستخدام</div>
+          <div><span>الاستخدام:</span> بناء خريطة تفكير الدراسة والدفاع عنها</div>
+          <div><span>المستوى:</span> تصميم البحث لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الإطار المفاهيمي خريطة الدراسة لتفكيرها هي نفسه: المفاهيم التي تراها مهمة، والعلاقات التي تتوقعها بينها، والحدود التي تتوقع أن تصمد تلك العلاقات داخلها. وهو ما يقف بين سؤال البحث والتصميم، مترجمًا مجهولًا مجردًا إلى شيء محدد بما يكفي ليُقاس أو يُلاحَظ أو يُؤوَّل، ولهذا كثيرًا ما تُقرَأ أطروحة بلا إطار واضح مجموعةَ أنشطة لا دراسةً.</p>
+        <p>ويُستخدَم مصطلحان، غالبًا بالتبادل وبشكل خاطئ. الإطار النظري يتبنى نظرية قائمة عدسةً للدراسة، فتقف الأطروحة على نظرية تقرير المصير، أو على النظرية المؤسسية، وترث مفاهيمها وقضاياها وشروطها الحدية جملةً. أما الإطار المفاهيمي فبناء الباحث نفسه، مركَّب من عدة نظريات ونتائج تجريبية ومعرفة بالسياق واستدلال، في خريطة مبنية لهذا السؤال تحديدًا. ومعظم دراسات الدكتوراه تحتاج الاثنين: أساسًا نظريًا معترفًا به، وإطارًا مفاهيميًا يكيّف الأسس أو يوسّعها أو يجمعها لأجل المشكلة المطروحة بعينها.</p>
+        <p>والإطار ليس زينة، وأشيع إخفاقاته أن يظهر في الفصل الثاني ولا يعود أبدًا. فالإطار الحي يؤدي خمس وظائف: يعرّف ما ستفحصه الدراسة وما لن تفحصه، ويولّد الأسئلة أو الفرضيات، ويملي أي بيانات يجب جمعها، ويبني هيكل التحليل، ويعطي فصل النتائج شكله، بحيث تستطيع الخاتمة أن تبلّغ عن الإطار وقد نُقِّح. تغطي هذه الصفحة التمييز، ومن أين تأتي الأطر، وكيف يُبنى إطار خطوةً خطوة، وكيف يُرسَم بأمانة، وكيف يُستخدَم عبر الأطروحة كلها، مع مثال تطبيقي. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> اختبر إطارك بحذفه: فإن كان الفصلان الرابع والخامس سيُقرآن كما هما تمامًا بدونه، فهو زينة. أما الإطار الحقيقي فيترك بصماته على كل فصل لاحق.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="sources">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Sources: Adopt, Adapt, or Build</h2>
+        <p class="lead">Frameworks come from three routes, and naming the route taken is itself part of the defence, because each carries different obligations and different contribution claims.</p>
+        <p>Adoption takes an established theory whole and applies it to a new setting: technology acceptance in a new sector, institutional theory in a new field. The obligation here is fit, an argued case that the theory's own boundary conditions cover this context, and the contribution is a test of transfer, which is real but modest unless the context genuinely strains the theory. Adaptation takes an established theory and modifies it for the context: adding a construct the setting demands, respecifying a relationship the context reverses, or narrowing scope conditions. This is the most common doctoral route, and its obligation is mechanism, every modification argued from why the setting should change the theory's workings, never appended because it was convenient to measure. Construction assembles a framework from multiple theories and empirical findings where no single theory covers the phenomenon, and its obligation is coherence: assembled parts must share compatible assumptions, since a framework welding a rational-choice mechanism to a constructionist one has a philosophical fracture running through its middle that no diagram can hide.</p>
+        <p>A fourth route belongs to inductive traditions and reverses the sequence. In grounded theory and much interpretive work, the framework is an output rather than an input: the study begins with sensitizing concepts, ideas that direct attention without predetermining findings, and the framework is built from the data and presented in the findings and discussion chapters. This is a legitimate and frequently misunderstood position, and the mistake to avoid is either extreme: pretending to have entered with no concepts at all, which is not possible and not credible, or importing a full a priori framework into a study whose whole justification was that existing frameworks did not fit.</p>
+        <div class="note"><strong>Note:</strong> State your route explicitly in the thesis: adopted, adapted, constructed, or emergent. Examiners do not object to any of the four; they object to a framework whose origins and obligations are left unclear.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>المصادر: التبنّي أم التكييف أم البناء</h2>
+        <p class="lead">تأتي الأطر من ثلاثة طرق، وتسمية الطريق المسلوك جزء من الدفاع نفسه، لأن لكل طريق التزامات مختلفة وادّعاءات إسهام مختلفة.</p>
+        <p>التبنّي يأخذ نظرية راسخة كاملةً ويطبّقها على بيئة جديدة: قبول التقنية في قطاع جديد، أو النظرية المؤسسية في حقل جديد. والالتزام هنا الملاءمة، أي قضية محاجّة بأن الشروط الحدية للنظرية نفسها تغطي هذا السياق، والإسهام اختبار انتقال، وهو حقيقي لكنه متواضع ما لم يجهد السياقُ النظريةَ فعلًا. والتكييف يأخذ نظرية راسخة ويعدّلها للسياق: بإضافة مفهوم تطلبه البيئة، أو إعادة تحديد علاقة يعكسها السياق، أو تضييق شروط النطاق. وهذا أشيع طرق الدكتوراه، والتزامه الآلية، فكل تعديل محاجَج من «لماذا ينبغي للبيئة أن تغيّر عمل النظرية»، ولا يُلحَق أبدًا لأنه كان مريحًا للقياس. والبناء يركّب إطارًا من عدة نظريات ونتائج تجريبية حيث لا تغطي نظرية واحدة الظاهرة، والتزامه التماسك: فالأجزاء المركّبة يجب أن تتشارك افتراضات متوافقة، لأن إطارًا يلحم آلية اختيار عقلاني بأخرى بنائية يحمل صدعًا فلسفيًا يمرّ في وسطه لا يستطيع أي مخطط إخفاءه.</p>
+        <p>وثمة طريق رابع يخصّ التقاليد الاستقرائية ويعكس التسلسل. ففي النظرية المتجذرة وكثير من العمل التفسيري، يكون الإطار مخرَجًا لا مدخَلًا: تبدأ الدراسة بمفاهيم موجِّهة، أي أفكار توجّه الانتباه دون أن تحدد النتائج مسبقًا، ويُبنى الإطار من البيانات ويُعرَض في فصلي النتائج والمناقشة. وهذا موقف مشروع كثيرًا ما يُساء فهمه، والخطأ الذي ينبغي تفاديه أي الطرفين: التظاهر بالدخول بلا مفاهيم إطلاقًا، وهو غير ممكن وغير مقنع، أو استيراد إطار قبْلي كامل إلى دراسة كان كل مسوّغها أن الأطر القائمة لا تلائم.</p>
+        <div class="note"><strong>ملاحظة:</strong> اذكر طريقك صراحةً في الأطروحة: متبنّى أم مكيَّف أم مبنيّ أم منبثق. فالممتحنون لا يعترضون على أي من الأربعة؛ بل يعترضون على إطار تُترَك أصوله والتزاماته غير واضحة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="building">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Building and Diagramming a Framework</h2>
+        <p class="lead">Framework construction has a repeatable sequence, and the diagram is its discipline: a picture forces decisions that prose lets you avoid, which is exactly why drawing it early is worth the discomfort.</p>
+        <svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><rect x="40" y="170" width="150" height="64" rx="9" fill="#9A1C1C"/><text x="115" y="199" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Independent</text><text x="115" y="215" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">variable</text><rect x="275" y="170" width="150" height="64" rx="9" fill="#B34747"/><text x="350" y="199" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Mediator</text><text x="350" y="215" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">(mechanism)</text><rect x="510" y="170" width="150" height="64" rx="9" fill="#2D2D2D"/><text x="585" y="199" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Dependent</text><text x="585" y="215" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">variable</text><rect x="275" y="40" width="150" height="58" rx="9" fill="#DEDEDE"/><text x="350" y="66" text-anchor="middle" font-size="12" font-weight="700" fill="#2D2D2D">Moderator</text><text x="350" y="82" text-anchor="middle" font-size="12" font-weight="700" fill="#2D2D2D">(condition)</text><rect x="275" y="300" width="150" height="58" rx="9" fill="#F4F4F4"/><text x="350" y="334" text-anchor="middle" font-size="12" font-weight="700" fill="#2D2D2D">Controls</text><line x1="190" y1="202" x2="263" y2="202" stroke="#A32020" stroke-width="2.5"/><path d="M275 202 l-12 -6 l0 12 z" fill="#A32020"/><line x1="425" y1="202" x2="498" y2="202" stroke="#A32020" stroke-width="2.5"/><path d="M510 202 l-12 -6 l0 12 z" fill="#A32020"/><line x1="350" y1="98" x2="350" y2="158" stroke="#B34747" stroke-width="2" stroke-dasharray="5 4"/><path d="M350 170 l-6 -12 l12 0 z" fill="#B34747"/><line x1="425" y1="329" x2="585" y2="329" stroke="#B34747" stroke-width="1.6" stroke-dasharray="5 4"/><line x1="585" y1="329" x2="585" y2="246" stroke="#B34747" stroke-width="1.6" stroke-dasharray="5 4"/><path d="M585 234 l-6 12 l12 0 z" fill="#B34747"/><path d="M115 170 C 115 90, 585 90, 585 158" fill="none" stroke="#A32020" stroke-width="1.8" stroke-dasharray="7 5"/><path d="M585 170 l-6 -12 l12 0 z" fill="#A32020"/><text x="350" y="388" text-anchor="middle" font-size="12" fill="#A32020">solid: hypothesized paths &#183; dashed: conditions and alternative explanations</text></svg>
+        <p>The sequence runs in five steps. First, list the concepts the question implies, generously, then cut to the few that carry real work, because a framework with fifteen boxes is a literature summary, not a framework. Second, define each concept precisely, with the definition adopted from a named source or argued as the researcher's own, in the construct discipline the theory pages set out, since undefined concepts cannot be measured or observed reliably. Third, specify relationships, and here the diagram's vocabulary matters: direct paths, mediators that carry the mechanism, moderators that specify conditions, and controls that absorb alternative explanations, each drawn distinctly as in the figure above. Fourth, state direction and mechanism for each arrow, because an arrow without a stated reason is a picture of a hope. Fifth, declare boundaries: the populations, settings, and time frames within which the framework claims to hold.</p>
+        <p>Diagramming honestly means resisting three temptations. The first is the arrow to everything, a diagram in which all boxes connect, which claims nothing and predicts nothing; a framework earns credibility by the relationships it excludes as much as by those it asserts. The second is the false precision of boxes and arrows in interpretive work, where the framework may be better expressed as a set of sensitizing concepts, a process map, or a set of guiding questions, because a variable diagram implicitly promises a variance logic the study will not deliver. The third is the orphan box, a concept that appears in the diagram, is never measured, never observed, and never reappears, which examiners spot instantly by comparing the diagram against the instruments.</p>
+        <div class="note"><strong>Note:</strong> Every arrow needs a sentence: X affects Y because [mechanism], under condition [moderator]. If the sentence cannot be written, the arrow should not be drawn.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>بناء الإطار ورسمه</h2>
+        <p class="lead">لبناء الإطار تسلسل قابل للتكرار، والمخطط هو انضباطه: فالصورة تفرض قرارات يسمح النثر بتجنبها، ولهذا بالذات يستحق رسمه مبكرًا ما يسببه من إزعاج.</p>
+        <svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><rect x="40" y="170" width="150" height="64" rx="9" fill="#9A1C1C"/><text x="115" y="199" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">المتغير</text><text x="115" y="215" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">المستقل</text><rect x="275" y="170" width="150" height="64" rx="9" fill="#B34747"/><text x="350" y="199" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">الوسيط</text><text x="350" y="215" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">(الآلية)</text><rect x="510" y="170" width="150" height="64" rx="9" fill="#2D2D2D"/><text x="585" y="199" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">المتغير</text><text x="585" y="215" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">التابع</text><rect x="275" y="40" width="150" height="58" rx="9" fill="#DEDEDE"/><text x="350" y="66" text-anchor="middle" font-size="12" font-weight="700" fill="#2D2D2D">المعدِّل</text><text x="350" y="82" text-anchor="middle" font-size="12" font-weight="700" fill="#2D2D2D">(الشرط)</text><rect x="275" y="300" width="150" height="58" rx="9" fill="#F4F4F4"/><text x="350" y="334" text-anchor="middle" font-size="12" font-weight="700" fill="#2D2D2D">الضوابط</text><line x1="190" y1="202" x2="263" y2="202" stroke="#A32020" stroke-width="2.5"/><path d="M275 202 l-12 -6 l0 12 z" fill="#A32020"/><line x1="425" y1="202" x2="498" y2="202" stroke="#A32020" stroke-width="2.5"/><path d="M510 202 l-12 -6 l0 12 z" fill="#A32020"/><line x1="350" y1="98" x2="350" y2="158" stroke="#B34747" stroke-width="2" stroke-dasharray="5 4"/><path d="M350 170 l-6 -12 l12 0 z" fill="#B34747"/><line x1="425" y1="329" x2="585" y2="329" stroke="#B34747" stroke-width="1.6" stroke-dasharray="5 4"/><line x1="585" y1="329" x2="585" y2="246" stroke="#B34747" stroke-width="1.6" stroke-dasharray="5 4"/><path d="M585 234 l-6 12 l12 0 z" fill="#B34747"/><path d="M115 170 C 115 90, 585 90, 585 158" fill="none" stroke="#A32020" stroke-width="1.8" stroke-dasharray="7 5"/><path d="M585 170 l-6 -12 l12 0 z" fill="#A32020"/><text x="350" y="388" text-anchor="middle" font-size="12" fill="#A32020">الخطوط المتصلة: المسارات المفترضة &#183; المتقطعة: الشروط والتفسيرات البديلة</text></svg>
+        <p>يجري التسلسل في خمس خطوات. أولًا، اسرد المفاهيم التي يتضمنها السؤال بسخاء، ثم اقطع إلى القليل الذي يحمل عملًا حقيقيًا، لأن إطارًا بخمسة عشر صندوقًا ملخصُ أدبيات لا إطار. ثانيًا، عرّف كل مفهوم بدقة، والتعريف متبنّى من مصدر مسمّى أو محاجَج بوصفه تعريف الباحث، بانضباط المفاهيم الذي تعرضه صفحات النظرية، لأن المفاهيم غير المعرّفة لا يمكن قياسها أو ملاحظتها بثبات. ثالثًا، حدّد العلاقات، وهنا تهم مفردات المخطط: مسارات مباشرة، ووسطاء يحملون الآلية، ومعدِّلات تحدد الشروط، وضوابط تمتص التفسيرات البديلة، كل واحد مرسومًا بشكل متمايز كما في الشكل أعلاه. رابعًا، اذكر الاتجاه والآلية لكل سهم، لأن سهمًا بلا سبب معلن صورةٌ لأمنية. خامسًا، أعلن الحدود: الفئات والبيئات والأطر الزمنية التي يدّعي الإطار صموده داخلها.</p>
+        <p>والرسم الأمين يعني مقاومة ثلاث إغراءات. الأول سهم إلى كل شيء، مخطط تتصل فيه كل الصناديق، وهو لا يدّعي شيئًا ولا يتنبأ بشيء؛ فالإطار يكسب مصداقيته بالعلاقات التي يستبعدها بقدر ما يكسبها بالتي يثبتها. والثاني الدقة الزائفة للصناديق والأسهم في العمل التفسيري، حيث قد يكون التعبير عن الإطار أفضل بمجموعة مفاهيم موجِّهة، أو خريطة عملية، أو مجموعة أسئلة هادية، لأن مخطط المتغيرات يعد ضمنًا بمنطق تباين لن تقدّمه الدراسة. والثالث الصندوق اليتيم، مفهوم يظهر في المخطط ولا يُقاس ولا يُلاحَظ ولا يعود أبدًا، وهو ما يلتقطه الممتحنون فورًا بمقارنة المخطط بالأدوات.</p>
+        <div class="note"><strong>ملاحظة:</strong> كل سهم يحتاج جملة: X يؤثر في Y لأن [الآلية]، بشرط [المعدِّل]. فإذا تعذّر كتابة الجملة، فلا ينبغي رسم السهم.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="using">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Making It Live, and a Worked Example</h2>
+        <p class="lead">A framework earns its place by working across the whole thesis, and the working is visible at four named points. The worked example then follows one framework from construction to revision.</p>
+        <p>At the design point, the framework dictates data: each concept maps to an instrument item, an interview question, or an observation focus, and the mapping is printed as a table so that no concept is unmeasured and no measure is unconceived. At the analysis point, the framework supplies the initial structure, deductive codes in template analysis, planned models in regression, comparison dimensions across cases, while leaving room for what it did not anticipate, since a framework that cannot be surprised is a filter rather than a lens. At the findings point, it organizes presentation, so results are reported against the relationships proposed rather than in the order they were collected. And at the discussion point, it takes the return: the framework is revisited path by path, supported here, unsupported there, extended by an unanticipated mechanism, and the revised framework is redrawn. That redrawn figure is frequently the thesis's clearest single statement of contribution.</p>
+        <p>The worked example: a study of why data governance policies fail to change analyst behaviour in large firms. Route: adaptation, taking institutional theory's coercive, normative, and mimetic pressures as the base, and adding two constructs the setting demands, perceived policy workability, argued from the street-level bureaucracy literature, and local team norms, argued from the practice literature, as the mechanisms through which macro pressure does or does not reach the desk. Relationships specified: pressures affect compliance behaviour, mediated by workability and team norms, moderated by managerial enforcement visibility. Boundaries: large regulated firms, analysts with discretion, post-implementation period. The framework then dictates a mixed design, a survey mapping the paths and case studies opening the mediators, and the study concludes by revising it: workability mediates as predicted, team norms turn out to substitute for rather than transmit institutional pressure, an unanticipated relationship, and the redrawn framework carries that new arrow as the thesis's contribution, which is precisely what a living framework is for.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> a conceptual framework is the study's thinking made explicit: few concepts, precisely defined, connected by arrows that each carry a mechanism, bounded by stated conditions, and traceable through design, analysis, findings, and a revised figure at the end. Build it early, draw it honestly, and let the data change it.</div>
+        <div class="refs"><ul>
+          <li>Miles, Huberman &amp; Saldana, <a href="https://uk.sagepub.com/en-gb/eur/qualitative-data-analysis/book246128" target="_blank" rel="noopener">Qualitative Data Analysis</a>.</li>
+          <li>Maxwell, <a href="https://uk.sagepub.com/en-gb/eur/qualitative-research-design/book234502" target="_blank" rel="noopener">Qualitative Research Design: An Interactive Approach</a>.</li>
+          <li>Whetten, <a href="https://www.jstor.org/stable/258554" target="_blank" rel="noopener">What Constitutes a Theoretical Contribution?</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>جعله حيًّا، ومثال تطبيقي</h2>
+        <p class="lead">يكسب الإطار مكانه بالعمل عبر الأطروحة كلها، والعمل مرئي عند أربع نقاط مسماة. ثم يتتبع المثال التطبيقي إطارًا واحدًا من البناء إلى التنقيح.</p>
+        <p>عند نقطة التصميم، يملي الإطار البيانات: كل مفهوم يُرسَم إلى فقرة أداة، أو سؤال مقابلة، أو محور ملاحظة، ويُطبَع الرسم جدولًا بحيث لا يبقى مفهوم بلا قياس ولا مقياس بلا مفهوم. وعند نقطة التحليل، يوفّر الإطار البنية الأولية، رموزًا استنباطية في التحليل القالبي، ونماذج مخططة في الانحدار، وأبعاد مقارنة عبر الحالات، مع ترك مساحة لما لم يتوقعه، لأن إطارًا لا يمكن أن يُفاجأ مرشّحٌ لا عدسة. وعند نقطة النتائج، ينظّم العرض، فتُعرَض النتائج مقابل العلاقات المقترحة لا بترتيب جمعها. وعند نقطة المناقشة، يأخذ عائده: يُعاد زيارة الإطار مسارًا مسارًا، مدعوم هنا وغير مدعوم هناك وموسَّع بآلية غير متوقعة، ويُعاد رسم الإطار المنقّح. وذلك الشكل المعاد رسمه كثيرًا ما يكون أوضح بيان منفرد لإسهام الأطروحة.</p>
+        <p>المثال التطبيقي: دراسة عن لماذا تفشل سياسات حوكمة البيانات في تغيير سلوك المحللين في الشركات الكبيرة. الطريق: تكييف، بأخذ ضغوط النظرية المؤسسية القسرية والمعيارية والمحاكية أساسًا، وإضافة مفهومين تطلبهما البيئة، قابلية تطبيق السياسة المدرَكة، محاجَجةً من أدبيات البيروقراطية على مستوى التنفيذ، وأعراف الفريق المحلية، محاجَجةً من أدبيات الممارسة، بوصفهما الآليتين اللتين يصل عبرهما الضغط الكلي إلى المكتب أو لا يصل. والعلاقات محددة: الضغوط تؤثر في سلوك الامتثال، بوساطة قابلية التطبيق وأعراف الفريق، وبتعديل من ظهور إنفاذ المديرين. والحدود: شركات كبيرة منظَّمة، ومحللون لديهم سلطة تقديرية، وفترة ما بعد التطبيق. ثم يملي الإطار تصميمًا مختلطًا، مسحًا يرسم المسارات ودراسات حالة تفتح الوسطاء، وتختم الدراسة بتنقيحه: قابلية التطبيق توسّطت كما تُنبِّئ، وتبيّن أن أعراف الفريق تحلّ محل الضغط المؤسسي بدل أن تنقله، وهي علاقة غير متوقعة، ويحمل الإطار المعاد رسمه ذلك السهم الجديد إسهامًا للأطروحة، وهذا بالضبط ما وُجد الإطار الحي من أجله.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الإطار المفاهيمي تفكير الدراسة مصرَّحًا به: مفاهيم قليلة، معرَّفة بدقة، موصولة بأسهم يحمل كل منها آلية، محدودة بشروط معلنة، وقابلة للتتبع عبر التصميم والتحليل والنتائج وشكل منقّح في النهاية. ابنِه مبكرًا، وارسمه بأمانة، ودع البيانات تغيّره.</div>
+        <div class="refs"><ul>
+          <li>مايلز وهوبرمان وسالدانيا، <a href="https://uk.sagepub.com/en-gb/eur/qualitative-data-analysis/book246128" target="_blank" rel="noopener">تحليل البيانات النوعية</a>.</li>
+          <li>ماكسويل، <a href="https://uk.sagepub.com/en-gb/eur/qualitative-research-design/book234502" target="_blank" rel="noopener">تصميم البحث النوعي: مقاربة تفاعلية</a>.</li>
+          <li>ويتن، <a href="https://www.jstor.org/stable/258554" target="_blank" rel="noopener">ما الذي يشكّل إسهامًا نظريًا؟</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="critical-feminist-postcolonial-research.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Feminist &amp; Postcolonial Research</span><span data-lang="ar">البحث النسوي وما بعد الكولونيالي</span></a><a href="theory-grounded-theory.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Grounded Theory</span><span data-lang="ar">النظرية المتجذّرة</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="الأطر المفاهيمية والنظرية";
+var TITLE_EN="Conceptual &amp; Theoretical Frameworks";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

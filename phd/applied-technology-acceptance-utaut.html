@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technology Acceptance: TRA, TAM, TPB &amp; UTAUT</title>
+<meta name="description" content="Technology acceptance in depth: from TRA and TPB through TAM to UTAUT and its moderators, using the models well, criticisms, and a worked example.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Applied theory</span><span data-lang="ar">النظرية التطبيقية</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">APPLIED THEORY · PhD</span><span data-lang="ar">النظرية التطبيقية · دكتوراه</span></div>
+    <h1><span data-lang="en">Technology Acceptance: TRA, TAM, TPB &amp; UTAUT</span><span data-lang="ar">نماذج قبول التقنية: من TRA إلى UTAUT</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Applied theory</span><span data-lang="ar">النظرية التطبيقية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">9 min</span><span data-lang="ar">٩ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="lineage"><span data-lang="en">The Lineage</span><span data-lang="ar">النسب</span></a></li><li><a data-id="utaut"><span data-lang="en">UTAUT</span><span data-lang="ar">النظرية الموحدة</span></a></li><li><a data-id="using"><span data-lang="en">Using It Well</span><span data-lang="ar">حسن الاستخدام</span></a></li><li><a data-id="critique"><span data-lang="en">Critiques & Example</span><span data-lang="ar">النقود ومثال</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Technology acceptance models: TRA, TAM, TPB, UTAUT</div>
+          <div><span>Key authorities:</span> Fishbein &amp; Ajzen; Davis; Venkatesh et al.</div>
+          <div><span>Core question:</span> Why do people adopt or reject a technology, and can we predict it?</div>
+          <div><span>Level:</span> Doctoral applied theory</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Why does one system spread through an organization while another, technically superior, dies in pilot? The technology acceptance tradition is forty years of cumulative theory built to answer exactly that question, and it is among the most tested bodies of theory in all of management research. Its family tree runs from the theory of reasoned action, through the technology acceptance model, to the unified theory of acceptance and use of technology, each generation absorbing the last, and its endpoint, UTAUT, routinely explains a striking share of the variance in adoption intention, which is why it anchors hundreds of doctoral theses.</p>
+        <p>The tradition matters to a doctoral researcher on two levels. As applied theory, it offers a validated, off-the-shelf framework for any study of digital adoption, e-government, e-learning, mobile banking, enterprise systems, with established constructs, published instruments, and a mountain of comparison studies. As a case study in theory development, it is a living textbook of this portal's earlier pages: constructs defined and bounded, relationships specified with mediators and moderators, models tested, compared, and unified, exactly the theory-construction craft, performed in public across four decades.</p>
+        <p>This framework traces the lineage from TRA and TPB through TAM, presents UTAUT in full with its model diagram, moderators, and extensions, sets out how the models are used well and badly in doctoral work, and closes with the criticisms and a worked example. It is my own synthesis, written in my own words and grounded in recognized scholarship, including the systematic review literature on UTAUT in education.</p>
+        <div class="note"><strong>Note:</strong> The tradition's founding insight is disarmingly simple: people use technology when they believe it will help them and believe it will not be too hard. Everything after is the disciplined refinement of those two beliefs, their causes, and their conditions.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> نماذج قبول التقنية: TRA وTAM وTPB وUTAUT</div>
+          <div><span>المراجع الرئيسية:</span> فيشباين وأيزن؛ ديفيس؛ فينكاتيش وزملاؤه</div>
+          <div><span>السؤال الجوهري:</span> لماذا يتبنّى الناس تقنيةً أو يرفضونها، وهل نستطيع التنبؤ بذلك؟</div>
+          <div><span>المستوى:</span> النظرية التطبيقية لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">لماذا ينتشر نظامٌ في منظمة بينما يموت آخر، أفضل منه تقنيًا، في مرحلة التجربة؟ تقليد قبول التقنية هو أربعون عامًا من النظرية التراكمية بُنيت للإجابة عن هذا السؤال بالذات، وهو من أكثر الأجسام النظرية اختبارًا في بحوث الإدارة كلها. تمتد شجرته من نظرية الفعل المسبَّب، عبر نموذج قبول التقنية، إلى النظرية الموحدة لقبول التقنية واستخدامها، كل جيل يستوعب سابقه، ونقطة نهايته، UTAUT، تفسّر بانتظام حصة لافتة من التباين في نية التبني، ولهذا ترتكز عليها مئات أطروحات الدكتوراه.</p>
+        <p>ويهم هذا التقليد باحث الدكتوراه على مستويين. فبوصفه نظرية تطبيقية، يقدّم إطارًا جاهزًا متحققًا منه لأي دراسة عن التبني الرقمي: الحكومة الإلكترونية، والتعلم الإلكتروني, والخدمات المصرفية عبر الجوال، وأنظمة المنشآت، بمفاهيم راسخة وأدوات منشورة وجبل من دراسات المقارنة. وبوصفه حالة دراسية في تطوير النظرية، هو كتاب حي لصفحات هذه البوابة السابقة: مفاهيم عُرّفت وحُدّدت، وعلاقات خُصّصت بوسطاء ومعدِّلات، ونماذج اختُبرت وقورنت ووُحّدت، أي حرفة بناء النظرية نفسها، مؤداةً علنًا عبر أربعة عقود.</p>
+        <p>يتتبع هذا الإطار النسب من TRA وTPB عبر TAM، ويعرض UTAUT كاملًا بمخططه ومعدِّلاته وتوسعاته، ويبيّن كيف تُستخدَم النماذج جيدًا وكيف تُساء في أعمال الدكتوراه، ويختم بالنقود ومثال تطبيقي. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة، ومنها أدبيات المراجعات المنهجية عن UTAUT في التعليم.</p>
+        <div class="note"><strong>ملاحظة:</strong> الفكرة المؤسِّسة للتقليد بسيطة إلى حد مدهش: يستخدم الناس التقنية عندما يعتقدون أنها ستفيدهم ويعتقدون أنها لن تكون صعبة جدًا. وكل ما بعد ذلك هو الصقل المنضبط لهذين الاعتقادين وأسبابهما وشروطهما.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="lineage">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>From TRA to TAM: Building the Tradition</h2>
+        <p class="lead">The tradition's power comes from its cumulative construction: each model kept what its predecessor got right and repaired what it got wrong, a textbook case of the theory-testing loop this portal describes elsewhere. Tracing the chain teaches both the content and the craft.</p>
+        <p>The theory of reasoned action, from Fishbein and Ajzen, supplied the foundation: behaviour is driven by intention, and intention by two forces, the person's attitude toward the behaviour, their own evaluation of doing it, and the subjective norm, their perception of whether people who matter to them think they should. This simple architecture, beliefs to attitude to intention to behaviour, proved robust across countless domains, but with a known limit: it assumes the behaviour is fully under the person's control. The theory of planned behaviour repaired exactly that, adding perceived behavioural control, the person's sense of whether they can actually perform the behaviour, given skills, resources, and obstacles, as a third driver of intention and, importantly, as a direct influence on behaviour itself, since believing you cannot do something both weakens intention and predicts actual failure.</p>
+        <p>Davis's technology acceptance model then specialized the machinery for technology. TAM's insight was that in the technology domain, the belief structure collapses into two dominant perceptions: perceived usefulness, the belief that the system will improve my performance, and perceived ease of use, the belief that using it will be free of effort, with ease of use also feeding usefulness, since a tool too hard to use cannot deliver its benefits. TAM's parsimony made it the most cited model in information systems, and its constructs became the field's shared vocabulary, but two decades of replication also mapped its gaps: it says little about where usefulness beliefs come from, omits social forces entirely, and ignores the infrastructure and support that make use possible, three gaps that set the agenda for unification.</p>
+        <div class="note"><strong>Note:</strong> Read the chain as a masterclass in repair: TPB fixed TRA's control assumption, TAM specialized the beliefs for technology, and each repair was driven by documented predictive failure, which is the falsification discipline working exactly as this portal's Popper page describes.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>من TRA إلى TAM: بناء التقليد</h2>
+        <p class="lead">قوة هذا التقليد تأتي من بنائه التراكمي: كل نموذج أبقى ما أصاب فيه سابقه وأصلح ما أخطأ فيه، وهي حالة نموذجية لحلقة اختبار النظرية التي تصفها هذه البوابة في موضع آخر. وتتبّع السلسلة يعلّم المحتوى والحرفة معًا.</p>
+        <p>نظرية الفعل المسبَّب، من فيشباين وأيزن، قدّمت الأساس: السلوك تقوده النية، والنية تقودها قوتان، اتجاه الشخص نحو السلوك، أي تقييمه الخاص للقيام به، والمعيار الذاتي، أي إدراكه هل يرى المهمون عنده أنه ينبغي أن يفعله. وهذه البنية البسيطة، معتقدات فاتجاه فنية فسلوك، أثبتت متانتها عبر مجالات لا تُحصى، لكن بحدّ معروف: فهي تفترض أن السلوك تحت سيطرة الشخص الكاملة. وجاءت نظرية السلوك المخطط لتصلح هذا بالذات، مضيفةً السيطرة السلوكية المدرَكة، أي إحساس الشخص هل يستطيع فعلًا أداء السلوك بالنظر إلى المهارات والموارد والعقبات، بوصفها محرّكًا ثالثًا للنية، والأهم، بوصفها مؤثرًا مباشرًا على السلوك نفسه، لأن اعتقادك أنك لا تستطيع فعل شيء يُضعف النية ويتنبأ بالفشل الفعلي معًا.</p>
+        <p>ثم جاء نموذج قبول التقنية لديفيس فخصّص الآلة للتقنية. وكانت فكرة TAM أن بنية المعتقدات في مجال التقنية تنضغط في إدراكين مهيمنين: الفائدة المدرَكة، أي الاعتقاد أن النظام سيحسّن أدائي، وسهولة الاستخدام المدرَكة، أي الاعتقاد أن استخدامه سيكون بلا عناء، مع تغذية سهولة الاستخدام للفائدة أيضًا، لأن أداة يصعب استخدامها لا تستطيع تقديم منافعها. وجعل اقتصادُ TAM إياه النموذجَ الأكثر استشهادًا في نظم المعلومات، وصارت مفاهيمه المفردات المشتركة للحقل، لكن عقدين من التكرار رسما أيضًا خريطة فجواته: فهو يقول القليل عن مصدر معتقدات الفائدة، ويغفل القوى الاجتماعية كليًا، ويتجاهل البنية التحتية والدعم اللذين يجعلان الاستخدام ممكنًا، ثلاث فجوات وضعت جدول أعمال التوحيد.</p>
+        <div class="note"><strong>ملاحظة:</strong> اقرأ السلسلة درسًا رفيعًا في الإصلاح: أصلحت TPB افتراضَ السيطرة في TRA، وخصّصت TAM المعتقدات للتقنية، وكل إصلاح قاده فشل تنبؤي موثَّق، وهذا هو انضباط التكذيب يعمل تمامًا كما تصفه صفحة بوبر في هذه البوابة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="utaut">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>UTAUT: The Unified Model</h2>
+        <p class="lead">By 2003 the field held eight overlapping models, and Venkatesh and colleagues performed the unification: testing them head-to-head on common data and distilling the survivors into one architecture. The result, shown in the diagram, is the tradition's flagship.</p>
+        <svg viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><rect x="30" y="20" width="190" height="64" rx="9" fill="#9A1C1C"/><text x="125" y="49" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">Performance</text><text x="125" y="65" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">expectancy</text><rect x="30" y="110" width="190" height="64" rx="9" fill="#9A1C1C"/><text x="125" y="139" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">Effort</text><text x="125" y="155" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">expectancy</text><rect x="30" y="200" width="190" height="64" rx="9" fill="#9A1C1C"/><text x="125" y="229" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">Social</text><text x="125" y="245" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">influence</text><rect x="30" y="290" width="190" height="64" rx="9" fill="#9A1C1C"/><text x="125" y="319" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">Facilitating</text><text x="125" y="335" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">conditions</text><rect x="320" y="120" width="170" height="70" rx="9" fill="#2D2D2D"/><text x="405" y="152" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">Behavioural</text><text x="405" y="168" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">intention</text><rect x="570" y="120" width="160" height="70" rx="9" fill="#A32020"/><text x="650" y="152" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">Use</text><text x="650" y="168" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">behaviour</text><line x1="220" y1="52" x2="320" y2="155" stroke="#A32020" stroke-width="2"/><path d="M320 155 l-4 -11 l-11 -4 z" fill="#A32020"/><line x1="220" y1="142" x2="320" y2="155" stroke="#A32020" stroke-width="2"/><path d="M320 155 l-10 -6 l-11 3 z" fill="#A32020"/><line x1="220" y1="232" x2="320" y2="155" stroke="#A32020" stroke-width="2"/><path d="M320 155 l-11 2 l-5 10 z" fill="#A32020"/><line x1="220" y1="322" x2="570" y2="175" stroke="#A32020" stroke-width="2" stroke-dasharray="6 4"/><path d="M570 175 l-12 -1 l4 11 z" fill="#A32020"/><line x1="490" y1="155" x2="558" y2="155" stroke="#A32020" stroke-width="2.5"/><path d="M570 155 l-12 -6 l0 12 z" fill="#A32020"/><rect x="250" y="360" width="300" height="44" rx="9" fill="#DEDEDE"/><text x="400" y="387" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2D2D2D">Moderators: age, gender, experience, voluntariness</text><line x1="400" y1="360" x2="400" y2="200" stroke="#B34747" stroke-width="1.6" stroke-dasharray="4 4"/></svg>
+        <p>Four constructs drive acceptance. Performance expectancy, the degree to which the person believes the system will help them perform better, absorbs TAM's usefulness and is consistently the strongest single predictor of intention, a finding the review literature confirms across contexts from banking to higher education. Effort expectancy, the expected ease of use, matters most early and fades with experience. Social influence, the perception that important others think one should use the system, carries TRA's subjective norm forward, and matters most where use is mandated and experience is low. These three drive behavioural intention, which in turn drives use. The fourth construct, facilitating conditions, the belief that organizational and technical infrastructure exists to support use, works differently: it bypasses intention and predicts use behaviour directly, because support determines whether an intention can be enacted at all, the unified model's inheritance from TPB's control construct.</p>
+        <p>UTAUT's second signature is its moderators: the four relationships are not constant but vary by age, gender, experience, and voluntariness of use, so that, for example, effort expectancy weighs more for older and less experienced users, and social influence matters mainly under mandate. This moderation structure is what lifted explained variance toward seventy percent in the original tests, and it carries a methodological lesson beyond the model: main effects averaged over heterogeneous users can hide the real story. The consumer extension, UTAUT2, added hedonic motivation, price value, and habit for voluntary consumer contexts, with habit in particular emerging as a powerful rival to intention once behaviour becomes routine, a reminder that deliberate calculation is only one road to use.</p>
+        <div class="note"><strong>Note:</strong> Read the diagram's two paths carefully: beliefs drive intention, but facilitating conditions bypass intention and act on use directly. Adoption fails on either path, wanting without being able, or being able without wanting, and interventions must diagnose which.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>UTAUT: النموذج الموحد</h2>
+        <p class="lead">بحلول عام 2003 كان الحقل يحمل ثمانية نماذج متداخلة، فأجرى فينكاتيش وزملاؤه التوحيد: اختبروها وجهًا لوجه على بيانات مشتركة وقطّروا الناجيات في بنية واحدة. والنتيجة، المعروضة في المخطط، هي سفينة قيادة هذا التقليد.</p>
+        <svg viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><rect x="30" y="20" width="190" height="64" rx="9" fill="#9A1C1C"/><text x="125" y="49" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">توقّع</text><text x="125" y="65" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">الأداء</text><rect x="30" y="110" width="190" height="64" rx="9" fill="#9A1C1C"/><text x="125" y="139" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">توقّع</text><text x="125" y="155" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">الجهد</text><rect x="30" y="200" width="190" height="64" rx="9" fill="#9A1C1C"/><text x="125" y="229" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">التأثير</text><text x="125" y="245" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">الاجتماعي</text><rect x="30" y="290" width="190" height="64" rx="9" fill="#9A1C1C"/><text x="125" y="319" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">الظروف</text><text x="125" y="335" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">الميسِّرة</text><rect x="320" y="120" width="170" height="70" rx="9" fill="#2D2D2D"/><text x="405" y="152" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">النية</text><text x="405" y="168" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">السلوكية</text><rect x="570" y="120" width="160" height="70" rx="9" fill="#A32020"/><text x="650" y="152" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">سلوك</text><text x="650" y="168" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">الاستخدام</text><line x1="220" y1="52" x2="320" y2="155" stroke="#A32020" stroke-width="2"/><path d="M320 155 l-4 -11 l-11 -4 z" fill="#A32020"/><line x1="220" y1="142" x2="320" y2="155" stroke="#A32020" stroke-width="2"/><path d="M320 155 l-10 -6 l-11 3 z" fill="#A32020"/><line x1="220" y1="232" x2="320" y2="155" stroke="#A32020" stroke-width="2"/><path d="M320 155 l-11 2 l-5 10 z" fill="#A32020"/><line x1="220" y1="322" x2="570" y2="175" stroke="#A32020" stroke-width="2" stroke-dasharray="6 4"/><path d="M570 175 l-12 -1 l4 11 z" fill="#A32020"/><line x1="490" y1="155" x2="558" y2="155" stroke="#A32020" stroke-width="2.5"/><path d="M570 155 l-12 -6 l0 12 z" fill="#A32020"/><rect x="250" y="360" width="300" height="44" rx="9" fill="#DEDEDE"/><text x="400" y="387" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2D2D2D">المعدِّلات: العمر، الجنس، الخبرة، الطوعية</text><line x1="400" y1="360" x2="400" y2="200" stroke="#B34747" stroke-width="1.6" stroke-dasharray="4 4"/></svg>
+        <p>أربعة مفاهيم تقود القبول. توقّع الأداء، أي درجة اعتقاد الشخص أن النظام سيساعده على أداء أفضل، يستوعب فائدة TAM وهو باستمرار أقوى متنبئ منفرد بالنية، وهي نتيجة تؤكدها أدبيات المراجعات عبر السياقات من الخدمات المصرفية إلى التعليم العالي. وتوقّع الجهد، أي السهولة المتوقعة للاستخدام، يهم أكثر ما يهم في البداية ويتلاشى مع الخبرة. والتأثير الاجتماعي، أي إدراك أن المهمين يرون أنه ينبغي استخدام النظام، يحمل معيارَ TRA الذاتي إلى الأمام، ويهم أكثر ما يهم حيث يكون الاستخدام إلزاميًا والخبرة قليلة. هذه الثلاثة تقود النية السلوكية، التي تقود بدورها الاستخدام. أما المفهوم الرابع، الظروف الميسِّرة، أي الاعتقاد بوجود بنية تنظيمية وتقنية تدعم الاستخدام، فيعمل بطريقة مختلفة: يتجاوز النية ويتنبأ بسلوك الاستخدام مباشرة، لأن الدعم يحدد هل يمكن تحويل النية إلى فعل أصلًا، وهذا ميراث النموذج الموحد من مفهوم السيطرة في TPB.</p>
+        <p>والسمة الثانية المميزة لـUTAUT معدِّلاتها: فالعلاقات الأربع ليست ثابتة بل تتباين حسب العمر والجنس والخبرة وطوعية الاستخدام، فمثلًا يزن توقّع الجهد أكثر عند المستخدمين الأكبر سنًا والأقل خبرة، ويهم التأثير الاجتماعي أساسًا تحت الإلزام. وهذه البنية التعديلية هي التي رفعت التباين المفسَّر نحو سبعين بالمئة في الاختبارات الأصلية، وتحمل درسًا منهجيًا يتجاوز النموذج: الآثار الرئيسية الممتوسطة على مستخدمين غير متجانسين قد تخفي القصة الحقيقية. والتوسعة الاستهلاكية، UTAUT2، أضافت الدافع المتعي وقيمة السعر والعادة للسياقات الاستهلاكية الطوعية، وبرزت العادة بالذات منافسًا قويًا للنية متى صار السلوك روتينًا، تذكيرًا بأن الحساب المتعمد ليس إلا طريقًا واحدًا إلى الاستخدام.</p>
+        <div class="note"><strong>ملاحظة:</strong> اقرأ مسارَي المخطط بعناية: المعتقدات تقود النية، لكن الظروف الميسِّرة تتجاوز النية وتعمل على الاستخدام مباشرة. فالتبني يفشل على أي من المسارين، أن تريد ولا تستطيع، أو تستطيع ولا تريد، وعلى التدخلات تشخيص أيهما.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="using">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Using the Models in Doctoral Work</h2>
+        <p class="lead">Because UTAUT arrives with constructs, instruments, and hypotheses ready-made, it is both a gift and a trap for the doctoral researcher: a gift when used as a living theory, a trap when used as a template. The difference is contribution.</p>
+        <p>The template failure is well documented in the review literature: another context, another questionnaire, the same paths confirmed, a study that was publishable a decade ago and is now, in the reviewers' standing phrase, confirmatory redundancy. The systematic reviews of UTAUT in higher education make the pattern concrete: hundreds of studies, heavily concentrated on students, surveys, and structural equation modelling, repeatedly confirming that performance expectancy predicts intention, while the genuinely open questions go under-asked. A UTAUT thesis earns its place by doing one of the recognized kinds of extension: testing the model where its boundary conditions are genuinely in doubt, new user populations, cultures, or technology classes with theorized reasons to expect difference; adding and defending a construct the context demands, trust for government services, perceived risk for finance, resistance for mandated systems, with the addition argued from mechanism, not appended for novelty; taking the moderators seriously as the study's focus rather than an afterthought; or repairing the tradition's known weaknesses, above all the intention-behaviour gap, by measuring actual use longitudinally instead of stopping at stated intention.</p>
+        <p>Method follows the choice. The standard package, validated scales adapted with care, translation and back-translation where language changes, measurement validation before structural testing, and structural equation modelling for the paths, is treated in this portal's survey and validity pages, and the acceptance literature is where those crafts are exercised at scale. The distinctive obligations are two: adaptation discipline, because a reworded item is a new item until re-validated, and model-claim discipline, because a cross-sectional survey of intentions supports claims about intention, not about use, a distinction the strongest studies honour by design and the weakest blur in the discussion chapter.</p>
+        <div class="note"><strong>Note:</strong> The examiner's question for any UTAUT study is what does this add to four hundred confirmations. Have the answer designed in from the start: a doubted boundary, a defended construct, a focal moderator, or measured actual use.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>استخدام النماذج في أعمال الدكتوراه</h2>
+        <p class="lead">لأن UTAUT تصل بمفاهيم وأدوات وفرضيات جاهزة، فهي هدية وفخ معًا لباحث الدكتوراه: هدية عندما تُستخدَم نظريةً حية، وفخ عندما تُستخدَم قالبًا. والفرق هو الإسهام.</p>
+        <p>فشل القالب موثّق جيدًا في أدبيات المراجعات: سياق آخر، واستبيان آخر, والمسارات نفسها تتأكد، دراسة كانت قابلة للنشر قبل عقد وصارت اليوم، بعبارة المراجعين الجاهزة، تكرارًا تأكيديًا. والمراجعات المنهجية لـUTAUT في التعليم العالي تجعل النمط ملموسًا: مئات الدراسات، مركّزة بشدة على الطلاب والمسوح ونمذجة المعادلات البنيوية، تؤكد مرارًا أن توقّع الأداء يتنبأ بالنية، بينما تبقى الأسئلة المفتوحة حقًا ناقصة الطرح. وأطروحة UTAUT تستحق مكانها بأداء أحد أنواع التوسعة المعترف بها: اختبار النموذج حيث شروطه الحدية موضع شك حقيقي، فئات مستخدمين أو ثقافات أو أصناف تقنية جديدة مع أسباب منظَّرة لتوقع الاختلاف؛ أو إضافة مفهوم يطلبه السياق والدفاع عنه، الثقة للخدمات الحكومية، والمخاطر المدرَكة للمالية، والمقاومة للأنظمة الإلزامية، مع محاجّة الإضافة من الآلية لا إلحاقها للجِدة؛ أو أخذ المعدِّلات بجدية بوصفها محور الدراسة لا فكرة لاحقة؛ أو إصلاح نقاط ضعف التقليد المعروفة، وعلى رأسها فجوة النية والسلوك، بقياس الاستخدام الفعلي طوليًا بدل التوقف عند النية المعلنة.</p>
+        <p>والمنهج يتبع الاختيار. فالحزمة المعيارية، مقاييس متحقق منها تُكيَّف بعناية، وترجمة وترجمة عكسية حيث تتغير اللغة، وتحقق من القياس قبل الاختبار البنيوي، ونمذجة معادلات بنيوية للمسارات، معالجة في صفحتي المسوح والصدق في هذه البوابة، وأدبيات القبول هي حيث تُمارَس تلك الحرف على نطاق واسع. والالتزامان المميزان اثنان: انضباط التكييف، لأن الفقرة المعاد صياغتها فقرة جديدة حتى يعاد التحقق منها، وانضباط حدود الادّعاء، لأن مسحًا مقطعيًا للنوايا يدعم ادّعاءات عن النية لا عن الاستخدام، وهو تمييز تحترمه أقوى الدراسات بالتصميم وتطمسه أضعفها في فصل المناقشة.</p>
+        <div class="note"><strong>ملاحظة:</strong> سؤال الممتحن لأي دراسة UTAUT هو: ماذا تضيف هذه إلى أربعمئة تأكيد؟ جهّز الجواب في التصميم من البداية: حدّ مشكوك فيه، أو مفهوم مُدافَع عنه، أو معدِّل محوري، أو استخدام فعلي مقيس.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="critique">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Criticisms, and a Worked Example</h2>
+        <p class="lead">A tradition this dominant attracts serious criticism, and knowing it protects a thesis from inheriting the weaknesses along with the instruments. The worked example then shows a design that answers the critics in advance.</p>
+        <p>The standing criticisms form a short list. The intention-behaviour gap: most studies stop at stated intention, yet intention is an imperfect predictor of sustained use, and habit, circumstance, and infrastructure intervene. Rational-choice thinness: the models picture a calculating adopter weighing beliefs, and struggle with emotion, identity, meaning, and resistance, exactly the territory this portal's interpretive pages cover, which is why qualitative and mixed acceptance studies exist and matter. Static snapshots: acceptance is a process, initial adoption, learning, routinization, infusion or abandonment, and cross-sectional surveys photograph one frame of a film. Context blindness: a model born in North American workplaces travels with cultural assumptions, and the moderating role of culture remains under-theorized. And construct sprawl: extensions have multiplied constructs faster than theory, recreating the fragmentation UTAUT was built to end, a caution against adding variables without mechanism.</p>
+        <p>The worked example: a thesis on teachers' acceptance of an AI grading assistant in Saudi schools. Design: UTAUT2 as the spine, with two defended context constructs, trust in algorithmic judgment, argued from the delegation mechanism, and professional identity threat, argued from the interpretive literature on automation and craft. An explanatory sequential mixed design: the survey wave measures the extended model and, six months later, actual usage logs, closing the intention-behaviour gap by design; the qualitative wave interviews high-intention non-users, the model's most informative anomaly cases. Culture enters as theorized moderation, not decoration. The contribution stands on four legs the examiner can hold: a doubted boundary tested, two constructs added with mechanisms, behaviour measured rather than assumed, and the anomaly cases explained, a UTAUT study that uses the tradition as a foundation rather than a ceiling.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> the acceptance tradition runs from TRA's intentions through TAM's two beliefs to UTAUT's unified, moderated architecture, and it is both a ready framework and a demanding inheritance. Use it as living theory, test its boundaries, defend your additions, measure real use, and let the anomalies teach, and it will carry a thesis; use it as a template, and it will carry only a questionnaire.</div>
+        <div class="refs"><ul>
+          <li>Venkatesh, Morris, Davis &amp; Davis, <a href="https://www.jstor.org/stable/30036540" target="_blank" rel="noopener">User Acceptance of Information Technology: Toward a Unified View</a>.</li>
+          <li>Davis, <a href="https://www.jstor.org/stable/249008" target="_blank" rel="noopener">Perceived Usefulness, Perceived Ease of Use, and User Acceptance</a>.</li>
+          <li>Xue, Rashid &amp; Ouyang, <a href="https://journals.sagepub.com/doi/10.1177/21582440241229570" target="_blank" rel="noopener">UTAUT in Higher Education: A Systematic Review</a>.</li>
+          <li>Ajzen, <a href="https://www.sciencedirect.com/science/article/abs/pii/074959789190020T" target="_blank" rel="noopener">The Theory of Planned Behavior</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>النقود، ومثال تطبيقي</h2>
+        <p class="lead">تقليد بهذه الهيمنة يجذب نقدًا جادًا، ومعرفته تحمي الأطروحة من وراثة نقاط الضعف مع الأدوات. ثم يعرض المثال التطبيقي تصميمًا يجيب النقاد مسبقًا.</p>
+        <p>النقود الدائمة قائمة قصيرة. فجوة النية والسلوك: معظم الدراسات تتوقف عند النية المعلنة، مع أن النية متنبئ ناقص بالاستخدام المستدام، وتتدخل العادة والظروف والبنية التحتية. ورِقّة الاختيار العقلاني: النماذج تصوّر متبنيًا حاسبًا يزن المعتقدات، وتتعثر مع العاطفة والهوية والمعنى والمقاومة، وهي بالضبط الأرض التي تغطيها الصفحات التفسيرية في هذه البوابة، ولهذا توجد دراسات القبول النوعية والمختلطة وتهم. واللقطات الساكنة: القبول عملية، تبنٍّ أولي فتعلم فروتنة فتغلغل أو هجر، والمسوح المقطعية تصور إطارًا واحدًا من فيلم. وعمى السياق: نموذج وُلد في أماكن عمل أمريكية شمالية يسافر بافتراضات ثقافية، ودور الثقافة المعدِّل يبقى ناقص التنظير. وتضخم المفاهيم: التوسعات ضاعفت المفاهيم أسرع من النظرية، معيدةً إنتاج التشظي الذي بُنيت UTAUT لإنهائه، وهو تحذير من إضافة متغيرات بلا آلية.</p>
+        <p>المثال التطبيقي: أطروحة عن قبول المعلمين لمساعد تصحيح يعمل بالذكاء الاصطناعي في المدارس السعودية. التصميم: UTAUT2 عمودًا فقريًا، مع مفهومين سياقيين مُدافَع عنهما، الثقة في الحكم الخوارزمي، محاجًّا من آلية التفويض، وتهديد الهوية المهنية، محاجًّا من الأدبيات التفسيرية عن الأتمتة والحرفة. وتصميم مختلط تفسيري متتابع: موجة المسح تقيس النموذج الموسع، وبعد ستة أشهر، سجلات الاستخدام الفعلية، فتُغلق فجوة النية والسلوك بالتصميم؛ وموجة نوعية تقابل أصحاب النية العالية غير المستخدمين، وهم حالات الشذوذ الأكثر إفادة للنموذج. والثقافة تدخل تعديلًا منظَّرًا لا زينة. والإسهام يقف على أربع أرجل يستطيع الممتحن الإمساك بها: حدّ مشكوك فيه اختُبر، ومفهومان أضيفا بآليتيهما، وسلوك قيس بدل أن يُفترَض، وحالات شذوذ فُسّرت، أي دراسة UTAUT تستخدم التقليد أساسًا لا سقفًا.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> يمتد تقليد القبول من نوايا TRA عبر معتقدَي TAM إلى بنية UTAUT الموحدة المعدَّلة، وهو إطار جاهز وميراث مطالِب معًا. استخدمه نظرية حية، واختبر حدوده، ودافع عن إضافاتك، وقس الاستخدام الحقيقي، ودع الشذوذات تعلّم، يحمل أطروحة؛ واستخدمه قالبًا، يحمل استبيانًا فقط.</div>
+        <div class="refs"><ul>
+          <li>فينكاتيش وموريس وديفيس وديفيس، <a href="https://www.jstor.org/stable/30036540" target="_blank" rel="noopener">قبول المستخدم لتقنية المعلومات: نحو رؤية موحدة</a>.</li>
+          <li>ديفيس، <a href="https://www.jstor.org/stable/249008" target="_blank" rel="noopener">الفائدة المدرَكة وسهولة الاستخدام المدرَكة وقبول المستخدم</a>.</li>
+          <li>شيوي ورشيد وأويانغ، <a href="https://journals.sagepub.com/doi/10.1177/21582440241229570" target="_blank" rel="noopener">UTAUT في التعليم العالي: مراجعة منهجية</a>.</li>
+          <li>أيزن، <a href="https://www.sciencedirect.com/science/article/abs/pii/074959789190020T" target="_blank" rel="noopener">نظرية السلوك المخطط</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="applied-diffusion-of-innovations.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Diffusion of Innovations</span><span data-lang="ar">انتشار الابتكارات</span></a><span class="empty"></span></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="نماذج قبول التقنية: من TRA إلى UTAUT";
+var TITLE_EN="Technology Acceptance: TRA, TAM, TPB &amp; UTAUT";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quantitative, Qualitative &amp; Mixed Methods</title>
+<meta name="description" content="Quantitative, qualitative and mixed methods in depth: each family's machinery, the false stereotypes, the core mixed designs, and one worked example.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Research design and methodology</span><span data-lang="ar">تصميم البحث ومنهجيته</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">RESEARCH DESIGN &amp; METHODOLOGY · PhD</span><span data-lang="ar">تصميم البحث ومنهجيته · دكتوراه</span></div>
+    <h1><span data-lang="en">Quantitative, Qualitative &amp; Mixed Methods</span><span data-lang="ar">المناهج الكمّية والنوعية والمختلطة</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Research design and methodology</span><span data-lang="ar">تصميم البحث ومنهجيته</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">9 min</span><span data-lang="ar">٩ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="quant"><span data-lang="en">Quantitative</span><span data-lang="ar">الكمّي</span></a></li><li><a data-id="qual"><span data-lang="en">Qualitative</span><span data-lang="ar">النوعي</span></a></li><li><a data-id="stereotypes"><span data-lang="en">False Divides</span><span data-lang="ar">انقسامات زائفة</span></a></li><li><a data-id="mixed"><span data-lang="en">Mixed Designs</span><span data-lang="ar">التصاميم المختلطة</span></a></li><li><a data-id="example"><span data-lang="en">Worked Example</span><span data-lang="ar">مثال مشتغَل</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Quantitative, qualitative, and mixed methods</div>
+          <div><span>Covers:</span> The two families, their real differences, and their integration</div>
+          <div><span>Use:</span> Choosing and defending a methodological family</div>
+          <div><span>Level:</span> Doctoral research methodology</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">The division between quantitative and qualitative research is the most visible split in the research landscape, and also the most misunderstood. It is routinely treated as a difference of data, numbers versus words, when it is really a difference of question, logic, and claim, with the data format merely the surface symptom. Mixed methods research, the deliberate integration of both, has grown from a controversial compromise into a mature third tradition with its own designs and standards. A doctoral researcher needs all three fluently, if only to defend the one they choose against the alternatives they rejected.</p>
+        <p>The deep difference is between two kinds of question. Quantitative research asks variance questions: how much, how many, how strongly related, does X affect Y and by how much across many cases? Its logic requires standardization, measuring the same variables the same way in every case, so that cases can be compared, aggregated, and generalized. Qualitative research asks process and meaning questions: how does this unfold, what does it mean to those living it, why here and not there? Its logic requires openness, letting each case speak in its own terms, so that understanding can be deep, contextual, and faithful. Neither logic can do the other's job: standardization purchases comparability at the price of depth, openness purchases depth at the price of comparability, and this trade is a law of method, not a failure of either side.</p>
+        <p>This framework sets out each family's machinery in depth, dismantles the false stereotypes that surround the divide, presents the major mixed designs with their logics, works one example across all three approaches, and closes with the standards by which each is judged. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> The choice is not numbers versus words but variance versus process: does your question ask how much across cases, or how and why within them? Answer that, and the family chooses itself.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> المناهج الكمّية والنوعية والمختلطة</div>
+          <div><span>يغطّي:</span> العائلتين، وفروقهما الحقيقية، وتكاملهما</div>
+          <div><span>الاستخدام:</span> اختيار عائلةٍ منهجية والدفاع عنها</div>
+          <div><span>المستوى:</span> منهجية بحثٍ لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الانقسام بين البحث الكمّي والنوعي أظهر شقٍّ في مشهد البحث، وأكثره سوء فهمٍ أيضًا. يُعامَل عادةً فرق بيانات، أرقامٌ مقابل كلمات، بينما هو فعليًا فرق سؤالٍ ومنطقٍ وادّعاء، وصيغة البيانات مجرّد العرَض السطحي. والبحث المختلط، التكامل المقصود للاثنين، نما من تسويةٍ مثيرة للجدل إلى تقليدٍ ثالث ناضج بتصاميمه ومعاييره. ويحتاج باحث الدكتوراه الثلاثة بطلاقة، ولو فقط ليدافع عمّا اختار ضدّ البدائل التي رفض.</p>
+        <p>الفرق العميق بين نوعَين من الأسئلة. البحث الكمّي يسأل أسئلة تباين: كم، وكم عددًا، وكم قوّة الارتباط، وهل يؤثّر X في Y وبكم عبر حالاتٍ كثيرة؟ ومنطقه يتطلّب التوحيد، قياس المتغيّرات ذاتها بالطريقة ذاتها في كل حالة، لتُقارَن الحالات وتُجمَع وتُعمَّم. والبحث النوعي يسأل أسئلة عمليةٍ ومعنًى: كيف يتكشّف هذا، وماذا يعني لمن يعيشونه، ولماذا هنا لا هناك؟ ومنطقه يتطلّب الانفتاح، ترك كل حالةٍ تتكلّم بلغتها، ليكون الفهم عميقًا سياقيًا أمينًا. ولا منطق يستطيع عمل الآخر: التوحيد يشتري القابلية للمقارنة بثمن العمق، والانفتاح يشتري العمق بثمن القابلية للمقارنة، وهذه المبادلة قانون منهجٍ لا فشل أي جانب.</p>
+        <p>يعرض هذا الإطار آلة كل عائلةٍ بعمق، ويفكّك الصور النمطية الزائفة المحيطة بالانقسام، ويقدّم التصاميم المختلطة الكبرى بمنطقياتها، ويشغّل مثالًا واحدًا عبر المقاربات الثلاث، ويختم بمعايير الحكم على كلٍّ. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> الخيار ليس أرقامًا مقابل كلمات بل تباينًا مقابل عملية: أيسأل سؤالك «كم» عبر الحالات، أم «كيف ولماذا» داخلها؟ أجب ذلك، تختر العائلة نفسها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="quant">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Quantitative Machinery</h2>
+        <p class="lead">Quantitative research is a chain of disciplined conversions: concepts into variables, variables into measures, measures into numbers, numbers into inferences. Each link has its own craft, and the chain is only as strong as its weakest conversion.</p>
+        <p>The first conversion is operationalization: an abstract concept, engagement, performance, trust, must be defined as something measurable, and every operationalization is a theory in miniature about what the concept really is. A researcher who measures engagement by survey self-report has decided engagement is a self-aware attitude; one who measures it by discretionary hours has decided it is a behaviour; the two studies may disagree simply because they measured different things under one name. The second link is instrumentation, where validated scales earn their privilege: an instrument whose reliability and validity have been established across studies imports years of testing into the design, which is why building a new scale is a research project in itself, not a week's task. The third link is sampling, where the logic of generalization lives: probability sampling gives every population member a known chance of selection and licenses statistical inference, while convenience sampling, however common, leaves an inferential gap that honest reporting must acknowledge.</p>
+        <p>The final link is analysis, and its discipline is to match the claim to the statistic. Descriptive statistics summarize what was found; inferential statistics estimate what is likely true beyond the sample, with stated uncertainty; and the modern reporting standard prefers effect sizes with confidence intervals over bare significance stars, because how much matters more than whether the pattern cleared an arbitrary threshold. The quantitative family's great strengths flow from this machinery: precision, replicability, comparability across studies, and genuine generalization. Its standing risks flow from the same source: measuring what is easy rather than what matters, mistaking statistical significance for practical importance, and forgetting that every number in the chain began life as somebody's decision about what a concept means.</p>
+        <div class="note"><strong>Note:</strong> Every operationalization is a hidden theory. Before trusting any quantitative finding, including your own, ask what decision converted the concept into this measure, and what the finding would look like under a rival conversion.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الآلة الكمّية</h2>
+        <p class="lead">البحث الكمّي سلسلة تحويلاتٍ منضبطة: مفاهيم إلى متغيّرات، ومتغيّرات إلى مقاييس، ومقاييس إلى أرقام، وأرقام إلى استدلالات. ولكل حلقةٍ حِرفتها، والسلسلة بقوّة أضعف تحويلاتها فقط.</p>
+        <p>التحويل الأول التشغيل: مفهومٌ مجرّد، الاندماج، الأداء، الثقة، يجب تعريفه شيئًا قابلًا للقياس، وكل تشغيلٍ نظريةٌ مصغَّرة عمّا هو المفهوم فعلًا. فباحثٌ يقيس الاندماج بتقرير مسحٍ ذاتي قرّر أن الاندماج موقفٌ واعٍ بذاته؛ ومن يقيسه بالساعات التطوّعية قرّر أنه سلوك؛ وقد تختلف الدراستان ببساطةٍ لأنهما قاستا شيئين مختلفين تحت اسمٍ واحد. والحلقة الثانية الأدوات، حيث تستحقّ المقاييس المُصادَقة امتيازها: أداةٌ ثبتت وثوقيتها وصدقها عبر دراساتٍ تستورد سنوات اختبارٍ إلى التصميم، ولهذا كان بناء مقياسٍ جديد مشروع بحثٍ بذاته لا مهمّة أسبوع. والثالثة المعاينة، حيث يعيش منطق التعميم: المعاينة الاحتمالية تعطي كل عضو مجتمعٍ فرصة اختيارٍ معلومة وترخّص الاستدلال الإحصائي، بينما معاينة الراحة، مهما شاعت، تترك فجوةً استدلالية يجب أن يعترف بها الإبلاغ الأمين.</p>
+        <p>والحلقة الأخيرة التحليل، وانضباطه مطابقة الادّعاء بالإحصاء. الإحصاء الوصفي يلخّص ما وُجد؛ والاستدلالي يقدّر ما يرجَّح صدقه وراء العيّنة، بشكٍّ مذكور؛ ومعيار الإبلاغ الحديث يفضّل أحجام الأثر بفترات ثقةٍ على نجوم الدلالة العارية، لأن «كم» أهمّ من «هل عبر النمط عتبةً اعتباطية». وقوّة العائلة الكمّية الكبرى تتدفّق من هذه الآلة: الدقّة، والقابلية للتكرار، والقابلية للمقارنة عبر الدراسات، والتعميم الحقيقي. ومخاطرها الدائمة تتدفّق من المصدر ذاته: قياس السهل لا المهمّ، وخلط الدلالة الإحصائية بالأهمية العملية، ونسيان أن كل رقمٍ في السلسلة بدأ حياته قرارَ أحدهم عمّا يعنيه مفهوم.</p>
+        <div class="note"><strong>ملاحظة:</strong> كل تشغيلٍ نظريةٌ خفية. قبل الثقة بأي نتيجةٍ كمّية، بما فيها نتيجتك، اسأل أي قرارٍ حوّل المفهوم لهذا المقياس، وكيف ستبدو النتيجة تحت تحويلٍ منافس.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="qual">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Qualitative Machinery</h2>
+        <p class="lead">Qualitative research has a machinery of its own, no less disciplined for working with meaning instead of number. Its chain runs from access, through rich data, through systematic interpretation, to claims of understanding, and each link has its own standards.</p>
+        <p>The chain begins with purposive access: cases are chosen not to represent a population statistically but to inform the question powerfully, typical cases for the ordinary run of the phenomenon, extreme cases for its outer limits, deviant cases for what breaks the expected pattern, maximum-variation sets for the range. The sample is small because the unit of value is depth per case, not count of cases, and the design commitment is to justify each case's selection, not to apologize for the total. Data collection then prioritizes richness and fidelity: interviews that follow the participant's meaning rather than the researcher's checklist, observation that catches conduct in its natural setting, documents that carry the setting's own language. The qualitative instrument is the researcher, and the discipline that replaces calibration is reflexivity, the running, written self-scrutiny of how one's position shapes what is seen.</p>
+        <p>Analysis is where the popular stereotype, that qualitative work is impressionistic, dies on contact with actual practice. Systematic approaches, thematic analysis, grounded theory's coding ladder, template analysis, narrative analysis, all share a common skeleton: repeated close reading, disciplined labelling of segments, constant comparison across the corpus, memoing of emerging interpretations, deliberate hunting of negative cases that could break the developing account, and an audit trail that lets an outsider walk from any claim back to its evidentiary base. The claims that emerge are process and meaning claims, judged by the trustworthiness canon, credibility, transferability, dependability, confirmability, treated in depth elsewhere in this portal. The family's strengths are depth, context, and the capacity to find what was not anticipated; its standing risks are anecdotalism, cherry-picked quotes standing in for analysis, and the invisible-methods problem, findings reported without the trail that would let anyone assess them.</p>
+        <div class="note"><strong>Note:</strong> The qualitative instrument is the researcher, and reflexivity is its calibration. A qualitative study without a reflexive account and an audit trail asks to be trusted on manner alone, and examiners decline that request.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الآلة النوعية</h2>
+        <p class="lead">للبحث النوعي آلته الخاصة، لا تقلّ انضباطًا لعملها بالمعنى بدل الرقم. تجري سلسلته من الوصول، عبر البيانات الغنية، عبر التأويل المنهجي، إلى ادّعاءات الفهم، ولكل حلقةٍ معاييرها.</p>
+        <p>تبدأ السلسلة بالوصول القصدي: تُختار الحالات لا لتمثّل مجتمعًا إحصائيًا بل لتُنبِئ السؤال بقوّة، حالاتٌ نمطية للمجرى العادي للظاهرة، وقصوى لحدودها الخارجية، ومنحرفة لما يكسر النمط المتوقَّع، ومجموعات أقصى تباينٍ للمدى. والعيّنة صغيرة لأن وحدة القيمة العمق لكل حالة، لا عدد الحالات، والتزام التصميم تبرير اختيار كل حالة، لا الاعتذار عن المجموع. ثم يقدّم جمع البيانات الغنى والأمانة: مقابلاتٌ تتبع معنى المشارك لا قائمة الباحث، وملاحظةٌ تلتقط السلوك في بيئته الطبيعية، ووثائق تحمل لغة البيئة ذاتها. والأداة النوعية هي الباحث، والانضباط الذي يحلّ محلّ المعايرة الانعكاسية، التمحيص الذاتي الجاري المكتوب لكيف يشكّل موقع المرء ما يُرى.</p>
+        <p>والتحليل حيث تموت الصورة النمطية الشائعة، أن العمل النوعي انطباعي، عند ملامسة الممارسة الفعلية. فالمقاربات المنهجية، التحليل الموضوعي، وسلّم ترميز النظرية المتجذّرة، وتحليل القالب، وتحليل السرد، كلها تتشارك هيكلًا واحدًا: قراءةٌ وثيقة متكرّرة، ووسمٌ منضبط للمقاطع، ومقارنةٌ مستمرة عبر المتن، وتدوينٌ للتأويلات الناشئة، ومطاردةٌ مقصودة للحالات السالبة التي قد تكسر الحساب النامي، وأثر تدقيقٍ يتيح لغريبٍ المشي من أي ادّعاءٍ رجوعًا لقاعدته الدليلية. والادّعاءات الناشئة ادّعاءات عمليةٍ ومعنًى، تُحكَم بقانون الوثوقية، المصداقية وقابلية النقل والاعتمادية وقابلية التأكيد، المعالَج بعمقٍ في مواضع أخرى من هذه البوابة. وقوّة العائلة العمق والسياق والقدرة على إيجاد ما لم يُتوقَّع؛ ومخاطرها الدائمة الحكائية، اقتباساتٌ منتقاة تقوم مقام التحليل، ومشكلة المناهج غير المرئية، نتائج تُبلَّغ بلا الأثر الذي يتيح لأحدٍ تقييمها.</p>
+        <div class="note"><strong>ملاحظة:</strong> الأداة النوعية هي الباحث، والانعكاسية معايرتها. ودراسةٌ نوعية بلا حسابٍ انعكاسي وأثر تدقيقٍ تطلب الثقة بالأسلوب وحده، والممتحِنون يرفضون ذلك الطلب.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="stereotypes">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Dismantling the Stereotypes</h2>
+        <p class="lead">The quantitative-qualitative divide accumulates myths on both sides, and a doctoral researcher should be able to name and refuse them, because each myth distorts design decisions and poisons the literature review.</p>
+        <p>Myth one: quantitative is objective, qualitative is subjective. In truth both run on judgment at every link; quantitative judgment simply happens earlier and hides better, in the choice of what to measure and how, after which the numbers proceed mechanically. The qualitative researcher's judgment is visible in the interpretation; the quantitative researcher's is embedded in the instrument. Myth two: quantitative is rigorous, qualitative is soft. Rigour is discipline appropriate to the logic in use, and each family has a complete canon of it; a sloppy survey is exactly as soft as a sloppy ethnography, and easier to hide. Myth three: qualitative work is merely exploratory, a warm-up for real testing. Process and meaning questions are terminal questions, not preliminary ones; a grounded theory of how trust collapses is a finished contribution, not a hypothesis stub. Myth four: the divide is paradigmatic bedrock, quantitative equalling positivism and qualitative equalling interpretivism. The affinities are real but the equation is false: there are interpretive uses of numbers and post-positivist uses of interviews, and critical realism and pragmatism routinely cross the line in both directions.</p>
+        <p>What survives the myths is the real trade-off already named: standardization versus openness, comparability versus depth, variance versus process. Stated this way, the divide stops being a tribal identity and becomes a design parameter, which is exactly how a methodology chapter should treat it: not which side are you on, but which logic does this question need, and the honest answer for complex doctoral questions is quite often both, which is the door to mixed methods.</p>
+        <div class="note"><strong>Note:</strong> Refuse the tribal framing in your own writing. The sentence this study is qualitative because the researcher prefers depth is a confession; the sentence this question concerns process within cases, which requires the qualitative logic is an argument.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>تفكيك الصور النمطية</h2>
+        <p class="lead">يراكم الانقسام الكمّي-النوعي أساطير على الجانبين، وعلى باحث الدكتوراه أن يستطيع تسميتها ورفضها، لأن كل أسطورةٍ تشوّه قرارات التصميم وتسمّم مراجعة الأدبيات.</p>
+        <p>الأسطورة الأولى: الكمّي موضوعي والنوعي ذاتي. والحقيقة أن كليهما يعمل بالحكم عند كل حلقة؛ الحكم الكمّي يحدث أبكر ويختبئ أفضل فحسب، في اختيار ما يُقاس وكيف، وبعدها تمضي الأرقام آليًا. حكم الباحث النوعي مرئيٌّ في التأويل؛ وحكم الكمّي مضمَّن في الأداة. والثانية: الكمّي صارم والنوعي رخو. الصرامة انضباطٌ ملائم للمنطق المستخدَم، ولكل عائلةٍ قانونها الكامل منه؛ ومسحٌ مهمَل رخوٌ تمامًا كإثنوغرافيا مهمَلة، وأسهل إخفاءً. والثالثة: العمل النوعي استكشافيٌّ فحسب، إحماءٌ للاختبار الحقيقي. أسئلة العملية والمعنى أسئلةٌ نهائية لا تمهيدية؛ ونظريةٌ متجذّرة لكيف تنهار الثقة إسهامٌ مكتمل لا جذر فرضية. والرابعة: الانقسام صخر نماذج، الكمّي يساوي الوضعية والنوعي يساوي التفسيرية. القرابات حقيقية لكن المعادلة زائفة: فثمّة استخداماتٌ تفسيرية للأرقام وما بعد وضعيةٍ للمقابلات، والواقعية النقدية والبراغماتية تعبران الخطّ روتينيًا بالاتجاهين.</p>
+        <p>وما ينجو من الأساطير المبادلة الحقيقية المسمّاة سلفًا: التوحيد مقابل الانفتاح، والقابلية للمقارنة مقابل العمق، والتباين مقابل العملية. مصوغًا هكذا، يتوقّف الانقسام عن كونه هويةً قبلية ويصير معامل تصميم، وهكذا بالضبط ينبغي أن يعامله فصل المنهجية: لا «مع أي جانبٍ أنت»، بل «أي منطقٍ يحتاجه هذا السؤال»، والجواب الأمين لأسئلة الدكتوراه المعقّدة غالبًا «كلاهما»، وهذا باب المناهج المختلطة.</p>
+        <div class="note"><strong>ملاحظة:</strong> ارفض التأطير القبلي في كتابتك. جملة «هذه الدراسة نوعية لأن الباحث يفضّل العمق» اعتراف؛ وجملة «هذا السؤال يخصّ العملية داخل الحالات، ما يتطلّب المنطق النوعي» حجّة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="mixed">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>The Mixed-Methods Designs</h2>
+        <p class="lead">Mixed methods is not the mere presence of two data types; it is their planned integration in service of one question. The field has settled on a small family of core designs, each with its own logic, sequence, and integration point, and naming yours is obligatory.</p>
+        <p>The convergent design runs both strands in parallel on the same question, then merges them: survey and interviews about the same change programme, analyzed separately, brought together to compare and combine, with convergence strengthening confidence and divergence, the more interesting outcome, demanding explanation. The explanatory sequential design leads with the quantitative strand and follows with the qualitative to explain it: the survey finds that one region's results defy the trend, and interviews there discover why, the numbers locating the puzzle and the words solving it. The exploratory sequential design reverses the order: qualitative work first maps unfamiliar terrain and generates concepts, which the quantitative strand then measures and tests at scale, the classic route for building an instrument on ground that has actually been visited. Embedded designs nest one strand inside a design governed by the other, as when interviews ride inside an experiment to illuminate the mechanism behind the measured effect.</p>
+        <p>Two disciplines separate genuine mixed research from two studies stapled together. The first is the integration point: somewhere identifiable, in a merged analysis, a joint display, a discussion that genuinely confronts the strands, the two must meet and change each other's interpretation; if each strand's conclusions would read identically with the other deleted, integration has not occurred. The second is the priority and sequence statement: which strand leads, which follows or supports, and why that architecture serves the question, conventionally notated with capitals for the dominant strand. Add the paradigm defence, typically pragmatist, treated elsewhere in this portal, and the mixed chapter is complete: design named, sequence justified, integration located, philosophy owned.</p>
+        <div class="note"><strong>Note:</strong> The acid test of mixed methods is the deletion test: remove either strand and the conclusions of the other should have to change. If nothing changes, you have two studies sharing a binding, not one mixed design.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>تصاميم المناهج المختلطة</h2>
+        <p class="lead">المناهج المختلطة ليست مجرّد حضور نوعَي بيانات؛ بل تكاملهما المخطَّط في خدمة سؤالٍ واحد. وقد استقرّ الحقل على عائلةٍ صغيرة من التصاميم الجوهرية، لكلٍّ منطقه وتسلسله ونقطة تكامله، وتسمية تصميمك إلزامية.</p>
+        <p>التصميم المتقارب يدير الخيطين متوازيين على السؤال ذاته ثم يدمجهما: مسحٌ ومقابلات عن برنامج التغيير ذاته، يُحلَّلان منفصلَين، يُجمَعان للمقارنة والتركيب، فالتقارب يقوّي الثقة والتباعد، النتيجة الأكثر إثارة، يطلب تفسيرًا. والتفسيري المتتابع يقدّم الخيط الكمّي ويتبعه بالنوعي ليفسّره: يجد المسح أن نتائج منطقةٍ تتحدّى الاتجاه، وتكتشف المقابلات هناك لماذا، الأرقام تحدّد موضع اللغز والكلمات تحلّه. والاستكشافي المتتابع يعكس الترتيب: عملٌ نوعي أولًا يرسم أرضًا غير مألوفة ويولّد مفاهيم، يقيسها الخيط الكمّي بعدها ويختبرها على نطاق، الطريق الكلاسيكي لبناء أداةٍ على أرضٍ زيرت فعلًا. والتصاميم المضمَّنة تعشّش خيطًا داخل تصميمٍ يحكمه الآخر، كمقابلاتٍ تركب داخل تجربةٍ لتضيء الآلية خلف الأثر المقيس.</p>
+        <p>وانضباطان يفصلان البحث المختلط الحقيقي عن دراستين مدبّستين. الأول نقطة التكامل: في موضعٍ قابل للتحديد، تحليلٌ مدموج، عرضٌ مشترك، نقاشٌ يواجه الخيطين فعلًا، يجب أن يلتقيا ويغيّر كلٌّ تأويل الآخر؛ فإن كانت خلاصات كل خيطٍ ستُقرأ متطابقةً مع حذف الآخر، لم يحدث تكامل. والثاني بيان الأولوية والتسلسل: أي خيطٍ يقود، وأيّها يتبع أو يدعم، ولماذا تخدم تلك المعمارية السؤال، مرمّزًا اصطلاحًا بالحروف الكبيرة للخيط المهيمن. أضف دفاع النموذج، براغماتيًا عادةً، المعالَج في موضعٍ آخر من هذه البوابة، يكتمل الفصل المختلط: تصميمٌ مسمًّى، وتسلسلٌ مبرَّر، وتكاملٌ محدَّد الموضع، وفلسفةٌ مملوكة.</p>
+        <div class="note"><strong>ملاحظة:</strong> الاختبار الحاسم للمناهج المختلطة اختبار الحذف: احذف أي خيطٍ فيجب أن تتغيّر خلاصات الآخر. إن لم يتغيّر شيء، فلديك دراستان تتشاركان تجليدًا لا تصميمٌ مختلط واحد.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="example">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>One Question, Three Ways</h2>
+        <p class="lead">Hold a question constant, why do digital transformation programmes stall, and design it three ways. The exercise shows what each family sees, what each misses, and what integration buys.</p>
+        <p>The quantitative design surveys two hundred organizations, measuring programme characteristics, leadership support scores, budget adequacy, training hours, against a stall-versus-progress outcome. It delivers the map of variance: stalling associates most strongly with mid-level management resistance and weakest with budget, a finding that generalizes and surprises, since budget dominates practitioner folklore. What it cannot say is what mid-level resistance actually is, how it works, or why it arises, because those are process questions its standardized instruments never touched. The qualitative design embeds in two stalled programmes for six months. It delivers the mechanism: middle managers, formally compliant, quietly starve the programme of the informal resources it needs, meeting attendance without follow-through, data provided late and thin, because the transformation threatens the brokering role that constitutes their organizational worth. This is a finished process theory, deep and actionable, whose reach beyond its two sites is, however, unknown.</p>
+        <p>The mixed design, explanatory sequential, runs the survey first, discovers the resistance finding, then goes inside three high-resistance and two low-resistance organizations to learn what distinguishes them, and integrates in a joint display matching each statistical predictor to its qualitative mechanism. The integrated finding, resistance predicts stalling because transformation threatens middle-manager brokering roles, and does not arise where those roles were redesigned early, is a claim neither strand could make alone: the numbers give it reach, the fieldwork gives it a mechanism, and the integration gives it both at once. The cost is real, two studies' worth of work and two skill sets, which is why the mixed choice must be driven by the question's genuine need, not by the wish to appear thorough.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> quantitative logic maps variance across cases, qualitative logic reveals process within them, and mixed designs, convergent, explanatory, exploratory, or embedded, integrate the two at a named point for questions that need both reach and mechanism. Choose by the question, defend by the logic, and integrate for real or not at all.</div>
+        <div class="refs"><ul>
+          <li>Creswell &amp; Creswell, <a href="https://uk.sagepub.com/en-gb/eur/research-design/book270550" target="_blank" rel="noopener">Research Design: Qualitative, Quantitative, and Mixed Methods Approaches</a>.</li>
+          <li>Creswell &amp; Plano Clark, <a href="https://uk.sagepub.com/en-gb/eur/designing-and-conducting-mixed-methods-research/book241842" target="_blank" rel="noopener">Designing and Conducting Mixed Methods Research</a>.</li>
+          <li>Shah &amp; Corley (2006), <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1467-6486.2006.00662.x" target="_blank" rel="noopener">Building Better Theory by Bridging the Quantitative-Qualitative Divide</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>سؤالٌ واحد، ثلاث طرق</h2>
+        <p class="lead">ثبّت سؤالًا، لماذا تتعثّر برامج التحوّل الرقمي، وصمّمه بثلاث طرق. يُظهِر التمرين ما تراه كل عائلة، وما تفوّته، وما يشتريه التكامل.</p>
+        <p>التصميم الكمّي يمسح مئتي منظمة، قائسًا خصائص البرنامج، درجات دعم القيادة، وكفاية الميزانية، وساعات التدريب، إزاء نتيجة تعثّرٍ-مقابل-تقدّم. يسلّم خريطة التباين: يرتبط التعثّر أقوى ما يرتبط بمقاومة الإدارة الوسطى وأضعفه بالميزانية، نتيجةٌ تعمّم وتفاجئ، إذ تهيمن الميزانية على فولكلور الممارسين. وما لا يستطيع قوله ما هي مقاومة الوسط فعلًا، وكيف تعمل، ولماذا تنشأ، لأن تلك أسئلة عمليةٍ لم تلمسها أدواته الموحّدة قط. والتصميم النوعي ينغرس في برنامجين متعثّرين ستة أشهر. يسلّم الآلية: مديرو الوسط، الممتثلون رسميًا، يجوّعون البرنامج بهدوءٍ من الموارد غير الرسمية التي يحتاجها، حضور اجتماعاتٍ بلا متابعة، وبيانات تصل متأخّرةً رقيقة، لأن التحوّل يهدّد دور الوساطة الذي يشكّل قيمتهم التنظيمية. هذه نظرية عمليةٍ مكتملة، عميقة وقابلة للفعل، لكن مداها وراء موقعَيها مجهول.</p>
+        <p>والتصميم المختلط، تفسيريٌّ متتابع، يدير المسح أولًا، يكتشف نتيجة المقاومة، ثم يدخل ثلاث منظماتٍ عالية المقاومة واثنتين منخفضتيها ليعرف ما يميّزها، ويتكامل في عرضٍ مشترك يطابق كل متنبّئٍ إحصائي بآليته النوعية. والنتيجة المتكاملة، المقاومة تتنبّأ بالتعثّر لأن التحوّل يهدّد أدوار وساطة الإدارة الوسطى، ولا تنشأ حيث أُعيد تصميم تلك الأدوار باكرًا، ادّعاءٌ لا يستطيعه أي خيطٍ وحده: الأرقام تعطيه مدًى، والعمل الميداني يعطيه آلية، والتكامل يعطيه الاثنين معًا. والكلفة حقيقية، عملُ دراستين ومهارتان، ولهذا يجب أن يقود الخيارَ المختلط حاجةُ السؤال الحقيقية لا رغبة الظهور بالشمول.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> المنطق الكمّي يرسم التباين عبر الحالات، والنوعي يكشف العملية داخلها، والتصاميم المختلطة، متقاربةً أو تفسيرية أو استكشافية أو مضمَّنة, تكامل الاثنين عند نقطةٍ مسمّاة لأسئلةٍ تحتاج المدى والآلية معًا. اختر بالسؤال، ودافع بالمنطق، وتكامل فعلًا أو لا تفعل أبدًا.</div>
+        <div class="refs"><ul>
+          <li>كريسويل وكريسويل، <a href="https://uk.sagepub.com/en-gb/eur/research-design/book270550" target="_blank" rel="noopener">تصميم البحث: المقاربات النوعية والكمّية والمختلطة</a>.</li>
+          <li>كريسويل وبلانو كلارك، <a href="https://uk.sagepub.com/en-gb/eur/designing-and-conducting-mixed-methods-research/book241842" target="_blank" rel="noopener">تصميم البحث المختلط وإجراؤه</a>.</li>
+          <li>شاه وكورلي (2006)، <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1467-6486.2006.00662.x" target="_blank" rel="noopener">بناء نظريةٍ أفضل بجسر الفجوة الكمّية-النوعية</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="design-experimental-quasi.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Experimental &amp; Quasi-Experimental Design</span><span data-lang="ar">التصاميم التجريبية وشبه التجريبية</span></a><a href="design-research-onion.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Research Design &amp; the Research Onion</span><span data-lang="ar">تصميم البحث وبصلة البحث</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="المناهج الكمّية والنوعية والمختلطة";
+var TITLE_EN="Quantitative, Qualitative &amp; Mixed Methods";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

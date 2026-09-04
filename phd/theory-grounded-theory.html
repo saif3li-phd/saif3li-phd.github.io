@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grounded Theory</title>
+<meta name="description" content="Grounded theory in depth: constant comparison, theoretical sampling, coding, memos and saturation, the three schools, and standards of judgment.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Reasoning and theory</span><span data-lang="ar">الاستدلال والنظرية</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">REASONING &amp; THEORY · PhD</span><span data-lang="ar">الاستدلال والنظرية · دكتوراه</span></div>
+    <h1><span data-lang="en">Grounded Theory</span><span data-lang="ar">النظرية المتجذّرة</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Reasoning and theory</span><span data-lang="ar">الاستدلال والنظرية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">10 min</span><span data-lang="ar">١٠ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="engine"><span data-lang="en">The Engine</span><span data-lang="ar">المحرّك</span></a></li><li><a data-id="coding"><span data-lang="en">Coding</span><span data-lang="ar">الترميز</span></a></li><li><a data-id="memos"><span data-lang="en">Memos & Saturation</span><span data-lang="ar">المذكّرات والتشبّع</span></a></li><li><a data-id="schools"><span data-lang="en">Three Schools</span><span data-lang="ar">ثلاث مدارس</span></a></li><li><a data-id="standards"><span data-lang="en">Standards & Pitfalls</span><span data-lang="ar">المعايير والمطبّات</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Approach:</span> Grounded theory</div>
+          <div><span>Founders:</span> Barney Glaser &amp; Anselm Strauss (1967)</div>
+          <div><span>Core promise:</span> Theory built systematically from data, not imposed on it</div>
+          <div><span>Level:</span> Doctoral research methodology</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Grounded theory is the most influential method ever devised for building theory out of qualitative data. Announced by Glaser and Strauss in The Discovery of Grounded Theory, it was a rebellion against a division of labour in which grand theorists spun theory from armchairs while researchers merely verified it. Their proposal reversed the flow: theory should be discovered, developed, and provisionally verified through systematic engagement with data, so that it is grounded, growing out of the empirical world it explains rather than being stretched over it from above.</p>
+        <p>The method's promise is exact: not description, however rich, and not the testing of an existing framework, but the generation of new theory, an integrated set of concepts and relationships that explains a social process. Its unit of ambition is the explanatory account: why do people in this situation act as they do, what is the core problem they are managing, and by what strategies do they manage it? A completed grounded theory names that core process and shows how its parts hang together, at a level of abstraction that lifts it beyond the particular site where it was built.</p>
+        <p>What distinguishes grounded theory from generic qualitative analysis is a set of interlocking procedures, constant comparison, theoretical sampling, coding in stages, memo-writing, and saturation, that discipline the journey from raw data to theory. These are not bureaucratic rituals; each solves a specific problem in the logic of induction, and together they answer the standing objection to inductive theorizing, that it is merely impressionistic. Understanding what each procedure is for, not just how to perform it, is what separates genuine grounded theory from studies that borrow the label for ordinary thematic coding.</p>
+        <p>This framework sets out the method's founding logic, the engine of constant comparison and theoretical sampling, the coding journey from open codes to a core category, the discipline of memos and saturation, the split between the Glaserian, Straussian, and constructivist schools, and the standards and pitfalls of the approach. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> The name is a claim: the theory is grounded because every concept in it can be traced back through codes to specific incidents in the data. If a concept in the final model has no such trail, it was imported, not discovered, and the method's promise has been broken.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المقاربة:</span> النظرية المتجذّرة</div>
+          <div><span>المؤسّسان:</span> بارني غليزر وأنسلم شتراوس (1967)</div>
+          <div><span>الوعد الجوهري:</span> نظرية تُبنى منهجيًا من البيانات لا تُفرَض عليها</div>
+          <div><span>المستوى:</span> منهجية بحث لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">النظرية المتجذّرة أكثر منهج ابتُكر تأثيرًا لبناء النظرية من البيانات النوعية. أعلنها غليزر وشتراوس في «اكتشاف النظرية المتجذّرة»، وكانت تمرّدًا على تقسيم عمل يغزل فيه المنظِّرون الكبار النظرية من الكراسي بينما يكتفي الباحثون بالتحقّق منها. وعكس اقتراحهما التدفّق: ينبغي أن تُكتشَف النظرية وتُطوَّر وتُتحقَّق مؤقّتًا عبر انخراط منهجي بالبيانات، فتكون متجذّرةً، ناميةً من العالم التجريبي الذي تفسّره لا ممدودةً فوقه من عل.</p>
+        <p>ووعد المنهج دقيق: لا الوصف، مهما غني، ولا اختبار إطار قائم، بل توليد نظرية جديدة، مجموعة متكاملة من المفاهيم والعلاقات تفسّر عمليةً اجتماعية. ووحدة طموحه الحساب التفسيري: لماذا يتصرّف الناس في هذا الوضع كما يتصرّفون، وما المشكلة الجوهرية التي يديرونها، وبأي استراتيجيات يديرونها؟ والنظرية المتجذّرة المكتملة تسمّي تلك العملية الجوهرية وتُظهِر كيف تتماسك أجزاؤها، بمستوى تجريد يرفعها فوق الموقع الخاص الذي بُنيت فيه.</p>
+        <p>وما يميّز النظرية المتجذّرة عن التحليل النوعي العامّ مجموعة إجراءات متشابكة، المقارنة المستمرة، والمعاينة النظرية، والترميز بمراحل، وكتابة المذكّرات، والتشبّع، تضبط الرحلة من البيانات الخام إلى النظرية. وليست هذه طقوسًا بيروقراطية؛ كلّ يحلّ مشكلةً محدّدة في منطق الاستقراء، ومعًا تجيب الاعتراض الدائم على التنظير الاستقرائي، أنه مجرّد انطباعي. وفهم لماذا وُجد كل إجراء، لا كيف يُؤدّى فقط، ما يفصل النظرية المتجذّرة الحقيقية عن دراسات تستعير الوسم لترميز موضوعي عادي.</p>
+        <p>يعرض هذا الإطار منطق المنهج المؤسِّس، ومحرّك المقارنة المستمرة والمعاينة النظرية، ورحلة الترميز من الرموز المفتوحة إلى الفئة الجوهرية، وانضباط المذكّرات والتشبّع، والانقسام بين مدارس غليزر وشتراوس والبنائية، ومعايير المقاربة ومطبّاتها. وقد أعددت هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> الاسم ادّعاء: النظرية متجذّرة لأن كل مفهوم فيها يمكن تتبّعه عبر الرموز إلى حوادث محدّدة في البيانات. فإن لم يكن لمفهوم في النموذج النهائي أثر كهذا، فقد اُستورِد لا اُكتُشِف، وانكسر وعد المنهج.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="engine">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Constant Comparison and Theoretical Sampling</h2>
+        <p class="lead">Two procedures form the engine of grounded theory, and the diagram shows how they drive its distinctive loop: analysis begins with the first data, and what the analysis finds decides what data to seek next.</p>
+        <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><rect x="230" y="20" width="180" height="52" rx="10" fill="#2D2D2D"/><text x="320" y="51" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Collect data</text><rect x="440" y="120" width="180" height="52" rx="10" fill="#9A1C1C"/><text x="530" y="151" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Code &amp; compare</text><rect x="230" y="220" width="180" height="52" rx="10" fill="#B34747"/><text x="320" y="251" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Write memos</text><rect x="20" y="120" width="180" height="52" rx="10" fill="#A32020"/><text x="110" y="151" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Sample theoretically</text><line x1="410" y1="60" x2="455" y2="110" stroke="#A32020" stroke-width="2.2"/><path d="M455 110 l-4 -12 l-11 -5 z" fill="#A32020"/><line x1="450" y1="172" x2="330" y2="220" stroke="#A32020" stroke-width="2.2"/><path d="M330 220 l12 0 l9 -9 z" fill="#A32020"/><line x1="230" y1="250" x2="115" y2="172" stroke="#A32020" stroke-width="2.2"/><path d="M115 172 l7 10 l12 2 z" fill="#A32020"/><line x1="105" y1="115" x2="225" y2="55" stroke="#A32020" stroke-width="2.2"/><path d="M225 55 l-12 0 l-8 9 z" fill="#A32020"/><text x="320" y="150" text-anchor="middle" font-size="12.5" font-weight="600" fill="#A32020">iterate until</text><text x="320" y="168" text-anchor="middle" font-size="12.5" font-weight="600" fill="#A32020">saturation</text><line x1="320" y1="292" x2="320" y2="322" stroke="#A32020" stroke-width="2.2"/><path d="M320 332 l-6 -10 l12 0 z" fill="#A32020"/><rect x="230" y="332" width="180" height="0" fill="none"/><text x="320" y="352" text-anchor="middle" font-size="14" font-weight="700" fill="#2D2D2D">Grounded theory emerges</text></svg>
+        <p>Constant comparison is the analytic heartbeat. Every new incident in the data is compared with previous incidents and with the emerging codes: is this the same thing as that, a variation of it, or something new? Comparing incident to incident generates categories; comparing new incidents to categories sharpens their properties and boundaries; comparing categories to each other begins to reveal the relationships that will become theory. The procedure forces the researcher's concepts to survive continuous confrontation with data, which is precisely what makes the eventual theory grounded rather than imposed. It also means data collection and analysis are simultaneous, not sequential: a grounded theorist who collects all the data first and analyzes afterward has already abandoned the method.</p>
+        <p>Theoretical sampling is the navigational system. In conventional designs, the sample is fixed in advance to represent a population. In grounded theory, sampling decisions are made progressively, driven by the developing theory: having found a promising category, the researcher deliberately seeks the people, settings, or events most likely to stretch it, extreme cases, contrasting conditions, negative cases that might refute it. The question is never who else is representative, but where must I look next to develop this concept? This is what makes the method genuinely abductive as well as inductive: the emerging theory generates conjectures, and sampling goes hunting for the data that could break or build them. The loop turns, collect, compare, memo, sample again, until the categories stop changing, the point the next section defines as saturation.</p>
+        <div class="note"><strong>Note:</strong> The twin rules that define the method: analyze from the first interview onward, and let the analysis choose the next data. A study that fixed its whole sample in advance and coded at the end may be excellent qualitative research, but it is not grounded theory.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>المقارنة المستمرة والمعاينة النظرية</h2>
+        <p class="lead">إجراءان يشكّلان محرّك النظرية المتجذّرة، والمخطط يُظهِر كيف يقودان حلقتها المميّزة: يبدأ التحليل مع أول بيانات، وما يجده التحليل يقرّر أي بيانات تُطلَب تاليًا.</p>
+        <svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><rect x="230" y="20" width="180" height="52" rx="10" fill="#2D2D2D"/><text x="320" y="51" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">اجمع البيانات</text><rect x="440" y="120" width="180" height="52" rx="10" fill="#9A1C1C"/><text x="530" y="151" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">رمّز وقارن</text><rect x="230" y="220" width="180" height="52" rx="10" fill="#B34747"/><text x="320" y="251" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">اكتب المذكّرات</text><rect x="20" y="120" width="180" height="52" rx="10" fill="#A32020"/><text x="110" y="151" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">عايِن نظريًا</text><line x1="410" y1="60" x2="455" y2="110" stroke="#A32020" stroke-width="2.2"/><path d="M455 110 l-4 -12 l-11 -5 z" fill="#A32020"/><line x1="450" y1="172" x2="330" y2="220" stroke="#A32020" stroke-width="2.2"/><path d="M330 220 l12 0 l9 -9 z" fill="#A32020"/><line x1="230" y1="250" x2="115" y2="172" stroke="#A32020" stroke-width="2.2"/><path d="M115 172 l7 10 l12 2 z" fill="#A32020"/><line x1="105" y1="115" x2="225" y2="55" stroke="#A32020" stroke-width="2.2"/><path d="M225 55 l-12 0 l-8 9 z" fill="#A32020"/><text x="320" y="150" text-anchor="middle" font-size="12.5" font-weight="600" fill="#A32020">كرّر حتى</text><text x="320" y="168" text-anchor="middle" font-size="12.5" font-weight="600" fill="#A32020">التشبّع</text><line x1="320" y1="292" x2="320" y2="322" stroke="#A32020" stroke-width="2.2"/><path d="M320 332 l-6 -10 l12 0 z" fill="#A32020"/><text x="320" y="352" text-anchor="middle" font-size="14" font-weight="700" fill="#2D2D2D">تنبثق النظرية المتجذّرة</text></svg>
+        <p>المقارنة المستمرة نبض التحليل. كل حادثةٍ جديدة في البيانات تُقارَن بالحوادث السابقة وبالرموز الناشئة: أهذه الشيء ذاته كتلك، أم تنويعٌ عليه، أم شيءٌ جديد؟ مقارنة الحادثة بالحادثة تولّد الفئات؛ ومقارنة الحوادث الجديدة بالفئات تشحذ خصائصها وحدودها؛ ومقارنة الفئات ببعضها تبدأ بكشف العلاقات التي ستصير نظرية. يُجبِر الإجراء مفاهيم الباحث على النجاة من مواجهةٍ مستمرة بالبيانات، وهو بالضبط ما يجعل النظرية النهائية متجذّرةً لا مفروضة. ويعني أيضًا أن جمع البيانات والتحليل متزامنان لا متتابعان: فمنظِّرٌ متجذّر يجمع كل البيانات أولًا ويحلّل بعدها تخلّى سلفًا عن المنهج.</p>
+        <p>والمعاينة النظرية نظام الملاحة. في التصاميم التقليدية، تُثبَّت العيّنة مسبقًا لتمثّل مجتمعًا. وفي النظرية المتجذّرة، تُتَّخذ قرارات المعاينة تدريجيًا، تقودها النظرية النامية: فبعد إيجاد فئةٍ واعدة، يطلب الباحث عمدًا الأشخاص أو البيئات أو الأحداث الأرجح أن تمدّها، حالاتٍ قصوى، وظروفًا متباينة، وحالاتٍ سالبة قد تدحضها. والسؤال ليس أبدًا «من أيضًا ممثِّل؟»، بل «أين يجب أن أنظر تاليًا لتطوير هذا المفهوم؟». وهذا ما يجعل المنهج استدلاليًا فعلًا كما استقرائيًا: النظرية الناشئة تولّد حدوسًا، والمعاينة تخرج صائدةً البيانات التي قد تكسرها أو تبنيها. وتدور الحلقة، اجمع، قارن، دوّن، عايِن مجدّدًا، حتى تتوقّف الفئات عن التغيّر، النقطة التي يعرّفها القسم التالي بالتشبّع.</p>
+        <div class="note"><strong>ملاحظة:</strong> القاعدتان التوأم اللتان تعرّفان المنهج: حلّل من المقابلة الأولى فصاعدًا، ودع التحليل يختار البيانات التالية. فدراسةٌ ثبّتت عيّنتها كلها مسبقًا ورمّزت في النهاية قد تكون بحثًا نوعيًا ممتازًا، لكنها ليست نظريةً متجذّرة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="coding">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Coding Journey</h2>
+        <p class="lead">Coding is how raw data becomes theory, and grounded theory organizes it as a journey in stages, each stage a different relationship between researcher and data. Understanding the purpose of each stage matters more than memorizing its label.</p>
+        <p>Open coding breaks the data apart. Working line by line, the researcher asks of each fragment: what is happening here, what is this an instance of? The discipline is to code actions and processes rather than themes, gerunds rather than nouns, protecting one's turf rather than territoriality, because process codes keep the analysis close to what people are doing and push it toward explanation. Open coding deliberately over-generates: dozens or hundreds of provisional codes, each a small bet on what might matter, held lightly and revised by constant comparison. The stage ends when recurring codes begin to consolidate into categories, concepts with specifiable properties and dimensions.</p>
+        <p>The middle passage, which Strauss called axial coding, reassembles what open coding broke apart. Categories are related to one another: what conditions give rise to this process, what strategies do people use, what consequences follow, what varies it? The analysis moves from a heap of labels to a web of connected concepts. Selective coding then makes the decisive commitment: identifying the core category, the central process that appears again and again and around which the other categories organize, and re-coding the data selectively in its light. The core category names what the theory is about, managing uncertainty, repairing trust, negotiating identity, and its selection is the single most consequential analytic act in the study. From there, the web of categories integrated around the core is the grounded theory, ready to be written, diagrammed, and compared with existing literature, which enters late by design, so that reading precedes neither the data nor the concepts but disciplines the finished draft.</p>
+        <div class="note"><strong>Note:</strong> Code processes, not topics. The code list that reads like a table of contents, communication, leadership, culture, describes the data; the list that reads like actions, testing loyalty, hedging commitments, buying time, is on its way to a theory.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>رحلة الترميز</h2>
+        <p class="lead">الترميز كيف تصير البيانات الخام نظرية، وتنظّمه النظرية المتجذّرة رحلةً بمراحل، كل مرحلة علاقة مختلفة بين الباحث والبيانات. وفهم غرض كل مرحلة أهمّ من حفظ وسمها.</p>
+        <p>الترميز المفتوح يفكّك البيانات. عاملًا سطرًا سطرًا، يسأل الباحث كل شظية: ماذا يحدث هنا، وممّ هذه مثال؟ والانضباط ترميز الأفعال والعمليات لا المواضيع، المصادر لا الأسماء، «حماية النطاق» لا «الإقليمية»، لأن رموز العمليات تُبقي التحليل قريبًا ممّا يفعله الناس وتدفعه نحو التفسير. والترميز المفتوح يُفرِط التوليد عمدًا: عشرات أو مئات الرموز المؤقّتة، كلّ رهان صغير على ما قد يهمّ، تُحمَل بخفّة وتُراجَع بالمقارنة المستمرة. وتنتهي المرحلة حين تبدأ الرموز المتكرّرة بالتوحّد في فئات، مفاهيم بخصائص وأبعاد قابلة للتحديد.</p>
+        <p>والممرّ الأوسط، الذي سمّاه شتراوس الترميز المحوري، يعيد تجميع ما فكّكه المفتوح. تُربَط الفئات ببعضها: أي شروط تُنشِئ هذه العملية، وأي استراتيجيات يستخدم الناس، وأي نتائج تتبع، وما الذي ينوّعها؟ ينتقل التحليل من كومة وسوم إلى شبكة مفاهيم موصولة. ثم يتّخذ الترميز الانتقائي الالتزام الحاسم: تحديد الفئة الجوهرية، العملية المركزية التي تظهر مرةً بعد مرة وتنتظم حولها الفئات الأخرى، وإعادة ترميز البيانات انتقائيًا في ضوئها. والفئة الجوهرية تسمّي عمّ النظرية، إدارة اللايقين، ترميم الثقة، تفاوض الهوية، واختيارها الفعل التحليلي الأبعد أثرًا في الدراسة. ومن هناك، شبكة الفئات المتكاملة حول الجوهر هي النظرية المتجذّرة، جاهزةً للكتابة والرسم والمقارنة بالأدبيات القائمة، التي تدخل متأخّرةً بالتصميم، كي لا تسبق القراءة البيانات ولا المفاهيم بل تضبط المسودّة المكتملة.</p>
+        <div class="note"><strong>ملاحظة:</strong> رمّز العمليات لا الموضوعات. فقائمة الرموز التي تُقرأ كفهرس محتويات، التواصل، القيادة، الثقافة، تصف البيانات؛ والقائمة التي تُقرأ كأفعال، اختبار الولاء، التحوّط في الالتزامات، كسب الوقت، في طريقها إلى نظرية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="memos">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Memos, Saturation, and the Emerging Theory</h2>
+        <p class="lead">Two further disciplines carry the analysis from codes to finished theory, and both are routinely underestimated: memo-writing, where the theorizing actually happens, and theoretical saturation, which tells the loop when to stop.</p>
+        <p>Memos are the researcher's running conversation with their own analysis: informal notes, written from the first day, that capture what a code might mean, how two categories may relate, what a puzzling incident suggests, and where the emerging theory feels thin. Glaser insisted that memoing takes priority over everything, interrupt coding to memo, because a code merely labels while a memo thinks. Over months, the memo bank becomes the actual first draft of the theory: sorted, compared, and integrated, memos supply the argument, the relationships, and often the very prose of the final account. A grounded theory study with rich memos writes itself up from the inside; one without them faces a mountain of coded fragments and no theory to report. Memos are also the audit trail that lets a supervisor or examiner see how each concept earned its place.</p>
+        <p>Theoretical saturation is the method's stopping rule, and its logic is precise: a category is saturated when new data yield no new properties, dimensions, or relationships for it, only repetition. Saturation is judged category by category, not by a body count of interviews, which is why the question how many interviews are enough has no fixed answer in this method: the honest answer is until the categories stop moving, evidenced in the memos. Claimed saturation is also the most abused word in qualitative research, often invoked at a convenient sample size without evidence. The defensible practice is to document it: to show, for each major category, the point at which further incidents merely repeated what was known, and to report the hunt for negative cases that could have reopened it. Saturation demonstrated this way converts the method's stopping point from an assertion into an argument.</p>
+        <div class="note"><strong>Note:</strong> The memos are the theory in embryo, and saturation is a property of categories, not of sample sizes. A thesis that can show both, thinking memos and category-level evidence of saturation, has answered the two hardest questions grounded theory gets asked.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>المذكّرات والتشبّع والنظرية الناشئة</h2>
+        <p class="lead">انضباطان إضافيان يحملان التحليل من الرموز إلى النظرية المكتملة، وكلاهما يُستهان به عادةً: كتابة المذكّرات، حيث يحدث التنظير فعلًا، والتشبّع النظري، الذي يخبر الحلقة متى تتوقّف.</p>
+        <p>المذكّرات محادثة الباحث الجارية مع تحليله: ملاحظات غير رسمية، تُكتَب من اليوم الأول، تلتقط ما قد يعنيه رمز، وكيف قد ترتبط فئتان، وما توحي به حادثة محيّرة، وأين تبدو النظرية الناشئة رقيقة. أصرّ غليزر أن للتدوين أولويةً على كل شيء، قاطِع الترميز لتدوّن، لأن الرمز يسِم فحسب بينما المذكّرة تفكّر. وعبر الشهور، يصير بنك المذكّرات المسودّة الأولى الفعلية للنظرية: مفروزةً ومقارنةً ومتكاملة، تورّد المذكّرات الحجّة والعلاقات وغالبًا نثر الحساب النهائي ذاته. ودراسة نظرية متجذّرة بمذكّرات غنية تكتب نفسها من الداخل؛ ومن دونها تواجه جبلًا من الشظايا المرمَّزة ولا نظرية تُبلَّغ. والمذكّرات أيضًا أثر التدقيق الذي يتيح لمشرف أو ممتحِن رؤية كيف استحقّ كل مفهوم مكانه.</p>
+        <p>والتشبّع النظري قاعدة توقّف المنهج، ومنطقه دقيق: تتشبّع الفئة حين لا تعطي البيانات الجديدة خصائص أو أبعادًا أو علاقات جديدة لها، بل تكرارًا فقط. ويُحكَم على التشبّع فئةً فئة، لا بعدد جثث المقابلات، ولهذا لا جواب ثابتًا في هذا المنهج لسؤال «كم مقابلةً تكفي؟»: فالجواب الأمين «حتى تتوقّف الفئات عن الحركة»، مُثبَتًا في المذكّرات. والتشبّع المدّعى أيضًا أكثر كلمات البحث النوعي إساءة استخدام، يُستدعى غالبًا عند حجم عيّنة مريح بلا دليل. والممارسة القابلة للدفاع توثيقه: إظهار، لكل فئة كبرى، النقطة التي اكتفت عندها الحوادث الإضافية بتكرار المعروف، والإبلاغ عن مطاردة الحالات السالبة التي كان يمكن أن تعيد فتحها. والتشبّع المبرهَن هكذا يحوّل نقطة توقّف المنهج من جزم إلى حجّة.</p>
+        <div class="note"><strong>ملاحظة:</strong> المذكّرات هي النظرية جنينًا، والتشبّع خاصية فئات لا أحجام عيّنات. وأطروحة تستطيع إظهار الاثنين، مذكّرات مفكِّرة ودليل تشبّع على مستوى الفئة، أجابت أصعب سؤالَين تُسألهما النظرية المتجذّرة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="schools">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Glaser, Strauss, and Charmaz</h2>
+        <p class="lead">Grounded theory split into schools, and a doctoral researcher must name which one they follow, because the schools differ on procedure, on the role of the literature, and ultimately on epistemology. The differences are real, and examiners know them.</p>
+        <p>The Glaserian, or classic, school holds closest to the original vision of emergence. Glaser insisted that the researcher approach the data with as few preconceptions as possible, delay the literature review so existing concepts do not contaminate discovery, and let the core category emerge through patient constant comparison, trusting the maxim that all is data. Coding stays flexible, and imposed frameworks of any kind are the cardinal sin, which Glaser called forcing. The Straussian school, developed by Strauss with Juliet Corbin, made the method more structured and more teachable: explicit coding stages, the axial coding paradigm of conditions, strategies, and consequences, and systematic questioning of the data. Glaser attacked this apparatus as forcing in disguise, and the dispute between the founders was never resolved; the practical consequence is that citing Glaser while performing Corbin-style axial coding is an inconsistency examiners notice.</p>
+        <p>The constructivist school, led by Kathy Charmaz, revised the method's philosophy rather than its mechanics. Where classic grounded theory speaks of discovering a theory that lies latent in the data, Charmaz argued that theories are constructed, jointly produced by researcher and participants, shaped by the researcher's perspective, and always one plausible interpretation among possible others. The procedures, coding, memos, theoretical sampling, saturation, remain, but the claims soften: the finished product is an interpretive portrayal, not a discovered fact, and reflexivity about the researcher's role becomes central. The choice among schools is thus a paradigm choice in miniature: broadly objectivist assumptions sit naturally with Glaser or Strauss, interpretivist and constructionist assumptions with Charmaz, and the methodology chapter should draw this line explicitly rather than citing all three as if they agreed.</p>
+        <div class="note"><strong>Note:</strong> Choose one school and stay consistent: Glaser for emergence and delayed literature, Strauss and Corbin for structured procedure, Charmaz for constructivist epistemology. Mixing their citations without noticing their quarrels signals that the method was adopted as a label.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>غليزر وشتراوس وشارماز</h2>
+        <p class="lead">انقسمت النظرية المتجذّرة مدارس، وعلى باحث الدكتوراه تسمية أيّها يتبع، لأن المدارس تختلف في الإجراء، ودور الأدبيات، وأخيرًا في الإبستمولوجيا. والفروق حقيقية، والممتحِنون يعرفونها.</p>
+        <p>مدرسة غليزر، أو الكلاسيكية، تتمسّك بأقرب ما يكون لرؤية الانبثاق الأصلية. أصرّ غليزر أن يقارب الباحث البيانات بأقلّ ما يمكن من مسبقات، وأن يؤجّل مراجعة الأدبيات كي لا تلوّث المفاهيم القائمة الاكتشاف، وأن يدع الفئة الجوهرية تنبثق عبر مقارنة مستمرة صبورة، واثقًا بمأثورة «كل شيء بيانات». يبقى الترميز مرنًا، والأطر المفروضة أيًّا كانت الخطيئة الكبرى، التي سمّاها غليزر «الإجبار». ومدرسة شتراوس، التي طوّرها مع جولييت كوربن، جعلت المنهج أكثر هيكلةً وقابليةً للتعليم: مراحل ترميز صريحة، ونموذج الترميز المحوري للشروط والاستراتيجيات والنتائج، واستجواب منهجي للبيانات. هاجم غليزر هذا الجهاز بوصفه إجبارًا متنكّرًا، ولم يُحسَم نزاع المؤسّسَين أبدًا؛ والنتيجة العملية أن الاستشهاد بغليزر مع أداء ترميز محوري على طريقة كوربن تناقض يلحظه الممتحِنون.</p>
+        <p>والمدرسة البنائية، بقيادة كاثي شارماز، نقّحت فلسفة المنهج لا آلياته. فحيث تتحدّث الكلاسيكية عن «اكتشاف» نظرية كامنة في البيانات، جادلت شارماز بأن النظريات تُبنى، يُنتِجها الباحث والمشاركون معًا، ويشكّلها منظور الباحث، وهي دومًا تأويل معقول واحد بين ممكنات. تبقى الإجراءات، الترميز والمذكّرات والمعاينة النظرية والتشبّع، لكن الادّعاءات تلين: المنتج النهائي تصوير تأويلي لا واقعة مكتشَفة، وتصير الانعكاسية عن دور الباحث مركزية. فاختيار المدرسة إذًا اختيار نموذج مصغَّر: الافتراضات الموضوعية عمومًا تجلس طبيعيًا مع غليزر أو شتراوس، والتفسيرية والبنائية مع شارماز، وعلى فصل المنهجية رسم هذا الخطّ صراحةً لا الاستشهاد بالثلاثة كأنهم متّفقون.</p>
+        <div class="note"><strong>ملاحظة:</strong> اختر مدرسةً واحدة والزم الاتساق: غليزر للانبثاق وتأجيل الأدبيات، شتراوس وكوربن للإجراء المهيكل، شارماز للإبستمولوجيا البنائية. وخلط استشهاداتهم دون ملاحظة خصوماتهم يشير أن المنهج اُعتُمِد وسمًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="standards">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Judging Grounded Theory, and References</h2>
+        <p class="lead">A finished grounded theory can be evaluated by criteria the founders themselves proposed, and the recurring failures of the genre are well enough known to be checked against before submission.</p>
+        <p>Glaser and Strauss offered four tests. Fit: the theory's categories must genuinely match the data rather than force them, which the audit trail of codes and memos demonstrates. Workability: the theory must actually explain what is happening, accounting for the main concerns of the people studied and how they process them. Relevance: it must matter, gripping the real problems of the substantive area rather than an armchair puzzle. And modifiability: it must be open to amendment as new data arrive, since a grounded theory is a living account, not a finished monument. Charmaz added criteria attuned to the constructivist version, credibility, originality, resonance, and usefulness, which serve the same purpose: they translate the vague demand for rigour into questions a reader can actually ask of the finished account.</p>
+        <p>The pitfalls are equally concrete. The commonest is grounded theory in name only: a study that calls ordinary thematic analysis grounded theory while using none of its engine, no simultaneous analysis, no theoretical sampling, no memos, no core category, an inflation examiners puncture with a single question about sampling logic. Second is description parading as theory: rich themes, faithfully reported, but no integrated explanatory account of a process; the test is whether the finding could be stated as this is how X works, not merely these things were mentioned. Third is premature closure, stopping at convenient saturation before negative cases were hunted. Fourth is the literature handled badly at either extreme, imported so early it forces the coding, or ignored so completely that the finished theory reinvents known wheels. The method, followed honestly, prevents all four, which is the deepest reason to follow it honestly.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> grounded theory builds explanation from the ground up through constant comparison, theoretical sampling, staged coding, memos, and saturation, in one iterative loop. Choose your school, run the full engine, document the trail, and the product is what a doctorate promises: theory that did not exist before, grounded in evidence that shows exactly where it came from.</div>
+        <div class="refs"><ul>
+          <li>Glaser &amp; Strauss, <a href="https://www.taylorfrancis.com/books/mono/10.4324/9780203793206/discovery-grounded-theory-barney-glaser-anselm-strauss" target="_blank" rel="noopener">The Discovery of Grounded Theory</a>.</li>
+          <li>Charmaz, <a href="https://uk.sagepub.com/en-gb/eur/constructing-grounded-theory/book235960" target="_blank" rel="noopener">Constructing Grounded Theory</a>.</li>
+          <li>Corbin &amp; Strauss, <a href="https://methods.sagepub.com/book/basics-of-qualitative-research" target="_blank" rel="noopener">Basics of Qualitative Research</a>.</li>
+          <li>Shah &amp; Corley (2006), <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1467-6486.2006.00662.x" target="_blank" rel="noopener">Building Better Theory by Bridging the Quantitative-Qualitative Divide</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>الحكم على النظرية المتجذّرة، والمراجع</h2>
+        <p class="lead">النظرية المتجذّرة المكتملة يمكن تقييمها بمعايير اقترحها المؤسّسون أنفسهم، وإخفاقات النوع المتكرّرة معروفة كفايةً لفحصها قبل التسليم.</p>
+        <p>قدّم غليزر وشتراوس أربعة اختبارات. الملاءمة: يجب أن تطابق فئات النظرية البيانات فعلًا لا أن تُجبِرها، وهو ما يبرهنه أثر تدقيق الرموز والمذكّرات. والاشتغال: يجب أن تفسّر النظرية ما يحدث فعلًا، حاسبةً الهموم الرئيسة لمن دُرسوا وكيف يعالجونها. والوجاهة: يجب أن تهمّ، ممسكةً بمشكلات المجال الحقيقية لا بأحجية كرسي. والقابلية للتعديل: يجب أن تبقى مفتوحةً للتنقيح مع وصول بيانات جديدة، إذ النظرية المتجذّرة حساب حي لا نصب مكتمل. وأضافت شارماز معايير موالفةً للنسخة البنائية، المصداقية والأصالة والرنين والنفع، تخدم الغرض ذاته: تترجم مطلب الصرامة الغامض إلى أسئلة يستطيع قارئ طرحها فعلًا على الحساب المكتمل.</p>
+        <p>والمطبّات ملموسة بالمثل. الأشيع نظرية متجذّرة بالاسم فقط: دراسة تسمّي تحليلًا موضوعيًا عاديًا نظريةً متجذّرة دون استخدام شيء من محرّكها، لا تحليل متزامن، ولا معاينة نظرية، ولا مذكّرات، ولا فئة جوهرية، تضخيم يثقبه الممتحِنون بسؤال واحد عن منطق المعاينة. والثاني وصف يتبختر نظريةً: مواضيع غنية، مُبلَّغة بأمانة، لكن لا حساب تفسيري متكامل لعملية؛ والاختبار أيمكن قول النتيجة «هكذا يعمل X» لا مجرّد «ذُكرت هذه الأشياء». والثالث الإغلاق المبتسر، التوقّف عند تشبّع مريح قبل مطاردة الحالات السالبة. والرابع الأدبيات المعالَجة بسوء في أي طرف، مستورَدةً باكرًا حتى تُجبِر الترميز، أو متجاهَلةً كليًا حتى تعيد النظرية المكتملة اختراع عجلات معروفة. والمنهج، مُتَّبعًا بأمانة، يمنع الأربعة، وهذا أعمق سبب لاتّباعه بأمانة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> النظرية المتجذّرة تبني التفسير من الأساس عبر المقارنة المستمرة والمعاينة النظرية والترميز المرحلي والمذكّرات والتشبّع، في حلقة تكرارية واحدة. اختر مدرستك، وأدِر المحرّك كاملًا، ووثّق الأثر، يكن المنتج ما تعِد به الدكتوراه: نظرية لم توجد قبلًا، متجذّرة في دليل يُظهِر بالضبط من أين أتت.</div>
+        <div class="refs"><ul>
+          <li>غليزر وشتراوس، <a href="https://www.taylorfrancis.com/books/mono/10.4324/9780203793206/discovery-grounded-theory-barney-glaser-anselm-strauss" target="_blank" rel="noopener">اكتشاف النظرية المتجذّرة</a>.</li>
+          <li>شارماز، <a href="https://uk.sagepub.com/en-gb/eur/constructing-grounded-theory/book235960" target="_blank" rel="noopener">بناء النظرية المتجذّرة</a>.</li>
+          <li>كوربن وشتراوس، <a href="https://methods.sagepub.com/book/basics-of-qualitative-research" target="_blank" rel="noopener">أساسيات البحث النوعي</a>.</li>
+          <li>شاه وكورلي (2006)، <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1467-6486.2006.00662.x" target="_blank" rel="noopener">بناء نظرية أفضل بجسر الفجوة الكمّية-النوعية</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="theory-conceptual-frameworks.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Conceptual &amp; Theoretical Frameworks</span><span data-lang="ar">الأطر المفاهيمية والنظرية</span></a><a href="reason-linking-approaches-paradigms.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Linking Approaches to Paradigms</span><span data-lang="ar">ربط المقاربات بالنماذج</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="النظرية المتجذّرة";
+var TITLE_EN="Grounded Theory";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

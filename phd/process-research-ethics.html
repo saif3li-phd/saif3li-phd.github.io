@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research Ethics</title>
+<meta name="description" content="Research ethics in depth: the Belmont principles, consent as process, privacy by design, research integrity, and the hard cases where principles collide.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">The research process</span><span data-lang="ar">عملية البحث</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">RESEARCH PROCESS · PhD</span><span data-lang="ar">عملية البحث · دكتوراه</span></div>
+    <h1><span data-lang="en">Research Ethics</span><span data-lang="ar">أخلاقيات البحث العلمي</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">The research process</span><span data-lang="ar">عملية البحث</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">9 min</span><span data-lang="ar">٩ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="principles"><span data-lang="en">The Principles</span><span data-lang="ar">المبادئ</span></a></li><li><a data-id="consent"><span data-lang="en">Consent & Privacy</span><span data-lang="ar">الموافقة والخصوصية</span></a></li><li><a data-id="integrity"><span data-lang="en">Integrity</span><span data-lang="ar">النزاهة</span></a></li><li><a data-id="hard"><span data-lang="en">Hard Cases</span><span data-lang="ar">الحالات الصعبة</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Research ethics</div>
+          <div><span>Covers:</span> Principles, consent, privacy, integrity, and ethics in practice</div>
+          <div><span>Use:</span> Designing and defending an ethically sound study</div>
+          <div><span>Level:</span> Doctoral research process</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Research ethics is the discipline of protecting the people research touches, participants first, but also communities, institutions, and the integrity of knowledge itself. It is often met as paperwork, the ethics application that stands between a proposal and its data, but treating it as paperwork is the first ethical failure: the forms exist because research has repeatedly harmed people when left unexamined, and the principles behind the forms are design tools that make studies better, not hurdles that make them slower.</p>
+        <p>The modern framework was built on hard history. The revelations of harmful experiments in the twentieth century, on prisoners, patients, and unknowing communities, produced the codes that now govern the field: the Nuremberg Code's insistence on voluntary consent, the Declaration of Helsinki's protections for medical subjects, and the Belmont Report's distillation of three principles, respect for persons, beneficence, and justice, that remain the grammar of every ethics review. Social research added its own lessons: studies that deceived participants, observed people without their knowledge, or exposed identifiable communities to ridicule taught the field that harm is not only physical, and that the interview and the field note can wound as surely as the needle.</p>
+        <p>For a doctoral researcher, ethics runs the length of the study, not just its approval stage: it shapes the design, governs the fieldwork, constrains the analysis, and disciplines the writing. This framework sets out the core principles and where they came from, informed consent as a process rather than a signature, privacy and data protection in the digital age, research integrity from authorship to data honesty, and the hard cases where principles collide, closing with a worked example. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> The ethics test that outlives every checklist: would you be comfortable if the participant read every word you wrote about them, and knew everything you did with what they gave you? Design so the answer is yes.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> أخلاقيات البحث العلمي</div>
+          <div><span>يغطّي:</span> المبادئ، والموافقة، والخصوصية، والنزاهة، والأخلاقيات في الممارسة</div>
+          <div><span>الاستخدام:</span> تصميم دراسة سليمة أخلاقيًا والدفاع عنها</div>
+          <div><span>المستوى:</span> عملية البحث لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">أخلاقيات البحث هي الانضباط الذي يحمي كل من يمسّهم البحث: المشاركين أولًا، ثم المجتمعات والمؤسسات، ونزاهة المعرفة نفسها. وكثيرًا ما تُقابَل بوصفها أوراقًا إدارية، طلب الموافقة الأخلاقية الذي يقف بين المقترح وبياناته، لكن معاملتها أوراقًا هي أول فشل أخلاقي: فالاستمارات وُجدت لأن البحث آذى الناس مرارًا عندما تُرك بلا فحص، والمبادئ خلف الاستمارات أدوات تصميم تجعل الدراسات أفضل، لا عقبات تجعلها أبطأ.</p>
+        <p>بُني الإطار الحديث على تاريخ قاسٍ. فقد أنتجت فضائح التجارب الضارة في القرن العشرين، على السجناء والمرضى ومجتمعات لم تعلم، المواثيق التي تحكم الحقل اليوم: إصرار ميثاق نورمبرغ على الموافقة الطوعية، وحمايات إعلان هلسنكي للمشاركين في البحوث الطبية، وتلخيص تقرير بلمونت لثلاثة مبادئ، احترام الأشخاص، والإحسان، والعدالة، لا تزال هي قواعد كل مراجعة أخلاقية. وأضاف البحث الاجتماعي دروسه الخاصة: فدراسات خدعت مشاركين، أو راقبت أناسًا دون علمهم، أو عرّضت مجتمعات يمكن تمييزها للسخرية، علّمت الحقل أن الأذى ليس جسديًا فقط، وأن المقابلة والملاحظة الميدانية قد تجرحان كما تجرح الإبرة.</p>
+        <p>وبالنسبة لباحث الدكتوراه، تمتد الأخلاقيات على طول الدراسة كلها، لا مرحلة الموافقة فقط: فهي تشكّل التصميم، وتحكم العمل الميداني، وتقيّد التحليل، وتضبط الكتابة. يعرض هذا الإطار المبادئ الأساسية ومصدرها، والموافقة المستنيرة بوصفها عملية لا توقيعًا، والخصوصية وحماية البيانات في العصر الرقمي، ونزاهة البحث من التأليف إلى صدق البيانات، والحالات الصعبة التي تتصادم فيها المبادئ، ويختم بمثال تطبيقي. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> اختبار الأخلاقيات الذي يبقى بعد كل قائمة فحص: هل ستكون مرتاحًا لو قرأ المشارك كل كلمة كتبتها عنه، وعرف كل ما فعلته بما أعطاك؟ صمّم دراستك بحيث يكون الجواب نعم.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="principles">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Three Principles at Work</h2>
+        <p class="lead">The Belmont principles are not abstractions to recite but tests to apply, and each translates into concrete design questions that an ethics application, and an examiner, will expect answered.</p>
+        <p>Respect for persons holds that people are autonomous agents who decide for themselves, which translates into informed consent, and that those with diminished autonomy, children, patients in crisis, employees under power, deserve additional protection, which translates into safeguards proportional to vulnerability. The workplace deserves special note for management researchers: an employee invited by their employer to join a study is not simply free to refuse, and designs must break that pressure, recruitment not routed through managers, absolute invisibility of who declined, and no data flowing back to anyone with power over careers. Beneficence demands that benefits be maximized and harms minimized, and its working tool is the risk register: for each procedure, what could this cost participants, time, distress, exposure, career risk, and what in the design reduces it, with the honest recognition that social research's characteristic harms, embarrassment, breach of confidence, damaged relationships, are real harms even when no one bleeds.</p>
+        <p>Justice asks who bears the burdens of the research and who reaps its benefits, and it bites in two directions. It forbids sampling the convenient and powerless, the junior staff who cannot refuse, the community that is studied endlessly and helped never, simply because access is easy. And it pushes toward returning value: findings shared with the people who provided them, in a form they can use, which many traditions now treat as a baseline obligation rather than a courtesy. Together the three principles form the skeleton of any ethics chapter: for each, a paragraph stating what the risk was in this study and what the design did about it, which converts the ethics section from boilerplate into evidence of thought.</p>
+        <div class="note"><strong>Note:</strong> In organizational research the sharpest principle is respect under power: consent is only real when refusal is genuinely costless, and demonstrating how your design made refusal costless is the paragraph review boards read first.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>المبادئ الثلاثة وهي تعمل</h2>
+        <p class="lead">مبادئ بلمونت ليست تجريدات تُتلى بل اختبارات تُطبَّق، وكل مبدأ يُترجَم إلى أسئلة تصميم ملموسة يتوقع طلبُ الموافقة الأخلاقية، والممتحنُ، إجابات عنها.</p>
+        <p>احترام الأشخاص يقضي بأن الناس فاعلون مستقلون يقررون لأنفسهم، وهذا يُترجَم إلى الموافقة المستنيرة، وبأن ذوي الاستقلالية المنقوصة، الأطفال، والمرضى في الأزمات، والموظفين تحت السلطة، يستحقون حماية إضافية، وهذا يُترجَم إلى ضمانات تتناسب مع الهشاشة. وبيئة العمل تستحق تنبيهًا خاصًا لباحثي الإدارة: فالموظف الذي يدعوه صاحب عمله للمشاركة في دراسة ليس حرًا ببساطة في الرفض، ويجب أن تكسر التصاميم ذلك الضغط: تجنيد لا يمر عبر المديرين، وإخفاء تام لهوية من رفض، وعدم تدفق أي بيانات إلى أي شخص له سلطة على المسارات المهنية. والإحسان يطلب تعظيم المنافع وتقليل الأضرار، وأداته العملية سجل المخاطر: لكل إجراء، ماذا قد يكلّف المشاركين، وقتًا أو ضيقًا أو انكشافًا أو خطرًا مهنيًا، وما الذي في التصميم يقلله، مع الاعتراف الصادق بأن أضرار البحث الاجتماعي المميزة، الإحراج، وإفشاء الأسرار، والعلاقات المتضررة، أضرار حقيقية حتى وإن لم يسل دم.</p>
+        <p>والعدالة تسأل من يتحمل أعباء البحث ومن يجني منافعه، وهي تعمل في اتجاهين. فهي تحظر معاينة السهل والضعيف، الموظفين الصغار الذين لا يستطيعون الرفض، والمجتمع الذي يُدرَس بلا نهاية ولا يُساعَد أبدًا، لمجرد أن الوصول سهل. وتدفع نحو إعادة القيمة: نتائج تُشارَك مع من قدّموها، بصيغة يستطيعون استخدامها، وهو ما تعامله تقاليد كثيرة اليوم التزامًا أساسيًا لا مجاملة. والمبادئ الثلاثة معًا تشكّل هيكل أي فصل أخلاقيات: لكل مبدأ فقرة تذكر ما كان الخطر في هذه الدراسة وما الذي فعله التصميم بشأنه، وهذا يحوّل قسم الأخلاقيات من عبارات جاهزة إلى دليل تفكير.</p>
+        <div class="note"><strong>ملاحظة:</strong> في البحث التنظيمي أحدّ المبادئ هو الاحترام تحت السلطة: الموافقة لا تكون حقيقية إلا عندما يكون الرفض بلا ثمن فعلًا، وإثبات كيف جعل تصميمُك الرفضَ بلا ثمن هو الفقرة التي تقرؤها لجان المراجعة أولًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="consent">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Consent as Process, Privacy as Design</h2>
+        <p class="lead">Informed consent and data protection are where principles become procedures, and both have matured beyond their paper origins: consent is now understood as an ongoing process, and privacy as an architecture designed into the study rather than promised after it.</p>
+        <p>Real consent has three conditions: information, comprehension, and voluntariness. The information sheet covers purpose, procedures, risks, benefits, and rights, including the right to withdraw, but information given is not information understood, so the researcher checks comprehension in conversation, and adapts language, translation, and format to the audience. Voluntariness is protected structurally, as above. Consent is then treated as a process because studies change and relationships evolve: the ethnographer renegotiates presence as trust deepens, the interviewee is reminded before recording starts, and withdrawal rights are honoured with a stated procedure and a stated deadline, after which anonymized, aggregated data may be practically unremovable, a limit that honest consent materials state in advance rather than discover later. Two special cases recur: covert elements, defensible only where the knowledge is important, unobtainable openly, and the risks minimal, and always requiring explicit review-board justification; and online data, where the public availability of posts does not equal consent to be studied, and platform norms, user expectations, and identifiability drive the analysis.</p>
+        <p>Privacy protection is likewise a design layer, not a sentence in the consent form. The working distinctions matter: anonymity, the researcher cannot link data to identities, is architecturally different from confidentiality, the researcher can but promises not to, and each is claimed accurately, never rhetorically. The toolkit runs from collection to publication: collect the minimum identifying data the question needs; separate identifiers from data with a key held securely and destroyed on schedule; store encrypted, access-limited, and jurisdiction-aware, under regimes such as data-protection law and institutional policy; and de-identify for publication with attention to the mosaic problem, the small details, role, tenure, a distinctive phrase, that re-identify a participant in a small setting even with the name removed. Qualitative work is where the mosaic bites hardest, and the disciplined responses, altering non-analytic details, aggregating descriptors, and checking drafts against the question could a colleague recognize them, belong in the methods chapter as evidence, not just in the researcher's conscience.</p>
+        <div class="note"><strong>Note:</strong> Claim anonymity only when you truly cannot re-identify; otherwise claim confidentiality and describe its safeguards. Misusing the stronger word is the most common ethics-section error, and reviewers are trained to catch it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الموافقة عملية، والخصوصية تصميم</h2>
+        <p class="lead">الموافقة المستنيرة وحماية البيانات هما حيث تتحول المبادئ إلى إجراءات، وكلتاهما نضجت بعيدًا عن أصلها الورقي: فالموافقة تُفهَم اليوم عمليةً مستمرة، والخصوصية بنيةً تُصمَّم داخل الدراسة لا وعدًا يُعطى بعدها.</p>
+        <p>للموافقة الحقيقية ثلاثة شروط: المعلومات، والفهم، والطوعية. ورقة المعلومات تغطي الغرض والإجراءات والمخاطر والمنافع والحقوق، ومنها حق الانسحاب، لكن المعلومات المعطاة ليست معلومات مفهومة، فيفحص الباحث الفهم في الحوار، ويكيّف اللغة والترجمة والصيغة للجمهور. والطوعية تُحمى بنيويًا كما سبق. ثم تُعامَل الموافقة عمليةً لأن الدراسات تتغير والعلاقات تتطور: فالإثنوغرافي يعيد التفاوض على حضوره كلما تعمقت الثقة، والمقابَل يُذكَّر قبل بدء التسجيل، وحقوق الانسحاب تُحترَم بإجراء معلن وموعد نهائي معلن، تصبح بعده البيانات المجهولة المجمعة غير قابلة للإزالة عمليًا، وهو حد تذكره مواد الموافقة الصادقة مسبقًا بدل اكتشافه لاحقًا. وحالتان خاصتان تتكرران: العناصر الخفية، التي لا يمكن الدفاع عنها إلا حيث تكون المعرفة مهمة ومتعذرة علنًا والمخاطر ضئيلة، وتتطلب دائمًا تبريرًا صريحًا أمام لجنة المراجعة؛ والبيانات الرقمية، حيث الإتاحة العامة للمنشورات لا تساوي موافقة على أن تُدرَس، وأعراف المنصة وتوقعات المستخدمين وقابلية التمييز هي التي تقود التحليل.</p>
+        <p>وحماية الخصوصية كذلك طبقة تصميم، لا جملة في استمارة الموافقة. والتمييزات العملية مهمة: المجهولية، ألا يستطيع الباحث ربط البيانات بالهويات، مختلفة بنيويًا عن السرية بمعناها المهني، أن يستطيع لكنه يتعهد بألا يفعل، وكل واحدة تُدّعى بدقة لا بلاغةً. وتمتد العدة من الجمع إلى النشر: اجمع الحد الأدنى من البيانات المميِّزة للهوية الذي يحتاجه السؤال؛ وافصل المعرّفات عن البيانات بمفتاح يُحفَظ آمنًا ويُتلَف في موعد محدد؛ وخزّن مشفّرًا محدود الوصول مراعيًا الاختصاص القانوني، تحت أنظمة مثل قوانين حماية البيانات وسياسات المؤسسة؛ وأزل الهوية عند النشر منتبهًا لمشكلة الفسيفساء: التفاصيل الصغيرة، الدور وسنوات الخدمة وعبارة مميزة، التي تعيد تمييز مشارك في بيئة صغيرة حتى مع حذف الاسم. والعمل النوعي هو حيث تعضّ الفسيفساء أشد العض، والاستجابات المنضبطة، تغيير التفاصيل غير التحليلية، وتجميع الأوصاف، وفحص المسودات مقابل سؤال «هل يستطيع زميل التعرف عليهم؟»، مكانها فصل المناهج بوصفها دليلًا، لا ضمير الباحث وحده.</p>
+        <div class="note"><strong>ملاحظة:</strong> لا تدّعِ المجهولية إلا عندما لا تستطيع فعلًا إعادة تمييز الهوية؛ وإلا فادّعِ السرية المهنية وصف ضماناتها. فسوء استخدام الكلمة الأقوى هو الخطأ الأشيع في أقسام الأخلاقيات، والمراجعون مدرَّبون على التقاطه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="integrity">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Research Integrity</h2>
+        <p class="lead">Ethics protects participants; integrity protects knowledge, and the two meet in the same person: a researcher whose data, analysis, and authorship can be trusted. The integrity canon has named violations and, more usefully, named practices that prevent them.</p>
+        <p>The cardinal violations are fabrication, inventing data; falsification, manipulating data or results, including the quiet forms, dropping inconvenient cases without disclosure, trimming outliers to reach significance; and plagiarism, presenting others' words or ideas as one's own, including self-plagiarism's recycling of one's own published text. Around them sit the greyer practices the field now names questionable research practices: hypothesizing after results are known and presenting it as prediction, running many analyses and reporting the one that worked, p-hacking, and citation padding. The prevention machinery is the transparency stack: pre-registration where the design permits, data and code availability within ethical limits, documented analysis decisions, and disclosed deviations, the same audit-trail logic that runs through this portal's methods pages, because the practices that make research defensible and the practices that make it honest are the same practices.</p>
+        <p>Authorship and publication carry their own duties: authorship earned by substantial contribution, not by seniority or exchange; contributions stated; conflicts of interest disclosed; and funding sources named. For the doctoral researcher two further duties are near universal. Accuracy of representation: reporting findings with their real uncertainty, resisting the pull to overstate that begins in the abstract and ends in the press release. And care for the record: correcting errors when found, cooperating with legitimate scrutiny, and treating criticism of the work as the system operating rather than an attack, which is, at the personal scale, the same fallibilism this portal's philosophy pages defend at the scale of science.</p>
+        <div class="note"><strong>Note:</strong> Integrity's practical rule: nothing in the final text should depend on a decision you would be unwilling to show. The audit trail is not bureaucracy; it is what trustworthy looks like from the inside.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>نزاهة البحث</h2>
+        <p class="lead">الأخلاقيات تحمي المشاركين؛ والنزاهة تحمي المعرفة، والاثنتان تلتقيان في الشخص نفسه: باحث يمكن الوثوق ببياناته وتحليله وتأليفه. ولقانون النزاهة انتهاكات مسمّاة، والأنفع منها ممارسات مسمّاة تمنعها.</p>
+        <p>الانتهاكات الكبرى هي التلفيق، أي اختراع البيانات؛ والتزوير، أي التلاعب بالبيانات أو النتائج، بما فيه الصور الهادئة، إسقاط الحالات المزعجة دون إفصاح، وتشذيب القيم المتطرفة للوصول إلى الدلالة؛ والانتحال، أي تقديم كلمات الآخرين أو أفكارهم بوصفها كلماتك، بما فيه الانتحال الذاتي بإعادة تدوير نصك المنشور. وحولها تقع الممارسات الرمادية التي يسميها الحقل اليوم الممارسات البحثية المشكوك فيها: صياغة الفرضيات بعد معرفة النتائج وتقديمها تنبؤًا، وإجراء تحليلات كثيرة والإبلاغ عن الذي نجح وحده، والتلاعب بقيمة الدلالة، وحشو الاستشهادات. وآلة المنع هي حزمة الشفافية: التسجيل المسبق حيث يسمح التصميم، وإتاحة البيانات والرموز ضمن الحدود الأخلاقية، وتوثيق قرارات التحليل، والإفصاح عن الانحرافات عن الخطة، وهو منطق سجل التدقيق نفسه الذي يجري عبر صفحات المناهج في هذه البوابة، لأن الممارسات التي تجعل البحث قابلًا للدفاع والممارسات التي تجعله صادقًا هي الممارسات نفسها.</p>
+        <p>وللتأليف والنشر واجباتهما الخاصة: تأليف يُكتسَب بالإسهام الجوهري، لا بالأقدمية أو التبادل؛ وإسهامات تُذكَر؛ وتضارب مصالح يُفصَح عنه؛ ومصادر تمويل تُسمّى. ولباحث الدكتوراه واجبان إضافيان شبه كليين. دقة التمثيل: الإبلاغ عن النتائج بشكّها الحقيقي، ومقاومة جاذبية المبالغة التي تبدأ في الملخص وتنتهي في البيان الصحفي. والعناية بالسجل العلمي: تصحيح الأخطاء عند اكتشافها، والتعاون مع التدقيق المشروع، ومعاملة نقد العمل بوصفه النظام وهو يعمل لا هجومًا، وهذا، على المقياس الشخصي، هو مبدأ القابلية للخطأ نفسه الذي تدافع عنه صفحات الفلسفة في هذه البوابة على مقياس العلم كله.</p>
+        <div class="note"><strong>ملاحظة:</strong> قاعدة النزاهة العملية: لا شيء في النص النهائي ينبغي أن يعتمد على قرار لا تقبل أن تعرضه. سجل التدقيق ليس بيروقراطية؛ إنه الشكل الذي تبدو عليه الجدارة بالثقة من الداخل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="hard">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>When Principles Collide, and a Worked Example</h2>
+        <p class="lead">Real fieldwork produces dilemmas no checklist anticipated, moments when principles collide and the researcher must judge. Knowing the recurring collisions, and one worked design, equips the judgment.</p>
+        <p>The classic collisions: confidentiality against harm, when an interviewee discloses wrongdoing or danger, where the settled practice is to state the limits of confidentiality in advance, safety and legal duty override secrecy, so the promise is never broken, only bounded. Loyalty against accuracy, when findings will embarrass the organization that granted access, where the discipline is to have agreed publication rights before entry, anonymize the organization where possible, and refuse to trade findings for access after the fact. Rapport against exploitation, when interview intimacy draws out more than the participant meant to give, where the practiced response is the check-back: flagging sensitive material and confirming, before use, that it remains within consent. And role conflict in insider research, when the researcher hears as a researcher what they would have to act on as an employee, where the boundary must be designed, and declared, in advance. In every collision the pattern is the same: the dilemma is survivable if it was anticipated, and corrosive if it was improvised.</p>
+        <p>The worked example gathers the whole page. A doctoral study interviews employees about a controversial restructuring inside the researcher's own organization. Design: recruitment by open call, not managerial nomination; consent materials that state purpose, recording, withdrawal rights with a deadline, the confidentiality promise and its safety-and-legal bounds, and the insider role explicitly. Fieldwork: consent revisited at each interview; a distress protocol for a topic that touches livelihoods; a decisions log for the unanticipated. Data: identifier separation, encrypted storage, a retention schedule, and a mosaic check on every quotation against the small-setting problem. Writing: the organization anonymized, drafts screened by the could-a-colleague-recognize-them test, findings returned to participants in an accessible summary, and the thesis's ethics section written not as boilerplate but as this study's specific risks and this design's specific answers, which is the entire discipline in one sentence.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> ethics is design, not paperwork: respect made real through unpressured consent, beneficence through a risk register, justice through fair sampling and returned value, privacy through architecture, and integrity through transparency. Anticipate the collisions, log the judgments, and write the ethics section as evidence of thought.</div>
+        <div class="refs"><ul>
+          <li>The Belmont Report, <a href="https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/index.html" target="_blank" rel="noopener">Ethical Principles and Guidelines for the Protection of Human Subjects</a>.</li>
+          <li>World Medical Association, <a href="https://www.wma.net/policies-post/wma-declaration-of-helsinki-ethical-principles-for-medical-research-involving-human-subjects/" target="_blank" rel="noopener">Declaration of Helsinki</a>.</li>
+          <li>ALLEA, <a href="https://allea.org/code-of-conduct/" target="_blank" rel="noopener">The European Code of Conduct for Research Integrity</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>عندما تتصادم المبادئ، ومثال تطبيقي</h2>
+        <p class="lead">العمل الميداني الحقيقي ينتج معضلات لم تتوقعها أي قائمة فحص، لحظات تتصادم فيها المبادئ ويجب على الباحث أن يحكم. ومعرفة التصادمات المتكررة، وتصميم تطبيقي واحد، تجهّز ذلك الحكم.</p>
+        <p>التصادمات الكلاسيكية: السرية مقابل الأذى، عندما يكشف مقابَل عن مخالفة أو خطر، والممارسة المستقرة هنا ذكر حدود السرية مسبقًا، فالسلامة والواجب القانوني يعلوان على الكتمان، وبذلك لا يُنكَث الوعد أبدًا بل يُحَدّ فقط. والولاء مقابل الدقة، عندما ستحرج النتائج المنظمة التي منحت الوصول، والانضباط هنا الاتفاق على حقوق النشر قبل الدخول، وإخفاء هوية المنظمة حيث أمكن، ورفض مقايضة النتائج بالوصول بعد وقوعه. والألفة مقابل الاستغلال، عندما تستخرج حميمية المقابلة أكثر مما قصد المشارك أن يعطي، والاستجابة الممارَسة هي المراجعة الراجعة: وسم المادة الحساسة والتأكد، قبل استخدامها، من أنها لا تزال ضمن الموافقة. وتضارب الأدوار في بحث الداخل، عندما يسمع الباحث بصفته باحثًا ما كان سيجب عليه التصرف حياله بصفته موظفًا، والحد هنا يجب أن يُصمَّم ويُعلَن مسبقًا. وفي كل تصادم النمط واحد: المعضلة قابلة للنجاة إذا توقعتها، ومدمّرة إذا ارتجلتها.</p>
+        <p>والمثال التطبيقي يجمع الصفحة كلها. دراسة دكتوراه تقابل موظفين حول إعادة هيكلة مثيرة للجدل داخل منظمة الباحث نفسه. التصميم: تجنيد بدعوة مفتوحة لا بترشيح المديرين؛ ومواد موافقة تذكر الغرض والتسجيل وحقوق الانسحاب بموعد نهائي، ووعد السرية وحدوده المتعلقة بالسلامة والقانون، ودور الباحث الداخلي صراحةً. والعمل الميداني: موافقة تُجدَّد عند كل مقابلة؛ وبروتوكول ضيق نفسي لموضوع يمس أرزاق الناس؛ وسجل قرارات لغير المتوقع. والبيانات: فصل المعرّفات، وتخزين مشفّر، وجدول احتفاظ وإتلاف، وفحص فسيفساء لكل اقتباس مقابل مشكلة البيئة الصغيرة. والكتابة: المنظمة مخفاة الهوية، والمسودات مفحوصة باختبار «هل يستطيع زميل التعرف عليهم؟»، والنتائج معادة إلى المشاركين في ملخص ميسّر، وقسم الأخلاقيات في الأطروحة مكتوب لا كعبارات جاهزة بل كمخاطر هذه الدراسة تحديدًا وإجابات هذا التصميم تحديدًا، وهذا هو الانضباط كله في جملة واحدة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الأخلاقيات تصميم لا أوراق: احترام يتحقق بموافقة بلا ضغط، وإحسان بسجل مخاطر، وعدالة بمعاينة منصفة وقيمة معادة، وخصوصية ببنية محكمة، ونزاهة بشفافية. توقّع التصادمات، وسجّل الأحكام، واكتب قسم الأخلاقيات بوصفه دليل تفكير.</div>
+        <div class="refs"><ul>
+          <li>تقرير بلمونت، <a href="https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/index.html" target="_blank" rel="noopener">المبادئ الأخلاقية لحماية المشاركين البشريين</a>.</li>
+          <li>الجمعية الطبية العالمية، <a href="https://www.wma.net/policies-post/wma-declaration-of-helsinki-ethical-principles-for-medical-research-involving-human-subjects/" target="_blank" rel="noopener">إعلان هلسنكي</a>.</li>
+          <li>ALLEA، <a href="https://allea.org/code-of-conduct/" target="_blank" rel="noopener">المدونة الأوروبية لسلوك نزاهة البحث</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="quant-structural-equation-modelling.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Structural Equation Modelling</span><span data-lang="ar">نمذجة المعادلات البنيوية</span></a><a href="process-research-questions-hypotheses.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Research Questions &amp; Hypotheses</span><span data-lang="ar">أسئلة البحث والفرضيات</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="أخلاقيات البحث العلمي";
+var TITLE_EN="Research Ethics";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

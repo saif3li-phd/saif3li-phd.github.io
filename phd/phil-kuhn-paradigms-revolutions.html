@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kuhn: Paradigms &amp; Scientific Revolutions</title>
+<meta name="description" content="Thomas Kuhn in depth: the meanings of paradigm, normal science, the anomaly-to-revolution cycle, incommensurability, and the main critiques.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Philosophical foundations</span><span data-lang="ar">الأسس الفلسفية للبحث</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">PHILOSOPHICAL FOUNDATIONS OF RESEARCH · PhD</span><span data-lang="ar">الأسس الفلسفية للبحث · دكتوراه</span></div>
+    <h1><span data-lang="en">Kuhn: Paradigms &amp; Scientific Revolutions</span><span data-lang="ar">كون: النماذج والثورات العلمية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Philosophical foundations</span><span data-lang="ar">الأسس الفلسفية للبحث</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">13 min</span><span data-lang="ar">١٣ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="before"><span data-lang="en">The Picture Before</span><span data-lang="ar">الصورة السابقة</span></a></li><li><a data-id="paradigm"><span data-lang="en">What a Paradigm Is</span><span data-lang="ar">ما النموذج</span></a></li><li><a data-id="normal"><span data-lang="en">Normal Science</span><span data-lang="ar">العلم الاعتيادي</span></a></li><li><a data-id="cycle"><span data-lang="en">The Cycle</span><span data-lang="ar">الدورة</span></a></li><li><a data-id="incommensurability"><span data-lang="en">Incommensurability</span><span data-lang="ar">اللاقياسية</span></a></li><li><a data-id="implications"><span data-lang="en">For Researchers</span><span data-lang="ar">للباحثين</span></a></li><li><a data-id="critiques"><span data-lang="en">Critiques & References</span><span data-lang="ar">النقود والمراجع</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Thinker:</span> Thomas Kuhn (1922 to 1996)</div>
+          <div><span>Key work:</span> The Structure of Scientific Revolutions (1962)</div>
+          <div><span>Central idea:</span> Science advances by revolutions, not steady accumulation</div>
+          <div><span>Level:</span> Doctoral research philosophy</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Thomas Kuhn is the thinker who changed how the modern world understands scientific progress, and he is the reason the word paradigm sits at the center of research language today. Before him, the standard picture of science was a patient, cumulative climb toward truth, each generation adding a little more to a growing store of settled fact. Kuhn argued that this picture is not merely incomplete but wrong about how science actually behaves.</p>
+        <p>In his account, science does not inch forward in a straight line. It moves through long, stable periods of settled work that are occasionally shattered by dramatic upheavals in which one entire framework of thought is abandoned and replaced by another. These upheavals, which he called scientific revolutions, are not tidy extensions of what came before; they are ruptures, after which scientists in a field quite literally see the world differently. The history of science, read this way, is a sequence of such ruptures rather than a smooth accumulation.</p>
+        <p>For a doctoral researcher this is not a historical curiosity. The concept of a paradigm, which Kuhn gave its modern meaning, is the hinge of the whole vocabulary of research philosophy: when a thesis declares its paradigm, it is invoking Kuhn whether it names him or not. Understanding what he actually argued, and what he did not, protects a researcher from using the word loosely and lets them speak about their own framework with precision.</p>
+        <p>This framework sets out the picture of science Kuhn inherited and overturned, the several things he meant by a paradigm, the machinery of normal science, the full cycle from stability to crisis to revolution, the difficult idea of incommensurability, what all of this means for a working researcher, and the serious criticisms his account provoked. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Kuhn did not argue that science is irrational. He argued that its rationality operates inside a paradigm, and that changing paradigms is more like a conversion of vision than the settling of a calculation. Missing this distinction is the commonest misreading of his work.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المفكّر:</span> توماس كون (1922 إلى 1996)</div>
+          <div><span>العمل الأبرز:</span> بنية الثورات العلمية (1962)</div>
+          <div><span>الفكرة المركزية:</span> العلم يتقدّم بالثورات لا بالتراكم الثابت</div>
+          <div><span>المستوى:</span> فلسفة بحث لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">توماس كون هو المفكّر الذي غيّر فهم العالم الحديث للتقدّم العلمي، وهو سبب أن كلمة «النموذج» تقع في قلب لغة البحث اليوم. قبله، كانت الصورة المعيارية للعلم صعودًا صبورًا تراكميًا نحو الحقيقة، كل جيل يضيف قليلًا لمخزون متنام من الوقائع المستقرّة. جادل كون بأن هذه الصورة ليست ناقصةً فحسب بل خاطئة عن كيفية سلوك العلم فعلًا.</p>
+        <p>في طرحه، لا يتقدّم العلم في خطّ مستقيم. بل يتحرّك عبر فترات طويلة مستقرّة من العمل المستقرّ تحطّمها أحيانًا انقلابات حادّة يُهجَر فيها إطار فكري كامل ويُستبدَل بآخر. وهذه الانقلابات، التي سمّاها الثورات العلمية، ليست امتدادات مرتّبة لما سبق؛ بل تصدّعات، يرى بعدها العلماء في حقل العالم رؤيةً مختلفة حرفيًا. وتاريخ العلم، مقروءًا هكذا، سلسلة من تلك التصدّعات لا تراكم سلس.</p>
+        <p>وهذا الموضوع بالنسبة لباحث الدكتوراه ليس مجرّد معلومة تاريخية. فمفهوم النموذج، الذي أعطاه كون معناه الحديث، هو مفصل مفردات فلسفة البحث كلها: فحين تعلن أطروحة نموذجها، تستحضر كون سمّته أو لم تسمّه. وفهم ما جادل به فعلًا، وما لم يجادل به، يحمي الباحث من استخدام الكلمة بتساهل، ويتيح له الحديث عن إطاره بدقّة.</p>
+        <p>يعرض هذا الإطار صورة العلم التي ورثها كون وقلبها، والمعاني العدّة التي قصدها بالنموذج، وآلة العلم الاعتيادي، والدورة الكاملة من الاستقرار إلى الأزمة إلى الثورة، وفكرة اللاقياسية الصعبة، وما يعنيه هذا كله للباحث العامل، والنقود الجادّة التي أثارها طرحه. وقد أعددت هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> لم يجادل كون بأن العلم غير عقلاني. بل بأن عقلانيته تعمل داخل نموذج، وأن تغيير النماذج أقرب لتحوّل في الرؤية منه لحسم حساب. وتفويت هذا التمييز أشيع سوء قراءة لعمله.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="before">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>What Kuhn Overturned</h2>
+        <p class="lead">To see why Kuhn was revolutionary, one must first see clearly the picture he was arguing against, because his whole account is a response to it. That picture had dominated thinking about science for generations.</p>
+        <p>On the received view, science was the cumulative enterprise par excellence. Knowledge grew like a wall being built brick by brick: each experiment added a fact, each theory absorbed and extended the last, and error was gradually filtered out, so that science marched steadily closer to a complete and true description of nature. Progress was linear and continuous, and the history of science was essentially the story of accumulating correct results while discarding mistakes. On this view, older science was simply less complete science, and the past was interesting mainly as a record of steps toward the present.</p>
+        <p>Kuhn, trained as a physicist before he turned to history, found that the actual historical record did not fit this story. When he studied episodes such as the shift from earth-centered to sun-centered astronomy, or the arrival of Newtonian and then Einsteinian physics, he did not see gentle accumulation. He saw abrupt, contested transformations in which the very questions worth asking, the standards for a good answer, and the meaning of basic terms all changed at once. Old and new science were not more and less complete versions of the same thing; they were different ways of seeing that could not simply be added together. This mismatch between the tidy philosophical picture and the messy historical reality is the problem his book set out to solve.</p>
+        <div class="note"><strong>Note:</strong> Kuhn is best read as a historian correcting philosophers. His authority comes from close attention to what scientists actually did in the archive, not from an abstract theory of how they ought to behave.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>ما قلبه كون</h2>
+        <p class="lead">لرؤية لماذا كان كون ثوريًا، يجب أولًا أن نرى بوضوح الصورة التي كان يجادلها، لأن طرحه كله ردّ عليها. وتلك الصورة سادت التفكير في العلم أجيالًا.</p>
+        <p>على الرأي المتوارَث، كان العلم المشروع التراكمي بامتياز. تنمو المعرفة كجدار يُبنى لبنةً لبنة: كل تجربة تضيف واقعة، وكل نظرية تستوعب سابقتها وتمدّها، ويُصفّى الخطأ تدريجيًا، فيسير العلم بثبات أقرب لوصف كامل صادق للطبيعة. كان التقدّم خطّيًا مستمرًا، وتاريخ العلم جوهريًا قصّة تراكم النتائج الصحيحة مع نبذ الأخطاء. وعلى هذا الرأي، كان العلم الأقدم ببساطة علمًا أقلّ اكتمالًا، والماضي مثير أساسًا كسجلّ لخطوات نحو الحاضر.</p>
+        <p>ووجد كون، المدرَّب فيزيائيًا قبل تحوّله للتاريخ، أن السجلّ التاريخي الفعلي لا يلائم هذه القصّة. فحين درس حوادث كالانتقال من فلك مركزه الأرض إلى مركزه الشمس، أو مجيء فيزياء نيوتن ثم آينشتاين، لم ير تراكمًا لطيفًا. رأى تحوّلات مفاجئة متنازَعًا عليها تغيّرت فيها الأسئلة الجديرة بالطرح، ومعايير الجواب الجيّد، ومعنى المصطلحات الأساسية، كلها دفعةً واحدة. لم يكن العلم القديم والجديد نسختَين أكثر وأقلّ اكتمالًا للشيء ذاته؛ بل طريقتَين مختلفتَين في الرؤية لا يمكن جمعهما ببساطة. وهذا التنافر بين الصورة الفلسفية المرتّبة والواقع التاريخي الفوضوي هو المشكلة التي أراد كتابه حلّها.</p>
+        <div class="note"><strong>ملاحظة:</strong> أفضل قراءة لكون مؤرّخ يصحّح الفلاسفة. فسلطته تأتي من انتباه دقيق لما فعله العلماء فعلًا في الأرشيف، لا من نظرية مجرّدة عن كيف ينبغي أن يسلكوا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="paradigm">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Concept of a Paradigm</h2>
+        <p class="lead">The word paradigm is the heart of Kuhn's book and also its most slippery term, because he used it in more than one sense. Untangling those senses is essential to using the word well, and critics counted more than twenty shades of meaning in the original text.</p>
+        <p>Two senses matter most. In the broad sense, a paradigm is the entire constellation of beliefs, values, assumptions, and techniques shared by the members of a scientific community: what they take reality to be, which problems count as important, which methods are legitimate, and what a good solution looks like. Kuhn later called this broad sense the disciplinary matrix, to stress that it is what disciplines a community and holds it together. In the narrow sense, a paradigm is a concrete exemplar: a single, striking, successful piece of work, a model solution to a problem, that shows the community how research in the field should be done and that newcomers learn to imitate. The exemplar is arguably the deeper sense, because scientists learn their paradigm less from stated rules than from worked examples they absorb by practice.</p>
+        <ul>
+          <li><strong>Disciplinary matrix:</strong> the shared beliefs, values, methods, and standards of a scientific community.</li>
+          <li><strong>Exemplar:</strong> a concrete model achievement that shows how good work in the field is done.</li>
+          <li><strong>Shared commitments:</strong> agreement on which problems matter and what counts as solving them.</li>
+          <li><strong>A way of seeing:</strong> a paradigm shapes what its holders notice, and what they overlook.</li>
+        </ul>
+        <p>The power of a paradigm is that it is largely tacit and unquestioned. Precisely because a community does not argue about its foundations, it can direct all its energy at solving problems, which is what makes mature science so productive. But this same tacit quality is why a paradigm is so hard to abandon: it is not a hypothesis anyone consciously chose, but the water the community swims in. When a researcher today says their study works within a positivist or interpretivist paradigm, they are using Kuhn's broad sense: naming the constellation of assumptions their community takes for granted.</p>
+        <div class="note"><strong>Note:</strong> Use paradigm precisely or not at all. In a proposal it should name a specific constellation of assumptions and exemplars, not serve as a grand synonym for topic, theory, or approach.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>مفهوم النموذج</h2>
+        <p class="lead">كلمة «النموذج» قلب كتاب كون وأكثر مصطلحاته زلقًا، لأنه استخدمها بأكثر من معنى. وفكّ تلك المعاني ضروريّ لحسن استخدام الكلمة، وقد أحصى نقّاد أكثر من عشرين ظلًّا للمعنى في النصّ الأصلي.</p>
+        <p>معنيان هما الأهمّ. في المعنى الواسع، النموذج هو الكوكبة الكاملة من المعتقدات والقيم والافتراضات والتقنيات التي يتشاركها أعضاء مجتمع علمي: ما يعدّونه واقعًا، وأي المشكلات تُعَدّ مهمة، وأي المناهج مشروع، وكيف يبدو الحلّ الجيّد. وسمّى كون لاحقًا هذا المعنى الواسع «المصفوفة التخصّصية»، تأكيدًا أنها ما يضبط المجتمع ويُمسِكه. وفي المعنى الضيّق، النموذج مثال ملموس: عمل ناجح لافت مفرد، حلّ نموذجي لمشكلة، يُظهِر للمجتمع كيف ينبغي أن يُجرى البحث في الحقل ويتعلّم الوافدون محاكاته. والمثال هو المعنى الأعمق أرجحيةً، لأن العلماء يتعلّمون نموذجهم من الأمثلة المشتغَلة التي يمتصّونها بالممارسة أكثر من القواعد المذكورة.</p>
+        <ul>
+          <li><strong>المصفوفة التخصّصية:</strong> المعتقدات والقيم والمناهج والمعايير المشتركة لمجتمع علمي.</li>
+          <li><strong>المثال:</strong> إنجاز نموذجي ملموس يُظهِر كيف يُنجَز العمل الجيّد في الحقل.</li>
+          <li><strong>الالتزامات المشتركة:</strong> اتّفاق على أي المشكلات تهمّ وما يُعَدّ حلًّا لها.</li>
+          <li><strong>طريقة رؤية:</strong> النموذج يشكّل ما يلاحظه حاملوه، وما يغفلون عنه.</li>
+        </ul>
+        <p>وقوّة النموذج أنه ضمنيّ إلى حدّ بعيد وغير مُساءَل. فبالضبط لأن المجتمع لا يتجادل حول أسسه، يستطيع توجيه كل طاقته لحلّ المشكلات، وهذا ما يجعل العلم الناضج مثمرًا. لكن هذه الصفة الضمنية نفسها سبب صعوبة هجر النموذج: فهو ليس فرضيةً اختارها أحد بوعي، بل الماء الذي يسبح فيه المجتمع. وحين يقول باحث اليوم إن دراسته تعمل ضمن نموذج وضعي أو تفسيري، فهو يستخدم معنى كون الواسع: تسمية كوكبة الافتراضات التي يسلّم بها مجتمعه.</p>
+        <div class="note"><strong>ملاحظة:</strong> استخدم «النموذج» بدقّة أو لا تستخدمه. في المقترح ينبغي أن يسمّي كوكبةً محدّدة من الافتراضات والأمثلة، لا أن يكون مرادفًا فخمًا للموضوع أو النظرية أو المقاربة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="normal">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Normal Science and Puzzle-Solving</h2>
+        <p class="lead">Most science, most of the time, is what Kuhn called normal science, and understanding it is essential, because revolutions only make sense against the background of the settled work they interrupt.</p>
+        <p>Normal science is research firmly based on an accepted paradigm that the community does not question. Within it, scientists are not trying to test the fundamental framework or to make radical discoveries; they are extending, refining, and applying the paradigm to new cases, cleaning up its details, measuring its constants more precisely, and solving the problems it defines. Kuhn compared this to puzzle-solving, and the comparison is exact and deliberate. A puzzle, like a crossword or a chess problem, is something the solver assumes has a solution reachable by the accepted rules; the challenge is one of skill, not of doubting the game itself. In the same way, the normal scientist assumes their paradigm can handle the problem and treats failure as a reflection on the researcher rather than on the framework.</p>
+        <p>This is not a criticism. Kuhn insisted that normal science is highly productive precisely because it is unquestioning. Shared, unexamined foundations free a community from endlessly re-arguing first principles and let it focus its full attention on detailed, cumulative problem-solving, which is where most of the concrete achievements of science are actually made. The cost of this productivity is a certain built-in conservatism: normal science is not designed to discover fundamental novelty, and indeed tends to resist it, because anything that does not fit the paradigm is at first invisible or dismissed. That conservatism is not a flaw to be scolded but the very condition of focused progress, and it also sets the stage for crisis, since a framework that suppresses novelty will eventually accumulate the anomalies that undo it.</p>
+        <div class="stats">
+          <div class="stat"><span class="num">1</span><span class="lbl"><span data-lang="en">shared paradigm, unquestioned</span><span data-lang="ar">نموذجٌ مشترك غير مُساءَل</span></span></div>
+          <div class="stat"><span class="num">99%</span><span class="lbl"><span data-lang="en">of science is normal, not revolutionary</span><span data-lang="ar">من العلم اعتيادي لا ثوري</span></span></div>
+          <div class="stat"><span class="num">0</span><span class="lbl"><span data-lang="en">questioning of foundations, by design</span><span data-lang="ar">مساءلة للأسس، بالتصميم</span></span></div>
+        </div>
+        <div class="note"><strong>Note:</strong> Normal science and revolution are complementary, not rivals. The same discipline that makes normal science productive, its refusal to question foundations, is what forces anomalies to build up until only a revolution can resolve them.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>العلم الاعتيادي وحلّ الألغاز</h2>
+        <p class="lead">معظم العلم، معظم الوقت، هو ما سمّاه كون العلم الاعتيادي، وفهمه ضروري، لأن الثورات لا تُفهَم إلّا على خلفية العمل المستقرّ الذي تقطعه.</p>
+        <p>العلم الاعتيادي بحث قائم بثبات على نموذج مقبول لا يشكّك فيه المجتمع. وفيه، لا يحاول العلماء اختبار الإطار الأساسي أو تحقيق اكتشافات جذرية؛ بل يمدّون النموذج ويصقلونه ويطبّقونه على حالات جديدة، ويهذّبون تفاصيله، ويقيسون ثوابته بدقّة أكبر، ويحلّون المشكلات التي يعرّفها. وشبّه كون هذا بحلّ الألغاز، والتشبيه دقيق ومقصود. فاللغز، ككلمات متقاطعة أو مسألة شطرنج، شيء يفترض حالّه أن له حلًّا يُبلَغ بالقواعد المقبولة؛ والتحدّي تحدّي مهارة لا تشكيك في اللعبة نفسها. وبالمثل، يفترض العالِم الاعتيادي أن نموذجه يستطيع معالجة المشكلة، ويعامل الفشل انعكاسًا على الباحث لا على الإطار.</p>
+        <p>وهذا ليس نقدًا. أصرّ كون على أن العلم الاعتيادي مثمر جدًا بالضبط لأنه غير مشكِّك. فالأسس المشتركة غير المفحوصة تحرّر المجتمع من إعادة مجادلة المبادئ الأولى بلا نهاية، وتتيح له تركيز انتباهه الكامل على حلّ المشكلات المفصّل التراكمي، وهو حيث تُنجَز فعلًا أغلب إنجازات العلم الملموسة. وكلفة هذه الإنتاجية محافظة مدمجة: فالعلم الاعتيادي غير مصمَّم لاكتشاف جِدّة أساسية، بل يميل لمقاومتها، لأن ما لا يلائم النموذج يكون أولًا غير مرئيّ أو مُنحّى. وتلك المحافظة ليست عيبًا يُوبَّخ بل شرط التقدّم المركَّز نفسه، وهي أيضًا تُمهِّد للأزمة، إذ إن إطارًا يكبت الجِدّة سيراكم في النهاية الشذوذات التي تحلّه.</p>
+        <div class="stats">
+          <div class="stat"><span class="num">1</span><span class="lbl"><span data-lang="en">shared paradigm, unquestioned</span><span data-lang="ar">نموذج مشترك غير مُساءَل</span></span></div>
+          <div class="stat"><span class="num">99%</span><span class="lbl"><span data-lang="en">of science is normal, not revolutionary</span><span data-lang="ar">من العلم اعتيادي لا ثوري</span></span></div>
+          <div class="stat"><span class="num">0</span><span class="lbl"><span data-lang="en">questioning of foundations, by design</span><span data-lang="ar">مساءلة للأسس، بالتصميم</span></span></div>
+        </div>
+        <div class="note"><strong>ملاحظة:</strong> العلم الاعتيادي والثورة متكاملان لا متنافسان. فالانضباط نفسه الذي يجعل العلم الاعتيادي مثمرًا، رفضه مساءلة الأسس، هو ما يُجبِر الشذوذات على التراكم حتى لا تحلّها إلّا ثورة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="cycle">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>The Cycle: Anomaly, Crisis, Revolution</h2>
+        <p class="lead">Kuhn described science as moving through a repeating cycle with distinct stages. The diagram below traces it, and the prose that follows walks through each stage and the pressure that pushes science from one to the next.</p>
+        <svg viewBox="0 0 900 262" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><rect x="30" y="150" width="170" height="62" rx="10" fill="#DEDEDE"/><text x="115" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#2D2D2D">Normal science</text><line x1="206" y1="181" x2="236" y2="181" stroke="#A32020" stroke-width="2.5"/><path d="M244 181 l-12 -6 l0 12 z" fill="#A32020"/><rect x="250" y="150" width="170" height="62" rx="10" fill="#B34747"/><text x="335" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">Anomalies</text><line x1="426" y1="181" x2="456" y2="181" stroke="#A32020" stroke-width="2.5"/><path d="M464 181 l-12 -6 l0 12 z" fill="#A32020"/><rect x="470" y="150" width="170" height="62" rx="10" fill="#9A1C1C"/><text x="555" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">Crisis</text><line x1="646" y1="181" x2="676" y2="181" stroke="#A32020" stroke-width="2.5"/><path d="M684 181 l-12 -6 l0 12 z" fill="#A32020"/><rect x="690" y="150" width="170" height="62" rx="10" fill="#2D2D2D"/><text x="775" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">Revolution</text><path d="M775 150 C 775 60, 115 60, 115 150" fill="none" stroke="#A32020" stroke-width="2.5" stroke-dasharray="6 5"/><path d="M115 150 l-6 -12 l12 0 z" fill="#A32020"/><text x="445" y="52" text-anchor="middle" font-size="12.5" fill="#A32020">the new paradigm becomes the next normal science</text></svg>
+        <p>The cycle begins in normal science, the stable, productive puzzle-solving already described. As that work proceeds, it inevitably throws up anomalies: results that stubbornly refuse to fit the paradigm, observations it cannot explain, predictions that fail. At first these are not treated as threats. A single anomaly is set aside as a puzzle not yet solved, blamed on faulty apparatus or on the researcher, and the community carries on, confident the framework will eventually absorb it. This tolerance is reasonable, since every paradigm always has loose ends, and abandoning a productive framework at the first difficulty would be reckless.</p>
+        <p>Trouble comes when anomalies accumulate, resist every attempt at resolution, and strike at the paradigm's core rather than its edges. Then the field enters crisis: confidence in the framework weakens, its rules are debated, and researchers begin, unusually, to question fundamentals they had long taken for granted. Crisis is a period of insecurity and ferment in which competing ideas proliferate. It is resolved only when a new candidate framework emerges that can make sense of the anomalies the old one could not, and that also preserves enough of the old paradigm's successes to be credible. If the community comes to adopt this new framework, a scientific revolution has occurred: the old paradigm is abandoned, the new one takes its place, and normal science resumes, now on a new foundation, until its own anomalies eventually accumulate and the cycle turns again.</p>
+        <ul>
+          <li><strong>Normal science:</strong> confident puzzle-solving within an accepted paradigm.</li>
+          <li><strong>Anomaly:</strong> results the paradigm cannot accommodate, at first set aside.</li>
+          <li><strong>Crisis:</strong> anomalies accumulate at the core and confidence breaks down.</li>
+          <li><strong>Revolution:</strong> a new paradigm replaces the old and normal work restarts.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Anomalies alone never overturn a paradigm. A framework is abandoned only when a credible rival exists, because scientists give up one paradigm for a better one, never for no paradigm at all. Crisis without a successor produces persistence, not revolution.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الدورة: شذوذ، أزمة، ثورة</h2>
+        <p class="lead">وصف كون العلم متحرّكًا عبر دورة متكرّرة بمراحل متمايزة. المخطط أدناه يتتبّعها، والنثر التالي يمرّ بكل مرحلة والضغط الذي يدفع العلم من واحدة للتالية.</p>
+        <svg viewBox="0 0 900 262" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><rect x="30" y="150" width="170" height="62" rx="10" fill="#DEDEDE"/><text x="115" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#2D2D2D">علمٌ اعتيادي</text><line x1="206" y1="181" x2="236" y2="181" stroke="#A32020" stroke-width="2.5"/><path d="M244 181 l-12 -6 l0 12 z" fill="#A32020"/><rect x="250" y="150" width="170" height="62" rx="10" fill="#B34747"/><text x="335" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">شذوذات</text><line x1="426" y1="181" x2="456" y2="181" stroke="#A32020" stroke-width="2.5"/><path d="M464 181 l-12 -6 l0 12 z" fill="#A32020"/><rect x="470" y="150" width="170" height="62" rx="10" fill="#9A1C1C"/><text x="555" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">أزمة</text><line x1="646" y1="181" x2="676" y2="181" stroke="#A32020" stroke-width="2.5"/><path d="M684 181 l-12 -6 l0 12 z" fill="#A32020"/><rect x="690" y="150" width="170" height="62" rx="10" fill="#2D2D2D"/><text x="775" y="188" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">ثورة</text><path d="M775 150 C 775 60, 115 60, 115 150" fill="none" stroke="#A32020" stroke-width="2.5" stroke-dasharray="6 5"/><path d="M115 150 l-6 -12 l12 0 z" fill="#A32020"/><text x="445" y="52" text-anchor="middle" font-size="12.5" fill="#A32020">النموذج الجديد يصير العلم الاعتيادي التالي</text></svg>
+        <p>تبدأ الدورة في العلم الاعتيادي، حلّ الألغاز المستقرّ المثمر الموصوف سلفًا. ومع مضيّ ذلك العمل، يقذف حتمًا شذوذات: نتائج ترفض بعنادٍ ملاءمة النموذج، وملاحظاتٍ لا يفسّرها، وتنبّؤاتٍ تفشل. وتُعامَل أولًا لا كتهديدات. فالشذوذ الواحد يُنحّى كلغزٍ لم يُحَلّ بعد، ويُلقى باللوم على جهازٍ معيب أو على الباحث، ويمضي المجتمع واثقًا أن الإطار سيستوعبه في النهاية. وهذا التسامح معقول، إذ لكل نموذجٍ دومًا أطرافٌ غير مربوطة، وهجر إطارٍ مثمر عند أول صعوبةٍ تهوّر.</p>
+        <p>وتأتي المشكلة حين تتراكم الشذوذات، وتقاوم كل محاولة حلّ، وتضرب قلب النموذج لا أطرافه. عندها يدخل الحقل الأزمة: تضعف الثقة بالإطار، وتُجادَل قواعده، ويبدأ الباحثون، على غير المعتاد، بمساءلة أسسٍ طالما سلّموا بها. والأزمة فترة قلقٍ وغليان تتكاثر فيها الأفكار المتنافسة. ولا تُحَلّ إلّا حين يبرز إطارٌ مرشّح جديد يفسّر الشذوذات التي عجز عنها القديم، ويحفظ أيضًا ما يكفي من نجاحات النموذج القديم ليكون ذا مصداقية. فإن تبنّى المجتمع هذا الإطار الجديد، تكون ثورةٌ علمية قد وقعت: يُهجَر النموذج القديم، ويحلّ الجديد محلّه، ويستأنف العلم الاعتيادي، على أساسٍ جديد، حتى تتراكم شذوذاته في النهاية فتدور الدورة مجدّدًا.</p>
+        <ul>
+          <li><strong>العلم الاعتيادي:</strong> حلّ ألغازٍ واثق داخل نموذجٍ مقبول.</li>
+          <li><strong>الشذوذ:</strong> نتائج لا يستوعبها النموذج، تُنحّى أولًا.</li>
+          <li><strong>الأزمة:</strong> تتراكم الشذوذات في القلب وتنهار الثقة.</li>
+          <li><strong>الثورة:</strong> نموذجٌ جديد يحلّ محلّ القديم ويعود العمل الاعتيادي.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> الشذوذات وحدها لا تقلب نموذجًا أبدًا. فالإطار لا يُهجَر إلّا حين يوجد منافسٌ ذو مصداقية، إذ يتخلّى العلماء عن نموذجٍ لأفضل منه، لا لِلا نموذج. والأزمة دون خلَفٍ تُنتِج بقاءً لا ثورة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="incommensurability">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Incommensurability and Seeing Anew</h2>
+        <p class="lead">The most radical and most contested part of Kuhn's account is his claim that rival paradigms are incommensurable. This single idea is what makes his view genuinely revolutionary rather than a mere description of scientific change, and it is worth stating carefully.</p>
+        <p>To say two paradigms are incommensurable is to say there is no common measure by which they can be fully and neutrally compared. This happens for several linked reasons. First, they often define their basic terms differently, so that a word like mass or species means something subtly but importantly different on each side, and the two communities talk past one another even when using the same vocabulary. Second, they disagree about which problems are important and what a good solution looks like, so there is no shared scorecard on which one paradigm simply outscores the other. Third, and most strikingly, Kuhn suggested that scientists working in different paradigms in a sense see different worlds: because observation is shaped by prior assumptions, the same instrument reading or the same sky can be perceived as different things by observers committed to different frameworks. This is why he compared a paradigm shift to a gestalt switch, the sudden flip by which an ambiguous figure seen as a duck is suddenly seen as a rabbit.</p>
+        <p>The consequence is that paradigm change cannot be a matter of one side simply proving the other wrong by neutral evidence, because what counts as evidence is partly internal to each paradigm. Choosing between frameworks involves judgment, persuasion, and a shift of perception that Kuhn likened to a conversion, more than a mechanical calculation from agreed data. This is the claim that led critics to accuse him of making science irrational and relativistic, a charge he spent much of his later career resisting. His considered position was subtler: incommensurability makes comparison hard and partly non-algorithmic, but not impossible or arbitrary, since scientists still weigh shared values such as accuracy, scope, simplicity, and fruitfulness, even though these values can be honored differently and do not settle the matter mechanically.</p>
+        <div class="note"><strong>Note:</strong> Incommensurable does not mean incomparable in every respect. It means there is no single neutral algorithm that forces the choice. Reasoned judgment across shared scientific values still operates, which is why paradigm change is difficult but not merely a leap of faith.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>اللاقياسية والرؤية من جديد</h2>
+        <p class="lead">أكثر أجزاء طرح كون جذريةً وإثارةً للنزاع ادّعاؤه أن النماذج المتنافسة لاقياسية. وهذه الفكرة وحدها ما يجعل رأيه ثوريًا فعلًا لا مجرّد وصف للتغيّر العلمي، وتستحقّ صوغًا دقيقًا.</p>
+        <p>القول إن نموذجَين لاقياسيان هو القول إنه لا مقياس مشترك يمكن بهما مقارنتهما كاملًا وحياديًا. ويحدث هذا لأسباب مترابطة. أولًا، غالبًا ما يعرّفان مصطلحاتهما الأساسية تعريفًا مختلفًا، فتعني كلمة ككتلة أو نوع شيئًا مختلفًا بدقّة لكن بأهميّة على كل جانب، فيتحدّث المجتمعان دون تلاق حتى مع اللفظ ذاته. وثانيًا، يختلفان على أي المشكلات مهمة وكيف يبدو الحلّ الجيّد، فلا بطاقة تقييم مشتركة يتفوّق عليها نموذج ببساطة على آخر. وثالثًا، والأكثر إثارة، أشار كون إلى أن العلماء العاملين في نماذج مختلفة يرون بمعنًى عوالم مختلفة: فلأن الملاحظة تتشكّل بالافتراضات السابقة، يمكن أن يُدرَك قراءة الجهاز نفسها أو السماء نفسها أشياء مختلفة لدى ملاحِظين ملتزمين بأطر مختلفة. لهذا شبّه التحوّل النموذجي بتبدّل الجشطلت، القلب المفاجئ الذي يُرى به شكل ملتبس بطّةً ثم فجأةً أرنبًا.</p>
+        <p>والنتيجة أن تغيّر النموذج لا يمكن أن يكون مسألة جانب يثبت ببساطة خطأ الآخر بدليل حيادي، لأن ما يُعَدّ دليلًا داخليّ جزئيًا لكل نموذج. والاختيار بين الأطر يتضمّن حكمًا وإقناعًا وتبدّلًا في الإدراك شبّهه كون بالتحوّل، أكثر منه حسابًا آليًا من بيانات متّفَق عليها. وهذا الادّعاء قاد النقّاد لاتّهامه بجعل العلم غير عقلاني ونسبيًا، تهمة أمضى جزءًا كبيرًا من حياته اللاحقة يقاومها. وموقفه المتأنّي أدقّ: اللاقياسية تجعل المقارنة صعبةً وجزئيًا غير خوارزمية، لا مستحيلةً ولا اعتباطية، إذ ما زال العلماء يزنون قيمًا مشتركة كالدقّة والنطاق والبساطة والخنحوة، وإن أمكن احترام هذه القيم على نحو مختلف ولم تحسم المسألة آليًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> اللاقياسية لا تعني اللامقارنة من كل وجه. بل تعني ألّا خوارزمية حيادية واحدة تفرض الاختيار. ويظلّ الحكم المعلَّل عبر القيم العلمية المشتركة عاملًا، ولهذا يكون تغيّر النموذج صعبًا لا مجرّد قفزة إيمان.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="implications">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Why It Matters for Your Research</h2>
+        <p class="lead">Kuhn's account is not only history and philosophy; it reshapes how a doctoral researcher understands their own field, their vocabulary, and their place in a scholarly community. Its practical lessons are concrete.</p>
+        <p>The first is the disciplined use of the word paradigm itself. Because Kuhn is the source of its modern meaning, a researcher who declares a positivist, interpretivist, or pragmatist paradigm is naming the shared constellation of assumptions their community works within, and should be able to describe that constellation, not merely wave the label. The second lesson is a humbler theory of knowledge. If today's settled science can, in principle, be overturned tomorrow, then even well-established findings deserve to be held as the current best account rather than as final truth, and a mature researcher treats accepted frameworks as provisional. The third lesson concerns disagreement. When two scholars genuinely talk past each other, the cause is often that they work in different paradigms with different standards for a good question and a convincing answer, a difference no single study can settle, and recognizing this keeps a literature review fair rather than dismissive.</p>
+        <p>There is also a caution. It is tempting, and common, for researchers in the social sciences to borrow Kuhn's language to dress up ordinary change as revolution, or to claim their own small field is in crisis or undergoing a paradigm shift. Used loosely, the vocabulary loses its meaning and impresses no careful reader. Used precisely, it is a powerful tool for locating one's work: for saying which community of assumptions a study belongs to, why that community sees its problems as it does, and how the study either extends its paradigm in normal-science fashion or challenges it. That precise self-location is exactly what a strong methodology chapter provides.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> Kuhn taught that frameworks, not just facts, drive science. For a researcher this means naming your paradigm consciously, holding your conclusions with earned humility, reading rival work on its own terms, and reserving the language of revolution for the rare cases that truly warrant it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>لماذا يهمّ لبحثك</h2>
+        <p class="lead">طرح كون ليس تاريخًا وفلسفةً فحسب؛ بل يعيد تشكيل فهم باحث الدكتوراه لحقله ومفرداته وموضعه في مجتمع علمي. ودروسه العملية ملموسة.</p>
+        <p>الأول الاستخدام المنضبط لكلمة «النموذج» ذاتها. فلأن كون مصدر معناها الحديث، فالباحث الذي يعلن نموذجًا وضعيًا أو تفسيريًا أو براغماتيًا يسمّي كوكبة الافتراضات المشتركة التي يعمل مجتمعه ضمنها، وعليه أن يستطيع وصف تلك الكوكبة، لا مجرّد التلويح بالوسم. والدرس الثاني نظرية معرفة أكثر تواضعًا. فإن كان علم اليوم المستقرّ يمكن مبدئيًا أن يُقلَب غدًا، فحتى النتائج الراسخة تستحقّ أن تُحمَل بوصفها أفضل حساب حالي لا حقيقةً نهائية، ويعامل الباحث الناضج الأطر المقبولة كمؤقّتة. والدرس الثالث يخصّ الخلاف. فحين يتحدّث عالمان دون تلاق فعلًا، يكون السبب غالبًا أنهما يعملان في نماذج مختلفة بمعايير مختلفة للسؤال الجيّد والجواب المقنع، وهو فرق لا تحسمه دراسة واحدة، ورؤية ذلك تُبقي مراجعة الأدبيات منصفةً لا رافضة.</p>
+        <p>وثمّة تحذير أيضًا. فمن المغري، والشائع، أن يستعير باحثو العلوم الاجتماعية لغة كون لتزيين تغيّر عادي كثورة، أو ادّعاء أن حقلهم الصغير في أزمة أو يمرّ بتحوّل نموذجي. ومستخدَمةً بتساهل، تفقد المفردات معناها ولا تُبهِر قارئًا متأنّيًا. ومستخدَمةً بدقّة، أداة قوية لتحديد موضع العمل: لقول أي مجتمع افتراضات تنتمي إليه الدراسة، ولماذا يرى ذلك المجتمع مشكلاته كما يراها، وكيف تمدّ الدراسة نموذجه على نحو العلم الاعتيادي أو تتحدّاه. وهذا التحديد الذاتي الدقيق هو بالضبط ما يقدّمه فصل المنهجية القوي.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> علّم كون أن الأطر، لا الوقائع فقط، تحرّك العلم. وهذا للباحث يعني تسمية نموذجك بوعي، وحمل خلاصاتك بتواضع مكتسب، وقراءة العمل المنافس بشروطه، وحفظ لغة الثورة للحالات النادرة التي تستحقّها فعلًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="critiques">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>Critiques, Debates, and References</h2>
+        <p class="lead">A framework as influential as Kuhn's naturally drew powerful criticism, and knowing the main lines of debate is part of understanding his contribution rather than merely repeating it.</p>
+        <p>Karl Popper and his followers resisted the account most sharply. To them, Kuhn's normal science, with its refusal to question fundamentals, looked less like good science than like dogma, and they insisted that the critical testing of foundations should never stop. Imre Lakatos tried to bridge the two, proposing that science advances through competing research programmes that can be judged, over time, as progressive or degenerating by whether they predict new facts, thus restoring a rational standard of comparison that Kuhn seemed to weaken. From the opposite direction, Paul Feyerabend pushed Kuhn's ideas toward a radical conclusion, arguing that no fixed method defines science at all. Others charged that incommensurability, taken strictly, collapses into relativism, making it impossible to say that later science is better than earlier science, a consequence Kuhn himself rejected and worked to qualify by appealing to shared values that guide theory choice.</p>
+        <p>The mature verdict is that Kuhn permanently changed how we think about science without having the last word. Few now accept the strongest reading of incommensurability, yet almost everyone accepts his central insight that science is a social, community-based activity governed by shared frameworks that shape perception and that occasionally undergo deep change. For the researcher, the debates are themselves instructive: they model how a powerful idea is tested, refined, and partly resisted by a scholarly community, which is Kuhn's own picture of science enacted upon his own theory.</p>
+        <div class="refs"><ul>
+          <li>Stanford Encyclopedia of Philosophy, <a href="https://plato.stanford.edu/entries/thomas-kuhn/" target="_blank" rel="noopener">Thomas Kuhn</a>.</li>
+          <li>University of Chicago Press, <a href="https://press.uchicago.edu/ucp/books/book/chicago/S/bo13179781.html" target="_blank" rel="noopener">The Structure of Scientific Revolutions</a>.</li>
+          <li>Stanford Encyclopedia of Philosophy, <a href="https://plato.stanford.edu/entries/incommensurability/" target="_blank" rel="noopener">The Incommensurability of Scientific Theories</a>.</li>
+          <li>Stanford Encyclopedia of Philosophy, <a href="https://plato.stanford.edu/entries/lakatos/" target="_blank" rel="noopener">Imre Lakatos and Research Programmes</a>.</li>
+          <li>Encyclopaedia Britannica, <a href="https://www.britannica.com/biography/Thomas-S-Kuhn" target="_blank" rel="noopener">Thomas S. Kuhn</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>النقود والنقاشات والمراجع</h2>
+        <p class="lead">إطار بتأثير كون يجذب طبعًا نقدًا قويًا، ومعرفة الخطوط الرئيسة للنقاش جزء من فهم إسهامه لا مجرّد تكراره.</p>
+        <p>قاوم كارل بوبر وأتباعه الطرح بأشدّ الحدّة. فبالنسبة إليهم، بدا علم كون الاعتيادي، برفضه مساءلة الأسس، أقرب لعقيدة منه لعلم جيّد، وأصرّوا على أن الاختبار النقدي للأسس ينبغي ألّا يتوقّف أبدًا. وحاول إمري لاكاتوش الجسر بينهما، مقترحًا أن العلم يتقدّم عبر برامج بحث متنافسة يمكن الحكم عليها، عبر الزمن، تقدّميةً أو منحطّة بحسب تنبّئها بوقائع جديدة، فيعيد معيارًا عقلانيًا للمقارنة بدا كون يُضعِفه. ومن الاتجاه المقابل، دفع بول فايرآبند أفكار كون لخلاصة جذرية، مجادلًا بأن لا منهج ثابتًا يعرّف العلم أصلًا. واتّهم آخرون اللاقياسية، مأخوذةً بصرامة، بأنها تنهار إلى نسبية تجعل من المستحيل القول إن العلم المتأخّر أفضل من الأقدم، وهي نتيجة رفضها كون نفسه وعمل على تقييدها باستدعاء قيم مشتركة توجّه اختيار النظرية.</p>
+        <p>والحكم الناضج أن كون غيّر تفكيرنا في العلم للأبد دون أن يكون له القول الأخير. فقليلون اليوم يقبلون أقوى قراءة للاقياسية، ومع ذلك يقبل الجميع تقريبًا بصيرته المركزية أن العلم نشاط اجتماعي مجتمعي تحكمه أطر مشتركة تشكّل الإدراك وتخضع أحيانًا لتغيّر عميق. وللباحث، النقاشات نفسها مُعلِّمة: تنمذج كيف يُختبَر فكرة قوية وتُصقَل وتُقاوَم جزئيًا من مجتمع علمي، وهي صورة كون للعلم مطبَّقةً على نظريّته هو.</p>
+        <div class="refs"><ul>
+          <li>موسوعة ستانفورد للفلسفة، <a href="https://plato.stanford.edu/entries/thomas-kuhn/" target="_blank" rel="noopener">توماس كون</a>.</li>
+          <li>مطبعة جامعة شيكاغو، <a href="https://press.uchicago.edu/ucp/books/book/chicago/S/bo13179781.html" target="_blank" rel="noopener">بنية الثورات العلمية</a>.</li>
+          <li>موسوعة ستانفورد للفلسفة، <a href="https://plato.stanford.edu/entries/incommensurability/" target="_blank" rel="noopener">لاقياسية النظريات العلمية</a>.</li>
+          <li>موسوعة ستانفورد للفلسفة، <a href="https://plato.stanford.edu/entries/lakatos/" target="_blank" rel="noopener">إمري لاكاتوش وبرامج البحث</a>.</li>
+          <li>موسوعة بريتانيكا، <a href="https://www.britannica.com/biography/Thomas-S-Kuhn" target="_blank" rel="noopener">توماس كون</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="phil-foundations-research-philosophy.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Foundations of Research Philosophy</span><span data-lang="ar">أسس فلسفة البحث</span></a><a href="phil-ontology-epistemology-axiology.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Ontology, Epistemology &amp; Axiology</span><span data-lang="ar">الأنطولوجيا والإبستمولوجيا والأكسيولوجيا</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="كون: النماذج والثورات العلمية";
+var TITLE_EN="Kuhn: Paradigms &amp; Scientific Revolutions";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

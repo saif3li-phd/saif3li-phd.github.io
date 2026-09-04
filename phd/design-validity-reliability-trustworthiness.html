@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Validity, Reliability &amp; Trustworthiness</title>
+<meta name="description" content="Validity, reliability and trustworthiness in depth: the quantitative validity family, reliability checks, the qualitative canon, and a worked example.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Research design and methodology</span><span data-lang="ar">تصميم البحث ومنهجيته</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">RESEARCH DESIGN &amp; METHODOLOGY · PhD</span><span data-lang="ar">تصميم البحث ومنهجيته · دكتوراه</span></div>
+    <h1><span data-lang="en">Validity, Reliability &amp; Trustworthiness</span><span data-lang="ar">الصدق والثبات والوثوقية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Research design and methodology</span><span data-lang="ar">تصميم البحث ومنهجيته</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">9 min</span><span data-lang="ar">٩ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="quant"><span data-lang="en">Validity Types</span><span data-lang="ar">أنواع الصدق</span></a></li><li><a data-id="reliability"><span data-lang="en">Reliability</span><span data-lang="ar">الثبات</span></a></li><li><a data-id="trust"><span data-lang="en">Trustworthiness</span><span data-lang="ar">الوثوقية</span></a></li><li><a data-id="example"><span data-lang="en">Worked Example</span><span data-lang="ar">مثال تطبيقي</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Validity, reliability, and trustworthiness</div>
+          <div><span>Covers:</span> Quality standards for quantitative and qualitative research</div>
+          <div><span>Use:</span> Demonstrating, not just claiming, the quality of a study</div>
+          <div><span>Level:</span> Doctoral research methodology</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Every research finding invites the same two questions: can we trust the measurement, and can we trust the conclusion? Validity, reliability, and trustworthiness are the vocabularies research has developed for answering those questions, and no thesis escapes them. The quantitative tradition answers with validity and reliability; the qualitative tradition, whose logic is different, answers with the trustworthiness canon. A doctoral researcher must command the vocabulary that matches their design, and understand the other side's well enough not to misapply it.</p>
+        <p>The core distinction is easy to state. Reliability asks whether a measure is consistent: would the same procedure, repeated under the same conditions, give the same result? Validity asks whether it is accurate: does the instrument measure what it claims to measure, and do the conclusions follow? The two are related but independent, and the classic image makes the relation vivid: a bathroom scale that always reads three kilograms heavy is perfectly reliable, consistently wrong, and therefore invalid. Reliability is necessary for validity but never sufficient, because consistency says nothing about whether you are consistently right.</p>
+        <p>Qualitative research cannot use these terms in their original sense, because it does not use standardized instruments whose consistency can be checked, and it does not claim the kind of objective accuracy that validity presumes. Its parallel canon, credibility, transferability, dependability, and confirmability, asks the same underlying questions, is the account sound and can others rely on it, but in forms that fit interpretive logic. This framework works through the quantitative family in depth, then the qualitative canon, then the practical techniques that deliver each, and closes with the pitfalls and a worked example. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Quality is demonstrated, not declared. The sentence this study ensured validity and reliability convinces no examiner; what convinces is the specific evidence, named checks, and reported results behind each claim.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> الصدق والثبات والوثوقية</div>
+          <div><span>يغطّي:</span> معايير الجودة للبحث الكمّي والنوعي</div>
+          <div><span>الاستخدام:</span> إثبات جودة الدراسة بالدليل، لا مجرّد ادّعائها</div>
+          <div><span>المستوى:</span> منهجية بحثٍ لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">كل نتيجة بحثية تواجه سؤالين أساسيين: هل نثق بالقياس؟ وهل نثق بالاستنتاج؟ والصدق والثبات والوثوقية هي المصطلحات التي طوّرها البحث العلمي للإجابة عن هذين السؤالين، ولا توجد أطروحة تستطيع تجاوزها. فالتقليد الكمّي يجيب بمفهومَي الصدق والثبات، بينما التقليد النوعي، الذي يقوم على منطق مختلف، يجيب بمعايير الوثوقية. وعلى باحث الدكتوراه أن يتقن المصطلحات التي تناسب تصميمه، وأن يفهم مصطلحات الجانب الآخر جيدًا حتى لا يستخدمها في غير موضعها.</p>
+        <p>والفرق الأساسي سهل الشرح. الثبات يسأل: هل القياس متّسق؟ أي هل يعطي الإجراء نفسه، إذا تكرّر في الظروف نفسها، النتيجة نفسها؟ والصدق يسأل: هل القياس دقيق؟ أي هل تقيس الأداة ما تدّعي قياسه فعلًا، وهل الاستنتاجات مبنية على أساس صحيح؟ والمفهومان مرتبطان لكنهما مستقلّان، والمثال المشهور يوضّح العلاقة: ميزانٌ يزيد دائمًا ثلاثة كيلوغرامات هو ميزان ثابت تمامًا، لكنه مخطئ باستمرار، وبالتالي غير صادق. فالثبات شرط ضروري للصدق لكنه لا يكفي وحده، لأن الاتساق لا يعني أنك مصيب باستمرار.</p>
+        <p>والبحث النوعي لا يستطيع استخدام هذه المصطلحات بمعناها الأصلي، لأنه لا يستخدم أدوات موحّدة يمكن فحص اتساقها، ولا يدّعي الدقّة الموضوعية التي يفترضها مفهوم الصدق. ولهذا وضع منظّروه معايير موازية هي: المصداقية، وقابلية النقل، والاعتمادية، وقابلية التأكيد. وهذه المعايير تطرح الأسئلة الأساسية نفسها، هل الحساب سليم وهل يمكن للآخرين الاعتماد عليه، لكن بصيغ تناسب المنطق التفسيري. يعرض هذا الإطار عائلة المعايير الكمّية بالتفصيل، ثم معايير الوثوقية النوعية، ثم الأساليب العملية لتحقيق كل منها، ويختم بالأخطاء الشائعة ومثال تطبيقي. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> الجودة تُثبَت ولا تُعلَن. فجملة «حرصت هذه الدراسة على الصدق والثبات» لا تقنع أي ممتحن؛ ما يقنعه هو الدليل المحدّد، والفحوص المسمّاة، والنتائج المذكورة خلف كل ادّعاء.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="quant">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Quantitative Family</h2>
+        <p class="lead">Validity in quantitative research is not one thing but a family of specific questions, each with its own name, its own threats, and its own evidence. Commanding the family means knowing which member each claim in a study depends on.</p>
+        <table>
+          <tbody><tr>
+            <th><span data-lang="en">Type</span><span data-lang="ar">النوع</span></th>
+            <th><span data-lang="en">The question it asks</span><span data-lang="ar">السؤال الذي يطرحه</span></th>
+          </tr>
+          <tr><td><span data-lang="en">Content validity</span><span data-lang="ar">صدق المحتوى</span></td><td><span data-lang="en">do the items cover the whole concept, not just part of it?</span><span data-lang="ar">هل تغطّي الفقرات المفهوم كاملًا لا جزءًا منه؟</span></td></tr>
+          <tr><td><span data-lang="en">Construct validity</span><span data-lang="ar">صدق البناء</span></td><td><span data-lang="en">does the instrument really measure this concept and not a neighbour?</span><span data-lang="ar">هل تقيس الأداة هذا المفهوم فعلًا لا مفهومًا مجاورًا؟</span></td></tr>
+          <tr><td><span data-lang="en">Criterion validity</span><span data-lang="ar">الصدق المحكّي</span></td><td><span data-lang="en">does the measure predict the outcomes it should predict?</span><span data-lang="ar">هل يتنبّأ القياس بالنتائج التي يفترض أن يتنبّأ بها؟</span></td></tr>
+          <tr><td><span data-lang="en">Internal validity</span><span data-lang="ar">الصدق الداخلي</span></td><td><span data-lang="en">is the causal conclusion sound, or could rivals explain it?</span><span data-lang="ar">هل الاستنتاج السببي سليم، أم توجد تفسيرات منافسة؟</span></td></tr>
+          <tr><td><span data-lang="en">External validity</span><span data-lang="ar">الصدق الخارجي</span></td><td><span data-lang="en">do the findings hold beyond this sample and setting?</span><span data-lang="ar">هل تصمد النتائج خارج هذه العيّنة والبيئة؟</span></td></tr>
+        </tbody></table>
+        <p>The first three members concern measurement. Content validity is judged, usually by experts, against the concept's definition: an engagement scale that asks only about effort has missed belonging and pride, however well its items perform. Construct validity is demonstrated statistically and logically at once: the measure should correlate with measures of related constructs (convergent evidence) and not correlate with measures of distinct ones (discriminant evidence), and its internal structure should match the concept's theorized dimensions. Criterion validity is the practical test: a selection instrument earns its place by predicting later job performance, not by sounding plausible.</p>
+        <p>The last two members concern conclusions rather than instruments, and they trade against each other. Internal validity is strengthened by control, randomization, and the closing of rival explanations, exactly the machinery of experimental design treated elsewhere in this portal. External validity is strengthened by realistic settings, diverse samples, and replication across contexts, and the tension is structural: the laboratory purity that secures the causal claim makes the setting less like the world, while the messy field setting that resembles the world lets rivals back in. A mature study does not pretend to maximize both; it states which it prioritized and why the question justified that priority.</p>
+        <div class="note"><strong>Note:</strong> When reading or defending any study, attach each headline claim to the validity type it depends on. A claim about measurement leans on construct validity; a claim about cause leans on internal validity; a claim about generality leans on external validity. Confusing them is how weak arguments hide.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>العائلة الكمّية</h2>
+        <p class="lead">الصدق في البحث الكمّي ليس مفهومًا واحدًا بل عائلة من الأسئلة المحدّدة، لكل واحد منها اسمه وتهديداته وأدلّته. وإتقان هذه العائلة يعني معرفة أي عضو منها يعتمد عليه كل ادّعاء في الدراسة.</p>
+        <table>
+          <tbody><tr>
+            <th><span data-lang="en">Type</span><span data-lang="ar">النوع</span></th>
+            <th><span data-lang="en">The question it asks</span><span data-lang="ar">السؤال الذي يطرحه</span></th>
+          </tr>
+          <tr><td><span data-lang="en">Content validity</span><span data-lang="ar">صدق المحتوى</span></td><td><span data-lang="en">do the items cover the whole concept, not just part of it?</span><span data-lang="ar">هل تغطّي الفقرات المفهوم كاملًا لا جزءًا منه؟</span></td></tr>
+          <tr><td><span data-lang="en">Construct validity</span><span data-lang="ar">صدق البناء</span></td><td><span data-lang="en">does the instrument really measure this concept and not a neighbour?</span><span data-lang="ar">هل تقيس الأداة هذا المفهوم فعلًا لا مفهومًا مجاورًا؟</span></td></tr>
+          <tr><td><span data-lang="en">Criterion validity</span><span data-lang="ar">الصدق المحكّي</span></td><td><span data-lang="en">does the measure predict the outcomes it should predict?</span><span data-lang="ar">هل يتنبّأ القياس بالنتائج التي يفترض أن يتنبّأ بها؟</span></td></tr>
+          <tr><td><span data-lang="en">Internal validity</span><span data-lang="ar">الصدق الداخلي</span></td><td><span data-lang="en">is the causal conclusion sound, or could rivals explain it?</span><span data-lang="ar">هل الاستنتاج السببي سليم، أم توجد تفسيرات منافسة؟</span></td></tr>
+          <tr><td><span data-lang="en">External validity</span><span data-lang="ar">الصدق الخارجي</span></td><td><span data-lang="en">do the findings hold beyond this sample and setting?</span><span data-lang="ar">هل تصمد النتائج خارج هذه العيّنة والبيئة؟</span></td></tr>
+        </tbody></table>
+        <p>الأنواع الثلاثة الأولى تتعلق بالقياس. فصدق المحتوى يُحكَم عليه، عادةً بواسطة الخبراء، بمقارنة الفقرات بتعريف المفهوم: مقياس اندماج وظيفي يسأل عن الجهد فقط قد أغفل الانتماء والفخر، مهما كانت فقراته جيدة. وصدق البناء يُثبَت إحصائيًا ومنطقيًا معًا: يجب أن يرتبط المقياس بمقاييس المفاهيم القريبة منه (دليل التقارب)، وألّا يرتبط بمقاييس المفاهيم المختلفة عنه (دليل التمايز)، ويجب أن تطابق بنيته الداخلية الأبعاد التي افترضتها النظرية. والصدق المحكّي هو الاختبار العملي: أداة اختيار الموظفين تستحق مكانها عندما تتنبّأ بالأداء الوظيفي اللاحق، لا عندما تبدو منطقية فقط.</p>
+        <p>والنوعان الأخيران يتعلقان بالاستنتاجات لا بالأدوات، وبينهما مقايضة دائمة. فالصدق الداخلي يتقوّى بالضبط والتعشية وإغلاق التفسيرات المنافسة، وهي نفسها آلية التصميم التجريبي المشروحة في موضع آخر من هذه البوابة. والصدق الخارجي يتقوّى بالبيئات الواقعية والعيّنات المتنوعة وتكرار الدراسة في سياقات مختلفة. والتوتر بينهما بنيوي: فنقاء المختبر الذي يضمن الادّعاء السببي يجعل البيئة أبعد عن العالم الحقيقي، بينما البيئة الميدانية الواقعية التي تشبه العالم تفتح الباب للتفسيرات المنافسة. والدراسة الناضجة لا تدّعي تعظيم الاثنين معًا؛ بل تذكر أيهما قدّمت ولماذا يبرّر سؤالها هذا الاختيار.</p>
+        <div class="note"><strong>ملاحظة:</strong> عند قراءة أي دراسة أو الدفاع عنها، اربط كل ادّعاء رئيسي بنوع الصدق الذي يعتمد عليه. فادّعاء القياس يعتمد على صدق البناء، وادّعاء السببية على الصدق الداخلي، وادّعاء التعميم على الصدق الخارجي. والخلط بينها هو الطريقة التي تختبئ بها الحجج الضعيفة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="reliability">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Reliability and Its Measures</h2>
+        <p class="lead">Reliability has its own toolkit of named checks, each matching a different way a measure could be inconsistent. Choosing the right check, and reporting its result, is a small discipline with a large payoff in credibility.</p>
+        <p>Internal consistency asks whether the items of a scale hang together, whether people who score high on one item tend to score high on its siblings, and is reported through coefficients such as Cronbach's alpha, with values above the conventional threshold indicating that the items plausibly measure one thing. Two cautions keep the statistic honest: alpha rises mechanically with the number of items, so a long weak scale can outscore a short strong one; and high alpha does not prove the scale measures the right thing, only that it measures some one thing consistently, which is why reliability can never substitute for validity. Test-retest reliability asks whether scores are stable over time, by administering the measure twice and correlating the results; it is the appropriate check for constructs the theory says should be stable, like traits, and inappropriate for states, like moods, whose real change would be misread as unreliability.</p>
+        <p>Inter-rater reliability enters wherever human judgment is part of the measurement: two observers coding behaviour, two raters scoring essays, two clinicians applying diagnostic criteria. Agreement statistics, such as Cohen's kappa, correct for the agreement chance alone would produce, and low values are a signal that the coding scheme, not the raters, usually needs repair: clearer definitions, more examples, decision rules for boundary cases. Parallel-forms reliability, less common, checks whether two versions of an instrument behave equivalently, mattering wherever repeated testing needs alternate forms. Across all four, the professional standard is the same: name the check that matches your design, report the coefficient, and interpret it against the accepted threshold, in one or two sentences per instrument.</p>
+        <div class="note"><strong>Note:</strong> Match the check to the claim. Internal consistency for multi-item scales, test-retest for stable constructs, inter-rater wherever judgment codes the data. Reporting the wrong coefficient, or none, is among the fastest ways to lose an examiner's confidence in the whole measurement chapter.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الثبات ومقاييسه</h2>
+        <p class="lead">للثبات مجموعة أدوات وفحوص مسمّاة، كل فحص منها يعالج طريقة مختلفة يمكن أن يكون بها القياس غير متّسق. واختيار الفحص الصحيح، وذكر نتيجته، انضباط صغير يعود بمكاسب كبيرة في المصداقية.</p>
+        <p>الاتساق الداخلي يسأل: هل فقرات المقياس مترابطة؟ أي هل من يحصل على درجة عالية في فقرة يميل للحصول على درجة عالية في بقية الفقرات؟ ويُقاس بمعاملات مثل ألفا كرونباخ، وتشير القيم فوق الحدّ المتعارف عليه إلى أن الفقرات تقيس شيئًا واحدًا على الأرجح. وهناك تنبيهان يحفظان لهذا المعامل معناه: الأول أن ألفا يرتفع تلقائيًا مع زيادة عدد الفقرات، فمقياس طويل ضعيف قد يتفوق على مقياس قصير قوي؛ والثاني أن ألفا المرتفع لا يثبت أن المقياس يقيس الشيء الصحيح، بل فقط أنه يقيس شيئًا ما باتساق، ولهذا لا يغني الثبات عن الصدق أبدًا. وثبات الإعادة يسأل: هل الدرجات مستقرة عبر الزمن؟ ويُفحَص بتطبيق المقياس مرتين وحساب الارتباط بين النتيجتين؛ وهو الفحص المناسب للمفاهيم التي تقول النظرية إنها مستقرة، مثل السمات الشخصية، وغير مناسب للحالات المتغيرة، مثل المزاج، لأن تغيّرها الحقيقي سيُفهَم خطأً على أنه ضعف ثبات.</p>
+        <p>وثبات المقيّمين يدخل حيثما كان الحكم البشري جزءًا من القياس: ملاحظان يرمّزان سلوكًا، أو مقيّمان يصحّحان مقالات، أو طبيبان يطبّقان معايير تشخيص. وإحصاءات الاتفاق، مثل كابا كوهين، تصحّح أثر الاتفاق الذي تنتجه الصدفة وحدها، والقيم المنخفضة إشارة إلى أن نظام الترميز، لا المقيّمين، هو ما يحتاج إصلاحًا في العادة: تعريفات أوضح، وأمثلة أكثر، وقواعد قرار للحالات الحدّية. وثبات الصور المتكافئة، وهو أقل شيوعًا، يفحص هل تعمل نسختان من الأداة بشكل متكافئ، ويهمّ حيثما احتاج الاختبار المتكرر صورًا بديلة. وفي الفحوص الأربعة كلها، المعيار المهني واحد: سمِّ الفحص الذي يناسب تصميمك، واذكر المعامل، وفسّره مقارنةً بالحدّ المقبول، في جملة أو جملتين لكل أداة.</p>
+        <div class="note"><strong>ملاحظة:</strong> طابق الفحص مع الادّعاء. الاتساق الداخلي للمقاييس متعددة الفقرات، وثبات الإعادة للمفاهيم المستقرة، وثبات المقيّمين حيثما رمّز الحكمُ البشري البيانات. وذكر المعامل الخاطئ، أو عدم ذكر أي معامل، من أسرع الطرق لفقدان ثقة الممتحن في فصل القياس كله.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="trust">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>The Qualitative Canon</h2>
+        <p class="lead">Qualitative research is judged by the trustworthiness canon that Lincoln and Guba built as a deliberate parallel to the quantitative family. Each member answers a quantitative counterpart, but through techniques that fit interpretive logic, and each has named practices that deliver it.</p>
+        <p>Credibility parallels internal validity: are the findings believable and faithful to the participants' realities? Its techniques are concrete. Prolonged engagement gives the researcher enough time in the setting to get past first impressions and staged behaviour. Triangulation checks the account across sources, methods, or analysts. Member checking returns the interpretations to participants to test whether they recognize themselves in them, handled thoughtfully, since participants can disagree for reasons that are themselves data. And negative case analysis actively hunts the instances that do not fit the developing account, revising it until they do or reporting them honestly. Transferability parallels external validity, but shifts the burden: instead of claiming generalization, the researcher provides thick description, enough rich contextual detail that readers can judge for themselves whether the findings speak to their own settings.</p>
+        <p>Dependability parallels reliability: is the process consistent, documented, and traceable? Its instrument is the audit trail, the organized record of decisions, codes, memos, and drafts through which an outsider could follow the study's path from raw data to conclusions. Confirmability parallels objectivity: are the findings grounded in the data rather than in the researcher's preferences? It is served by the same audit trail and by reflexivity, the researcher's running written account of their own position, assumptions, and influence on the study, treated in this tradition not as contamination to hide but as information the reader is owed. Together the four criteria hold interpretive work to a standard exactly as demanding as the quantitative family, and a qualitative methodology chapter should march through them by name, listing for each the techniques actually used.</p>
+        <div class="note"><strong>Note:</strong> Do not import the wrong canon. Judging an interview study by sample size and statistical generalization, or a survey by thick description, is a category error in both directions. Each tradition is rigorous in its own terms, and the methodology chapter's job is to apply the right terms well.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>معايير البحث النوعي</h2>
+        <p class="lead">يُحكَم على البحث النوعي بمعايير الوثوقية التي وضعها لينكولن وغوبا كمقابل مقصود للعائلة الكمّية. وكل معيار منها يقابل نظيرًا كمّيًا، لكن عبر أساليب تناسب المنطق التفسيري، ولكل معيار ممارسات مسمّاة تحقّقه.</p>
+        <p>المصداقية تقابل الصدق الداخلي: هل النتائج مقنعة وصادقة في تمثيل واقع المشاركين؟ وأساليبها ملموسة. فالانخراط الطويل يمنح الباحث وقتًا كافيًا في البيئة ليتجاوز الانطباعات الأولى والسلوك المتكلّف. والتثليث يفحص الحساب عبر مصادر أو مناهج أو محلّلين متعددين. وفحص الأعضاء يعيد التفسيرات إلى المشاركين ليختبر هل يتعرّفون على أنفسهم فيها، مع التعامل معه بعناية، لأن اعتراض المشاركين قد يكون لأسباب هي نفسها بيانات مهمة. وتحليل الحالات السالبة يبحث بنشاط عن الحالات التي لا تنسجم مع التفسير المتكوّن، فيعدّله حتى تنسجم أو يذكرها بأمانة. وقابلية النقل تقابل الصدق الخارجي، لكنها تنقل العبء: فبدل ادّعاء التعميم، يقدّم الباحث وصفًا كثيفًا، أي تفاصيل سياقية غنية تكفي ليحكم القرّاء بأنفسهم هل تنطبق النتائج على بيئاتهم.</p>
+        <p>والاعتمادية تقابل الثبات: هل العملية متّسقة وموثّقة ويمكن تتبّعها؟ وأداتها سجلّ التدقيق، وهو السجل المنظّم للقرارات والرموز والمذكرات والمسودّات الذي يستطيع من خلاله شخص خارجي تتبّع مسار الدراسة من البيانات الخام إلى الاستنتاجات. وقابلية التأكيد تقابل الموضوعية: هل النتائج مبنية على البيانات لا على ميول الباحث؟ ويخدمها سجل التدقيق نفسه إضافةً إلى الانعكاسية، وهي كتابة الباحث المستمرة عن موقعه وافتراضاته وتأثيره على الدراسة، وتُعامَل في هذا التقليد لا كتلوّث يُخفى بل كمعلومة يستحقها القارئ. وهذه المعايير الأربعة معًا تُخضِع العمل التفسيري لمستوى من الصرامة يعادل تمامًا العائلة الكمّية، وينبغي لفصل المنهجية النوعي أن يمرّ عليها بالاسم، ذاكرًا لكل معيار الأساليب التي استُخدمت فعلًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> لا تستورد المعايير الخاطئة. فالحكم على دراسة مقابلات بحجم العيّنة والتعميم الإحصائي، أو الحكم على مسح بالوصف الكثيف، خطأ في التصنيف في الاتجاهين. فكل تقليد صارم بمعاييره الخاصة، ومهمة فصل المنهجية أن يطبّق المعايير الصحيحة تطبيقًا جيدًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="example">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>A Worked Example, and Pitfalls</h2>
+        <p class="lead">To see the whole vocabulary earn its keep, take one mixed-methods thesis and write its quality section properly. The study: a survey measuring digital readiness across an organization, followed by interviews explaining the low-readiness pockets.</p>
+        <p>The quantitative strand documents its chain explicitly. Content validity: the readiness scale's items were reviewed by five experts against the construct definition, and coverage of all three theorized dimensions was confirmed. Construct validity: factor analysis reproduced the three dimensions; readiness correlated with system usage logs (convergent) and not with job satisfaction (discriminant). Reliability: internal consistency coefficients cleared the threshold in each dimension, reported per dimension, not as one flattering average. Internal validity is claimed only modestly, since the survey is cross-sectional: associations are reported as associations, and the one causal suggestion is explicitly flagged as requiring the longitudinal follow-up. External validity: the sample-population comparison and the nonresponse bias check bound the generalization claim to this organization, stated in one honest sentence.</p>
+        <p>The qualitative strand marches through its own canon. Credibility: fifteen interviews across the low-readiness units, triangulated against observation notes and helpdesk records; member checks with six participants, two disagreements reported and analyzed. Transferability: a thick description of the units' history with prior failed systems, which turned out to be the explanatory heart of the findings. Dependability and confirmability: a coding audit trail in the appendix and a reflexivity statement noting the researcher's own IT background and how it was managed in interpretation. The pitfalls this example avoids are the standard ones: claiming ensured validity with no evidence, reporting a single proud alpha for a multidimensional scale, importing generalization language into the interview strand, treating member checking as automatic confirmation, and the quiet worst, writing the quality section as ritual boilerplate disconnected from what was actually done. Quality sections convince when every sentence names a check, a result, or a limitation, and this one does.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> reliability is consistency, validity is accuracy, and trustworthiness is their qualitative counterpart, delivered by credibility, transferability, dependability, and confirmability. Match the canon to the design, evidence every claim, and state the limits plainly: that is what research quality looks like on the page.</div>
+        <div class="refs"><ul>
+          <li>Lincoln &amp; Guba, <a href="https://uk.sagepub.com/en-gb/eur/naturalistic-inquiry/book842" target="_blank" rel="noopener">Naturalistic Inquiry</a>.</li>
+          <li>Shadish, Cook &amp; Campbell, <a href="https://www.cengage.com/c/experimental-and-quasi-experimental-designs-for-generalized-causal-inference-2e-shadish/" target="_blank" rel="noopener">Experimental and Quasi-Experimental Designs</a>.</li>
+          <li>DeVellis, <a href="https://uk.sagepub.com/en-gb/eur/scale-development/book269114" target="_blank" rel="noopener">Scale Development: Theory and Applications</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>مثال تطبيقي، وأخطاء شائعة</h2>
+        <p class="lead">لكي نرى هذه المصطلحات كلها وهي تعمل، لنأخذ أطروحة واحدة بمناهج مختلطة ونكتب قسم الجودة فيها كتابة صحيحة. الدراسة: مسح يقيس الجاهزية الرقمية في منظمة، تتبعه مقابلات تفسّر الوحدات منخفضة الجاهزية.</p>
+        <p>الخيط الكمّي يوثّق سلسلته بوضوح. صدق المحتوى: راجع خمسة خبراء فقرات مقياس الجاهزية مقارنةً بتعريف المفهوم، وتأكدت تغطية الأبعاد الثلاثة المفترضة. صدق البناء: أعاد التحليل العاملي إنتاج الأبعاد الثلاثة؛ وارتبطت الجاهزية بسجلات استخدام الأنظمة (دليل التقارب) ولم ترتبط بالرضا الوظيفي (دليل التمايز). الثبات: تجاوزت معاملات الاتساق الداخلي الحدّ المقبول في كل بُعد، مع ذكرها لكل بُعد على حدة، لا كمتوسط واحد مجامل. والصدق الداخلي يُدّعى بتواضع فقط، لأن المسح مقطعي: فالارتباطات تُذكَر كارتباطات، والإشارة السببية الوحيدة توضع عليها علامة صريحة بأنها تحتاج متابعة طولية. والصدق الخارجي: مقارنة العيّنة بالمجتمع وفحص انحياز عدم الاستجابة يحصران ادّعاء التعميم في هذه المنظمة، في جملة واحدة صادقة.</p>
+        <p>والخيط النوعي يمرّ على معاييره الخاصة. المصداقية: خمس عشرة مقابلة في الوحدات منخفضة الجاهزية، مثلّثة مع ملاحظات الميدان وسجلات الدعم الفني؛ وفحص أعضاء مع ستة مشاركين، مع ذكر اعتراضين وتحليلهما. قابلية النقل: وصف كثيف لتاريخ هذه الوحدات مع أنظمة سابقة فاشلة، وقد تبيّن أنه قلب التفسير في النتائج. الاعتمادية وقابلية التأكيد: سجل تدقيق للترميز في الملحق، وبيان انعكاسية يذكر خلفية الباحث التقنية وكيف جرى التعامل معها في التفسير. والأخطاء التي يتجنبها هذا المثال هي الأخطاء المعتادة: ادّعاء «ضمان الصدق» بلا دليل، وذكر معامل ألفا واحد فخور لمقياس متعدد الأبعاد، واستيراد لغة التعميم إلى خيط المقابلات، ومعاملة فحص الأعضاء كتأكيد تلقائي، والأسوأ بصمت: كتابة قسم الجودة كعبارات جاهزة منفصلة عمّا جرى فعلًا. أقسام الجودة تقنع عندما تذكر كل جملة فيها فحصًا أو نتيجة أو حدًّا، وهذا القسم يفعل ذلك.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الثبات هو الاتساق، والصدق هو الدقّة، والوثوقية هي نظيرهما النوعي، وتتحقق بالمصداقية وقابلية النقل والاعتمادية وقابلية التأكيد. طابق المعايير مع التصميم، وادعم كل ادّعاء بدليل، واذكر الحدود بوضوح: هكذا تبدو جودة البحث على الورق.</div>
+        <div class="refs"><ul>
+          <li>لينكولن وغوبا، <a href="https://uk.sagepub.com/en-gb/eur/naturalistic-inquiry/book842" target="_blank" rel="noopener">البحث الطبيعاني</a>.</li>
+          <li>شاديش وكوك وكامبل، <a href="https://www.cengage.com/c/experimental-and-quasi-experimental-designs-for-generalized-causal-inference-2e-shadish/" target="_blank" rel="noopener">التصاميم التجريبية وشبه التجريبية</a>.</li>
+          <li>ديفيليس، <a href="https://uk.sagepub.com/en-gb/eur/scale-development/book269114" target="_blank" rel="noopener">بناء المقاييس: النظرية والتطبيقات</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="design-survey-scale-development.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Survey Research &amp; Scale Development</span><span data-lang="ar">المسوح وبناء المقاييس</span></a><a href="qual-case-study.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Case Study Research</span><span data-lang="ar">بحث دراسة الحالة</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="الصدق والثبات والوثوقية";
+var TITLE_EN="Validity, Reliability &amp; Trustworthiness";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

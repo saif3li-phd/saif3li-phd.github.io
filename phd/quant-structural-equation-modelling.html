@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Structural Equation Modelling</title>
+<meta name="description" content="Structural equation modelling in depth: CB-SEM versus PLS-SEM, the measurement model and validity, fit indices, mediation and moderation, and known abuses.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Quantitative methods</span><span data-lang="ar">المناهج الكمية</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">QUANTITATIVE METHODS · PhD</span><span data-lang="ar">المناهج الكمية · دكتوراه</span></div>
+    <h1><span data-lang="en">Structural Equation Modelling</span><span data-lang="ar">نمذجة المعادلات البنيوية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Quantitative methods</span><span data-lang="ar">المناهج الكمية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">9 min</span><span data-lang="ar">٩ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="families"><span data-lang="en">Two Families</span><span data-lang="ar">العائلتان</span></a></li><li><a data-id="measurement"><span data-lang="en">Measurement Model</span><span data-lang="ar">نموذج القياس</span></a></li><li><a data-id="structural"><span data-lang="en">Structural Model</span><span data-lang="ar">النموذج البنيوي</span></a></li><li><a data-id="pitfalls"><span data-lang="en">Pitfalls & Example</span><span data-lang="ar">المزالق ومثال</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Method:</span> Structural equation modelling</div>
+          <div><span>Core capability:</span> Testing a whole network of relationships among unobservable constructs</div>
+          <div><span>Two families:</span> Covariance-based SEM and partial least squares SEM</div>
+          <div><span>Level:</span> Doctoral quantitative methods</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Structural equation modelling is the quantitative method that lets a researcher test an entire conceptual framework at once, rather than one relationship at a time, while explicitly acknowledging that the things social science cares about most, trust, satisfaction, commitment, perceived usefulness, cannot be measured directly. Its two innovations are exactly those: modelling latent constructs behind their imperfect indicators, and estimating a whole system of simultaneous relationships as one model.</p>
+        <p>The problem it solves is visible in ordinary regression. If satisfaction is measured by four survey items, ordinary practice averages them and treats the average as if it were satisfaction itself, silently assuming the items are perfectly reliable, which they never are. Measurement error then biases every coefficient computed from that average, usually downward, so real effects look weaker than they are. SEM instead treats satisfaction as an unobserved construct that causes responses to the four items, estimates how well each item reflects it, and removes the error from the structural estimates, which is why SEM coefficients and regression coefficients on the same data routinely differ.</p>
+        <p>The second gain is systemic. A framework in which A affects B, B affects C, and A also affects C directly cannot be tested honestly by three separate regressions, because each ignores the others' information and none tests the framework as a whole. SEM estimates all paths simultaneously and, in the covariance-based family, returns a global verdict on whether the proposed structure is consistent with the observed data. This framework covers the two families and when each fits, the measurement model and its validity apparatus, the structural model and fit assessment, mediation and moderation, the field's known abuses, and a worked example. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> SEM is a confirmatory method by design: it tests a model that theory specified in advance. Feeding it an unspecified pile of variables and letting the software find a model produces something that fits this sample and generalizes to nothing.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المنهج:</span> نمذجة المعادلات البنيوية</div>
+          <div><span>القدرة الجوهرية:</span> اختبار شبكة كاملة من العلاقات بين بناءات غير قابلة للملاحظة</div>
+          <div><span>عائلتان:</span> النمذجة القائمة على التغاير، ونمذجة المربعات الصغرى الجزئية</div>
+          <div><span>المستوى:</span> المناهج الكمية لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">نمذجة المعادلات البنيوية هي المنهج الكمي الذي يتيح للباحث اختبار إطار مفاهيمي كامل دفعةً واحدة، بدل علاقة واحدة في كل مرة، مع الاعتراف الصريح بأن الأشياء التي يهتم بها العلم الاجتماعي أكثر من غيرها، الثقة والرضا والالتزام والفائدة المدرَكة، لا يمكن قياسها مباشرة. وابتكاراها هما ذانك بالضبط: نمذجة البناءات الكامنة خلف مؤشراتها غير الكاملة، وتقدير نظام كامل من العلاقات المتزامنة نموذجًا واحدًا.</p>
+        <p>والمشكلة التي يحلّها مرئية في الانحدار العادي. فإذا قيس الرضا بأربع فقرات استبيان، تجمع الممارسة المعتادة متوسطها وتعامل المتوسط كأنه الرضا نفسه، مفترضةً بصمت أن الفقرات ثابتة تمامًا، وهي ليست كذلك أبدًا. وعندئذ يحيّز خطأ القياس كل معامل يُحسَب من ذلك المتوسط، نزولًا في العادة، فتبدو الآثار الحقيقية أضعف مما هي. وتعامل النمذجة البنيوية الرضا بدل ذلك بناءً غير ملاحظ يسبّب الاستجابات للفقرات الأربع، وتقدّر كم يعكسه كل بند، وتزيل الخطأ من التقديرات البنيوية، ولهذا تختلف معاملات النمذجة البنيوية ومعاملات الانحدار على البيانات نفسها بانتظام.</p>
+        <p>والمكسب الثاني نظامي. فإطارٌ يؤثر فيه أ في ب، ويؤثر ب في ج، ويؤثر أ أيضًا في ج مباشرة، لا يمكن اختباره بأمانة بثلاثة انحدارات منفصلة، لأن كل واحد يتجاهل معلومات الآخرين ولا أحد منها يختبر الإطار ككل. والنمذجة البنيوية تقدّر كل المسارات في آن، وتعيد، في العائلة القائمة على التغاير، حكمًا شاملًا على هل البنية المقترحة متسقة مع البيانات الملاحظة. يغطي هذا الإطار العائلتين ومتى تناسب كل منهما، ونموذج القياس وجهاز صدقه، والنموذج البنيوي وتقييم المطابقة، والوساطة والتعديل، وإساءات الاستخدام المعروفة في الحقل، ومثالًا تطبيقيًا. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> النمذجة البنيوية منهج تأكيدي بالتصميم: فهي تختبر نموذجًا حددته النظرية مسبقًا. وإطعامها كومة متغيرات غير محددة وترك البرنامج يجد نموذجًا ينتج شيئًا يطابق هذه العيّنة ولا يعمّم على شيء.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="families">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>CB-SEM and PLS-SEM: Choosing Between Them</h2>
+        <p class="lead">Two estimation families dominate, they answer different questions, and choosing between them is a decision an examiner will probe. The diagram shows the anatomy both share before the differences begin.</p>
+        <svg viewBox="0 0 720 430" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><ellipse cx="120" cy="190" rx="80" ry="44" fill="#9A1C1C"/><text x="120" y="187" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Latent</text><text x="120" y="202" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">construct A</text><ellipse cx="360" cy="190" rx="80" ry="44" fill="#B34747"/><text x="360" y="187" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Latent</text><text x="360" y="202" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">construct B</text><ellipse cx="600" cy="190" rx="80" ry="44" fill="#2D2D2D"/><text x="600" y="187" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Latent</text><text x="600" y="202" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">construct C</text><line x1="200" y1="190" x2="268" y2="190" stroke="#A32020" stroke-width="2.5"/><path d="M280 190 l-12 -6 l0 12 z" fill="#A32020"/><line x1="440" y1="190" x2="508" y2="190" stroke="#A32020" stroke-width="2.5"/><path d="M520 190 l-12 -6 l0 12 z" fill="#A32020"/><rect x="15" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="45" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">x1</text><line x1="120" y1="234" x2="45" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M45 320 l-5 -11 l10 0 z" fill="#C97A7A"/><rect x="85" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="115" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">x2</text><line x1="120" y1="234" x2="115" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M115 320 l-5 -11 l10 0 z" fill="#C97A7A"/><rect x="155" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="185" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">x3</text><line x1="120" y1="234" x2="185" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M185 320 l-5 -11 l10 0 z" fill="#C97A7A"/><rect x="255" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="285" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">x1</text><line x1="360" y1="234" x2="285" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M285 320 l-5 -11 l10 0 z" fill="#C97A7A"/><rect x="325" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="355" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">x2</text><line x1="360" y1="234" x2="355" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M355 320 l-5 -11 l10 0 z" fill="#C97A7A"/><rect x="395" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="425" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">x3</text><line x1="360" y1="234" x2="425" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M425 320 l-5 -11 l10 0 z" fill="#C97A7A"/><rect x="495" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="525" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">x1</text><line x1="600" y1="234" x2="525" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M525 320 l-5 -11 l10 0 z" fill="#C97A7A"/><rect x="565" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="595" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">x2</text><line x1="600" y1="234" x2="595" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M595 320 l-5 -11 l10 0 z" fill="#C97A7A"/><rect x="635" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="665" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">x3</text><line x1="600" y1="234" x2="665" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M665 320 l-5 -11 l10 0 z" fill="#C97A7A"/><text x="360" y="405" text-anchor="middle" font-size="12" fill="#A32020">ovals: unobserved constructs &#183; boxes: measured indicators &#183; arrows: hypothesized paths</text></svg>
+        <p>Covariance-based SEM, the classical family associated with software such as AMOS, LISREL and Mplus, works by reproducing the observed covariance matrix: it asks whether a covariance matrix implied by the proposed model can match the one the data actually produced, and it reports fit indices measuring the discrepancy. Its purpose is theory testing, and its verdict can be negative, which is its distinctive scientific value, since a model that could never fail could never be confirmed either. Its price is demanding assumptions: multivariate normality or an appropriate robust estimator, reflective measurement, larger samples, and identified models, with rules of thumb often placing the practical floor in the low hundreds and rising with model complexity.</p>
+        <p>Partial least squares SEM, associated with SmartPLS, works differently: it maximizes explained variance in the dependent constructs rather than reproducing a covariance matrix. It is prediction-oriented, tolerates non-normal data, handles formative measurement naturally, copes with smaller samples and complex models, and always converges, which is both its convenience and its danger, since a method that never reports failure never warns you. Its assessment is therefore piecemeal, reliability, validity, path significance by bootstrapping, predictive relevance, rather than a single global fit verdict. The honest selection rule follows purpose: covariance-based where an established theory is being tested and a global verdict is wanted; partial least squares where the aim is prediction, the model is exploratory or complex, or the measurement is formative. What is not honest is choosing partial least squares because a covariance-based model failed to fit, then reporting only the second attempt.</p>
+        <div class="note"><strong>Note:</strong> The choice is a claim about purpose. Write it in the methods chapter as such: theory testing with a falsifiable global fit, or predictive modelling of a complex framework. Then keep the criteria of that family throughout.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>عائلتا CB وPLS: الاختيار بينهما</h2>
+        <p class="lead">تهيمن عائلتا تقدير، وهما تجيبان أسئلة مختلفة، والاختيار بينهما قرار سيسبره الممتحن. ويعرض المخطط التشريح المشترك بينهما قبل أن تبدأ الفروق.</p>
+        <svg viewBox="0 0 720 430" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><ellipse cx="120" cy="190" rx="80" ry="44" fill="#9A1C1C"/><text x="120" y="187" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">بناء</text><text x="120" y="202" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">كامن أ</text><ellipse cx="360" cy="190" rx="80" ry="44" fill="#B34747"/><text x="360" y="187" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">بناء</text><text x="360" y="202" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">كامن ب</text><ellipse cx="600" cy="190" rx="80" ry="44" fill="#2D2D2D"/><text x="600" y="187" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">بناء</text><text x="600" y="202" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">كامن ج</text><line x1="200" y1="190" x2="268" y2="190" stroke="#A32020" stroke-width="2.5"/><path d="M280 190 l-12 -6 l0 12 z" fill="#A32020"/><line x1="440" y1="190" x2="508" y2="190" stroke="#A32020" stroke-width="2.5"/><path d="M520 190 l-12 -6 l0 12 z" fill="#A32020"/><rect x="15" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="45" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">س1</text><line x1="120" y1="234" x2="45" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M45 320 l-5 -11 l10 0 z" fill="#C97A7A"/><rect x="85" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="115" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">س2</text><line x1="120" y1="234" x2="115" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M115 320 l-5 -11 l10 0 z" fill="#C97A7A"/><rect x="155" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="185" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">س3</text><line x1="120" y1="234" x2="185" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M185 320 l-5 -11 l10 0 z" fill="#C97A7A"/><rect x="255" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="285" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">س1</text><line x1="360" y1="234" x2="285" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M285 320 l-5 -11 l10 0 z" fill="#C97A7A"/><rect x="325" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="355" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">س2</text><line x1="360" y1="234" x2="355" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M355 320 l-5 -11 l10 0 z" fill="#C97A7A"/><rect x="395" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="425" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">س3</text><line x1="360" y1="234" x2="425" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M425 320 l-5 -11 l10 0 z" fill="#C97A7A"/><rect x="495" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="525" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">س1</text><line x1="600" y1="234" x2="525" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M525 320 l-5 -11 l10 0 z" fill="#C97A7A"/><rect x="565" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="595" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">س2</text><line x1="600" y1="234" x2="595" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M595 320 l-5 -11 l10 0 z" fill="#C97A7A"/><rect x="635" y="320" width="60" height="34" rx="5" fill="#F4F4F4" stroke="#C97A7A"/><text x="665" y="341" text-anchor="middle" font-size="11" fill="#2D2D2D">س3</text><line x1="600" y1="234" x2="665" y2="314" stroke="#C97A7A" stroke-width="1.5"/><path d="M665 320 l-5 -11 l10 0 z" fill="#C97A7A"/><text x="360" y="405" text-anchor="middle" font-size="12" fill="#A32020">البيضاويات: بناءات غير ملاحظة &#183; الصناديق: مؤشرات مقيسة &#183; الأسهم: مسارات مفترضة</text></svg>
+        <p>النمذجة القائمة على التغاير، وهي العائلة الكلاسيكية المرتبطة ببرامج مثل AMOS وLISREL وMplus، تعمل بإعادة إنتاج مصفوفة التغاير الملاحظة: تسأل هل تستطيع مصفوفة تغاير يتضمنها النموذج المقترح أن تطابق التي أنتجتها البيانات فعلًا، وتبلّغ عن مؤشرات مطابقة تقيس التباين بينهما. وغرضها اختبار النظرية، وحكمها قد يكون سلبيًا، وهذه قيمتها العلمية المميزة، لأن نموذجًا لا يمكن أن يفشل أبدًا لا يمكن أن يتأكد أبدًا كذلك. وثمنها افتراضات مطالِبة: اعتدالية متعددة المتغيرات أو مقدّر متين مناسب، وقياس انعكاسي، وعيّنات أكبر، ونماذج محددة، مع قواعد عملية تضع الأرضية غالبًا في المئات المنخفضة وترتفع مع تعقيد النموذج.</p>
+        <p>ونمذجة المربعات الصغرى الجزئية، المرتبطة ببرنامج SmartPLS، تعمل بطريقة مختلفة: فهي تعظّم التباين المفسَّر في البناءات التابعة بدل إعادة إنتاج مصفوفة تغاير. وهي موجَّهة نحو التنبؤ، وتتحمل البيانات غير المعتدلة، وتتعامل مع القياس التكويني بطبيعتها، وتحتمل عيّنات أصغر ونماذج معقدة، وتتقارب دائمًا، وهذه راحتها وخطرها معًا، لأن منهجًا لا يبلّغ عن فشل أبدًا لا ينذرك أبدًا. ولذلك يكون تقييمها مجزّأً: ثبات وصدق ودلالة مسارات بالتحميل الذاتي وملاءمة تنبؤية، بدل حكم مطابقة شامل واحد. وقاعدة الاختيار الأمينة تتبع الغرض: القائمة على التغاير حيث تُختبَر نظرية راسخة ويُراد حكم شامل؛ والمربعات الصغرى الجزئية حيث يكون الهدف التنبؤ، أو يكون النموذج استكشافيًا أو معقدًا، أو يكون القياس تكوينيًا. وغير الأمين هو اختيار المربعات الصغرى الجزئية لأن نموذجًا قائمًا على التغاير أخفق في المطابقة، ثم الإبلاغ عن المحاولة الثانية وحدها.</p>
+        <div class="note"><strong>ملاحظة:</strong> الاختيار ادّعاء عن الغرض. اكتبه في فصل المناهج كذلك: اختبار نظرية بمطابقة شاملة قابلة للتكذيب، أو نمذجة تنبؤية لإطار معقد. ثم التزم بمعايير تلك العائلة طوال الوقت.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="measurement">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Measurement Model Comes First</h2>
+        <p class="lead">The cardinal rule of SEM practice is two-stage: establish that the constructs are measured well before interpreting a single structural path, because path coefficients between badly measured constructs are precise numbers about nothing.</p>
+        <p>The first decision is measurement direction, and it is conceptual rather than statistical. Reflective indicators are caused by the construct, so items of job satisfaction are manifestations of an underlying satisfaction and should correlate highly and be interchangeable, dropping one loses little. Formative indicators cause the construct, so components of socioeconomic status, income, education, occupation, need not correlate, and dropping one changes the construct's meaning. Misspecifying the direction, common in published work, invalidates the validity tests that follow, since internal consistency is meaningless for formative measures.</p>
+        <p>For reflective constructs the assessment sequence is standardized. Confirmatory factor analysis estimates the measurement model, and indicator loadings are inspected, with weak indicators reconsidered conceptually rather than deleted mechanically to raise a statistic. Internal consistency reliability is reported, composite reliability preferred to alpha in this setting because alpha assumes equal loadings. Convergent validity is assessed by average variance extracted, asking whether the construct explains more of its indicators' variance than error does. Discriminant validity asks whether constructs that theory says are distinct behave as distinct: the classical Fornell-Larcker comparison and the cross-loading check remain common, while the heterotrait-monotrait ratio has become the preferred criterion because the older tests are known to miss real discriminant validity problems in typical designs. Where the same respondents rate everything at one time, common method bias is a live threat, best addressed by design, separating measurement of predictors and outcomes, protecting anonymity, before any post hoc statistical test is offered as reassurance.</p>
+        <div class="note"><strong>Note:</strong> Never report structural results without first reporting the measurement model. A reviewer's first question on any SEM paper is discriminant validity, and the answer expected today is a heterotrait-monotrait table.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>نموذج القياس أولًا</h2>
+        <p class="lead">القاعدة الكبرى في ممارسة النمذجة البنيوية أنها على مرحلتين: أثبت أن البناءات مقيسة جيدًا قبل تفسير أي مسار بنيوي، لأن معاملات المسار بين بناءات رديئة القياس أرقام دقيقة عن لا شيء.</p>
+        <p>والقرار الأول اتجاه القياس، وهو مفاهيمي لا إحصائي. فالمؤشرات الانعكاسية يسبّبها البناء، فبنود الرضا الوظيفي تجلّيات لرضا كامن وينبغي أن ترتبط بقوة وأن تكون قابلة للتبادل، وحذف واحد منها يخسر القليل. والمؤشرات التكوينية تسبّب البناء، فمكونات الوضع الاجتماعي الاقتصادي، الدخل والتعليم والمهنة، لا يلزم أن ترتبط، وحذف واحد يغيّر معنى البناء. وسوء تحديد الاتجاه، وهو شائع في الأعمال المنشورة، يُبطِل اختبارات الصدق التالية، لأن الاتساق الداخلي بلا معنى للمقاييس التكوينية.</p>
+        <p>وللبناءات الانعكاسية تسلسل تقييم معياري. التحليل العاملي التوكيدي يقدّر نموذج القياس، وتُفحَص تشبعات المؤشرات، مع إعادة النظر في المؤشرات الضعيفة مفاهيميًا لا حذفها آليًا لرفع إحصاء. ويُبلَّغ عن ثبات الاتساق الداخلي، مع تفضيل الثبات المركّب على ألفا في هذا السياق لأن ألفا تفترض تشبعات متساوية. ويُقيَّم الصدق التقاربي بمتوسط التباين المستخرَج، سائلًا هل يفسّر البناء من تباين مؤشراته أكثر مما يفسّر الخطأ. ويسأل الصدق التمييزي هل تسلك البناءات التي تقول النظرية إنها متمايزة سلوكًا متمايزًا: فمقارنة فورنيل ولاركر الكلاسيكية وفحص التشبعات المتقاطعة لا يزالان شائعين، بينما صارت نسبة الصفات المتباينة إلى المتشابهة المعيارَ المفضل لأن الاختبارات الأقدم معروف أنها تفوّت مشكلات صدق تمييزي حقيقية في التصاميم المعتادة. وحيث يقيّم المستجيبون أنفسهم كل شيء في وقت واحد، يكون تحيز المنهج المشترك تهديدًا قائمًا، وأفضل معالجته بالتصميم، بفصل قياس المتنبئات عن النتائج وحماية مجهولية الهوية، قبل تقديم أي اختبار إحصائي بعدي بوصفه طمأنة.</p>
+        <div class="note"><strong>ملاحظة:</strong> لا تبلّغ عن نتائج بنيوية قبل الإبلاغ عن نموذج القياس. فأول سؤال محكّم على أي ورقة نمذجة بنيوية هو الصدق التمييزي، والجواب المتوقع اليوم جدول نسبة الصفات المتباينة إلى المتشابهة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="structural">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>The Structural Model, Fit, and Effects</h2>
+        <p class="lead">Once measurement holds, the structural model carries the theory: the hypothesized paths among constructs, assessed by fit where the family provides it, and interpreted through direct, indirect, and conditional effects.</p>
+        <p>In the covariance-based family, fit is judged by multiple indices in combination, never by one. The chi-square test is reported although it rejects almost any model at large samples, since it is sensitive to sample size rather than to importance. Approximate fit indices are then read together, a root mean square error of approximation and a standardized root mean square residual for badness of fit, a comparative fit index and Tucker-Lewis index for incremental fit, each with conventional thresholds treated as guidance rather than law. Poor fit is diagnostic information, not a defeat: modification indices point to where the model and data disagree, and the discipline is to make only theoretically defensible changes, report them as post hoc, and state plainly that a respecified model is exploratory until tested on new data.</p>
+        <p>Effects are where the theory gets tested in detail. Direct paths carry the standardized coefficients and their significance. Indirect effects test mediation, and the modern standard is unambiguous: bootstrapped confidence intervals for the indirect effect, rather than the older stepwise causal-steps procedure, and mediation is described as full or partial with appropriate caution, since cross-sectional data cannot establish the temporal ordering mediation logically requires. Moderation is estimated as interaction, and multi-group analysis extends it, testing whether the whole model differs across groups, sectors, countries, adopter types, with measurement invariance established first, because comparing path coefficients across groups whose instruments do not measure the same thing compares nothing. Explained variance and effect sizes are reported alongside significance, because in large samples a significant path can be substantively trivial, and the discussion's job is to say which findings matter, not merely which reached a threshold.</p>
+        <div class="note"><strong>Note:</strong> Test mediation with bootstrapped indirect effects, and test group differences only after establishing measurement invariance. These two habits separate current practice from the textbook procedures still circulating in older theses.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>النموذج البنيوي والمطابقة والآثار</h2>
+        <p class="lead">متى صحّ القياس، حمل النموذج البنيوي النظرية: المسارات المفترضة بين البناءات، مقيَّمةً بالمطابقة حيث توفرها العائلة، ومفسَّرةً عبر الآثار المباشرة وغير المباشرة والمشروطة.</p>
+        <p>في العائلة القائمة على التغاير، تُحكَم المطابقة بمؤشرات متعددة مجتمعة، لا بمؤشر واحد أبدًا. ويُبلَّغ عن اختبار مربع كاي مع أنه يرفض أي نموذج تقريبًا عند العيّنات الكبيرة، لأنه حساس لحجم العيّنة لا للأهمية. ثم تُقرَأ مؤشرات المطابقة التقريبية معًا، الجذر التربيعي لمتوسط خطأ الاقتراب والجذر التربيعي المعياري للبواقي لسوء المطابقة، ومؤشر المطابقة المقارن ومؤشر تاكر ولويس للمطابقة التزايدية، ولكل منها عتبات متعارف عليها تُعامَل إرشادًا لا قانونًا. والمطابقة الضعيفة معلومة تشخيصية لا هزيمة: فمؤشرات التعديل تشير إلى حيث يختلف النموذج والبيانات، والانضباط هو إجراء التغييرات القابلة للدفاع نظريًا وحدها، والإبلاغ عنها بوصفها بعدية، والقول صراحةً إن النموذج المعاد تحديده استكشافي حتى يُختبَر على بيانات جديدة.</p>
+        <p>والآثار هي حيث تُختبَر النظرية بالتفصيل. فالمسارات المباشرة تحمل المعاملات المعيارية ودلالاتها. والآثار غير المباشرة تختبر الوساطة، والمعيار الحديث لا لبس فيه: فترات ثقة بالتحميل الذاتي للأثر غير المباشر، بدل إجراء الخطوات السببية المتدرج الأقدم، وتُوصَف الوساطة بالكاملة أو الجزئية بحذر مناسب، لأن البيانات المقطعية لا تستطيع إثبات الترتيب الزمني الذي تتطلبه الوساطة منطقيًا. والتعديل يُقدَّر تفاعلًا، ويوسّعه تحليل المجموعات المتعددة، مختبرًا هل يختلف النموذج كله عبر المجموعات، القطاعات أو الدول أو أنواع المتبنّين، مع إثبات ثبات القياس أولًا، لأن مقارنة معاملات المسار عبر مجموعات لا تقيس أدواتها الشيء نفسه لا تقارن شيئًا. ويُبلَّغ عن التباين المفسَّر وأحجام الأثر إلى جانب الدلالة، لأن مسارًا دالًّا في العيّنات الكبيرة قد يكون تافهًا جوهريًا، ومهمة المناقشة قول أي النتائج يهم، لا أيها بلغ عتبة فحسب.</p>
+        <div class="note"><strong>ملاحظة:</strong> اختبر الوساطة بالآثار غير المباشرة بالتحميل الذاتي، ولا تختبر فروق المجموعات إلا بعد إثبات ثبات القياس. وهاتان العادتان تفصلان الممارسة الحالية عن الإجراءات المدرسية التي لا تزال تدور في الأطروحات الأقدم.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="pitfalls">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Known Abuses, and a Worked Example</h2>
+        <p class="lead">SEM's flexibility is what makes it powerful and what makes it abusable, and the field's methodological literature names the abuses precisely enough to serve as a pre-submission checklist.</p>
+        <p>The recurring problems: causal language from cross-sectional data, where arrows in a diagram become claims about causation that a single-wave survey cannot support, so the honest phrasing is consistent with, and the honest fix is longitudinal or experimental design; model fitting by modification index, where the model is bent until it fits and the resulting sample-specific structure is reported as though it had been theorized; item deletion for statistics, dropping indicators until validity thresholds pass, which can hollow out the construct's content; equivalent models, the underappreciated fact that different structures often fit the same data equally well, which means good fit supports the model rather than proving it, and rival structures deserve explicit discussion; underpowered complexity, estimating a large model on a small sample and reporting the result as though precision followed from software convergence; and family switching after failure, already named. Each is repairable by the same remedy: pre-specify, report what was done in the order it was done, and describe the resulting claim precisely.</p>
+        <p>The worked example: a study testing whether perceived analytics capability improves decision quality in public agencies, and whether data governance maturity conditions that effect. Framework: capability affects decision quality, mediated by managerial trust in data, moderated by governance maturity, with agency size and sector as controls. Design: a survey of four hundred and twelve managers across thirty agencies, with predictors and outcomes separated in the instrument to reduce common method bias, and validated scales adapted with back-translation into Arabic. Stage one: confirmatory factor analysis establishes the measurement model, composite reliabilities acceptable, average variance extracted above the threshold for all constructs, discriminant validity confirmed by the heterotrait-monotrait ratio, one indicator retained despite a modest loading because dropping it would have removed a facet of the construct's definition. Stage two: covariance-based estimation with reported fit indices, direct paths estimated, mediation tested by bootstrapped indirect effects, and moderation by interaction with a simple-slopes plot. Reporting: the framework diagram redrawn with standardized coefficients on each path, hypotheses table showing which were supported and which were not, including the unsupported direct path the author retains rather than deletes, and a limitations paragraph stating the cross-sectional design's boundary on causal claims, which is what a defensible SEM chapter looks like from beginning to end.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> SEM tests a whole framework while respecting measurement error, and its credibility is procedural: family chosen by purpose, measurement established before structure, fit read from several indices, mediation bootstrapped, invariance checked before group comparison, and claims phrased within the design's limits. Specify the model from theory, report everything in order, and let the model be capable of failing.</div>
+        <div class="refs"><ul>
+          <li>Hair et al., <a href="https://www.pls-sem.net/" target="_blank" rel="noopener">A Primer on Partial Least Squares Structural Equation Modeling</a>.</li>
+          <li>Kline, <a href="https://www.guilford.com/books/Principles-and-Practice-of-Structural-Equation-Modeling/Rex-Kline/9781462551910" target="_blank" rel="noopener">Principles and Practice of Structural Equation Modeling</a>.</li>
+          <li>Henseler, Ringle &amp; Sarstedt, <a href="https://link.springer.com/article/10.1007/s11747-014-0403-8" target="_blank" rel="noopener">A New Criterion for Assessing Discriminant Validity</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>إساءات معروفة، ومثال تطبيقي</h2>
+        <p class="lead">مرونة النمذجة البنيوية هي ما يجعلها قوية وما يجعلها قابلة لإساءة الاستخدام، والأدبيات المنهجية في الحقل تسمّي الإساءات بدقة تكفي لأن تكون قائمة فحص قبل التسليم.</p>
+        <p>المشكلات المتكررة: لغة السببية من بيانات مقطعية، حيث تصير الأسهم في المخطط ادّعاءات عن السببية لا يستطيع مسح موجة واحدة دعمها، فتكون الصياغة الأمينة «متسق مع»، ويكون الإصلاح الأمين تصميمًا طوليًا أو تجريبيًا؛ ومطابقة النموذج بمؤشرات التعديل، حيث يُثنى النموذج حتى يطابق وتُعرَض البنية الناتجة الخاصة بالعيّنة كأنها كانت منظَّرة؛ وحذف البنود لأجل الإحصاء، بإسقاط المؤشرات حتى تعبر عتبات الصدق، وهو ما قد يفرّغ محتوى البناء؛ والنماذج المكافئة، وهي الحقيقة المبخوسة القدر أن بنى مختلفة كثيرًا ما تطابق البيانات نفسها بالقدر ذاته، ما يعني أن المطابقة الجيدة تدعم النموذج ولا تثبته، وأن البنى المنافسة تستحق نقاشًا صريحًا؛ والتعقيد ناقص القوة، بتقدير نموذج كبير على عيّنة صغيرة والإبلاغ عن النتيجة كأن الدقة تتبع تقارب البرنامج؛ وتبديل العائلة بعد الفشل، وقد سُمّي سابقًا. وكل واحدة قابلة للإصلاح بالعلاج نفسه: حدّد مسبقًا، وأبلغ عمّا فعلته بالترتيب الذي فعلته به، وصف الادّعاء الناتج بدقة.</p>
+        <p>المثال التطبيقي: دراسة تختبر هل تحسّن القدرة التحليلية المدرَكة جودة القرار في الأجهزة الحكومية، وهل تشترط نضجُ حوكمة البيانات ذلك الأثر. الإطار: القدرة تؤثر في جودة القرار، بوساطة ثقة المديرين في البيانات، وبتعديل من نضج الحوكمة، مع حجم الجهاز والقطاع ضوابط. التصميم: مسح لأربعمئة واثني عشر مديرًا عبر ثلاثين جهازًا، مع فصل المتنبئات والنتائج في الأداة لتقليل تحيز المنهج المشترك، ومقاييس متحقق منها مكيَّفة بترجمة عكسية إلى العربية. المرحلة الأولى: التحليل العاملي التوكيدي يثبّت نموذج القياس، بثبات مركّب مقبول، ومتوسط تباين مستخرَج فوق العتبة لكل البناءات، وصدق تمييزي مؤكَّد بنسبة الصفات المتباينة إلى المتشابهة، مع الإبقاء على مؤشر واحد رغم تشبعه المتواضع لأن حذفه كان سيزيل وجهًا من تعريف البناء. المرحلة الثانية: تقدير قائم على التغاير بمؤشرات مطابقة مبلَّغ عنها، ومسارات مباشرة مقدَّرة، ووساطة مختبَرة بالآثار غير المباشرة بالتحميل الذاتي، وتعديل بالتفاعل مع رسم الميول البسيطة. الإبلاغ: مخطط الإطار معادًا رسمه بمعاملات معيارية على كل مسار، وجدول فرضيات يبيّن أيها دُعم وأيها لم يُدعَم، ومنها المسار المباشر غير المدعوم الذي يُبقيه المؤلف ولا يحذفه، وفقرة حدود تذكر حدّ التصميم المقطعي على الادّعاءات السببية، وهذا هو شكل فصل نمذجة بنيوية يمكن الدفاع عنه من أوله إلى آخره.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> النمذجة البنيوية تختبر إطارًا كاملًا مع احترام خطأ القياس، ومصداقيتها إجرائية: عائلة تُختار بالغرض، وقياس يُثبَّت قبل البنية، ومطابقة تُقرَأ من عدة مؤشرات، ووساطة بالتحميل الذاتي، وثبات قياس يُفحَص قبل مقارنة المجموعات، وادّعاءات تُصاغ داخل حدود التصميم. حدّد النموذج من النظرية، وأبلغ عن كل شيء بالترتيب، ودع النموذج قادرًا على الفشل.</div>
+        <div class="refs"><ul>
+          <li>هير وآخرون، <a href="https://www.pls-sem.net/" target="_blank" rel="noopener">مدخل إلى نمذجة المعادلات البنيوية بالمربعات الصغرى الجزئية</a>.</li>
+          <li>كلاين، <a href="https://www.guilford.com/books/Principles-and-Practice-of-Structural-Equation-Modeling/Rex-Kline/9781462551910" target="_blank" rel="noopener">مبادئ نمذجة المعادلات البنيوية وممارستها</a>.</li>
+          <li>هنسلر ورينغل وسارستدت، <a href="https://link.springer.com/article/10.1007/s11747-014-0403-8" target="_blank" rel="noopener">معيار جديد لتقييم الصدق التمييزي</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="qual-thematic-analysis.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Thematic Analysis</span><span data-lang="ar">التحليل الموضوعي</span></a><a href="process-research-ethics.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Research Ethics</span><span data-lang="ar">أخلاقيات البحث العلمي</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="نمذجة المعادلات البنيوية";
+var TITLE_EN="Structural Equation Modelling";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

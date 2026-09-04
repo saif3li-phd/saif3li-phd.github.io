@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Post-Positivism</title>
+<meta name="description" content="Post-positivism in depth: why positivism was revised, its core tenets, the comparison with positivism, and its method in practice.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Research paradigms</span><span data-lang="ar">النماذج البحثية</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">RESEARCH PARADIGMS · PhD</span><span data-lang="ar">النماذج البحثية · دكتوراه</span></div>
+    <h1><span data-lang="en">Post-Positivism</span><span data-lang="ar">ما بعد الوضعية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Research paradigms</span><span data-lang="ar">النماذج البحثية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">8 min</span><span data-lang="ar">٨ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="why"><span data-lang="en">Why It Arose</span><span data-lang="ar">لماذا نشأت</span></a></li><li><a data-id="tenets"><span data-lang="en">Core Tenets</span><span data-lang="ar">المبادئ</span></a></li><li><a data-id="compared"><span data-lang="en">Positivism Compared</span><span data-lang="ar">مقارنةً بالوضعية</span></a></li><li><a data-id="method"><span data-lang="en">In Practice</span><span data-lang="ar">في الممارسة</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Paradigm:</span> Post-positivism</div>
+          <div><span>Core claim:</span> A real world exists, but our knowledge of it is always partial and fallible</div>
+          <div><span>Typical methods:</span> Quantitative, but with humility, triangulation, and falsification</div>
+          <div><span>Level:</span> Doctoral research philosophy</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Post-positivism is the paradigm that most contemporary quantitative research actually inhabits, even when researchers loosely call it positivist. It keeps the positivist commitment to an objective reality and to rigorous, systematic, empirical method, but it abandons positivism's confidence that this reality can be known with certainty, holding instead that all knowledge is conjectural, provisional, and open to revision. It is best understood as positivism chastened by a century of philosophical criticism, retaining the ambition while dropping the overreach.</p>
+        <p>The shift is subtle but consequential. Where the classical positivist sought to verify theories and build certain knowledge brick by brick, the post-positivist accepts that we can never fully prove a theory true and that observation itself is shaped by our concepts and expectations. What we can do is test theories severely, try to falsify them, and provisionally accept those that survive, always understanding that today's best-supported finding may be overturned tomorrow. Objectivity becomes an ideal to strive toward through rigorous method and open criticism, rather than a state any single study can claim to have achieved.</p>
+        <p>For a doctoral researcher this distinction is practically important, and getting it right strengthens a methodology chapter. A great deal of rigorous quantitative work, including most modern hypothesis testing, is honestly post-positivist rather than positivist, and naming the paradigm accurately signals a mature grasp of what the numbers can and cannot deliver. It lets a researcher claim the rigour of measurement while acknowledging, rather than hiding, the fallibility that all measurement carries.</p>
+        <p>This framework sets out why positivism needed revising, the core tenets of post-positivism, a direct comparison of the two, the methodological consequences, why most quantitative research today belongs here, and the paradigm's own limits. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Post-positivism is not a weaker positivism but a more honest one. It keeps the rigour and drops the false certainty, which is why so many careful quantitative researchers belong to it whether or not they use the name.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>النموذج:</span> ما بعد الوضعية</div>
+          <div><span>الادّعاء الجوهري:</span> عالم واقعي موجود، لكن معرفتنا به دومًا جزئية وقابلة للخطأ</div>
+          <div><span>المناهج المعتادة:</span> كمّية، لكن بتواضع وتثليث وتكذيب</div>
+          <div><span>المستوى:</span> فلسفة بحث لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">ما بعد الوضعية هي النموذج الذي يسكنه فعلًا أغلب البحث الكمّي المعاصر، حتى حين يسمّيه الباحثون تساهلًا وضعيًا. تُبقي على التزام الوضعية بواقع موضوعي وبمنهج تجريبي صارم منهجي، لكنها تتخلّى عن ثقة الوضعية بأن هذا الواقع يُعرَف بيقين، وترى بدلًا من ذلك أن كل معرفة حدسية مؤقّتة مفتوحة للمراجعة. وأفضل فهمها وضعية هذّبها قرن من النقد الفلسفي، تحتفظ بالطموح وتُسقِط التطاول.</p>
+        <p>والتحوّل دقيق لكنه ذو أثر. فحيث سعى الوضعي الكلاسيكي للتحقّق من النظريات وبناء معرفة يقينية لبنةً لبنة، يقبل ما بعد الوضعي أننا لا نستطيع إثبات نظرية صحيحة تمامًا وأن الملاحظة نفسها تتشكّل بمفاهيمنا وتوقّعاتنا. وما نستطيعه اختبار النظريات بقسوة، ومحاولة تكذيبها، والقبول المؤقّت بما ينجو، مع الفهم دومًا أن أفضل نتائج اليوم دعمًا قد تُقلَب غدًا. وتصير الموضوعية مثالًا نسعى إليه عبر المنهج الصارم والنقد المفتوح، لا حالةً تستطيع دراسة مفردة ادّعاء بلوغها.</p>
+        <p>ولباحث الدكتوراه هذا التمييز مهمّ عمليًا، وضبطه يقوّي فصل المنهجية. فكثير من العمل الكمّي الصارم، بما فيه أغلب اختبار الفرضيات الحديث، هو بأمانة ما بعد وضعي لا وضعي، وتسمية النموذج بدقّة تشير إلى إدراك ناضج لما تستطيع الأرقام وما لا تستطيع تقديمه. وتتيح للباحث ادّعاء صرامة القياس مع الاعتراف، لا الإخفاء، بالقابلية للخطأ التي يحملها كل قياس.</p>
+        <p>يعرض هذا الإطار لماذا احتاجت الوضعية تنقيحًا، والمبادئ الجوهرية لما بعد الوضعية، ومقارنةً مباشرة بين الاثنين, والنتائج المنهجية، ولماذا ينتمي أغلب البحث الكمّي اليوم هنا، وحدود النموذج نفسه. وقد أعددت هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> ما بعد الوضعية ليست وضعيةً أضعف بل أكثر أمانة. تُبقي الصرامة وتُسقِط اليقين الزائف، ولهذا ينتمي إليها كثير من الباحثين الكمّيين الدقيقين سمّوها أم لم يسمّوها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="why">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Why Positivism Needed Revising</h2>
+        <p class="lead">Post-positivism did not appear from nowhere; it was the disciplined response of empirically minded philosophers to a set of criticisms that the strong positivist programme could not answer. Understanding those criticisms is understanding why the paradigm changed.</p>
+        <p>The first blow fell on the problem of induction. As Hume had long ago noted and Popper sharpened, no number of confirming observations can prove a universal law, because the next case might always break it. This meant the positivist dream of building certain knowledge by accumulating confirmations was logically impossible, and it pushed philosophers toward Popper's alternative: that science proceeds not by proving theories true but by testing and trying to falsify them. The second blow was the recognition that observation is theory-laden. Far from being a neutral recording of raw facts, what a researcher observes is shaped by the concepts, expectations, and instruments they bring; two observers with different theories can genuinely see different things in the same data. This undercut the positivist ideal of pure, presuppositionless observation.</p>
+        <p>A third difficulty was internal and fatal to strong logical positivism: its own central principle, that only verifiable statements are meaningful, is not itself verifiable, and so by its own standard is meaningless. This self-refutation, together with the growing awareness that scientific theories always outrun the evidence for them, convinced most philosophers that the strict programme could not stand. Post-positivism is what remained standing after these criticisms had done their work: a position that keeps the empirical, rigorous spirit of positivism while accepting fallibility, theory-laden observation, and the impossibility of final proof.</p>
+        <div class="note"><strong>Note:</strong> Post-positivism is positivism after Popper. The move from verifying theories to testing and trying to falsify them is the single most important step from the old paradigm to the new.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>لماذا احتاجت الوضعية تنقيحًا</h2>
+        <p class="lead">لم تظهر ما بعد الوضعية من العدم؛ بل كانت الردّ المنضبط لفلاسفة ذوي نزعة تجريبية على نقود لم يستطع البرنامج الوضعي القوي الإجابة عنها. وفهم تلك النقود هو فهم لماذا تغيّر النموذج.</p>
+        <p>سقطت الضربة الأولى على مشكلة الاستقراء. فكما لاحظ هيوم قديمًا وشحذ بوبر، لا عدد من الملاحظات المؤكِّدة يُثبِت قانونًا كليًّا، لأن الحالة التالية قد تكسره دومًا. وهذا عنى أن حلم الوضعية ببناء معرفة يقينية بتكديس التأكيدات مستحيل منطقيًا، ودفع الفلاسفة نحو بديل بوبر: أن العلم يمضي لا بإثبات النظريات صحيحةً بل باختبارها ومحاولة تكذيبها. والضربة الثانية إدراك أن الملاحظة محمّلة بالنظرية. فبعيدًا عن كونها تسجيلًا محايدًا لوقائع خام، ما يلاحظه الباحث تشكّله المفاهيم والتوقّعات والأجهزة التي يجلبها؛ وملاحِظان بنظريتَين مختلفتَين قد يريان فعلًا أشياءً مختلفة في البيانات ذاتها. وهذا قوّض المثال الوضعي للملاحظة النقية بلا مسبقات.</p>
+        <p>وصعوبة ثالثة كانت داخلية وقاتلة للوضعية المنطقية القوية: مبدؤها المركزي نفسه، أن العبارات القابلة للتحقّق وحدها ذات معنًى، ليس هو نفسه قابلًا للتحقّق، فهو بمعياره الخاص بلا معنًى. وهذا الدحض الذاتي، مع الوعي المتنامي بأن النظريات العلمية تتجاوز دومًا الدليل عليها، أقنع أغلب الفلاسفة بأن البرنامج الصارم لا يصمد. وما بعد الوضعية هي ما بقي واقفًا بعد أن أدّت هذه النقود عملها: موقف يُبقي روح الوضعية التجريبية الصارمة مع قبول القابلية للخطأ، والملاحظة المحمّلة بالنظرية، واستحالة البرهان النهائي.</p>
+        <div class="note"><strong>ملاحظة:</strong> ما بعد الوضعية هي الوضعية بعد بوبر. والانتقال من التحقّق من النظريات إلى اختبارها ومحاولة تكذيبها أهمّ خطوة مفردة من النموذج القديم للجديد.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="tenets">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Core Tenets</h2>
+        <p class="lead">Post-positivism can be stated as a small set of commitments that together define its middle position: realist about the world, but modest about our access to it. Each tenet is a direct lesson learned from the criticisms of strong positivism.</p>
+        <ul>
+          <li><strong>Realism with humility:</strong> a real world exists independently of us, but we can only ever know it imperfectly and approximately, never with certainty.</li>
+          <li><strong>Fallibilism:</strong> all knowledge is provisional and open to revision; even well-established findings are the current best account, not final truth.</li>
+          <li><strong>Theory-laden observation:</strong> facts are not seen neutrally; observation is shaped by concepts, so objectivity must be worked at, not assumed.</li>
+          <li><strong>Falsification over verification:</strong> theories are tested by trying to refute them and provisionally kept when they survive, not proven true by piling up support.</li>
+          <li><strong>Objectivity as a regulative ideal:</strong> perfect objectivity is unreachable, but rigorous method, transparency, and open criticism move research toward it.</li>
+        </ul>
+        <p>Held together, these tenets produce a distinctive attitude. The post-positivist researcher is still committed to measurement, evidence, and the search for regularities, and still believes there is a real world their findings are about. But they hold their conclusions more loosely, treat every result as a stage in an ongoing and self-correcting process rather than a final verdict, and rely on the scientific community's collective scrutiny, rather than any single study's supposed certainty, as the real guarantor of reliable knowledge. Objectivity is relocated from the individual study to the community and its methods of criticism.</p>
+        <p>This is why replication, peer review, and openness matter so much within the paradigm. If no single study can claim certainty, then reliability comes from findings surviving repeated, independent, critical testing by many hands. Knowledge grows not because any one researcher proves something beyond doubt, but because the community keeps trying to knock down its own best results and preserves those that will not fall.</p>
+        <div class="note"><strong>Note:</strong> The guarantor of objectivity shifts from the lone researcher to the critical community. No single study is decisive; reliability is what survives repeated, independent attempts to refute it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>المبادئ الجوهرية</h2>
+        <p class="lead">يمكن صوغ ما بعد الوضعية بمجموعة صغيرة من الالتزامات تعرّف معًا موقفها الوسط: واقعية حيال العالم، لكن متواضعة حيال وصولنا إليه. وكل مبدأ درس مباشر تُعُلِّم من نقود الوضعية القوية.</p>
+        <ul>
+          <li><strong>واقعية بتواضع:</strong> عالم واقعي يوجد مستقلًّا عنّا، لكننا لا نعرفه إلّا ناقصًا تقريبيًا، لا بيقين أبدًا.</li>
+          <li><strong>القابلية للخطأ:</strong> كل معرفة مؤقّتة مفتوحة للمراجعة؛ حتى النتائج الراسخة أفضل حساب حالي لا حقيقةً نهائية.</li>
+          <li><strong>الملاحظة المحمّلة بالنظرية:</strong> الوقائع لا تُرى محايدةً؛ الملاحظة تشكّلها المفاهيم، فالموضوعية تُشتغَل لا تُفترَض.</li>
+          <li><strong>التكذيب لا التحقّق:</strong> تُختبَر النظريات بمحاولة دحضها وتُستبقى مؤقّتًا حين تنجو، لا تُثبَت صحيحةً بتكديس الدعم.</li>
+          <li><strong>الموضوعية مثالًا موجِّهًا:</strong> الموضوعية التامّة غير قابلة للبلوغ، لكن المنهج الصارم والشفافية والنقد المفتوح تقرّب البحث منها.</li>
+        </ul>
+        <p>ومجتمعةً، تُنتِج هذه المبادئ موقفًا مميّزًا. فباحث ما بعد الوضعية ما زال ملتزمًا بالقياس والدليل والبحث عن الانتظامات، وما زال يؤمن بعالم واقعي تدور عنه نتائجه. لكنه يحمل خلاصاته أكثر رخاوة، ويعامل كل نتيجة مرحلةً في عملية جارية تصحّح نفسها لا حكمًا نهائيًا، ويعتمد على تمحيص المجتمع العلمي الجماعي، لا على يقين مزعوم لدراسة مفردة، ضامنًا حقيقيًا للمعرفة الموثوقة. وتُنقَل الموضوعية من الدراسة الفردية إلى المجتمع ومناهجه في النقد.</p>
+        <p>ولهذا يهمّ التكرار ومراجعة الأقران والانفتاح كثيرًا داخل النموذج. فإن لم تستطع دراسة مفردة ادّعاء اليقين، فالوثوقية تأتي من نجاة النتائج من اختبار نقدي مستقلّ متكرّر بأيد كثيرة. وتنمو المعرفة لا لأن باحثًا واحدًا يثبت شيئًا بلا شكّ، بل لأن المجتمع يظلّ يحاول إسقاط أفضل نتائجه ويحفظ ما يأبى السقوط.</p>
+        <div class="note"><strong>ملاحظة:</strong> ينتقل ضامن الموضوعية من الباحث المنفرد إلى المجتمع النقدي. فلا دراسة واحدة حاسمة؛ والوثوقية ما ينجو من محاولات مستقلّة متكرّرة لدحضه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="compared">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Positivism and Post-Positivism Compared</h2>
+        <p class="lead">Because the two paradigms share so much, the differences are best seen side by side. They agree that a real world exists and that empirical method is the way to study it; they part ways on how much certainty that method can deliver.</p>
+        <table>
+          <tbody><tr>
+            <th><span data-lang="en">Question</span><span data-lang="ar">السؤال</span></th>
+            <th><span data-lang="en">Positivism</span><span data-lang="ar">الوضعية</span></th>
+            <th><span data-lang="en">Post-positivism</span><span data-lang="ar">ما بعد الوضعية</span></th>
+          </tr>
+          <tr><td><span data-lang="en">Reality</span><span data-lang="ar">الواقع</span></td><td><span data-lang="en">real and fully knowable</span><span data-lang="ar">واقعي ويُعرَف تمامًا</span></td><td><span data-lang="en">real but only imperfectly knowable</span><span data-lang="ar">واقعي لكن يُعرَف ناقصًا</span></td></tr>
+          <tr><td><span data-lang="en">Knowledge</span><span data-lang="ar">المعرفة</span></td><td><span data-lang="en">certain, verified truth</span><span data-lang="ar">حقيقةٌ يقينية متحقَّقة</span></td><td><span data-lang="en">provisional, fallible, revisable</span><span data-lang="ar">مؤقّتة قابلة للخطأ والمراجعة</span></td></tr>
+          <tr><td><span data-lang="en">Observation</span><span data-lang="ar">الملاحظة</span></td><td><span data-lang="en">neutral recording of facts</span><span data-lang="ar">تسجيلٌ محايد للوقائع</span></td><td><span data-lang="en">theory-laden, shaped by concepts</span><span data-lang="ar">محمّلة بالنظرية، تشكّلها المفاهيم</span></td></tr>
+          <tr><td><span data-lang="en">Testing</span><span data-lang="ar">الاختبار</span></td><td><span data-lang="en">verify hypotheses</span><span data-lang="ar">التحقّق من الفرضيات</span></td><td><span data-lang="en">falsify; keep what survives</span><span data-lang="ar">التكذيب؛ استبقاء ما ينجو</span></td></tr>
+          <tr><td><span data-lang="en">Objectivity</span><span data-lang="ar">الموضوعية</span></td><td><span data-lang="en">achievable by the study</span><span data-lang="ar">تبلغها الدراسة</span></td><td><span data-lang="en">an ideal approached by the community</span><span data-lang="ar">مثالٌ يقاربه المجتمع</span></td></tr>
+        </tbody></table>
+        <p>The pattern is consistent: post-positivism accepts the same reality and the same methods but replaces certainty with probability, verification with falsification, and the objective individual observer with the self-correcting critical community. It is a difference of confidence, not of subject matter. Both study a measurable world with rigorous quantitative tools, but the post-positivist wears that rigour with an explicit awareness of its limits.</p>
+        <p>This is why the distinction is not merely academic. A researcher who claims positivist certainty invites the objection that no study can deliver it, whereas a researcher who frames the same quantitative work in post-positivist terms, as strong but provisional evidence subject to revision, holds a position that is both more defensible and more honest. The numbers do not change; the claims made on their behalf become more sustainable.</p>
+        <div class="note"><strong>Note:</strong> The data are the same; the epistemic humility is different. Framing quantitative findings as provisional rather than certain is not a weakness to apologize for but the more defensible claim.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الوضعية وما بعدها مقارنةً</h2>
+        <p class="lead">لأن النموذجَين يتشاركان كثيرًا، أفضل رؤية للفروق جنبًا إلى جنب. يتّفقان أن عالمًا واقعيًا موجود وأن المنهج التجريبي طريق دراسته؛ ويفترقان في كم اليقين الذي يستطيع ذلك المنهج تقديمه.</p>
+        <table>
+          <tbody><tr>
+            <th><span data-lang="en">Question</span><span data-lang="ar">السؤال</span></th>
+            <th><span data-lang="en">Positivism</span><span data-lang="ar">الوضعية</span></th>
+            <th><span data-lang="en">Post-positivism</span><span data-lang="ar">ما بعد الوضعية</span></th>
+          </tr>
+          <tr><td><span data-lang="en">Reality</span><span data-lang="ar">الواقع</span></td><td><span data-lang="en">real and fully knowable</span><span data-lang="ar">واقعي ويُعرَف تمامًا</span></td><td><span data-lang="en">real but only imperfectly knowable</span><span data-lang="ar">واقعي لكن يُعرَف ناقصًا</span></td></tr>
+          <tr><td><span data-lang="en">Knowledge</span><span data-lang="ar">المعرفة</span></td><td><span data-lang="en">certain, verified truth</span><span data-lang="ar">حقيقة يقينية متحقَّقة</span></td><td><span data-lang="en">provisional, fallible, revisable</span><span data-lang="ar">مؤقّتة قابلة للخطأ والمراجعة</span></td></tr>
+          <tr><td><span data-lang="en">Observation</span><span data-lang="ar">الملاحظة</span></td><td><span data-lang="en">neutral recording of facts</span><span data-lang="ar">تسجيل محايد للوقائع</span></td><td><span data-lang="en">theory-laden, shaped by concepts</span><span data-lang="ar">محمّلة بالنظرية، تشكّلها المفاهيم</span></td></tr>
+          <tr><td><span data-lang="en">Testing</span><span data-lang="ar">الاختبار</span></td><td><span data-lang="en">verify hypotheses</span><span data-lang="ar">التحقّق من الفرضيات</span></td><td><span data-lang="en">falsify; keep what survives</span><span data-lang="ar">التكذيب؛ استبقاء ما ينجو</span></td></tr>
+          <tr><td><span data-lang="en">Objectivity</span><span data-lang="ar">الموضوعية</span></td><td><span data-lang="en">achievable by the study</span><span data-lang="ar">تبلغها الدراسة</span></td><td><span data-lang="en">an ideal approached by the community</span><span data-lang="ar">مثال يقاربه المجتمع</span></td></tr>
+        </tbody></table>
+        <p>والنمط ثابت: ما بعد الوضعية تقبل الواقع ذاته والمناهج ذاتها لكنها تستبدل باليقين احتمالًا، وبالتحقّق تكذيبًا، وبالملاحِظ الفردي الموضوعي المجتمع النقدي المصحِّح لذاته. إنه فرق ثقة لا فرق موضوع. فكلاهما يدرس عالمًا قابلًا للقياس بأدوات كمّية صارمة، لكن ما بعد الوضعي يرتدي تلك الصرامة بوعي صريح بحدودها.</p>
+        <p>ولهذا ليس التمييز أكاديميًا فحسب. فباحث يدّعي يقينًا وضعيًا يستدعي الاعتراض بأن لا دراسةً تقدّمه، بينما باحث يؤطّر العمل الكمّي ذاته بلغة ما بعد وضعية، دليلًا قويًا لكنه مؤقّت خاضع للمراجعة، يحمل موقفًا أكثر قابليةً للدفاع وأكثر أمانة. فالأرقام لا تتغيّر؛ والادّعاءات المبنية عليها تصير أكثر استدامة.</p>
+        <div class="note"><strong>ملاحظة:</strong> البيانات ذاتها؛ والتواضع المعرفي مختلف. تأطير النتائج الكمّية مؤقّتةً لا يقينية ليس ضعفًا يُعتذَر عنه بل الادّعاء الأقبل للدفاع.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="method">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Method and Practice</h2>
+        <p class="lead">Post-positivism keeps the quantitative toolkit of positivism but uses it with added safeguards that follow directly from its humility about knowledge. The methods look similar; the interpretation of what they deliver is more careful.</p>
+        <p>Several practices express the paradigm. Studies are framed around hypotheses that data can reject, in the falsificationist spirit, rather than around claims to be confirmed. Because no single measure is trusted to capture reality perfectly, researchers use triangulation, drawing on multiple measures, methods, data sources, or investigators, on the reasoning that a finding supported from several independent angles is more trustworthy than one resting on a single fragile measure. Results are reported probabilistically, with confidence intervals and margins of error that make uncertainty explicit rather than hiding it behind a single point estimate. And conclusions are framed as provisional and open to revision, inviting replication rather than announcing final truth.</p>
+        <div class="stats">
+          <div class="stat"><span class="num">&#8776;</span><span class="lbl"><span data-lang="en">knowledge is approximate, not exact</span><span data-lang="ar">المعرفة تقريبية لا مضبوطة</span></span></div>
+          <div class="stat"><span class="num">3+</span><span class="lbl"><span data-lang="en">angles: triangulation over single measures</span><span data-lang="ar">زوايا: التثليث لا القياس المفرد</span></span></div>
+          <div class="stat"><span class="num">CI</span><span class="lbl"><span data-lang="en">uncertainty reported, not hidden</span><span data-lang="ar">الشكّ يُبلَّغ لا يُخفى</span></span></div>
+        </div>
+        <p>The significance for a doctoral researcher is that post-positivism is, in honest fact, the working paradigm of most rigorous quantitative research today, even where the word positivist is used out of habit. When a study frames testable hypotheses, uses validated instruments while acknowledging measurement error, reports confidence intervals, and calls for replication, it is behaving as a post-positivist, not a classical positivist. Naming this accurately in a methodology chapter is not pedantry; it demonstrates that the researcher understands both the power and the limits of their quantitative approach, and it forestalls the easy criticism that they have claimed a certainty their methods cannot support.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> post-positivism is rigorous quantitative research done with epistemic honesty. It keeps measurement, testing, and the search for regularities, but treats every finding as provisional, uses triangulation and explicit uncertainty, and locates objectivity in the self-correcting community rather than in any single study.</div>
+        <div class="refs"><ul>
+          <li>Stanford Encyclopedia of Philosophy, <a href="https://plato.stanford.edu/entries/popper/" target="_blank" rel="noopener">Karl Popper (Falsification)</a>.</li>
+          <li>Stanford Encyclopedia of Philosophy, <a href="https://plato.stanford.edu/entries/theory-terms/" target="_blank" rel="noopener">Theory and Observation in Science</a>.</li>
+          <li>Park, Konge &amp; Artino (2020), <a href="https://pubmed.ncbi.nlm.nih.gov/31789841/" target="_blank" rel="noopener">The Positivism Paradigm of Research</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>المنهج والممارسة</h2>
+        <p class="lead">تُبقي ما بعد الوضعية عدّة الوضعية الكمّية لكنها تستخدمها بصمّامات إضافية تتبع مباشرةً تواضعها حيال المعرفة. المناهج تبدو متشابهة؛ وتأويل ما تقدّمه أكثر عناية.</p>
+        <p>وممارسات عدّة تعبّر عن النموذج. فالدراسات تُؤطَّر حول فرضيات تستطيع البيانات رفضها، بروح التكذيب، لا حول ادّعاءات تُؤكَّد. ولأن لا قياسًا مفردًا يُوثَق به لالتقاط الواقع تمامًا، يستخدم الباحثون التثليث، مستندين لقياسات أو مناهج أو مصادر بيانات أو باحثين متعدّدين، على أساس أن نتيجةً مدعومة من زوايا مستقلّة عدّة أوثق من واحدة تقوم على قياس ضعيف مفرد. وتُبلَّغ النتائج احتماليًا، بفترات ثقة وهوامش خطأ تجعل الشكّ صريحًا لا مخبوءًا خلف تقدير نقطي واحد. وتُؤطَّر الخلاصات مؤقّتةً مفتوحة للمراجعة، داعيةً للتكرار لا معلِنةً حقيقةً نهائية.</p>
+        <div class="stats">
+          <div class="stat"><span class="num">&#8776;</span><span class="lbl"><span data-lang="en">knowledge is approximate, not exact</span><span data-lang="ar">المعرفة تقريبية لا مضبوطة</span></span></div>
+          <div class="stat"><span class="num">3+</span><span class="lbl"><span data-lang="en">angles: triangulation over single measures</span><span data-lang="ar">زوايا: التثليث لا القياس المفرد</span></span></div>
+          <div class="stat"><span class="num">CI</span><span class="lbl"><span data-lang="en">uncertainty reported, not hidden</span><span data-lang="ar">الشكّ يُبلَّغ لا يُخفى</span></span></div>
+        </div>
+        <p>ودلالة هذا لباحث الدكتوراه أن ما بعد الوضعية هي، بأمانة واقعية، النموذج العامل لأغلب البحث الكمّي الصارم اليوم، حتى حيث تُستخدَم كلمة «وضعي» بالعادة. فحين تؤطّر دراسة فرضيات قابلة للاختبار، وتستخدم أدوات مُصادَقة مع الاعتراف بخطأ القياس، وتبلّغ فترات ثقة، وتدعو للتكرار، فهي تسلك ما بعد وضعية لا وضعية كلاسيكية. وتسمية هذا بدقّة في فصل المنهجية ليست تحذلقًا؛ بل تبرهن أن الباحث يفهم قوّة مقاربته الكمّية وحدودها، وتستبق النقد السهل بأنه ادّعى يقينًا لا تدعمه مناهجه.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> ما بعد الوضعية بحث كمّي صارم يُجرى بأمانة معرفية. تُبقي القياس والاختبار والبحث عن الانتظامات، لكنها تعامل كل نتيجة مؤقّتة، وتستخدم التثليث والشكّ الصريح، وتضع الموضوعية في المجتمع المصحِّح لذاته لا في دراسة مفردة.</div>
+        <div class="refs"><ul>
+          <li>موسوعة ستانفورد للفلسفة، <a href="https://plato.stanford.edu/entries/popper/" target="_blank" rel="noopener">كارل بوبر (التكذيب)</a>.</li>
+          <li>موسوعة ستانفورد للفلسفة، <a href="https://plato.stanford.edu/entries/theory-terms/" target="_blank" rel="noopener">النظرية والملاحظة في العلم</a>.</li>
+          <li>بارك وكونجه وأرتينو (2020)، <a href="https://pubmed.ncbi.nlm.nih.gov/31789841/" target="_blank" rel="noopener">نموذج الوضعية في البحث</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="paradigm-positivism.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Positivism</span><span data-lang="ar">الوضعية</span></a><a href="paradigm-pragmatism.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Pragmatism</span><span data-lang="ar">البراغماتية</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="ما بعد الوضعية";
+var TITLE_EN="Post-Positivism";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

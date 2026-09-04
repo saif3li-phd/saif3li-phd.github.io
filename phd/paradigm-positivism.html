@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Positivism</title>
+<meta name="description" content="Positivism in depth: the worldview, origins from Comte to the Vienna Circle, its assumptions, the hypothetico-deductive method, strengths, and criticisms.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Research paradigms</span><span data-lang="ar">النماذج البحثية</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">RESEARCH PARADIGMS · PhD</span><span data-lang="ar">النماذج البحثية · دكتوراه</span></div>
+    <h1><span data-lang="en">Positivism</span><span data-lang="ar">الوضعية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Research paradigms</span><span data-lang="ar">النماذج البحثية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">9 min</span><span data-lang="ar">٩ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="worldview"><span data-lang="en">The Worldview</span><span data-lang="ar">الرؤية</span></a></li><li><a data-id="origins"><span data-lang="en">Origins</span><span data-lang="ar">الأصول</span></a></li><li><a data-id="assumptions"><span data-lang="en">Assumptions</span><span data-lang="ar">الافتراضات</span></a></li><li><a data-id="method"><span data-lang="en">Methods</span><span data-lang="ar">المناهج</span></a></li><li><a data-id="strengths"><span data-lang="en">Strengths & Limits</span><span data-lang="ar">القوّة والحدود</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Paradigm:</span> Positivism</div>
+          <div><span>Core claim:</span> One real world, measured precisely, explained by general laws</div>
+          <div><span>Typical methods:</span> Experiments, surveys, statistical modelling</div>
+          <div><span>Level:</span> Doctoral research philosophy</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Positivism is the research paradigm that models the study of the social world on the natural sciences. It assumes a single, objective reality that exists independently of the observer, holds that this reality can be known through careful observation and measurement, and seeks general laws that explain and predict what happens. It is the paradigm most people unconsciously equate with science itself, and for much of the twentieth century it was treated as the default, and often the only respectable, way to do rigorous research.</p>
+        <p>Its appeal is real and worth taking seriously. By insisting on precise measurement, testable hypotheses, replicable procedures, and evidence that anyone can check, positivism offers a powerful discipline against wishful thinking and mere opinion. When a study reports that an intervention raised an outcome by a measured amount, with a stated level of confidence, in a sample large enough to generalize, it is working in the positivist tradition, and the credibility of that claim rests on the standards positivism made central to research.</p>
+        <p>For a doctoral researcher, understanding positivism precisely matters for two reasons. First, if a study is quantitative and hypothesis-testing, it almost certainly rests on positivist or post-positivist assumptions that should be stated and defended, not left implicit. Second, understanding positivism clearly is the only way to understand the paradigms that defined themselves against it, since interpretivism, critical realism, and pragmatism are all, in part, responses to its perceived limits.</p>
+        <p>This framework sets out the positivist worldview, its historical origins from Comte to the Vienna Circle, its assumptions across ontology, epistemology, and axiology, its signature methods, its genuine strengths, the serious criticisms it faces, and what it means for a working researcher. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Positivism is not a slur, nor a synonym for naive number-crunching. It is a coherent and demanding philosophy of knowledge, and using the label well means describing its assumptions rather than treating it as shorthand for anything quantitative.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>النموذج:</span> الوضعية</div>
+          <div><span>الادّعاء الجوهري:</span> عالم واقعي واحد، يُقاس بدقّة، تفسّره قوانين عامة</div>
+          <div><span>المناهج المعتادة:</span> التجارب والمسوح والنمذجة الإحصائية</div>
+          <div><span>المستوى:</span> فلسفة بحث لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الوضعية هي النموذج البحثي الذي يجعل دراسة العالم الاجتماعي على غرار العلوم الطبيعية. تفترض واقعًا موضوعيًا واحدًا يوجد مستقلًّا عن الملاحِظ، وترى أن هذا الواقع يُعرَف بالملاحظة والقياس الدقيقَين، وتبحث عن قوانين عامة تفسّر ما يحدث وتتنبّأ به. وهي النموذج الذي يساويه أغلب الناس لاوعيًا بالعلم نفسه، ولمعظم القرن العشرين عُومِلت الافتراض التلقائي، وغالبًا الطريقة المحترمة الوحيدة، للبحث الصارم.</p>
+        <p>وجاذبيتها حقيقية تستحقّ الأخذ بجدّية. فبإصرارها على القياس الدقيق والفرضيات القابلة للاختبار والإجراءات القابلة للتكرار والدليل الذي يستطيع أي أحد فحصه، تقدّم الوضعية انضباطًا قويًا ضدّ التمنّي والرأي المجرّد. فحين تُبلِّغ دراسة أن تدخّلًا رفع نتيجةً بمقدار مقيس، بمستوى ثقة محدّد، في عيّنة كبيرة كفايةً للتعميم، فهي تعمل في التقليد الوضعي، ومصداقية ذلك الادّعاء تقوم على المعايير التي جعلتها الوضعية مركزية للبحث.</p>
+        <p>وبالنسبة لباحث الدكتوراه، فهم الوضعية بدقّة يهمّ لسببَين. أولًا، إن كانت الدراسة كمّية تختبر فرضيات، فهي شبه أكيدة تقوم على افتراضات وضعية أو ما بعد وضعية ينبغي ذكرها والدفاع عنها لا تركها ضمنية. وثانيًا، فهم الوضعية بوضوح هو الطريق الوحيد لفهم النماذج التي عرّفت نفسها ضدّها، إذ التفسيرية والواقعية النقدية والبراغماتية كلها، جزئيًا، ردود على حدودها المتصوَّرة.</p>
+        <p>يعرض هذا الإطار الرؤية الوضعية للعالم، وأصولها التاريخية من كونت إلى حلقة فيينا، وافتراضاتها عبر الأنطولوجيا والإبستمولوجيا والأكسيولوجيا، ومناهجها المميّزة، وقوّتها الحقيقية، والنقود الجادّة التي تواجهها، وما تعنيه للباحث العامل. وقد أعددت هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> الوضعية ليست شتيمة، ولا مرادفًا لطحن الأرقام الساذج. بل فلسفة معرفة متماسكة صارمة، وحسن استخدام الوسم يعني وصف افتراضاتها لا معاملتها اختصارًا لأي شيء كمّي.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="worldview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Positivist Worldview</h2>
+        <p class="lead">At the heart of positivism is a confident and unified picture of what the world is like and how it can be known. Its parts hang together, and seeing them as a whole makes the paradigm coherent rather than a loose collection of preferences for numbers.</p>
+        <p>The picture begins with the conviction that there is one real world, the same for everyone, that behaves in regular and orderly ways. Events do not happen randomly but according to stable patterns, and those patterns can be captured as general laws of the form when this, then that. Because the world is orderly and independent of us, it can be observed objectively: a careful, detached researcher can measure it without changing it, and different observers measuring the same thing should get the same result. Knowledge, on this view, is built up from observation and experiment, tested against evidence, and accumulated over time into an ever more complete and accurate account of how the world works.</p>
+        <p>From this flow the paradigm's characteristic commitments. Concepts must be operationalized, that is, defined in terms of something measurable, so that abstract ideas like satisfaction or performance become specific, countable variables. Claims must be empirically testable, so that evidence can support or undermine them rather than leaving them matters of opinion. And explanation takes the form of identifying causes: showing that changes in one variable produce changes in another, ideally in a way precise enough to predict. The ultimate aim is generalization, moving from the specific cases studied to conclusions that hold across a whole population, which is why large, representative samples and statistical inference are so central.</p>
+        <div class="note"><strong>Note:</strong> The positivist ideal is prediction and control. If you truly understand the laws governing something, you can forecast what it will do and, often, intervene to change it, which is exactly the power that makes the paradigm attractive to applied fields.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الرؤية الوضعية للعالم</h2>
+        <p class="lead">في قلب الوضعية صورة واثقة موحَّدة لما عليه العالم وكيف يُعرَف. وأجزاؤها متماسكة، ورؤيتها كلًّا تجعل النموذج مترابطًا لا مجموعةً رخوة من تؤديلات الأرقام.</p>
+        <p>تبدأ الصورة بالاقتناع أن ثمّة عالمًا واقعيًا واحدًا، هو ذاته للجميع، يسلك بطرق منتظمة مرتّبة. فالأحداث لا تقع عشوائيًا بل وفق أنماط ثابتة، وتلك الأنماط يمكن التقاطها قوانين عامة بصيغة «إذا هذا، فذاك». ولأن العالم مرتّب ومستقلّ عنّا، يمكن ملاحظته موضوعيًا: فباحث دقيق محايد يستطيع قياسه دون تغييره، وملاحِظون مختلفون يقيسون الشيء ذاته ينبغي أن يبلغوا النتيجة ذاتها. والمعرفة، على هذا الرأي، تُبنى من الملاحظة والتجربة، وتُختبَر بالدليل، وتتراكم عبر الزمن في حساب أكمل وأدقّ لكيفية عمل العالم.</p>
+        <p>ومن هذا تتدفّق التزامات النموذج المميّزة. فالمفاهيم يجب أن تُشغَّل، أي تُعرَّف بدلالة شيء قابل للقياس، فتصير أفكار مجرّدة كالرضا أو الأداء متغيّرات محدّدة قابلة للعدّ. والادّعاءات يجب أن تكون قابلة للاختبار تجريبيًا، ليدعمها الدليل أو يقوّضها بدل تركها آراء. والتفسير يأخذ صيغة تحديد الأسباب: إظهار أن تغيّرات في متغيّر تُنتِج تغيّرات في آخر، مثاليًّا بدقّة تكفي للتنبّؤ. والهدف النهائي التعميم، الانتقال من الحالات المدروسة المحدّدة إلى خلاصات تصحّ عبر مجتمع كامل، ولهذا كانت العيّنات الكبيرة الممثِّلة والاستدلال الإحصائي مركزيةً جدًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> المثال الوضعي التنبّؤ والضبط. فإن فهمت حقًّا القوانين الحاكمة لشيء، أمكنك توقّع ما سيفعله، وغالبًا التدخّل لتغييره، وهي بالضبط القوّة التي تجعل النموذج جذّابًا للحقول التطبيقية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="origins">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Origins: Comte to the Vienna Circle</h2>
+        <p class="lead">Positivism is not a timeless abstraction but a historical movement with identifiable founders, and knowing its story clarifies both what it claimed and why later thinkers pushed back.</p>
+        <p>The term positivism was coined in the early nineteenth century by the French thinker Auguste Comte, who argued that human understanding passes through stages, culminating in a positive or scientific stage in which knowledge is based on observable facts and the laws connecting them rather than on theology or metaphysics. Comte held that the methods that had succeeded so spectacularly in physics and astronomy could and should be extended to the study of society itself, and he is often regarded as a founder of sociology for exactly this ambition. His vision was of a unified science, applying one empirical method to everything from planets to peoples.</p>
+        <p>The paradigm reached its sharpest and most rigorous form in the early twentieth century with the Vienna Circle, a group of philosophers and scientists whose position became known as logical positivism. They combined empiricism with the tools of modern logic and advanced a strict criterion of meaning: a statement is meaningful only if it can be verified by observation or is true by definition. On this view, claims that could not in principle be checked against experience, including much of traditional metaphysics, were not false but literally meaningless. This was positivism at its boldest and most uncompromising, and its very strictness is what eventually exposed its problems, since the criterion could not survive being applied to itself and struggled to accommodate the general laws that science actually relies on.</p>
+        <div class="note"><strong>Note:</strong> Most researchers who call their work positivist today do not hold the strict verificationism of the Vienna Circle. They inherit its empirical spirit, but the strong doctrine was largely abandoned, which is why the honest modern label is often post-positivist.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الأصول: من كونت إلى حلقة فيينا</h2>
+        <p class="lead">الوضعية ليست تجريدًا خالدًا بل حركة تاريخية بمؤسّسين معروفين، ومعرفة قصّتها توضّح ما ادّعته ولماذا دفع مفكّرون لاحقون بعكسها.</p>
+        <p>صاغ مصطلح الوضعية أوائل القرن التاسع عشر المفكّر الفرنسي أوغست كونت، الذي جادل بأن الفهم الإنساني يمرّ بمراحل، تتوّجها مرحلة وضعية أو علمية تقوم فيها المعرفة على الوقائع القابلة للملاحظة والقوانين الرابطة بينها لا على اللاهوت أو الميتافيزيقا. ورأى كونت أن المناهج التي نجحت نجاحًا باهرًا في الفيزياء والفلك يمكن ويجب مدّها لدراسة المجتمع نفسه، ويُعَدّ غالبًا مؤسّسًا لعلم الاجتماع لهذا الطموح بالذات. وكانت رؤيته علمًا موحَّدًا، يطبّق منهجًا تجريبيًا واحدًا على كل شيء من الكواكب إلى الشعوب.</p>
+        <p>وبلغ النموذج أحدّ صوره وأصرمها أوائل القرن العشرين مع حلقة فيينا، جماعة من الفلاسفة والعلماء صار موقفها يُعرَف بالوضعية المنطقية. جمعوا التجريبية بأدوات المنطق الحديث وقدّموا معيارًا صارمًا للمعنى: العبارة ذات معنًى فقط إن أمكن التحقّق منها بالملاحظة أو كانت صحيحةً بالتعريف. وعلى هذا الرأي، الادّعاءات التي لا يمكن مبدئيًا فحصها بالتجربة، بما فيها كثير من الميتافيزيقا التقليدية، لم تكن خاطئةً بل بلا معنًى حرفيًا. كانت هذه الوضعية بأجرأ صورها وأكثرها تشدّدًا، وصرامتها ذاتها هي ما كشف مشكلاتها في النهاية، إذ لم يصمد المعيار لتطبيقه على نفسه وتعثّر في استيعاب القوانين العامة التي يعتمد عليها العلم فعلًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> أغلب الباحثين الذين يسمّون عملهم وضعيًا اليوم لا يحملون تحقّقية حلقة فيينا الصارمة. يرثون روحها التجريبية، لكن المذهب القوي هُجِر إلى حدّ بعيد، ولهذا يكون الوسم الحديث الأمين غالبًا «ما بعد الوضعية».</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="assumptions">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Its Three Assumptions</h2>
+        <p class="lead">Like any paradigm, positivism can be pinned down precisely by its answers to the three questions of ontology, epistemology, and axiology. Stating them explicitly is what a methodology chapter requires, and it is what distinguishes a defended position from a habit.</p>
+        <table>
+          <tbody><tr>
+            <th><span data-lang="en">Branch</span><span data-lang="ar">الفرع</span></th>
+            <th><span data-lang="en">Positivist answer</span><span data-lang="ar">الجواب الوضعي</span></th>
+          </tr>
+          <tr><td><span data-lang="en">Ontology (reality)</span><span data-lang="ar">الأنطولوجيا (الواقع)</span></td><td><span data-lang="en">one objective reality, independent of the observer</span><span data-lang="ar">واقعٌ موضوعي واحد مستقلٌّ عن الملاحِظ</span></td></tr>
+          <tr><td><span data-lang="en">Epistemology (knowledge)</span><span data-lang="ar">الإبستمولوجيا (المعرفة)</span></td><td><span data-lang="en">gained by detached observation and measurement</span><span data-lang="ar">تُكتسَب بالملاحظة والقياس المحايدَين</span></td></tr>
+          <tr><td><span data-lang="en">Axiology (values)</span><span data-lang="ar">الأكسيولوجيا (القيم)</span></td><td><span data-lang="en">research should be value-free; bias is controlled</span><span data-lang="ar">البحث يُفترَض متحرّرًا من القيم؛ يُضبَط التحيّز</span></td></tr>
+          <tr><td><span data-lang="en">Reasoning</span><span data-lang="ar">الاستدلال</span></td><td><span data-lang="en">mainly deductive: from theory to tested hypothesis</span><span data-lang="ar">استنباطي غالبًا: من النظرية لفرضيةٍ مُختبَرة</span></td></tr>
+        </tbody></table>
+        <p>Each answer connects to the others into a single coherent chain. Because reality is taken to be objective and independent (ontology), it makes sense to try to know it by standing back and measuring it without interference (epistemology), and to guard against the researcher's own values distorting that measurement (axiology). The reasoning that fits this chain is largely deductive: the researcher begins with an existing theory, derives from it a specific hypothesis about what should be observed if the theory is true, and then tests that hypothesis against data, so that theory guides observation rather than the reverse.</p>
+        <p>This coherence is the paradigm's great strength and also the target of its critics. Everything follows cleanly once the opening assumption of an objective, measurable reality is granted. The whole debate about positivism, and the paradigms that grew up in opposition to it, turns on whether that opening assumption holds for the human and social world, or whether people and their meanings are simply not the kind of thing that can be studied as if they were objects obeying laws.</p>
+        <div class="note"><strong>Note:</strong> The strength of positivism is that its assumptions form one tight chain. The vulnerability is that the whole chain hangs on the first link, the claim that the social world is objective and measurable in the way the natural world is.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>افتراضاتها الثلاثة</h2>
+        <p class="lead">كأي نموذج، يمكن تحديد الوضعية بدقّة بأجوبتها عن أسئلة الأنطولوجيا والإبستمولوجيا والأكسيولوجيا الثلاثة. وذكرها صراحةً ما يتطلّبه فصل المنهجية، وهو ما يميّز موقفًا مُدافَعًا عنه عن عادة.</p>
+        <table>
+          <tbody><tr>
+            <th><span data-lang="en">Branch</span><span data-lang="ar">الفرع</span></th>
+            <th><span data-lang="en">Positivist answer</span><span data-lang="ar">الجواب الوضعي</span></th>
+          </tr>
+          <tr><td><span data-lang="en">Ontology (reality)</span><span data-lang="ar">الأنطولوجيا (الواقع)</span></td><td><span data-lang="en">one objective reality, independent of the observer</span><span data-lang="ar">واقع موضوعي واحد مستقلّ عن الملاحِظ</span></td></tr>
+          <tr><td><span data-lang="en">Epistemology (knowledge)</span><span data-lang="ar">الإبستمولوجيا (المعرفة)</span></td><td><span data-lang="en">gained by detached observation and measurement</span><span data-lang="ar">تُكتسَب بالملاحظة والقياس المحايدَين</span></td></tr>
+          <tr><td><span data-lang="en">Axiology (values)</span><span data-lang="ar">الأكسيولوجيا (القيم)</span></td><td><span data-lang="en">research should be value-free; bias is controlled</span><span data-lang="ar">البحث يُفترَض متحرّرًا من القيم؛ يُضبَط التحيّز</span></td></tr>
+          <tr><td><span data-lang="en">Reasoning</span><span data-lang="ar">الاستدلال</span></td><td><span data-lang="en">mainly deductive: from theory to tested hypothesis</span><span data-lang="ar">استنباطي غالبًا: من النظرية لفرضية مُختبَرة</span></td></tr>
+        </tbody></table>
+        <p>كل جواب يتّصل بالآخر في سلسلة متماسكة واحدة. فلأن الواقع يُؤخَذ موضوعيًا مستقلًّا (أنطولوجيا)، يُعقَل محاولة معرفته بالتراجع وقياسه دون تدخّل (إبستمولوجيا)، والاحتراس من تشويه قيم الباحث لذلك القياس (أكسيولوجيا). والاستدلال الملائم لهذه السلسلة استنباطيّ غالبًا: يبدأ الباحث بنظرية قائمة، ويشتقّ منها فرضيةً محدّدة عمّا ينبغي ملاحظته إن كانت النظرية صحيحة، ثم يختبر تلك الفرضية بالبيانات، فتوجّه النظرية الملاحظة لا العكس.</p>
+        <p>وهذا التماسك قوّة النموذج الكبرى وأيضًا هدف نقّاده. فكل شيء يتبع بنظافة متى مُنِح الافتراض الافتتاحي لواقع موضوعي قابل للقياس. والجدال كله حول الوضعية، والنماذج التي نشأت معارِضةً لها، يدور على هل يصحّ ذلك الافتراض الافتتاحي للعالم الإنساني والاجتماعي، أم أن الناس ومعانيهم ببساطة ليسوا من النوع الذي يمكن دراسته كأنهم أشياء تطيع قوانين.</p>
+        <div class="note"><strong>ملاحظة:</strong> قوّة الوضعية أن افتراضاتها تشكّل سلسلةً محكمة واحدة. وهشاشتها أن السلسلة كلها تتعلّق باللبنة الأولى، ادّعاء أن العالم الاجتماعي موضوعي قابل للقياس كما العالم الطبيعي.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="method">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Signature Methods</h2>
+        <p class="lead">Positivism is known by its methods, and they all serve one logic: the hypothetico-deductive cycle, in which theory generates a testable prediction that data can support or reject. The diagram traces that cycle.</p>
+        <svg viewBox="0 0 460 380" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><rect x="70" y="14" width="320" height="48" rx="9" fill="#DEDEDE"/><text x="230" y="43" text-anchor="middle" font-size="14" font-weight="700" fill="#2D2D2D">Theory</text><line x1="230" y1="62" x2="230" y2="84" stroke="#A32020" stroke-width="2"/><path d="M230 84 l-5 -8 l10 0 z" fill="#A32020"/><rect x="70" y="84" width="320" height="48" rx="9" fill="#B34747"/><text x="230" y="113" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Hypothesis</text><line x1="230" y1="132" x2="230" y2="154" stroke="#A32020" stroke-width="2"/><path d="M230 154 l-5 -8 l10 0 z" fill="#A32020"/><rect x="70" y="154" width="320" height="48" rx="9" fill="#9A1C1C"/><text x="230" y="183" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Operationalize &amp; measure</text><line x1="230" y1="202" x2="230" y2="224" stroke="#A32020" stroke-width="2"/><path d="M230 224 l-5 -8 l10 0 z" fill="#A32020"/><rect x="70" y="224" width="320" height="48" rx="9" fill="#2D2D2D"/><text x="230" y="253" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Test against data</text><line x1="230" y1="272" x2="230" y2="294" stroke="#A32020" stroke-width="2"/><path d="M230 294 l-5 -8 l10 0 z" fill="#A32020"/><rect x="70" y="294" width="320" height="48" rx="9" fill="#A32020"/><text x="230" y="323" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">Confirm or reject</text><path d="M390 362 C 440 362, 440 38, 400 38" fill="none" stroke="#A32020" stroke-width="2" stroke-dasharray="5 5"/><path d="M400 38 l10 -4 l0 8 z" fill="#A32020"/><text x="452" y="200" text-anchor="middle" font-size="10.5" fill="#A32020" transform="rotate(90 452 200)">refine theory</text></svg>
+        <p>The cycle begins with a theory, from which the researcher deduces a specific, testable hypothesis. Abstract concepts are then operationalized into measurable variables, data is gathered under controlled or standardized conditions, and the hypothesis is tested against that data, typically using statistics, to see whether the predicted relationship holds. The result feeds back to confirm, refine, or reject the theory, and the cycle can repeat. This logic underlies the paradigm's characteristic designs. The randomized controlled trial, in which participants are randomly assigned to treatment and control groups so that differences in outcome can be attributed to the intervention, is the purest expression of it. Large-scale surveys with validated scales apply the same logic to measuring attitudes and behaviours across representative samples, and techniques such as regression and structural equation modelling test hypothesized relationships among many measured variables at once.</p>
+        <p>Across all these designs, certain concerns recur because they follow directly from the paradigm's assumptions. Reliability asks whether measurement is consistent, so that the same procedure would give the same result again. Validity asks whether the study measures what it claims to and whether its causal inferences are sound, separating genuine effects from artefacts. Generalizability asks whether findings from a sample can be extended to the wider population, which is why sampling method and sample size receive so much attention. These are not arbitrary technicalities; each is a safeguard for the positivist promise of objective, replicable, generalizable knowledge.</p>
+        <div class="note"><strong>Note:</strong> The hypothetico-deductive cycle is what unites the positivist toolkit. An experiment, a survey, and a regression look different on the surface, but all are ways of putting a theory-derived prediction at genuine risk of the data.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>المناهج المميّزة</h2>
+        <p class="lead">تُعرَف الوضعية بمناهجها، وكلها تخدم منطقًا واحدًا: الدورة الفرضية-الاستنباطية، حيث تولّد النظرية تنبّؤًا قابلًا للاختبار يدعمه الدليل أو يرفضه. والمخطط يتتبّع تلك الدورة.</p>
+        <svg viewBox="0 0 460 380" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><rect x="70" y="14" width="320" height="48" rx="9" fill="#DEDEDE"/><text x="230" y="43" text-anchor="middle" font-size="14" font-weight="700" fill="#2D2D2D">نظرية</text><line x1="230" y1="62" x2="230" y2="84" stroke="#A32020" stroke-width="2"/><path d="M230 84 l-5 -8 l10 0 z" fill="#A32020"/><rect x="70" y="84" width="320" height="48" rx="9" fill="#B34747"/><text x="230" y="113" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">فرضية</text><line x1="230" y1="132" x2="230" y2="154" stroke="#A32020" stroke-width="2"/><path d="M230 154 l-5 -8 l10 0 z" fill="#A32020"/><rect x="70" y="154" width="320" height="48" rx="9" fill="#9A1C1C"/><text x="230" y="183" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">تشغيل وقياس</text><line x1="230" y1="202" x2="230" y2="224" stroke="#A32020" stroke-width="2"/><path d="M230 224 l-5 -8 l10 0 z" fill="#A32020"/><rect x="70" y="224" width="320" height="48" rx="9" fill="#2D2D2D"/><text x="230" y="253" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">اختبار بالبيانات</text><line x1="230" y1="272" x2="230" y2="294" stroke="#A32020" stroke-width="2"/><path d="M230 294 l-5 -8 l10 0 z" fill="#A32020"/><rect x="70" y="294" width="320" height="48" rx="9" fill="#A32020"/><text x="230" y="323" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">تأكيد أو رفض</text><path d="M390 362 C 440 362, 440 38, 400 38" fill="none" stroke="#A32020" stroke-width="2" stroke-dasharray="5 5"/><path d="M400 38 l10 -4 l0 8 z" fill="#A32020"/><text x="452" y="200" text-anchor="middle" font-size="10.5" fill="#A32020" transform="rotate(90 452 200)">تنقيح النظرية</text></svg>
+        <p>تبدأ الدورة بنظريةٍ يستنبط منها الباحث فرضيةً محدّدة قابلة للاختبار. ثم تُشغَّل المفاهيم المجرّدة إلى متغيّراتٍ قابلة للقياس، وتُجمَع البيانات تحت ظروفٍ مضبوطة أو موحَّدة، وتُختبَر الفرضية بتلك البيانات، عادةً بالإحصاء، لرؤية أتصحّ العلاقة المتنبّأ بها. وتعود النتيجة لتؤكّد النظرية أو تنقّحها أو ترفضها، وقد تتكرّر الدورة. وهذا المنطق يقوم تحت تصاميم النموذج المميّزة. فالتجربة المضبوطة المعشّاة، حيث يُوزَّع المشاركون عشوائيًا على مجموعتَي معالجةٍ وضبط لتُعزى فروق النتيجة للتدخّل، أنقى تعبيرٍ عنه. والمسوح واسعة النطاق بمقاييس مُصادَقة تطبّق المنطق ذاته لقياس المواقف والسلوكيات عبر عيّناتٍ ممثِّلة، وتقنياتٌ كالانحدار ونمذجة المعادلات البنيوية تختبر العلاقات المفترَضة بين متغيّراتٍ كثيرة مقيسة دفعةً واحدة.</p>
+        <p>وعبر هذه التصاميم كلها، تتكرّر هموم معيّنة لأنها تتبع مباشرةً افتراضات النموذج. فالثبات يسأل أالقياس متّسق، بحيث يعطي الإجراء ذاته النتيجة ذاتها ثانيةً. والصدق يسأل أتقيس الدراسة ما تدّعيه وأاستدلالاتها السببية سليمة، فارِزًا الآثار الحقيقية عن المصنوعات. والقابلية للتعميم تسأل أيمكن مدّ نتائج عيّنةٍ للمجتمع الأوسع، ولهذا ينال منهج المعاينة وحجمها كل هذا الاهتمام. وليست هذه تفاصيل تقنية اعتباطية؛ كلٌّ صمّامٌ للوعد الوضعي بمعرفةٍ موضوعية قابلة للتكرار والتعميم.</p>
+        <div class="note"><strong>ملاحظة:</strong> الدورة الفرضية-الاستنباطية هي ما يوحّد عدّة الوضعية. فالتجربة والمسح والانحدار تبدو مختلفة سطحيًا، لكنها كلها طرقٌ لوضع تنبّؤٍ مشتقٍّ من نظريةٍ في خطرٍ حقيقي من البيانات.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="strengths">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Strengths and Criticisms</h2>
+        <p class="lead">A fair account of positivism must weigh both what it does exceptionally well and where its critics have landed real blows, because the paradigm is neither the whole of science nor a mistake to be dismissed.</p>
+        <p>Its strengths are substantial. Precision and operational definition make studies replicable, so that others can repeat them and check the results. Large random samples support genuine generalization from a sample to a population. Independent studies can be combined and compared, even meta-analyzed, because they share standardized measures. And statistical testing makes assumptions and uncertainties explicit rather than hidden. Where a phenomenon really can be measured and really does behave with some regularity, positivism delivers knowledge of a rigour and cumulative power that no other paradigm can match, which is why it remains dominant in fields from medicine to economics.</p>
+        <div class="stats">
+          <div class="stat"><span class="num">1</span><span class="lbl"><span data-lang="en">objective reality assumed</span><span data-lang="ar">واقعٌ موضوعي مفترَض</span></span></div>
+          <div class="stat"><span class="num">&#8721;</span><span class="lbl"><span data-lang="en">results accumulate and combine</span><span data-lang="ar">النتائج تتراكم وتُجمَع</span></span></div>
+          <div class="stat"><span class="num">n</span><span class="lbl"><span data-lang="en">large samples enable generalization</span><span data-lang="ar">العيّنات الكبيرة تتيح التعميم</span></span></div>
+        </div>
+        <p>Its weaknesses are equally real and are what motivated the rival paradigms. Critics argue that positivism risks measuring only what is easily measurable while ignoring what matters most, and that stripping human phenomena of their context can produce findings that are technically correct but humanly thin. The claim to be value-free is itself challenged, since the very choice of what to study and how to measure it carries assumptions. And positivism is widely seen as poorly suited to studying meaning, identity, culture, and unique historical events, because these are not obviously the kind of thing that behaves according to general laws. These criticisms did not destroy positivism, but they did puncture its claim to be the only legitimate way to do research, and they opened the space that post-positivism, interpretivism, critical realism, and pragmatism moved into.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> positivism offers rigour, replicability, and generalization where reality can be measured and behaves lawfully. Its limit is the human world of meaning and context, where measuring what is easy can crowd out understanding what matters. Choose it when your question is about measurable regularities, and state its assumptions openly when you do.</div>
+        <div class="refs"><ul>
+          <li>Park, Konge &amp; Artino (2020), <a href="https://pubmed.ncbi.nlm.nih.gov/31789841/" target="_blank" rel="noopener">The Positivism Paradigm of Research</a>.</li>
+          <li>Stanford Encyclopedia of Philosophy, <a href="https://plato.stanford.edu/entries/comte/" target="_blank" rel="noopener">Auguste Comte</a>.</li>
+          <li>Stanford Encyclopedia of Philosophy, <a href="https://plato.stanford.edu/entries/vienna-circle/" target="_blank" rel="noopener">The Vienna Circle</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>القوّة والنقود</h2>
+        <p class="lead">حساب منصف للوضعية يجب أن يزن ما تُتقِنه استثنائيًا وأين أصابها نقّادها بضربات حقيقية، لأن النموذج ليس كلّ العلم ولا خطأً يُنبَذ.</p>
+        <p>قوّتها كبيرة. فالدقّة والتعريف الإجرائي يجعلان الدراسات قابلة للتكرار، فيستطيع غيرك إعادتها وفحص النتائج. والعيّنات العشوائية الكبيرة تدعم تعميمًا حقيقيًا من عيّنة لمجتمع. والدراسات المستقلّة يمكن جمعها ومقارنتها، بل تحليلها بريديًا، لأنها تتشارك مقاييس موحَّدة. والاختبار الإحصائي يجعل الافتراضات والشكوك صريحةً لا خفية. وحيث يمكن قياس ظاهرة فعلًا وتسلك بانتظام ما، تقدّم الوضعية معرفةً بصرامة وقوّة تراكمية لا يضاهيها نموذج آخر، ولهذا تبقى مهيمنة في حقول من الطبّ إلى الاقتصاد.</p>
+        <div class="stats">
+          <div class="stat"><span class="num">1</span><span class="lbl"><span data-lang="en">objective reality assumed</span><span data-lang="ar">واقع موضوعي مفترَض</span></span></div>
+          <div class="stat"><span class="num">&#8721;</span><span class="lbl"><span data-lang="en">results accumulate and combine</span><span data-lang="ar">النتائج تتراكم وتُجمَع</span></span></div>
+          <div class="stat"><span class="num">n</span><span class="lbl"><span data-lang="en">large samples enable generalization</span><span data-lang="ar">العيّنات الكبيرة تتيح التعميم</span></span></div>
+        </div>
+        <p>وضعفها حقيقيّ بالمثل وهو ما حرّك النماذج المنافسة. يجادل النقّاد بأن الوضعية تخاطر بقياس ما يسهل قياسه فقط بينما تغفل ما يهمّ أكثر, وأن تجريد الظواهر الإنسانية من سياقها قد يُنتِج نتائج صحيحة تقنيًا لكنها إنسانيًا رقيقة. وادّعاء التحرّر من القيم نفسه مُتحدًّى، إذ اختيار ما يُدرَس وكيف يُقاس يحمل افتراضات. وتُرى الوضعية على نطاق واسع غير ملائمة لدراسة المعنى والهوية والثقافة والأحداث التاريخية الفريدة، لأنها ليست بوضوح من النوع الذي يسلك وفق قوانين عامة. ولم تدمّر هذه النقود الوضعية، لكنها ثقبت ادّعاءها أنها الطريقة المشروعة الوحيدة للبحث، وفتحت المساحة التي دخلتها ما بعد الوضعية والتفسيرية والواقعية النقدية والبراغماتية.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الوضعية تقدّم الصرامة والقابلية للتكرار والتعميم حيث يمكن قياس الواقع ويسلك وفق قوانين. وحدّها العالم الإنساني للمعنى والسياق، حيث قد يزاحم قياس السهل فهم المهمّ. اخترها حين يكون سؤالك عن انتظامات قابلة للقياس، واذكر افتراضاتها علنًا حين تفعل.</div>
+        <div class="refs"><ul>
+          <li>بارك وكونجه وأرتينو (2020)، <a href="https://pubmed.ncbi.nlm.nih.gov/31789841/" target="_blank" rel="noopener">نموذج الوضعية في البحث</a>.</li>
+          <li>موسوعة ستانفورد للفلسفة، <a href="https://plato.stanford.edu/entries/comte/" target="_blank" rel="noopener">أوغست كونت</a>.</li>
+          <li>موسوعة ستانفورد للفلسفة، <a href="https://plato.stanford.edu/entries/vienna-circle/" target="_blank" rel="noopener">حلقة فيينا</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="paradigm-interpretivism.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Interpretivism</span><span data-lang="ar">التفسيرية</span></a><a href="paradigm-post-positivism.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Post-Positivism</span><span data-lang="ar">ما بعد الوضعية</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="الوضعية";
+var TITLE_EN="Positivism";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

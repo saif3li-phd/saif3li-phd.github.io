@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Symbolic Interactionism</title>
+<meta name="description" content="Symbolic interactionism in depth: Blumer's three premises, the social self and role-taking, definition of the situation, labelling, methods, and limits.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Interpretivist approaches</span><span data-lang="ar">المقاربات التفسيرية</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">INTERPRETIVIST APPROACHES · PhD</span><span data-lang="ar">المقاربات التفسيرية · دكتوراه</span></div>
+    <h1><span data-lang="en">Symbolic Interactionism</span><span data-lang="ar">التفاعلية الرمزية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Interpretivist approaches</span><span data-lang="ar">المقاربات التفسيرية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">10 min</span><span data-lang="ar">١٠ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="premises"><span data-lang="en">Three Premises</span><span data-lang="ar">المقدّمات الثلاث</span></a></li><li><a data-id="self"><span data-lang="en">Self & Situation</span><span data-lang="ar">الذات والموقف</span></a></li><li><a data-id="goffman"><span data-lang="en">Goffman</span><span data-lang="ar">غوفمان</span></a></li><li><a data-id="example"><span data-lang="en">Worked Example</span><span data-lang="ar">مثال مشتغَل</span></a></li><li><a data-id="research"><span data-lang="en">Research & Limits</span><span data-lang="ar">البحث والحدود</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Approach:</span> Symbolic interactionism</div>
+          <div><span>Sits within:</span> The interpretivist paradigm</div>
+          <div><span>Core question:</span> How do meanings arise, work, and change in everyday interaction?</div>
+          <div><span>Level:</span> Doctoral research methodology</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Symbolic interactionism is the interpretivist approach that locates the making of meaning in the small everyday exchanges between people. Where social constructionism examines how whole institutions harden into taken-for-granted reality, interactionism works at closer range, studying how people interpret each other's words, gestures, and actions moment by moment, and how, out of these countless small interpretations, the shared meanings that organize social life continuously arise, hold, and shift.</p>
+        <p>The tradition grew from the work of George Herbert Mead, whose students, above all Herbert Blumer, systematized it and gave it its name. Blumer condensed the approach into three famous premises. First, people act toward things, objects, other people, situations, ideas, on the basis of the meanings those things have for them, not on the basis of the things in themselves. Second, those meanings are not intrinsic but arise out of social interaction: we learn what things mean from and with others. Third, meanings are handled and modified through an interpretive process: people do not apply meanings mechanically, but actively interpret and adjust them in each situation. Together the premises overturn any picture of human conduct as automatic response to stimuli or blind enactment of norms.</p>
+        <p>For a doctoral researcher, symbolic interactionism is the natural lens for questions about how meanings, roles, and identities are negotiated in real settings: how a team comes to define a situation as a crisis, how newcomers learn what professionalism means here, how a label attached to a person shapes how others treat them and how they see themselves. It directs attention to observable interaction as the place where the social order is actually produced, which makes it a strongly empirical, fieldwork-oriented tradition.</p>
+        <p>This framework sets out the three premises in depth, the interactionist account of the self and role-taking, the key ideas of definition of the situation and labelling, its research methods, and its strengths and limits. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> The core insight is that people respond to meanings, not to things. To explain what people do, find out what the situation means to them, and to explain the meaning, look at the interactions in which it was made.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المقاربة:</span> التفاعلية الرمزية</div>
+          <div><span>تندرج ضمن:</span> النموذج التفسيري</div>
+          <div><span>السؤال الجوهري:</span> كيف تنشأ المعاني وتعمل وتتغيّر في التفاعل اليومي؟</div>
+          <div><span>المستوى:</span> منهجية بحث لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">التفاعلية الرمزية هي المقاربة التفسيرية التي تضع صنع المعنى في التبادلات اليومية الصغيرة بين الناس. فحيث تفحص البنائية الاجتماعية كيف تتصلّب مؤسّسات كاملة إلى واقع مسلَّم به، تعمل التفاعلية عن مدًى أقرب، دارسةً كيف يؤوّل الناس كلمات بعضهم وإيماءاتهم وأفعالهم لحظةً بلحظة، وكيف، من هذه التأويلات الصغيرة التي لا تُحصى، تنشأ المعاني المشتركة المنظِّمة للحياة الاجتماعية وتثبت وتتحوّل باستمرار.</p>
+        <p>نما التقليد من عمل جورج هربرت ميد، الذي نظّمه تلاميذه، وقبلهم هربرت بلومر، وأعطوه اسمه. كثّف بلومر المقاربة في ثلاث مقدّمات شهيرة. أولًا، يتصرّف الناس نحو الأشياء، الموضوعات والأشخاص والمواقف والأفكار، بناءً على المعاني التي تحملها تلك الأشياء لهم، لا بناءً على الأشياء في ذاتها. وثانيًا، تلك المعاني ليست جوهرية بل تنشأ من التفاعل الاجتماعي: نتعلّم ما تعنيه الأشياء من الآخرين ومعهم. وثالثًا، تُعالَج المعاني وتُعدَّل عبر عملية تأويلية: لا يطبّق الناس المعاني آليًا، بل يؤوّلونها ويكيّفونها بفاعلية في كل موقف. ومعًا تقلب المقدّمات أي صورة للسلوك الإنساني استجابةً تلقائية لمثيرات أو تنفيذًا أعمى لمعايير.</p>
+        <p>وبالنسبة لباحث الدكتوراه، التفاعلية الرمزية العدسة الطبيعية لأسئلة كيف تُتفاوَض المعاني والأدوار والهويات في بيئات حقيقية: كيف يصل فريق لتعريف موقف أزمةً، وكيف يتعلّم الوافدون ما تعنيه المهنية هنا، وكيف يشكّل وسم يُلصَق بشخص كيف يعامله الآخرون وكيف يرى نفسه. توجّه الانتباه للتفاعل الملحوظ بوصفه المكان الذي يُنتَج فيه النظام الاجتماعي فعلًا، ما يجعلها تقليدًا تجريبيًا قويًا موجَّهًا للعمل الميداني.</p>
+        <p>يعرض هذا الإطار المقدّمات الثلاث بعمق، وحساب التفاعلية للذات وأخذ الدور، وفكرتَي تعريف الموقف والوسم، ومناهجها البحثية، وقوّتها وحدودها. وقد أعددت هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> البصيرة الجوهرية أن الناس يستجيبون للمعاني لا للأشياء. فلتفسير ما يفعله الناس، اعرف ماذا يعني الموقف لهم، ولتفسير المعنى، انظر للتفاعلات التي صُنع فيها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="premises">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Three Premises at Work</h2>
+        <p class="lead">Blumer's three premises reward slow reading, because each one rules out a familiar but mistaken picture of human action, and together they define a distinct programme of research.</p>
+        <p>The first premise, that people act toward things on the basis of their meanings, rules out explaining action by objective features alone. The same object can be a sacred relic to one person and old junk to another; the same reorganization can mean opportunity to one employee and threat to another, and their actions will follow their meanings, not the official description. This is why identical stimuli produce different responses, and why understanding conduct requires recovering the actor's meanings rather than substituting the researcher's. The second premise, that meanings arise from social interaction, rules out treating meaning as private invention or as inherent in objects. Meanings are social products: we learn what a boss, a deadline, or a promotion means through interaction with others who orient to these things, and different groups can therefore sustain different meanings for the same object.</p>
+        <p>The third premise, that meanings are used and revised through interpretation, rules out the picture of people as passive carriers of culture who simply apply what they have internalized. In every concrete situation, a person selects, checks, suspends, and reworks meanings in the light of what is happening; meaning-use is an active, ongoing accomplishment. This is what keeps social life flexible and capable of change: because meanings must be interpreted anew each time, they can drift, be contested, and be transformed. Research in this tradition therefore studies process rather than fixed structures, following how definitions and understandings are produced, sustained, and altered in the flow of interaction.</p>
+        <div class="note"><strong>Note:</strong> Each premise blocks a shortcut. Not objective features but meanings; not private or intrinsic meanings but social ones; not mechanical application but ongoing interpretation. The action is always in the interpretive process.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>المقدّمات الثلاث عاملةً</h2>
+        <p class="lead">تكافئ مقدّمات بلومر الثلاث القراءة المتأنّية، لأن كلًّا منها تستبعد صورةً مألوفة لكن خاطئة للفعل الإنساني، ومعًا تعرّف برنامج بحث متمايزًا.</p>
+        <p>المقدّمة الأولى، أن الناس يتصرّفون نحو الأشياء بناءً على معانيها، تستبعد تفسير الفعل بالسمات الموضوعية وحدها. فالشيء ذاته قد يكون أثرًا مقدّسًا لشخص وخردةً قديمة لآخر؛ وإعادة الهيكلة ذاتها قد تعني فرصةً لموظف وتهديدًا لآخر، وستتبع أفعالهما معانيهما لا الوصف الرسمي. لهذا تُنتِج المثيرات المتطابقة استجابات مختلفة، ولهذا يتطلّب فهم السلوك استعادة معاني الفاعل لا إحلال معاني الباحث. والمقدّمة الثانية، أن المعاني تنشأ من التفاعل الاجتماعي، تستبعد معاملة المعنى اختراعًا خاصًا أو كامنًا في الأشياء. فالمعاني منتجات اجتماعية: نتعلّم ما يعنيه رئيس أو موعد نهائي أو ترقية عبر التفاعل مع آخرين يتوجّهون نحو هذه الأشياء، ولذا تستطيع جماعات مختلفة إدامة معانٍ مختلفة للشيء ذاته.</p>
+        <p>والمقدّمة الثالثة، أن المعاني تُستخدَم وتُراجَع عبر التأويل، تستبعد صورة الناس حاملين سلبيين للثقافة يطبّقون ببساطة ما استدخلوه. ففي كل موقف ملموس، ينتقي الشخص المعاني ويفحصها ويعلّقها ويعيد صياغتها في ضوء ما يحدث؛ فاستخدام المعنى إنجاز فاعل جار. وهذا ما يُبقي الحياة الاجتماعية مرنةً قادرة على التغيّر: فلأن المعاني يجب أن تُؤوَّل من جديد كل مرة، تستطيع الانجراف والتنازع والتحوّل. لذا يدرس البحث في هذا التقليد العملية لا البُنى الثابتة، متتبّعًا كيف تُنتَج التعريفات والفهوم وتُدام وتُغيَّر في تدفّق التفاعل.</p>
+        <div class="note"><strong>ملاحظة:</strong> كل مقدّمة تسدّ اختصارًا. لا السمات الموضوعية بل المعاني؛ لا معاني خاصة أو جوهرية بل اجتماعية؛ لا تطبيقًا آليًا بل تأويلًا جاريًا. الفعل دومًا في العملية التأويلية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="self">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Self, Role-Taking, and the Situation</h2>
+        <p class="lead">Interactionism's deepest contribution may be its account of the self: the human self is not a fixed inner essence but a social process, formed and re-formed in interaction. Several linked concepts unpack this.</p>
+        <p>Mead argued that the self arises through role-taking: the distinctively human capacity to take the perspective of others and see oneself from the outside, as an object. A child learns to view their own behaviour as their parents view it, then as their playmates do, and eventually from the standpoint of the generalized other, the internalized perspective of the community at large. Through this process a person becomes able to talk to themselves, judge themselves, and steer their own conduct, which is what we mean by having a self. Because the self is built from the perspectives of others, it is inherently social, and because interaction continues throughout life, the self remains in motion, sustained and revised in every encounter. Later interactionists such as Erving Goffman extended this into the study of self-presentation, showing how people actively manage the impressions others form of them, staging their conduct differently for different audiences.</p>
+        <p>A second key concept is the definition of the situation, crystallized in the Thomas theorem: if people define situations as real, they are real in their consequences. Before acting, people settle, often tacitly and together, what kind of situation this is, a joke or an insult, a routine check or an emergency, and their subsequent action follows the definition rather than any objective essence of the events. This is also the root of labelling theory: when a label such as troublemaker, high-potential, or patient is attached to a person in interaction, others begin responding to the label, and the person, seeing themselves through those responses, may come to enact it, making the label progressively true. Definitions and labels are thus not descriptions of social reality but forces within it.</p>
+        <div class="note"><strong>Note:</strong> The Thomas theorem is the interactionist hinge: situations defined as real are real in their consequences. Whoever controls the definition of the situation controls, to a surprising degree, what happens next.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الذات وأخذ الدور والموقف</h2>
+        <p class="lead">قد يكون أعمق إسهامات التفاعلية حسابها للذات: فالذات الإنسانية ليست جوهرًا داخليًا ثابتًا بل عملية اجتماعية، تتشكّل وتُعاد صياغتها في التفاعل. وعدّة مفاهيم مترابطة تفكّك هذا.</p>
+        <p>جادل ميد بأن الذات تنشأ عبر أخذ الدور: القدرة الإنسانية المميّزة على اتخاذ منظور الآخرين ورؤية المرء نفسه من الخارج، موضوعًا. يتعلّم الطفل رؤية سلوكه كما يراه والداه، ثم كما يراه رفاق لعبه، وأخيرًا من موقف «الآخر المعمَّم»، المنظور المستدخَل للمجتمع عامةً. وعبر هذه العملية يصير الشخص قادرًا على محادثة نفسه والحكم عليها وتوجيه سلوكه، وهذا ما نعنيه بامتلاك ذات. ولأن الذات تُبنى من منظورات الآخرين، فهي اجتماعية جوهريًا، ولأن التفاعل يستمرّ مدى الحياة، تبقى الذات في حركة، تُدام وتُراجَع في كل لقاء. ومدّ تفاعليون لاحقون كإرفنغ غوفمان هذا إلى دراسة تقديم الذات، مُظهِرين كيف يدير الناس بفاعلية الانطباعات التي يكوّنها الآخرون عنهم، مُخرِجين سلوكهم مختلفًا لجماهير مختلفة.</p>
+        <p>ومفهوم مفتاح ثانٍ تعريف الموقف، المتبلور في مبرهنة توماس: إذا عرّف الناس المواقف حقيقيةً، كانت حقيقيةً في نتائجها. فقبل الفعل، يحسم الناس، ضمنيًا ومعًا غالبًا، أي نوع موقف هذا، مزحة أم إهانة، فحص روتيني أم طارئ، ويتبع فعلهم اللاحق التعريف لا أي جوهر موضوعي للأحداث. وهذا أيضًا جذر نظرية الوسم: فحين يُلصَق وسم كمثير المشاكل أو عالي الإمكانات أو المريض بشخص في التفاعل، يبدأ الآخرون بالاستجابة للوسم، وقد يصل الشخص، رائيًا نفسه عبر تلك الاستجابات، إلى تمثيله، جاعلًا الوسم صحيحًا تدريجيًا. فالتعريفات والوسوم إذًا ليست أوصافًا للواقع الاجتماعي بل قوًى داخله.</p>
+        <div class="note"><strong>ملاحظة:</strong> مبرهنة توماس مفصل التفاعلية: المواقف المعرَّفة حقيقيةً حقيقية في نتائجها. ومن يتحكّم بتعريف الموقف يتحكّم، لدرجة مدهشة، بما يحدث تاليًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="goffman">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Goffman: Life as Theatre</h2>
+        <p class="lead">The interactionist tradition reached its most vivid form in Erving Goffman's dramaturgical sociology, which analyzes everyday life with the vocabulary of the theatre. His concepts have become standard equipment for studying how people manage meaning in real settings, and they deserve careful unpacking.</p>
+        <p>Goffman's starting point is that whenever a person appears before others, they are, whether they intend it or not, giving a performance: presenting a version of themselves and of the situation that they want accepted. Impression management is the continuous, mostly skilful work of controlling this presentation, choosing words, dress, posture, timing, and props to sustain the intended definition of the situation. The performance is rarely solo: teams, colleagues receiving a client, a family hosting guests, a leadership group presenting a strategy, cooperate to sustain a shared front, covering each other's slips and keeping disruptive information out of sight.</p>
+        <p>Two spatial concepts organize the analysis. The front stage is wherever the performance is on: the meeting room, the service counter, the classroom, where conduct is fitted to the audience's expectations. The back stage is where the performance is suspended: the kitchen behind the restaurant, the corridor after the meeting, where team members relax, rehearse, joke about the audience, and prepare the next appearance. The line between the two is actively guarded, because a collapse of segregation, the customer walking into the kitchen, the microphone left on, exposes the performance as a performance. Finally, face-work names the cooperative repair that keeps interaction viable: when someone stumbles, the parties usually collaborate to smooth it over, using tact, excuses, and studied inattention, because everyone shares an interest in the encounter not breaking down. Goffman's deeper point is not that people are cynical actors, but that social reality is a continuous, fragile, joint accomplishment that takes constant work from everyone present.</p>
+        <div class="note"><strong>Note:</strong> Dramaturgy is an analytical lens, not an accusation of insincerity. Even the most honest person performs, because appearing before others at all requires sustaining a definition of the situation, and that sustaining is observable, researchable work.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>غوفمان: الحياة مسرحًا</h2>
+        <p class="lead">بلغ التقليد التفاعلي أكثر صوره حيويةً في سوسيولوجيا إرفنغ غوفمان المسرحية، التي تحلّل الحياة اليومية بمفردات المسرح. وصارت مفاهيمه عتادًا معياريًا لدراسة كيف يدير الناس المعنى في البيئات الحقيقية، وتستحقّ تفكيكًا متأنّيًا.</p>
+        <p>نقطة انطلاق غوفمان أن الشخص كلما ظهر أمام آخرين، فهو، قصد أم لم يقصد، يقدّم عرضًا: نسخةً من نفسه ومن الموقف يريد قبولها. وإدارة الانطباع العمل المستمرّ، الماهر غالبًا، للتحكّم بهذا التقديم، باختيار الكلمات واللباس والوقفة والتوقيت والأدوات لإدامة تعريف الموقف المقصود. ونادرًا ما يكون العرض فرديًا: فالفرق، زملاء يستقبلون عميلًا، وأسرة تستضيف ضيوفًا، وقيادة تعرض استراتيجية، تتعاون لإدامة واجهة مشتركة، مغطّيةً زلّات بعضها ومُبقيةً المعلومات المعطِّلة بعيدًا عن الأنظار.</p>
+        <p>ومفهومان مكانيان ينظّمان التحليل. المسرح الأمامي حيثما كان العرض جاريًا: قاعة الاجتماع، ومنضدة الخدمة، والفصل، حيث يُفصَّل السلوك على توقّعات الجمهور. والمسرح الخلفي حيث يُعلَّق العرض: المطبخ خلف المطعم، والممرّ بعد الاجتماع، حيث يسترخي أعضاء الفريق ويتمرّنون ويمزحون عن الجمهور ويعدّون الظهور التالي. والخطّ بين الاثنين يُحرَس بفاعلية، لأن انهيار الفصل، دخول الزبون المطبخ، أو الميكروفون المتروك مفتوحًا، يكشف العرض بوصفه عرضًا. وأخيرًا، عمل الوجه يسمّي الإصلاح التعاوني الذي يُبقي التفاعل قابلًا للحياة: فحين يتعثّر أحد، يتعاون الأطراف عادةً لتنعيم الأمر، باللباقة والأعذار وعدم الانتباه المدروس، لأن الجميع يتشاركون مصلحةً في ألّا ينهار اللقاء. ومقصد غوفمان الأعمق ليس أن الناس ممثّلون ساخرون، بل أن الواقع الاجتماعي إنجاز مشترك مستمرّ ضعيف يتطلّب عملًا دائمًا من كل الحاضرين.</p>
+        <div class="note"><strong>ملاحظة:</strong> المسرحية عدسة تحليلية لا اتهام بعدم الصدق. فحتى أصدق الناس يؤدّي، لأن الظهور أمام الآخرين أصلًا يتطلّب إدامة تعريف للموقف، وتلك الإدامة عمل ملحوظ قابل للبحث.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="example">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>A Worked Example: Becoming a Professional</h2>
+        <p class="lead">To see the whole interactionist toolkit at work, follow one process that every organization contains: how a newcomer becomes a professional. Each concept from the previous sections reappears here as an observable moment in a real trajectory.</p>
+        <p>A new employee arrives with only a vague meaning for what professionalism means in this place. The premises predict what happens next: they will act on the meanings they currently hold (first premise), those meanings will be reworked through interaction with colleagues (second premise), and the reworking will be an active, situation-by-situation interpretation, not passive absorption (third premise). Watch the process concretely. In meetings, the newcomer observes which behaviours draw respect and which draw silence; through role-taking they begin to see their own conduct through colleagues' eyes, adjusting tone, dress, and initiative accordingly. Senior colleagues' offhand remarks, who is described as solid, who as difficult, teach the local categories of personhood. The newcomer starts performing the professional self front stage, in client calls and reviews, while testing doubts and rehearsing back stage, over coffee with trusted peers, exactly as Goffman describes.</p>
+        <p>Definitions of situations do decisive work throughout. Is a mistake here defined as a learning opportunity or as evidence of unfitness? The prevailing definition, not the mistake itself, determines what follows, confirming the Thomas theorem. And labels, once applied, begin their careers: the newcomer tagged promising is given stretch assignments, grows visibly, and confirms the label, while one tagged struggling is monitored, tightens up, performs worse, and confirms that label too, a live demonstration of labelling dynamics. Within a year, the newcomer does not merely follow the local meanings; they carry them, teach them to the next arrival, and experience them as simply what professionalism is. An interactionist study of this setting would document these episodes, interviews plus observation, and its finding would be a processual account of how the professional self is jointly manufactured, which no survey of professionalism attitudes could reach.</p>
+        <div class="note"><strong>Note:</strong> Notice that both labels in the example became true after being applied. That is the interactionist signature: prediction that fulfils itself through the responses it triggers, meaning made real by interaction, observable step by observable step.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>مثال مشتغَل: صيرورة المهني</h2>
+        <p class="lead">لرؤية عدّة التفاعلية كاملةً وهي تعمل، تتبّع عمليةً تحويها كل منظمة: كيف يصير الوافد الجديد مهنيًا. فكل مفهوم من الأقسام السابقة يعاود الظهور هنا لحظةً ملحوظة في مسار حقيقي.</p>
+        <p>يصل موظف جديد بمعنًى غامض فقط لما تعنيه المهنية في هذا المكان. وتتنبّأ المقدّمات بما يحدث تاليًا: سيتصرّف بالمعاني التي يحملها حاليًا (المقدّمة الأولى)، وستُعاد صياغة تلك المعاني عبر التفاعل مع الزملاء (الثانية)، وستكون إعادة الصياغة تأويلًا فاعلًا موقفًا بموقف، لا امتصاصًا سلبيًا (الثالثة). راقب العملية ملموسةً. في الاجتماعات، يلاحظ الوافد أي السلوكيات تجذب الاحترام وأيّها تجذب الصمت؛ وعبر أخذ الدور يبدأ برؤية سلوكه بعيون الزملاء، معدّلًا النبرة واللباس والمبادرة تبعًا. وملاحظات كبار الزملاء العابرة، من يُوصَف «صلبًا» ومن «صعبًا»، تعلّم فئات الشخصية المحلية. ويبدأ الوافد بأداء الذات المهنية على المسرح الأمامي، في مكالمات العملاء والمراجعات، بينما يختبر شكوكه ويتمرّن على المسرح الخلفي، على قهوة مع أقران موثوقين، تمامًا كما يصف غوفمان.</p>
+        <p>وتعريفات المواقف تؤدّي عملًا حاسمًا طوال الوقت. أالخطأ هنا معرَّف فرصة تعلّم أم دليل عدم أهلية؟ فالتعريف السائد، لا الخطأ نفسه، يحدّد ما يلي، مؤكّدًا مبرهنة توماس. والوسوم، متى طُبّقت، تبدأ مسيراتها: فالوافد الموسوم «واعدًا» يُعطى مهامّ تمديد، فينمو ظاهرًا، فيؤكّد الوسم، بينما الموسوم «متعثّرًا» يُراقَب، فيتشنّج، فيؤدّي أسوأ، فيؤكّد وسمه أيضًا، عرضًا حيًّا لديناميات الوسم. وخلال سنة، لا يتبع الوافد المعاني المحلية فحسب؛ بل يحملها، ويعلّمها للوافد التالي، ويختبرها ببساطة «ما هي المهنية». ودراسة تفاعلية لهذه البيئة ستوثّق هذه الحلقات، مقابلات مع ملاحظة، وستكون نتيجتها حسابًا عمليًاتيًا لكيف تُصنَع الذات المهنية جماعيًا، وهو ما لا يبلغه أي مسح لاتجاهات المهنية.</p>
+        <div class="note"><strong>ملاحظة:</strong> لاحظ أن الوسمَين في المثال صارا صحيحَين بعد تطبيقهما. تلك بصمة التفاعلية: تنبّؤ يحقّق نفسه عبر الاستجابات التي يثيرها، معنًى يصير حقيقيًا بالتفاعل، خطوةً ملحوظة بخطوة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="research">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Methods, Strengths, and Limits</h2>
+        <p class="lead">Because interactionism holds that meaning lives in interaction, its methods go where interaction is: into the field, close to real conduct in real settings. Its methodological identity follows directly from its premises.</p>
+        <p>The tradition's signature methods are participant observation and ethnography, in which the researcher spends extended time inside a setting, watching and joining everyday activity, precisely because definitions, roles, and meanings are produced there and cannot be reconstructed from questionnaires alone. Interviewing complements observation by recovering members' meanings in their own words, and interactionist studies characteristically attend to concrete episodes, how an encounter unfolded, how a definition of the situation was proposed and accepted, how a label was applied and taken up. Blumer insisted that concepts in this tradition should remain sensitizing rather than definitive: they suggest where to look, at meanings, definitions, role-taking, careers of labels, without dictating in advance what will be found, keeping theory answerable to the empirical world. Grounded theory, developed by Glaser and Strauss, grew from this soil and shares its commitment to building theory from close engagement with data.</p>
+        <p>The approach's strengths are its empirical closeness and its power to explain change and variation: it shows the social order being made, not just described, and it accounts naturally for how the same structure is enacted differently in different settings. Its classic limitation is the mirror image: by focusing on face-to-face process, it can underplay large-scale structures, power, and material constraints that shape interaction from outside any particular encounter, a criticism interactionists answer by tracing how structures themselves are sustained in chains of interaction, though the debate continues. It also shares the general interpretivist limits of small samples and non-statistical generalization. For a doctoral researcher, interactionism is the right choice when the question concerns how meanings, identities, or definitions are actually negotiated, and its findings are judged by fidelity to the interaction observed and the insight they yield into the processes that produce social life.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> symbolic interactionism studies the making of meaning in everyday interaction: people act on meanings, meanings arise socially, and interpretation keeps them in motion. Go where the interaction is, watch definitions and labels do their work, and you will see the social order being built in real time.</div>
+        <div class="refs"><ul>
+          <li>Stanford Encyclopedia of Philosophy, <a href="https://plato.stanford.edu/entries/mead/" target="_blank" rel="noopener">George Herbert Mead</a>.</li>
+          <li>Encyclopaedia Britannica, <a href="https://www.britannica.com/topic/symbolic-interactionism" target="_blank" rel="noopener">Symbolic Interactionism</a>.</li>
+          <li>University of California Press, <a href="https://www.ucpress.edu/book/9780520056763/symbolic-interactionism" target="_blank" rel="noopener">Blumer, Symbolic Interactionism: Perspective and Method</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>المناهج والقوّة والحدود</h2>
+        <p class="lead">لأن التفاعلية ترى أن المعنى يعيش في التفاعل، تذهب مناهجها حيث التفاعل: إلى الميدان، قرب السلوك الحقيقي في البيئات الحقيقية. فهويتها المنهجية تتبع مقدّماتها مباشرةً.</p>
+        <p>مناهج التقليد المميّزة الملاحظة بالمشاركة والإثنوغرافيا، حيث يقضي الباحث وقتًا ممتدًا داخل بيئة، مراقبًا ومشاركًا النشاط اليومي، بالضبط لأن التعريفات والأدوار والمعاني تُنتَج هناك ولا يمكن إعادة بنائها من الاستبيانات وحدها. وتكمّل المقابلة الملاحظة باستعادة معاني الأعضاء بكلماتهم، وتهتمّ الدراسات التفاعلية مميّزًا بالحلقات الملموسة، كيف تكشّف لقاء، وكيف اقتُرح تعريف موقف وقُبل، وكيف طُبّق وسم واُلتُقط. وأصرّ بلومر أن تبقى المفاهيم في هذا التقليد محسِّسةً لا نهائية: تقترح أين ننظر، إلى المعاني والتعريفات وأخذ الدور ومسارات الوسوم، دون إملاء ما سيُوجَد مسبقًا، مُبقيةً النظرية مسؤولةً أمام العالم التجريبي. والنظرية المتجذّرة، التي طوّرها غليزر وشتراوس، نمت من هذه التربة وتشارك التزامها ببناء النظرية من الانخراط الوثيق بالبيانات.</p>
+        <p>وقوّة المقاربة قربها التجريبي وقدرتها على تفسير التغيّر والتباين: تُظهِر النظام الاجتماعي وهو يُصنَع لا يُوصَف فقط، وتفسّر طبيعيًا كيف تُمثَّل البنية ذاتها مختلفًا في بيئات مختلفة. وحدّها الكلاسيكي الصورة المعكوسة: فبتركيزها على العملية وجهًا لوجه، قد تقلّل من البُنى واسعة النطاق والسلطة والقيود المادّية التي تشكّل التفاعل من خارج أي لقاء بعينه، نقد يجيب عنه التفاعليون بتتبّع كيف تُدام البُنى نفسها في سلاسل تفاعل، وإن استمرّ الجدال. وتشارك أيضًا حدود التفسيرية العامة من عيّنات صغيرة وتعميم غير إحصائي. وبالنسبة لباحث الدكتوراه، التفاعلية الخيار الصحيح حين يخصّ السؤال كيف تُتفاوَض المعاني أو الهويات أو التعريفات فعلًا، وتُحكَم نتائجها بالأمانة للتفاعل الملحوظ والبصيرة التي تعطيها في العمليات المنتِجة للحياة الاجتماعية.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> التفاعلية الرمزية تدرس صنع المعنى في التفاعل اليومي: يتصرّف الناس بالمعاني، والمعاني تنشأ اجتماعيًا، والتأويل يُبقيها في حركة. اذهب حيث التفاعل، وراقب التعريفات والوسوم تؤدّي عملها، تر النظام الاجتماعي يُبنى في الزمن الحقيقي.</div>
+        <div class="refs"><ul>
+          <li>موسوعة ستانفورد للفلسفة، <a href="https://plato.stanford.edu/entries/mead/" target="_blank" rel="noopener">جورج هربرت ميد</a>.</li>
+          <li>موسوعة بريتانيكا، <a href="https://www.britannica.com/topic/symbolic-interactionism" target="_blank" rel="noopener">التفاعلية الرمزية</a>.</li>
+          <li>مطبعة جامعة كاليفورنيا، <a href="https://www.ucpress.edu/book/9780520056763/symbolic-interactionism" target="_blank" rel="noopener">بلومر، التفاعلية الرمزية: المنظور والمنهج</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="interp-social-constructionism.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Social Constructionism</span><span data-lang="ar">البنائية الاجتماعية</span></a><a href="critical-feminist-postcolonial-research.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Feminist &amp; Postcolonial Research</span><span data-lang="ar">البحث النسوي وما بعد الكولونيالي</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="التفاعلية الرمزية";
+var TITLE_EN="Symbolic Interactionism";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

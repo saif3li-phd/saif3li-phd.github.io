@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diffusion of Innovations</title>
+<meta name="description" content="Diffusion of innovations in depth: the five perceived attributes, adopter categories and the S-curve, the decision process, networks, and the critiques.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Applied theory</span><span data-lang="ar">النظرية التطبيقية</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">APPLIED THEORY · PhD</span><span data-lang="ar">النظرية التطبيقية · دكتوراه</span></div>
+    <h1><span data-lang="en">Diffusion of Innovations</span><span data-lang="ar">انتشار الابتكارات</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Applied theory</span><span data-lang="ar">النظرية التطبيقية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">9 min</span><span data-lang="ar">٩ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="attributes"><span data-lang="en">Five Attributes</span><span data-lang="ar">الخصائص الخمس</span></a></li><li><a data-id="adopters"><span data-lang="en">Adopters & Curve</span><span data-lang="ar">المتبنّون والمنحنى</span></a></li><li><a data-id="process"><span data-lang="en">Process & Networks</span><span data-lang="ar">العملية والشبكات</span></a></li><li><a data-id="critique"><span data-lang="en">Critiques & Example</span><span data-lang="ar">النقود ومثال</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Theory:</span> Diffusion of innovations</div>
+          <div><span>Key authority:</span> Everett Rogers</div>
+          <div><span>Core question:</span> How, why, and at what rate do new ideas and technologies spread?</div>
+          <div><span>Level:</span> Doctoral applied theory</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Diffusion of innovations is the theory of how something new travels through a social system: not why one individual adopts, which is the acceptance tradition's question, but how adoption spreads from person to person, organization to organization, until it either becomes the norm or dies out. Everett Rogers assembled it from thousands of studies across agriculture, medicine, education, and development, and it remains one of social science's most widely applied frameworks precisely because its object, the spread of the new, recurs in every field.</p>
+        <p>The theory's distinctive move is to treat diffusion as a communication process unfolding over time in a social structure, which gives it four interacting elements: the innovation itself, the communication channels through which knowledge of it travels, time, and the social system with its norms, networks, and opinion leaders. That framing explains phenomena that individual-level models cannot: why technically superior innovations sometimes lose, why adoption accelerates suddenly after a slow start, why the same innovation spreads at wildly different rates in different communities, and why the people who adopt first are often not the people who matter most to whether it spreads.</p>
+        <p>For a doctoral researcher the theory offers a mature vocabulary and a set of testable propositions for any study of change spreading through a population: a digital service across a sector, a clinical guideline across hospitals, an agricultural practice across farms, a management practice across a firm's units. This framework sets out the five perceived attributes that predict adoption rate, the adopter categories and the S-curve, the decision process and the role of networks and opinion leaders, the organizational variant with implementation and its known criticisms, and a worked example. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> The theory's central correction to intuition: diffusion is decided less by the innovation's objective merits than by how potential adopters perceive it, and by who tells them, which is why communication structure often predicts spread better than technical quality does.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>النظرية:</span> انتشار الابتكارات</div>
+          <div><span>المرجع الرئيسي:</span> إيفريت روجرز</div>
+          <div><span>السؤال الجوهري:</span> كيف ولماذا وبأي معدل تنتشر الأفكار والتقنيات الجديدة؟</div>
+          <div><span>المستوى:</span> النظرية التطبيقية لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">انتشار الابتكارات نظرية كيف يسافر الجديد عبر نظام اجتماعي: لا لماذا يتبنّى فرد واحد، فذلك سؤال تقليد القبول، بل كيف ينتشر التبني من شخص إلى شخص، ومن منظمة إلى منظمة، حتى يصير عرفًا أو يخبو. وقد جمعها إيفريت روجرز من آلاف الدراسات عبر الزراعة والطب والتعليم والتنمية، ولا تزال من أوسع أطر العلوم الاجتماعية تطبيقًا لأن موضوعها بالذات، انتشار الجديد، يتكرر في كل حقل.</p>
+        <p>والحركة المميزة للنظرية أنها تعامل الانتشار عمليةَ تواصل تتكشّف عبر الزمن داخل بنية اجتماعية، وهذا يعطيها أربعة عناصر متفاعلة: الابتكار نفسه، وقنوات التواصل التي تسافر عبرها المعرفة به، والزمن، والنظام الاجتماعي بأعرافه وشبكاته وقادة الرأي فيه. وذلك التأطير يفسّر ظواهر تعجز عنها النماذج على مستوى الفرد: لماذا تخسر ابتكارات متفوقة تقنيًا أحيانًا، ولماذا يتسارع التبني فجأة بعد بداية بطيئة، ولماذا ينتشر الابتكار نفسه بمعدلات شديدة الاختلاف في مجتمعات مختلفة، ولماذا لا يكون من يتبنّون أولًا هم غالبًا الأهم في تقرير هل ينتشر.</p>
+        <p>وتقدّم النظرية لباحث الدكتوراه مفردات ناضجة ومجموعة قضايا قابلة للاختبار لأي دراسة عن تغيير ينتشر في مجتمع سكاني: خدمة رقمية عبر قطاع، أو دليل إكلينيكي عبر مستشفيات، أو ممارسة زراعية عبر مزارع، أو ممارسة إدارية عبر وحدات شركة. يعرض هذا الإطار الخصائص المدرَكة الخمس التي تتنبأ بمعدل التبني، وفئات المتبنّين ومنحنى S، وعملية القرار ودور الشبكات وقادة الرأي، والنسخة التنظيمية مع التطبيق ونقودها المعروفة، ومثالًا تطبيقيًا. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> تصحيح النظرية المركزي للحدس: الانتشار تقرره مزايا الابتكار الموضوعية أقل مما يقرره كيف يدركه المتبنّون المحتملون، ومن الذي يخبرهم، ولهذا كثيرًا ما تتنبأ بنية التواصل بالانتشار أفضل من الجودة التقنية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="attributes">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Five Perceived Attributes</h2>
+        <p class="lead">Rogers's most used contribution is the finding that a large share of the variance in adoption rates, across a vast empirical literature, is explained by five perceived attributes of the innovation itself. Perceived is the operative word: what matters is how potential adopters see the innovation, not how its designers describe it.</p>
+        <p>Relative advantage is the degree to which the innovation is seen as better than what it replaces, and it is consistently the strongest predictor. The crucial subtlety is that advantage is measured in the adopter's own currency, which may be economic, but may equally be time saved, status gained, effort avoided, or risk reduced, and an innovation that improves an outcome the organization values while worsening one the individual user values will stall at the desk regardless of the business case. Compatibility is the fit with existing values, past experiences, and present needs: innovations that require adopters to change what they believe, not merely what they do, diffuse slowly, which is why the same technology spreads easily in one professional culture and meets resistance in another. Complexity, the only attribute negatively related to adoption, is perceived difficulty of understanding and use, and it explains why simplification is often a more effective diffusion strategy than added capability.</p>
+        <p>The final two are about risk reduction. Trialability is the degree to which the innovation can be experimented with on a limited basis, because a trial converts an irreversible bet into a reversible one, which is the mechanism behind pilots, freemium tiers, and sandbox environments. Observability is the degree to which results are visible to others, and it powers the peer-to-peer transmission the whole theory rests on: innovations whose benefits are visible, a solar panel on a roof, spread faster than those whose benefits are invisible, a backend system, which is why deliberate visibility, dashboards, showcases, internal case stories, is a real intervention rather than mere publicity. For a doctoral study these five are directly operationalizable as constructs, with validated scales available, and they are frequently the measurement backbone of diffusion research.</p>
+        <div class="note"><strong>Note:</strong> Diagnose a stalled rollout attribute by attribute. Most failures localize to one: advantage that is real for the organization but not for the user, compatibility with values rather than systems, or invisible benefits with no observability.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الخصائص المدرَكة الخمس</h2>
+        <p class="lead">أكثر إسهامات روجرز استخدامًا هو النتيجة القائلة إن حصة كبيرة من التباين في معدلات التبني، عبر أدبيات تجريبية هائلة، تفسّرها خمس خصائص مدرَكة للابتكار نفسه. و«مدرَكة» هي الكلمة الفاعلة: فالمهم كيف يرى المتبنّون المحتملون الابتكار، لا كيف يصفه مصمّموه.</p>
+        <p>الميزة النسبية هي درجة رؤية الابتكار أفضل مما يحلّ محله، وهي باستمرار أقوى متنبئ. والدقة الحاسمة أن الميزة تُقاس بعملة المتبنّي نفسه، وقد تكون اقتصادية، لكنها قد تكون بالقدر نفسه وقتًا موفَّرًا أو مكانةً مكتسبة أو جهدًا متفاديًا أو خطرًا مخفَّضًا، وابتكارٌ يحسّن نتيجة تقدّرها المنظمة بينما يسوّئ نتيجة يقدّرها المستخدم الفرد سيتعثر عند المكتب مهما كانت الجدوى المؤسسية. والتوافق هو الملاءمة مع القيم القائمة والخبرات السابقة والحاجات الحاضرة: فالابتكارات التي تطلب من المتبنّين تغيير ما يعتقدونه، لا ما يفعلونه فحسب، تنتشر ببطء، ولهذا تنتشر التقنية نفسها بسهولة في ثقافة مهنية وتلقى مقاومة في أخرى. والتعقيد، وهو الخاصية الوحيدة المرتبطة سلبًا بالتبني، هو صعوبة الفهم والاستخدام المدرَكة، وهو يفسّر لماذا يكون التبسيط كثيرًا استراتيجية انتشار أنجع من إضافة القدرات.</p>
+        <p>والأخيرتان عن تقليل المخاطرة. القابلية للتجريب هي درجة إمكان تجريب الابتكار على نطاق محدود، لأن التجربة تحوّل رهانًا لا رجعة فيه إلى رهان قابل للرجوع، وهي الآلية خلف المشاريع التجريبية والطبقات المجانية والبيئات الرملية. وقابلية الملاحظة هي درجة ظهور النتائج للآخرين، وهي تشغّل النقل من قرين إلى قرين الذي تقوم عليه النظرية كلها: فالابتكارات المرئية المنافع، كلوح شمسي على سطح، تنتشر أسرع من التي منافعها غير مرئية، كنظام خلفي، ولهذا يكون الإظهار المتعمد، لوحات المؤشرات والعروض وقصص الحالات الداخلية، تدخلًا حقيقيًا لا مجرد دعاية. ولدراسة الدكتوراه، هذه الخمس قابلة للتشغيل مباشرةً بوصفها بناءات، مع توفر مقاييس متحقق منها، وهي كثيرًا ما تكون العمود الفقري القياسي لبحوث الانتشار.</p>
+        <div class="note"><strong>ملاحظة:</strong> شخّص أي تعميم متعثر خاصيةً خاصية. فمعظم الإخفاقات تتموضع في واحدة: ميزة حقيقية للمنظمة لا للمستخدم، أو توافق مع القيم لا مع الأنظمة، أو منافع غير مرئية بلا قابلية ملاحظة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="adopters">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Adopter Categories and the S-Curve</h2>
+        <p class="lead">The theory's most recognizable figure sorts a population by how early its members adopt, and the shape it produces, shown below, has become one of social science's most borrowed images.</p>
+        <svg viewBox="0 0 720 400" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><polygon points="60.0,320 60.0,317.4 63.1,317.2 66.2,316.9 69.3,316.7 72.4,316.4 75.5,316.0 78.6,315.7 81.7,315.3 84.8,314.9 87.9,314.5 91.0,314.0 94.1,313.5 97.2,312.9 100.3,312.4 103.4,311.8 106.5,311.1 109.6,310.4 112.7,309.6 115.8,308.8 118.9,308.0 122.0,307.1 125.1,306.1 128.2,305.1 131.3,304.0 134.4,302.9 137.5,301.7 140.6,300.4 143.7,299.1 146.8,297.7 149.9,296.2 153.0,294.6 156.1,293.0 159.2,291.3 162.3,289.5 162.3,320" fill="#2D2D2D" opacity="0.92"/><polygon points="162.3,320 162.3,289.5 165.4,287.6 168.5,285.6 171.6,283.6 174.7,281.4 177.8,279.2 180.9,276.9 184.0,274.5 187.1,272.0 190.2,269.4 193.3,266.7 196.4,263.9 199.5,261.0 202.6,258.1 205.7,255.0 208.8,251.9 211.9,248.6 215.0,245.3 218.1,241.9 221.2,238.4 224.3,234.9 227.4,231.2 230.5,227.5 233.6,223.8 236.7,219.9 239.8,216.0 242.9,212.1 246.0,208.0 249.1,204.0 252.2,199.9 255.3,195.8 258.4,191.6 261.5,187.5 264.6,183.3 264.6,320" fill="#9A1C1C" opacity="0.92"/><polygon points="264.6,320 264.6,183.3 267.7,179.1 270.8,174.9 273.9,170.7 277.0,166.6 280.1,162.5 283.2,158.4 286.3,154.3 289.4,150.3 292.5,146.4 295.6,142.5 298.7,138.7 301.8,135.0 304.9,131.4 308.0,127.9 311.1,124.5 314.2,121.2 317.3,118.0 320.4,115.0 323.5,112.1 326.6,109.4 329.7,106.8 332.8,104.4 335.9,102.2 339.0,100.1 342.1,98.2 345.2,96.5 348.3,95.0 351.4,93.7 354.5,92.6 357.6,91.7 360.7,90.9 363.8,90.4 366.9,90.1 370.0,90.0 370.0,320" fill="#B34747" opacity="0.92"/><polygon points="370.0,320 370.0,90.0 373.1,90.1 376.2,90.4 379.3,90.9 382.4,91.7 385.5,92.6 388.6,93.7 391.7,95.0 394.8,96.5 397.9,98.2 401.0,100.1 404.1,102.2 407.2,104.4 410.3,106.8 413.4,109.4 416.5,112.1 419.6,115.0 422.7,118.0 425.8,121.2 428.9,124.5 432.0,127.9 435.1,131.4 438.2,135.0 441.3,138.7 444.4,142.5 447.5,146.4 450.6,150.3 453.7,154.3 456.8,158.4 459.9,162.5 463.0,166.6 466.1,170.7 469.2,174.9 472.3,179.1 472.3,320" fill="#C97A7A" opacity="0.92"/><polygon points="472.3,320 472.3,179.1 475.4,183.3 478.5,187.5 481.6,191.6 484.7,195.8 487.8,199.9 490.9,204.0 494.0,208.0 497.1,212.1 500.2,216.0 503.3,219.9 506.4,223.8 509.5,227.5 512.6,231.2 515.7,234.9 518.8,238.4 521.9,241.9 525.0,245.3 528.1,248.6 531.2,251.9 534.3,255.0 537.4,258.1 540.5,261.0 543.6,263.9 546.7,266.7 549.8,269.4 552.9,272.0 556.0,274.5 559.1,276.9 562.2,279.2 565.3,281.4 568.4,283.6 571.5,285.6 574.6,287.6 577.7,289.5 580.8,291.3 583.9,293.0 587.0,294.6 590.1,296.2 593.2,297.7 596.3,299.1 599.4,300.4 602.5,301.7 605.6,302.9 608.7,304.0 611.8,305.1 614.9,306.1 618.0,307.1 621.1,308.0 624.2,308.8 627.3,309.6 630.4,310.4 633.5,311.1 636.6,311.8 639.7,312.4 642.8,312.9 645.9,313.5 649.0,314.0 652.1,314.5 655.2,314.9 658.3,315.3 661.4,315.7 664.5,316.0 667.6,316.4 670.7,316.7 673.8,316.9 676.9,317.2 680.0,317.4 680.0,320" fill="#DEDEDE" opacity="0.92"/><text x="109.6" y="348" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Innovators</text><text x="109.6" y="366" text-anchor="middle" font-size="11.5" fill="#A32020">2.5%</text><text x="211.9" y="348" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Early adopters</text><text x="211.9" y="366" text-anchor="middle" font-size="11.5" fill="#A32020">13.5%</text><text x="317.3" y="348" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Early majority</text><text x="317.3" y="366" text-anchor="middle" font-size="11.5" fill="#A32020">34%</text><text x="419.6" y="348" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Late majority</text><text x="419.6" y="366" text-anchor="middle" font-size="11.5" fill="#A32020">34%</text><text x="574.6" y="348" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Laggards</text><text x="574.6" y="366" text-anchor="middle" font-size="11.5" fill="#A32020">16%</text><line x1="50" y1="320" x2="690" y2="320" stroke="#A32020" stroke-width="2"/><text x="20" y="180" text-anchor="middle" font-size="12" fill="#A32020" transform="rotate(-90 20 180)">new adopters</text><text x="370" y="392" text-anchor="middle" font-size="12" fill="#A32020">adopters over time, and the cumulative curve this produces is the familiar S shape</text></svg>
+        <p>The five categories are defined statistically by adoption time, but each carries an empirically supported social profile. Innovators are venturesome, connected outside the local system, tolerant of risk and of failure, and, importantly, often marginal within their own community, which limits their persuasive power: being first is not the same as being followed. Early adopters are the pivotal group, respected insiders who serve as opinion leaders, and their adoption gives the innovation local legitimacy, which is why diffusion strategy concentrates here rather than on the enthusiasts. The early majority are deliberate, adopt just before the average, and interact heavily with peers, providing the theory's crucial interpersonal link. The late majority adopt out of economic necessity or peer pressure, approaching with skepticism. Laggards, the last, are localistic, often traditional, and frequently reasonable: their caution is sometimes the accumulated evidence of previous innovations that failed them, a reading the pejorative label discourages and good research restores.</p>
+        <p>Plotting cumulative adoption over time produces the S-curve: slow initial uptake while only the venturesome participate, then sharp acceleration once interpersonal networks take over from external channels, and finally a flattening as the remaining population shrinks. The inflection is the theory's key practical concept: diffusion becomes self-sustaining when enough adopters exist for peer influence to carry it, and interventions before that point behave very differently from interventions after it. Marketing literature added the popular idea of a gap between early adopters and the early majority, and while the specific claim is debated, the underlying observation is well grounded: the reasons enthusiasts adopt, novelty and possibility, differ from the reasons the pragmatic majority adopt, proven reliability and peer evidence, so a strategy that succeeded with the first group can fail with the second.</p>
+        <div class="note"><strong>Note:</strong> Locate the population on the curve before designing an intervention. Pre-inflection, the work is legitimacy through respected early adopters; post-inflection, the work is infrastructure, support, and removing friction for reluctant adopters.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>فئات المتبنّين ومنحنى S</h2>
+        <p class="lead">أشهر أشكال النظرية يفرز مجتمعًا سكانيًا بحسب مبكرية تبنّي أعضائه، والشكل الناتج، المعروض أدناه، صار من أكثر صور العلوم الاجتماعية استعارةً.</p>
+        <svg viewBox="0 0 720 400" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><polygon points="60.0,320 60.0,317.4 63.1,317.2 66.2,316.9 69.3,316.7 72.4,316.4 75.5,316.0 78.6,315.7 81.7,315.3 84.8,314.9 87.9,314.5 91.0,314.0 94.1,313.5 97.2,312.9 100.3,312.4 103.4,311.8 106.5,311.1 109.6,310.4 112.7,309.6 115.8,308.8 118.9,308.0 122.0,307.1 125.1,306.1 128.2,305.1 131.3,304.0 134.4,302.9 137.5,301.7 140.6,300.4 143.7,299.1 146.8,297.7 149.9,296.2 153.0,294.6 156.1,293.0 159.2,291.3 162.3,289.5 162.3,320" fill="#2D2D2D" opacity="0.92"/><polygon points="162.3,320 162.3,289.5 165.4,287.6 168.5,285.6 171.6,283.6 174.7,281.4 177.8,279.2 180.9,276.9 184.0,274.5 187.1,272.0 190.2,269.4 193.3,266.7 196.4,263.9 199.5,261.0 202.6,258.1 205.7,255.0 208.8,251.9 211.9,248.6 215.0,245.3 218.1,241.9 221.2,238.4 224.3,234.9 227.4,231.2 230.5,227.5 233.6,223.8 236.7,219.9 239.8,216.0 242.9,212.1 246.0,208.0 249.1,204.0 252.2,199.9 255.3,195.8 258.4,191.6 261.5,187.5 264.6,183.3 264.6,320" fill="#9A1C1C" opacity="0.92"/><polygon points="264.6,320 264.6,183.3 267.7,179.1 270.8,174.9 273.9,170.7 277.0,166.6 280.1,162.5 283.2,158.4 286.3,154.3 289.4,150.3 292.5,146.4 295.6,142.5 298.7,138.7 301.8,135.0 304.9,131.4 308.0,127.9 311.1,124.5 314.2,121.2 317.3,118.0 320.4,115.0 323.5,112.1 326.6,109.4 329.7,106.8 332.8,104.4 335.9,102.2 339.0,100.1 342.1,98.2 345.2,96.5 348.3,95.0 351.4,93.7 354.5,92.6 357.6,91.7 360.7,90.9 363.8,90.4 366.9,90.1 370.0,90.0 370.0,320" fill="#B34747" opacity="0.92"/><polygon points="370.0,320 370.0,90.0 373.1,90.1 376.2,90.4 379.3,90.9 382.4,91.7 385.5,92.6 388.6,93.7 391.7,95.0 394.8,96.5 397.9,98.2 401.0,100.1 404.1,102.2 407.2,104.4 410.3,106.8 413.4,109.4 416.5,112.1 419.6,115.0 422.7,118.0 425.8,121.2 428.9,124.5 432.0,127.9 435.1,131.4 438.2,135.0 441.3,138.7 444.4,142.5 447.5,146.4 450.6,150.3 453.7,154.3 456.8,158.4 459.9,162.5 463.0,166.6 466.1,170.7 469.2,174.9 472.3,179.1 472.3,320" fill="#C97A7A" opacity="0.92"/><polygon points="472.3,320 472.3,179.1 475.4,183.3 478.5,187.5 481.6,191.6 484.7,195.8 487.8,199.9 490.9,204.0 494.0,208.0 497.1,212.1 500.2,216.0 503.3,219.9 506.4,223.8 509.5,227.5 512.6,231.2 515.7,234.9 518.8,238.4 521.9,241.9 525.0,245.3 528.1,248.6 531.2,251.9 534.3,255.0 537.4,258.1 540.5,261.0 543.6,263.9 546.7,266.7 549.8,269.4 552.9,272.0 556.0,274.5 559.1,276.9 562.2,279.2 565.3,281.4 568.4,283.6 571.5,285.6 574.6,287.6 577.7,289.5 580.8,291.3 583.9,293.0 587.0,294.6 590.1,296.2 593.2,297.7 596.3,299.1 599.4,300.4 602.5,301.7 605.6,302.9 608.7,304.0 611.8,305.1 614.9,306.1 618.0,307.1 621.1,308.0 624.2,308.8 627.3,309.6 630.4,310.4 633.5,311.1 636.6,311.8 639.7,312.4 642.8,312.9 645.9,313.5 649.0,314.0 652.1,314.5 655.2,314.9 658.3,315.3 661.4,315.7 664.5,316.0 667.6,316.4 670.7,316.7 673.8,316.9 676.9,317.2 680.0,317.4 680.0,320" fill="#DEDEDE" opacity="0.92"/><text x="109.6" y="348" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">المبتكرون</text><text x="109.6" y="366" text-anchor="middle" font-size="11.5" fill="#A32020">2.5%</text><text x="211.9" y="348" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">المتبنّون الأوائل</text><text x="211.9" y="366" text-anchor="middle" font-size="11.5" fill="#A32020">13.5%</text><text x="317.3" y="348" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">الأغلبية المبكرة</text><text x="317.3" y="366" text-anchor="middle" font-size="11.5" fill="#A32020">34%</text><text x="419.6" y="348" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">الأغلبية المتأخرة</text><text x="419.6" y="366" text-anchor="middle" font-size="11.5" fill="#A32020">34%</text><text x="574.6" y="348" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">المتلكّئون</text><text x="574.6" y="366" text-anchor="middle" font-size="11.5" fill="#A32020">16%</text><line x1="50" y1="320" x2="690" y2="320" stroke="#A32020" stroke-width="2"/><text x="20" y="180" text-anchor="middle" font-size="12" fill="#A32020" transform="rotate(-90 20 180)">المتبنّون الجدد</text><text x="370" y="392" text-anchor="middle" font-size="12" fill="#A32020">المتبنّون عبر الزمن، والمنحنى التراكمي الناتج هو شكل S المألوف</text></svg>
+        <p>الفئات الخمس معرَّفة إحصائيًا بزمن التبني، لكن لكل منها ملمحًا اجتماعيًا مدعومًا تجريبيًا. فالمبتكرون مغامرون، موصولون خارج النظام المحلي، متحملون للمخاطرة وللفشل، والأهم أنهم كثيرًا ما يكونون هامشيين داخل مجتمعهم، وهذا يحدّ من قوتهم الإقناعية: فأن تكون الأول ليس أن تكون متبوعًا. والمتبنّون الأوائل هم المجموعة المحورية، أهل داخل محترمون يعملون قادة رأي، وتبنّيهم يمنح الابتكار شرعية محلية، ولهذا تتركز استراتيجية الانتشار هنا لا على المتحمسين. والأغلبية المبكرة متأنّون، يتبنّون قبيل المتوسط، ويتفاعلون بكثافة مع أقرانهم، فيوفّرون الحلقة الشخصية الحاسمة في النظرية. والأغلبية المتأخرة يتبنّون بضرورة اقتصادية أو ضغط أقران، مقتربين بريبة. والمتلكّئون، وهم الآخِرون، محليّو النظرة، تقليديون غالبًا، ومعقولون كثيرًا: فحذرهم أحيانًا هو الدليل المتراكم من ابتكارات سابقة خذلتهم، وهي قراءة يثبّطها الوصف الذمّي ويستعيدها البحث الجيد.</p>
+        <p>ورسم التبني التراكمي عبر الزمن ينتج منحنى S: تبنٍّ أولي بطيء بينما لا يشارك إلا المغامرون، ثم تسارع حاد متى تولّت الشبكات الشخصية المهمة من القنوات الخارجية، وأخيرًا تسطّح مع تقلص السكان الباقين. ونقطة الانعطاف هي المفهوم العملي الرئيسي في النظرية: فالانتشار يصير ذاتي الاستدامة حين يوجد متبنّون بما يكفي لأن يحمله تأثير الأقران، والتدخلات قبل تلك النقطة تسلك سلوكًا مختلفًا جدًا عن التدخلات بعدها. وأضافت أدبيات التسويق الفكرة الشائعة عن فجوة بين المتبنّين الأوائل والأغلبية المبكرة، وبينما الادّعاء المحدد موضع نقاش، فالملاحظة الكامنة مؤصَّلة جيدًا: فأسباب تبنّي المتحمسين، الجِدة والإمكان، تختلف عن أسباب تبنّي الأغلبية العملية، الموثوقية المثبتة ودليل الأقران، فاستراتيجية نجحت مع المجموعة الأولى قد تفشل مع الثانية.</p>
+        <div class="note"><strong>ملاحظة:</strong> حدّد موضع المجتمع على المنحنى قبل تصميم التدخل. فقبل الانعطاف يكون العمل شرعيةً عبر متبنّين أوائل محترمين؛ وبعده يكون العمل بنيةً تحتية ودعمًا وإزالةَ احتكاك للمتبنّين المتردّدين.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="process">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>The Decision Process, Networks, and Organizations</h2>
+        <p class="lead">Beneath the curve sits a process, and around the process sits a structure. Both matter more to research design than the categories, because both are where mechanisms live.</p>
+        <p>The innovation-decision process runs through five stages: knowledge, that the innovation exists and what it does; persuasion, forming an attitude toward it, where the five attributes do their work; decision, to adopt or reject, noting that rejection is an outcome the theory takes as seriously as adoption; implementation, putting it into use, where problems invisible in the decision stage appear; and confirmation, seeking reinforcement and either continuing or discontinuing. The last stage matters most and is studied least: discontinuance, whether from disenchantment, the innovation disappointed, or replacement, something better arrived, means adoption curves alone overstate durable change, which is exactly the sustainment gap this portal's systematic-review page treats as fertile doctoral territory.</p>
+        <p>Around the process runs the social structure, and here the theory's communication core shows. Interpersonal channels dominate persuasion while mass channels dominate awareness, so campaigns create knowledge but peers create adoption. Homophily, the tendency to interact with similar others, makes diffusion efficient within groups but slow across them, which is why innovations often stall at organizational or professional boundaries and why the boundary-spanning individual, connected to more than one world, is disproportionately important. Opinion leaders, respected members with dense local ties, are the theory's practical lever, and change agents work through them rather than around them; where the two disagree, the opinion leader usually wins. The organizational variant adds structure to the picture: adoption is an authority decision made by a few, then followed by implementation across many, with routinization, the innovation becoming ordinary work, as the real endpoint, and it is at the implementation stage that most organizational innovations actually fail, adopted on paper and never absorbed into practice.</p>
+        <div class="note"><strong>Note:</strong> For organizational research, the fertile questions are downstream: implementation and routinization, not the adoption decision. Adoption is announced; absorption is achieved, and the gap between them is where most doctoral contributions in this literature are made.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>عملية القرار والشبكات والمنظمات</h2>
+        <p class="lead">تحت المنحنى تقع عملية، وحول العملية تقع بنية. وكلتاهما أهم لتصميم البحث من الفئات، لأن كلتيهما حيث تقيم الآليات.</p>
+        <p>عملية قرار الابتكار تمرّ بخمس مراحل: المعرفة، بأن الابتكار موجود وماذا يفعل؛ والإقناع، بتكوين اتجاه نحوه، وهنا تعمل الخصائص الخمس؛ والقرار، بالتبني أو الرفض، مع ملاحظة أن الرفض مخرَج تأخذه النظرية بجدية التبني نفسها؛ والتطبيق، بوضعه في الاستخدام، وهنا تظهر مشكلات كانت غير مرئية في مرحلة القرار؛ والتأكيد، بالتماس التعزيز والاستمرار أو التوقف. والمرحلة الأخيرة أهمها وأقلها دراسةً: فالتوقف، سواء من خيبة الأمل، إذ خذل الابتكار، أو من الاستبدال، إذ وصل ما هو أفضل، يعني أن منحنيات التبني وحدها تبالغ في التغيير الدائم، وهذه بالضبط فجوة الاستدامة التي تعاملها صفحة المراجعة المنهجية في هذه البوابة أرضًا خصبة للدكتوراه.</p>
+        <p>وحول العملية تجري البنية الاجتماعية، وهنا يظهر جوهر التواصل في النظرية. فالقنوات الشخصية تهيمن على الإقناع بينما تهيمن القنوات الجماهيرية على الوعي، فالحملات تصنع المعرفة والأقران يصنعون التبني. والتشابه، أي الميل إلى التفاعل مع الأشباه، يجعل الانتشار كفؤًا داخل المجموعات بطيئًا عبرها، ولهذا كثيرًا ما تتعثر الابتكارات عند الحدود التنظيمية أو المهنية، ولهذا يكون عابر الحدود، الموصول بأكثر من عالم، مهمًا بشكل غير متناسب. وقادة الرأي، وهم أعضاء محترمون بروابط محلية كثيفة، هم الرافعة العملية في النظرية، ووكلاء التغيير يعملون عبرهم لا حولهم؛ وحيث يختلف الاثنان، يفوز قائد الرأي عادةً. والنسخة التنظيمية تضيف بنية إلى الصورة: فالتبني قرار سلطوي يتخذه قلة، ثم يتبعه تطبيق عبر كثيرين، مع الروتنة، أي صيرورة الابتكار عملًا عاديًا، نقطةَ النهاية الحقيقية، وعند مرحلة التطبيق تفشل معظم الابتكارات التنظيمية فعلًا، متبنّاةً على الورق وغير ممتصّة قط في الممارسة.</p>
+        <div class="note"><strong>ملاحظة:</strong> للبحث التنظيمي، الأسئلة الخصبة تقع في المصبّ: التطبيق والروتنة، لا قرار التبني. فالتبني يُعلَن؛ والامتصاص يُنجَز، والفجوة بينهما هي حيث تُقدَّم معظم إسهامات الدكتوراه في هذه الأدبيات.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="critique">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Criticisms, and a Worked Example</h2>
+        <p class="lead">Six decades of application produced sharp criticism as well as wide use, and a doctoral study that inherits the theory should inherit the critique with it, since each weakness points at a research opportunity.</p>
+        <p>The standing criticisms: pro-innovation bias, the theory's tendency to assume adoption is desirable and rejection is a problem to be solved, which obscures the many cases where refusal is rational and the innovation genuinely harmful to the adopter; individual-blame bias, locating the reason for non-adoption in the person rather than in the system that failed to make adoption workable, the same analytical error that produces the pejorative reading of laggards; the recall problem, since most classic diffusion data asks adopters to remember when and why they adopted, a method with known distortions; equality effects, the well-documented tendency of diffusion to widen gaps, because those with more resources adopt earlier and gain more, so a successful diffusion programme can increase inequality even while it succeeds; and under-theorized re-invention, the fact that adopters routinely modify innovations in use, which the classical model treats as noise and later work treats as central, since what spreads is often not what was designed.</p>
+        <p>The worked example: a study of why a national e-prescribing system reached full adoption in urban hospitals but stalled in rural clinics. Framework: Rogers's five attributes as perceived by clinicians, plus the organizational variant's implementation and routinization stages, with a critical lens borrowed from the equality critique. Design: explanatory sequential mixed methods. The quantitative wave surveys clinicians across both settings, measuring the five attributes and self-reported use, and finds the expected attribute effects but a large unexplained setting difference. The qualitative wave then investigates the anomaly with interviews and observation, and locates the mechanism outside the individual entirely: intermittent connectivity destroys trialability, no local super-user exists to serve as opinion leader, and the system was designed around an urban workflow, a compatibility failure the designers never saw. The contribution is threefold: the attribute model is confirmed but bounded, the failure is relocated from clinician resistance to structural conditions in the spirit of the individual-blame critique, and re-invention is documented, since rural staff had built a paper workaround that preserved the system's purpose while breaking its procedure, which is precisely the finding a classical adoption survey alone would have recorded as non-compliance.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> diffusion theory explains the spread of the new through perceived attributes, adopter categories on an S-curve, a five-stage decision process, and a social structure of networks and opinion leaders. Use it with its critiques attached: study rejection as seriously as adoption, look downstream to implementation and routinization, and treat re-invention as evidence rather than deviation.</div>
+        <div class="refs"><ul>
+          <li>Rogers, <a href="https://www.simonandschuster.com/books/Diffusion-of-Innovations-5th-Edition/Everett-M-Rogers/9780743222099" target="_blank" rel="noopener">Diffusion of Innovations</a>.</li>
+          <li>Greenhalgh et al., <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.0887-378X.2004.00325.x" target="_blank" rel="noopener">Diffusion of Innovations in Service Organizations</a>.</li>
+          <li>Moore &amp; Benbasat, <a href="https://pubsonline.informs.org/doi/10.1287/isre.2.3.192" target="_blank" rel="noopener">Development of an Instrument to Measure Perceptions of Adopting an Information Technology Innovation</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>النقود، ومثال تطبيقي</h2>
+        <p class="lead">ستة عقود من التطبيق أنتجت نقدًا حادًا كما أنتجت استخدامًا واسعًا، والدراسة التي ترث النظرية ينبغي أن ترث النقد معها، لأن كل نقطة ضعف تشير إلى فرصة بحثية.</p>
+        <p>النقود الدائمة: انحياز مؤيد للابتكار، أي ميل النظرية إلى افتراض أن التبني مرغوب وأن الرفض مشكلة تُحَل، وهذا يحجب الحالات الكثيرة التي يكون فيها الرفض عقلانيًا والابتكار ضارًا فعلًا بالمتبنّي؛ وانحياز لوم الفرد، بتوطين سبب عدم التبني في الشخص لا في النظام الذي أخفق في جعل التبني قابلًا للتطبيق، وهو الخطأ التحليلي نفسه الذي ينتج القراءة الذمّية للمتلكّئين؛ ومشكلة الاستدعاء، لأن معظم بيانات الانتشار الكلاسيكية تطلب من المتبنّين تذكّر متى ولماذا تبنّوا، وهي طريقة ذات تشوهات معروفة؛ وآثار المساواة، أي ميل الانتشار الموثّق جيدًا إلى توسيع الفجوات، لأن الأوفر موارد يتبنّون أبكر ويكسبون أكثر، فبرنامج انتشار ناجح قد يزيد اللامساواة حتى وهو ينجح؛ وإعادة الابتكار ناقصة التنظير، أي أن المتبنّين يعدّلون الابتكارات في الاستخدام بانتظام، وهو ما يعامله النموذج الكلاسيكي ضجيجًا وتعامله الأعمال اللاحقة أمرًا مركزيًا، لأن ما ينتشر كثيرًا ما لا يكون ما صُمّم.</p>
+        <p>المثال التطبيقي: دراسة عن لماذا بلغ نظام وصفات طبية إلكترونية وطني التبني الكامل في مستشفيات المدن وتعثّر في العيادات الريفية. الإطار: خصائص روجرز الخمس كما يدركها الأطباء، إضافة إلى مرحلتَي التطبيق والروتنة في النسخة التنظيمية، مع عدسة نقدية مستعارة من نقد المساواة. التصميم: مناهج مختلطة تفسيرية متتابعة. الموجة الكمية تمسح الأطباء في البيئتين، قائسةً الخصائص الخمس والاستخدام المبلَّغ عنه ذاتيًا، وتجد آثار الخصائص المتوقعة لكن مع فارق بيئة كبير غير مفسَّر. ثم تحقق الموجة النوعية في الشذوذ بمقابلات وملاحظة، وتحدد الآلية خارج الفرد كليًا: فالاتصال المتقطع يدمّر القابلية للتجريب، ولا يوجد مستخدم متمكّن محلي ليكون قائد رأي، وقد صُمّم النظام حول سير عمل مدينيّ، وهو إخفاق توافق لم يره المصمّمون قط. والإسهام ثلاثي: نموذج الخصائص مؤكَّد لكنه محدود، والإخفاق منقول من مقاومة الأطباء إلى الشروط البنيوية بروح نقد لوم الفرد، وإعادة الابتكار موثَّقة، إذ بنى العاملون الريفيون حلًّا ورقيًا التفافيًا حفظ غرض النظام وكسر إجراءه، وهذه بالضبط النتيجة التي كان مسح تبنٍّ كلاسيكي وحده سيسجّلها عدمَ امتثال.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> نظرية الانتشار تفسّر انتشار الجديد عبر الخصائص المدرَكة، وفئات المتبنّين على منحنى S، وعملية قرار من خمس مراحل، وبنية اجتماعية من الشبكات وقادة الرأي. استخدمها ونقودها ملحقة بها: ادرس الرفض بجدية التبني، وانظر في المصبّ إلى التطبيق والروتنة، وعامل إعادة الابتكار دليلًا لا انحرافًا.</div>
+        <div class="refs"><ul>
+          <li>روجرز، <a href="https://www.simonandschuster.com/books/Diffusion-of-Innovations-5th-Edition/Everett-M-Rogers/9780743222099" target="_blank" rel="noopener">انتشار الابتكارات</a>.</li>
+          <li>غرينهالغ وآخرون، <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.0887-378X.2004.00325.x" target="_blank" rel="noopener">انتشار الابتكارات في المنظمات الخدمية</a>.</li>
+          <li>مور وبنباسات، <a href="https://pubsonline.informs.org/doi/10.1287/isre.2.3.192" target="_blank" rel="noopener">تطوير أداة لقياس إدراكات تبنّي ابتكار في تقنية المعلومات</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="process-writing-methodology-chapter.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Writing the Methodology Chapter</span><span data-lang="ar">كتابة فصل المنهجية</span></a><a href="applied-technology-acceptance-utaut.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Technology Acceptance: TRA, TAM, TPB &amp; UTAUT</span><span data-lang="ar">نماذج قبول التقنية: من TRA إلى UTAUT</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="انتشار الابتكارات";
+var TITLE_EN="Diffusion of Innovations";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

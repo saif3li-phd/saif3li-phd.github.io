@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research Questions &amp; Hypotheses</title>
+<meta name="description" content="Research questions and hypotheses in depth: anatomy of strong questions, deriving hypotheses from mechanisms, the alignment chain, and a worked example.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">The research process</span><span data-lang="ar">عملية البحث</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">RESEARCH PROCESS · PhD</span><span data-lang="ar">عملية البحث · دكتوراه</span></div>
+    <h1><span data-lang="en">Research Questions &amp; Hypotheses</span><span data-lang="ar">أسئلة البحث والفرضيات</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">The research process</span><span data-lang="ar">عملية البحث</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">7 min</span><span data-lang="ar">٧ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="anatomy"><span data-lang="en">Anatomy</span><span data-lang="ar">التشريح</span></a></li><li><a data-id="hypotheses"><span data-lang="en">Hypotheses</span><span data-lang="ar">الفرضيات</span></a></li><li><a data-id="alignment"><span data-lang="en">Alignment & Example</span><span data-lang="ar">المواءمة ومثال</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Research questions and hypotheses</div>
+          <div><span>Covers:</span> Crafting questions, deriving hypotheses, and the alignment chain</div>
+          <div><span>Use:</span> Building the sentence the whole thesis serves</div>
+          <div><span>Level:</span> Doctoral research process</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">The research question is the most consequential sentence in a thesis: it decides the paradigm, licenses the design, defines what counts as an answer, and sets the standard against which the contribution is judged. Everything this portal covers, from ontology to sampling, exists to serve that one sentence, which is why weak theses so often trace their trouble not to bad methods but to a question that was never made precise enough to serve.</p>
+        <p>A research question differs from a topic, an interest, and a management problem, and confusing them is the founding error. A topic names territory, employee wellbeing; an interest names curiosity, I want to look at wellbeing and remote work; a management problem names a pain, our remote staff seem disengaged; a research question names an answerable unknown, how do fully remote employees rebuild the informal support that office life once supplied? Only the last can be answered by a study, and turning the first three into the fourth is the real work of a proposal, work with learnable moves this framework sets out.</p>
+        <p>Hypotheses are the question's quantitative offspring: precise, testable predictions derived from theory that data can reject, in the falsification logic this portal's Popper page grounds. Not every study has them, interpretive questions are answered by understanding, not prediction, but every study has the alignment obligation: question, paradigm, design, and claims forming one traceable chain. This framework covers the anatomy of strong questions, the crafting process, the discipline of hypothesis derivation, the alignment chain, and a worked example. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Test any draft question with three words: answerable, by what evidence; worthwhile, says who beyond you; and open, not already settled by the literature you cite. A question that survives all three is a thesis waiting to happen.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> أسئلة البحث والفرضيات</div>
+          <div><span>يغطّي:</span> صياغة الأسئلة، واشتقاق الفرضيات، وسلسلة المواءمة</div>
+          <div><span>الاستخدام:</span> بناء الجملة التي تخدمها الأطروحة كلها</div>
+          <div><span>المستوى:</span> عملية البحث لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">سؤال البحث هو أبعد جملة أثرًا في الأطروحة: فهو يقرر النموذج، ويرخّص التصميم، ويعرّف ما يُعَدّ إجابة، ويضع المعيار الذي يُحكَم به على الإسهام. وكل ما تغطيه هذه البوابة، من الأنطولوجيا إلى المعاينة، موجود لخدمة تلك الجملة الواحدة، ولهذا كثيرًا ما تعود متاعب الأطروحات الضعيفة لا إلى مناهج رديئة بل إلى سؤال لم يُصَغ قط بدقة تكفي لأن يُخدَم.</p>
+        <p>وسؤال البحث يختلف عن الموضوع، وعن الاهتمام، وعن المشكلة الإدارية، والخلط بينها هو الخطأ المؤسِّس. الموضوع يسمّي أرضًا: «رفاهية الموظفين»؛ والاهتمام يسمّي فضولًا: «أريد أن أنظر في الرفاهية والعمل عن بعد»؛ والمشكلة الإدارية تسمّي ألمًا: «موظفونا عن بعد يبدون منفصلين»؛ أما سؤال البحث فيسمّي مجهولًا قابلًا للإجابة: «كيف يعيد الموظفون العاملون عن بعد كليًا بناء الدعم غير الرسمي الذي كانت توفره حياة المكتب؟». والأخير وحده يمكن أن تجيب عنه دراسة، وتحويل الثلاثة الأولى إلى الرابع هو العمل الحقيقي للمقترح، وهو عمل له حركات قابلة للتعلم يعرضها هذا الإطار.</p>
+        <p>والفرضيات هي الذرية الكمية للسؤال: تنبؤات دقيقة قابلة للاختبار مشتقة من النظرية تستطيع البيانات رفضها، بمنطق التكذيب الذي تؤصّله صفحة بوبر في هذه البوابة. وليست كل دراسة تحملها، فالأسئلة التفسيرية تُجاب بالفهم لا بالتنبؤ، لكن كل دراسة تحمل واجب المواءمة: سؤال ونموذج وتصميم وادّعاءات تشكّل سلسلة واحدة قابلة للتتبع. يغطي هذا الإطار تشريح الأسئلة القوية، وعملية الصياغة، وانضباط اشتقاق الفرضيات، وسلسلة المواءمة، ومثالًا تطبيقيًا. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> اختبر أي مسودة سؤال بثلاث كلمات: قابل للإجابة، بأي دليل؛ وجدير، بشهادة من غيرك؛ ومفتوح، لم تحسمه الأدبيات التي تستشهد بها. والسؤال الذي ينجو من الثلاثة أطروحة تنتظر الحدوث.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="anatomy">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Anatomy of a Strong Question</h2>
+        <p class="lead">Strong research questions share an anatomy that can be checked part by part, and the question's opening verb is its most revealing organ: it announces the paradigm before the philosophy section does.</p>
+        <p>The verb declares the aim, in the mapping this portal's decision-guide page established: what and how much questions measure and describe; does X affect Y questions test causation and summon experimental or quasi-experimental logic; how and why questions about process and meaning call for qualitative designs; how can questions aim at intervention and point to action research or design science. A question whose verb and eventual design disagree, a how-do-they-experience question answered by a survey, is the alignment failure examiners catch first. Beyond the verb, the anatomy includes the population and setting, specified tightly enough to be studied, the concepts, each one defined and bounded in the discipline the theory-construction page teaches, and the scope conditions that keep the question answerable within a doctorate's years and access.</p>
+        <p>Strong questions also sit at the right altitude. Too high, why do organizations fail, and no finite study can answer; too low, what do the six members of team A think of the new form, and no one beyond team A cares. The right altitude connects a specific, studiable instance to a concept of general interest, how does trust rebuild after automation errors, studied in these three service teams, so that the particular carries the general, in exactly the analytic-generalization logic of the case study page. Main questions then decompose into two to four sub-questions that partition the work, each mapping to a chapter or analysis, and jointly exhausting what the main question needs, a decomposition worth drawing as a small tree before writing a word of the proposal.</p>
+        <div class="note"><strong>Note:</strong> Read your question's first verb and ask which design it summons. If the verb says understand and the plan says questionnaire, one of them is wrong, and it is cheaper to find out now than in the viva.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>تشريح السؤال القوي</h2>
+        <p class="lead">أسئلة البحث القوية تتشارك تشريحًا يمكن فحصه جزءًا جزءًا، وفعل السؤال الافتتاحي هو أكثر أعضائه كشفًا: فهو يعلن النموذج قبل أن يفعل قسم الفلسفة.</p>
+        <p>الفعل يعلن الهدف، بالخريطة التي أرستها صفحة دليل الاختيار في هذه البوابة: أسئلة «ما» و«كم» تقيس وتصف؛ وأسئلة «هل يؤثر X في Y» تختبر السببية وتستدعي المنطق التجريبي أو شبه التجريبي؛ وأسئلة «كيف» و«لماذا» عن العملية والمعنى تستدعي التصاميم النوعية؛ وأسئلة «كيف يمكن» ترمي إلى التدخل وتشير إلى البحث الإجرائي أو علم التصميم. والسؤال الذي يختلف فعله عن تصميمه النهائي، سؤال «كيف يعيشون التجربة» يُجاب بمسح، هو فشل المواءمة الذي يلتقطه الممتحنون أولًا. ووراء الفعل، يشمل التشريح الفئة والسياق، محددين بإحكام يكفي للدراسة، والمفاهيم، كل واحد معرّفًا ومحدودًا بالانضباط الذي تعلّمه صفحة بناء النظرية، وشروط النطاق التي تُبقي السؤال قابلًا للإجابة ضمن سنوات الدكتوراه وحدود الوصول.</p>
+        <p>والأسئلة القوية تجلس أيضًا على الارتفاع الصحيح. أعلى مما ينبغي، «لماذا تفشل المنظمات؟»، فلا دراسة محدودة تستطيع الإجابة؛ وأدنى مما ينبغي، «ما رأي أعضاء الفريق أ الستة في النموذج الجديد؟»، فلا أحد خارج الفريق أ يهتم. والارتفاع الصحيح يصل حالة محددة قابلة للدراسة بمفهوم ذي اهتمام عام: «كيف تُعاد بناء الثقة بعد أخطاء الأتمتة، مدروسةً في هذه الفرق الخدمية الثلاثة»، بحيث يحمل الخاص العام، بمنطق التعميم التحليلي نفسه في صفحة دراسة الحالة. ثم تتحلل الأسئلة الرئيسية إلى سؤالين إلى أربعة أسئلة فرعية تقسّم العمل، كل واحد يقابل فصلًا أو تحليلًا، وتستوفي مجتمعةً ما يحتاجه السؤال الرئيسي، وهو تحلل يستحق رسمه شجرةً صغيرة قبل كتابة كلمة من المقترح.</p>
+        <div class="note"><strong>ملاحظة:</strong> اقرأ الفعل الأول في سؤالك واسأل أي تصميم يستدعي. فإذا قال الفعل «افهم» وقالت الخطة «استبيان»، فأحدهما خاطئ، واكتشاف ذلك الآن أرخص من اكتشافه في المناقشة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="hypotheses">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Deriving Hypotheses Properly</h2>
+        <p class="lead">In quantitative work the question descends into hypotheses, and the descent has a discipline: each hypothesis is derived from a mechanism, stated as a risky prediction, and written so data can reject it. The most common failure is assertion dressed as derivation.</p>
+        <p>Derivation means the hypothesis follows from an argued mechanism, not merely from prior findings. Past studies found X correlates with Y, therefore H1: X relates to Y, is citation, not derivation, and it collapses the moment an examiner asks why the relationship should hold here. The derived version runs through the machinery of the theory pages: because autonomy feeds the experience of competence, and competence sustains motivation, increased autonomy should raise engagement; hence H1, engagement is higher under the autonomy condition. The mechanism does triple work: it justifies the prediction, tells the study what mediators to measure, and defines what a refutation would mean, a broken link rather than a mystery.</p>
+        <p>Statement follows Popper's standard: directional where theory warrants, the more X the more Y rather than X and Y are related, specific about the expected pattern, and paired implicitly with the null the statistics will test. Each hypothesis maps to named variables, measures, and a planned test, the alignment table that strong quantitative chapters print openly: hypothesis, mechanism source, variables, instrument, analysis, one row each. Two integrity rules from the ethics page apply with special force here: hypotheses are stated before the data are seen, pre-registered where possible, and hypotheses that failed are reported as failures, because a results chapter containing only confirmations is either a miracle or a filing cabinet with a locked drawer.</p>
+        <div class="note"><strong>Note:</strong> For every hypothesis, be able to complete the sentence: this follows because [mechanism], and it would be refuted if [observable pattern]. If either blank resists filling, the hypothesis is an assertion, and it needs a theory before it needs data.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>اشتقاق الفرضيات كما ينبغي</h2>
+        <p class="lead">في العمل الكمي ينزل السؤال إلى فرضيات، وللنزول انضباط: كل فرضية تُشتَق من آلية، وتُصاغ تنبؤًا محفوفًا، وتُكتَب بحيث تستطيع البيانات رفضها. والفشل الأشيع هو الجزم متنكرًا في هيئة الاشتقاق.</p>
+        <p>الاشتقاق يعني أن الفرضية تتبع من آلية محاجّة، لا من نتائج سابقة فحسب. «وجدت دراسات سابقة أن X يرتبط بـY، إذن الفرضية الأولى: X يرتبط بـY» استشهاد لا اشتقاق، وينهار لحظة يسأل الممتحن لماذا ينبغي للعلاقة أن تصمد هنا. والنسخة المشتقة تجري عبر آلة صفحات النظرية: لأن الاستقلالية تغذي الإحساس بالكفاءة، والكفاءة تديم الدافعية، ينبغي أن ترفع الاستقلاليةُ المتزايدة الاندماجَ؛ ومن هنا الفرضية الأولى: الاندماج أعلى في حالة الاستقلالية. والآلية تؤدي عملًا ثلاثيًا: تبرر التنبؤ، وتخبر الدراسة أي وسطاء تقيس، وتعرّف ماذا سيعني الدحض، حلقة مكسورة لا لغزًا.</p>
+        <p>والصياغة تتبع معيار بوبر: اتجاهية حيث تسوّغ النظرية، «كلما زاد X زاد Y» لا «X وY مرتبطان»، ومحددة في النمط المتوقع، ومقترنة ضمنيًا بفرضية العدم التي سيختبرها الإحصاء. وكل فرضية تُرسَم إلى متغيرات مسماة ومقاييس واختبار مخطط، وهو جدول المواءمة الذي تطبعه الفصول الكمية القوية علنًا: الفرضية، ومصدر الآلية، والمتغيرات، والأداة، والتحليل، صف لكل واحدة. وقاعدتا نزاهة من صفحة الأخلاقيات تنطبقان هنا بقوة خاصة: الفرضيات تُصاغ قبل رؤية البيانات، وتُسجَّل مسبقًا حيث أمكن، والفرضيات التي فشلت يُبلَّغ عنها بوصفها فشلًا، لأن فصل نتائج لا يحوي إلا تأكيدات إما معجزة وإما خزانة ملفات بدرج مقفل.</p>
+        <div class="note"><strong>ملاحظة:</strong> لكل فرضية، كن قادرًا على إكمال الجملة: هذه تتبع لأن [الآلية]، وستُدحَض إذا [النمط الملحوظ]. فإذا استعصى أحد الفراغين على الملء، فالفرضية جزمٌ، وتحتاج نظرية قبل أن تحتاج بيانات.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="alignment">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>The Alignment Chain, and a Worked Example</h2>
+        <p class="lead">The question's final test is alignment: one traceable chain from question through paradigm, design, data, and analysis to the claims of the conclusion, with no link substituted in silence. The worked example shows the chain forged from a vague beginning.</p>
+        <p>A researcher begins with a management problem: our agile transformation is stalling. The crafting moves apply in order. Scoping separates what is already known, the systematic review page's demonstrated gap shows sustainment factors are mapped but middle-management mechanisms are not, from what this study can add. Verb selection follows the aim: the interest is in how the stalling happens, so the question becomes processual: how do middle managers respond to agile transformation in the period after consultant departure, and how do their responses shape sustainment? Population, setting, and scope are pinned: two large firms, eighteen months post-consultancy. Sub-questions partition the work: what forms do managerial responses take; how do responses vary with role redesign; through what everyday practices do responses affect team-level sustainment. Each sub-question maps to a data stream and a chapter, and the whole set is answerable, worthwhile against the demonstrated gap, and open.</p>
+        <p>The chain then runs visibly: a process question takes an interpretivist paradigm; the paradigm licenses a multiple case study with embedded units; the sub-questions dictate interviews, observation, and document streams; analysis is thematic within cases and comparative across them; and the conclusion's claims are written in the currency the chain mints, a process account with analytic generalization, not prevalence statistics the design never bought. Had the researcher instead wanted how much stalling and which factors predict it, the same problem would have forged a different chain, hypotheses, survey, regression, through the quantitative pages of this portal, and both chains are sound; what is unsound is welding the front of one to the back of the other. The alignment table, question, paradigm, design, data, analysis, claim, one row per sub-question, is the two-page appendix that makes the whole thesis inspectable at a glance, and building it early is the cheapest coherence insurance a doctoral researcher can buy.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> a research question is an answerable, worthwhile, open unknown, built at the right altitude, with a verb that honestly summons its design. Hypotheses, where they belong, are derived from mechanisms and stated for refutation, and the whole study is one alignment chain from question to claim. Forge the sentence first; the thesis is its service.</div>
+        <div class="refs"><ul>
+          <li>White, <a href="https://www.bloomsbury.com/uk/developing-research-questions-9781352011houses" target="_blank" rel="noopener">Developing Research Questions</a>.</li>
+          <li>Alvesson &amp; Sandberg, <a href="https://journals.aom.org/doi/10.5465/amr.2009.0188" target="_blank" rel="noopener">Generating Research Questions Through Problematization</a>.</li>
+          <li>Creswell &amp; Creswell, <a href="https://uk.sagepub.com/en-gb/eur/research-design/book270550" target="_blank" rel="noopener">Research Design: Qualitative, Quantitative, and Mixed Methods Approaches</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>سلسلة المواءمة، ومثال تطبيقي</h2>
+        <p class="lead">الاختبار الأخير للسؤال هو المواءمة: سلسلة واحدة قابلة للتتبع من السؤال عبر النموذج والتصميم والبيانات والتحليل إلى ادّعاءات الخاتمة، دون استبدال أي حلقة في صمت. والمثال التطبيقي يعرض السلسلة وهي تُصاغ من بداية غامضة.</p>
+        <p>يبدأ باحث بمشكلة إدارية: «تحوّلنا الرشيق يتعثر». وتنطبق حركات الصياغة بالترتيب. تحديد النطاق يفصل المعروف سلفًا، فالفجوة المثبتة في صفحة المراجعة المنهجية تُظهر أن عوامل الاستدامة مرسومة لكن آليات الإدارة الوسطى ليست كذلك، عمّا تستطيع هذه الدراسة إضافته. واختيار الفعل يتبع الهدف: الاهتمام بكيفية حدوث التعثر، فيصبح السؤال عملياتيًا: كيف يستجيب مديرو الوسط للتحول الرشيق في الفترة التالية لمغادرة المستشارين، وكيف تشكّل استجاباتهم الاستدامة؟ وتُثبَّت الفئة والسياق والنطاق: شركتان كبيرتان، بعد ثمانية عشر شهرًا من انتهاء الاستشارة. والأسئلة الفرعية تقسّم العمل: ما أشكال استجابات المديرين؛ وكيف تتباين الاستجابات مع إعادة تصميم الأدوار؛ وعبر أي ممارسات يومية تؤثر الاستجابات في استدامة الفرق. كل سؤال فرعي يُرسَم إلى تيار بيانات وفصل، والمجموعة كلها قابلة للإجابة، وجديرة مقابل الفجوة المثبتة، ومفتوحة.</p>
+        <p>ثم تجري السلسلة مرئيةً: سؤال عملية يأخذ نموذجًا تفسيريًا؛ والنموذج يرخّص دراسة حالات متعددة بوحدات مضمنة؛ والأسئلة الفرعية تملي تيارات المقابلات والملاحظة والوثائق؛ والتحليل موضوعي داخل الحالات ومقارن عبرها؛ وادّعاءات الخاتمة مكتوبة بالعملة التي تسكّها السلسلة، حساب عملية بتعميم تحليلي، لا إحصاءات انتشار لم يشترها التصميم قط. ولو أراد الباحث بدل ذلك «كم يبلغ التعثر وأي العوامل تتنبأ به»، لصاغت المشكلة نفسها سلسلة مختلفة، فرضيات فمسحًا فانحدارًا، عبر الصفحات الكمية لهذه البوابة، وكلتا السلسلتين سليمة؛ غير السليم هو لحام مقدمة إحداهما بمؤخرة الأخرى. وجدول المواءمة، السؤال والنموذج والتصميم والبيانات والتحليل والادّعاء، صف لكل سؤال فرعي، هو ملحق الصفحتين الذي يجعل الأطروحة كلها قابلة للفحص بنظرة، وبناؤه مبكرًا أرخص تأمين تماسك يستطيع باحث الدكتوراه شراءه.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> سؤال البحث مجهول قابل للإجابة جدير مفتوح، مبني على الارتفاع الصحيح، بفعل يستدعي تصميمه بصدق. والفرضيات، حيث يكون مكانها، تُشتَق من آليات وتُصاغ للدحض، والدراسة كلها سلسلة مواءمة واحدة من السؤال إلى الادّعاء. اصنع الجملة أولًا؛ فالأطروحة خدمتها.</div>
+        <div class="refs"><ul>
+          <li>وايت، <a href="https://www.bloomsbury.com/uk/developing-research-questions-9781352011houses" target="_blank" rel="noopener">تطوير أسئلة البحث</a>.</li>
+          <li>ألفيسون وساندبرغ، <a href="https://journals.aom.org/doi/10.5465/amr.2009.0188" target="_blank" rel="noopener">توليد أسئلة البحث عبر الإشكال</a>.</li>
+          <li>كريسويل وكريسويل، <a href="https://uk.sagepub.com/en-gb/eur/research-design/book270550" target="_blank" rel="noopener">تصميم البحث: المقاربات النوعية والكمية والمختلطة</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="process-research-ethics.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Research Ethics</span><span data-lang="ar">أخلاقيات البحث العلمي</span></a><a href="process-systematic-review-prisma.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Systematic Review &amp; PRISMA</span><span data-lang="ar">المراجعة المنهجية وبروتوكول PRISMA</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="أسئلة البحث والفرضيات";
+var TITLE_EN="Research Questions &amp; Hypotheses";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

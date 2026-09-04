@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linking Approaches to Paradigms</title>
+<meta name="description" content="Linking theory-practice approaches to paradigms: TPT, PT, RT, TRT and PTRT paths, the reasoning each implies, their paradigm alignment, and why it matters.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Reasoning and theory</span><span data-lang="ar">الاستدلال والنظرية</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">REASONING &amp; THEORY · PhD</span><span data-lang="ar">الاستدلال والنظرية · دكتوراه</span></div>
+    <h1><span data-lang="en">Linking Approaches to Paradigms</span><span data-lang="ar">ربط المقاربات بالنماذج</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Reasoning and theory</span><span data-lang="ar">الاستدلال والنظرية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">8 min</span><span data-lang="ar">٨ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="five"><span data-lang="en">The Five Paths</span><span data-lang="ar">المسارات الخمسة</span></a></li><li><a data-id="cases"><span data-lang="en">Worked Cases</span><span data-lang="ar">حالات مشتغَلة</span></a></li><li><a data-id="choosing"><span data-lang="en">Choosing</span><span data-lang="ar">الاختيار</span></a></li><li><a data-id="why"><span data-lang="en">Why It Matters</span><span data-lang="ar">لماذا يهمّ</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Linking theory-practice approaches to paradigms</div>
+          <div><span>Covers:</span> TPT, PT, RT, TRT, and PTRT approaches</div>
+          <div><span>Use:</span> Placing your study's theory-building path within a paradigm</div>
+          <div><span>Level:</span> Doctoral research methodology</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Research studies differ not only in their paradigm but in the path they take between theory and the empirical world. Five recurring paths can be distinguished by the order in which theory, practice, and research enter the study: theory-practice-theory, practice-theory, research-theory, theory-research-theory, and practice-theory-research-theory. Each path embodies a characteristic logic of reasoning, and each aligns naturally with particular paradigms, so naming your path is another way of making your philosophical position concrete.</p>
+        <p>The value of this framing is that it connects three vocabularies a doctoral researcher must already hold: the paradigms, the reasoning modes, and the actual sequence of activities in the study. A researcher who says my study begins from established theory, applies it in practice, and refines the theory in light of what happens has described a sequence; this framework shows that the sequence implies mainly deductive reasoning with a reflective loop, and sits most comfortably in post-positivist or critical realist territory. The abstract philosophy becomes a visible workflow.</p>
+        <p>This framework works through each of the five approaches in depth, with its logic, its paradigm alignment, and an example, then draws the comparisons together and offers guidance on choosing and defending a path. It is my own synthesis, written in my own words and grounded in recognized methodological scholarship.</p>
+        <div class="note"><strong>Note:</strong> The order of the letters is the order of the journey. Where theory appears in the sequence tells you where the study gets its concepts; where practice or research appears tells you where it meets the world; and that order is what fixes the reasoning and the paradigm fit.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> ربط مقاربات النظرية والممارسة بالنماذج</div>
+          <div><span>يغطّي:</span> مقاربات TPT وPT وRT وTRT وPTRT</div>
+          <div><span>الاستخدام:</span> وضع مسار بناء النظرية في دراستك ضمن نموذج</div>
+          <div><span>المستوى:</span> منهجية بحث لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">تختلف الدراسات لا في نموذجها فقط بل في المسار الذي تسلكه بين النظرية والعالم التجريبي. ويمكن تمييز خمسة مسارات متكرّرة بترتيب دخول النظرية والممارسة والبحث في الدراسة: نظرية-ممارسة-نظرية، وممارسة-نظرية، وبحث-نظرية، ونظرية-بحث-نظرية، وممارسة-نظرية-بحث-نظرية. كل مسار يجسّد منطق استدلال مميّزًا، وكلّ يصطفّ طبيعيًا مع نماذج معيّنة، فتسمية مسارك طريقة أخرى لجعل موقفك الفلسفي ملموسًا.</p>
+        <p>وقيمة هذا التأطير أنه يصل ثلاث مفردات يجب أن يحملها باحث الدكتوراه سلفًا: النماذج، وأنماط الاستدلال، والتسلسل الفعلي للأنشطة في الدراسة. فباحث يقول «تبدأ دراستي من نظرية راسخة، وتطبّقها في الممارسة، وتصقل النظرية في ضوء ما يحدث» وصف تسلسلًا؛ ويُظهِر هذا الإطار أن التسلسل يستلزم استدلالًا استنباطيًا غالبًا بحلقة تأمّلية، ويجلس أكثر راحةً في أرض ما بعد الوضعية أو الواقعية النقدية. فتصير الفلسفة المجرّدة سير عمل مرئيًا.</p>
+        <p>يمرّ هذا الإطار بكل واحدة من المقاربات الخمس بعمق، بمنطقها واصطفافها النموذجي ومثال، ثم يجمع المقارنات ويقدّم إرشادًا لاختيار مسار والدفاع عنه. وقد أعددت هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> ترتيب الحروف ترتيب الرحلة. فموضع النظرية في التسلسل يخبرك من أين تأخذ الدراسة مفاهيمها؛ وموضع الممارسة أو البحث يخبرك أين تلقى العالم؛ وذلك الترتيب ما يثبّت الاستدلال وملاءمة النموذج.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="five">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Five Approaches in Depth</h2>
+        <p class="lead">Each approach is a distinct journey between theory and the world. Taking them one at a time, with their logic and natural paradigm, turns the abbreviations into usable research designs.</p>
+        <p>Theory-practice-theory (TPT) begins from existing theory, carries it into practice, and returns to revise the theory in the light of what practice revealed. Its logic is deductive on the way out and reflective on the way back, and it aligns with post-positivism and critical realism, which share its view that theory is real knowledge yet always improvable by encounter with the world. A study that applies an established change-management model in a live organization, observes where the model strains, and emends it, is TPT at work. Practice-theory (PT) starts in the field: theory emerges from immersion in real practice, with concepts built from what practitioners actually do and mean. Its logic is inductive and its natural home is interpretivism and constructionism, where understanding is grounded in lived meaning; classic ethnographies of how strategy or leadership is actually practised follow this path.</p>
+        <p>Research-theory (RT) builds theory from systematic empirical research, accumulating observations and rising to general claims; its logic is induction moving toward generalization, and it fits positivism's picture of truth extracted from observed data. Theory-research-theory (TRT) is the classic hypothesis-testing loop: theory generates hypotheses, research tests them, and results confirm or modify the theory; its logic is deduction with a corrective return, the beating heart of positivist and post-positivist science. Finally, practice-theory-research-theory (PTRT) is the fullest cycle: a practical problem sparks theorizing, the theory is tested by research, and the refined theory returns to inform practice. Its mixed inductive-deductive logic and problem-driven spirit place it with pragmatism and critical realism, and it describes much action research and applied doctoral work, where the point is knowledge that both explains and helps.</p>
+        <table>
+          <tbody><tr>
+            <th><span data-lang="en">Approach</span><span data-lang="ar">المقاربة</span></th>
+            <th><span data-lang="en">Reasoning</span><span data-lang="ar">الاستدلال</span></th>
+            <th><span data-lang="en">Natural paradigm</span><span data-lang="ar">النموذج الطبيعي</span></th>
+          </tr>
+          <tr><td>TPT</td><td><span data-lang="en">deductive + reflective</span><span data-lang="ar">استنباطي + تأمّلي</span></td><td><span data-lang="en">post-positivism, critical realism</span><span data-lang="ar">ما بعد الوضعية، الواقعية النقدية</span></td></tr>
+          <tr><td>PT</td><td><span data-lang="en">inductive</span><span data-lang="ar">استقرائي</span></td><td><span data-lang="en">interpretivism, constructionism</span><span data-lang="ar">التفسيرية، البنائية</span></td></tr>
+          <tr><td>RT</td><td><span data-lang="en">inductive toward generalization</span><span data-lang="ar">استقرائي نحو التعميم</span></td><td><span data-lang="en">positivism</span><span data-lang="ar">الوضعية</span></td></tr>
+          <tr><td>TRT</td><td><span data-lang="en">deductive</span><span data-lang="ar">استنباطي</span></td><td><span data-lang="en">positivism, post-positivism</span><span data-lang="ar">الوضعية وما بعدها</span></td></tr>
+          <tr><td>PTRT</td><td><span data-lang="en">mixed inductive + deductive</span><span data-lang="ar">مختلط استقرائي + استنباطي</span></td><td><span data-lang="en">pragmatism, critical realism</span><span data-lang="ar">البراغماتية، الواقعية النقدية</span></td></tr>
+        </tbody></table>
+        <div class="note"><strong>Note:</strong> Read your own study against the table. The row you recognize is not just a workflow; it is a bundle of reasoning and paradigm commitments you are implicitly making, and the methodology chapter should make them explicit.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>المقاربات الخمس بعمق</h2>
+        <p class="lead">كل مقاربة رحلة متمايزة بين النظرية والعالم. وأخذها واحدةً واحدة، بمنطقها ونموذجها الطبيعي، يحوّل الاختصارات إلى تصاميم بحث قابلة للاستخدام.</p>
+        <p>نظرية-ممارسة-نظرية (TPT) تبدأ من نظرية قائمة، تحملها للممارسة، وتعود لتنقيح النظرية في ضوء ما كشفته الممارسة. منطقها استنباطيّ ذهابًا وتأمّليّ إيابًا، وتصطفّ مع ما بعد الوضعية والواقعية النقدية، اللتين تشاركانها رؤية أن النظرية معرفة حقيقية لكنها قابلة للتحسين دومًا بلقاء العالم. فدراسة تطبّق نموذج إدارة تغيير راسخًا في منظمة حيّة، وتلاحظ أين يجهد النموذج، وتعدّله، هي TPT عاملة. وممارسة-نظرية (PT) تبدأ في الميدان: تنبثق النظرية من الانغماس في الممارسة الحقيقية، بمفاهيم تُبنى ممّا يفعله الممارسون ويعنونه فعلًا. منطقها استقرائي وموطنها الطبيعي التفسيرية والبنائية، حيث يؤصَّل الفهم في المعنى المعيش؛ والإثنوغرافيات الكلاسيكية لكيف تُمارَس الاستراتيجية أو القيادة فعلًا تتبع هذا المسار.</p>
+        <p>وبحث-نظرية (RT) تبني النظرية من بحث تجريبي منهجي، مراكمةً الملاحظات وصاعدةً لادّعاءات عامة؛ منطقها استقراء متحرّك نحو التعميم، وتلائم صورة الوضعية للحقيقة المستخرَجة من البيانات الملحوظة. ونظرية-بحث-نظرية (TRT) حلقة اختبار الفرضيات الكلاسيكية: النظرية تولّد فرضيات، والبحث يختبرها، والنتائج تؤكّد النظرية أو تعدّلها؛ منطقها استنباط بعودة تصحيحية، القلب النابض للعلم الوضعي وما بعد الوضعي. وأخيرًا، ممارسة-نظرية-بحث-نظرية (PTRT) الدورة الأكمل: مشكلة عملية تشعل التنظير، وتُختبَر النظرية بالبحث، وتعود النظرية المصقولة لتُنبِئ الممارسة. ومنطقها المختلط الاستقرائي-الاستنباطي وروحها المدفوعة بالمشكلة يضعانها مع البراغماتية والواقعية النقدية، وهي تصف كثيرًا من البحث الإجرائي والعمل التطبيقي، حيث المقصد معرفة تفسّر وتساعد معًا.</p>
+        <table>
+          <tbody><tr>
+            <th><span data-lang="en">Approach</span><span data-lang="ar">المقاربة</span></th>
+            <th><span data-lang="en">Reasoning</span><span data-lang="ar">الاستدلال</span></th>
+            <th><span data-lang="en">Natural paradigm</span><span data-lang="ar">النموذج الطبيعي</span></th>
+          </tr>
+          <tr><td>TPT</td><td><span data-lang="en">deductive + reflective</span><span data-lang="ar">استنباطي + تأمّلي</span></td><td><span data-lang="en">post-positivism, critical realism</span><span data-lang="ar">ما بعد الوضعية، الواقعية النقدية</span></td></tr>
+          <tr><td>PT</td><td><span data-lang="en">inductive</span><span data-lang="ar">استقرائي</span></td><td><span data-lang="en">interpretivism, constructionism</span><span data-lang="ar">التفسيرية، البنائية</span></td></tr>
+          <tr><td>RT</td><td><span data-lang="en">inductive toward generalization</span><span data-lang="ar">استقرائي نحو التعميم</span></td><td><span data-lang="en">positivism</span><span data-lang="ar">الوضعية</span></td></tr>
+          <tr><td>TRT</td><td><span data-lang="en">deductive</span><span data-lang="ar">استنباطي</span></td><td><span data-lang="en">positivism, post-positivism</span><span data-lang="ar">الوضعية وما بعدها</span></td></tr>
+          <tr><td>PTRT</td><td><span data-lang="en">mixed inductive + deductive</span><span data-lang="ar">مختلط استقرائي + استنباطي</span></td><td><span data-lang="en">pragmatism, critical realism</span><span data-lang="ar">البراغماتية، الواقعية النقدية</span></td></tr>
+        </tbody></table>
+        <div class="note"><strong>ملاحظة:</strong> اقرأ دراستك إزاء الجدول. فالصفّ الذي تتعرّف عليه ليس سير عمل فحسب؛ بل حزمة التزامات استدلال ونموذج تتّخذها ضمنيًا، وعلى فصل المنهجية جعلها صريحة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="cases">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>One Topic, Five Paths</h2>
+        <p class="lead">The clearest way to feel the difference between the paths is to hold the topic constant and vary only the path. Take one subject, employee resistance to a new digital system, and design it five ways.</p>
+        <p>As a TPT study, the researcher starts from an established resistance-to-change theory, applies it to guide the rollout in a real firm, documents where the theory guided well and where it misled, and returns with an emended version of the theory: theory tested by service in practice. As a PT study, the researcher enters the firm with no committed framework, spends months observing and interviewing, and builds from the ground up an account of what resistance actually is here, perhaps discovering it is less about fear of technology than about defending professional identity, a concept that rose from the field, not from the library. As an RT study, the researcher assembles survey data across many firms, accumulates patterns, which factors co-occur with resistance across hundreds of cases, and generalizes toward an empirical theory of resistance drivers.</p>
+        <p>As a TRT study, the researcher derives competing hypotheses from two rival theories, resistance as rational cost-assessment versus resistance as identity-threat, designs measures that discriminate between them, tests both against data, and reports which theory survived and how it must be modified. And as a PTRT study, the whole cycle starts from a practical emergency, a stalled implementation, moves through quick theorizing with the people involved, tests the emerging explanation while acting on it, and delivers both a refined theory of resistance and an unstuck implementation, knowledge and change in one motion. Same topic, five different deliverables, five different claims, five different examiners' questions: the path, not the topic, decides what kind of thesis this is.</p>
+        <div class="note"><strong>Note:</strong> This exercise is worth doing for your own topic before committing. Sketch it down all five paths in one page each; the sketch that excites you and fits your access, data, and paradigm is usually the right design.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>موضوعٌ واحد، خمسة مسارات</h2>
+        <p class="lead">أوضح طريقة للإحساس بفرق المسارات تثبيت الموضوع وتغيير المسار وحده. خذ موضوعًا واحدًا، مقاومة الموظفين نظامًا رقميًا جديدًا، وصمّمه بخمس طرق.</p>
+        <p>كدراسة TPT، يبدأ الباحث من نظرية مقاومة تغيير راسخة، ويطبّقها لتوجيه الإطلاق في شركة حقيقية، ويوثّق أين وجّهت النظرية جيدًا وأين ضلّلت، ويعود بنسخة معدَّلة من النظرية: نظرية اختُبرت بالخدمة في الممارسة. وكدراسة PT، يدخل الباحث الشركة بلا إطار ملتزَم، يقضي شهورًا يلاحظ ويقابل، ويبني من الأساس حسابًا لما هي المقاومة فعلًا هنا، مكتشفًا ربما أنها أقلّ عن خوف التقنية وأكثر عن الدفاع عن الهوية المهنية، مفهوم صعد من الميدان لا من المكتبة. وكدراسة RT، يجمع الباحث بيانات مسح عبر شركات كثيرة، يراكم الأنماط، أي العوامل تتزامن مع المقاومة عبر مئات الحالات، ويعمّم نحو نظرية تجريبية لمحرّكات المقاومة.</p>
+        <p>وكدراسة TRT، يشتقّ الباحث فرضيات متنافسة من نظريتَين متنافستَين، المقاومة تقييم كلفة عقلاني مقابل المقاومة تهديد هوية، ويصمّم قياسات تميّز بينهما، ويختبر كلتيهما بالبيانات، ويبلّغ أي نظرية نجت وكيف يجب تعديلها. وكدراسة PTRT، تبدأ الدورة كلها من طارئ عملي، تنفيذ متعثّر، وتمرّ بتنظير سريع مع المعنيين، وتختبر التفسير الناشئ أثناء العمل به، وتسلّم نظرية مقاومة مصقولة وتنفيذًا انفكّ تعثّره معًا، معرفةً وتغييرًا في حركة واحدة. الموضوع ذاته، خمسة تسليمات مختلفة، خمسة ادّعاءات مختلفة، خمسة أسئلة ممتحِنين مختلفة: المسار، لا الموضوع، يقرّر أي نوع أطروحة هذه.</p>
+        <div class="note"><strong>ملاحظة:</strong> هذا التمرين يستحقّ الإجراء على موضوعك قبل الالتزام. ارسمه على المسارات الخمسة صفحةً لكلّ؛ والرسم الذي يحمّسك ويلائم وصولك وبياناتك ونموذجك عادةً هو التصميم الصحيح.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="choosing">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Choosing and Defending Your Path</h2>
+        <p class="lead">The choice among paths is driven by four practical questions, and answering them honestly usually leaves only one or two candidates standing. The defence of the choice then writes itself.</p>
+        <p>First, what already exists? If strong, relevant theory is available, paths that begin with theory, TPT and TRT, become natural, because ignoring existing theory wastes the field's accumulated work and invites the question why the wheel was reinvented. If theory is thin, immature, or visibly ill-fitting for the context, the ground-up paths, PT and RT, are not just permissible but demanded, since testing a theory that does not exist is impossible. Second, what is the study for? A contribution to theory suggests TRT or RT; a contribution to understanding a specific world suggests PT; a contribution to both practice and knowledge suggests PTRT or TPT. Third, what access do you actually have? PT and PTRT need deep, sustained access to a real setting; TRT and RT can often work with broader, thinner data; access constraints have quietly decided many a design, and it is better to decide with them explicitly. Fourth, what does your paradigm license? The alignment table from earlier is now a checklist: a path whose reasoning your declared paradigm cannot support is not available to you without changing one or the other.</p>
+        <p>In the thesis, the defence takes one disciplined paragraph: name the path, show it fits the state of theory, the purpose, the access, and the paradigm, and acknowledge the path not taken with a sentence on why. Examiners rarely attack a choice that is named and reasoned; they attack choices that appear to have been made by accident. The five-path vocabulary exists precisely so that no part of your journey between theory and world has to look accidental.</p>
+        <div class="note"><strong>Note:</strong> four questions choose the path: what theory exists, what the study is for, what access you have, and what your paradigm licenses. Answer them in writing and the design defends itself.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>اختيار مسارك والدفاع عنه</h2>
+        <p class="lead">اختيار المسار تقوده أربعة أسئلة عملية، والإجابة عنها بأمانة لا تُبقي عادةً إلّا مرشّحًا أو اثنين قائمَين. ثم يكتب الدفاع عن الاختيار نفسه بنفسه.</p>
+        <p>أولًا، ما الموجود سلفًا؟ إن توفّرت نظرية قوية ملائمة، صارت المسارات البادئة بالنظرية، TPT وTRT، طبيعية، لأن تجاهل النظرية القائمة يهدر عمل الحقل المتراكم ويستدعي سؤال لماذا أُعيد اختراع العجلة. وإن كانت النظرية رقيقةً أو غير ناضجة أو ظاهرة السوء للسياق، لم تكن مسارات البناء من الأساس، PT وRT، مسموحةً فقط بل مطلوبة، إذ اختبار نظرية لا توجد مستحيل. ثانيًا، لماذا الدراسة؟ الإسهام في النظرية يقترح TRT أو RT؛ والإسهام في فهم عالم محدّد يقترح PT؛ والإسهام في الممارسة والمعرفة معًا يقترح PTRT أو TPT. ثالثًا، أي وصول لديك فعلًا؟ يحتاج PT وPTRT وصولًا عميقًا مستدامًا لبيئة حقيقية؛ ويستطيع TRT وRT العمل غالبًا ببيانات أعرض أرقّ؛ وقيود الوصول قرّرت بصمت تصاميم كثيرة، والأفضل التقرير بها صراحةً. رابعًا، ماذا يرخّص نموذجك؟ جدول الاصطفاف السابق الآن قائمة فحص: مسار لا يستطيع نموذجك المعلَن دعم استدلاله ليس متاحًا لك دون تغيير أحدهما.</p>
+        <p>وفي الأطروحة، يأخذ الدفاع فقرةً منضبطة واحدة: سمّ المسار، وأظهِر ملاءمته لحالة النظرية والغرض والوصول والنموذج، واعترف بالمسار غير المسلوك بجملة عن السبب. نادرًا ما يهاجم الممتحِنون خيارًا مسمًّى معلَّلًا؛ يهاجمون الخيارات التي تبدو مصنوعةً مصادفةً. ومفردات المسارات الخمسة توجد بالضبط كي لا يبدو أي جزء من رحلتك بين النظرية والعالم مصادفة.</p>
+        <div class="note"><strong>ملاحظة:</strong> أربعة أسئلة تختار المسار: ما النظرية الموجودة، ولماذا الدراسة، وأي وصول لديك، وماذا يرخّص نموذجك. أجب عنها كتابةً يدافع التصميم عن نفسه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="why">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Why the Alignment Matters</h2>
+        <p class="lead">The mapping between paths and paradigms is not academic tidiness; misalignment between them is one of the ways a thesis quietly contradicts itself, and alignment is one of the ways it becomes strong.</p>
+        <p>Consider the failure cases. A researcher declares an interpretivist paradigm but follows a TRT path, deriving fixed hypotheses from theory and testing them statistically; the philosophy chapter promises meaning understood from within, while the design delivers variables measured from without, and an examiner will ask which one the researcher actually believes. Or a researcher runs a genuinely PT path, building categories from rich fieldwork, but writes the thesis in the language of proof and generalization, claiming a kind of conclusion the inductive path cannot deliver. In both cases the parts are individually respectable; it is the mismatch that wounds, because it suggests the philosophy was decoration rather than a decision.</p>
+        <p>Alignment, by contrast, compounds strength. When an interpretivist study follows a PT path with inductive reasoning and claims deep grounded understanding, every layer supports the others, and the examiner's questions answer themselves. When a pragmatist study follows a PTRT cycle, starting from a practical problem, building and testing theory, and returning improved practice, the paradigm justifies the mixed logic and the mixed logic serves the problem, one coherent argument from philosophy to findings. The practical rule is to check the stack: paradigm, reasoning mode, and theory-practice path should tell one story, and wherever they do not, either the description or the design needs to change before the examiner finds the seam.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> the five paths, TPT, PT, RT, TRT, and PTRT, are paradigms made visible as workflows. Identify your path, check that its reasoning and paradigm agree with what your philosophy chapter claims, and the thesis becomes one continuous argument instead of a stack of parts.</div>
+        <div class="refs"><ul>
+          <li>Saunders, Lewis &amp; Thornhill, <a href="https://www.researchgate.net/publication/309102603_Research_Methods_for_Business_Students" target="_blank" rel="noopener">Research Methods for Business Students</a>.</li>
+          <li>Stanford Encyclopedia of Philosophy, <a href="https://plato.stanford.edu/entries/pragmatism/" target="_blank" rel="noopener">Pragmatism</a>.</li>
+          <li>Shah &amp; Corley (2006), <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1467-6486.2006.00662.x" target="_blank" rel="noopener">Building Better Theory by Bridging the Quantitative-Qualitative Divide</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>لماذا يهمّ الاصطفاف</h2>
+        <p class="lead">التطابق بين المسارات والنماذج ليس ترتيبًا أكاديميًا؛ فسوء الاصطفاف بينها من الطرق التي تناقض بها أطروحة نفسها بهدوء، والاصطفاف من الطرق التي تصير بها قوية.</p>
+        <p>تأمّل حالات الفشل. باحث يعلن نموذجًا تفسيريًا لكنه يتبع مسار TRT، مشتقًّا فرضيات ثابتة من نظرية ومختبرًا إياها إحصائيًا؛ يعد الفصل الفلسفي بمعنًى يُفهَم من الداخل، بينما يقدّم التصميم متغيّرات تُقاس من الخارج، وسيسأل الممتحِن أيّهما يعتقد الباحث فعلًا. أو باحث يجري مسار PT حقيقيًا، بانيًا الفئات من عمل ميداني غني، لكنه يكتب الأطروحة بلغة البرهان والتعميم، مدّعيًا نوع خلاصة لا يستطيع المسار الاستقرائي تقديمه. في الحالتين الأجزاء محترمة منفردةً؛ والتنافر هو الجارح، لأنه يوحي أن الفلسفة كانت زينةً لا قرارًا.</p>
+        <p>والاصطفاف، بالمقابل، يراكم القوّة. فحين تتبع دراسة تفسيرية مسار PT باستدلال استقرائي وتدّعي فهمًا مؤصَّلًا عميقًا، تدعم كل طبقة الأخرى، وتجيب أسئلة الممتحِن نفسها بنفسها. وحين تتبع دراسة براغماتية دورة PTRT، بادئةً من مشكلة عملية، بانيةً النظرية ومختبرةً إياها، وعائدةً بممارسة محسّنة، يبرّر النموذج المنطق المختلط ويخدم المنطق المختلط المشكلة، حجّةً متماسكة واحدة من الفلسفة للنتائج. والقاعدة العملية فحص الرصّة: النموذج ونمط الاستدلال ومسار النظرية-الممارسة ينبغي أن تحكي قصّةً واحدة، وحيثما لا تفعل، فإمّا الوصف وإمّا التصميم يحتاج التغيير قبل أن يجد الممتحِن الدرز.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> المسارات الخمسة، TPT وPT وRT وTRT وPTRT، نماذج صارت مرئيةً سير عمل. حدّد مسارك، وافحص توافق استدلاله ونموذجه مع ما يدّعيه فصلك الفلسفي، تصر الأطروحة حجّةً متصلة واحدة بدل رصّة أجزاء.</div>
+        <div class="refs"><ul>
+          <li>سوندرز ولويس وثورنهيل، <a href="https://www.researchgate.net/publication/309102603_Research_Methods_for_Business_Students" target="_blank" rel="noopener">مناهج البحث لطلاب الأعمال</a>.</li>
+          <li>موسوعة ستانفورد للفلسفة، <a href="https://plato.stanford.edu/entries/pragmatism/" target="_blank" rel="noopener">البراغماتية</a>.</li>
+          <li>شاه وكورلي (2006)، <a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1467-6486.2006.00662.x" target="_blank" rel="noopener">بناء نظرية أفضل بجسر الفجوة الكمّية-النوعية</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="theory-grounded-theory.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Grounded Theory</span><span data-lang="ar">النظرية المتجذّرة</span></a><a href="reason-deduction-induction-abduction.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Reasoning: Deduction, Induction &amp; Abduction</span><span data-lang="ar">الاستدلال: الاستنباط والاستقراء وما بعدهما</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="ربط المقاربات بالنماذج";
+var TITLE_EN="Linking Approaches to Paradigms";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interpretivism</title>
+<meta name="description" content="Interpretivism in depth: the Verstehen tradition, its assumptions, qualitative methods, and the trustworthiness criteria by which its rigour is judged.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Research paradigms</span><span data-lang="ar">النماذج البحثية</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">RESEARCH PARADIGMS · PhD</span><span data-lang="ar">النماذج البحثية · دكتوراه</span></div>
+    <h1><span data-lang="en">Interpretivism</span><span data-lang="ar">التفسيرية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Research paradigms</span><span data-lang="ar">النماذج البحثية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">8 min</span><span data-lang="ar">٨ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="roots"><span data-lang="en">Roots</span><span data-lang="ar">الجذور</span></a></li><li><a data-id="assumptions"><span data-lang="en">Assumptions</span><span data-lang="ar">الافتراضات</span></a></li><li><a data-id="methods"><span data-lang="en">Methods</span><span data-lang="ar">المناهج</span></a></li><li><a data-id="rigour"><span data-lang="en">Rigour & Limits</span><span data-lang="ar">الصرامة والحدود</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Paradigm:</span> Interpretivism</div>
+          <div><span>Core claim:</span> Social reality is built from meaning and must be understood from within</div>
+          <div><span>Typical methods:</span> Interviews, ethnography, case study, thematic analysis</div>
+          <div><span>Level:</span> Doctoral research philosophy</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Interpretivism is the paradigm built on a single powerful conviction: that studying human beings is fundamentally unlike studying atoms or planets, because people act on the basis of meanings, and those meanings cannot be measured from the outside but must be understood from within. Where positivism seeks general laws that explain and predict, interpretivism seeks rich understanding of how people make sense of their world and why, from their own point of view, they act as they do.</p>
+        <p>The paradigm rests on the observation that human action is not mere behaviour but meaningful behaviour. A wink is not the same as a blink, even though the physical movement is identical, because a wink carries meaning that a blink does not. To understand a wink you must grasp the shared conventions that make it meaningful, and no amount of precise measurement of eyelid velocity will ever capture that. Human social life is woven through with such meanings, and interpretivism holds that a research approach which ignores them, treating people as if they were objects obeying laws, misses the very thing that makes them human.</p>
+        <p>For a doctoral researcher, interpretivism is the natural home of a whole family of qualitative approaches. If a study asks how people experience something, what a situation means to those living it, or how a group constructs its shared understanding, it is almost certainly working within interpretivist assumptions, and those assumptions should be stated and defended rather than left implicit or, worse, judged by positivist standards they were never meant to meet.</p>
+        <p>This framework sets out the worldview interpretivism starts from, its intellectual roots in the idea of understanding, its assumptions across ontology, epistemology, and axiology, its characteristic methods, the distinctive criteria by which its rigour is judged, and its strengths and limits. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Interpretivism does not reject rigour; it redefines it. The goal is not measurement and generalization but faithful, deep, well-evidenced understanding of meaning, judged by standards suited to that goal rather than borrowed from the natural sciences.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>النموذج:</span> التفسيرية</div>
+          <div><span>الادّعاء الجوهري:</span> الواقع الاجتماعي مبنيّ من المعنى ويجب فهمه من الداخل</div>
+          <div><span>المناهج المعتادة:</span> المقابلات، الإثنوغرافيا، دراسة الحالة، التحليل الموضوعي</div>
+          <div><span>المستوى:</span> فلسفة بحث لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">التفسيرية نموذج مبنيّ على اقتناع قوي واحد: أن دراسة البشر تختلف جوهريًا عن دراسة الذرّات أو الكواكب، لأن الناس يتصرّفون بناءً على معانٍ، وتلك المعاني لا تُقاس من الخارج بل يجب فهمها من الداخل. وحيث تبحث الوضعية عن قوانين عامة تفسّر وتتنبّأ، تبحث التفسيرية عن فهم غني لكيف يفهم الناس عالمهم ولماذا، من وجهة نظرهم، يتصرّفون كما يتصرّفون.</p>
+        <p>يقوم النموذج على ملاحظة أن الفعل الإنساني ليس سلوكًا مجرّدًا بل سلوكًا ذا معنًى. فالغمزة ليست كالرمشة، مع أن الحركة الفيزيائية متطابقة، لأن الغمزة تحمل معنًى لا تحمله الرمشة. ولفهم غمزة يجب إدراك الأعراف المشتركة التي تجعلها ذات معنًى، ولا قدر من قياس سرعة الجفن الدقيق سيلتقط ذلك أبدًا. والحياة الاجتماعية الإنسانية منسوجة بمثل هذه المعاني، وترى التفسيرية أن مقاربةً بحثية تتجاهلها، معاملةً الناس كأنهم أشياء تطيع قوانين، تفوّت الشيء ذاته الذي يجعلهم بشرًا.</p>
+        <p>وبالنسبة لباحث الدكتوراه، التفسيرية الموطن الطبيعي لعائلة كاملة من المقاربات النوعية. فإن سألت دراسة كيف يختبر الناس شيئًا، أو ماذا يعني موقف لمن يعيشونه، أو كيف تبني جماعة فهمها المشترك، فهي شبه أكيدة تعمل ضمن افتراضات تفسيرية، وتلك الافتراضات ينبغي ذكرها والدفاع عنها لا تركها ضمنية أو، الأسوأ، الحكم عليها بمعايير وضعية لم تُصمَّم لبلوغها أبدًا.</p>
+        <p>يعرض هذا الإطار الرؤية التي تبدأ منها التفسيرية، وجذورها الفكرية في فكرة الفهم، وافتراضاتها عبر الأنطولوجيا والإبستمولوجيا والأكسيولوجيا، ومناهجها المميّزة، والمعايير المتمايزة التي تُحكَم بها صرامتها، وقوّتها وحدودها. وقد أعددت هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> التفسيرية لا ترفض الصرامة؛ تعيد تعريفها. فالهدف ليس القياس والتعميم بل فهمًا أمينًا عميقًا مدعومًا بالأدلّة للمعنى، يُحكَم بمعايير تلائم ذلك الهدف لا مستعارة من العلوم الطبيعية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="roots">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Idea of Understanding</h2>
+        <p class="lead">Interpretivism grows from a tradition that insisted, against the confidence of positivism, that the human sciences need a method of their own. Its central idea has a name, and knowing that name clarifies the whole paradigm.</p>
+        <p>The key concept is Verstehen, a German word meaning understanding, but understanding of a particular kind: grasping the meaning of an action from the inside, as the person performing it understands it. The thinker most associated with bringing this into social science is Max Weber, who argued that sociology must do more than observe regularities in behaviour; it must interpret the subjective meanings that people attach to their actions, because those meanings are part of what causes the action. To explain why a person prays, votes, or resigns, it is not enough to correlate external variables; one must understand what the act means to them. This is a different kind of explanation from the causal laws of physics, and Weber insisted it was proper to the study of human beings.</p>
+        <p>Behind Weber lay a longer argument, often called the methods dispute, in which thinkers such as Wilhelm Dilthey distinguished the natural sciences, which aim to explain nature by external laws, from the human sciences, which aim to understand meaning from within. Later currents deepened the tradition: phenomenology, which studies the structures of lived experience; hermeneutics, the theory of interpretation, originally of texts and then of action; and symbolic interactionism, which studies how shared meanings arise and are sustained in everyday interaction. These are not the same, but they share the interpretivist conviction that meaning is the proper object of social inquiry and that understanding, not measurement, is the proper method.</p>
+        <div class="note"><strong>Note:</strong> Verstehen is the heart of interpretivism. To understand a human action is to grasp what it means to the person doing it, which is a different achievement from measuring it or subsuming it under a law.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>فكرة الفهم</h2>
+        <p class="lead">تنمو التفسيرية من تقليد أصرّ، ضدّ ثقة الوضعية، على أن العلوم الإنسانية تحتاج منهجًا خاصًا بها. ولفكرتها المركزية اسم، ومعرفته توضّح النموذج كله.</p>
+        <p>المفهوم المفتاح هو Verstehen، كلمة ألمانية تعني الفهم، لكن فهمًا من نوع خاص: إدراك معنى فعل من الداخل، كما يفهمه من يؤدّيه. والمفكّر الأكثر ارتباطًا بإدخال هذا في العلم الاجتماعي ماكس فيبر، الذي جادل بأن علم الاجتماع يجب أن يفعل أكثر من ملاحظة انتظامات في السلوك؛ عليه أن يؤوّل المعاني الذاتية التي يعلّقها الناس على أفعالهم، لأن تلك المعاني جزء ممّا يسبّب الفعل. فلتفسير لماذا يصلّي شخص، أو يصوّت، أو يستقيل، لا يكفي ربط متغيّرات خارجية؛ يجب فهم ما يعنيه الفعل له. وهذا نوع من التفسير مختلف عن قوانين الفيزياء السببية، وأصرّ فيبر أنه لائق بدراسة البشر.</p>
+        <p>وخلف فيبر حجّة أطول، تُسمّى غالبًا خصومة المناهج، ميّز فيها مفكّرون كفيلهلم دلتاي العلوم الطبيعية، الهادفة لتفسير الطبيعة بقوانين خارجية، عن العلوم الإنسانية، الهادفة لفهم المعنى من الداخل. وعمّقت تيارات لاحقة التقليد: الظواهرية، التي تدرس بُنى التجربة المعيشة؛ والتأويلية، نظرية التأويل، للنصوص أصلًا ثم للفعل؛ والتفاعلية الرمزية، التي تدرس كيف تنشأ المعاني المشتركة وتُصان في التفاعل اليومي. وهذه ليست ذاتها، لكنها تتشارك اقتناع التفسيرية أن المعنى الموضوع اللائق للبحث الاجتماعي وأن الفهم، لا القياس، المنهج اللائق.</p>
+        <div class="note"><strong>ملاحظة:</strong> الفهم (Verstehen) قلب التفسيرية. ففهم فعل إنساني إدراك ما يعنيه لفاعله، وهو إنجاز مختلف عن قياسه أو إدراجه تحت قانون.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="assumptions">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Its Three Assumptions</h2>
+        <p class="lead">Interpretivism answers the three philosophical questions in ways that stand almost point for point against positivism, and stating them clearly is what a qualitative methodology chapter needs to justify its whole design.</p>
+        <table>
+          <tbody><tr>
+            <th><span data-lang="en">Branch</span><span data-lang="ar">الفرع</span></th>
+            <th><span data-lang="en">Interpretivist answer</span><span data-lang="ar">الجواب التفسيري</span></th>
+          </tr>
+          <tr><td><span data-lang="en">Ontology (reality)</span><span data-lang="ar">الأنطولوجيا (الواقع)</span></td><td><span data-lang="en">social reality is constructed through shared meaning; multiple realities</span><span data-lang="ar">الواقع الاجتماعي يُبنى عبر المعنى المشترك؛ وقائع متعددة</span></td></tr>
+          <tr><td><span data-lang="en">Epistemology (knowledge)</span><span data-lang="ar">الإبستمولوجيا (المعرفة)</span></td><td><span data-lang="en">knowledge comes from understanding meanings from within</span><span data-lang="ar">المعرفة تأتي من فهم المعاني من الداخل</span></td></tr>
+          <tr><td><span data-lang="en">Axiology (values)</span><span data-lang="ar">الأكسيولوجيا (القيم)</span></td><td><span data-lang="en">research is value-laden; the researcher's position matters and is made explicit</span><span data-lang="ar">البحث محمّلٌ بالقيم؛ موقع الباحث يهمّ ويُعلَن</span></td></tr>
+          <tr><td><span data-lang="en">Reasoning</span><span data-lang="ar">الاستدلال</span></td><td><span data-lang="en">mainly inductive: theory emerges from data</span><span data-lang="ar">استقرائي غالبًا: النظرية تنبثق من البيانات</span></td></tr>
+        </tbody></table>
+        <p>Ontologically, interpretivism holds that social reality is not a fixed external object but something people construct together through shared meanings, language, and interaction. Because different groups and individuals can construct different understandings, there are multiple socially constructed realities rather than one, and the researcher's task is not to measure the single true one but to understand these constructions. Epistemologically, it follows that knowledge cannot be gained by detached measurement from outside; it requires getting close, entering the world of the people studied, and interpreting their meanings, so the researcher is an instrument of understanding rather than a neutral recorder. The knower and the known are connected, not separate.</p>
+        <p>Axiologically, interpretivism embraces what positivism tries to eliminate. Since the researcher's own background and perspective inevitably shape their interpretation, the honest response is not to pretend neutrality but to practise reflexivity, examining and declaring one's position and its likely influence on the reading. And because interpretivist research usually begins with rich data rather than a fixed hypothesis, its reasoning tends to be inductive: patterns, concepts, and theory emerge from close engagement with the data rather than being imposed on it in advance. Together these assumptions form a chain as coherent as the positivist one, but pointing in the opposite direction.</p>
+        <div class="note"><strong>Note:</strong> In interpretivism the researcher is the main instrument. Because understanding meaning requires human interpretation, the researcher's sensitivity, closeness, and self-awareness are methodological tools, not sources of contamination to be removed.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>افتراضاتها الثلاثة</h2>
+        <p class="lead">تجيب التفسيرية الأسئلة الفلسفية الثلاثة بطرق تقف نقطةً بنقطة تقريبًا ضدّ الوضعية، وذكرها بوضوح ما يحتاجه فصل المنهجية النوعي لتبرير تصميمه كله.</p>
+        <table>
+          <tbody><tr>
+            <th><span data-lang="en">Branch</span><span data-lang="ar">الفرع</span></th>
+            <th><span data-lang="en">Interpretivist answer</span><span data-lang="ar">الجواب التفسيري</span></th>
+          </tr>
+          <tr><td><span data-lang="en">Ontology (reality)</span><span data-lang="ar">الأنطولوجيا (الواقع)</span></td><td><span data-lang="en">social reality is constructed through shared meaning; multiple realities</span><span data-lang="ar">الواقع الاجتماعي يُبنى عبر المعنى المشترك؛ وقائع متعددة</span></td></tr>
+          <tr><td><span data-lang="en">Epistemology (knowledge)</span><span data-lang="ar">الإبستمولوجيا (المعرفة)</span></td><td><span data-lang="en">knowledge comes from understanding meanings from within</span><span data-lang="ar">المعرفة تأتي من فهم المعاني من الداخل</span></td></tr>
+          <tr><td><span data-lang="en">Axiology (values)</span><span data-lang="ar">الأكسيولوجيا (القيم)</span></td><td><span data-lang="en">research is value-laden; the researcher's position matters and is made explicit</span><span data-lang="ar">البحث محمّل بالقيم؛ موقع الباحث يهمّ ويُعلَن</span></td></tr>
+          <tr><td><span data-lang="en">Reasoning</span><span data-lang="ar">الاستدلال</span></td><td><span data-lang="en">mainly inductive: theory emerges from data</span><span data-lang="ar">استقرائي غالبًا: النظرية تنبثق من البيانات</span></td></tr>
+        </tbody></table>
+        <p>أنطولوجيًا، ترى التفسيرية أن الواقع الاجتماعي ليس شيئًا خارجيًا ثابتًا بل شيئًا يبنيه الناس معًا عبر المعاني المشتركة واللغة والتفاعل. ولأن جماعات وأفرادًا مختلفين قد يبنون فهمات مختلفة، ثمّة وقائع اجتماعية متعددة مبنيّة لا واحدة، ومهمّة الباحث ليست قياس الواقعة الحقيقية الواحدة بل فهم هذه البناءات. وإبستمولوجيًا، يتبع أن المعرفة لا تُكتسَب بقياس محايد من الخارج؛ بل تتطلّب الاقتراب، ودخول عالم من يُدرَسون، وتأويل معانيهم، فيكون الباحث أداة فهم لا مسجِّلًا محايدًا. والعارف والمعروف متّصلان لا منفصلان.</p>
+        <p>وأكسيولوجيًا، تحتضن التفسيرية ما تحاول الوضعية إزالته. فبما أن خلفية الباحث ومنظوره يشكّلان حتمًا تأويله، الردّ الأمين ليس التظاهر بالحياد بل ممارسة الانعكاسية، بفحص وإعلان موقعه وأثره المرجَّح على القراءة. ولأن البحث التفسيري يبدأ عادةً ببيانات غنية لا فرضية ثابتة، يميل استدلاله للاستقراء: فالأنماط والمفاهيم والنظرية تنبثق من الانخراط الوثيق بالبيانات لا تُفرَض عليها مسبقًا. ومعًا تشكّل هذه الافتراضات سلسلةً متماسكة كالوضعية، لكن تشير في الاتجاه المعاكس.</p>
+        <div class="note"><strong>ملاحظة:</strong> في التفسيرية الباحث الأداة الرئيسة. فلأن فهم المعنى يتطلّب تأويلًا إنسانيًا، تكون حساسية الباحث وقربه ووعيه الذاتي أدوات منهجية لا مصادر تلوّث تُزال.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="methods">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Characteristic Methods</h2>
+        <p class="lead">Interpretivist assumptions call for methods that get close to people and preserve the richness of meaning rather than reducing it to numbers. The toolkit is qualitative, and each method is a different way of accessing how people understand their world.</p>
+        <p>The in-depth interview is the workhorse of interpretivist research, because it lets the researcher explore, in the participant's own words, how they experience and make sense of a situation, following meaning wherever it leads rather than forcing it into pre-set categories. Ethnography goes further into context, immersing the researcher in a setting over time so they can observe meaning as it is enacted in everyday life, not just as it is reported in an interview. Case study examines a single instance, an organization, an event, a person, in depth and in context, seeking understanding of the particular rather than generalization across many. And the analysis of documents, narratives, and language treats the texts people produce as windows into shared meaning.</p>
+        <p>What these methods have in common is the priority of depth over breadth and of meaning over measurement. Samples are typically small and chosen purposively, because the aim is not statistical representativeness but access to informative cases; a handful of rich, well-understood accounts is worth more, for this purpose, than a thousand shallow ones. Analysis, correspondingly, works by interpretation: reading and re-reading the data, identifying themes and patterns of meaning, and building an account that is faithful to how participants understand their world. Approaches such as thematic analysis and grounded theory give this interpretive work systematic structure, so that it is disciplined and transparent rather than merely impressionistic.</p>
+        <div class="note"><strong>Note:</strong> Small purposive samples are a feature, not a flaw. Interpretivism seeks depth of understanding in informative cases, so judging its sample size by survey standards mistakes what the research is trying to do.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>المناهج المميّزة</h2>
+        <p class="lead">تستدعي الافتراضات التفسيرية مناهج تقترب من الناس وتحفظ غنى المعنى بدل اختزاله لأرقام. والعدّة نوعية، وكل منهج طريقة مختلفة للوصول إلى كيف يفهم الناس عالمهم.</p>
+        <p>المقابلة المعمّقة حصان عمل البحث التفسيري، لأنها تتيح للباحث استكشاف، بكلمات المشارك ذاتها، كيف يختبر موقفًا ويفهمه، متتبّعًا المعنى حيثما قاد لا حاشِرًا إياه في فئات مسبقة. والإثنوغرافيا تتوغّل أعمق في السياق، غامرةً الباحث في بيئة عبر الزمن ليلاحظ المعنى كما يُمارَس في الحياة اليومية، لا كما يُبلَّغ في مقابلة فقط. ودراسة الحالة تفحص مثالًا واحدًا، منظمةً أو حدثًا أو شخصًا، بعمق وفي سياقه، طالبةً فهم الخاصّ لا التعميم عبر كثيرين. وتحليل الوثائق والسرود واللغة يعامل النصوص التي يُنتِجها الناس نوافذ على المعنى المشترك.</p>
+        <p>وما تشترك فيه هذه المناهج أولوية العمق على الاتساع والمعنى على القياس. فالعيّنات عادةً صغيرة ومختارة قصديًا، لأن الهدف ليس التمثيل الإحصائي بل الوصول لحالات مُعلِّمة؛ وحفنة من الروايات الغنية المفهومة جيدًا أثمن، لهذا الغرض، من ألف سطحية. والتحليل، تبعًا لذلك، يعمل بالتأويل: قراءة البيانات وإعادة قراءتها، وتحديد المواضيع وأنماط المعنى، وبناء حساب أمين لكيف يفهم المشاركون عالمهم. ومقاربات كالتحليل الموضوعي والنظرية المتجذّرة تمنح هذا العمل التأويلي بنيةً منهجية، فيكون منضبطًا شفافًا لا مجرّد انطباعي.</p>
+        <div class="note"><strong>ملاحظة:</strong> العيّنات القصدية الصغيرة ميزة لا عيب. فالتفسيرية تطلب عمق الفهم في حالات مُعلِّمة، فالحكم على حجم عيّنتها بمعايير المسح سوء فهم لما يحاول البحث فعله.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="rigour">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Judging Rigour, and Limits</h2>
+        <p class="lead">Because interpretivism does not seek objective measurement, it cannot be judged by validity, reliability, and generalization in the positivist sense. It has its own well-developed criteria of quality, and a strong qualitative study makes them explicit.</p>
+        <p>The most widely used framework speaks of trustworthiness, with four components. Credibility asks whether the findings are believable and faithful to participants' realities, supported by techniques such as member checking, where participants confirm the researcher's interpretation, and triangulation across sources. Transferability, which replaces generalization, asks whether findings could apply to other settings, and is supported by rich, thick description that lets a reader judge the fit to their own context. Dependability asks whether the process is consistent and well documented, so another researcher could follow the trail. And confirmability asks whether the findings are grounded in the data rather than the researcher's bias, supported by reflexivity and a clear audit trail. These criteria hold interpretivist work to a real and demanding standard, one designed for understanding rather than measurement.</p>
+        <ul>
+          <li><strong>Credibility:</strong> are the findings believable and true to participants' realities?</li>
+          <li><strong>Transferability:</strong> could the findings inform other settings, judged through thick description?</li>
+          <li><strong>Dependability:</strong> is the process consistent, documented, and traceable?</li>
+          <li><strong>Confirmability:</strong> are the findings grounded in data, not the researcher's bias?</li>
+        </ul>
+        <p>The paradigm's limits follow from its strengths. Because samples are small and purposive, interpretivist findings do not generalize statistically, and offering deep understanding of particular cases rather than broad laws. Because the researcher is the instrument, the approach depends heavily on their skill and self-awareness, and critics worry about subjectivity, though reflexivity and systematic method are the disciplined response to that worry. And interpretivist work is labour-intensive and hard to scale. None of this is a defect when the research question is about meaning; it is simply the cost of a paradigm that refuses to reduce human experience to numbers. The honest guidance is to choose interpretivism when your question is genuinely about how people understand and experience their world, and then to hold the work to its own rigorous standards rather than apologizing for failing to meet positivist ones.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> interpretivism studies meaning from within, using qualitative methods to reach deep understanding rather than measurement. Judge it by trustworthiness, not by validity and generalization, and choose it whenever your question is about what something means to the people who live it.</div>
+        <div class="refs"><ul>
+          <li>Pervin &amp; Mokhtar (2022), <a href="https://hrmars.com/index.php/IJARPED/article/view/12938" target="_blank" rel="noopener">The Interpretivist Research Paradigm</a>.</li>
+          <li>Stanford Encyclopedia of Philosophy, <a href="https://plato.stanford.edu/entries/hermeneutics/" target="_blank" rel="noopener">Hermeneutics</a>.</li>
+          <li>Stanford Encyclopedia of Philosophy, <a href="https://plato.stanford.edu/entries/weber/" target="_blank" rel="noopener">Max Weber and Verstehen</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الحكم على الصرامة، والحدود</h2>
+        <p class="lead">لأن التفسيرية لا تطلب قياسًا موضوعيًا، لا يمكن الحكم عليها بالصدق والثبات والتعميم بالمعنى الوضعي. ولها معايير جودة مطوَّرة خاصة، والدراسة النوعية القوية تجعلها صريحة.</p>
+        <p>أكثر الأُطُر استخدامًا يتحدّث عن الوثوقية، بأربعة مكوّنات. المصداقية تسأل أالنتائج مقنعة وأمينة لوقائع المشاركين، مدعومةً بتقنيات كفحص الأعضاء، حيث يؤكّد المشاركون تأويل الباحث، والتثليث عبر المصادر. وقابلية النقل، التي تحلّ محلّ التعميم، تسأل أيمكن أن تنطبق النتائج على بيئات أخرى، وتُدعَم بوصف غني كثيف يتيح للقارئ الحكم على ملاءمتها لسياقه. والاعتمادية تسأل أالعملية متّسقة موثَّقة، ليتتبّع باحث آخر الأثر. وقابلية التأكيد تسأل أالنتائج مؤصَّلة في البيانات لا في تحيّز الباحث، مدعومةً بالانعكاسية وأثر تدقيقي واضح. وهذه المعايير تُخضِع العمل التفسيري لمعيار حقيقي صارم، مصمَّم للفهم لا القياس.</p>
+        <ul>
+          <li><strong>المصداقية:</strong> أالنتائج مقنعة وأمينة لوقائع المشاركين؟</li>
+          <li><strong>قابلية النقل:</strong> أيمكن أن تُفيد النتائج بيئات أخرى، بالوصف الكثيف؟</li>
+          <li><strong>الاعتمادية:</strong> أالعملية متّسقة موثَّقة قابلة للتتبّع؟</li>
+          <li><strong>قابلية التأكيد:</strong> أالنتائج مؤصَّلة في البيانات لا في تحيّز الباحث؟</li>
+        </ul>
+        <p>وحدود النموذج تتبع قوّته. فلأن العيّنات صغيرة قصدية, لا تُعمَّم النتائج التفسيرية إحصائيًا، مقدِّمةً فهمًا عميقًا لحالات خاصة لا قوانين عريضة. ولأن الباحث الأداة، تعتمد المقاربة كثيرًا على مهارته ووعيه الذاتي، ويقلق النقّاد من الذاتية، وإن كانت الانعكاسية والمنهج المنظَّم الردّ المنضبط على ذلك القلق. والعمل التفسيري كثيف الجهد صعب التوسيع. ولا شيء من هذا عيب حين يكون سؤال البحث عن المعنى؛ بل ببساطة كلفة نموذج يأبى اختزال التجربة الإنسانية لأرقام. والإرشاد الأمين اختيار التفسيرية حين يكون سؤالك فعلًا عن كيف يفهم الناس عالمهم ويختبرونه، ثم إخضاع العمل لمعاييره الصارمة لا الاعتذار عن عدم بلوغ الوضعية.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> التفسيرية تدرس المعنى من الداخل، مستخدمةً مناهج نوعية لبلوغ فهم عميق لا قياس. احكم عليها بالوثوقية لا بالصدق والتعميم، واخترها كلما كان سؤالك عمّا يعنيه شيء لمن يعيشونه.</div>
+        <div class="refs"><ul>
+          <li>بيرفين ومختار (2022)، <a href="https://hrmars.com/index.php/IJARPED/article/view/12938" target="_blank" rel="noopener">نموذج البحث التفسيري</a>.</li>
+          <li>موسوعة ستانفورد للفلسفة، <a href="https://plato.stanford.edu/entries/hermeneutics/" target="_blank" rel="noopener">التأويلية</a>.</li>
+          <li>موسوعة ستانفورد للفلسفة، <a href="https://plato.stanford.edu/entries/weber/" target="_blank" rel="noopener">ماكس فيبر والفهم</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="paradigm-critical-theory.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Critical Theory</span><span data-lang="ar">النظرية النقدية</span></a><a href="paradigm-positivism.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Positivism</span><span data-lang="ar">الوضعية</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="التفسيرية";
+var TITLE_EN="Interpretivism";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

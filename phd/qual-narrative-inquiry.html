@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Narrative Inquiry</title>
+<meta name="description" content="Narrative inquiry in depth: the narrative mode of knowing, eliciting stories, structural and positioning analysis, and a full worked example.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Qualitative methods</span><span data-lang="ar">المناهج النوعية</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">QUALITATIVE METHODS · PhD</span><span data-lang="ar">المناهج النوعية · دكتوراه</span></div>
+    <h1><span data-lang="en">Narrative Inquiry</span><span data-lang="ar">البحث السردي</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Qualitative methods</span><span data-lang="ar">المناهج النوعية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">8 min</span><span data-lang="ar">٨ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="mode"><span data-lang="en">Narrative Knowing</span><span data-lang="ar">المعرفة السردية</span></a></li><li><a data-id="craft"><span data-lang="en">Eliciting Stories</span><span data-lang="ar">استخراج القصص</span></a></li><li><a data-id="analysis"><span data-lang="en">Analyzing Stories</span><span data-lang="ar">تحليل القصص</span></a></li><li><a data-id="example"><span data-lang="en">Worked Example</span><span data-lang="ar">مثال تطبيقي</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Method:</span> Narrative inquiry</div>
+          <div><span>Key authorities:</span> Jerome Bruner; Clandinin &amp; Connelly; Riessman</div>
+          <div><span>Core question:</span> What stories do people tell, how do they tell them, and what work do the stories do?</div>
+          <div><span>Level:</span> Doctoral research methodology</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Narrative inquiry is the study of experience through the stories people tell about it. Its founding claim, argued most influentially by Jerome Bruner, is that storytelling is not decoration on top of human thought but one of its two basic modes: alongside the logical mode that argues and proves, humans possess a narrative mode that organizes life into events, characters, intentions, and plots, and it is chiefly through this mode that people make sense of who they are and what has happened to them. To study people's stories, then, is to study the very instrument by which they construct identity and meaning.</p>
+        <p>The method treats the story as its unit of analysis, and this is what separates it from ordinary interviewing. A thematic analyst cuts interviews into fragments and sorts them by topic; the narrative researcher keeps the story whole, because the sequence, the causal links the teller draws, the way the ending reinterprets the beginning, and the point the story builds toward are exactly where the meaning lives. How a person narrates a career setback, as a wound, a lesson, a turning point, or an injustice, tells you more about how they carry it than any list of themes extracted from the same words.</p>
+        <p>For a doctoral researcher, narrative inquiry fits questions about identity, change, and sense-making over time: how professionals story their careers, how organizations narrate their transformations, how newcomers learn what stories may be told here. This framework sets out the narrative mode of knowing, the practical craft of eliciting and analyzing stories, the distinction between analyzing narratives and narrative analysis, the organizational uses of the method, and a worked example. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> A story is data twice over: as a record of events and as an act of self-construction performed in the telling. Narrative inquiry's distinctive power is in reading the second layer, what the telling does, not just what it reports.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المنهج:</span> البحث السردي</div>
+          <div><span>المراجع الرئيسية:</span> جيروم برونر؛ كلاندينين وكونيلي؛ ريسمان</div>
+          <div><span>السؤال الجوهري:</span> ما القصص التي يرويها الناس، وكيف يروونها، وما العمل الذي تؤديه؟</div>
+          <div><span>المستوى:</span> منهجية بحثٍ لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">البحث السردي هو دراسة التجربة الإنسانية من خلال القصص التي يرويها الناس عنها. وفكرته المؤسِّسة، التي دافع عنها جيروم برونر بتأثير كبير، هي أن الحكي ليس زينة فوق التفكير الإنساني بل أحد نمطيه الأساسيين: فإلى جانب النمط المنطقي الذي يحاجج ويبرهن، يملك البشر نمطًا سرديًا ينظّم الحياة في أحداث وشخصيات ونوايا وحبكات، وعبر هذا النمط أساسًا يفهم الناس من هم وما الذي حدث لهم. فدراسة قصص الناس إذن هي دراسة الأداة نفسها التي يبنون بها هويتهم ومعناهم.</p>
+        <p>ويعامل هذا المنهج القصة بوصفها وحدة التحليل، وهذا ما يفصله عن المقابلات العادية. فالمحلل الموضوعي يقطّع المقابلات إلى شذرات ويصنّفها حسب الموضوع؛ أما الباحث السردي فيبقي القصة كاملة، لأن التسلسل، والروابط السببية التي يرسمها الراوي، والطريقة التي تعيد بها النهاية تفسير البداية، والمغزى الذي تبني القصة نحوه، هي بالضبط المواضع التي يسكنها المعنى. فطريقة سرد شخص لانتكاسة مهنية، بوصفها جرحًا أو درسًا أو نقطة تحول أو ظلمًا، تخبرك عن الطريقة التي يحملها بها أكثر مما تخبرك أي قائمة مواضيع مستخرجة من الكلمات نفسها.</p>
+        <p>وبالنسبة لباحث الدكتوراه، يناسب البحث السردي أسئلة الهوية والتغيّر وصناعة المعنى عبر الزمن: كيف يحكي المهنيون مسيراتهم، وكيف تروي المنظمات تحولاتها، وكيف يتعلم الوافدون الجدد أي القصص يجوز أن تُحكى هنا. يعرض هذا الإطار النمط السردي للمعرفة، وحرفة استخراج القصص وتحليلها، والتمييز بين تحليل السرديات والتحليل السردي، والاستخدامات التنظيمية للمنهج، ومثالًا تطبيقيًا. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> القصة بيانات مرتين: مرة كسجل للأحداث، ومرة كفعل بناء للذات يُؤدَّى أثناء الحكي. والقوة المميزة للبحث السردي في قراءة الطبقة الثانية، ما الذي يفعله الحكي، لا ما الذي يبلّغ عنه فقط.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="mode">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Narrative Mode of Knowing</h2>
+        <p class="lead">Bruner's distinction between the two modes of thought is the method's philosophical foundation, and taking it seriously changes what a researcher expects stories to deliver.</p>
+        <p>The paradigmatic mode, Bruner's name for logical-scientific thinking, seeks truth through argument: it categorizes, tests, and generalizes, and its ideal is the well-formed proof. The narrative mode seeks verisimilitude through story: it deals in particular people, in specific circumstances, acting over time on intentions that meet obstacles, and its ideal is the compelling account that makes human action intelligible. The modes are irreducible to each other, and each does work the other cannot: no syllogism explains why a founder kept the failing product line, but the story of what that product meant, to her, to the company's history, to her father who built it, makes the decision instantly comprehensible. Narrative is how humans handle intention, exception, and time, which is precisely the territory where variables struggle.</p>
+        <p>Three properties of narrative follow, and each becomes an analytical lever. Stories are selective: from the infinite stream of events, the teller chooses what belongs, and the selections reveal what matters to them. Stories are configured: events are not listed but plotted, arranged so that earlier ones cause or foreshadow later ones, and the plot type, triumph, tragedy, redemption, test, is itself a finding about how the teller understands their life. And stories are told to audiences: every telling is shaped by who is listening and what the telling is meant to accomplish, justify, warn, entertain, recruit, which means the same events yield different stories in different rooms, and the differences are data, not noise. A researcher who holds these three properties has the core of narrative analysis in hand.</p>
+        <div class="note"><strong>Note:</strong> Never treat a story as a defective factual report. Its selections, plot, and audience-shaping are not distortions of the data; in this method, they are the data.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>النمط السردي للمعرفة</h2>
+        <p class="lead">تمييز برونر بين نمطي التفكير هو الأساس الفلسفي للمنهج، وأخذه بجدية يغيّر ما يتوقع الباحث أن تقدمه القصص.</p>
+        <p>النمط البرهاني، وهو اسم برونر للتفكير المنطقي العلمي، يطلب الحقيقة عبر الحجة: يصنّف ويختبر ويعمّم، ومثاله الأعلى البرهان محكم البناء. أما النمط السردي فيطلب صدق التصوير عبر القصة: يتعامل مع أشخاص محددين، في ظروف معينة، يتصرفون عبر الزمن بنوايا تصطدم بعقبات، ومثاله الأعلى الحساب المقنع الذي يجعل الفعل الإنساني مفهومًا. والنمطان لا يُختزل أحدهما إلى الآخر، وكل واحد يؤدي عملًا لا يستطيعه الآخر: فلا قياس منطقي يفسر لماذا أبقت المؤسِّسة خط الإنتاج الخاسر، لكن قصة ما كان يعنيه ذلك المنتج، لها ولتاريخ الشركة ولوالدها الذي بناه، تجعل القرار مفهومًا في الحال. فالسرد هو الطريقة التي يعالج بها البشر النية والاستثناء والزمن، وهذه بالضبط المنطقة التي تتعثر فيها المتغيرات.</p>
+        <p>وتترتب على ذلك ثلاث خصائص للسرد، تصبح كل واحدة منها رافعة تحليلية. القصص انتقائية: فمن تيار الأحداث اللانهائي يختار الراوي ما ينتمي إلى القصة، واختياراته تكشف ما يهمه. والقصص مُحبَكة: فالأحداث لا تُسرَد قائمةً بل تُنظَّم في حبكة، بحيث تسبّب الأحداث المبكرة اللاحقة أو تمهّد لها، ونوع الحبكة نفسه، انتصار أو مأساة أو خلاص أو اختبار، نتيجة بحثية عن كيفية فهم الراوي لحياته. والقصص تُروى لجمهور: فكل حكي يتشكل بمن يستمع وبما يُراد للحكي أن ينجزه، تبريرًا أو تحذيرًا أو تسليةً أو استقطابًا، ما يعني أن الأحداث نفسها تنتج قصصًا مختلفة في غرف مختلفة، والاختلافات بيانات لا ضجيج. والباحث الذي يمسك هذه الخصائص الثلاث يمسك جوهر التحليل السردي.</p>
+        <div class="note"><strong>ملاحظة:</strong> لا تعامل القصة أبدًا كتقرير وقائع معيب. فانتقاءاتها وحبكتها وتشكّلها بالجمهور ليست تشويهات للبيانات؛ في هذا المنهج، هي البيانات نفسها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="craft">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Craft of Eliciting Stories</h2>
+        <p class="lead">Stories do not appear on command; standard interview technique actively suppresses them. The narrative interview is a distinct craft whose rules run opposite to the question-and-answer habits most researchers bring.</p>
+        <p>The core move is the generative opening: a single broad invitation, tell me the story of how you came to this role, from wherever you feel it begins, followed by disciplined silence. Question-and-answer formats fragment experience into the interviewer's categories; the narrative opening hands the structuring to the teller, and the structure they choose, where they begin, what they include, where they end, is the first analytical yield. While the story runs, the researcher's job is sustained, visible attention and minimal interruption: notes on threads to revisit, but no redirecting, because a redirected story becomes the interviewer's story. Only after the narrative closes does the second phase begin, narrative-pointed follow-ups that ask for stories rather than opinions: you mentioned the merger, tell me about a specific day from that period, rather than how did you feel about the merger.</p>
+        <p>Two further practices mark the craft. First, the elicitation of small stories alongside big ones: grand life-narratives matter, but so do the brief, habitual anecdotes people reach for repeatedly, the story a team tells every newcomer, the founder anecdote retold at every crisis, because habitual stories are the ones doing daily identity work. Second, attention to the telling conditions: recording where the story was told, to whom, in response to what, because narrative data is inseparable from its occasion. Transcription follows suit, preserving false starts, self-corrections, and emphasis, since the moment a teller abandons one version of events mid-sentence and restarts with another is often the most revealing line in the transcript.</p>
+        <div class="note"><strong>Note:</strong> The narrative interviewer's discipline is to lose control of the interview on purpose. Every structuring choice you surrender to the teller returns to you later as data about how they structure their world.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>حرفة استخراج القصص</h2>
+        <p class="lead">القصص لا تظهر عند الطلب؛ بل إن تقنيات المقابلة المعتادة تكبتها فعليًا. فالمقابلة السردية حرفة مستقلة تسير قواعدها عكس عادات السؤال والجواب التي يحملها معظم الباحثين.</p>
+        <p>الحركة الأساسية هي الافتتاحية التوليدية: دعوة واحدة واسعة، «احكِ لي قصة وصولك إلى هذا الدور، من حيث ترى أنها تبدأ»، يتبعها صمت منضبط. فصيغ السؤال والجواب تفتّت التجربة إلى فئات المقابِل؛ أما الافتتاحية السردية فتسلّم البناء إلى الراوي، والبناء الذي يختاره، من أين يبدأ، وما الذي يضمّن، وأين ينتهي، هو أول حصاد تحليلي. وأثناء جريان القصة، عمل الباحث هو الانتباه المتواصل الظاهر والمقاطعة في حدها الأدنى: ملاحظات عن خيوط يعود إليها لاحقًا، لكن دون إعادة توجيه، لأن القصة المعاد توجيهها تصبح قصة المقابِل لا الراوي. وبعد إغلاق السرد فقط تبدأ المرحلة الثانية: أسئلة متابعة سردية الوجهة تطلب قصصًا لا آراء: «ذكرتَ الاندماج، احكِ لي عن يوم محدد من تلك الفترة»، بدل «ما شعورك تجاه الاندماج؟».</p>
+        <p>وممارستان إضافيتان تميزان هذه الحرفة. الأولى استخراج القصص الصغيرة إلى جانب الكبيرة: فسرديات الحياة الكبرى مهمة، لكن كذلك الحكايات القصيرة المعتادة التي يعود إليها الناس مرارًا، القصة التي يرويها الفريق لكل وافد جديد، وحكاية المؤسس التي تُعاد عند كل أزمة، لأن القصص المعتادة هي التي تؤدي عمل الهوية اليومي. والثانية الانتباه إلى ظروف الحكي: تسجيل أين رُويت القصة، ولمن، وردًّا على ماذا، لأن البيانات السردية لا تنفصل عن مناسبتها. والتفريغ يتبع المبدأ نفسه، فيحفظ البدايات المتعثرة والتصحيحات الذاتية ومواضع التشديد، لأن اللحظة التي يتخلى فيها الراوي عن نسخة من الأحداث في منتصف الجملة ويبدأ بأخرى كثيرًا ما تكون أكثر سطر كاشف في النص كله.</p>
+        <div class="note"><strong>ملاحظة:</strong> انضباط المقابِل السردي أن يفقد السيطرة على المقابلة عمدًا. فكل خيار بناء تتنازل عنه للراوي يعود إليك لاحقًا بيانات عن الطريقة التي يبني بها عالمه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="analysis">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Two Ways of Analyzing</h2>
+        <p class="lead">Polkinghorne's distinction organizes the analytical options: analysis of narratives, which examines collected stories, and narrative analysis, which builds a story from collected data. Both are rigorous; they answer different questions and produce different products.</p>
+        <p>Analysis of narratives treats stories as objects of study and examines them systematically. Structural analysis looks at how stories are built, using tools like Labov's elements, the orientation that sets the scene, the complicating action, the evaluation where the teller signals what it means, the resolution, and asks what the recurring structures reveal: careers narrated with missing resolutions, transformations told without agents. Thematic reading across stories identifies shared plot types and character positions, who gets cast as hero, obstacle, or rescuer, and positioning analysis watches tellers place themselves and others in moral space: victim of circumstances, lone reformer, loyal survivor. Performance analysis adds the audience back, asking what each telling was doing in its context. Across all of these, the whole-story rule holds: interpretation cites structures and plots, not harvested fragments.</p>
+        <p>Narrative analysis reverses the direction: from interviews, documents, and observations, the researcher composes a storied account, a case history with plot, that configures scattered events into a coherent whole, the biography of a change programme, the story of a team's collapse. The product is judged as both scholarship and story: grounded in evidence at every joint, and plotted so that the configuration itself explains, showing how one thing led to another. This is the mode's version of the generalization answer: like the case study, the narrative generalizes analytically, its plot pattern travelling as a recognizable way events can unfold. The risks of both modes are the same pair: over-smoothing, tidying contradictions that belong in the account, and the seduction of the good story, letting narrative charm outrun evidential warrant, and the audit trail is the antidote to both.</p>
+        <div class="note"><strong>Note:</strong> Name your direction: analyzing stories people told, or composing the story the data tells. The first yields patterns across narratives; the second yields one configured account; confusing them muddles both the method and the claim.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>طريقتان في التحليل</h2>
+        <p class="lead">تمييز بولكينغهورن ينظّم الخيارات التحليلية: تحليل السرديات، الذي يفحص القصص المجموعة، والتحليل السردي، الذي يبني قصة من البيانات المجموعة. وكلاهما صارم؛ لكنهما يجيبان عن سؤالين مختلفين وينتجان منتجين مختلفين.</p>
+        <p>تحليل السرديات يعامل القصص كموضوعات للدراسة ويفحصها بمنهجية. فالتحليل البنيوي ينظر في كيفية بناء القصص، مستخدمًا أدوات مثل عناصر لابوف، التمهيد الذي يهيئ المشهد، والفعل المعقِّد، والتقييم حيث يشير الراوي إلى المعنى، والحل، ويسأل ماذا تكشف البنى المتكررة: مسيرات مهنية تُروى بحلول مفقودة، وتحولات تُحكى بلا فاعلين. والقراءة الموضوعية عبر القصص تحدد أنواع الحبكات المشتركة ومواقع الشخصيات، من يُوضَع بطلًا ومن عقبةً ومن منقذًا، وتحليل التموضع يراقب الرواة وهم يضعون أنفسهم والآخرين في فضاء أخلاقي: ضحية ظروف، أو مصلِح وحيد، أو ناجٍ وفيّ. وتحليل الأداء يعيد الجمهور إلى الصورة، سائلًا ماذا كان كل حكي يفعل في سياقه. وفي كل ذلك تصمد قاعدة القصة الكاملة: التفسير يستشهد بالبنى والحبكات، لا بشذرات محصودة.</p>
+        <p>أما التحليل السردي فيعكس الاتجاه: فمن المقابلات والوثائق والملاحظات يؤلف الباحث حسابًا قصصيًا، تاريخ حالة له حبكة، ينظّم الأحداث المتناثرة في كلٍّ متماسك، سيرة برنامج تغيير، أو قصة انهيار فريق. ويُحكَم على المنتج بوصفه علمًا وقصةً معًا: مؤسسًا على الدليل عند كل مفصل، ومحبوكًا بحيث يصبح التنظيم نفسه تفسيرًا، يُظهر كيف قاد شيء إلى آخر. وهذه هي إجابة هذا النمط عن سؤال التعميم: فمثل دراسة الحالة، يعمّم السرد تحليليًا، إذ يسافر نمط حبكته بوصفه طريقة يمكن التعرف عليها لتكشّف الأحداث. ومخاطر النمطين هي الثنائي نفسه: الإفراط في التنعيم، أي ترتيب تناقضات كان مكانها داخل الحساب، وإغواء القصة الجيدة، أي ترك سحر السرد يسبق سند الدليل، وسجل التدقيق هو الترياق لكليهما.</p>
+        <div class="note"><strong>ملاحظة:</strong> سمِّ اتجاهك: تحليل قصص رواها الناس، أم تأليف القصة التي ترويها البيانات. الأول ينتج أنماطًا عبر السرديات؛ والثاني ينتج حسابًا واحدًا منظّمًا؛ والخلط بينهما يشوّش المنهج والادّعاء معًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="example">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>A Worked Example, and References</h2>
+        <p class="lead">One narrative study, end to end. The question: how do mid-career professionals make sense of being displaced by automation, a question of identity and meaning over time, which is narrative territory by definition.</p>
+        <p>Design and elicitation: eighteen participants, purposively varied across sector and outcome, each interviewed twice. The first interview opens generatively, tell me the story of your working life, from wherever it starts, and runs unredirected; the second, weeks later, asks for specific small stories around the displacement, the day you found out, the first conversation at home, a story you find yourself telling new colleagues, and records each telling's occasion. Transcription preserves restarts and emphasis; the corpus is kept as thirty-six whole narratives, never fragmented into a code-pile.</p>
+        <p>Analysis of narratives proceeds on three tracks. Structural reading finds a signature pattern: the displaced narrate their pre-automation careers with rich evaluative texture, and the displacement itself in flattened, agentless constructions, the decision was made, the role went away, a grammar of erased agency that becomes the study's first finding. Plot typing sorts the corpus: redemption arcs, in which displacement retrospectively becomes the push toward a truer calling; continuity repairs, in which tellers labour to show they are still the same professional; and suspended stories, told without endings, by those still unable to configure the event. Positioning analysis finds the audience effect: to the researcher, tellers position themselves against the machine; in stories they report telling family, against former employers. The finding is not that one version is true, but that the versions map the different rooms in which a displaced identity must be maintained. The thesis claims analytic generalization to the plot repertoire, offers thick description for transfer, and its methods chapter shows the whole-story audit trail. A survey could count the displaced; only their stories could show how displacement is lived, repaired, and retold.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> narrative inquiry studies the stories through which people construct identity and meaning: elicit them generatively, keep them whole, read their structure, plots, and positioning, and know whether you are analyzing narratives or composing one. Where your question is about how humans make sense of time and change, the story is the method.</div>
+        <div class="refs"><ul>
+          <li>Bruner, <a href="https://www.hup.harvard.edu/books/9780674003668" target="_blank" rel="noopener">Actual Minds, Possible Worlds</a>.</li>
+          <li>Riessman, <a href="https://uk.sagepub.com/en-gb/eur/narrative-methods-for-the-human-sciences/book226139" target="_blank" rel="noopener">Narrative Methods for the Human Sciences</a>.</li>
+          <li>Clandinin &amp; Connelly, <a href="https://www.wiley.com/en-us/Narrative+Inquiry%3A+Experience+and+Story+in+Qualitative+Research-p-9780787972769" target="_blank" rel="noopener">Narrative Inquiry: Experience and Story in Qualitative Research</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>مثال تطبيقي، والمراجع</h2>
+        <p class="lead">دراسة سردية واحدة، من البداية إلى النهاية. السؤال: كيف يفهم المهنيون في منتصف مسيراتهم إزاحتهم بفعل الأتمتة؟ وهو سؤال هوية ومعنى عبر الزمن، أي أرض سردية بحكم التعريف.</p>
+        <p>التصميم والاستخراج: ثمانية عشر مشاركًا، منوّعين قصديًا عبر القطاع والمآل، يُقابَل كل واحد مرتين. المقابلة الأولى تفتتح توليديًا، «احكِ لي قصة حياتك العملية، من حيث تبدأ»، وتجري دون إعادة توجيه؛ والثانية، بعد أسابيع، تطلب قصصًا صغيرة محددة حول الإزاحة، «يوم عرفت بالخبر»، و«أول حديث في البيت»، و«قصة تجد نفسك ترويها للزملاء الجدد»، وتسجّل مناسبة كل حكي. والتفريغ يحفظ البدايات المتعثرة والتشديد؛ ويُحفَظ الأرشيف بوصفه ستًا وثلاثين سردية كاملة، لا يُفتَّت أبدًا إلى كومة رموز.</p>
+        <p>ويسير تحليل السرديات على ثلاثة مسارات. القراءة البنيوية تجد نمطًا مميزًا: المُزاحون يروون مسيراتهم قبل الأتمتة بنسيج تقييمي غني، ويروون الإزاحة نفسها بتراكيب مسطّحة بلا فاعل، «اتُّخذ القرار»، «ذهب الدور»، وهي قواعد لغوية لفاعلية ممحوّة تصبح أول نتائج الدراسة. وتصنيف الحبكات يفرز الأرشيف: أقواس خلاص، تتحول فيها الإزاحة بأثر رجعي إلى الدفعة نحو نداء أصدق؛ وترميمات استمرارية، يجتهد فيها الرواة لإظهار أنهم ما زالوا المهني نفسه؛ وقصص معلّقة، تُروى بلا نهايات، من أولئك الذين لم يستطيعوا بعد تنظيم الحدث. وتحليل التموضع يجد أثر الجمهور: أمام الباحث يضع الرواة أنفسهم في مواجهة الآلة؛ وفي القصص التي يذكرون أنهم يروونها لعائلاتهم، في مواجهة أصحاب العمل السابقين. والنتيجة ليست أن إحدى النسخ هي الصحيحة، بل أن النسخ ترسم خريطة الغرف المختلفة التي يجب فيها صون هوية المُزاح. وتدّعي الأطروحة تعميمًا تحليليًا إلى ذخيرة الحبكات، وتقدّم الوصف الكثيف للنقل، ويعرض فصل المناهج سجل تدقيق القصص الكاملة. فالمسح كان يستطيع عدّ المُزاحين؛ لكن قصصهم وحدها تستطيع أن تُظهر كيف تُعاش الإزاحة وتُرمَّم وتُعاد روايتها.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> البحث السردي يدرس القصص التي يبني بها الناس هويتهم ومعناهم: استخرجها توليديًا، وأبقِها كاملة، واقرأ بنيتها وحبكاتها وتموضعاتها، واعرف هل تحلل سرديات أم تؤلف واحدة. فحيث يكون سؤالك عن كيفية فهم البشر للزمن والتغيّر، تكون القصة هي المنهج.</div>
+        <div class="refs"><ul>
+          <li>برونر، <a href="https://www.hup.harvard.edu/books/9780674003668" target="_blank" rel="noopener">عقول فعلية، عوالم ممكنة</a>.</li>
+          <li>ريسمان، <a href="https://uk.sagepub.com/en-gb/eur/narrative-methods-for-the-human-sciences/book226139" target="_blank" rel="noopener">المناهج السردية للعلوم الإنسانية</a>.</li>
+          <li>كلاندينين وكونيلي، <a href="https://www.wiley.com/en-us/Narrative+Inquiry%3A+Experience+and+Story+in+Qualitative+Research-p-9780787972769" target="_blank" rel="noopener">البحث السردي: التجربة والقصة في البحث النوعي</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="qual-ethnography.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Ethnography</span><span data-lang="ar">الإثنوغرافيا</span></a><a href="qual-thematic-analysis.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Thematic Analysis</span><span data-lang="ar">التحليل الموضوعي</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="البحث السردي";
+var TITLE_EN="Narrative Inquiry";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

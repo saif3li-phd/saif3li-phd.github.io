@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ethnography</title>
+<meta name="description" content="Ethnography in depth: participant observation, field notes, access and the insider problem, thick description, and a full organizational worked example.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Qualitative methods</span><span data-lang="ar">المناهج النوعية</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">QUALITATIVE METHODS · PhD</span><span data-lang="ar">المناهج النوعية · دكتوراه</span></div>
+    <h1><span data-lang="en">Ethnography</span><span data-lang="ar">الإثنوغرافيا</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Qualitative methods</span><span data-lang="ar">المناهج النوعية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">8 min</span><span data-lang="ar">٨ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="fieldwork"><span data-lang="en">Fieldwork</span><span data-lang="ar">العمل الميداني</span></a></li><li><a data-id="insider"><span data-lang="en">Inside & Outside</span><span data-lang="ar">الداخل والخارج</span></a></li><li><a data-id="thick"><span data-lang="en">Thick Description</span><span data-lang="ar">الوصف الكثيف</span></a></li><li><a data-id="example"><span data-lang="en">Worked Example</span><span data-lang="ar">مثال تطبيقي</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Method:</span> Ethnography</div>
+          <div><span>Origin:</span> Anthropology; adapted to organizations and communities</div>
+          <div><span>Core question:</span> How does this group actually live, work, and make meaning, seen from inside?</div>
+          <div><span>Level:</span> Doctoral research methodology</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Ethnography is the method of living with the people you study. The researcher enters a setting, a company, a hospital ward, a trading floor, an online community, and stays long enough to see how life there actually works: what people do rather than what they say they do, what the unwritten rules are, what things mean to insiders, and how the visible order is produced day by day. Born in anthropology, where researchers spent years in distant communities, it is now a mainstream method for studying organizations, professions, and cultures of every kind, including digital ones.</p>
+        <p>The method's founding insight is the gap between accounts and conduct. What people report in interviews is real data, but it is data about how they talk about their world; how they actually operate can differ sharply, not because they lie but because routines become invisible to those inside them, official versions crowd out actual ones, and much of practical skill is tacit, known in the hands rather than the tongue. Ethnography exists to reach the actual: the meeting after the meeting, the workaround everyone uses and nobody documents, the joke that reveals the hierarchy, the ten-second exchange in which a decision really gets made.</p>
+        <p>Its price is well known: months of fieldwork, oceans of notes, and deep entanglement between the researcher and the studied world, which raises the method's distinctive questions of access, role, ethics, and objectivity. Its reward is a kind of knowledge no other method produces: a faithful account of a social world from inside, thick enough to explain why things happen the way they do. This framework sets out the fieldwork craft of participant observation and field notes, the insider-outsider balance, thick description as the method's standard of explanation, the writing and ethics of the finished account, and a worked example. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Ethnography's defining bet is that presence beats testimony. If your question can be answered by what people tell you, interview them; if it depends on what they actually do when nobody is asking, you must be there.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المنهج:</span> الإثنوغرافيا</div>
+          <div><span>الأصل:</span> علم الإنسان (الأنثروبولوجيا)؛ ثم كُيّفت للمنظمات والمجتمعات</div>
+          <div><span>السؤال الجوهري:</span> كيف تعيش هذه الجماعة وتعمل وتصنع المعنى فعليًا، من الداخل؟</div>
+          <div><span>المستوى:</span> منهجية بحثٍ لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الإثنوغرافيا هي منهج العيش مع الناس الذين تدرسهم. يدخل الباحث بيئةً ما، شركة أو جناح مستشفى أو قاعة تداول أو مجتمعًا رقميًا، ويبقى فيها مدة كافية ليرى كيف تسير الحياة هناك فعليًا: ماذا يفعل الناس لا ماذا يقولون إنهم يفعلون، وما القواعد غير المكتوبة، وماذا تعني الأشياء لأهل المكان، وكيف يُنتَج النظام الظاهر يومًا بيوم. وُلد هذا المنهج في علم الإنسان، حيث كان الباحثون يقضون سنوات في مجتمعات بعيدة، وصار اليوم منهجًا رئيسيًا لدراسة المنظمات والمهن والثقافات بأنواعها، بما فيها الرقمية.</p>
+        <p>والفكرة المؤسِّسة للمنهج هي الفجوة بين الأقوال والأفعال. فما يذكره الناس في المقابلات بيانات حقيقية، لكنها بيانات عن طريقة حديثهم عن عالمهم؛ أما طريقة عملهم الفعلية فقد تختلف اختلافًا كبيرًا، لا لأنهم يكذبون، بل لأن الروتين يصبح غير مرئي لمن يعيشه، ولأن الروايات الرسمية تحجب الروايات الفعلية، ولأن كثيرًا من المهارة العملية ضمني، تعرفه اليد قبل اللسان. والإثنوغرافيا وُجدت للوصول إلى الفعلي: الاجتماع الذي يجري بعد الاجتماع، والحل الالتفافي الذي يستخدمه الجميع ولا يوثّقه أحد، والمزحة التي تكشف الهرمية، والحوار الذي لا يتجاوز عشر ثوانٍ وفيه يُتّخذ القرار حقًا.</p>
+        <p>وثمن هذا المنهج معروف: شهور من العمل الميداني، وكم هائل من الملاحظات، وتشابك عميق بين الباحث والعالم المدروس، وهو ما يثير أسئلة المنهج الخاصة حول الوصول والدور والأخلاقيات والموضوعية. أما مكافأته فنوع من المعرفة لا ينتجه منهج آخر: حساب صادق لعالم اجتماعي من داخله، كثيف بما يكفي لتفسير لماذا تحدث الأمور بالطريقة التي تحدث بها. يعرض هذا الإطار حرفة العمل الميداني في الملاحظة بالمشاركة والملاحظات الميدانية، وتوازن الداخل والخارج، والوصف الكثيف بوصفه معيار التفسير في هذا المنهج، وكتابة الحساب النهائي وأخلاقياته، ومثالًا تطبيقيًا. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> رهان الإثنوغرافيا الأساسي أن الحضور يتفوق على الشهادة. فإن كان سؤالك يمكن أن يجيب عنه ما يقوله لك الناس، فقابلهم؛ وإن كان يعتمد على ما يفعلونه فعلًا حين لا يسألهم أحد، فيجب أن تكون هناك.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="fieldwork">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Participant Observation and Field Notes</h2>
+        <p class="lead">The engine of ethnography is participant observation, being there, taking part, and recording, and its fuel is the field note. Both are crafts with learnable technique, and the quality of the finished study is decided in them long before any analysis begins.</p>
+        <p>Participation runs on a spectrum that the researcher must locate themselves on and often move along. At one end sits the complete observer, present but uninvolved, watching meetings from the corner; at the other, the complete participant, doing the job alongside everyone else. Most organizational ethnography lives between: the researcher attends, helps, joins lunches, gets assigned small tasks, and becomes a semi-normal feature of the setting. The position matters because it trades access against perspective: deeper participation opens the backstage and builds the trust that makes people stop performing, while too-deep immersion risks going native, absorbing the group's view so fully that the researcher can no longer see what an outsider needs explained. The working discipline is deliberate movement: in far enough to understand, out far enough to notice.</p>
+        <p>Field notes convert presence into data, and their craft has settled rules. Write jottings in the moment, key words, quotes, sequences, then expand them into full notes the same day, because detail decays overnight at a rate every ethnographer learns painfully. Separate the streams: description of what happened, in concrete behavioural detail with verbatim speech where possible; the researcher's interpretations and hunches, marked as such; and methodological notes on access, role, and feelings, which feed reflexivity later. Record the ordinary, not only the dramatic, because routine is the phenomenon: the unremarkable Tuesday is what the culture actually is. Over months the notes corpus becomes enormous, and its discipline, dated, indexed, streams separated, is what later makes analysis possible rather than archaeological.</p>
+        <div class="note"><strong>Note:</strong> The same-day rule is the field's iron law: unexpanded jottings are dead within forty-eight hours. An hour of writing per few hours of field time is not overhead; it is the method.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الملاحظة بالمشاركة والملاحظات الميدانية</h2>
+        <p class="lead">محرّك الإثنوغرافيا هو الملاحظة بالمشاركة، أن تكون هناك وتشارك وتسجّل، ووقودها هو الملاحظات الميدانية. وكلاهما حرفة لها تقنيات قابلة للتعلم، وجودة الدراسة النهائية تتحدد فيهما قبل أن يبدأ أي تحليل بوقت طويل.</p>
+        <p>المشاركة تجري على طيف يجب على الباحث أن يحدد موقعه عليه، وكثيرًا ما يتحرك عبره. في أحد طرفيه يجلس الملاحظ الكامل، حاضرٌ دون مشاركة، يراقب الاجتماعات من الزاوية؛ وفي الطرف الآخر المشارك الكامل، يؤدي العمل جنبًا إلى جنب مع الجميع. ومعظم الإثنوغرافيا التنظيمية تعيش بين الطرفين: يحضر الباحث ويساعد ويشارك في الغداء وتُسنَد إليه مهام صغيرة، فيصبح جزءًا شبه عادي من المكان. والموقع مهم لأنه يقايض الوصول بالمنظور: فالمشاركة الأعمق تفتح الكواليس وتبني الثقة التي تجعل الناس يتوقفون عن التمثيل، بينما الانغماس الزائد يحمل خطر «التحول إلى ابن المكان»، أي امتصاص نظرة الجماعة امتصاصًا كاملًا يجعل الباحث عاجزًا عن رؤية ما يحتاج الغريب إلى شرحه. والانضباط العملي هو الحركة المتعمدة: ادخل بما يكفي لتفهم، واخرج بما يكفي لتلاحظ.</p>
+        <p>والملاحظات الميدانية تحوّل الحضور إلى بيانات، ولحرفتها قواعد مستقرة. اكتب خطاطات سريعة في اللحظة، كلمات مفتاحية واقتباسات وتسلسلات، ثم وسّعها إلى ملاحظات كاملة في اليوم نفسه، لأن التفاصيل تتلاشى بين ليلة وضحاها بمعدل يتعلمه كل إثنوغرافي بمرارة. وافصل المسارات: وصف ما حدث، بتفاصيل سلوكية ملموسة وكلام حرفي حيثما أمكن؛ وتفسيرات الباحث وحدوسه، موسومة بأنها كذلك؛ وملاحظات منهجية عن الوصول والدور والمشاعر، وهي التي تغذي الانعكاسية لاحقًا. وسجّل العادي لا الدرامي فقط، لأن الروتين هو الظاهرة نفسها: فيوم الثلاثاء العادي الذي لا شيء لافتًا فيه هو الثقافة الفعلية. وعبر الشهور يصبح أرشيف الملاحظات ضخمًا، وانضباطه، مؤرَّخًا ومفهرَسًا ومفصول المسارات، هو ما يجعل التحليل لاحقًا ممكنًا بدل أن يكون تنقيبًا أثريًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> قاعدة اليوم نفسه هي القانون الحديدي للميدان: الخطاطات غير الموسّعة تموت خلال ثمانٍ وأربعين ساعة. وساعة كتابة عن كل بضع ساعات ميدان ليست عبئًا إضافيًا؛ إنها المنهج ذاته.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="insider">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Access, Roles, and the Insider Problem</h2>
+        <p class="lead">Ethnography's data depends on relationships, and its distinctive methodological problems are relationship problems: getting in, being placed, and staying balanced between belonging and analysis.</p>
+        <p>Access is layered, not binary. Formal permission from a gatekeeper, a director, a review board, opens the door but not the setting; real access is granted incrementally by the people inside, as trust grows and the researcher proves harmless, useful, or at least interesting. Ethnographers learn to read their own placement: who talks freely, which rooms stay closed, which topics change the air, because the pattern of access is itself data about the setting's structure. Key informants, insiders who take the researcher under their wing, are invaluable and dangerous in equal measure: they open doors, translate codes, and explain history, and they also import their own position and grievances, so the discipline is to notice whose account is becoming the study's default and to seek the perspectives their position obscures.</p>
+        <p>The insider-outsider question follows the researcher throughout. Native ethnographers, studying their own profession or organization, start with fluency and trust but must fight to make the familiar strange, interrogating what they already know too well to notice; outsiders see the strangeness immediately but must earn the fluency. Both positions work; each needs its own compensating discipline, and reflexivity, the running written account of the researcher's role, relationships, and effect on the setting, is that discipline's instrument. It also feeds the ethics that fieldwork's intimacy demands: people forget an observer is a researcher, backstage confidences flow, and the finished account can expose individuals to their own management; anonymization, care with recognizable detail, and honesty about what participation implied are not administrative addenda but part of the method's integrity.</p>
+        <div class="note"><strong>Note:</strong> Track your access map as data. Where you are welcome, what you are not shown, and who adopted you are three of the most informative facts you will collect about how the setting really works.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الوصول والأدوار ومشكلة الداخل</h2>
+        <p class="lead">بيانات الإثنوغرافيا تعتمد على العلاقات، ومشكلاتها المنهجية الخاصة هي مشكلات علاقات: كيف تدخل، وأين يضعك الناس، وكيف تبقى متوازنًا بين الانتماء والتحليل.</p>
+        <p>الوصول متعدد الطبقات وليس قرارًا واحدًا. فالإذن الرسمي من حارس البوابة، مدير أو لجنة موافقات، يفتح الباب لكنه لا يفتح المكان؛ الوصول الحقيقي يمنحه الناس في الداخل تدريجيًا، كلما نمت الثقة وأثبت الباحث أنه غير مؤذٍ، أو نافع، أو على الأقل مثير للاهتمام. ويتعلم الإثنوغرافيون قراءة موضعهم: من يتحدث بحرية، وأي الغرف تبقى مغلقة، وأي المواضيع تغيّر جو المكان، لأن نمط الوصول نفسه بيانات عن بنية المكان. والمخبرون الرئيسيون، أهل الداخل الذين يأخذون الباحث تحت جناحهم، لا يقدَّرون بثمن وخطرون بالقدر نفسه: يفتحون الأبواب ويترجمون الرموز ويشرحون التاريخ، لكنهم يستوردون معهم موقعهم وخصوماتهم، فالانضباط هنا أن تلاحظ رواية من صارت الرواية الافتراضية للدراسة، وأن تطلب المنظورات التي يحجبها موقع ذلك المخبر.</p>
+        <p>وسؤال الداخل والخارج يلازم الباحث طوال الدراسة. فالإثنوغرافي «ابن المكان»، الذي يدرس مهنته أو منظمته، يبدأ بالطلاقة والثقة لكنه يجب أن يكافح ليجعل المألوف غريبًا، مستجوبًا ما يعرفه جيدًا لدرجة أنه لم يعد يلاحظه؛ والغريب يرى الغرابة فورًا لكنه يجب أن يكسب الطلاقة. وكلا الموقعين يعمل؛ وكل واحد يحتاج انضباطه التعويضي، والانعكاسية، أي الكتابة المستمرة عن دور الباحث وعلاقاته وأثره على المكان، هي أداة ذلك الانضباط. وهي تغذي أيضًا الأخلاقيات التي تفرضها حميمية الميدان: فالناس ينسون أن الملاحظ باحث، وتتدفق أسرار الكواليس، وقد يعرّض الحساب النهائي أفرادًا لإدارتهم؛ فإخفاء الهوية، والحذر مع التفاصيل التي يمكن تمييز أصحابها، والصدق حول ما تضمنته المشاركة، ليست ملاحق إدارية بل جزء من نزاهة المنهج.</p>
+        <div class="note"><strong>ملاحظة:</strong> تتبّع خريطة وصولك بوصفها بيانات. فالأماكن التي رُحّب بك فيها، والأشياء التي لم تُعرَض عليك، ومن تبنّاك، ثلاث من أكثر الحقائق التي ستجمعها كشفًا عن الطريقة التي يعمل بها المكان فعلًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="thick">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Thick Description and Analysis</h2>
+        <p class="lead">Ethnography's standard of explanation is thick description, Geertz's famous term, and understanding it separates the method's finished product from a diary with ambitions. Description is thick when it captures not just what happened but what it meant, within the setting's own web of significance.</p>
+        <p>Geertz's teaching example is the wink revisited: a camera records an eyelid contracting, thin description, but only cultural knowledge can say whether it was a twitch, a conspiratorial signal, a parody of someone else's wink, or a rehearsal of that parody, and each is a different act with different consequences. Thick description supplies the layers of context, who these people are to each other, what has gone before, what the gesture invokes, that make conduct intelligible. In organizational work, the same discipline turns a recorded scene, the manager arrives late to the ceremony, into a finding, arriving late is how seniority is performed here, and juniors learn it within weeks, by embedding the scene in the setting's history, relationships, and meanings.</p>
+        <p>Analysis, in this method, is largely the disciplined production of such thickness. It runs through the fieldwork rather than after it: notes are read weekly, patterns and puzzles memoed, hunches carried back into the field to be checked against tomorrow's conduct, in the same iterative loop grounded theory formalizes. The ethnographer hunts the revealing units: recurring scenes, in-words and category systems the group uses for itself, rituals and their choreography, breaches, those precious moments when a rule is broken and the reaction makes the invisible rule visible. The analysis is done not when the notes are exhausted but when the account can pass the insider-outsider double test: insiders recognize the world, and outsiders understand why it works as it does.</p>
+        <div class="note"><strong>Note:</strong> Breaches are ethnographic gold. When something goes wrong, a norm violated, a routine interrupted, the setting explains itself: watch what people rush to repair, and you are watching what the order is made of.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الوصف الكثيف والتحليل</h2>
+        <p class="lead">معيار التفسير في الإثنوغرافيا هو الوصف الكثيف، بمصطلح غيرتس الشهير، وفهمه هو ما يفصل المنتج النهائي لهذا المنهج عن مذكرات يومية بطموحات. فالوصف يكون كثيفًا عندما يلتقط لا ما حدث فقط، بل ما كان يعنيه، داخل شبكة الدلالة الخاصة بالمكان.</p>
+        <p>ومثال غيرتس التعليمي هو الغمزة مرة أخرى: الكاميرا تسجل جفنًا ينقبض، وهذا وصف رقيق، لكن المعرفة الثقافية وحدها تستطيع أن تقول هل كانت رعشة، أم إشارة تواطؤ، أم محاكاة ساخرة لغمزة شخص آخر، أم تمرينًا على تلك المحاكاة، وكل واحدة فعل مختلف له عواقب مختلفة. الوصف الكثيف يقدّم طبقات السياق، من هؤلاء الناس لبعضهم، وما الذي سبق، وما الذي تستدعيه الإيماءة، التي تجعل السلوك مفهومًا. وفي العمل التنظيمي، الانضباط نفسه يحوّل مشهدًا مسجلًا، «المدير يصل متأخرًا إلى الاجتماع الدوري»، إلى نتيجة بحثية، «الوصول المتأخر هو الطريقة التي تُؤدَّى بها الأقدمية هنا، والموظفون الجدد يتعلمونها خلال أسابيع»، وذلك بإدراج المشهد في تاريخ المكان وعلاقاته ومعانيه.</p>
+        <p>والتحليل في هذا المنهج هو إلى حد بعيد الإنتاج المنضبط لهذه الكثافة. وهو يجري خلال العمل الميداني لا بعده: تُقرأ الملاحظات أسبوعيًا، وتُدوَّن الأنماط والألغاز في مذكرات، وتُحمَل الحدوس عائدةً إلى الميدان لتُفحَص مقابل سلوك الغد، في الحلقة التكرارية نفسها التي تقنّنها النظرية المتجذّرة. ويصطاد الإثنوغرافي الوحدات الكاشفة: المشاهد المتكررة، والكلمات الداخلية وأنظمة التصنيف التي تستخدمها الجماعة لنفسها، والطقوس وحركاتها، والخروقات، تلك اللحظات الثمينة التي تُكسَر فيها قاعدة فيجعل ردُّ الفعل القاعدةَ غير المرئية مرئية. ويكتمل التحليل لا عندما تُستنفد الملاحظات، بل عندما يجتاز الحساب اختبار الداخل والخارج المزدوج: أهل الداخل يتعرفون على عالمهم، وأهل الخارج يفهمون لماذا يعمل بالطريقة التي يعمل بها.</p>
+        <div class="note"><strong>ملاحظة:</strong> الخروقات ذهب الإثنوغرافيا. فعندما يحدث خلل، قاعدة تُنتهَك أو روتين يتعطل، يشرح المكان نفسه بنفسه: راقب ما يسارع الناس إلى إصلاحه، تكن تراقب ما يتكوّن منه النظام.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="example">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>A Worked Example, and References</h2>
+        <p class="lead">One organizational ethnography, from design to defence. The question: how does a safety culture actually operate on the maintenance floor of an industrial plant, where audits score highly yet incidents persist, a gap between account and conduct that summons the method by name.</p>
+        <p>Design and entry: nine months, three shifts, the researcher in the role of observing helper, formal access from plant management, real access earned week by week, and the ethics protocol explicit that individuals will be unidentifiable and that field notes will not serve management evaluation, a promise that later proves decisive for backstage access. Fieldwork follows the craft: jottings on shift, full notes the same evening, streams separated, and a weekly analysis memo. By month three the access map itself yields the first finding: safety talk flourishes in meeting rooms and dies at the workbench, where a different vocabulary, of schedule pressure and workarounds, governs.</p>
+        <p>The account thickens around a breach. A near-miss occurs; the official process plays out in documents, while the floor runs a parallel process of storytelling, blame-calibration, and quiet procedural adjustment that never reaches paper. Thick description of both processes, and of the veteran technicians who broker between them, produces the study's core: safety here is two coupled systems, an audited front stage and an oral back stage, and incidents persist precisely where the coupling fails. Member reflections with technicians refine the account; a rival explanation, that the pattern is one shift's subculture, dies against cross-shift notes. The thesis claims analytic generalization to the two-systems proposition, supplies the thick description that lets readers judge transfer, and its methodological chapter, protocol, note discipline, reflexivity on the helper role, access map, answers the rigour question with evidence rather than assurance. No survey of safety attitudes, and no interview study alone, could have found what the being-there found.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> ethnography trades time for truth about conduct: participant observation with disciplined notes, access read as data, reflexivity as calibration, and thick description as the standard of explanation. Choose it when the gap between what people say and what they do is where your question lives.</div>
+        <div class="refs"><ul>
+          <li>Geertz, <a href="https://www.basicbooks.com/titles/clifford-geertz/the-interpretation-of-cultures/9780465093557/" target="_blank" rel="noopener">The Interpretation of Cultures</a>.</li>
+          <li>Emerson, Fretz &amp; Shaw, <a href="https://press.uchicago.edu/ucp/books/book/chicago/W/bo12182616.html" target="_blank" rel="noopener">Writing Ethnographic Fieldnotes</a>.</li>
+          <li>Van Maanen, <a href="https://press.uchicago.edu/ucp/books/book/chicago/T/bo12182892.html" target="_blank" rel="noopener">Tales of the Field: On Writing Ethnography</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>مثال تطبيقي، والمراجع</h2>
+        <p class="lead">إثنوغرافيا تنظيمية واحدة، من التصميم إلى المناقشة. السؤال: كيف تعمل ثقافة السلامة فعليًا في صالة الصيانة بمنشأة صناعية، حيث تحقق التدقيقات درجات عالية بينما تستمر الحوادث؟ وهي فجوة بين الأقوال والأفعال تستدعي هذا المنهج بالاسم.</p>
+        <p>التصميم والدخول: تسعة أشهر، وثلاث ورديات، والباحث في دور «المساعد الملاحظ»، بوصول رسمي من إدارة المصنع، ووصول حقيقي يُكتسَب أسبوعًا بأسبوع، وبروتوكول أخلاقيات صريح بأن الأفراد لن يكونوا قابلين للتمييز وأن الملاحظات الميدانية لن تُستخدَم في تقييم الإدارة للموظفين، وهو وعد يثبت لاحقًا أنه حاسم للوصول إلى الكواليس. والعمل الميداني يتبع الحرفة: خطاطات أثناء الوردية، وملاحظات كاملة في المساء نفسه، ومسارات مفصولة، ومذكرة تحليل أسبوعية. وبحلول الشهر الثالث تعطي خريطة الوصول نفسها النتيجة الأولى: حديث السلامة يزدهر في غرف الاجتماعات ويموت عند طاولة العمل، حيث تحكم مفردات مختلفة، مفردات ضغط الجدول والحلول الالتفافية.</p>
+        <p>ويتكثف الحساب حول خرق. تقع حادثة وشيكة؛ فتأخذ العملية الرسمية مجراها في الوثائق، بينما تدير الصالة عملية موازية من الحكي ومعايرة اللوم والتعديل الإجرائي الهادئ لا تصل إلى الورق أبدًا. والوصف الكثيف للعمليتين، وللفنيين القدامى الذين يتوسطون بينهما، ينتج جوهر الدراسة: السلامة هنا نظامان مقترنان، واجهة أمامية تُدقَّق وكواليس شفهية، والحوادث تستمر بالضبط حيث يفشل الاقتران. وتصقل مراجعات المشاركين مع الفنيين الحساب؛ ويموت تفسير منافس، أن النمط ثقافة فرعية لوردية واحدة، مقابل ملاحظات الورديات المتقاطعة. وتدّعي الأطروحة تعميمًا تحليليًا إلى افتراض النظامين، وتقدّم الوصف الكثيف الذي يتيح للقرّاء الحكم على قابلية النقل، وفصلها المنهجي، البروتوكول وانضباط الملاحظات والانعكاسية حول دور المساعد وخريطة الوصول، يجيب عن سؤال الصرامة بالدليل لا بالتطمين. فلا مسح لاتجاهات السلامة، ولا دراسة مقابلات وحدها، كان يمكن أن يجد ما وجده الحضور الفعلي.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الإثنوغرافيا تقايض الوقت بالحقيقة عن السلوك الفعلي: ملاحظة بالمشاركة مع ملاحظات منضبطة، ووصول يُقرأ كبيانات، وانعكاسية كمعايرة، ووصف كثيف كمعيار للتفسير. اخترها عندما تكون الفجوة بين ما يقوله الناس وما يفعلونه هي موطن سؤالك.</div>
+        <div class="refs"><ul>
+          <li>غيرتس، <a href="https://www.basicbooks.com/titles/clifford-geertz/the-interpretation-of-cultures/9780465093557/" target="_blank" rel="noopener">تأويل الثقافات</a>.</li>
+          <li>إمرسون وفريتز وشو، <a href="https://press.uchicago.edu/ucp/books/book/chicago/W/bo12182616.html" target="_blank" rel="noopener">كتابة الملاحظات الميدانية الإثنوغرافية</a>.</li>
+          <li>فان مانن، <a href="https://press.uchicago.edu/ucp/books/book/chicago/T/bo12182892.html" target="_blank" rel="noopener">حكايات الميدان: في كتابة الإثنوغرافيا</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="qual-discourse-analysis.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Discourse Analysis</span><span data-lang="ar">تحليل الخطاب</span></a><a href="qual-narrative-inquiry.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Narrative Inquiry</span><span data-lang="ar">البحث السردي</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="الإثنوغرافيا";
+var TITLE_EN="Ethnography";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

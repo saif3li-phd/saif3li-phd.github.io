@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research Design &amp; the Research Onion</title>
+<meta name="description" content="Research design and the research onion in depth: the five layers in order, a worked double example, and the classic design incoherences the onion exposes.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">Research design and methodology</span><span data-lang="ar">تصميم البحث ومنهجيته</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">RESEARCH DESIGN &amp; METHODOLOGY · PhD</span><span data-lang="ar">تصميم البحث ومنهجيته · دكتوراه</span></div>
+    <h1><span data-lang="en">Research Design &amp; the Research Onion</span><span data-lang="ar">تصميم البحث وبصلة البحث</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Research design and methodology</span><span data-lang="ar">تصميم البحث ومنهجيته</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">7 min</span><span data-lang="ar">٧ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="layers"><span data-lang="en">The Layers</span><span data-lang="ar">الطبقات</span></a></li><li><a data-id="example"><span data-lang="en">Worked Example</span><span data-lang="ar">مثال مشتغَل</span></a></li><li><a data-id="failures"><span data-lang="en">Design Failures</span><span data-lang="ar">إخفاقات التصميم</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Research design and the research onion</div>
+          <div><span>Source model:</span> Saunders, Lewis &amp; Thornhill</div>
+          <div><span>Use:</span> Structuring a complete, coherent methodology chapter</div>
+          <div><span>Level:</span> Doctoral research methodology</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Research design is the overall plan that connects a research question to the evidence that will answer it, and the research onion is the most widely used device for building that plan without leaving gaps. Proposed by Saunders, Lewis and Thornhill for business research and adopted far beyond it, the onion pictures a study as a series of layers to be peeled in order, from the outermost philosophical commitments down to the innermost techniques of data collection and analysis. Its power is sequence: each layer constrains the next, so decisions made in the right order produce a design that hangs together, while decisions made in the wrong order, techniques first, philosophy retrofitted, produce the incoherence examiners are trained to find.</p>
+        <p>The onion is best understood as a checklist with a logic, not a form to fill. The outer layer asks which research philosophy the study stands on, positivist, interpretivist, critical realist, pragmatist, questions this portal treats in depth elsewhere. The next asks the approach to theory: deductive, inductive, or abductive. Then comes the methodological choice and strategy: quantitative, qualitative or mixed, enacted through a strategy such as experiment, survey, case study, ethnography, action research, or grounded theory. The fourth layer fixes the time horizon, cross-sectional or longitudinal. Only then, at the core, are the concrete techniques chosen: instruments, sampling, procedures, and analysis. A methodology chapter that walks these layers in order, justifying each in terms of the ones outside it, is structurally complete by construction.</p>
+        <p>This framework works through each layer in depth, shows with a worked example how a single question flows through all five, diagnoses the classic design incoherences the onion exposes, and closes with standards and references. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> The onion's rule is one word: order. Philosophy before approach, approach before strategy, strategy before techniques. Every classic methodology failure is a violation of that order somewhere.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> تصميم البحث وبصلة البحث</div>
+          <div><span>النموذج المصدر:</span> سوندرز ولويس وثورنهيل</div>
+          <div><span>الاستخدام:</span> هيكلة فصل منهجيةٍ كامل متماسك</div>
+          <div><span>المستوى:</span> منهجية بحثٍ لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">تصميم البحث الخطة الشاملة التي تصل سؤال البحث بالدليل الذي سيجيبه، وبصلة البحث أوسع أداةٍ استخدامًا لبناء تلك الخطة دون ترك فجوات. اقترحها سوندرز ولويس وثورنهيل لبحث الأعمال وتُبنّيت أبعد منه بكثير، وتصوّر البصلة الدراسة سلسلة طبقاتٍ تُقشَّر بالترتيب، من الالتزامات الفلسفية الخارجية نزولًا إلى تقنيات جمع البيانات وتحليلها الداخلية. وقوّتها التسلسل: كل طبقةٍ تقيّد التالية، فالقرارات المتّخذة بالترتيب الصحيح تُنتِج تصميمًا متماسكًا، بينما المتّخذة بالترتيب الخاطئ، التقنيات أولًا والفلسفة ترقيعًا لاحقًا، تُنتِج اللاتماسك الذي دُرّب الممتحِنون على إيجاده.</p>
+        <p>ومن الأفضل فهم البصلة كقائمة فحصٍ لها منطق، لا كاستمارةٍ تُملأ. الطبقة الخارجية تسأل على أي فلسفة بحثٍ تقف الدراسة، وضعية، تفسيرية، واقعية نقدية، براغماتية، أسئلةٌ تعالجها هذه البوابة بعمقٍ في مواضع أخرى. والتالية تسأل مقاربة النظرية: استنباطية أم استقرائية أم استدلالية. ثم يأتي الخيار المنهجي والاستراتيجية: كمّي أو نوعي أو مختلط، ممارَسًا عبر استراتيجيةٍ كالتجربة أو المسح أو دراسة الحالة أو الإثنوغرافيا أو البحث الإجرائي أو النظرية المتجذّرة. والطبقة الرابعة تثبّت الأفق الزمني، مقطعيًا أو طوليًا. وعندها فقط، في اللبّ، تُختار التقنيات الملموسة: الأدوات والمعاينة والإجراءات والتحليل. وفصل منهجيةٍ يمشي هذه الطبقات بالترتيب، مبرّرًا كلًّا بدلالة ما خارجها، مكتملٌ بنيويًا بالبناء.</p>
+        <p>يمرّ هذا الإطار بكل طبقةٍ بعمق، ويُظهِر بمثالٍ مشتغَل كيف يتدفّق سؤالٌ واحد عبر الخمس كلها، ويشخّص اللاتماسكات التصميمية الكلاسيكية التي تكشفها البصلة، ويختم بالمعايير والمراجع. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> قاعدة البصلة كلمةٌ واحدة: الترتيب. الفلسفة قبل المقاربة، والمقاربة قبل الاستراتيجية، والاستراتيجية قبل التقنيات. وكل إخفاق منهجيةٍ كلاسيكي خرقٌ لذلك الترتيب في موضعٍ ما.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="layers">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Peeling the Onion, Layer by Layer</h2>
+        <p class="lead">The diagram shows the five layers in their order of decision. Each deserves its own careful treatment, because each is a real choice with real alternatives, and the justification of each belongs in the methodology chapter.</p>
+        <svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><circle cx="320" cy="210" r="195" fill="#F4F4F4" stroke="#fff" stroke-width="2"/><circle cx="320" cy="210" r="160" fill="#F4F4F4" stroke="#fff" stroke-width="2"/><circle cx="320" cy="210" r="126" fill="#DEDEDE" stroke="#fff" stroke-width="2"/><circle cx="320" cy="210" r="92" fill="#C97A7A" stroke="#fff" stroke-width="2"/><circle cx="320" cy="210" r="58" fill="#A32020" stroke="#fff" stroke-width="2"/><text x="320" y="33" text-anchor="middle" font-size="13" font-weight="700" fill="#2D2D2D">Philosophy</text><text x="320" y="68" text-anchor="middle" font-size="13" font-weight="700" fill="#2D2D2D">Approach to theory</text><text x="320" y="102" text-anchor="middle" font-size="13" font-weight="700" fill="#2D2D2D">Strategy</text><text x="320" y="136" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Time horizon</text><text x="320" y="214" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">Techniques</text></svg>
+        <p>The philosophy layer states the study's assumptions about reality and knowledge, and everything inside inherits from it. The approach layer translates philosophy into a direction of reasoning: deduction where established theory will be tested, induction where theory will be built from data, abduction where a surprising phenomenon demands the best explanation. The strategy layer is where most visible variety lives. An experiment manipulates variables under control to isolate causal effects. A survey measures many cases with standard instruments for statistical generalization. A case study examines one or few instances in depth and context. Ethnography immerses the researcher in a setting to understand its meanings. Action research intervenes and studies the intervention with those affected. Grounded theory runs its iterative loop toward new theory. Each strategy carries natural affinities upward, experiment and survey to deduction and objectivist philosophy, ethnography and grounded theory to induction and interpretivism, action research to pragmatism, though the mapping is a default to argue with, not a law.</p>
+        <p>The time-horizon layer is small but consequential: a cross-sectional design photographs one moment, cheap and fast but blind to change, while a longitudinal design follows cases over time, expensive but able to see processes, trajectories, and cause preceding effect. Many questions that are asked cross-sectionally are, in truth, longitudinal questions, how does commitment develop, what happens after adoption, and the mismatch quietly weakens the claim. The innermost layer, techniques and procedures, is deliberately last: instruments, sampling plans, protocols, and analysis methods are servants of everything decided outside them, and their justification should read as therefore, given the layers above, data will be collected and analyzed thus.</p>
+        <div class="note"><strong>Note:</strong> Notice that the popular starting question, should I use interviews or a questionnaire, lives in the innermost two layers. The onion exists to make that the last question you answer, not the first.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>تقشير البصلة طبقةً طبقة</h2>
+        <p class="lead">يُظهِر المخطط الطبقات الخمس بترتيب قرارها. وكلٌّ تستحقّ معالجتها المتأنّية، لأن كلًّا خيارٌ حقيقي ببدائل حقيقية، وتبرير كلٍّ ينتمي لفصل المنهجية.</p>
+        <svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><circle cx="320" cy="210" r="195" fill="#F4F4F4" stroke="#fff" stroke-width="2"/><circle cx="320" cy="210" r="160" fill="#F4F4F4" stroke="#fff" stroke-width="2"/><circle cx="320" cy="210" r="126" fill="#DEDEDE" stroke="#fff" stroke-width="2"/><circle cx="320" cy="210" r="92" fill="#C97A7A" stroke="#fff" stroke-width="2"/><circle cx="320" cy="210" r="58" fill="#A32020" stroke="#fff" stroke-width="2"/><text x="320" y="33" text-anchor="middle" font-size="13" font-weight="700" fill="#2D2D2D">الفلسفة</text><text x="320" y="68" text-anchor="middle" font-size="13" font-weight="700" fill="#2D2D2D">مقاربة النظرية</text><text x="320" y="102" text-anchor="middle" font-size="13" font-weight="700" fill="#2D2D2D">الاستراتيجية</text><text x="320" y="136" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">الأفق الزمني</text><text x="320" y="214" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF">التقنيات</text></svg>
+        <p>طبقة الفلسفة تذكر افتراضات الدراسة عن الواقع والمعرفة، وكل ما بداخلها يرث منها. وطبقة المقاربة تترجم الفلسفة اتجاه استدلال: استنباطٌ حيث ستُختبَر نظريةٌ راسخة، واستقراءٌ حيث ستُبنى النظرية من البيانات، واستدلالٌ حيث تطلب ظاهرةٌ مفاجئة أفضل تفسير. وطبقة الاستراتيجية حيث يعيش أغلب التنوّع المرئي. التجربة تعالج المتغيّرات تحت ضبطٍ لعزل الآثار السببية. والمسح يقيس حالاتٍ كثيرة بأدواتٍ موحّدة للتعميم الإحصائي. ودراسة الحالة تفحص مثالًا أو قليلًا بعمقٍ وسياق. والإثنوغرافيا تغمر الباحث في بيئةٍ لفهم معانيها. والبحث الإجرائي يتدخّل ويدرس التدخّل مع المتأثّرين. والنظرية المتجذّرة تدير حلقتها التكرارية نحو نظريةٍ جديدة. وكل استراتيجيةٍ تحمل قراباتٍ طبيعية صعودًا، التجربة والمسح للاستنباط والفلسفة الموضوعية، والإثنوغرافيا والمتجذّرة للاستقراء والتفسيرية، والإجرائي للبراغماتية، وإن كان التطابق افتراضًا يُحاجّ لا قانونًا.</p>
+        <p>وطبقة الأفق الزمني صغيرة لكنها ذات أثر: التصميم المقطعي يصوّر لحظةً واحدة، رخيصٌ سريع لكنه أعمى عن التغيّر، بينما الطولي يتتبّع الحالات عبر الزمن، مكلفٌ لكنه يرى العمليات والمسارات والسبب سابقًا الأثر. وكثيرٌ من الأسئلة المطروحة مقطعيًا هي، في الحقيقة، أسئلة طولية، كيف يتطوّر الالتزام، ماذا يحدث بعد التبنّي، وسوء التطابق يُضعِف الادّعاء بهدوء. والطبقة الأعمق، التقنيات والإجراءات، أخيرةٌ عمدًا: فالأدوات وخطط المعاينة والبروتوكولات ومناهج التحليل خدمُ كل ما قُرّر خارجها، وتبريرها ينبغي أن يُقرأ «إذًا، بالنظر للطبقات أعلاه، ستُجمَع البيانات وتُحلَّل هكذا».</p>
+        <div class="note"><strong>ملاحظة:</strong> لاحظ أن سؤال البداية الشائع، «أأستخدم المقابلات أم الاستبيان؟»، يعيش في الطبقتين الأعمق. والبصلة توجد لجعله آخر سؤالٍ تجيبه لا أوله.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="example">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>One Question Through All Five Layers</h2>
+        <p class="lead">To see the onion as a living tool rather than a diagram, take one research question and peel it twice, under two different philosophies. The same topic yields two complete, internally coherent, and entirely different designs.</p>
+        <p>The question: how does remote work affect team cohesion? First peel, from a post-positivist skin. Philosophy: an objective reality of cohesion exists and can be measured, imperfectly but usefully. Approach: deductive, since theories of cohesion and communication already exist to be tested. Strategy: a survey across many teams, with validated cohesion scales, or a natural experiment comparing teams that moved remote with those that did not. Time horizon: longitudinal if possible, measuring cohesion before and after the shift, because the question is about change. Techniques: standardized instruments, probability sampling across an organization, regression or difference-in-differences analysis, confidence intervals reported. The deliverable: an estimate of the average effect of remote work on measured cohesion, generalizable within stated limits.</p>
+        <p>Second peel, from an interpretivist skin. Philosophy: cohesion is not a quantity but a lived, constructed meaning; what matters is what togetherness has come to mean when the office disappears. Approach: inductive. Strategy: a multiple case study of three teams, or an ethnography of one, with the researcher present in the virtual spaces where the teams actually live. Time horizon: still longitudinal in spirit, following the teams across months, because meanings drift. Techniques: participant observation of online meetings, in-depth interviews, analysis of chat and ritual, thematic or grounded analysis, reflexive memos throughout. The deliverable: a deep account of how cohesion is redefined, performed, and sometimes quietly lost in remote settings, transferable through thick description. Neither design is the better one in the abstract; each answers a different version of the question, and the onion is what made each version's internal consistency visible from skin to core.</p>
+        <div class="note"><strong>Note:</strong> Run your own question through two peels this way. The exercise takes an hour, and it does two things: it reveals which version of the question you actually care about, and it produces the skeleton of the methodology chapter for the version you choose.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>سؤالٌ واحد عبر الطبقات الخمس</h2>
+        <p class="lead">لرؤية البصلة أداةً حيّة لا مخططًا، خذ سؤال بحثٍ واحدًا وقشّره مرتين، تحت فلسفتين مختلفتين. الموضوع ذاته يعطي تصميمين كاملين متماسكين داخليًا ومختلفين كليًا.</p>
+        <p>السؤال: كيف يؤثّر العمل عن بُعد في تماسك الفريق؟ التقشير الأول، من قشرةٍ ما بعد وضعية. الفلسفة: واقعٌ موضوعي للتماسك موجود ويمكن قياسه، ناقصًا لكن نافعًا. المقاربة: استنباطية، إذ نظريات التماسك والتواصل قائمةٌ سلفًا لتُختبَر. الاستراتيجية: مسحٌ عبر فرقٍ كثيرة بمقاييس تماسكٍ مُصادَقة، أو تجربةٌ طبيعية تقارن فرقًا انتقلت للبُعد بأخرى لم تنتقل. الأفق الزمني: طوليٌّ إن أمكن، بقياس التماسك قبل التحوّل وبعده، لأن السؤال عن تغيّر. التقنيات: أدواتٌ موحّدة، ومعاينة احتمالية عبر منظمة، وتحليل انحدارٍ أو فروق الفروق، وفترات ثقةٍ مُبلَّغة. والتسليم: تقدير الأثر المتوسط للعمل عن بُعد في التماسك المقيس، معمَّمًا ضمن حدودٍ مذكورة.</p>
+        <p>التقشير الثاني، من قشرةٍ تفسيرية. الفلسفة: التماسك ليس كمّيةً بل معنًى معيشٌ مبنيّ؛ والمهمّ ما صار «الوَحدة معًا» يعنيه حين يختفي المكتب. المقاربة: استقرائية. الاستراتيجية: دراسة حالاتٍ متعددة لثلاثة فرق، أو إثنوغرافيا لواحد، بحضور الباحث في الفضاءات الافتراضية حيث تعيش الفرق فعلًا. الأفق الزمني: طوليٌّ روحًا، متتبّعًا الفرق عبر الشهور، لأن المعاني تنجرف. التقنيات: ملاحظةٌ بالمشاركة للاجتماعات الرقمية، ومقابلاتٌ معمّقة، وتحليل الدردشة والطقوس، وتحليلٌ موضوعي أو متجذّر، ومذكّراتٌ انعكاسية طوال الوقت. والتسليم: حسابٌ عميق لكيف يُعاد تعريف التماسك ويُؤدّى ويُفقَد أحيانًا بصمتٍ في بيئات البُعد، قابلًا للنقل بالوصف الكثيف. لا التصميم الأول أفضل تجريديًا ولا الثاني؛ كلٌّ يجيب نسخةً مختلفة من السؤال، والبصلة ما جعل اتساق كل نسخةٍ الداخلي مرئيًا من القشرة إلى اللبّ.</p>
+        <div class="note"><strong>ملاحظة:</strong> أجرِ سؤالك عبر تقشيرين هكذا. يأخذ التمرين ساعةً، ويفعل شيئين: يكشف أي نسخةٍ من السؤال تهمّك فعلًا، ويُنتِج هيكل فصل المنهجية للنسخة التي تختار.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="failures">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>The Classic Incoherences</h2>
+        <p class="lead">The onion's diagnostic value is that every classic methodology failure appears on it as a visible break between layers. Naming the recurring breaks makes them checkable in one's own design before an examiner does the checking.</p>
+        <p>The technique-first design is the most common: the researcher decides early that they will run interviews, or a questionnaire, because the format feels familiar, then works outward, retrofitting a philosophy to bless the choice. The tell is a philosophy section that could be deleted without changing anything inside it. The label mismatch is second: an interpretivist declaration wrapping a deductive, variable-testing core, or a positivist frame stretched over an exploratory qualitative study; the layers exist, but they do not transmit. Third is the strategy-question mismatch, a strategy chosen for reasons other than the question's needs: a survey asked to answer a how-does-it-unfold question it cannot see, a single case study asked to deliver a population generalization it cannot make. Fourth is the horizon mismatch already noted, process questions given snapshot designs. Fifth is the invisible middle, a chapter that leaps from philosophy straight to instruments, leaving approach and strategy undiscussed, so the reader cannot tell why this study is a survey rather than an experiment, or a case study rather than an ethnography.</p>
+        <p>The repair procedure is the same for all five: read the design from the outside in, and at each boundary ask the transmission question, does this layer follow from the one outside it, and could I defend the step in one sentence? Where the sentence cannot be written, either the inner layer or the outer one must change, and it is far cheaper to change it before data collection than after. Used this way, the onion is not a diagram for the methodology chapter's first page but a testing instrument for the whole design, applied best at the proposal stage when everything is still cheap to fix.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> the research onion turns design into an ordered sequence of decisions, philosophy, approach, strategy, horizon, techniques, each justified by the layer outside it. Peel in order, test the transmissions, and run your question through two peels before committing: coherence stops being a hope and becomes a construction.</div>
+        <div class="refs"><ul>
+          <li>Saunders, Lewis &amp; Thornhill, <a href="https://www.researchgate.net/publication/309102603_Research_Methods_for_Business_Students" target="_blank" rel="noopener">Research Methods for Business Students</a>.</li>
+          <li>Yin, <a href="https://uk.sagepub.com/en-gb/eur/case-study-research-and-applications/book250150" target="_blank" rel="noopener">Case Study Research and Applications</a>.</li>
+          <li>Creswell &amp; Creswell, <a href="https://uk.sagepub.com/en-gb/eur/research-design/book270550" target="_blank" rel="noopener">Research Design: Qualitative, Quantitative, and Mixed Methods Approaches</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>اللاتماسكات الكلاسيكية</h2>
+        <p class="lead">قيمة البصلة التشخيصية أن كل إخفاق منهجيةٍ كلاسيكي يظهر عليها كسرًا مرئيًا بين الطبقات. وتسمية الكسور المتكرّرة تجعلها قابلةً للفحص في تصميم المرء قبل أن يفحصها الممتحِن.</p>
+        <p>تصميم التقنية أولًا الأشيع: يقرّر الباحث باكرًا أنه سيجري مقابلات، أو استبيانًا، لأن الصيغة مألوفة، ثم يعمل نحو الخارج، مرقّعًا فلسفةً تبارك الخيار. والعلامة قسم فلسفةٍ يمكن حذفه دون تغيير شيءٍ بداخله. وسوء تطابق الوسم ثانيًا: إعلانٌ تفسيري يلفّ لبًّا استنباطيًا يختبر متغيّرات، أو إطارٌ وضعي ممدود فوق دراسةٍ نوعية استكشافية؛ الطبقات موجودة لكنها لا تنقل. وثالثًا سوء تطابق الاستراتيجية والسؤال، استراتيجيةٌ مختارة لأسبابٍ غير حاجات السؤال: مسحٌ يُطلَب منه إجابة سؤال «كيف يتكشّف» الذي لا يراه، ودراسة حالةٍ مفردة يُطلَب منها تعميم مجتمعٍ لا تستطيعه. ورابعًا سوء تطابق الأفق المذكور سلفًا، أسئلة عملياتٍ تُعطى تصاميم لقطات. وخامسًا الوسط غير المرئي، فصلٌ يقفز من الفلسفة مباشرةً للأدوات، تاركًا المقاربة والاستراتيجية بلا نقاش، فلا يستطيع القارئ معرفة لماذا هذه الدراسة مسحٌ لا تجربة، أو دراسة حالةٍ لا إثنوغرافيا.</p>
+        <p>وإجراء الإصلاح واحدٌ للخمسة: اقرأ التصميم من الخارج للداخل، وعند كل حدٍّ اسأل سؤال النقل، أتتبع هذه الطبقة ما خارجها، وأأستطيع الدفاع عن الخطوة بجملة؟ وحيث تستعصي الجملة، يجب تغيير الطبقة الداخلية أو الخارجية، وتغييرها قبل جمع البيانات أرخص بكثيرٍ من بعده. ومستخدَمةً هكذا، ليست البصلة مخططًا لصفحة فصل المنهجية الأولى بل أداة اختبارٍ للتصميم كله، تُطبَّق أفضل ما تُطبَّق في مرحلة المقترح حين كل شيءٍ ما زال رخيص الإصلاح.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> بصلة البحث تحوّل التصميم تسلسل قراراتٍ مرتّبًا، فلسفة، مقاربة، استراتيجية، أفق، تقنيات، كلٌّ مبرَّر بالطبقة خارجه. قشّر بالترتيب، واختبر النواقل، وأجرِ سؤالك عبر تقشيرين قبل الالتزام: يتوقّف التماسك عن كونه أملًا ويصير بناءً.</div>
+        <div class="refs"><ul>
+          <li>سوندرز ولويس وثورنهيل، <a href="https://www.researchgate.net/publication/309102603_Research_Methods_for_Business_Students" target="_blank" rel="noopener">مناهج البحث لطلاب الأعمال</a>.</li>
+          <li>ين، <a href="https://uk.sagepub.com/en-gb/eur/case-study-research-and-applications/book250150" target="_blank" rel="noopener">بحث دراسة الحالة وتطبيقاته</a>.</li>
+          <li>كريسويل وكريسويل، <a href="https://uk.sagepub.com/en-gb/eur/research-design/book270550" target="_blank" rel="noopener">تصميم البحث: المقاربات النوعية والكمّية والمختلطة</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="design-quant-qual-mixed.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Quantitative, Qualitative &amp; Mixed Methods</span><span data-lang="ar">المناهج الكمّية والنوعية والمختلطة</span></a><a href="design-sampling-saturation.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Sampling &amp; Saturation</span><span data-lang="ar">المعاينة والتشبّع</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="تصميم البحث وبصلة البحث";
+var TITLE_EN="Research Design &amp; the Research Onion";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

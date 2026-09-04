@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Systematic Review &amp; PRISMA</title>
+<meta name="description" content="Systematic literature review and PRISMA in depth: review types, the protocol and search craft, the PRISMA flow and appraisal, and synthesis options.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#phd"><span data-lang="en">The doctoral track</span><span data-lang="ar">مسار الدكتوراه</span></a><i>&rsaquo;</i><span data-lang="en">The research process</span><span data-lang="ar">عملية البحث</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">RESEARCH PROCESS · PhD</span><span data-lang="ar">عملية البحث · دكتوراه</span></div>
+    <h1><span data-lang="en">Systematic Review &amp; PRISMA</span><span data-lang="ar">المراجعة المنهجية وبروتوكول PRISMA</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">The research process</span><span data-lang="ar">عملية البحث</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">12 min</span><span data-lang="ar">١٢ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="types"><span data-lang="en">Review Types</span><span data-lang="ar">أنواع المراجعات</span></a></li><li><a data-id="protocol"><span data-lang="en">Protocol & Search</span><span data-lang="ar">البروتوكول والبحث</span></a></li><li><a data-id="prisma"><span data-lang="en">PRISMA & Appraisal</span><span data-lang="ar">PRISMA والتقييم</span></a></li><li><a data-id="workflow"><span data-lang="en">Workflow & Tools</span><span data-lang="ar">سير العمل والأدوات</span></a></li><li><a data-id="example"><span data-lang="en">Worked Example</span><span data-lang="ar">مثال تطبيقي</span></a></li><li><a data-id="synthesis"><span data-lang="en">Synthesis</span><span data-lang="ar">التوليف</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Systematic literature review and PRISMA</div>
+          <div><span>Covers:</span> Review types, the systematic protocol, PRISMA reporting, synthesis</div>
+          <div><span>Use:</span> Building a literature review that is itself a piece of research</div>
+          <div><span>Level:</span> Doctoral research process</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">A systematic literature review treats the search of past research as research: a defined question, an explicit protocol, a documented search, stated criteria for inclusion and exclusion, and a synthesis whose every step another researcher could reproduce. It stands against the traditional narrative review, in which an author reads what they know and cites what supports the story, a genre whose central weakness is invisible selection: the reader cannot tell what was searched, what was excluded, or why, and therefore cannot tell whether the review's picture of the field is the field.</p>
+        <p>The systematic approach was born in medicine, where the stakes of biased evidence summaries are measured in lives, and its reporting standard, PRISMA, the Preferred Reporting Items for Systematic Reviews and Meta-Analyses, has spread across management, education, information systems, and the social sciences generally. PRISMA's core instruments are a checklist of items a complete review must report and the flow diagram that accounts for every record from identification to inclusion, numbers at every stage, reasons for every exclusion. Journals increasingly require it, and doctoral programmes increasingly expect the thesis literature review, or at least a defined core of it, to meet its standard.</p>
+        <p>For a doctoral researcher the systematic review has three uses: as the thesis's literature chapter, where it converts a vulnerable narrative into a defensible study; as a standalone publication, since a well-executed review is a recognized contribution in its own right; and as the disciplined way to locate the gap the thesis will fill, because a gap demonstrated by systematic search is a claim, while a gap asserted from casual reading is a hope. This framework sets out the review family and when each member fits, the protocol and search craft, the PRISMA machinery with the flow diagram, the synthesis options from meta-analysis to thematic synthesis, and a worked example. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> The systematic review's one-line creed: every decision that shaped what the reader sees, search, screening, exclusion, must itself be visible. Reviews fail examination not for what they found but for what they cannot account for.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> المراجعة المنهجية للأدبيات وبروتوكول PRISMA</div>
+          <div><span>يغطّي:</span> أنواع المراجعات، والبروتوكول المنهجي، ومعيار PRISMA، والتوليف</div>
+          <div><span>الاستخدام:</span> بناء مراجعة أدبيات تكون هي نفسها عملًا بحثيًا</div>
+          <div><span>المستوى:</span> عملية البحث لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">المراجعة المنهجية للأدبيات تعامل البحث في الدراسات السابقة بوصفه بحثًا قائمًا بذاته: سؤال محدد، وبروتوكول صريح، وبحث موثّق، ومعايير معلنة للإدراج والاستبعاد، وتوليف يستطيع باحث آخر إعادة إنتاج كل خطوة فيه. وهي تقف في مقابل المراجعة السردية التقليدية، التي يقرأ فيها المؤلف ما يعرفه ويستشهد بما يدعم قصته، وهو نوع ضعفه المركزي الانتقاء غير المرئي: فالقارئ لا يستطيع أن يعرف ما الذي بُحث فيه، وما الذي استُبعد، ولماذا، وبالتالي لا يستطيع أن يعرف هل صورة المراجعة عن الحقل هي الحقل فعلًا.</p>
+        <p>وُلدت المقاربة المنهجية في الطب، حيث تُقاس أثمان ملخصات الأدلة المتحيزة بالأرواح، وانتشر معيار الإبلاغ فيها، PRISMA، أي «بنود الإبلاغ المفضلة للمراجعات المنهجية والتحليلات البعدية»، عبر الإدارة والتعليم ونظم المعلومات والعلوم الاجتماعية عمومًا. وأداتا PRISMA الأساسيتان قائمة فحص بالبنود التي يجب أن تبلّغ عنها المراجعة الكاملة، ومخطط التدفق الذي يحاسب على كل سجل من التحديد إلى الإدراج، بأعداد في كل مرحلة وأسباب لكل استبعاد. والمجلات تشترطه أكثر فأكثر، وبرامج الدكتوراه تتوقع أكثر فأكثر أن يبلغ فصل مراجعة الأدبيات في الأطروحة، أو نواة محددة منه على الأقل، هذا المعيار.</p>
+        <p>وللمراجعة المنهجية عند باحث الدكتوراه ثلاثة استخدامات: فصلَ الأدبيات في الأطروحة، حيث تحوّل سردًا هشًّا إلى دراسة يمكن الدفاع عنها؛ ومنشورًا مستقلًا، لأن المراجعة المتقنة إسهام معترف به بذاته؛ والطريقةَ المنضبطة لتحديد الفجوة التي ستملؤها الأطروحة، لأن فجوة أثبتها بحث منهجي ادّعاءٌ، بينما فجوة زُعمت من قراءة عابرة أمنية. يعرض هذا الإطار عائلة المراجعات ومتى يناسب كل نوع، والبروتوكول وحرفة البحث، وآلية PRISMA مع مخطط التدفق، وخيارات التوليف من التحليل البعدي إلى التوليف الموضوعي، ومثالًا تطبيقيًا. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> عقيدة المراجعة المنهجية في سطر: كل قرار شكّل ما يراه القارئ، بحثًا وغربلة واستبعادًا، يجب أن يكون هو نفسه مرئيًا. فالمراجعات تسقط في المناقشة لا بسبب ما وجدته بل بسبب ما لا تستطيع المحاسبة عليه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="types">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Review Family</h2>
+        <p class="lead">Systematic is one member of a family, and choosing the right member for the question is the first defended decision. The main types differ in purpose, breadth, and the strength of the claims they can support.</p>
+        <p>The full systematic review answers a focused question, does X improve Y, what factors drive Z, by exhaustively locating, appraising, and synthesizing all studies that meet stated criteria; it is the strongest instrument and the most demanding, months of work under a registered protocol. The scoping review maps a territory rather than answering a focused question: what research exists on this emerging topic, what methods and concepts are in use, where are the clusters and deserts; it uses the same systematic search discipline but appraises breadth rather than effect, and it is often the right choice for a doctoral field-mapping chapter on a young topic. The meta-analysis is a statistical synthesis layered on a systematic review: where enough quantitative studies measure the same relationship comparably, their effect sizes are pooled into a single weighted estimate, the closest research comes to a cumulative answer.</p>
+        <p>Two further members matter for social science. The meta-synthesis, or qualitative evidence synthesis, integrates qualitative studies, synthesizing themes and concepts across ethnographies and interview studies rather than pooling numbers, with its own techniques and its own debates about whether interpretive findings can be aggregated at all. And the umbrella review synthesizes existing systematic reviews where a field has matured enough to have several. The traditional narrative review retains one legitimate niche: the theoretical essay that develops an argument across literatures, judged as argument rather than as evidence summary, but a thesis that presents a narrative review while making evidence-summary claims, the literature shows, has mismatched genre and claim, which is precisely the mismatch examiners now probe.</p>
+        <div class="note"><strong>Note:</strong> Match the review type to the question's maturity: scoping for young scattered fields, systematic for focused answerable questions, meta-analysis where comparable numbers exist, meta-synthesis where the evidence is qualitative. The choice is a design decision, and it belongs in the methods section of the review itself.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>عائلة المراجعات</h2>
+        <p class="lead">المراجعة المنهجية عضو واحد في عائلة، واختيار العضو الصحيح للسؤال هو أول قرار يُدافَع عنه. فالأنواع الرئيسية تختلف في الغرض والاتساع وقوة الادّعاءات التي تستطيع دعمها.</p>
+        <p>المراجعة المنهجية الكاملة تجيب عن سؤال مركّز، هل يحسّن X النتيجة Y، وما العوامل التي تحرك Z، عبر تحديد شامل لكل الدراسات التي تستوفي معايير معلنة وتقييمها وتوليفها؛ وهي أقوى الأدوات وأكثرها تطلبًا، شهور من العمل تحت بروتوكول مسجّل. والمراجعة الاستكشافية ترسم خريطة أرض بدل الإجابة عن سؤال مركّز: ما البحوث الموجودة في هذا الموضوع الناشئ، وما المناهج والمفاهيم المستخدمة، وأين التجمعات وأين الصحارى؛ وهي تستخدم انضباط البحث المنهجي نفسه لكنها تقيّم الاتساع لا الأثر، وكثيرًا ما تكون الخيار الصحيح لفصل رسم خريطة الحقل في أطروحة عن موضوع حديث. والتحليل البعدي توليف إحصائي فوق مراجعة منهجية: حيث تقيس دراسات كمية كافية العلاقة نفسها بطريقة قابلة للمقارنة، تُجمَع أحجام آثارها في تقدير مرجّح واحد، وهو أقرب ما يصل إليه البحث من إجابة تراكمية.</p>
+        <p>وعضوان إضافيان مهمان للعلوم الاجتماعية. التوليف البعدي النوعي يدمج الدراسات النوعية، موليفًا المواضيع والمفاهيم عبر الإثنوغرافيات ودراسات المقابلات بدل جمع الأرقام، وله تقنياته الخاصة ونقاشاته الخاصة حول هل يمكن تجميع النتائج التأويلية أصلًا. والمراجعة المظلية تولّف المراجعات المنهجية القائمة حيث نضج حقل بما يكفي ليكون فيه عدة مراجعات. وتحتفظ المراجعة السردية التقليدية بموضع مشروع واحد: المقالة النظرية التي تطوّر حجة عبر أدبيات متعددة، وتُحكَم بوصفها حجة لا ملخص أدلة، لكن أطروحة تقدّم مراجعة سردية بينما تطلق ادّعاءات ملخص أدلة، «تُظهر الأدبيات أن...»، قد خلطت بين النوع والادّعاء، وهذا بالضبط الخلط الذي يسبره الممتحنون الآن.</p>
+        <div class="note"><strong>ملاحظة:</strong> طابق نوع المراجعة مع نضج السؤال: استكشافية للحقول الفتية المتناثرة، ومنهجية للأسئلة المركّزة القابلة للإجابة، وتحليل بعدي حيث توجد أرقام قابلة للمقارنة، وتوليف نوعي حيث الأدلة نوعية. والاختيار قرار تصميم، ومكانه قسم مناهج المراجعة نفسها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="protocol">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Protocol and the Search</h2>
+        <p class="lead">The review's rigour is decided before the first paper is read, in the protocol: the pre-written plan that fixes the question, the criteria, and the search before results can tempt revision. Writing it is the review's equivalent of pre-registration, and its craft has settled components.</p>
+        <p>The question is structured, commonly through frameworks such as PICO, population, intervention, comparison, outcome, or its qualitative variants, which force precision: not what is known about remote work, but among knowledge workers, what effects of mandatory remote work on team coordination have been reported, in which settings. From the question flow the eligibility criteria: publication types, date ranges, languages, methods, and contexts included and excluded, each with a reason, because every criterion is a decision an examiner may probe, and reasoned criteria survive probing while convenient ones do not. The protocol also pre-commits the appraisal method, how study quality will be assessed, and the synthesis plan, and in mature practice it is registered publicly, in PROSPERO for health-related topics or as a published protocol elsewhere, which timestamps the commitments.</p>
+        <p>The search itself is a craft of recall over precision: the systematic reviewer would rather screen a thousand irrelevant titles than miss one relevant study, because the whole claim of the genre is completeness. Multiple databases are searched, since coverage differs; search strings are built from concept blocks combined with Boolean logic, synonyms within blocks, blocks joined by AND, and the full string for each database is reported verbatim, because a search that cannot be rerun is not systematic. Supplementary techniques close the known gaps of database searching: backward snowballing through the reference lists of included studies, forward citation chasing to find newer work that cites them, hand-searching key journals, and a documented approach to grey literature, theses, reports, preprints, whose exclusion is a defensible choice but an invisible exclusion is not. Every count from every source enters the flow diagram's ledger.</p>
+        <div class="note"><strong>Note:</strong> The protocol's power is temporal: it exists before the results do, so it cannot have been shaped by them. A criteria list written after screening is a rationalization wearing a protocol's clothes, and the registration timestamp is what proves the difference.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>البروتوكول والبحث</h2>
+        <p class="lead">صرامة المراجعة تتقرر قبل قراءة أول ورقة، في البروتوكول: الخطة المكتوبة مسبقًا التي تثبّت السؤال والمعايير والبحث قبل أن تغري النتائج بالتعديل. وكتابته هي مكافئ التسجيل المسبق في عالم المراجعات، ولحرفتها مكونات مستقرة.</p>
+        <p>السؤال يُبنى بنية محددة، عادةً عبر أطر مثل PICO، الفئة والتدخل والمقارنة والنتيجة، أو متغيراتها النوعية، التي تفرض الدقة: ليس «ما المعروف عن العمل عن بعد»، بل «بين العاملين المعرفيين، ما الآثار المبلَّغ عنها للعمل عن بعد الإلزامي على تنسيق الفرق، وفي أي سياقات». ومن السؤال تتدفق معايير الأهلية: أنواع المنشورات ونطاقات التواريخ واللغات والمناهج والسياقات المدرجة والمستبعدة، لكل منها سبب، لأن كل معيار قرار قد يسبره الممتحن، والمعايير المعلَّلة تنجو من السبر بينما لا تنجو معايير الراحة. والبروتوكول يلتزم مسبقًا أيضًا بطريقة التقييم، كيف ستُقيَّم جودة الدراسات، وبخطة التوليف، وفي الممارسة الناضجة يُسجَّل علنًا، في PROSPERO للمواضيع الصحية أو كبروتوكول منشور في غيرها، وهو ما يختم الالتزامات بختم زمني.</p>
+        <p>والبحث نفسه حرفة استرجاع لا دقة: فالمراجع المنهجي يفضّل غربلة ألف عنوان غير ذي صلة على تفويت دراسة واحدة ذات صلة، لأن ادّعاء هذا النوع كله هو الاكتمال. تُبحَث قواعد بيانات متعددة، لأن التغطية تختلف؛ وتُبنى سلاسل البحث من كتل مفاهيم تُركَّب بالمنطق البولياني، مرادفات داخل الكتل، وكتل تُربَط بأداة AND، وتُذكَر السلسلة الكاملة لكل قاعدة حرفيًا، لأن بحثًا لا يمكن إعادة تشغيله ليس منهجيًا. وتقنيات مكملة تغلق الفجوات المعروفة لبحث قواعد البيانات: كرة الثلج الخلفية عبر قوائم مراجع الدراسات المدرجة، وتتبع الاستشهادات الأمامي لإيجاد الأعمال الأحدث التي تستشهد بها، والبحث اليدوي في المجلات الرئيسية، ومقاربة موثقة للأدبيات الرمادية، الرسائل والتقارير والمسودات، التي يكون استبعادها خيارًا يمكن الدفاع عنه أما الاستبعاد غير المرئي فلا. وكل عدد من كل مصدر يدخل دفتر مخطط التدفق.</p>
+        <div class="note"><strong>ملاحظة:</strong> قوة البروتوكول زمنية: فهو موجود قبل وجود النتائج، فلا يمكن أن تكون قد شكّلته. وقائمة معايير كُتبت بعد الغربلة تبريرٌ يرتدي ثياب بروتوكول، وختم التسجيل الزمني هو ما يثبت الفرق.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="prisma">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>The PRISMA Flow and Quality Appraisal</h2>
+        <p class="lead">PRISMA turns the review's process into an auditable account, and its flow diagram, shown here, is the single most recognizable artifact of the genre: a ledger in which every record found is either carried forward or excluded for a stated reason.</p>
+        <svg viewBox="0 0 560 430" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><rect x="110" y="14" width="340" height="72" rx="10" fill="#DEDEDE"/><text x="280" y="44" text-anchor="middle" font-size="15" font-weight="700" fill="#2D2D2D">Identification</text><text x="280" y="66" text-anchor="middle" font-size="11.5" fill="#2D2D2D" opacity="0.9">records from databases &amp; registers</text><line x1="280" y1="86" x2="280" y2="118" stroke="#A32020" stroke-width="2.2"/><path d="M280 118 l-6 -10 l12 0 z" fill="#A32020"/><line x1="450" y1="50" x2="505" y2="50" stroke="#A32020" stroke-width="1.6" stroke-dasharray="4 4"/><text x="455" y="50" font-size="10" fill="#A32020" transform="rotate(0)"></text><rect x="110" y="118" width="340" height="72" rx="10" fill="#B34747"/><text x="280" y="148" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">Screening</text><text x="280" y="170" text-anchor="middle" font-size="11.5" fill="#FFFFFF" opacity="0.9">titles &amp; abstracts against criteria</text><line x1="280" y1="190" x2="280" y2="222" stroke="#A32020" stroke-width="2.2"/><path d="M280 222 l-6 -10 l12 0 z" fill="#A32020"/><line x1="450" y1="154" x2="505" y2="154" stroke="#A32020" stroke-width="1.6" stroke-dasharray="4 4"/><text x="455" y="154" font-size="10" fill="#A32020" transform="rotate(0)"></text><rect x="110" y="222" width="340" height="72" rx="10" fill="#9A1C1C"/><text x="280" y="252" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">Eligibility</text><text x="280" y="274" text-anchor="middle" font-size="11.5" fill="#FFFFFF" opacity="0.9">full texts assessed, exclusions logged</text><line x1="280" y1="294" x2="280" y2="326" stroke="#A32020" stroke-width="2.2"/><path d="M280 326 l-6 -10 l12 0 z" fill="#A32020"/><line x1="450" y1="258" x2="505" y2="258" stroke="#A32020" stroke-width="1.6" stroke-dasharray="4 4"/><text x="455" y="258" font-size="10" fill="#A32020" transform="rotate(0)"></text><rect x="110" y="326" width="340" height="72" rx="10" fill="#2D2D2D"/><text x="280" y="356" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">Included</text><text x="280" y="378" text-anchor="middle" font-size="11.5" fill="#FFFFFF" opacity="0.9">final studies in the synthesis</text><text x="280" y="425" text-anchor="middle" font-size="12" fill="#A32020">every count reported; every exclusion has a stated reason</text></svg>
+        <p>The four stages discipline different failures. Identification reports how many records each database and supplementary source produced, and how many duplicates were removed, establishing the raw pool. Screening assesses titles and abstracts against the criteria, typically with two reviewers working independently on at least a sample, with disagreements resolved by discussion and the agreement level reported, the review's version of inter-rater reliability, guarding the stage where most records exit. Eligibility examines surviving full texts, and here PRISMA's most examined demand applies: every full-text exclusion is logged with its specific reason, criteria mismatch, wrong population, no usable outcome data, so the diagram's right-hand side accounts for every departure. Inclusion states the final corpus, and the numbers must reconcile arithmetically from top to bottom, an audit an examiner can and will perform in seconds.</p>
+        <p>Included studies then face quality appraisal, because inclusion is not endorsement: a systematic review that synthesizes weak studies without weighing their weakness launders bad evidence into confident conclusions. Appraisal uses fit-for-purpose instruments, risk-of-bias tools for trials, checklists such as CASP for qualitative studies, mixed-methods appraisal tools for mixed corpora, and the results feed the synthesis: as sensitivity analyses that test whether conclusions survive the removal of weak studies, as weighting, or at minimum as explicit caveats attached to conclusions that rest on thin evidence. Data extraction runs in parallel on a piloted form, capturing from each study the same structured fields, design, sample, context, measures, findings, so that the synthesis works from a disciplined table rather than from memory and impression.</p>
+        <div class="note"><strong>Note:</strong> The flow diagram is an arithmetic promise: identified minus duplicates minus screened-out minus ineligible equals included, with reasons at every subtraction. Reviews that cannot make the numbers reconcile fail on page one.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>تدفق PRISMA وتقييم الجودة</h2>
+        <p class="lead">يحوّل PRISMA عملية المراجعة إلى حساب قابل للتدقيق، ومخطط تدفقه، المعروض هنا، هو أشهر أثر في هذا النوع كله: دفتر يُحمَل فيه كل سجل عُثر عليه إلى الأمام أو يُستبعَد لسبب معلن.</p>
+        <svg viewBox="0 0 560 430" xmlns="http://www.w3.org/2000/svg" role="img" style="font-family:&apos;Helvetica Neue&apos;,Helvetica,&apos;Noto Sans Arabic&apos;,Arial,sans-serif;"><rect x="110" y="14" width="340" height="72" rx="10" fill="#DEDEDE"/><text x="280" y="44" text-anchor="middle" font-size="15" font-weight="700" fill="#2D2D2D">التحديد</text><text x="280" y="66" text-anchor="middle" font-size="11.5" fill="#2D2D2D" opacity="0.9">السجلات من قواعد البيانات</text><line x1="280" y1="86" x2="280" y2="118" stroke="#A32020" stroke-width="2.2"/><path d="M280 118 l-6 -10 l12 0 z" fill="#A32020"/><rect x="110" y="118" width="340" height="72" rx="10" fill="#B34747"/><text x="280" y="148" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">الغربلة</text><text x="280" y="170" text-anchor="middle" font-size="11.5" fill="#FFFFFF" opacity="0.9">العناوين والملخصات مقابل المعايير</text><line x1="280" y1="190" x2="280" y2="222" stroke="#A32020" stroke-width="2.2"/><path d="M280 222 l-6 -10 l12 0 z" fill="#A32020"/><rect x="110" y="222" width="340" height="72" rx="10" fill="#9A1C1C"/><text x="280" y="252" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">الأهلية</text><text x="280" y="274" text-anchor="middle" font-size="11.5" fill="#FFFFFF" opacity="0.9">تقييم النصوص الكاملة وتوثيق الاستبعادات</text><line x1="280" y1="294" x2="280" y2="326" stroke="#A32020" stroke-width="2.2"/><path d="M280 326 l-6 -10 l12 0 z" fill="#A32020"/><rect x="110" y="326" width="340" height="72" rx="10" fill="#2D2D2D"/><text x="280" y="356" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">المشمولة</text><text x="280" y="378" text-anchor="middle" font-size="11.5" fill="#FFFFFF" opacity="0.9">الدراسات النهائية في التوليف</text><text x="280" y="425" text-anchor="middle" font-size="12" fill="#A32020">كل عدد يُذكَر؛ وكل استبعاد له سبب معلن</text></svg>
+        <p>المراحل الأربع تضبط إخفاقات مختلفة. التحديد يبلّغ كم سجلًا أنتجت كل قاعدة بيانات وكل مصدر مكمل، وكم نسخة مكررة أزيلت، فيثبّت البركة الخام. والغربلة تقيّم العناوين والملخصات مقابل المعايير، عادةً بمراجعَين يعملان مستقلَّين على عيّنة على الأقل، مع حل الخلافات بالنقاش والإبلاغ عن مستوى الاتفاق، وهي نسخة المراجعة من ثبات المقيّمين، لحراسة المرحلة التي يخرج فيها معظم السجلات. والأهلية تفحص النصوص الكاملة الناجية، وهنا يعمل مطلب PRISMA الأكثر خضوعًا للفحص: كل استبعاد لنص كامل يُوثَّق بسببه المحدد، عدم مطابقة المعايير، أو فئة خاطئة، أو غياب بيانات نتائج قابلة للاستخدام، بحيث يحاسب الجانب الأيمن من المخطط على كل مغادرة. والإدراج يذكر الأرشيف النهائي، ويجب أن تتطابق الأعداد حسابيًا من الأعلى إلى الأسفل، وهو تدقيق يستطيع الممتحن إجراءه في ثوانٍ وسيجريه.</p>
+        <p>ثم تواجه الدراسات المدرجة تقييم الجودة، لأن الإدراج ليس تزكية: فمراجعة منهجية تولّف دراسات ضعيفة دون وزن ضعفها تغسل أدلة رديئة في استنتاجات واثقة. والتقييم يستخدم أدوات مناسبة للغرض، أدوات خطر التحيز للتجارب، وقوائم فحص مثل CASP للدراسات النوعية، وأدوات تقييم المناهج المختلطة للأراشيف المختلطة، وتغذي النتائج التوليف: كتحليلات حساسية تختبر هل تنجو الاستنتاجات من إزالة الدراسات الضعيفة، أو كترجيح، أو على الأقل كتحفظات صريحة تُلحَق بالاستنتاجات القائمة على أدلة رقيقة. ويجري استخراج البيانات بالتوازي على نموذج مجرَّب، يلتقط من كل دراسة الحقول المنظمة نفسها، التصميم والعيّنة والسياق والمقاييس والنتائج، بحيث يعمل التوليف من جدول منضبط لا من الذاكرة والانطباع.</p>
+        <div class="note"><strong>ملاحظة:</strong> مخطط التدفق وعد حسابي: المحدد ناقص المكرر ناقص المغربل ناقص غير المؤهل يساوي المدرج، مع أسباب عند كل طرح. والمراجعات التي لا تستطيع جعل الأرقام تتطابق تسقط في الصفحة الأولى.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="workflow">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>The Practical Workflow, Step by Step</h2>
+        <p class="lead">Between the protocol and the synthesis lies months of practical work, and its organization decides whether the review stays auditable or dissolves into folders of PDFs. The working pipeline has settled stages and settled tools, and knowing them saves painful reinvention.</p>
+        <p>Export and deduplication come first: each database's results are exported with full metadata into a reference manager, and duplicates, the same paper arriving from three databases, are removed by a documented procedure, automated matching followed by manual checking of near-misses, with the counts logged for the flow diagram. Screening then runs in two passes through dedicated screening tools, of which Rayyan and Covidence are the field's workhorses: they blind reviewers to each other's decisions, log every vote, compute agreement, and export the audit trail ready-made. The title-abstract pass applies the criteria generously, when in doubt, keep it in, because a wrongly excluded study is unrecoverable while a wrongly included one costs only a full-text read. The full-text pass applies the criteria strictly, and this is where each exclusion must be tagged with its single primary reason, the tag list itself defined in the protocol.</p>
+        <p>Extraction and appraisal then run on the survivors, and their craft is the piloted form: the extraction template is drafted, tested on five studies, revised where fields proved ambiguous, and only then applied to the corpus, with a second reviewer extracting a sample independently to check consistency. Two habits protect the whole pipeline. First, the decisions log: a running file recording every judgment call the protocol did not anticipate, the borderline study, the unclear population, the paper in a predatory journal, each with the ruling made and its rationale, which becomes the answer bank for every examiner question that begins what did you do about. Second, version discipline: the search is dated, and if the review takes long enough that a re-run is needed before submission, the update search is executed and reported as its own small PRISMA cycle, appended to the ledger rather than silently merged.</p>
+        <div class="note"><strong>Note:</strong> The screening rule of thumb: generous at title-abstract, strict at full text, and never delete, only exclude with a tagged reason. The reversibility of every decision is what makes the review auditable end to end.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>سير العمل العملي، خطوة خطوة</h2>
+        <p class="lead">بين البروتوكول والتوليف تقع شهور من العمل العملي، وتنظيمه هو الذي يقرر هل تبقى المراجعة قابلة للتدقيق أم تذوب في مجلدات من ملفات PDF. ولخط العمل مراحل مستقرة وأدوات مستقرة، ومعرفتها توفّر إعادة اختراع مؤلمة.</p>
+        <p>التصدير وإزالة التكرار أولًا: تُصدَّر نتائج كل قاعدة بيانات ببياناتها الوصفية الكاملة إلى مدير مراجع، وتُزال النسخ المكررة، الورقة نفسها القادمة من ثلاث قواعد، بإجراء موثّق: مطابقة آلية يتبعها فحص يدوي لشبه المتطابقات، مع تسجيل الأعداد لمخطط التدفق. ثم تجري الغربلة في جولتين عبر أدوات غربلة مخصصة، أشهرها في الحقل Rayyan وCovidence: فهي تحجب قرارات المراجعين بعضها عن بعض، وتسجّل كل تصويت، وتحسب الاتفاق، وتصدّر سجل التدقيق جاهزًا. جولة العناوين والملخصات تطبّق المعايير بسخاء، وعند الشك أبقِ الدراسة، لأن دراسة استُبعدت خطأً لا يمكن استعادتها بينما دراسة أُدرجت خطأً لا تكلّف إلا قراءة نص كامل. وجولة النصوص الكاملة تطبّق المعايير بصرامة، وهنا يجب وسم كل استبعاد بسببه الأساسي الواحد، وقائمة الأسباب نفسها معرّفة في البروتوكول.</p>
+        <p>ثم يجري الاستخراج والتقييم على الناجيات، وحرفتهما النموذج المجرَّب: تُسوَّد استمارة الاستخراج، وتُختبَر على خمس دراسات، وتُنقَّح حيث ثبت غموض الحقول، وعندها فقط تُطبَّق على الأرشيف، مع استخراج مراجع ثانٍ لعينة مستقلة لفحص الاتساق. وعادتان تحميان خط العمل كله. الأولى سجل القرارات: ملف جارٍ يسجّل كل حكم اجتهادي لم يتوقعه البروتوكول، الدراسة الحدّية، والفئة غير الواضحة، والورقة في مجلة مشبوهة، كل واحد مع الحكم الصادر ومسوّغه، وهذا يصبح بنك الإجابات لكل سؤال ممتحن يبدأ بـ«ماذا فعلت بشأن...». والثانية انضباط النسخ: البحث مؤرَّخ، وإذا طالت المراجعة بما يستدعي إعادة تشغيله قبل التسليم، يُنفَّذ بحث التحديث ويُبلَّغ عنه كدورة PRISMA صغيرة خاصة به، تُلحَق بالدفتر ولا تُدمَج بصمت.</p>
+        <div class="note"><strong>ملاحظة:</strong> القاعدة العملية للغربلة: سخاء عند العناوين والملخصات، وصرامة عند النصوص الكاملة، ولا حذف أبدًا بل استبعاد بسبب موسوم. فقابلية كل قرار للتراجع هي ما يجعل المراجعة قابلة للتدقيق من أولها إلى آخرها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="example">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>A Worked Example in Numbers</h2>
+        <p class="lead">One doctoral review, end to end, with the ledger visible. The question, framed for a thesis on digital transformation: what factors have been found to influence the sustainment of agile ways of working after initial adoption in large organizations?</p>
+        <p>The protocol structures the question, population: large organizations post-adoption; phenomenon: sustainment of agile practices; outcomes: any reported sustainment factors, and fixes the criteria: peer-reviewed empirical studies, 2010 onward, English and Arabic, any method, excluding purely conceptual pieces and software-engineering-only contexts, each criterion with its one-line reason. Four databases are searched with reported strings; the harvest: Scopus 412, Web of Science 388, EBSCO 296, ProQuest 154, plus 41 from snowballing and 12 from grey literature, 1,303 records. Deduplication removes 421, leaving 882 for screening. Title-abstract screening, two reviewers on a 20 percent overlap sample with 91 percent agreement, excludes 745. Full-text assessment of 137 excludes 89 with tagged reasons: wrong context 34, no empirical data 27, adoption not sustainment 19, unobtainable 9. Included: 48 studies, and every number above reconciles in the flow diagram.</p>
+        <p>Appraisal with the mixed-methods appraisal tool grades the corpus, 11 strong, 26 moderate, 11 weak, and the synthesis plan honours the mix: the corpus is too heterogeneous for meta-analysis, so thematic synthesis builds factor themes across the 48, middle-management ownership, embedded coaching capability, adapted governance, metric alignment, with a sensitivity check confirming the themes survive removal of the 11 weak studies. The review's product is threefold: a factor framework that becomes the thesis's conceptual framework; a demonstrated gap, only three studies examine sustainment beyond two years, and none in the public sector, which becomes the thesis's justification, cited as a finding of the review, not an impression; and a publishable article. The examiner who asks how do you know this gap is real receives a flow diagram, a search string, and a reconciled ledger as the answer, which is the entire point of doing the review this way.</p>
+        <div class="note"><strong>Note:</strong> a systematic review earns its claims with a visible pipeline: reported strings, reconciled counts, tagged exclusions, piloted extraction, and a decisions log for everything in between. The reward is the strongest sentence a literature chapter can contain: this gap has been demonstrated.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>مثال تطبيقي بالأرقام</h2>
+        <p class="lead">مراجعة دكتوراه واحدة، من البداية إلى النهاية، بدفتر مرئي. السؤال، مصوغًا لأطروحة عن التحول الرقمي: ما العوامل التي وُجد أنها تؤثر في استدامة أساليب العمل الرشيقة بعد التبني الأولي في المنظمات الكبيرة؟</p>
+        <p>البروتوكول يبني السؤال، الفئة: المنظمات الكبيرة بعد التبني؛ والظاهرة: استدامة الممارسات الرشيقة؛ والنتائج: أي عوامل استدامة مبلَّغ عنها، ويثبّت المعايير: دراسات تجريبية محكّمة، من 2010 فصاعدًا، بالإنجليزية والعربية، بأي منهج، مع استبعاد الأعمال المفاهيمية الخالصة وسياقات هندسة البرمجيات وحدها، ولكل معيار سببه في سطر واحد. تُبحَث أربع قواعد بيانات بسلاسل مذكورة حرفيًا؛ والحصاد: Scopus 412، وWeb of Science 388، وEBSCO 296، وProQuest 154، إضافة إلى 41 من كرة الثلج و12 من الأدبيات الرمادية، أي 1,303 سجلات. تزيل إزالة التكرار 421، فيبقى 882 للغربلة. غربلة العناوين والملخصات، بمراجعَين على عيّنة تداخل 20 بالمئة باتفاق 91 بالمئة، تستبعد 745. وتقييم النصوص الكاملة لـ137 يستبعد 89 بأسباب موسومة: سياق خاطئ 34، ولا بيانات تجريبية 27، وتبنٍّ لا استدامة 19، وتعذّر الحصول 9. المدرجة: 48 دراسة، وكل رقم أعلاه يتطابق في مخطط التدفق.</p>
+        <p>التقييم بأداة تقييم المناهج المختلطة يدرّج الأرشيف، 11 قوية و26 متوسطة و11 ضعيفة، وخطة التوليف تحترم المزيج: الأرشيف أكثر تغايرًا من أن يُجمَع إحصائيًا، فيبني التوليف الموضوعي مواضيع عوامل عبر الدراسات الثماني والأربعين، تملّك الإدارة الوسطى، وقدرة التدريب المضمَّنة، والحوكمة المكيَّفة، ومواءمة المؤشرات، مع فحص حساسية يؤكد أن المواضيع تنجو من إزالة الدراسات الضعيفة الإحدى عشرة. ومنتج المراجعة ثلاثي: إطار عوامل يصبح الإطار المفاهيمي للأطروحة؛ وفجوة مثبتة، ثلاث دراسات فقط تفحص الاستدامة بعد سنتين، ولا واحدة في القطاع العام، تصبح مسوّغ الأطروحة، مستشهدًا بها بوصفها نتيجة للمراجعة لا انطباعًا؛ ومقالة قابلة للنشر. والممتحن الذي يسأل «كيف تعرف أن هذه الفجوة حقيقية؟» يتلقى جوابًا هو مخطط تدفق وسلسلة بحث ودفتر متطابق الأرقام، وهذا هو المغزى الكامل من إجراء المراجعة بهذه الطريقة.</p>
+        <div class="note"><strong>ملاحظة:</strong> المراجعة المنهجية تكسب ادّعاءاتها بخط عمل مرئي: سلاسل مذكورة، وأعداد متطابقة، واستبعادات موسومة، واستخراج مجرَّب، وسجل قرارات لكل ما بينها. والمكافأة أقوى جملة يمكن أن يحويها فصل أدبيات: هذه الفجوة قد أُثبتت.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="synthesis">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Synthesis: From Pile to Knowledge</h2>
+        <p class="lead">Everything before synthesis is preparation; synthesis is where the review makes its contribution, converting a disciplined pile of studies into integrated knowledge. The options form a spectrum from statistical pooling to interpretive integration, and the corpus decides which is possible.</p>
+        <p>Meta-analysis is the strongest option where its conditions hold: enough quantitative studies measuring comparable relationships with extractable effect sizes. Effects are pooled with weights reflecting each study's precision, heterogeneity statistics report how much the studies genuinely disagree, and moderator analyses probe whether effects differ by context, design, or population, often the most interesting finding, since an average effect masking systematic variation is a story about the variation. Publication bias, the tendency of significant results to be published and null results to vanish, is assessed with funnel plots and related tools, because a synthesis of a biased literature inherits the bias with interest. Where studies are quantitative but too heterogeneous to pool, synthesis without meta-analysis applies: structured tabulation, vote counting done properly with its limits stated, and narrative integration disciplined by the extraction table.</p>
+        <p>Qualitative corpora call for their own family. Thematic synthesis codes the findings sections of included studies and builds descriptive and then analytical themes across them, the review-level analogue of thematic analysis. Meta-ethnography, the most interpretive member, translates the concepts of each study into the others, seeking lines of argument that no single study contained, and its products are judged as interpretations, with the same trustworthiness apparatus. Framework synthesis maps findings onto a prior conceptual framework, extending it where the evidence spills over. In every mode the review closes the loop that justified it: a statement of what is now known, what remains genuinely unknown, and, for the doctoral researcher, the precise, demonstrated gap into which the thesis's own empirical work now steps, a gap the flow diagram and synthesis have made arguable rather than asserted.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> the systematic review is research about research: a registered protocol, a reproducible search, a reconciled PRISMA ledger, appraised studies, and a synthesis matched to the corpus. Done fully, it yields the strongest possible platform for a thesis, a gap that has been demonstrated, not declared.</div>
+        <div class="refs"><ul>
+          <li>Page et al., <a href="https://www.bmj.com/content/372/bmj.n71" target="_blank" rel="noopener">The PRISMA 2020 Statement</a>.</li>
+          <li>Gough, Oliver &amp; Thomas, <a href="https://uk.sagepub.com/en-gb/eur/an-introduction-to-systematic-reviews/book245742" target="_blank" rel="noopener">An Introduction to Systematic Reviews</a>.</li>
+          <li>Tranfield, Denyer &amp; Smart, <a href="https://onlinelibrary.wiley.com/doi/10.1111/1467-8551.00375" target="_blank" rel="noopener">Towards a Methodology for Developing Evidence-Informed Management Knowledge</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>التوليف: من الكومة إلى المعرفة</h2>
+        <p class="lead">كل ما قبل التوليف تحضير؛ والتوليف هو حيث تقدّم المراجعة إسهامها، محوّلةً كومة دراسات منضبطة إلى معرفة متكاملة. والخيارات تشكّل طيفًا من التجميع الإحصائي إلى الدمج التأويلي، والأرشيف هو الذي يقرر أيها ممكن.</p>
+        <p>التحليل البعدي أقوى الخيارات حيث تتوفر شروطه: دراسات كمية كافية تقيس علاقات قابلة للمقارنة بأحجام آثار قابلة للاستخراج. تُجمَع الآثار بأوزان تعكس دقة كل دراسة، وتبلّغ إحصاءات التغايرية كم تختلف الدراسات فعلًا، وتسبر تحليلات المعدِّلات هل تختلف الآثار حسب السياق أو التصميم أو الفئة، وهي غالبًا النتيجة الأكثر إثارة، لأن أثرًا متوسطًا يخفي تباينًا منهجيًا هو قصة عن ذلك التباين. ويُقيَّم انحياز النشر، ميل النتائج الدالة إلى النشر واختفاء النتائج الصفرية، بمخططات القمع وأدواتها، لأن توليف أدبيات متحيزة يرث التحيز مع فوائده. وحيث تكون الدراسات كمية لكنها أكثر تغايرًا من أن تُجمَع، يعمل التوليف دون تحليل بعدي: جدولة منظمة، وعدّ أصوات يُجرى بشكل صحيح مع ذكر حدوده، ودمج سردي يضبطه جدول الاستخراج.</p>
+        <p>والأراشيف النوعية تستدعي عائلتها الخاصة. التوليف الموضوعي يرمّز أقسام النتائج في الدراسات المدرجة ويبني مواضيع وصفية ثم تحليلية عبرها، وهو نظير التحليل الموضوعي على مستوى المراجعة. والإثنوغرافيا البعدية، العضو الأكثر تأويلية، تترجم مفاهيم كل دراسة إلى الأخريات، باحثةً عن خطوط حجة لم تحوها أي دراسة منفردة، وتُحكَم منتجاتها بوصفها تأويلات، بجهاز الوثوقية نفسه. وتوليف الإطار يرسم النتائج على إطار مفاهيمي مسبق، موسّعًا إياه حيث تفيض الأدلة عنه. وفي كل الأنماط تغلق المراجعة الحلقة التي بررتها: بيان بما صار معروفًا الآن، وما يبقى مجهولًا حقًا، وبالنسبة لباحث الدكتوراه، الفجوة الدقيقة المثبتة التي يخطو إليها الآن عمل أطروحته الميداني، فجوة جعلها مخطط التدفق والتوليف قابلة للمحاجّة لا مجرد مزعومة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> المراجعة المنهجية بحث عن البحث: بروتوكول مسجّل، وبحث قابل لإعادة التشغيل، ودفتر PRISMA متطابق الأرقام، ودراسات مقيَّمة، وتوليف مطابق للأرشيف. ومنفَّذةً كاملةً، تعطي أقوى منصة ممكنة لأطروحة: فجوة أُثبتت ولم تُعلَن فقط.</div>
+        <div class="refs"><ul>
+          <li>بيدج وآخرون، <a href="https://www.bmj.com/content/372/bmj.n71" target="_blank" rel="noopener">بيان PRISMA 2020</a>.</li>
+          <li>غوف وأوليفر وتوماس، <a href="https://uk.sagepub.com/en-gb/eur/an-introduction-to-systematic-reviews/book245742" target="_blank" rel="noopener">مدخل إلى المراجعات المنهجية</a>.</li>
+          <li>ترانفيلد ودينير وسمارت، <a href="https://onlinelibrary.wiley.com/doi/10.1111/1467-8551.00375" target="_blank" rel="noopener">نحو منهجية لتطوير معرفة إدارية مستنيرة بالأدلة</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="process-research-questions-hypotheses.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Research Questions &amp; Hypotheses</span><span data-lang="ar">أسئلة البحث والفرضيات</span></a><a href="process-writing-methodology-chapter.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Writing the Methodology Chapter</span><span data-lang="ar">كتابة فصل المنهجية</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="المراجعة المنهجية وبروتوكول PRISMA";
+var TITLE_EN="Systematic Review &amp; PRISMA";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>
