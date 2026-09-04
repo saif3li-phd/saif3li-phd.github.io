@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>حوكمة الأمن والمخاطر والامتثال · سيف الغامدي</title>
+<link rel="canonical" href="https://saif3li-phd.github.io/articles/cybersecurity-security-grc.html">
+<meta name="author" content="Saif Ali Alghamdi">
+<meta name="theme-color" content="#2D2D2D">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saif Ali Alghamdi">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:url" content="https://saif3li-phd.github.io/articles/cybersecurity-security-grc.html">
+<meta property="og:title" content="حوكمة الأمن والمخاطر والامتثال · سيف الغامدي">
+<meta property="og:description" content="Security Governance, Risk &amp; Compliance">
+<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="حوكمة الأمن والمخاطر والامتثال · سيف الغامدي">
+<meta name="twitter:description" content="Security Governance, Risk &amp; Compliance">
+<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"حوكمة الأمن والمخاطر والامتثال · سيف الغامدي","description":"Security Governance, Risk &amp; Compliance",
+ "url":"https://saif3li-phd.github.io/articles/cybersecurity-security-grc.html","inLanguage":"ar",
+ "author":{"@type":"Person","name":"Saif Ali Alghamdi","url":"https://saif3li-phd.github.io/"},
+ "publisher":{"@type":"Person","name":"Saif Ali Alghamdi","url":"https://saif3li-phd.github.io/"},
+ "image":"https://saif3li-phd.github.io/assets/og.jpg","isPartOf":{"@type":"WebSite","name":"Saif Ali Alghamdi","url":"https://saif3li-phd.github.io/"}}
+</script>
+<meta name="description" content="Security Governance, Risk & Compliance">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+ --purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--khuzama-2:#9A1C1C;
+ --lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;
+ --line:#DEDEDE;--line-2:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif;
+ --fs-display:clamp(30px,4.6vw,46px);--fs-h2:clamp(21px,2.6vw,28px);
+ --fs-h3:17px;--fs-body:16px;--fs-label:11px;--lh-tight:1.3;
+ --s-3:24px;--s-4:32px;--s-5:48px;--s-6:72px;--s-7:clamp(64px,9vw,110px);
+ --maxw:920px;--gutter:clamp(18px,4vw,32px);
+ --pill:0;--r-sm:0;--r-md:0;--r-lg:0;
+ --ease:cubic-bezier(.2,.7,.3,1);--dur:.25s;}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.topbar .bar{max-width:1120px;margin:0 auto;padding:0 var(--gutter);min-height:64px;display:flex;align-items:center;gap:clamp(10px,2.5vw,28px)}
+.lockup{display:flex;flex-direction:column;justify-content:center;text-decoration:none;color:var(--ink);direction:ltr;flex:none;line-height:1.1}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;letter-spacing:-.01em;color:var(--ink);white-space:nowrap}
+.lk-tag{display:none}
+.topnav{display:flex;align-items:center;gap:0;margin-inline:auto;flex-wrap:nowrap;justify-content:center}
+.topnav a{position:relative;color:var(--muted);font-size:13.5px;text-decoration:none;cursor:pointer;padding:9px 11px;border-radius:var(--pill);white-space:nowrap;transition:color var(--dur) var(--ease)}
+.topnav a:hover{color:var(--ink)}
+.topnav a.cur{color:var(--ink);font-weight:600}
+.topnav a.cur::after{content:"";position:absolute;inset-inline:11px;bottom:3px;height:1.5px;background:var(--khuzama);border-radius:2px}
+.topbar .tools{display:flex;align-items:center;gap:9px;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line-2);border-radius:var(--pill);overflow:hidden;background:transparent}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);font-size:11.5px;font-weight:600;padding:5px 11px;cursor:pointer;transition:var(--dur) var(--ease)}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:32px;height:32px;border-radius:var(--pill);border:1px solid var(--line-2);background:transparent;color:var(--ink);cursor:pointer;font-size:13px;line-height:1;display:grid;place-items:center;transition:var(--dur) var(--ease)}
+.topbar .tbtn:hover,.topbar .seg button:hover{border-color:var(--khuzama);color:var(--khuzama)}
+.topbar .cta-top{display:inline-block;background:var(--khuzama);color:#fff;text-decoration:none;font-size:13.5px;font-weight:600;padding:9px 20px;border-radius:var(--pill);white-space:nowrap;transition:var(--dur) var(--ease)}
+.topbar .cta-top:hover{background:var(--ink);color:#fff}
+body.dark .topbar .seg button.on,body.dark .topbar .cta-top{background:var(--lav);color:var(--purple)}
+@media(max-width:960px){
+ .topbar .bar{flex-wrap:wrap;padding-block:10px;gap:10px}
+ .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topnav{order:3;width:100%;margin:0;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+ .topnav::-webkit-scrollbar{display:none}
+ .topnav a{padding:7px 10px}
+}
+@media(max-width:520px){.topbar .cta-top{padding:8px 15px;font-size:12.5px}.topbar .bar{gap:8px}}
+/* ---- article body ---- */
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){background:var(--plat)}
+.cover .sadu span:nth-child(2),.cover .sadu span:nth-child(4),footer .sadu span:nth-child(2),footer .sadu span:nth-child(4){background:var(--lav)}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:inline-block;font-size:11px;color:var(--khuzama);background:color-mix(in srgb,var(--lav) 26%,transparent);border-radius:999px;padding:3px 12px;margin-bottom:6px}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"◆";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:var(--purple);color:#fff;padding:22px 26px;margin:16px 0}
+
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+.chip{display:none}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ============ P1: article surfaces + footer ============ */
+body{font-size:var(--fs-body)}
+.cover h1{font-weight:500;font-size:var(--fs-display);line-height:var(--lh-tight);letter-spacing:-.015em;text-wrap:balance}
+.kicker{font-size:var(--fs-label);font-weight:500;letter-spacing:.14em;color:var(--muted)}
+.card{background:var(--panel);border:0;border-radius:var(--r-md);box-shadow:none;padding:clamp(24px,3vw,40px)}
+.card h2{font-weight:600;font-size:var(--fs-h2);letter-spacing:-.01em}
+.card h3{font-weight:600;font-size:var(--fs-h3)}
+.toc{background:transparent;border:0;border-bottom:1px solid var(--line-2);border-radius:0;box-shadow:none;padding:12px 0 14px;top:74px}
+.toc a{border-color:var(--line-2)}
+.pager button{border-color:var(--line-2);background:transparent}
+footer{margin-top:var(--s-7);padding:var(--s-5) 0 var(--s-4);border-top:1px solid var(--line);text-align:start}
+footer .fname{font-family:var(--head);font-size:18px;font-weight:600;color:var(--ink);direction:ltr;display:block;text-decoration:none}
+footer .ftag{direction:ltr;margin-top:4px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--muted);line-height:2.1}
+footer .ftag span{display:block}
+footer .ftag .l2{opacity:.72;letter-spacing:.16em}
+footer .ftag i{font-style:normal;opacity:.45;margin:0 5px}
+footer .flinks{display:flex;flex-wrap:wrap;gap:22px;margin:22px 0 26px}
+footer .flinks a{color:var(--muted);text-decoration:none;font-size:13.5px;transition:color var(--dur) var(--ease)}
+footer .flinks a:hover{color:var(--khuzama)}
+footer .copy{padding-top:18px;border-top:1px solid var(--line);font-size:12.5px}
+:where(a,button,input,summary):focus-visible{outline:2px solid var(--khuzama);outline-offset:3px;border-radius:6px}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ---- firm register: squared, serif headings, red accent ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.lockup{flex-direction:row;align-items:center;gap:11px}
+.mg{width:36px;height:36px;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;unicode-bidi:isolate;transition:background var(--dur) var(--ease)}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.lk-name{font-family:var(--head);font-weight:600}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:var(--khuzama-2)}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.flinks{justify-content:center;margin:0 0 22px}
+.fname{font-family:var(--head);color:var(--ink)}
+.flinks a{color:var(--muted)}
+.flinks a:hover{color:var(--khuzama)}
+.copy{color:var(--muted)}
+html[lang="ar"] .kicker,html[lang="ar"] .ftag,html[lang="ar"] .toc a,
+html[lang="ar"] .chip,html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+.lk-name,.fname,.ftag .l1,.ftag .l2{direction:ltr;unicode-bidi:isolate}
+
+/* language toggle matches the site: ink chip, not red */
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <div class="bar">
+    <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+    <nav class="topnav">
+      <a href="../index.html?view=home#about" data-en="About">عني</a>
+      <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+      <a class="cur" href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+      <a href="../index.html?view=research" data-en="Research">أبحاثي</a>
+    </nav>
+    <div class="tools">
+      <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+      <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+    </div>
+  </div>
+</header>
+<div class="art">
+
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=insights"><span data-lang="en">Library</span><span data-lang="ar">مكتبتي</span></a><i>&rsaquo;</i><span data-lang="en">Digital & Technology</span><span data-lang="ar">رقمي وتقنية</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">CYBERSECURITY · OPERATIONAL FRAMEWORK</span><span data-lang="ar">الأمن السيبراني · إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Security Governance, Risk &amp; Compliance</span><span data-lang="ar">حوكمة الأمن والمخاطر والامتثال</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Digital & Technology</span><span data-lang="ar">رقمي وتقنية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">12 min</span><span data-lang="ar">١٢ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="governance"><span data-lang="en">Governance</span><span data-lang="ar">الحوكمة</span></a></li><li><a data-id="risk"><span data-lang="en">Risk</span><span data-lang="ar">المخاطر</span></a></li><li><a data-id="compliance"><span data-lang="en">Compliance</span><span data-lang="ar">الامتثال</span></a></li><li><a data-id="policy"><span data-lang="en">Policy</span><span data-lang="ar">السياسات</span></a></li><li><a data-id="controls"><span data-lang="en">Controls</span><span data-lang="ar">الضوابط</span></a></li><li><a data-id="maturity"><span data-lang="en">Maturity</span><span data-lang="ar">النضج</span></a></li><li><a data-id="metrics"><span data-lang="en">Metrics</span><span data-lang="ar">المؤشرات</span></a></li><li><a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=insights"><span data-lang="en">Back to the library</span><span data-lang="ar">إلى المكتبة</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Governance, risk &amp; compliance (GRC)</div>
+          <div><span>Scope:</span> Directing, controlling, and evidencing security across the organization</div>
+          <div><span>Owner role:</span> GRC lead, reporting to executive leadership</div>
+          <div><span>Review cadence:</span> Continuous, with a formal governance review each quarter</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Governance, risk, and compliance is the connective tissue that keeps security aligned with the business. Governance sets direction and holds it, risk decides where to spend, and compliance proves the organization meets its obligations. Treated separately they duplicate effort and contradict each other, treated as one they reinforce.</p>
+        <p>The reason to integrate them is simple: they answer three halves of the same question. Governance asks what we should do, risk asks what we must do first, and compliance asks what we are required to do. A single operating model lets one piece of evidence serve all three, instead of three teams collecting the same proof three times. The waste of the disconnected version is not only effort, it is contradiction, where the compliance team certifies a control the risk team considers inadequate, and leadership never sees the conflict.</p>
+        <p>It helps to be concrete about how the three relate. Governance is the steering, it points the organization somewhere and checks that it arrives. Risk is the map of hazards on the route, telling the driver where to slow down and where the road is clear. Compliance is the set of rules of the road that must be obeyed regardless of the destination. A vehicle needs all three, and a security program that has direction but no risk view drives confidently into avoidable hazards, while one that has controls but no governance is a car with brakes and no steering wheel.</p>
+        <p>This framework describes a reusable GRC operating model, drawing on the governance logic of COBIT and the risk and control language of ISO and NIST, without reproducing any of their text. It is written to fit any organization that wants security to be governed rather than improvised.</p>
+        <div class="note"><strong>Note:</strong> GRC is not a tool you buy, it is an operating model you run. Software can support it, but it cannot supply the direction, ownership, and judgment that make it work, and a tool bought before the model is designed usually automates the confusion instead of removing it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> الحوكمة والمخاطر والامتثال (GRC)</div>
+          <div><span>النطاق:</span> توجيه الأمن وضبطه وإثباته عبر المنشأة</div>
+          <div><span>دور المالك:</span> قائد GRC، يرفع للقيادة التنفيذية</div>
+          <div><span>دورية المراجعة:</span> مستمرة، مع مراجعة حوكمة رسمية كل ربع</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الحوكمة والمخاطر والامتثال هي النسيج الرابط الذي يُبقي الأمن متوائمًا مع العمل. الحوكمة تضع الاتجاه وتُثبّته، والمخاطر تقرّر أين يُنفَق، والامتثال يُثبت أن المنشأة تفي بالتزاماتها. ومعالجتها منفصلةً تُكرّر الجهد وتُناقض بعضها، ومعالجتها كوحدةٍ تُعزّز بعضها.</p>
+        <p>سبب دمجها بسيط: هي تجيب ثلاثة أنصاف من السؤال نفسه. الحوكمة تسأل ما الذي ينبغي أن نفعله، والمخاطر تسأل ما الذي يجب فعله أولًا، والامتثال يسأل ما الذي يُطلَب منّا فعله. ونموذج تشغيل واحد يجعل دليلًا واحدًا يخدم الثلاثة، بدل ثلاثة فرقٍ تجمع الدليل نفسه ثلاث مرات. وهدر النسخة المفكَّكة ليس جهدًا فحسب، بل تناقضًا، حين يعتمد فريق الامتثال ضابطًا يراه فريق المخاطر غير كافٍ، ولا ترى القيادة الصراع.</p>
+        <p>ويفيد التجسيد لكيفية علاقة الثلاثة. الحوكمة هي القيادة، توجّه المنشأة إلى مكانٍ وتتحقّق من وصولها. والمخاطر خريطة المخاطر على الطريق، تخبر السائق أين يبطئ وأين الطريق سالك. والامتثال قواعد السير التي يجب اتّباعها أيًّا كانت الوجهة. والمركبة تحتاج الثلاثة، وبرنامج أمنٍ له اتجاهٌ بلا رؤية مخاطر يقود بثقةٍ نحو مخاطر يمكن تفاديها، وآخر له ضوابط بلا حوكمة سيارةٌ بمكابح بلا مقود.</p>
+        <p>يصف هذا الإطار نموذج تشغيل GRC قابلًا لإعادة الاستخدام، مستندًا إلى منطق الحوكمة في COBIT ولغة المخاطر والضوابط في ISO وNIST، دون نسخ أي نصّ. وهو مكتوب ليلائم أي منشأة تريد أمنًا محوكَمًا لا مرتجَلًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> GRC ليست أداةً تشتريها بل نموذج تشغيلٍ تُديره. البرمجيات تسنده لكنها لا تُقدّم الاتجاه والملكية والحكم التي تجعله يعمل، وأداةٌ تُشترى قبل تصميم النموذج تُؤتمِت الفوضى عادةً بدل إزالتها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="governance">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Governance &amp; Direction</h2>
+        <p class="lead">Governance is the system by which leadership sets the direction of security and holds the organization to it. It is deliberately separate from management: governance decides what should happen and evaluates whether it did, while management makes it happen.</p>
+        <p>A recognized way to frame this is the distinction COBIT draws between governance, which evaluates, directs, and monitors, and management, which plans, builds, runs, and monitors within that direction. Keeping the two roles distinct prevents the common failure where the people running the controls are also the only ones judging whether the controls are enough. When the same team both operates security and reports on its adequacy, unwelcome truths tend not to travel upward, and the board learns about weaknesses only after an incident forces them into the open.</p>
+        <h3>Governance structures</h3>
+        <p>Direction is exercised through structures: a committee or board with a clear mandate, defined decision rights, and a cadence of review. These structures turn intent into accountable decisions, because a direction with no forum to set it and no record of setting it is just an opinion. The mandate matters as much as the meeting: a security committee that can advise but not decide will watch problems it has no power to fix, so the structure has to carry real authority over priorities and budget, not merely a standing invitation to worry.</p>
+        <h3>The three governance acts</h3>
+        <ul>
+          <li><strong>Evaluate:</strong> understand the security posture and the risks against the objectives, using honest inputs rather than reassuring summaries.</li>
+          <li><strong>Direct:</strong> set policy, priorities, and the risk appetite, and allocate the resources to pursue them.</li>
+          <li><strong>Monitor:</strong> check that direction is followed and outcomes are achieved, and adjust when they are not.</li>
+        </ul>
+        <p>These three acts form a loop, not a list. Evaluation feeds direction, direction is monitored, and monitoring feeds the next evaluation, so governance is a continuous steering rather than an annual event. An organization that evaluates and directs but never monitors charts a route and never checks the compass, which is how strategies quietly drift from what leadership believes is happening.</p>
+        <div class="note"><strong>Note:</strong> Governance without a decision-making forum is a wish. The structure, its mandate, and its cadence are what give direction teeth, and the minutes of that forum are the evidence that governance is real.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الحوكمة والتوجيه</h2>
+        <p class="lead">الحوكمة هي النظام الذي تضع به القيادة اتجاه الأمن وتُلزِم المنشأة به. وهي منفصلة عن الإدارة عمدًا: الحوكمة تقرّر ما ينبغي أن يحدث وتقيّم هل حدث، والإدارة تجعله يحدث.</p>
+        <p>من الأطر المعترف بها التمييز الذي يرسمه COBIT بين الحوكمة التي تُقيّم وتوجّه وتراقب، والإدارة التي تخطّط وتبني وتشغّل وتراقب ضمن ذلك التوجيه. وإبقاء الدورين متمايزين يمنع الفشل الشائع حين يكون مَن يُشغّل الضوابط هو نفسه الوحيد الذي يحكم هل تكفي. فحين يُشغّل الفريق نفسه الأمنَ ويرفع تقريرًا عن كفايته، تميل الحقائق المزعجة ألّا تصعد، فلا يعلم المجلس بالضعف إلا بعد أن تفرضه حادثةٌ إلى العلن.</p>
+        <h3>هياكل الحوكمة</h3>
+        <p>يُمارَس التوجيه عبر هياكل: لجنة أو مجلس بولايةٍ واضحة وحقوق قرارٍ محدَّدة ودورية مراجعة. وهذه الهياكل تحوّل النيّة إلى قرارات مساءَلة، لأن اتجاهًا بلا منتدى يضعه ولا سجلٍّ بوضعه مجرّد رأي. والولاية تهمّ بقدر الاجتماع: فلجنة أمنٍ تستطيع النصح لا القرار ستُراقب مشكلاتٍ لا تملك سلطة إصلاحها، فيجب أن يحمل الهيكل سلطةً حقيقية على الأولويات والميزانية، لا مجرد دعوةٍ دائمة للقلق.</p>
+        <h3>أفعال الحوكمة الثلاثة</h3>
+        <ul>
+          <li><strong>التقييم:</strong> فهم وضع الأمن والمخاطر مقابل الأهداف، بمدخلاتٍ صادقة لا ملخّصاتٍ مطمئنة.</li>
+          <li><strong>التوجيه:</strong> وضع السياسة والأولويات وشهية المخاطر، وتخصيص الموارد لملاحقتها.</li>
+          <li><strong>المراقبة:</strong> التحقّق من اتّباع التوجيه وتحقّق النتائج، والتعديل حين لا تتحقّق.</li>
+        </ul>
+        <p>وهذه الأفعال الثلاثة حلقةٌ لا قائمة. فالتقييم يُغذّي التوجيه، والتوجيه يُراقَب، والمراقبة تُغذّي التقييم التالي، فالحوكمة توجيهٌ مستمر لا حدثٌ سنوي. ومنشأةٌ تُقيّم وتوجّه ولا تراقب أبدًا تضع مسارًا ولا تنظر البوصلة قط، وهكذا تنحرف الاستراتيجيات بهدوءٍ عمّا تظنّ القيادة أنه يجري.</p>
+        <div class="note"><strong>ملاحظة:</strong> حوكمةٌ بلا منتدى قرارٍ أُمنية. الهيكل وولايته ودوريّته هي ما يمنح التوجيه أنيابًا، ومحاضر ذلك المنتدى هي الدليل على أن الحوكمة حقيقية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="risk">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Risk in Governance</h2>
+        <p class="lead">Risk is how governance decides where to spend. Without a risk view, direction becomes a list of good intentions with no way to sequence them, and the loudest concern wins rather than the largest one.</p>
+        <p>Integrating risk into governance means the register and its ranking feed directly into the decisions the governance forum makes. The forum sets the appetite, sees which risks sit above it, and allocates resources against that ranking. This is what turns risk from a technical exercise into a business steering mechanism. When the connection is missing, the risk team maintains a detailed register that no one uses to decide anything, and the governance forum makes funding decisions on instinct, so both halves work hard and neither informs the other.</p>
+        <p>The connection also runs the other way. Governance decisions, such as entering a new market or adopting a new platform, create new risks, so the governance forum is where those risks should first be surfaced and owned, rather than discovered later by the security team alone. A simple discipline enforces this: every significant business decision that reaches the forum carries a short statement of the security risk it introduces and who will own it, so risk is considered at the moment of choice rather than after the fact.</p>
+        <h3>What the forum should see</h3>
+        <p>The forum does not need the whole register, it needs the risks that could threaten its objectives and the trend in how they are being treated. A useful standing view is the small set of risks above appetite, the pace at which treatments are closing, and any new risk created by recent decisions. That view keeps the conversation strategic, because it forces a choice between funding treatment, accepting the risk, or changing the objective that created it.</p>
+        <div class="note"><strong>Note:</strong> A governance forum that never discusses the risk register is not governing security, it is receiving reports about it. The register should shape the agenda, not decorate it, and the clearest sign of real integration is that a risk once changed a spending decision.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>المخاطر في الحوكمة</h2>
+        <p class="lead">المخاطر هي كيف تقرّر الحوكمة أين تُنفق. فبلا رؤية مخاطر، يصير التوجيه قائمة نوايا حسنة بلا وسيلة لترتيبها، فينتصر أعلى القلق صوتًا لا أكبره.</p>
+        <p>دمج المخاطر في الحوكمة يعني أن السجل وترتيبه يُغذّيان مباشرةً القرارات التي يتّخذها منتدى الحوكمة. فالمنتدى يضع الشهية، ويرى أي المخاطر فوقها، ويوزّع الموارد وفق ذلك الترتيب. وهذا ما يحوّل المخاطر من تمرينٍ تقني إلى آلية توجيهٍ للعمل. وحين تغيب الصلة، يصون فريق المخاطر سجلًّا مفصّلًا لا يستخدمه أحد ليقرّر شيئًا، ويتّخذ منتدى الحوكمة قرارات تمويلٍ بالحدس، فيتعب النصفان ولا يُخبر أحدهما الآخر.</p>
+        <p>والصلة تجري بالاتجاه الآخر أيضًا. فقرارات الحوكمة، كدخول سوقٍ جديد أو تبنّي منصّةٍ جديدة، تُنشئ مخاطر جديدة، فمنتدى الحوكمة حيث ينبغي أن تُطرَح تلك المخاطر وتُملَك أولًا، لا أن يكتشفها فريق الأمن وحده لاحقًا. وانضباطٌ بسيط يفرض هذا: كل قرار عملٍ مهمّ يصل المنتدى يحمل بيانًا مختصرًا للخطر الأمني الذي يُدخِله ومن سيملكه، فيُنظَر في الخطر لحظة الاختيار لا بعد وقوعه.</p>
+        <h3>ما ينبغي أن يراه المنتدى</h3>
+        <p>لا يحتاج المنتدى السجل كله، بل المخاطر التي قد تهدّد أهدافه واتجاه معالجتها. ورؤيةٌ دائمة مفيدة هي المجموعة الصغيرة من المخاطر فوق الشهية، ووتيرة إغلاق المعالجات، وأي خطرٍ جديد أنشأته قرارات حديثة. وتلك الرؤية تُبقي النقاش استراتيجيًا، لأنها تفرض اختيارًا بين تمويل المعالجة أو قبول الخطر أو تغيير الهدف الذي أنشأه.</p>
+        <div class="note"><strong>ملاحظة:</strong> منتدى حوكمةٍ لا يناقش سجل المخاطر لا يحوكم الأمن بل يتلقّى تقارير عنه. فالسجل ينبغي أن يُشكّل جدول الأعمال لا أن يزيّنه، وأوضح دليلٍ على الدمج الحقيقي أن خطرًا غيّر يومًا قرار إنفاق.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="compliance">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Compliance &amp; Obligations</h2>
+        <p class="lead">Compliance is proving, to yourself and to others, that the organization meets its obligations. Those obligations come from law, regulation, contracts, and the organization's own policies, and the first discipline is simply knowing what they all are.</p>
+        <p>An obligations register lists every requirement the organization is bound by and maps each to the controls that satisfy it. This mapping is where GRC pays off, because one control often satisfies several obligations at once, so a single well-run control and its evidence can answer a regulator, an auditor, and a customer questionnaire together. The alternative, running a separate project for each framework, means the same access control is documented and evidenced three times over, and the three copies inevitably drift until nobody knows which is true.</p>
+        <h3>Compliance is a byproduct, not a parallel effort</h3>
+        <p>Done well, compliance is a byproduct of good security rather than a parallel burden. Done badly, it becomes a race to produce paperwork for an audit while the actual controls drift, which is the failure mode GRC exists to prevent. The tell is the pre-audit scramble: if the weeks before an assessment are spent manufacturing evidence rather than collecting what the operation already produces, the compliance program has detached from the security it is supposed to describe.</p>
+        <ul>
+          <li><strong>Obligations register:</strong> the complete list of legal, regulatory, contractual, and internal requirements, kept current as new ones arrive.</li>
+          <li><strong>Control mapping:</strong> the link from each obligation to the control that meets it and the evidence that proves it, so one control can answer many obligations.</li>
+          <li><strong>Attestation:</strong> the periodic confirmation, with evidence, that obligations are being met, signed by someone accountable for the truth of it.</li>
+          <li><strong>Change watch:</strong> a process to catch new or changed obligations before they become findings, because regulations and contracts do not stand still.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Map controls to obligations once, and reuse the evidence everywhere. Collecting the same proof separately for each framework is the tax of ungoverned compliance, and it grows with every new standard the organization adopts.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>الامتثال والالتزامات</h2>
+        <p class="lead">الامتثال إثباتٌ، لنفسك وللآخرين، بأن المنشأة تفي بالتزاماتها. وتلك الالتزامات تأتي من القانون والتنظيم والعقود وسياسات المنشأة نفسها، وأول انضباطٍ ببساطة معرفة ما هي كلها.</p>
+        <p>سجل الالتزامات يسرد كل متطلبٍ تُلزَم به المنشأة ويربط كلًّا منه بالضوابط التي تُلبّيه. وهذا الربط حيث تؤتي GRC ثمارها، لأن ضابطًا واحدًا كثيرًا ما يُلبّي عدة التزامات دفعةً واحدة، فضابطٌ واحد مُدار جيدًا ودليله يجيبان جهةً تنظيمية ومدقّقًا واستبيان عميلٍ معًا. والبديل، تشغيل مشروعٍ منفصل لكل إطار، يعني توثيق ضابط الوصول نفسه وإثباته ثلاث مرات، وتنحرف النسخ الثلاث حتمًا حتى لا يعرف أحدٌ أيها الصحيح.</p>
+        <h3>الامتثال ناتجٌ ثانوي لا جهدٌ موازٍ</h3>
+        <p>حين يُحسَن، يصير الامتثال ناتجًا ثانويًا لأمنٍ جيد لا عبئًا موازيًا. وحين يُساء، يصير سباقًا لإنتاج أوراقٍ للتدقيق بينما تنحرف الضوابط فعلًا، وهو نمط الفشل الذي وُجدت GRC لتمنعه. والعلامة هي تدافع ما قبل التدقيق: فإن أُنفِقت الأسابيع قبل التقييم في تصنيع الدليل بدل جمع ما تُنتجه العملية أصلًا، فقد انفصل برنامج الامتثال عن الأمن الذي يُفترَض أن يصفه.</p>
+        <ul>
+          <li><strong>سجل الالتزامات:</strong> القائمة الكاملة للمتطلبات القانونية والتنظيمية والتعاقدية والداخلية، مُحدَّثةً كلما وصل جديد.</li>
+          <li><strong>ربط الضوابط:</strong> الوصلة من كل التزامٍ إلى الضابط الذي يُلبّيه والدليل الذي يُثبته، فيجيب ضابطٌ واحد التزاماتٍ كثيرة.</li>
+          <li><strong>الإقرار:</strong> التأكيد الدوري، بالدليل، بأن الالتزامات تُلبّى، موقَّعًا ممن يُساءَل عن صدقه.</li>
+          <li><strong>ترقّب التغيير:</strong> عمليةٌ لالتقاط الالتزامات الجديدة أو المتغيّرة قبل أن تصير ملاحظات، لأن الأنظمة والعقود لا تثبت.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> اربط الضوابط بالالتزامات مرة، وأعِد استخدام الدليل في كل مكان. فجمع الدليل نفسه منفصلًا لكل إطار ضريبةُ امتثالٍ غير محوكَم، وتكبر مع كل معيارٍ جديد تتبنّاه المنشأة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="policy">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Policy Framework</h2>
+        <p class="lead">Policy is how direction becomes instruction. A clear policy framework arranges documents into a hierarchy so that everyone knows what is mandatory, what is guidance, and where to look for the rule that applies to them.</p>
+        <p>A workable hierarchy runs from a short, board-level policy that sets intent, down through standards that make the intent specific and measurable, to procedures that tell a person exactly what to do. Confusing these levels is a common failure: a policy stuffed with technical detail becomes unreadable and quickly outdated, while a procedure with no policy behind it has no authority. Keeping the levels distinct also keeps them stable at the right rate, because intent changes slowly and rarely needs revision, while the procedures beneath it can be updated freely without reopening the policy every time a tool changes.</p>
+        <table>
+          <tbody><tr><th>Level</th><th>Answers</th><th>Changes</th></tr>
+          <tr><td>Policy</td><td>Why, and what we commit to</td><td>Rarely</td></tr>
+          <tr><td>Standard</td><td>What specifically is required</td><td>Occasionally</td></tr>
+          <tr><td>Procedure</td><td>How to do it, step by step</td><td>Often</td></tr>
+          <tr><td>Guideline</td><td>Recommended practice where judgment is allowed</td><td>As needed</td></tr>
+        </tbody></table>
+        <p>Every document at every level needs an owner and a review date. An unowned, undated policy is how an organization ends up enforcing a rule no one remembers deciding, or worse, failing to enforce a rule everyone assumed someone else was maintaining. The review date is not bureaucracy, it is the mechanism that catches a policy which has quietly fallen out of step with how the organization actually works.</p>
+        <div class="note"><strong>Note:</strong> Keep policies short and specific enough to be followed. A policy that is too long to read is a policy that will be ignored precisely when it is needed, and a rule that is ignored in practice is worse than no rule, because it teaches people that the rules are optional.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>إطار السياسات</h2>
+        <p class="lead">السياسة هي كيف يصير التوجيه تعليمًا. وإطار سياساتٍ واضح يرتّب الوثائق في تدرّجٍ حتى يعرف الجميع ما هو إلزامي وما هو إرشاد وأين يبحث عن القاعدة التي تنطبق عليه.</p>
+        <p>التدرّج العملي يمتد من سياسةٍ قصيرة على مستوى المجلس تضع النيّة، نزولًا عبر معايير تجعل النيّة محدَّدة وقابلة للقياس، إلى إجراءات تُخبر الشخص بما يفعله بالضبط. وخلط هذه المستويات فشلٌ شائع: فسياسةٌ محشوّة بالتفصيل التقني تصير غير مقروءة وسريعة التقادم، وإجراءٌ بلا سياسةٍ خلفه بلا سلطة. وإبقاء المستويات متمايزة يُبقيها ثابتةً بالمعدّل الصحيح، لأن النيّة تتغيّر ببطءٍ ونادرًا ما تحتاج تنقيحًا، بينما تُحدَّث الإجراءات تحتها بحرّية دون إعادة فتح السياسة كلما تغيّرت أداة.</p>
+        <table>
+          <tbody><tr><th>المستوى</th><th>يجيب</th><th>يتغيّر</th></tr>
+          <tr><td>السياسة</td><td>لماذا، وبم نلتزم</td><td>نادرًا</td></tr>
+          <tr><td>المعيار</td><td>ما المطلوب تحديدًا</td><td>أحيانًا</td></tr>
+          <tr><td>الإجراء</td><td>كيف يُفعَل خطوةً بخطوة</td><td>غالبًا</td></tr>
+          <tr><td>الدليل الإرشادي</td><td>ممارسةٌ موصى بها حيث يُسمح بالاجتهاد</td><td>حسب الحاجة</td></tr>
+        </tbody></table>
+        <p>كل وثيقةٍ في كل مستوى تحتاج مالكًا وتاريخ مراجعة. فسياسةٌ بلا مالكٍ ولا تاريخ هي كيف تنتهي المنشأة تفرض قاعدةً لا أحد يذكر قرارها، أو أسوأ، تعجز عن فرض قاعدةٍ ظنّ الجميع أن غيرهم يصونها. وتاريخ المراجعة ليس بيروقراطية، بل الآلية التي تلتقط سياسةً خرجت بهدوءٍ عن مواكبة كيف تعمل المنشأة فعلًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> أبقِ السياسات قصيرة ومحدَّدة بما يكفي لاتّباعها. فسياسةٌ أطول من أن تُقرَأ ستُتجاهَل في اللحظة التي تُحتاج فيها بالضبط، وقاعدةٌ تُتجاهَل عمليًا أسوأ من لا قاعدة، لأنها تُعلّم الناس أن القواعد اختيارية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="controls">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Control Framework &amp; Mapping</h2>
+        <p class="lead">A control framework is the organized set of safeguards the organization runs, mapped to the risks they reduce and the obligations they satisfy. The mapping is the point: it lets one control do many jobs and makes gaps visible.</p>
+        <p>Rather than adopting a separate control set for every requirement, a mature organization maintains one internal control framework and maps it out to the external standards it must meet, such as ISO 27001, the NIST Cybersecurity Framework, or a regulator's rules. This single-source approach means a control is defined and operated once, then referenced by every framework that needs it. The internal framework becomes the master, and each external standard is a lens over it, so adopting a new standard is largely a mapping exercise rather than a new control-building project.</p>
+        <h3>Why mapping matters</h3>
+        <p>Mapping turns compliance from a stack of parallel projects into a single coordinated effort. It also exposes overlap and gaps: when two obligations require the same control, you run it once, and when an obligation maps to no control, you have found a real gap rather than a paperwork one. That second case is the valuable one, because a genuine gap is a risk hiding behind an assumption that something was covered, and mapping drags it into the light where it can be treated.</p>
+        <h3>Evidence that travels</h3>
+        <p>The deepest benefit of one mapped framework is that evidence becomes reusable. An access review run once produces proof that can be pointed at by every obligation requiring access control, so the operation generates evidence as a natural output and the compliance layer simply references it. When evidence has to be manufactured separately for each audit, the same underlying work is paid for many times, and the versions drift until an auditor finds the contradiction.</p>
+        <div class="note"><strong>Note:</strong> Maintain one control framework as the source of truth, and map outward to each standard. Maintaining a separate control set per standard guarantees they will drift apart, and the drift is always discovered at the worst possible moment, in front of an auditor.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>إطار الضوابط والربط</h2>
+        <p class="lead">إطار الضوابط هو المجموعة المنظَّمة من الوقايات التي تُشغّلها المنشأة، مربوطةً بالمخاطر التي تخفّضها والالتزامات التي تُلبّيها. والربط هو المقصد: يجعل ضابطًا واحدًا يؤدّي مهامًا عدّة ويُظهر الفجوات.</p>
+        <p>بدل تبنّي مجموعة ضوابط منفصلة لكل متطلب، تحتفظ المنشأة الناضجة بإطار ضوابط داخلي واحد وتربطه بالمعايير الخارجية التي يجب أن تفي بها، كـ ISO 27001 أو إطار NIST للأمن السيبراني أو قواعد جهةٍ تنظيمية. وهذا النهج أحادي المصدر يعني تعريف الضابط وتشغيله مرة، ثم الإشارة إليه من كل إطارٍ يحتاجه. ويصير الإطار الداخلي هو الأصل، وكل معيارٍ خارجي عدسةٌ فوقه، فيصير تبنّي معيارٍ جديد تمرين ربطٍ غالبًا لا مشروع بناء ضوابطٍ جديد.</p>
+        <h3>لماذا يهمّ الربط</h3>
+        <p>الربط يحوّل الامتثال من كومة مشاريع متوازية إلى جهدٍ منسّق واحد. ويكشف أيضًا التداخل والفجوات: فحين يتطلّب التزامان الضابط نفسه تُشغّله مرة، وحين لا يُربَط التزامٌ بأي ضابط تكون قد وجدت فجوةً حقيقية لا ورقية. وتلك الحالة الثانية هي القيّمة، لأن الفجوة الحقيقية خطرٌ يختبئ خلف افتراضٍ بأن شيئًا مُغطّى، والربط يجرّها إلى النور حيث تُعالَج.</p>
+        <h3>دليلٌ يتنقّل</h3>
+        <p>أعمق فائدة لإطارٍ مربوط واحد أن الدليل يصير قابلًا لإعادة الاستخدام. فمراجعة وصولٍ تُجرى مرة تُنتج إثباتًا يشير إليه كل التزامٍ يتطلّب التحكّم بالوصول، فتولّد العملية الدليل كمخرجٍ طبيعي وتُشير إليه طبقة الامتثال ببساطة. وحين يجب تصنيع الدليل منفصلًا لكل تدقيق، يُدفَع ثمن العمل الأساسي نفسه مرارًا، وتنحرف النسخ حتى يجد المدقّق التناقض.</p>
+        <div class="note"><strong>ملاحظة:</strong> احتفظ بإطار ضوابط واحد كمصدر حقيقة، واربط للخارج بكل معيار. فالاحتفاظ بمجموعة ضوابط منفصلة لكل معيار يضمن تباعدها، والتباعد يُكتشَف دومًا في أسوأ لحظة، أمام مدقّق.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="maturity">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Maturity Model</h2>
+        <p class="lead">A maturity model gives GRC a way to describe where it is and where it is going, in language leadership can act on. It replaces the binary of compliant or not with a scale that shows direction of travel.</p>
+        <p>The common five-level scale runs from ad hoc, through repeatable and defined, to managed and optimizing. The value is not the label but the honest placement: naming the current level and the target level turns improvement into a plan with a gap to close, rather than a vague aspiration to be better. The jump from level 2 to level 3 is usually the hardest and the most valuable, because it is the move from processes that depend on particular people to processes that are documented, owned, and survive a resignation.</p>
+        <table>
+          <tbody><tr><th>Level</th><th>Name</th><th>What it looks like</th></tr>
+          <tr><td>1</td><td>Ad hoc</td><td>Controls exist by individual effort, not by design</td></tr>
+          <tr><td>2</td><td>Repeatable</td><td>Basic processes exist but are inconsistent across teams</td></tr>
+          <tr><td>3</td><td>Defined</td><td>Processes are documented, standardized, and owned</td></tr>
+          <tr><td>4</td><td>Managed</td><td>Processes are measured and controlled by evidence</td></tr>
+          <tr><td>5</td><td>Optimizing</td><td>Continuous improvement is built into the way of working</td></tr>
+        </tbody></table>
+        <p>Higher is not always the goal. The right target depends on the organization's risk and obligations, and reaching level 3 across the board is often more valuable than reaching level 5 in one area while others sit at level 1. Spending scarce effort pushing an already-solid area from managed to optimizing, while a critical area languishes at ad hoc, is a misallocation the maturity view is meant to expose. Set the target per area against its risk, and close the lowest, riskiest gaps first.</p>
+        <div class="note"><strong>Note:</strong> Assess maturity honestly, even where it is uncomfortable. A flattering self-assessment produces a plan that improves nothing, and the gap it hides does not disappear, it simply waits to be discovered by an incident or an auditor instead.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>نموذج النضج</h2>
+        <p class="lead">نموذج النضج يمنح GRC وسيلةً لوصف أين هي وإلى أين تمضي، بلغةٍ تستطيع القيادة التصرّف بها. وهو يستبدل ثنائية «ممتثل أو لا» بمقياسٍ يُظهر اتجاه السير.</p>
+        <p>المقياس الخماسي الشائع يمتد من العشوائي، عبر القابل للتكرار والمعرَّف، إلى المُدار والمُحسِّن. والقيمة ليست في المسمّى بل في التموضع الصادق: فتسمية المستوى الحالي والمستهدف تحوّل التحسين إلى خطةٍ بفجوةٍ تُغلَق لا طموحًا غامضًا بأن نكون أفضل. والقفزة من المستوى 2 إلى 3 عادةً أصعبها وأثمنها، لأنها الانتقال من عملياتٍ تعتمد على أشخاصٍ بعينهم إلى عملياتٍ موثَّقة ومملوكة تصمد أمام استقالة.</p>
+        <table>
+          <tbody><tr><th>المستوى</th><th>الاسم</th><th>كيف يبدو</th></tr>
+          <tr><td>1</td><td>عشوائي</td><td>الضوابط توجد بجهدٍ فردي لا بتصميم</td></tr>
+          <tr><td>2</td><td>قابل للتكرار</td><td>عمليات أساسية موجودة لكنها غير متّسقة بين الفرق</td></tr>
+          <tr><td>3</td><td>معرَّف</td><td>العمليات موثَّقة وموحَّدة ومملوكة</td></tr>
+          <tr><td>4</td><td>مُدار</td><td>العمليات مُقاسة ومضبوطة بالدليل</td></tr>
+          <tr><td>5</td><td>مُحسِّن</td><td>التحسين المستمر مدمَج في طريقة العمل</td></tr>
+        </tbody></table>
+        <p>الأعلى ليس دومًا الهدف. فالمستوى الصحيح يعتمد على مخاطر المنشأة والتزاماتها، وبلوغ المستوى 3 في كل المجالات غالبًا أثمن من بلوغ 5 في مجالٍ بينما تجلس الأخرى عند 1. وإنفاق جهدٍ نادر لدفع مجالٍ متينٍ أصلًا من مُدار إلى مُحسِّن، بينما يقبع مجالٌ حرج عند العشوائي، سوءُ توزيعٍ يُفترَض أن تكشفه رؤية النضج. حدّد الهدف لكل مجالٍ مقابل خطره، وأغلِق أدنى الفجوات وأخطرها أولًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> قيّم النضج بصدق ولو كان مزعجًا. فتقييمٌ ذاتي مُطرٍ يُنتج خطةً لا تُحسّن شيئًا، والفجوة التي يُخفيها لا تختفي، بل تنتظر أن تكتشفها حادثةٌ أو مدقّقٌ بدلًا منه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="metrics">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>GRC Metrics &amp; Reporting</h2>
+        <p class="lead">GRC has to prove it is working, and it does that through a small set of metrics that tell leadership whether direction is being followed, risk is being reduced, and obligations are being met.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">%</div><div class="lbl">Obligations with mapped, tested controls</div></div>
+          <div class="stat"><div class="num">%</div><div class="lbl">Policies within their review cycle</div></div>
+          <div class="stat"><div class="num">#</div><div class="lbl">Open risks above appetite</div></div>
+        </div>
+        <p>These are chosen because each one would change a decision. A falling share of obligations with tested controls signals compliance drift, a rising count of overdue policies signals governance slack, and a growing pile of risks above appetite signals that treatment is not keeping pace. Each points to a specific action rather than a general worry, which is the difference between a metric and a number. A metric that no one can tie to a decision is decoration, and worse, it dilutes attention away from the few numbers that should drive action.</p>
+        <p>Reporting packages these for the governance forum in plain terms, with a trend rather than a single reading, so leadership sees whether the organization is getting better or worse and can direct accordingly. The trend is what carries the meaning: seventy percent of obligations tested sounds fine until it is revealed to be down from ninety the year before, at which point it is an alarm. Always show where a number came from and where it is heading, not just where it stands today.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> integrated GRC lets one act of good security satisfy governance, risk, and compliance at once, which is the whole reason to run them as one model rather than three competing ones.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>مؤشرات GRC والتقارير</h2>
+        <p class="lead">على GRC أن تُثبت أنها تعمل، وتفعل ذلك عبر مجموعةٍ صغيرة من المؤشرات تُخبر القيادة هل يُتَّبع التوجيه، وهل يُخفَّض الخطر، وهل تُلبّى الالتزامات.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">%</div><div class="lbl">التزامات لها ضوابط مربوطة ومختبَرة</div></div>
+          <div class="stat"><div class="num">%</div><div class="lbl">سياسات ضمن دورة مراجعتها</div></div>
+          <div class="stat"><div class="num">#</div><div class="lbl">مخاطر مفتوحة فوق الشهية</div></div>
+        </div>
+        <p>اختيرت لأن كلًّا منها يُغيّر قرارًا. فنصيبٌ متناقص من الالتزامات ذات الضوابط المختبَرة يشير إلى انحراف امتثالٍ، وعددٌ متزايد من السياسات المتأخّرة يشير إلى تراخي حوكمة، وكومةٌ متنامية من المخاطر فوق الشهية تشير إلى أن المعالجة لا تُواكب. وكلٌّ يشير إلى إجراءٍ محدَّد لا قلقٍ عام، وهو الفرق بين مؤشرٍ ورقم. فمؤشرٌ لا يستطيع أحدٌ ربطه بقرارٍ زينة، بل أسوأ، يُشتّت الانتباه عن الأرقام القليلة التي ينبغي أن تقود الفعل.</p>
+        <p>وتحزم التقارير هذه لمنتدى الحوكمة بعباراتٍ واضحة، باتجاهٍ لا بقراءةٍ مفردة، فترى القيادة هل تتحسّن المنشأة أم تسوء وتوجّه تبعًا لذلك. والاتجاه هو ما يحمل المعنى: فسبعون بالمئة من الالتزامات مختبَرة تبدو حسنةً حتى يتبيّن أنها هبطت من تسعين قبل عام، فتصير عندها إنذارًا. أظهِر دومًا من أين جاء الرقم وإلى أين يتّجه، لا أين يقف اليوم فقط.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> GRC المتكاملة تجعل فعلَ أمنٍ جيدٍ واحد يُرضي الحوكمة والمخاطر والامتثال دفعةً واحدة، وهو سبب إدارتها كنموذجٍ واحد بدل ثلاثةٍ متنافسة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Nine</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">GRC turns security from scattered effort into a governed model where direction, risk, and compliance reinforce one another.</p>
+        <ul>
+          <li>Separate governance from management, give direction a forum with a real mandate, and treat the three governance acts as a loop.</li>
+          <li>Feed the risk register into the governance agenda so spending follows the ranking, both ways.</li>
+          <li>Keep one obligations register, map controls to it, and let compliance be a byproduct of security rather than a parallel scramble.</li>
+          <li>Arrange documents into a policy hierarchy, each level owned, dated, and changing at its own rate.</li>
+          <li>Maintain one control framework, assess maturity honestly per area, and report metrics that would change a decision, always with a trend.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.isaca.org/resources/cobit" target="_blank" rel="noopener">ISACA, COBIT framework for the governance and management of enterprise IT.</a></li>
+          <li><a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener">NIST Cybersecurity Framework (CSF) 2.0, Govern function (2024 record).</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022, Information security management systems.</a></li>
+          <li><a href="https://www.iso.org/standard/80585.html" target="_blank" rel="noopener">ISO/IEC 27005:2022, Guidance on managing information security risks.</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" target="_blank" rel="noopener">NIST SP 800-53 Rev. 5, Security and Privacy Controls.</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">التاسع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">GRC تحوّل الأمن من جهدٍ متناثر إلى نموذجٍ محوكَم يعزّز فيه التوجيه والمخاطر والامتثال بعضها بعضًا.</p>
+        <ul>
+          <li>افصل الحوكمة عن الإدارة، وامنح التوجيه منتدىً بولايةٍ حقيقية، وعامِل أفعال الحوكمة الثلاثة كحلقة.</li>
+          <li>غذِّ سجل المخاطر في جدول الحوكمة ليتبع الإنفاقُ الترتيبَ، بالاتجاهين.</li>
+          <li>احتفظ بسجل التزاماتٍ واحد، واربط الضوابط به، ودع الامتثال يكون ناتجًا ثانويًا للأمن لا تدافعًا موازيًا.</li>
+          <li>رتّب الوثائق في تدرّج سياساتٍ، كل مستوى مملوك ومؤرَّخ ويتغيّر بمعدّله.</li>
+          <li>احتفظ بإطار ضوابط واحد، وقيّم النضج بصدق لكل مجال، وبلّغ بمؤشراتٍ تُغيّر قرارًا، دومًا باتجاه.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.isaca.org/resources/cobit" target="_blank" rel="noopener">ISACA، إطار COBIT لحوكمة وإدارة تقنية المؤسسة.</a></li>
+          <li><a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener">إطار NIST للأمن السيبراني (CSF) 2.0، وظيفة الحوكمة (سجل 2024).</a></li>
+          <li><a href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001:2022، أنظمة إدارة أمن المعلومات.</a></li>
+          <li><a href="https://www.iso.org/standard/80585.html" target="_blank" rel="noopener">ISO/IEC 27005:2022، إرشاد إدارة مخاطر أمن المعلومات.</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" target="_blank" rel="noopener">NIST SP 800-53 Rev. 5، ضوابط الأمن والخصوصية.</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">← Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next →</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="cybersecurity-sama-regulatory-framework.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Regulatory Cybersecurity Framework (SAMA)</span><span data-lang="ar">الإطار السيبراني التنظيمي (SAMA)</span></a><a href="cybersecurity-security-operations-incident-management.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Security Operations &amp; Incident Management</span><span data-lang="ar">عمليات الأمن والاستجابة للحوادث</span></a></div>
+</div>
+<footer>
+    <div class="flinks">
+      <a href="../index.html?view=insights" data-en="The library">مكتبتي</a>
+      <a href="../index.html?view=research" data-en="Research">أبحاثي</a>
+      <a href="../index.html?view=contact" data-en="Contact">تواصل</a>
+    </div>
+    <div class="copy">Copyright &#169; 2026 Saif Ali Alghamdi</div>
+  </footer>
+
+
+</div>
+<script>
+var TITLE_AR="حوكمة الأمن والمخاطر والامتثال";
+var TITLE_EN="Security Governance, Risk & Compliance";
+
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+
+
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

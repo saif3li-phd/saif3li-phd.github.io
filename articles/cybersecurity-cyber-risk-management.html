@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>إدارة مخاطر الأمن السيبراني · سيف الغامدي</title>
+<link rel="canonical" href="https://saif3li-phd.github.io/articles/cybersecurity-cyber-risk-management.html">
+<meta name="author" content="Saif Ali Alghamdi">
+<meta name="theme-color" content="#2D2D2D">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saif Ali Alghamdi">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:url" content="https://saif3li-phd.github.io/articles/cybersecurity-cyber-risk-management.html">
+<meta property="og:title" content="إدارة مخاطر الأمن السيبراني · سيف الغامدي">
+<meta property="og:description" content="Cyber Risk Management">
+<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="إدارة مخاطر الأمن السيبراني · سيف الغامدي">
+<meta name="twitter:description" content="Cyber Risk Management">
+<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"إدارة مخاطر الأمن السيبراني · سيف الغامدي","description":"Cyber Risk Management",
+ "url":"https://saif3li-phd.github.io/articles/cybersecurity-cyber-risk-management.html","inLanguage":"ar",
+ "author":{"@type":"Person","name":"Saif Ali Alghamdi","url":"https://saif3li-phd.github.io/"},
+ "publisher":{"@type":"Person","name":"Saif Ali Alghamdi","url":"https://saif3li-phd.github.io/"},
+ "image":"https://saif3li-phd.github.io/assets/og.jpg","isPartOf":{"@type":"WebSite","name":"Saif Ali Alghamdi","url":"https://saif3li-phd.github.io/"}}
+</script>
+<meta name="description" content="Cyber Risk Management">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+ --purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--khuzama-2:#9A1C1C;
+ --lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;
+ --line:#DEDEDE;--line-2:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif;
+ --fs-display:clamp(30px,4.6vw,46px);--fs-h2:clamp(21px,2.6vw,28px);
+ --fs-h3:17px;--fs-body:16px;--fs-label:11px;--lh-tight:1.3;
+ --s-3:24px;--s-4:32px;--s-5:48px;--s-6:72px;--s-7:clamp(64px,9vw,110px);
+ --maxw:920px;--gutter:clamp(18px,4vw,32px);
+ --pill:0;--r-sm:0;--r-md:0;--r-lg:0;
+ --ease:cubic-bezier(.2,.7,.3,1);--dur:.25s;}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.topbar .bar{max-width:1120px;margin:0 auto;padding:0 var(--gutter);min-height:64px;display:flex;align-items:center;gap:clamp(10px,2.5vw,28px)}
+.lockup{display:flex;flex-direction:column;justify-content:center;text-decoration:none;color:var(--ink);direction:ltr;flex:none;line-height:1.1}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;letter-spacing:-.01em;color:var(--ink);white-space:nowrap}
+.lk-tag{display:none}
+.topnav{display:flex;align-items:center;gap:0;margin-inline:auto;flex-wrap:nowrap;justify-content:center}
+.topnav a{position:relative;color:var(--muted);font-size:13.5px;text-decoration:none;cursor:pointer;padding:9px 11px;border-radius:var(--pill);white-space:nowrap;transition:color var(--dur) var(--ease)}
+.topnav a:hover{color:var(--ink)}
+.topnav a.cur{color:var(--ink);font-weight:600}
+.topnav a.cur::after{content:"";position:absolute;inset-inline:11px;bottom:3px;height:1.5px;background:var(--khuzama);border-radius:2px}
+.topbar .tools{display:flex;align-items:center;gap:9px;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line-2);border-radius:var(--pill);overflow:hidden;background:transparent}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);font-size:11.5px;font-weight:600;padding:5px 11px;cursor:pointer;transition:var(--dur) var(--ease)}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:32px;height:32px;border-radius:var(--pill);border:1px solid var(--line-2);background:transparent;color:var(--ink);cursor:pointer;font-size:13px;line-height:1;display:grid;place-items:center;transition:var(--dur) var(--ease)}
+.topbar .tbtn:hover,.topbar .seg button:hover{border-color:var(--khuzama);color:var(--khuzama)}
+.topbar .cta-top{display:inline-block;background:var(--khuzama);color:#fff;text-decoration:none;font-size:13.5px;font-weight:600;padding:9px 20px;border-radius:var(--pill);white-space:nowrap;transition:var(--dur) var(--ease)}
+.topbar .cta-top:hover{background:var(--ink);color:#fff}
+body.dark .topbar .seg button.on,body.dark .topbar .cta-top{background:var(--lav);color:var(--purple)}
+@media(max-width:960px){
+ .topbar .bar{flex-wrap:wrap;padding-block:10px;gap:10px}
+ .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topnav{order:3;width:100%;margin:0;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+ .topnav::-webkit-scrollbar{display:none}
+ .topnav a{padding:7px 10px}
+}
+@media(max-width:520px){.topbar .cta-top{padding:8px 15px;font-size:12.5px}.topbar .bar{gap:8px}}
+/* ---- article body ---- */
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){background:var(--plat)}
+.cover .sadu span:nth-child(2),.cover .sadu span:nth-child(4),footer .sadu span:nth-child(2),footer .sadu span:nth-child(4){background:var(--lav)}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:inline-block;font-size:11px;color:var(--khuzama);background:color-mix(in srgb,var(--lav) 26%,transparent);border-radius:999px;padding:3px 12px;margin-bottom:6px}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"◆";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:var(--purple);color:#fff;padding:22px 26px;margin:16px 0}
+
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+.chip{display:none}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ============ P1: article surfaces + footer ============ */
+body{font-size:var(--fs-body)}
+.cover h1{font-weight:500;font-size:var(--fs-display);line-height:var(--lh-tight);letter-spacing:-.015em;text-wrap:balance}
+.kicker{font-size:var(--fs-label);font-weight:500;letter-spacing:.14em;color:var(--muted)}
+.card{background:var(--panel);border:0;border-radius:var(--r-md);box-shadow:none;padding:clamp(24px,3vw,40px)}
+.card h2{font-weight:600;font-size:var(--fs-h2);letter-spacing:-.01em}
+.card h3{font-weight:600;font-size:var(--fs-h3)}
+.toc{background:transparent;border:0;border-bottom:1px solid var(--line-2);border-radius:0;box-shadow:none;padding:12px 0 14px;top:74px}
+.toc a{border-color:var(--line-2)}
+.pager button{border-color:var(--line-2);background:transparent}
+footer{margin-top:var(--s-7);padding:var(--s-5) 0 var(--s-4);border-top:1px solid var(--line);text-align:start}
+footer .fname{font-family:var(--head);font-size:18px;font-weight:600;color:var(--ink);direction:ltr;display:block;text-decoration:none}
+footer .ftag{direction:ltr;margin-top:4px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--muted);line-height:2.1}
+footer .ftag span{display:block}
+footer .ftag .l2{opacity:.72;letter-spacing:.16em}
+footer .ftag i{font-style:normal;opacity:.45;margin:0 5px}
+footer .flinks{display:flex;flex-wrap:wrap;gap:22px;margin:22px 0 26px}
+footer .flinks a{color:var(--muted);text-decoration:none;font-size:13.5px;transition:color var(--dur) var(--ease)}
+footer .flinks a:hover{color:var(--khuzama)}
+footer .copy{padding-top:18px;border-top:1px solid var(--line);font-size:12.5px}
+:where(a,button,input,summary):focus-visible{outline:2px solid var(--khuzama);outline-offset:3px;border-radius:6px}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* ---- firm register: squared, serif headings, red accent ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.lockup{flex-direction:row;align-items:center;gap:11px}
+.mg{width:36px;height:36px;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;unicode-bidi:isolate;transition:background var(--dur) var(--ease)}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.lk-name{font-family:var(--head);font-weight:600}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:var(--khuzama-2)}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.flinks{justify-content:center;margin:0 0 22px}
+.fname{font-family:var(--head);color:var(--ink)}
+.flinks a{color:var(--muted)}
+.flinks a:hover{color:var(--khuzama)}
+.copy{color:var(--muted)}
+html[lang="ar"] .kicker,html[lang="ar"] .ftag,html[lang="ar"] .toc a,
+html[lang="ar"] .chip,html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+.lk-name,.fname,.ftag .l1,.ftag .l2{direction:ltr;unicode-bidi:isolate}
+
+/* language toggle matches the site: ink chip, not red */
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <div class="bar">
+    <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+    <nav class="topnav">
+      <a href="../index.html?view=home#about" data-en="About">عني</a>
+      <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+      <a class="cur" href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+      <a href="../index.html?view=research" data-en="Research">أبحاثي</a>
+    </nav>
+    <div class="tools">
+      <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+      <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+    </div>
+  </div>
+</header>
+<div class="art">
+
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=insights"><span data-lang="en">Library</span><span data-lang="ar">مكتبتي</span></a><i>&rsaquo;</i><span data-lang="en">Digital & Technology</span><span data-lang="ar">رقمي وتقنية</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">CYBERSECURITY · OPERATIONAL FRAMEWORK</span><span data-lang="ar">الأمن السيبراني · إطار تشغيلي</span></div>
+    <h1><span data-lang="en">Cyber Risk Management</span><span data-lang="ar">إدارة مخاطر الأمن السيبراني</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Digital & Technology</span><span data-lang="ar">رقمي وتقنية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">14 min</span><span data-lang="ar">١٤ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="process"><span data-lang="en">The Process</span><span data-lang="ar">العملية</span></a></li><li><a data-id="identify"><span data-lang="en">Identification</span><span data-lang="ar">التحديد</span></a></li><li><a data-id="analysis"><span data-lang="en">Analysis</span><span data-lang="ar">التحليل</span></a></li><li><a data-id="appetite"><span data-lang="en">Appetite &amp; Register</span><span data-lang="ar">الشهية والسجل</span></a></li><li><a data-id="treatment"><span data-lang="en">Treatment</span><span data-lang="ar">المعالجة</span></a></li><li><a data-id="thirdparty"><span data-lang="en">Third-Party Risk</span><span data-lang="ar">مخاطر الأطراف</span></a></li><li><a data-id="monitoring"><span data-lang="en">Monitoring</span><span data-lang="ar">المراقبة</span></a></li><li><a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=insights"><span data-lang="en">Back to the library</span><span data-lang="ar">إلى المكتبة</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Field:</span> Cybersecurity risk management</div>
+          <div><span>Scope:</span> Identifying, analyzing, treating, and monitoring information risk</div>
+          <div><span>Owner role:</span> Risk manager, with control owners</div>
+          <div><span>Review cadence:</span> Continuous register, formal review at least quarterly</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Cyber risk management is the discipline of deciding, on purpose, how much uncertainty about information security an organization is willing to carry, and then spending its finite protection budget where it buys down the most risk. It replaces the instinct to protect everything equally with a ranked, defensible set of priorities.</p>
+        <p>The core insight is that security resources are always scarce, so the real question is never whether a system could be attacked, but which exposures matter enough to treat now. A risk framework answers that by turning vague worry into a comparable measure, so a data-theft scenario and an outage scenario can be weighed on the same scale. Without that common measure, the loudest voice or the newest headline drives spending, which is how organizations end up heavily defended against yesterday's attack and exposed to tomorrow's.</p>
+        <p>It is worth being precise about what risk means here. A risk is not a threat, and it is not a vulnerability, it is the combination of the two against something of value, expressed as a likelihood and a consequence. This precision matters because it tells you where to act: you can rarely remove a threat, which exists in the world regardless of you, but you can often reduce a vulnerability or lower the value exposed, and naming all three parts shows which lever is available.</p>
+        <p>This framework follows the recognized risk process shared by ISO and NIST: establish context, identify risks, analyze and evaluate them, treat them, and monitor continuously. It is written to be reusable across any sector and aligns to ISO/IEC 27005 and NIST guidance without reproducing their text.</p>
+        <div class="note"><strong>Note:</strong> The goal is not zero risk, which is unaffordable and impossible, but known risk, treated by conscious decision rather than by neglect. An organization that claims no residual risk is either not looking or not telling the truth.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>المجال:</span> إدارة مخاطر الأمن السيبراني</div>
+          <div><span>النطاق:</span> تحديد مخاطر المعلومات وتحليلها ومعالجتها ومراقبتها</div>
+          <div><span>دور المالك:</span> مدير المخاطر، مع ملّاك الضوابط</div>
+          <div><span>دورية المراجعة:</span> سجل مستمر، ومراجعة رسمية ربع سنوية على الأقل</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">إدارة مخاطر الأمن السيبراني هي انضباط تقرّر به المنشأة، عن قصد، كم من عدم اليقين حيال أمن المعلومات مستعدّة لحمله، ثم تُنفق ميزانية الحماية المحدودة حيث تشتري أكبر خفضٍ للخطر. وهي تستبدل غريزة حماية كل شيء بالتساوي بمجموعة أولويات مرتَّبة قابلة للدفاع عنها.</p>
+        <p>الجوهر أن موارد الأمن نادرةٌ دومًا، فالسؤال الحقيقي ليس هل يمكن مهاجمة نظام، بل أي التعرّضات تهمّ بما يكفي للمعالجة الآن. ويجيب إطار المخاطر عن ذلك بتحويل القلق الغامض إلى قياسٍ قابل للمقارنة، فيُوزَن سيناريو سرقة بيانات وسيناريو انقطاعٍ على المقياس نفسه. وبلا ذلك القياس المشترك، يقود أعلى صوتٍ أو أحدث خبرٍ الإنفاقَ، وهكذا تنتهي المنشآت مُحصَّنةً بقوة ضد هجوم الأمس مكشوفةً لهجوم الغد.</p>
+        <p>ويجدر الدقّة في معنى الخطر هنا. فالخطر ليس تهديدًا، وليس ثغرة، بل هو جمع الاثنين ضد شيءٍ ذي قيمة، مُعبَّرًا عنه باحتمالٍ ونتيجة. وهذه الدقّة تهمّ لأنها تدلّك أين تتصرّف: فنادرًا ما تستطيع إزالة تهديدٍ موجودٍ في العالم بمعزلٍ عنك، لكنك غالبًا تستطيع خفض ثغرةٍ أو تقليل القيمة المعرَّضة، وتسمية الأجزاء الثلاثة تُظهر أي رافعةٍ متاحة.</p>
+        <p>يتّبع هذا الإطار عملية المخاطر المعترف بها المشتركة بين ISO وNIST: تأسيس السياق، وتحديد المخاطر، وتحليلها وتقييمها، ومعالجتها، والمراقبة المستمرة. وهو قابل لإعادة الاستخدام عبر أي قطاع ويتوافق مع ISO/IEC 27005 وإرشاد NIST دون نسخ نصّيهما.</p>
+        <div class="note"><strong>ملاحظة:</strong> الهدف ليس خطرًا صفريًا، فهو غير ممكن ولا مُتَحمَّل، بل خطرٌ معلوم يُعالَج بقرارٍ واعٍ لا بإهمال. ومنشأةٌ تدّعي خطرًا متبقّيًا معدومًا إمّا لا تنظر أو لا تصدق.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="process">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Risk Management Process</h2>
+        <p class="lead">Risk management is a repeating cycle, not a one-off assessment. Each pass through it refreshes the picture, because the assets, the threats, and the business all keep changing underneath any single snapshot.</p>
+        <p>The recognized cycle moves through a set of stages that build on each other. Establishing context sets the boundary and the criteria, identification finds what could go wrong, analysis and evaluation size and rank the risks, treatment decides what to do, and monitoring keeps the whole thing current. Communication runs alongside every stage, because a risk that leadership never hears about cannot be acted on. Each stage produces an input the next stage depends on, so skipping one does not save time, it just moves the failure downstream to where it is more expensive.</p>
+        <p>Establishing context deserves more attention than it usually gets, because it fixes the criteria everything else is judged against. This is where the organization decides its likelihood and impact scales, what counts as a critical asset, and how much risk it is willing to accept. Set these loosely and every later step inherits the ambiguity, so two analysts assessing the same risk reach different answers and the register becomes an argument rather than a tool.</p>
+        <ul>
+          <li><strong>Establish context:</strong> scope, criteria, and the agreed scales for likelihood and impact.</li>
+          <li><strong>Identify:</strong> the assets, threats, and vulnerabilities that create exposure.</li>
+          <li><strong>Analyze and evaluate:</strong> estimate each risk and rank it against the criteria.</li>
+          <li><strong>Treat:</strong> reduce, avoid, share, or accept, then record the residual risk.</li>
+          <li><strong>Monitor and review:</strong> track changes and re-run the cycle at planned intervals.</li>
+          <li><strong>Communicate throughout:</strong> keep decision-makers informed so risks are owned, not filed.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Consistency across cycles is what makes the trend meaningful. If the scales change every time, this quarter's risk cannot be compared to last quarter's, and the register loses the one thing that made it more than a list.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>عملية إدارة المخاطر</h2>
+        <p class="lead">إدارة المخاطر دورةٌ متكرّرة لا تقييمًا لمرة واحدة. وكل مرور بها يُحدّث الصورة، لأن الأصول والتهديدات والعمل تتغيّر جميعها تحت أي لقطةٍ مفردة.</p>
+        <p>تتحرّك الدورة المعترف بها عبر مراحل يبني بعضها على بعض. تأسيس السياق يضع الحدّ والمعايير، والتحديد يجد ما قد يسوء، والتحليل والتقييم يقيسان المخاطر ويرتّبانها، والمعالجة تقرّر ما يُفعل، والمراقبة تُبقي كل ذلك محدَّثًا. ويسير التواصل بمحاذاة كل مرحلة، لأن خطرًا لا تسمع به القيادة لا يمكن التصرّف حياله. وكل مرحلة تُنتج مدخلًا تعتمد عليه التالية، فتخطّي واحدةٍ لا يوفّر وقتًا بل ينقل الفشل إلى أسفل المجرى حيث يكون أغلى.</p>
+        <p>ويستحق تأسيس السياق اهتمامًا أكثر مما يناله عادةً، لأنه يثبّت المعايير التي يُحكَم عليها كل ما عداه. فهنا تقرّر المنشأة مقاييس احتمالها وأثرها، وما يُعَدّ أصلًا حرجًا، وكم من الخطر مستعدّة لقبوله. اضبطها بتراخٍ فترث كل خطوةٍ لاحقة الغموض، فيبلغ محلّلان يقيّمان الخطر نفسه إجابتين، ويصير السجل جدلًا لا أداة.</p>
+        <ul>
+          <li><strong>تأسيس السياق:</strong> النطاق والمعايير والمقاييس المتّفق عليها للاحتمال والأثر.</li>
+          <li><strong>التحديد:</strong> الأصول والتهديدات والثغرات المولّدة للتعرّض.</li>
+          <li><strong>التحليل والتقييم:</strong> تقدير كل خطر وترتيبه مقابل المعايير.</li>
+          <li><strong>المعالجة:</strong> التقليل أو التجنّب أو المشاركة أو القبول، ثم تسجيل الخطر المتبقّي.</li>
+          <li><strong>المراقبة والمراجعة:</strong> تتبّع التغيّرات وإعادة الدورة على فترات مخطّطة.</li>
+          <li><strong>التواصل طوال الوقت:</strong> إبقاء صنّاع القرار مُطّلعين لتُملَك المخاطر لا تُحفَظ.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> الاتساق عبر الدورات هو ما يجعل الاتجاه ذا معنى. فإن تغيّرت المقاييس كل مرة، تعذّرت مقارنة خطر هذا الربع بالسابق، وفقد السجل الشيء الوحيد الذي جعله أكثر من قائمة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="identify">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Asset, Threat &amp; Vulnerability</h2>
+        <p class="lead">You cannot protect what you have not named. Identification builds the inventory of what matters, the ways it could be harmed, and the weaknesses that would let that harm through.</p>
+        <p>A workable risk statement joins three things: an asset worth protecting, a threat that could act against it, and a vulnerability the threat could use. Missing any one turns the risk into a vague fear. A stolen laptop only matters as a risk if it holds sensitive data, is exposed to loss or theft, and lacks encryption, and naming all three at once is what makes the risk both real and treatable. The same discipline also prevents double counting, where the same underlying exposure is logged three times under slightly different names and inflates the register without adding insight.</p>
+        <h3>The three ingredients in depth</h3>
+        <ul>
+          <li><strong>Assets:</strong> the data, systems, and services whose loss would hurt, ranked by how much they matter. Value is measured in more than money: reputation, legal exposure, and safety can all raise an asset's importance above its replacement cost.</li>
+          <li><strong>Threats:</strong> the sources and events that could cause harm, from organized criminals and insiders to simple error and hardware failure. A useful threat model names who or what, with what motive or trigger, so the analysis is grounded rather than generic.</li>
+          <li><strong>Vulnerabilities:</strong> the weaknesses a threat could exploit, in technology, process, or people. The most dangerous vulnerabilities are often process ones, such as no leaver review, because they are invisible to technical scanning.</li>
+        </ul>
+        <p>The most valuable output here is a prioritized asset inventory, because everything downstream inherits its ranking. If the inventory treats a test server and the customer database as equals, the whole risk process will misallocate attention. A practical way to prioritize is to classify data and systems by the harm their loss would cause, then let that classification set the protection each deserves, so the analysis flows from value rather than from whatever happens to be top of mind.</p>
+        <div class="note"><strong>Note:</strong> Start from the assets that would cause the most harm if lost, and let their protection needs pull the rest of the analysis behind them. An inventory that is complete but unranked is a haystack, not a map.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الأصل والتهديد والثغرة</h2>
+        <p class="lead">لا تحمي ما لم تُسمِّه. التحديد يبني جرد ما يهمّ، والطرق التي قد يُؤذى بها، والثغرات التي تسمح بمرور ذلك الأذى.</p>
+        <p>عبارة الخطر العملية تجمع ثلاثة: أصلًا يستحق الحماية، وتهديدًا قد يتحرّك ضدّه، وثغرةً قد يستغلّها التهديد. وغياب أيٍّ منها يحوّل الخطر إلى خوفٍ غامض. فحاسبٌ محمول مسروق لا يُشكّل خطرًا إلا إن حمل بياناتٍ حساسة، وكان معرَّضًا للفقد أو السرقة، ويفتقر إلى التعمية، وتسمية الثلاثة معًا هي ما يجعل الخطر حقيقيًا وقابلًا للمعالجة. والانضباط نفسه يمنع العدّ المزدوج، حيث يُسجَّل التعرّض الكامن نفسه ثلاث مرات بأسماء مختلفة قليلًا فيضخّم السجل دون أن يضيف بصيرة.</p>
+        <h3>المكوّنات الثلاثة بعمق</h3>
+        <ul>
+          <li><strong>الأصول:</strong> البيانات والأنظمة والخدمات التي يؤذي فقدها، مرتَّبةً بقدر أهميتها. والقيمة تُقاس بأكثر من المال: فالسمعة والتعرّض القانوني والسلامة قد ترفع أهمية الأصل فوق كلفة استبداله.</li>
+          <li><strong>التهديدات:</strong> المصادر والأحداث التي قد تُسبّب أذى، من مجرمين منظَّمين ومطّلعين داخليين إلى خطأ بسيط وعطلٍ عتادي. ونموذج التهديد المفيد يسمّي مَن أو ماذا، وبأي دافعٍ أو مُطلِق، فيكون التحليل راسخًا لا عامًّا.</li>
+          <li><strong>الثغرات:</strong> نقاط الضعف التي قد يستغلّها التهديد، في التقنية أو العملية أو الناس. وأخطر الثغرات غالبًا ثغرات العملية، كغياب مراجعة المغادرين، لأنها خفيّةٌ على الفحص التقني.</li>
+        </ul>
+        <p>أثمن مخرجٍ هنا جردٌ للأصول مرتَّب بالأولوية، لأن كل ما يليه يرث ترتيبه. فإن ساوى الجرد بين خادم اختبار وقاعدة بيانات العملاء، أساءت عملية المخاطر كلها توزيع الاهتمام. ومن الطرق العملية للترتيب تصنيف البيانات والأنظمة بالأذى الذي يُسبّبه فقدها، ثم يجعل ذلك التصنيف الحمايةَ التي يستحقها كلٌّ، فيتدفّق التحليل من القيمة لا مما تصادف حضوره في الذهن.</p>
+        <div class="note"><strong>ملاحظة:</strong> ابدأ من الأصول التي يُسبّب فقدها أكبر أذى، ودع حاجات حمايتها تجرّ بقية التحليل خلفها. فجردٌ كاملٌ غير مرتَّب كومةُ قشٍّ لا خريطة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="analysis">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Analysis &amp; Evaluation</h2>
+        <p class="lead">Analysis turns a list of risks into a ranking. Whether the method is qualitative or quantitative, the aim is the same: a comparable measure so scarce attention flows to the biggest exposures first.</p>
+        <p>The most common approach expresses a risk level as likelihood times impact, each scored on an agreed scale. It is quick, transparent, and good enough to rank. Where money is at stake and data is available, a quantitative estimate of expected loss can sharpen the picture, but only if the inputs are honest rather than invented precision. The scoring is a means, not the message: its job is to sort risks into bands that trigger different responses, not to imply that a risk scored 16 is exactly twice as bad as one scored 8.</p>
+        <div class="formula">Risk level = likelihood × impact  (for example, each scored 1 to 5, giving a 1 to 25 range)</div>
+        <h4>Worked example, qualitative</h4>
+        <p>A widely exploited, unpatched public service scores likelihood 5 and impact 4, a risk level of 20, which sits in the critical band and jumps the queue. A misconfiguration on an isolated internal tool scores likelihood 2 and impact 2, a level of 4, which can wait behind more urgent work. The scores are a tool for ordering the conversation, not a substitute for judgment.</p>
+        <h4>Worked example, quantitative</h4>
+        <p>Suppose a fraud scenario is expected to occur about twice a year, with an average loss of 50,000 per event. The expected annual loss is 2 times 50,000, or 100,000. A control that costs 30,000 a year and is judged to cut the frequency in half reduces the expected annual loss to 50,000, a saving of 50,000 for a spend of 30,000, so the control pays for itself. Run the same arithmetic on a control costing 90,000 and the case reverses, and accepting or sharing the risk becomes the rational choice. The numbers only help if the frequency and loss estimates are honest, so this method is reserved for the few risks where the stakes justify the effort.</p>
+        <h3>Evaluation</h3>
+        <p>Evaluation then compares each ranked risk to the organization's criteria and decides which cross the line for treatment. A clear threshold, agreed in advance, prevents the ranking from becoming an endless debate every cycle. It also forces a healthy conversation about appetite, because the moment a risk sits just below the treatment line, someone has to decide whether the organization is genuinely comfortable living with it or whether the line is in the wrong place.</p>
+        <div class="note"><strong>Note:</strong> Prefer a simple, consistent scale applied honestly over an elaborate model fed by guesses. False precision is more dangerous than admitted approximation, because it hides its own uncertainty behind a confident number.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>التحليل والتقييم</h2>
+        <p class="lead">التحليل يحوّل قائمة المخاطر إلى ترتيب. وسواء كانت الطريقة نوعية أو كمّية، فالهدف واحد: قياسٌ قابل للمقارنة ليتدفّق الاهتمام النادر إلى أكبر التعرّضات أولًا.</p>
+        <p>أشيع نهجٍ يعبّر عن مستوى الخطر بحاصل ضرب الاحتمال في الأثر، كلٌّ على مقياس متّفق عليه. وهو سريع وشفّاف وكافٍ للترتيب. وحيث يكون المال على المحك وتتوفّر البيانات، قد يشحذ تقديرٌ كمّي للخسارة المتوقّعة الصورةَ، لكن فقط إن كانت المدخلات صادقة لا دقّةً مُختلَقة. والتنقيط وسيلةٌ لا رسالة: مهمته فرز المخاطر إلى نطاقاتٍ تُطلِق استجاباتٍ مختلفة، لا الإيحاء بأن خطرًا نُقِّط 16 أسوأ بالضبط ضِعفَ آخر نُقِّط 8.</p>
+        <div class="formula">مستوى الخطر = الاحتمال × الأثر  (مثلًا كلٌّ من 1 إلى 5، فيعطي مدى 1 إلى 25)</div>
+        <h4>مثال محلول، نوعي</h4>
+        <p>خدمةٌ عامّة غير مُرقَّعة وواسعة الاستغلال تسجّل احتمالًا 5 وأثرًا 4، بمستوى خطرٍ 20 يقع في النطاق الحرج ويتقدّم الصف. وخطأ إعدادٍ في أداةٍ داخلية معزولة يسجّل احتمالًا 2 وأثرًا 2، بمستوى 4، يمكن أن ينتظر خلف عملٍ أعجل. والدرجات أداةٌ لترتيب النقاش لا بديلٌ عن الحكم.</p>
+        <h4>مثال محلول، كمّي</h4>
+        <p>لنفترض أن سيناريو احتيالٍ يُتوقَّع وقوعه نحو مرتين سنويًا، بخسارةٍ متوسطة 50,000 للحدث. فالخسارة السنوية المتوقّعة 2 في 50,000 أي 100,000. وضابطٌ يكلّف 30,000 سنويًا ويُقدَّر أنه يخفض التكرار للنصف يُنزِل الخسارة المتوقّعة إلى 50,000، بتوفيرٍ 50,000 مقابل إنفاق 30,000، فالضابط يسدّد كلفته. وأجرِ الحساب نفسه على ضابطٍ يكلّف 90,000 فينقلب الأمر، ويصير قبول الخطر أو مشاركته الخيار الرشيد. والأرقام لا تفيد إلا إن كانت تقديرات التكرار والخسارة صادقة، فهذه الطريقة محفوظةٌ للمخاطر القليلة التي تبرّر رهاناتها الجهد.</p>
+        <h3>التقييم</h3>
+        <p>ثم يقارن التقييم كل خطرٍ مرتَّب بمعايير المنشأة ويقرّر أيها يتجاوز الخط للمعالجة. وعتبةٌ واضحة مُتّفق عليها مسبقًا تمنع الترتيب من أن يصير جدلًا لا ينتهي كل دورة. وهي تفرض نقاشًا صحّيًا حول الشهية، لأن لحظة يجلس فيها خطرٌ تحت خط المعالجة بقليل، على أحدٍ أن يقرّر هل المنشأة مرتاحةٌ فعلًا للتعايش معه أم أن الخط في المكان الخطأ.</p>
+        <div class="note"><strong>ملاحظة:</strong> فضّل مقياسًا بسيطًا متّسقًا يُطبَّق بصدق على نموذجٍ متقن تُغذّيه التخمينات. فالدقّة الزائفة أخطر من التقريب المُعترَف به، لأنها تُخفي عدم يقينها خلف رقمٍ واثق.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="appetite">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Risk Appetite &amp; Register</h2>
+        <p class="lead">A ranking is only useful against a line. Risk appetite is the line: the amount and type of risk leadership is willing to accept in pursuit of its objectives, stated clearly enough to guide a decision.</p>
+        <p>Appetite translates the ranking into action. A risk above the line demands treatment, one below it can be accepted and watched. Without a stated appetite, every risk looks equally urgent, and the team either over-treats trivial exposures or quietly lives with serious ones. Appetite can also differ by risk type: an organization might accept a fair amount of operational inconvenience but almost no risk to customer data, and stating that difference openly stops the two from being traded off by accident.</p>
+        <h3>The risk register</h3>
+        <p>The register is the single living record of what the organization knows about its risks. Each entry names the risk, its current level, its owner, the treatment decision, and the residual risk after treatment. It is not a document written once, it is a working tool reviewed on a cadence, and its quality is the clearest sign of whether risk management is real or ceremonial. A register full of vague entries with no owners and no dates is a filing exercise, while one where every live risk has a name, a number, an owner, and a next action is a management instrument.</p>
+        <h3>Ownership and residual risk</h3>
+        <p>Two fields carry most of the weight. The owner is the named role accountable for the risk, and ownership only means something when the owner has the authority and budget to actually treat it, otherwise the register just records who to blame. The residual risk is what remains after treatment, and it must be formally accepted by someone senior enough to own the consequence, which is what turns acceptance from a quiet omission into a deliberate, visible decision.</p>
+        <ul>
+          <li><strong>Appetite:</strong> the agreed level, possibly varying by risk type, above which a risk must be treated.</li>
+          <li><strong>Owner:</strong> the named role accountable for each risk, with the authority to act on it.</li>
+          <li><strong>Residual risk:</strong> what remains after treatment, formally accepted by an authorized role.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Appetite is a leadership decision, not a technical one. Security can measure and advise, but only the business can say how much risk it is willing to own, and refusing to state an appetite is itself a decision to let it be set by default.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>شهية المخاطر والسجل</h2>
+        <p class="lead">الترتيب لا يفيد إلا مقابل خط. وشهية المخاطر هي الخط: مقدار ونوع الخطر الذي تقبله القيادة سعيًا لأهدافها، مُعلَنًا بوضوحٍ يكفي لتوجيه قرار.</p>
+        <p>الشهية تترجم الترتيب إلى فعل. فخطرٌ فوق الخط يستوجب المعالجة، وآخر تحته يُقبَل ويُراقَب. وبلا شهيةٍ مُعلَنة يبدو كل خطرٍ عاجلًا بالتساوي، فيُفرِط الفريق في معالجة تعرّضات تافهة أو يتعايش بصمتٍ مع خطيرة. وقد تختلف الشهية بنوع الخطر: فقد تقبل منشأةٌ قدرًا من الإزعاج التشغيلي لكن لا تكاد تقبل خطرًا على بيانات العملاء، وإعلان ذلك الفرق يمنع مقايضة الاثنين مصادفةً.</p>
+        <h3>سجل المخاطر</h3>
+        <p>السجل هو السجل الحيّ الواحد لما تعرفه المنشأة عن مخاطرها. كل قيدٍ يسمّي الخطر ومستواه الحالي ومالكه وقرار المعالجة والخطر المتبقّي بعدها. وهو ليس وثيقةً تُكتب مرة، بل أداة عملٍ تُراجَع بدورية، وجودته أوضح دليلٍ على أن إدارة المخاطر حقيقية أم شكلية. فسجلٌ مليء بقيودٍ غامضة بلا ملّاك ولا تواريخ تمرينُ حفظٍ، وسجلٌ لكل خطرٍ حيٍّ فيه اسمٌ ورقمٌ ومالكٌ وإجراءٌ تالٍ أداةُ إدارة.</p>
+        <h3>الملكية والخطر المتبقّي</h3>
+        <p>حقلان يحملان أغلب الثقل. المالك هو الدور المُسمّى المساءَل عن الخطر، والملكية لا تعني شيئًا إلا حين يملك المالك الصلاحية والميزانية لمعالجته فعلًا، وإلا فالسجل يسجّل من يُلام فقط. والخطر المتبقّي ما يبقى بعد المعالجة، ويجب أن يقبله رسميًا من هو كبيرٌ بما يكفي لتملّك النتيجة، وهو ما يحوّل القبول من إغفالٍ صامت إلى قرارٍ متعمَّد مرئي.</p>
+        <ul>
+          <li><strong>الشهية:</strong> المستوى المُتّفق عليه، وقد يختلف بنوع الخطر، الذي يجب فوقه معالجة الخطر.</li>
+          <li><strong>المالك:</strong> الدور المُسمّى المساءَل عن كل خطر، وله صلاحية التصرّف فيه.</li>
+          <li><strong>الخطر المتبقّي:</strong> ما يبقى بعد المعالجة، يقبله رسميًا دورٌ مُخوَّل.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> الشهية قرار قيادة لا قرار تقني. الأمن يقيس ويشير، لكن العمل وحده يقول كم من الخطر مستعدٌ لتملّكه، ورفض إعلان الشهية نفسه قرارٌ بتركها تُضبَط تلقائيًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="treatment">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Six</span>
+        <h2>Risk Treatment &amp; Controls</h2>
+        <p class="lead">Treatment is where risk analysis becomes action. For each risk above appetite, the organization picks one of four recognized responses and puts it into effect, then measures what risk remains.</p>
+        <ul>
+          <li><strong>Reduce:</strong> apply controls that lower likelihood, impact, or both. This is the most common response and where control catalogs such as NIST SP 800-53 provide a menu to select from. Reducing likelihood stops the event, reducing impact limits the damage when it happens anyway, and the strongest treatments usually do some of each.</li>
+          <li><strong>Avoid:</strong> stop or redesign the activity that creates the risk, when the exposure is not worth the benefit. Avoidance is underused because it feels like retreat, but declining to collect data you do not need is often the cheapest control of all.</li>
+          <li><strong>Share:</strong> transfer part of the exposure through insurance or a contractual arrangement with a capable third party. Sharing moves the financial sting, not the accountability, so a shared risk still needs an owner watching it.</li>
+          <li><strong>Accept:</strong> knowingly retain the risk when treatment would cost more than the harm it prevents, recorded and authorized. Acceptance is a legitimate treatment, not a failure to act, provided it is a conscious decision by someone with the authority to make it.</li>
+        </ul>
+        <p>Controls come in complementary types, and a strong treatment usually layers them. Preventive controls stop an event, detective controls reveal one in progress, and corrective controls limit the damage and restore normal operation. Relying on any single type is fragile, because the one control will eventually fail, and defense in depth is simply the refusal to bet everything on it. A useful test of a treatment is to ask what happens when its main control fails, and if the honest answer is nothing catches it, the treatment needs another layer.</p>
+        <h3>From decision to done</h3>
+        <p>A treatment decision is not a treatment until it is implemented, so each one becomes tracked work with an owner and a date, exactly like any other project. The register should show not only what was decided but whether it actually happened, because a plan of excellent treatments that were never implemented reduces no risk at all, it only creates a false sense of safety.</p>
+        <div class="note"><strong>Note:</strong> Every control should reduce a named risk and produce evidence that it works. A control with neither is cost without protection, and over time these orphan controls accumulate into a stack that is expensive to run and impossible to justify.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السادس</span>
+        <h2>معالجة المخاطر والضوابط</h2>
+        <p class="lead">المعالجة حيث يصير تحليل المخاطر فعلًا. فلكل خطرٍ فوق الشهية، تختار المنشأة إحدى أربع استجابات معترف بها وتُنفّذها، ثم تقيس ما يتبقّى من خطر.</p>
+        <ul>
+          <li><strong>التقليل:</strong> تطبيق ضوابط تخفّض الاحتمال أو الأثر أو كليهما. وهي الأشيع، وحيث تقدّم كتالوجات الضوابط كـ NIST SP 800-53 قائمةً للاختيار منها. فخفض الاحتمال يوقف الحدث، وخفض الأثر يحدّ الضرر حين يقع رغمًا، وأقوى المعالجات تفعل شيئًا من كليهما عادةً.</li>
+          <li><strong>التجنّب:</strong> إيقاف النشاط المولّد للخطر أو إعادة تصميمه، حين لا يستحق التعرّض الفائدة. والتجنّب أقلّ استخدامًا لأنه يبدو تراجعًا، لكن الامتناع عن جمع بياناتٍ لا تحتاجها غالبًا أرخص الضوابط جميعًا.</li>
+          <li><strong>المشاركة:</strong> نقل جزء من التعرّض عبر تأمينٍ أو ترتيبٍ تعاقدي مع طرفٍ ثالث قادر. والمشاركة تنقل اللسعة المالية لا المساءلة، فخطرٌ مُشارَك ما زال يحتاج مالكًا يراقبه.</li>
+          <li><strong>القبول:</strong> الاحتفاظ الواعي بالخطر حين تفوق كلفة المعالجة الأذى الذي تمنعه، مُسجَّلًا ومُخوَّلًا. والقبول معالجةٌ مشروعة لا تقاعسًا، ما دام قرارًا واعيًا ممن له صلاحيته.</li>
+        </ul>
+        <p>تأتي الضوابط بأنواعٍ متكاملة، والمعالجة القوية تُطبّقها طبقاتٍ عادةً. الضوابط الوقائية تمنع الحدث، والكشفية تكشفه أثناء وقوعه، والتصحيحية تحدّ الضرر وتُعيد التشغيل الطبيعي. والاتّكاء على نوعٍ واحد هشّ، لأن الضابط الواحد سيفشل يومًا، والدفاع المتعمّق ببساطة رفضٌ للمراهنة عليه بكل شيء. واختبارٌ مفيد للمعالجة أن تسأل ماذا يحدث حين يفشل ضابطها الرئيس، فإن كان الجواب الصادق «لا شيء يلتقطه»، فالمعالجة تحتاج طبقةً أخرى.</p>
+        <h3>من القرار إلى الإنجاز</h3>
+        <p>قرار المعالجة ليس معالجةً حتى يُنفَّذ، فيصير كلٌّ عملًا مُتابَعًا بمالكٍ وتاريخ، تمامًا كأي مشروع. وينبغي أن يُظهر السجل لا ما قُرِّر فحسب بل هل حدث فعلًا، لأن خطةً بمعالجاتٍ ممتازة لم تُنفَّذ لا تخفض خطرًا البتّة، بل تصنع إحساسًا زائفًا بالأمان.</p>
+        <div class="note"><strong>ملاحظة:</strong> كل ضابط ينبغي أن يخفّض خطرًا مُسمّى وينتج دليلًا على عمله. وضابطٌ بلا هذين كلفةٌ بلا حماية، ومع الوقت تتراكم هذه الضوابط اليتيمة في كومةٍ باهظة التشغيل يستحيل تبريرها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="thirdparty">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Seven</span>
+        <h2>Third-Party &amp; Supply-Chain Risk</h2>
+        <p class="lead">Your risk does not stop at your own perimeter. Every supplier, platform, and partner you depend on extends your attack surface, and a weakness in any of them can become an incident in you.</p>
+        <p>Supply-chain risk management extends the same identify-analyze-treat cycle to the parties you rely on. The practical challenge is that you control your suppliers far less than your own systems, so treatment leans heavily on contracts, assurance evidence, and the right to verify, rather than on direct engineering. The dependency has to be understood before it can be governed, and that understanding starts with an honest map of which suppliers touch which of your assets and how badly you would be hurt if one failed.</p>
+        <p>Risk should be proportionate to the dependency. A supplier that processes your customer data or runs a critical service deserves deep due diligence and continuous assurance, while a low-risk vendor with no access to sensitive systems does not warrant the same scrutiny, and treating every supplier identically wastes effort on the harmless while under-examining the dangerous. Tiering suppliers by the risk they carry is what makes third-party management sustainable.</p>
+        <ul>
+          <li><strong>Inventory:</strong> know which third parties touch which of your assets, and how critical each dependency is.</li>
+          <li><strong>Due diligence:</strong> assess a supplier's security before onboarding, proportionate to the risk they carry.</li>
+          <li><strong>Contractual controls:</strong> security requirements, breach notification, and the right to audit, written into the agreement while you still have negotiating leverage.</li>
+          <li><strong>Ongoing assurance:</strong> periodic evidence that the supplier still meets the bar, not a one-time check at signing, because a supplier's security can decay long after the contract is signed.</li>
+        </ul>
+        <div class="note"><strong>Note:</strong> Concentration is its own risk. When many critical services depend on a single provider, that provider's bad day becomes your bad day, so map the concentration deliberately and plan for the failure of a provider you cannot replace quickly.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">السابع</span>
+        <h2>مخاطر الأطراف وسلسلة الإمداد</h2>
+        <p class="lead">خطرك لا يقف عند محيطك. فكل مورّد ومنصّة وشريك تعتمد عليه يوسّع سطح هجومك، وضعفٌ في أيٍّ منهم قد يصير حادثةً فيك.</p>
+        <p>إدارة مخاطر سلسلة الإمداد تمدّ دورة التحديد والتحليل والمعالجة نفسها إلى الأطراف التي تعتمد عليها. والتحدّي العملي أنك تتحكّم بمورّديك أقل بكثير من أنظمتك، فتتّكئ المعالجة على العقود وأدلة الضمان وحقّ التحقّق أكثر من الهندسة المباشرة. ويجب فهم الاعتماد قبل أن يُحوكَم، ويبدأ ذلك الفهم بخريطةٍ صادقة لأي المورّدين يمسّ أيًّا من أصولك وكم ستتأذّى لو فشل أحدهم.</p>
+        <p>وينبغي أن يتناسب الخطر مع الاعتماد. فمورّدٌ يعالج بيانات عملائك أو يشغّل خدمةً حرجة يستحق عنايةً عميقة وضمانًا مستمرًا، بينما مورّدٌ منخفض الخطر بلا وصولٍ لأنظمة حساسة لا يستحق التدقيق نفسه، ومعاملة كل مورّدٍ سواءً تهدر الجهد على غير الضار وتُقصّر في فحص الخطير. وتصنيف المورّدين بطبقاتٍ حسب خطرهم هو ما يجعل إدارة الأطراف الثالثة مستدامة.</p>
+        <ul>
+          <li><strong>الجرد:</strong> اعرف أي الأطراف يمسّ أيًّا من أصولك، وكم يحرج كل اعتماد.</li>
+          <li><strong>العناية اللازمة:</strong> قيّم أمن المورّد قبل التعاقد، بما يتناسب مع الخطر الذي يحمله.</li>
+          <li><strong>ضوابط تعاقدية:</strong> متطلبات أمن وإبلاغ اختراق وحقّ تدقيق، مكتوبة في الاتفاق وأنت ما زلت تملك ورقة التفاوض.</li>
+          <li><strong>الضمان المستمر:</strong> دليلٌ دوري بأن المورّد ما زال يفي بالحدّ، لا فحصًا لمرة واحدة عند التوقيع، لأن أمن المورّد قد يتدهور بعد توقيع العقد بزمنٍ طويل.</li>
+        </ul>
+        <div class="note"><strong>ملاحظة:</strong> التركّز خطرٌ بذاته. فحين تعتمد خدماتٌ حرجة كثيرة على مزوّدٍ واحد، يصير يومه السيئ يومك السيئ، فارسم التركّز عن قصد وخطّط لفشل مزوّدٍ لا تستطيع استبداله سريعًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="monitoring">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Eight</span>
+        <h2>Monitoring &amp; Reporting</h2>
+        <p class="lead">A risk assessment ages the moment it is finished. Monitoring keeps it alive by tracking whether risks are rising or falling, and whether treatments are actually working.</p>
+        <p>Key risk indicators, or KRIs, are the early-warning signals that a risk is trending toward the line. Unlike a lagging count of incidents, a good KRI moves before the harm does, so leadership can act while there is still time. A rising number of unpatched critical systems, for example, is a KRI for the risk of exploitation, and it climbs weeks before any breach, which is exactly the window in which cheap action is still possible.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">KRI</div><div class="lbl">Key risk indicators trending to the line</div></div>
+          <div class="stat"><div class="num">%</div><div class="lbl">Treatments completed on schedule</div></div>
+          <div class="stat"><div class="num">#</div><div class="lbl">Risks above appetite, open</div></div>
+        </div>
+        <p>The register drives the reporting, and the reporting drives the next cycle. When leadership sees the number of risks above appetite and the pace at which treatments close, they can decide whether the current investment is enough or whether the appetite itself needs revisiting. Reporting should carry a trend rather than a single reading, because a number in isolation cannot tell you whether things are getting better or worse, and direction is what a decision-maker actually needs.</p>
+        <h3>Reporting to the audience</h3>
+        <p>Different audiences need different views of the same register. An executive needs the handful of risks that could threaten objectives, in business language, while a control owner needs the detail of the specific treatments they run. Sending the raw register to the board buries the signal, and sending a one-line summary to the operators strips the detail they need, so the reporting layer exists precisely to translate one source of truth into the right lens for each reader.</p>
+        <div class="note"><strong>Note:</strong> Report the risks that would change a decision, not every entry in the register. A board paper is a lens, not a mirror, and its value is in what it leaves out as much as what it includes.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثامن</span>
+        <h2>المراقبة والتقارير</h2>
+        <p class="lead">تقييم المخاطر يشيخ لحظة انتهائه. والمراقبة تُبقيه حيًّا بتتبّع هل ترتفع المخاطر أم تنخفض، وهل تعمل المعالجات فعلًا.</p>
+        <p>مؤشرات المخاطر الرئيسية (KRIs) هي إشارات الإنذار المبكر بأن خطرًا يتّجه نحو الخط. وخلافًا لعدٍّ متأخّر للحوادث، يتحرّك المؤشر الجيد قبل الأذى، فتتصرّف القيادة والوقت ما زال متاحًا. فعددٌ متزايد من الأنظمة الحرجة غير المُرقَّعة، مثلًا، مؤشرٌ لخطر الاستغلال، وهو يتسلّق قبل أي اختراقٍ بأسابيع، وهي بالضبط النافذة التي ما زال الفعل الرخيص فيها ممكنًا.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">KRI</div><div class="lbl">مؤشرات مخاطر تتّجه نحو الخط</div></div>
+          <div class="stat"><div class="num">%</div><div class="lbl">معالجات أُنجزت في موعدها</div></div>
+          <div class="stat"><div class="num">#</div><div class="lbl">مخاطر فوق الشهية، مفتوحة</div></div>
+        </div>
+        <p>السجل يقود التقارير، والتقارير تقود الدورة التالية. فحين ترى القيادة عدد المخاطر فوق الشهية ووتيرة إغلاق المعالجات، تقرّر هل الاستثمار الحالي كافٍ أم أن الشهية نفسها تحتاج إعادة نظر. وينبغي أن تحمل التقارير اتجاهًا لا قراءةً مفردة، لأن رقمًا معزولًا لا يخبرك هل تتحسّن الأمور أم تسوء، والاتجاه هو ما يحتاجه صانع القرار فعلًا.</p>
+        <h3>التقرير حسب الجمهور</h3>
+        <p>جماهير مختلفة تحتاج رؤى مختلفة للسجل نفسه. فالتنفيذي يحتاج حفنة المخاطر التي قد تهدّد الأهداف، بلغة العمل، ومالك الضابط يحتاج تفصيل المعالجات المحدَّدة التي يُشغّلها. وإرسال السجل الخام للمجلس يدفن الإشارة، وإرسال ملخّصٍ بسطرٍ للمشغّلين يجرّد التفصيل الذي يحتاجونه، فطبقة التقارير موجودةٌ تحديدًا لترجمة مصدر حقيقةٍ واحد إلى العدسة الصحيحة لكل قارئ.</p>
+        <div class="note"><strong>ملاحظة:</strong> بلّغ عن المخاطر التي تُغيّر قرارًا لا عن كل قيدٍ في السجل. فورقة المجلس عدسةٌ لا مرآة، وقيمتها فيما تُسقِطه بقدر ما تُدرِجه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="takeaways">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Nine</span>
+        <h2>Key Takeaways &amp; References</h2>
+        <p class="lead">Cyber risk management directs scarce protection to the exposures that matter, by measuring risk, treating it against a stated appetite, and keeping the picture current.</p>
+        <ul>
+          <li>Run risk as a repeating cycle, keep the scales consistent, and treat context-setting as the step that makes the rest reliable.</li>
+          <li>Build every risk from an asset, a threat, and a vulnerability, ranked from a prioritized inventory.</li>
+          <li>Set an explicit appetite, possibly varying by risk type, so the register can separate treat from accept.</li>
+          <li>Choose a treatment, layer complementary controls, and track it from decision to done with an owner and a date.</li>
+          <li>Extend the same cycle to third parties tiered by dependency, monitor with leading indicators, and report only what would change a decision.</li>
+        </ul>
+        <h3>References</h3>
+        <ul class="refs">
+          <li><a href="https://www.iso.org/standard/80585.html" target="_blank" rel="noopener">ISO/IEC 27005:2022, Guidance on managing information security risks.</a></li>
+          <li><a href="https://www.iso.org/standard/65694.html" target="_blank" rel="noopener">ISO 31000:2018, Risk management, Guidelines.</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/30/r1/final" target="_blank" rel="noopener">NIST SP 800-30 Rev. 1, Guide for Conducting Risk Assessments.</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" target="_blank" rel="noopener">NIST SP 800-53 Rev. 5, Security and Privacy Controls.</a></li>
+          <li><a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener">NIST Cybersecurity Framework (CSF) 2.0 (2024 record).</a></li>
+        </ul>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">التاسع</span>
+        <h2>الخلاصات والمراجع</h2>
+        <p class="lead">إدارة مخاطر الأمن توجّه الحماية النادرة إلى التعرّضات التي تهمّ، بقياس الخطر ومعالجته مقابل شهيةٍ مُعلَنة وإبقاء الصورة محدَّثة.</p>
+        <ul>
+          <li>أدِر المخاطر كدورةٍ متكرّرة، وأبقِ المقاييس متّسقة، وعامِل تأسيس السياق كالخطوة التي تجعل البقية موثوقة.</li>
+          <li>ابنِ كل خطرٍ من أصلٍ وتهديدٍ وثغرة، مرتَّبًا من جردٍ مُرتَّب بالأولوية.</li>
+          <li>حدّد شهيةً صريحة، وقد تختلف بنوع الخطر، ليفصل السجل بين المعالجة والقبول.</li>
+          <li>اختر معالجةً، وطبّق ضوابط متكاملة طبقاتٍ، وتابعها من القرار إلى الإنجاز بمالكٍ وتاريخ.</li>
+          <li>مُدّ الدورة نفسها إلى الأطراف الثالثة مصنَّفةً بالاعتماد، وراقب بمؤشرات قائدة، وبلّغ فقط بما يُغيّر قرارًا.</li>
+        </ul>
+        <h3>المراجع</h3>
+        <ul class="refs">
+          <li><a href="https://www.iso.org/standard/80585.html" target="_blank" rel="noopener">ISO/IEC 27005:2022، إرشاد إدارة مخاطر أمن المعلومات.</a></li>
+          <li><a href="https://www.iso.org/standard/65694.html" target="_blank" rel="noopener">ISO 31000:2018، إدارة المخاطر، الإرشادات.</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/30/r1/final" target="_blank" rel="noopener">NIST SP 800-30 Rev. 1، دليل إجراء تقييمات المخاطر.</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" target="_blank" rel="noopener">NIST SP 800-53 Rev. 5، ضوابط الأمن والخصوصية.</a></li>
+          <li><a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener">إطار NIST للأمن السيبراني (CSF) 2.0 (سجل 2024).</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">← Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next →</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="it-cloud-native-platforms.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Cloud-Native Platforms &amp; Kubernetes</span><span data-lang="ar">المنصّات السحابية الأصيلة وKubernetes</span></a><a href="data-governance-and-management.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Data Governance &amp; Management</span><span data-lang="ar">حوكمة البيانات وإدارتها</span></a></div>
+</div>
+<footer>
+    <div class="flinks">
+      <a href="../index.html?view=insights" data-en="The library">مكتبتي</a>
+      <a href="../index.html?view=research" data-en="Research">أبحاثي</a>
+      <a href="../index.html?view=contact" data-en="Contact">تواصل</a>
+    </div>
+    <div class="copy">Copyright &#169; 2026 Saif Ali Alghamdi</div>
+  </footer>
+
+
+</div>
+<script>
+var TITLE_AR="إدارة مخاطر الأمن السيبراني";
+var TITLE_EN="Cyber Risk Management";
+
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+
+
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>
