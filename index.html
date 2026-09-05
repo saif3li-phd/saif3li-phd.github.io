@@ -190,11 +190,38 @@ html[lang="ar"] .si .del i{letter-spacing:normal;text-transform:none;font-size:1
 .pill-tile:hover{background:var(--wash)}
 .pill-tile:hover h3{color:var(--red)}
 .pill-tile .del span{font-family:var(--serif);font-size:19px;unicode-bidi:isolate}
-.sgrid.one{grid-template-columns:1fr}
-.sgrid.one .si{padding:clamp(24px,3vw,36px)}
-.sgrid.one .si p{flex:none;max-width:64ch}
-.sgrid.one .si .areas{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(20px,3vw,44px)}
-@media(max-width:680px){.sgrid.one .si .areas{grid-template-columns:1fr}}
+/* the doctoral programme: courses as numbered rows under two headings */
+.clist{display:block}
+.cgrp{margin-top:clamp(32px,4.4vw,50px)}
+.cgrp:first-child{margin-top:0}
+.cgrp > .lbl{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);
+ font-weight:600;display:block;padding-bottom:11px;border-bottom:1px solid var(--ink)}
+html[lang="ar"] .cgrp > .lbl{letter-spacing:normal;text-transform:none;font-size:13.5px}
+.crs{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:clamp(14px,2.4vw,30px);
+ align-items:baseline;padding:24px 0;border-bottom:1px solid var(--rule);width:100%;
+ background:none;border-inline:0;border-top:0;text-align:start;cursor:pointer;
+ font-family:var(--sans);color:inherit;transition:background .18s var(--e)}
+.crs:hover{background:var(--wash)}
+.crs:hover h3,.crs:hover .no{color:var(--red)}
+.crs .no{font-family:var(--serif);font-size:26px;line-height:1;color:var(--ink-2);
+ font-variant-numeric:tabular-nums;unicode-bidi:isolate;transition:color .18s var(--e)}
+.crs h3{font-family:var(--serif);font-weight:400;font-size:clamp(18.5px,2.1vw,22px);line-height:1.4;
+ transition:color .18s var(--e)}
+.crs .sub{font-size:13.5px;color:var(--ink-2);font-weight:300;margin-top:7px}
+.crs .sub b{font-weight:400;color:var(--ink);font-variant-numeric:tabular-nums;unicode-bidi:isolate}
+.crs .go{font-size:12.5px;color:var(--ink-2);white-space:nowrap}
+.empty.soon{border:1px solid var(--rule);background:var(--wash);padding:clamp(34px,5vw,56px);
+ text-align:center;color:var(--ink-2)}
+.empty.soon b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(20px,2.4vw,25px);
+ color:var(--ink);margin-bottom:10px}
+.empty.soon span{display:block;font-size:14.5px;font-weight:300}
+/* a middle dot next to Arabic-Indic digits reads as a zero, so give it air */
+.sep{font-style:normal;opacity:.38;margin:0 9px;unicode-bidi:isolate}
+@media(max-width:640px){
+ .crs{grid-template-columns:46px minmax(0,1fr);gap:14px;padding:19px 0}
+ .crs .no{font-size:20px}
+ .crs .go{display:none}
+}
 .sgrid.three{grid-template-columns:repeat(3,1fr)}
 @media(max-width:980px){.sgrid.three{grid-template-columns:1fr}}
 .sgrid.three .si{padding:clamp(24px,3vw,34px)}
@@ -563,13 +590,13 @@ footer .mk,footer .mk:hover,footer .mk b,footer .mk i{text-decoration:none}
         <span class="k" data-ar="المسار الأول">Track one</span>
         <h3 data-ar="مسار الدكتوراه">The doctoral track</h3>
         <p data-ar="دكتوراه في إدارة الأعمال، كلية عفت للأعمال بجامعة عفت. ينقسم داخلياً إلى الأكاديمي، وهو ما أتعلّمه من المحاضرات، وإلى المنشورات، وهي الأبحاث والمؤتمرات.">A PhD in Business Administration at Effat College of Business, Effat University. It splits inside into the academic branch, which is what I take from the lectures, and the publications branch, which is the papers and the conferences.</p>
-        <span class="n" data-ar="قيد الدراسة · مقرر واحد · ٤٣ مادة أكاديمية · ثلاث أوراق قيد التحكيم">In progress · one course · <span dir="ltr">43</span> academic pieces · three papers under review</span>
+        <span class="n" data-ar="أربعة عشر مقرراً<i class='sep'>·</i>٤٣ مادة أكاديمية<i class='sep'>·</i>ثلاث أوراق بحثية">Fourteen courses<i class="sep">·</i><span dir="ltr">43</span> academic pieces<i class="sep">·</i>three research papers</span>
       </button>
       <button class="gate" data-goto="master">
         <span class="k" data-ar="المسار الثاني">Track two</span>
         <h3 data-ar="مسار الماجستير">The master's track</h3>
         <p data-ar="ماجستير إدارة الأعمال من جامعة دار الحكمة، بامتياز مع مرتبة الشرف. كل ما أنتجته في المقررات من أدلة دراسية وأوراق تطبيقية، منقولاً إلى هنا من المكتبة.">An MBA from Dar Al-Hekma University, with distinction and honors. Everything the coursework produced, study guides and applied papers, moved here from the library.</p>
-        <span class="n" data-ar="مكتمل · ٢١ عملاً منشوراً">Complete · <span dir="ltr">21</span> published works</span>
+        <span class="n" data-ar="٢١ عملاً منشوراً">Twenty one published works</span>
       </button>
     </div>
   </div></section>
@@ -590,9 +617,9 @@ footer .mk,footer .mk:hover,footer .mk b,footer .mk i{text-decoration:none}
         <p data-ar="وحول هذه المحاور تدور الأوراق التي أعمل عليها.">These are the axes the papers I am working on turn around.</p>
       </div>
       <div class="fact rev">
-        <span class="k" data-ar="الحالة">Status</span>
-        <b data-ar="قيد الدراسة">In progress</b>
-        <p data-ar="تُضاف الأعمال هنا كلما اكتملت وسُمح بمشاركتها.">Work is added here as it is completed and cleared for sharing.</p>
+        <span class="k" data-ar="المقررات">Coursework</span>
+        <b data-ar="أربعة عشر مقرراً">Fourteen courses</b>
+        <p data-ar="سبعة أساسية وسبعة اختيارية، وتحت كل مقرر مواده في الفرع الأكاديمي أدناه.">Seven core and seven electives, each with its own pieces in the academic branch below.</p>
       </div>
     </div>
 
@@ -602,7 +629,7 @@ footer .mk,footer .mk:hover,footer .mk b,footer .mk i{text-decoration:none}
     </div>
 
     <div id="tab-academic">
-      <p class="note" style="margin-top:0;margin-bottom:26px" data-ar="الفرع الأكاديمي مرتّب بالمقررات. كل مقرر يفتح على محاوره وعلى المواد المكتوبة تحته، بصيغة يمكن الرجوع إليها.">The academic branch is organised by course. Each course opens onto its own topics and the pieces written under it, in a form you can come back to.</p>
+      <p class="note" style="margin-top:0;margin-bottom:26px" data-ar="الفرع الأكاديمي مرتّب بالمقررات: سبعة أساسية وسبعة اختيارية. كل مقرر يفتح على محاوره وعلى المواد المكتوبة تحته، بصيغة يمكن الرجوع إليها.">The academic branch is organised by course: seven core and seven electives. Each course opens onto its own topics and the pieces written under it, in a form you can come back to.</p>
       <div class="tools-bar">
         <div class="srch">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
@@ -845,7 +872,7 @@ var PUBS=[{"ke":"Conference paper","ka":"ورقة مؤتمر","te":"Where corpor
 var SEC_AR={"Management & Business":"إدارة وأعمال","Knowledge":"معرفة"};
 var SUB_AR={"Digital & Technology":"رقمي وتقنية","Strategy & Consulting":"استراتيجية واستشارات","Topical Frameworks":"أطر موضوعية","Book Summaries":"ملخصات كتب","Human Capital":"رأس المال البشري","Leadership & Management":"قيادة وإدارة","Marketing & Growth":"تسويق ونمو","Project & Agile":"مشاريع وأجايل","Finance & Economy":"مالية واقتصاد","Governance & Compliance":"حوكمة والتزام","Operations & Quality":"عمليات وجودة","Professional Skills":"مهارات مهنية","Risk & Diagnostics":"مخاطر وتشخيص"};
 var CERT_EN={"الأكاديمي والبحثي":"Academic and research","الاستراتيجية والتنفيذ":"Strategy and execution","القيادة والأعمال":"Leadership and business","الحوكمة والمخاطر":"Governance and risk","الذكاء الاصطناعي والبيانات والتقنية":"AI, data and technology","الأمن السيبراني والخصوصية":"Cybersecurity and privacy"};
-var PHD={"groups":[{"id":"g0","en":"Philosophical foundations","ar":"الأسس الفلسفية للبحث","c":"c1"},{"id":"g1","en":"Philosophy of science","ar":"فلسفة العلم","c":"c1"},{"id":"g2","en":"Research paradigms","ar":"النماذج البحثية","c":"c1"},{"id":"g3","en":"Interpretivist approaches","ar":"المقاربات التفسيرية","c":"c1"},{"id":"g4","en":"Critical traditions","ar":"التقاليد النقدية","c":"c1"},{"id":"g5","en":"Reasoning and theory","ar":"الاستدلال والنظرية","c":"c1"},{"id":"g6","en":"Research design and methodology","ar":"تصميم البحث ومنهجيته","c":"c1"},{"id":"g7","en":"Qualitative methods","ar":"المناهج النوعية","c":"c1"},{"id":"g8","en":"Quantitative methods","ar":"المناهج الكمية","c":"c1"},{"id":"g9","en":"The research process","ar":"عملية البحث","c":"c1"},{"id":"g10","en":"Applied theory","ar":"النظرية التطبيقية","c":"c1"}],"items":[{"i":"phil-burrell-morgan-four-paradigms","e":"Burrell & Morgan's Four Paradigms","a":"نماذج بوريل ومورجان الأربعة","g":"g0"},{"i":"phil-foundations-research-philosophy","e":"Foundations of Research Philosophy","a":"أسس فلسفة البحث","g":"g0"},{"i":"phil-kuhn-paradigms-revolutions","e":"Kuhn: Paradigms & Scientific Revolutions","a":"كون: النماذج والثورات العلمية","g":"g0"},{"i":"phil-ontology-epistemology-axiology","e":"Ontology, Epistemology & Axiology","a":"الأنطولوجيا والإبستمولوجيا والأكسيولوجيا","g":"g0"},{"i":"phil-popper-falsificationism","e":"Popper & Falsificationism","a":"بوبر وقابلية التكذيب","g":"g0"},{"i":"phil-introduction-philosophy-of-science","e":"Introduction to the Philosophy of Science","a":"مقدمة في فلسفة العلم","g":"g1"},{"i":"paradigm-comparison-decision-guide","e":"Comparing the Paradigms & Choosing","a":"مقارنة النماذج والاختيار","g":"g2"},{"i":"paradigm-critical-realism","e":"Critical Realism","a":"الواقعية النقدية","g":"g2"},{"i":"paradigm-critical-theory","e":"Critical Theory","a":"النظرية النقدية","g":"g2"},{"i":"paradigm-interpretivism","e":"Interpretivism","a":"التفسيرية","g":"g2"},{"i":"paradigm-positivism","e":"Positivism","a":"الوضعية","g":"g2"},{"i":"paradigm-post-positivism","e":"Post-Positivism","a":"ما بعد الوضعية","g":"g2"},{"i":"paradigm-pragmatism","e":"Pragmatism","a":"البراغماتية","g":"g2"},{"i":"interp-hermeneutics","e":"Hermeneutics","a":"التأويلية","g":"g3"},{"i":"interp-phenomenology","e":"Phenomenology","a":"الظواهرية","g":"g3"},{"i":"interp-social-constructionism","e":"Social Constructionism","a":"البنائية الاجتماعية","g":"g3"},{"i":"interp-symbolic-interactionism","e":"Symbolic Interactionism","a":"التفاعلية الرمزية","g":"g3"},{"i":"critical-feminist-postcolonial-research","e":"Feminist & Postcolonial Research","a":"البحث النسوي وما بعد الكولونيالي","g":"g4"},{"i":"theory-conceptual-frameworks","e":"Conceptual & Theoretical Frameworks","a":"الأطر المفاهيمية والنظرية","g":"g5"},{"i":"theory-grounded-theory","e":"Grounded Theory","a":"النظرية المتجذّرة","g":"g5"},{"i":"reason-linking-approaches-paradigms","e":"Linking Approaches to Paradigms","a":"ربط المقاربات بالنماذج","g":"g5"},{"i":"reason-deduction-induction-abduction","e":"Reasoning: Deduction, Induction & Abduction","a":"الاستدلال: الاستنباط والاستقراء وما بعدهما","g":"g5"},{"i":"theory-construction-model-building","e":"Theory Construction & Model Building","a":"بناء النظرية والنماذج","g":"g5"},{"i":"design-action-research-design-science","e":"Action Research & Design Science","a":"البحث الإجرائي وعلم التصميم","g":"g6"},{"i":"design-experimental-quasi","e":"Experimental & Quasi-Experimental Design","a":"التصاميم التجريبية وشبه التجريبية","g":"g6"},{"i":"design-quant-qual-mixed","e":"Quantitative, Qualitative & Mixed Methods","a":"المناهج الكمّية والنوعية والمختلطة","g":"g6"},{"i":"design-research-onion","e":"Research Design & the Research Onion","a":"تصميم البحث وبصلة البحث","g":"g6"},{"i":"design-sampling-saturation","e":"Sampling & Saturation","a":"المعاينة والتشبّع","g":"g6"},{"i":"design-survey-scale-development","e":"Survey Research & Scale Development","a":"المسوح وبناء المقاييس","g":"g6"},{"i":"design-validity-reliability-trustworthiness","e":"Validity, Reliability & Trustworthiness","a":"الصدق والثبات والوثوقية","g":"g6"},{"i":"qual-case-study","e":"Case Study Research","a":"بحث دراسة الحالة","g":"g7"},{"i":"qual-content-analysis","e":"Content Analysis","a":"تحليل المحتوى","g":"g7"},{"i":"qual-discourse-analysis","e":"Discourse Analysis","a":"تحليل الخطاب","g":"g7"},{"i":"qual-ethnography","e":"Ethnography","a":"الإثنوغرافيا","g":"g7"},{"i":"qual-narrative-inquiry","e":"Narrative Inquiry","a":"البحث السردي","g":"g7"},{"i":"qual-thematic-analysis","e":"Thematic Analysis","a":"التحليل الموضوعي","g":"g7"},{"i":"quant-structural-equation-modelling","e":"Structural Equation Modelling","a":"نمذجة المعادلات البنيوية","g":"g8"},{"i":"process-research-ethics","e":"Research Ethics","a":"أخلاقيات البحث العلمي","g":"g9"},{"i":"process-research-questions-hypotheses","e":"Research Questions & Hypotheses","a":"أسئلة البحث والفرضيات","g":"g9"},{"i":"process-systematic-review-prisma","e":"Systematic Review & PRISMA","a":"المراجعة المنهجية وبروتوكول PRISMA","g":"g9"},{"i":"process-writing-methodology-chapter","e":"Writing the Methodology Chapter","a":"كتابة فصل المنهجية","g":"g9"},{"i":"applied-diffusion-of-innovations","e":"Diffusion of Innovations","a":"انتشار الابتكارات","g":"g10"},{"i":"applied-technology-acceptance-utaut","e":"Technology Acceptance: TRA, TAM, TPB & UTAUT","a":"نماذج قبول التقنية: من TRA إلى UTAUT","g":"g10"}],"courses":[{"id":"c1","slug":"theory-in-business-administration","en":"Theory in Business Administration","ar":"النظرية في إدارة الأعمال","de":"The philosophical ground of research and the methods built on it: paradigms, reasoning, design, and the qualitative and quantitative traditions.","da":"الأرض الفلسفية للبحث والمناهج المبنية عليها: النماذج البحثية، والاستدلال، وتصميم البحث، والتقاليد النوعية والكمية."}]};
+var PHD={"groups":[{"id":"g0","en":"Philosophical foundations","ar":"الأسس الفلسفية للبحث","c":"c1"},{"id":"g1","en":"Philosophy of science","ar":"فلسفة العلم","c":"c1"},{"id":"g2","en":"Research paradigms","ar":"النماذج البحثية","c":"c1"},{"id":"g3","en":"Interpretivist approaches","ar":"المقاربات التفسيرية","c":"c1"},{"id":"g4","en":"Critical traditions","ar":"التقاليد النقدية","c":"c1"},{"id":"g5","en":"Reasoning and theory","ar":"الاستدلال والنظرية","c":"c1"},{"id":"g6","en":"Research design and methodology","ar":"تصميم البحث ومنهجيته","c":"c1"},{"id":"g7","en":"Qualitative methods","ar":"المناهج النوعية","c":"c1"},{"id":"g8","en":"Quantitative methods","ar":"المناهج الكمية","c":"c1"},{"id":"g9","en":"The research process","ar":"عملية البحث","c":"c1"},{"id":"g10","en":"Applied theory","ar":"النظرية التطبيقية","c":"c1"}],"items":[{"i":"phil-burrell-morgan-four-paradigms","e":"Burrell & Morgan's Four Paradigms","a":"نماذج بوريل ومورجان الأربعة","g":"g0"},{"i":"phil-foundations-research-philosophy","e":"Foundations of Research Philosophy","a":"أسس فلسفة البحث","g":"g0"},{"i":"phil-kuhn-paradigms-revolutions","e":"Kuhn: Paradigms & Scientific Revolutions","a":"كون: النماذج والثورات العلمية","g":"g0"},{"i":"phil-ontology-epistemology-axiology","e":"Ontology, Epistemology & Axiology","a":"الأنطولوجيا والإبستمولوجيا والأكسيولوجيا","g":"g0"},{"i":"phil-popper-falsificationism","e":"Popper & Falsificationism","a":"بوبر وقابلية التكذيب","g":"g0"},{"i":"phil-introduction-philosophy-of-science","e":"Introduction to the Philosophy of Science","a":"مقدمة في فلسفة العلم","g":"g1"},{"i":"paradigm-comparison-decision-guide","e":"Comparing the Paradigms & Choosing","a":"مقارنة النماذج والاختيار","g":"g2"},{"i":"paradigm-critical-realism","e":"Critical Realism","a":"الواقعية النقدية","g":"g2"},{"i":"paradigm-critical-theory","e":"Critical Theory","a":"النظرية النقدية","g":"g2"},{"i":"paradigm-interpretivism","e":"Interpretivism","a":"التفسيرية","g":"g2"},{"i":"paradigm-positivism","e":"Positivism","a":"الوضعية","g":"g2"},{"i":"paradigm-post-positivism","e":"Post-Positivism","a":"ما بعد الوضعية","g":"g2"},{"i":"paradigm-pragmatism","e":"Pragmatism","a":"البراغماتية","g":"g2"},{"i":"interp-hermeneutics","e":"Hermeneutics","a":"التأويلية","g":"g3"},{"i":"interp-phenomenology","e":"Phenomenology","a":"الظواهرية","g":"g3"},{"i":"interp-social-constructionism","e":"Social Constructionism","a":"البنائية الاجتماعية","g":"g3"},{"i":"interp-symbolic-interactionism","e":"Symbolic Interactionism","a":"التفاعلية الرمزية","g":"g3"},{"i":"critical-feminist-postcolonial-research","e":"Feminist & Postcolonial Research","a":"البحث النسوي وما بعد الكولونيالي","g":"g4"},{"i":"theory-conceptual-frameworks","e":"Conceptual & Theoretical Frameworks","a":"الأطر المفاهيمية والنظرية","g":"g5"},{"i":"theory-grounded-theory","e":"Grounded Theory","a":"النظرية المتجذّرة","g":"g5"},{"i":"reason-linking-approaches-paradigms","e":"Linking Approaches to Paradigms","a":"ربط المقاربات بالنماذج","g":"g5"},{"i":"reason-deduction-induction-abduction","e":"Reasoning: Deduction, Induction & Abduction","a":"الاستدلال: الاستنباط والاستقراء وما بعدهما","g":"g5"},{"i":"theory-construction-model-building","e":"Theory Construction & Model Building","a":"بناء النظرية والنماذج","g":"g5"},{"i":"design-action-research-design-science","e":"Action Research & Design Science","a":"البحث الإجرائي وعلم التصميم","g":"g6"},{"i":"design-experimental-quasi","e":"Experimental & Quasi-Experimental Design","a":"التصاميم التجريبية وشبه التجريبية","g":"g6"},{"i":"design-quant-qual-mixed","e":"Quantitative, Qualitative & Mixed Methods","a":"المناهج الكمّية والنوعية والمختلطة","g":"g6"},{"i":"design-research-onion","e":"Research Design & the Research Onion","a":"تصميم البحث وبصلة البحث","g":"g6"},{"i":"design-sampling-saturation","e":"Sampling & Saturation","a":"المعاينة والتشبّع","g":"g6"},{"i":"design-survey-scale-development","e":"Survey Research & Scale Development","a":"المسوح وبناء المقاييس","g":"g6"},{"i":"design-validity-reliability-trustworthiness","e":"Validity, Reliability & Trustworthiness","a":"الصدق والثبات والوثوقية","g":"g6"},{"i":"qual-case-study","e":"Case Study Research","a":"بحث دراسة الحالة","g":"g7"},{"i":"qual-content-analysis","e":"Content Analysis","a":"تحليل المحتوى","g":"g7"},{"i":"qual-discourse-analysis","e":"Discourse Analysis","a":"تحليل الخطاب","g":"g7"},{"i":"qual-ethnography","e":"Ethnography","a":"الإثنوغرافيا","g":"g7"},{"i":"qual-narrative-inquiry","e":"Narrative Inquiry","a":"البحث السردي","g":"g7"},{"i":"qual-thematic-analysis","e":"Thematic Analysis","a":"التحليل الموضوعي","g":"g7"},{"i":"quant-structural-equation-modelling","e":"Structural Equation Modelling","a":"نمذجة المعادلات البنيوية","g":"g8"},{"i":"process-research-ethics","e":"Research Ethics","a":"أخلاقيات البحث العلمي","g":"g9"},{"i":"process-research-questions-hypotheses","e":"Research Questions & Hypotheses","a":"أسئلة البحث والفرضيات","g":"g9"},{"i":"process-systematic-review-prisma","e":"Systematic Review & PRISMA","a":"المراجعة المنهجية وبروتوكول PRISMA","g":"g9"},{"i":"process-writing-methodology-chapter","e":"Writing the Methodology Chapter","a":"كتابة فصل المنهجية","g":"g9"},{"i":"applied-diffusion-of-innovations","e":"Diffusion of Innovations","a":"انتشار الابتكارات","g":"g10"},{"i":"applied-technology-acceptance-utaut","e":"Technology Acceptance: TRA, TAM, TPB & UTAUT","a":"نماذج قبول التقنية: من TRA إلى UTAUT","g":"g10"}],"courses":[{"id":"c1","k":"core","slug":"theory-in-business-administration","en":"Theory in Business Administration","ar":"النظرية في إدارة الأعمال","de":"The philosophical ground of research and the methods built on it: paradigms, reasoning, design, and the qualitative and quantitative traditions.","da":"الأرض الفلسفية للبحث والمناهج المبنية عليها: النماذج البحثية، والاستدلال، وتصميم البحث، والتقاليد النوعية والكمية."},{"id":"c2","k":"core","slug":"foundation-of-business-research","en":"Foundation of Business Research","ar":"أسس البحث في الأعمال"},{"id":"c3","k":"core","slug":"competitive-analysis-and-strategy","en":"Competitive Analysis and Strategy","ar":"التحليل التنافسي والاستراتيجية"},{"id":"c4","k":"core","slug":"business-education-for-scholar","en":"Business Education for Scholar","ar":"تعليم إدارة الأعمال للباحثين"},{"id":"c5","k":"core","slug":"econometrics","en":"Econometrics","ar":"الاقتصاد القياسي"},{"id":"c6","k":"core","slug":"advanced-statistical-research-techniques","en":"Advanced Statistical Research Techniques","ar":"أساليب البحث الإحصائي المتقدمة"},{"id":"c7","k":"core","slug":"advanced-qualitative-methods","en":"Advanced Qualitative Methods","ar":"المناهج النوعية المتقدمة"},{"id":"e1","k":"elective","slug":"leadership-theory-and-research","en":"Leadership: Theory & Research","ar":"القيادة: النظرية والبحث"},{"id":"e2","k":"elective","slug":"entrepreneurship-application-of-digital-media","en":"Entrepreneurship Application of Digital Media","ar":"تطبيقات الإعلام الرقمي في ريادة الأعمال"},{"id":"e3","k":"elective","slug":"corporate-entrepreneurship-and-innovation","en":"Corporate Entrepreneurship and Innovation","ar":"ريادة الأعمال المؤسسية والابتكار"},{"id":"e4","k":"elective","slug":"new-venture-creation","en":"New Venture Creation","ar":"تأسيس المشاريع الجديدة"},{"id":"e5","k":"elective","slug":"entrepreneurship-and-leadership","en":"Entrepreneurship and Leadership","ar":"ريادة الأعمال والقيادة"},{"id":"e6","k":"elective","slug":"marketing-management-and-strategy","en":"Marketing Management and Strategy","ar":"إدارة التسويق والاستراتيجية"},{"id":"e7","k":"elective","slug":"marketing-in-the-digital-age","en":"Marketing in the Digital Age","ar":"التسويق في العصر الرقمي"}]};
 
 var LANG='en';
 function t(en,ar){return LANG==='en'?en:ar;}
@@ -999,7 +1026,7 @@ function renderLib(){
 
   document.getElementById('libCnt').innerHTML=t('Showing <b>'+list.length+'</b> of <b>'+LIB.length+'</b> pieces','عرض <b>'+list.length+'</b> من <b>'+LIB.length+'</b> مادة');
   var rows=document.getElementById('libRows'),e=document.getElementById('libEmpty');
-  e.hidden=list.length>0; e.textContent=t('Nothing matches that search.','لا توجد نتائج مطابقة.');
+  e.className='empty'; e.hidden=list.length>0; e.textContent=t('Nothing matches that search.','لا توجد نتائج مطابقة.');
   rows.innerHTML=list.map(function(a){
     return '<a class="r" href="articles/'+esc(a.i)+'.html"><span class="k">'+esc(subN(a.c))+'</span>'+
       '<div><h3>'+esc(t(a.e,a.a))+'</h3></div><span class="go">'+t('Read','اقرأ')+'</span></a>';
@@ -1022,7 +1049,7 @@ function renderMst(){
 
   document.getElementById('mstCnt').innerHTML=t('Showing <b>'+list.length+'</b> of <b>'+MST.length+'</b> works','عرض <b>'+list.length+'</b> من <b>'+MST.length+'</b> عملاً');
   var rows=document.getElementById('mstRows'),e=document.getElementById('mstEmpty');
-  e.hidden=list.length>0; e.textContent=t('Nothing matches that search.','لا توجد نتائج مطابقة.');
+  e.className='empty'; e.hidden=list.length>0; e.textContent=t('Nothing matches that search.','لا توجد نتائج مطابقة.');
   rows.innerHTML=list.map(function(a){
     var k=a.k==='guide'?t('Study guide','دليل دراسي'):t('Applied paper','ورقة تطبيقية');
     return '<a class="r" href="master/'+esc(a.i)+'.html"><span class="k">'+esc(k)+'</span>'+
@@ -1031,12 +1058,13 @@ function renderMst(){
 }
 
 /* ============ doctoral coursework ============ */
-/* The academic branch is a set of courses. A course is the gate; its topics sit
-   inside it, and the pieces sit under the topics. Only completed courses exist
-   in the data, so nothing here has to be hidden or greyed. */
+/* The academic branch is the programme: seven core courses and seven electives,
+   in curriculum order. No status is written anywhere. A course that has no
+   pieces yet is still listed, and opens onto a short note. */
 var PHD_ST={c:'',g:'',q:''};
-/* Arabic-Indic numeral, zero padded, for the course number in the Arabic view */
 function ard(n){return ('0'+n).slice(-2).replace(/[0-9]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'[+d];});}
+/* numerals follow the language of the line they sit in */
+function num(n){return LANG==='en'?String(n):String(n).replace(/[0-9]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'[+d];});}
 function courseById(id){return PHD.courses.filter(function(c){return c.id===id;})[0];}
 function courseBySlug(s){return PHD.courses.filter(function(c){return c.slug===s;})[0];}
 function phdGroupsOf(c){return PHD.groups.filter(function(g){return g.c===c;});}
@@ -1052,28 +1080,29 @@ function renderPhd(){
   var q=norm(PHD_ST.q);
   var course=PHD_ST.c?courseById(PHD_ST.c):null;
 
-  /* the course landing: one tile per completed course */
+  /* the programme: every course, grouped core then elective */
   if(!course&&!q){
     gc.hidden=true; gc.innerHTML='';
     rows.innerHTML=''; e.hidden=true;
-    cards.hidden=false;
-    cards.className='sgrid'+(PHD.courses.length===1?' one':(PHD.courses.length>=3?' three':''));
-    cnt.innerHTML=(PHD.courses.length===1)
-      ? t('One course. Open it, or search its pieces.','مقرر واحد. افتحه، أو ابحث في مواده.')
-      : t('<b>'+PHD.courses.length+'</b> courses. Open a course, or search across all of them.',
-          '<b>'+PHD.courses.length+'</b> مقررات. افتح مقرراً، أو ابحث في الجميع.');
-    cards.innerHTML=PHD.courses.map(function(c,i){
-      var gs=phdGroupsOf(c.id), n=phdItemsOf(c.id).length;
-      return '<button class="si pill-tile" data-open="'+esc(c.id)+'">'+
-        '<span class="k">'+t('Course 0'+(i+1),'المقرر '+ard(i+1))+'</span>'+
-        '<h3>'+esc(t(c.en,c.ar))+'</h3>'+
-        '<p>'+esc(t(c.de,c.da))+'</p>'+
-        '<div class="areas">'+gs.map(function(g){
-            var k=PHD.items.filter(function(x){return x.g===g.id;}).length;
-            return '<span>'+esc(t(g.en,g.ar))+'<b dir="ltr">'+k+'</b></span>';
-          }).join('')+'</div>'+
-        '<div class="del"><i>'+t('Pieces','المواد')+'</i><span dir="ltr">'+n+'</span></div></button>';
+    cards.hidden=false; cards.className='clist';
+    cards.innerHTML=[['core',t('Core courses','المقررات الأساسية')],
+                     ['elective',t('Elective courses','المقررات الاختيارية')]].map(function(pair){
+      var list=PHD.courses.filter(function(c){return c.k===pair[0];});
+      if(!list.length) return '';
+      return '<div class="cgrp"><span class="lbl">'+pair[1]+'</span>'+
+        list.map(function(c,i){
+          var n=phdItemsOf(c.id).length, gs=phdGroupsOf(c.id).length;
+          var sub=n
+            ? '<div class="sub"><b>'+num(gs)+'</b> '+t(gs===1?'topic':'topics','محوراً')+
+              '<i class="sep">·</i><b>'+num(n)+'</b> '+t(n===1?'piece':'pieces','مادة')+'</div>'
+            : '';
+          return '<button class="crs" data-open="'+esc(c.id)+'">'+
+            '<span class="no">'+t('0'+(i+1),ard(i+1))+'</span>'+
+            '<div><h3>'+esc(t(c.en,c.ar))+'</h3>'+sub+'</div>'+
+            '<span class="go">'+t('Open','افتح')+'</span></button>';
+        }).join('')+'</div>';
     }).join('');
+    cnt.innerHTML='';
     cards.querySelectorAll('[data-open]').forEach(function(b){
       b.onclick=function(){PHD_ST.c=b.getAttribute('data-open');PHD_ST.g='';renderPhd();};
     });
@@ -1082,12 +1111,24 @@ function renderPhd(){
 
   cards.hidden=true; cards.innerHTML='';
 
-  /* inside a course: back, then its topics */
   var scope=course?phdItemsOf(course.id):PHD.items;
+  var back='<button data-back="1" class="back">'+t('&#8592; All courses','&#8594; كل المقررات')+'</button>';
+
+  /* a course whose pieces have not been written yet */
+  if(course&&!scope.length){
+    gc.hidden=false; gc.innerHTML=back;
+    gc.querySelector('[data-back]').onclick=function(){PHD_ST.c='';PHD_ST.g='';renderPhd();};
+    cnt.innerHTML='';
+    rows.innerHTML='';
+    e.hidden=false; e.className='empty soon';
+    e.innerHTML='<b>'+esc(t(course.en,course.ar))+'</b><span>'+
+      t('The pieces for this course will be added here soon.',
+        'قريباً تُضاف مواد هذا المقرر هنا.')+'</span>';
+    return;
+  }
+
   gc.hidden=false;
-  gc.innerHTML=(course
-      ? '<button data-back="1" class="back">'+t('&#8592; All courses','&#8594; كل المقررات')+'</button>'
-      : '')+
+  gc.innerHTML=(course?back:'')+
     '<button data-g="" class="'+(PHD_ST.g===''?'on':'')+'">'+t('All','الكل')+'<b>'+scope.length+'</b></button>'+
     (course?phdGroupsOf(course.id):PHD.groups).map(function(g){
       var n=PHD.items.filter(function(x){return x.g===g.id;}).length;
@@ -1109,7 +1150,7 @@ function renderPhd(){
         'عرض <b>'+list.length+'</b> من <b>'+scope.length+'</b> مادة في '+esc(course.ar))
     : t('Showing <b>'+list.length+'</b> of <b>'+PHD.items.length+'</b> pieces across all courses',
         'عرض <b>'+list.length+'</b> من <b>'+PHD.items.length+'</b> مادة في كل المقررات');
-  e.hidden=list.length>0; e.textContent=t('Nothing matches that search.','لا توجد نتائج مطابقة.');
+  e.className='empty'; e.hidden=list.length>0; e.textContent=t('Nothing matches that search.','لا توجد نتائج مطابقة.');
   rows.innerHTML=list.map(function(x){
     var g=PHD.groups.filter(function(y){return y.id===x.g;})[0];
     return '<a class="r" href="phd/'+esc(x.i)+'.html"><span class="k">'+esc(t(g.en,g.ar))+'</span>'+
