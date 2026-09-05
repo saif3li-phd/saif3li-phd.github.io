@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integrity and Disclosure · Saif Alghamdi</title>
+<meta name="description" content="Integrity and disclosure: the four tiers of AI use, why a tool cannot be an author, writing an accurate disclosure statement, and what to record.">
+<link rel="canonical" href="https://saif3li-phd.github.io/phd/ai-integrity.html">
+<meta name="author" content="Saif Ali Alghamdi">
+<meta name="theme-color" content="#2D2D2D">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saif Ali Alghamdi">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:url" content="https://saif3li-phd.github.io/phd/ai-integrity.html">
+<meta property="og:title" content="Integrity and Disclosure · Saif Alghamdi">
+<meta property="og:description" content="Integrity and disclosure: the four tiers of AI use, why a tool cannot be an author, writing an accurate disclosure statement, and what to record.">
+<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Integrity and Disclosure · Saif Alghamdi">
+<meta name="twitter:description" content="Integrity and disclosure: the four tiers of AI use, why a tool cannot be an author, writing an accurate disclosure statement, and what to record.">
+<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Integrity and Disclosure · Saif Alghamdi", "description": "Integrity and disclosure: the four tiers of AI use, why a tool cannot be an author, writing an accurate disclosure statement, and what to record.", "url": "https://saif3li-phd.github.io/phd/ai-integrity.html", "inLanguage": "en", "author": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "publisher": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "image": "https://saif3li-phd.github.io/assets/og.jpg", "isPartOf": {"@type": "WebSite", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}}
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="0009a1c6-b533-4e1e-9dbc-8b20dbe29af9"></script>
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#foundation-of-business-research"><span data-lang="en">Foundation of Business Research</span><span data-lang="ar">أسس بحوث الأعمال</span></a><i>&rsaquo;</i><span data-lang="en">AI in research</span><span data-lang="ar">الذكاء الاصطناعي في البحث</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">AI IN RESEARCH · PhD</span><span data-lang="ar">الذكاء الاصطناعي في البحث · دكتوراه</span></div>
+    <h1><span data-lang="en">Integrity and Disclosure</span><span data-lang="ar">النزاهة والإفصاح</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">AI in research</span><span data-lang="ar">الذكاء الاصطناعي في البحث</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">10 min</span><span data-lang="ar">١٠ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذا الموضوع</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="tiers"><span data-lang="en">Four tiers</span><span data-lang="ar">أربع طبقات</span></a></li><li><a data-id="authorship"><span data-lang="en">Authorship</span><span data-lang="ar">التأليف</span></a></li><li><a data-id="misconduct"><span data-lang="en">What counts as misconduct</span><span data-lang="ar">ما يُعدّ سوء سلوك</span></a></li><li><a data-id="disclosure"><span data-lang="en">Disclosure</span><span data-lang="ar">الإفصاح</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Academic integrity and disclosure when AI tools are used</div>
+          <div><span>Covers:</span> The four tiers of use, authorship, writing a disclosure statement, and what to record</div>
+          <div><span>Use:</span> Using these tools in a way you can declare and defend</div>
+          <div><span>Level:</span> Doctoral business research</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Academic integrity is a claim about origin: that the work is yours, that sources are attributed, and that the account of how it was produced is accurate. AI tools do not change that standard; they add a new category of contribution that has to be declared.</p>
+        <p>Three principles cover almost every case and they are stable across the policies that differ in detail. <strong>You are responsible for everything you submit</strong>, regardless of how it was produced. <strong>Contributions are attributed</strong>, and a tool that materially shaped the work is a contribution. And <strong>the account of your process must be accurate</strong>, which is what a disclosure statement is.</p>
+        <p>The complication is that institutional policies vary considerably and are changing. A use that one university encourages is a disciplinary matter at another, and a policy written two years ago may not address the tool you are using. Your obligation is to find your institution's current policy, follow it, and where it is silent, disclose rather than assume.</p>
+        <p>The practical position is simpler than the policy landscape suggests. If you would be uncomfortable stating in your thesis exactly how you used a tool, that discomfort is the answer, and the use is one to change rather than to conceal.</p>
+        <p>This framework covers the four tiers of use and where the boundaries usually fall, why a tool cannot be an author, how to write a disclosure statement, and what to record along the way. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Read your institution's policy before you start, not before you submit. Policies specify what must be disclosed and often what must be recorded, and a record you did not keep cannot be reconstructed.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> النزاهة الأكاديمية والإفصاح عند استخدام أدوات الذكاء</div>
+          <div><span>يغطّي:</span> طبقات الاستخدام الأربع، والتأليف، وكتابة عبارة إفصاح، وما يُسجّل</div>
+          <div><span>الاستخدام:</span> استخدام هذه الأدوات بطريقة تستطيع إعلانها والدفاع عنها</div>
+          <div><span>المستوى:</span> بحوث الأعمال لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">النزاهة الأكاديمية ادّعاء عن الأصل: أن العمل لك، وأن المصادر منسوبة، وأن العرض لكيفية إنتاجه دقيق. وأدوات الذكاء لا تغيّر ذلك المعيار؛ بل تضيف فئة إسهام جديدة يجب إعلانها.</p>
+        <p>وثلاثة مبادئ تغطي كل حالة تقريبًا وهي مستقرة عبر السياسات المختلفة في التفاصيل. <strong>أنت مسؤول عن كل ما تسلّمه</strong>، بصرف النظر عن كيفية إنتاجه. و<strong>الإسهامات تُنسب</strong>، والأداةُ التي شكّلت العمل جوهريًا إسهام. و<strong>العرض لعمليتك يجب أن يكون دقيقًا</strong>، وهذا ما تكونه عبارة الإفصاح.</p>
+        <p>والتعقيد أن السياسات المؤسسية تتباين كثيرًا وهي تتغير. فاستخدام تشجعه جامعة مسألة تأديبية في أخرى، وسياسة كُتبت قبل سنتين قد لا تعالج الأداة التي تستخدمها. والتزامُك إيجادُ سياسة مؤسستك الحالية واتّباعها، وحيث تسكت، الإفصاحُ لا الافتراض.</p>
+        <p>والموقف العملي أبسط مما يوحي مشهد السياسات. فإن كنت ستشعر بعدم الارتياح لذكر كيفية استخدامك أداةً بالضبط في أطروحتك، فذلك الانزعاج هو الإجابة، والاستخدامُ مما يُغيّر لا مما يُخفى.</p>
+        <p>ويغطي هذا الإطار طبقات الاستخدام الأربع وأين تقع الحدود عادةً، ولماذا لا تكون أداة مؤلفًا، وكيف تُكتب عبارة إفصاح، وما يُسجّل في الطريق. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> اقرأ سياسة مؤسستك قبل أن تبدأ لا قبل أن تسلّم. فالسياسات تحدد ما يجب الإفصاح عنه وغالبًا ما يجب تسجيله، والسجلُّ الذي لم تحتفظ به لا يمكن إعادة بنائه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="tiers">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Four Tiers of Use</h2>
+        <p class="lead">Institutional policies differ in detail and converge on a broadly similar structure. Four tiers describe where uses usually fall.</p>
+        <svg viewBox="0 0 700 256" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">1</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Ordinarily permitted</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">spelling, grammar, and clarity edits to your own text</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">2</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Permitted with disclosure</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">code generation, structuring, translation, orientation</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">3</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Usually restricted</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">generating text that appears in the thesis</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="199.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">4</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Generally prohibited</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">producing analysis, interpretation, or unverified references</text><text x="350.0" y="245.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">four tiers; where your institution places a use is what governs, not this table</text></svg>
+        <p><strong>Ordinarily permitted</strong> covers spelling, grammar, and clarity edits to text you wrote. This is treated as equivalent to a spelling checker or a proofreader, both of which have always been acceptable, and it is generally not required to be disclosed. Some institutions require disclosure even here, which is one reason to read the policy.</p>
+        <p><strong>Permitted with disclosure</strong> is the tier where most legitimate research use sits: generating code you read and verify, restructuring your own notes, translating text you then check, and explaining concepts to orient your reading. These materially assisted the work without producing its content, and the standard expectation is that they are declared.</p>
+        <p><strong>Usually restricted</strong> covers generating text that appears in the thesis. Policies here vary most: some prohibit it entirely, some permit it with disclosure of the specific passages, and some permit it for particular sections. Where your policy is unclear, treat generated text as unacceptable, because the cost of unnecessary caution is nothing and the cost of the reverse is severe.</p>
+        <p><strong>Generally prohibited</strong> covers producing analysis or interpretation presented as yours, generating references without verification, and having a tool write substantive content you submit. These fail the responsibility principle: you cannot answer for work you did not do, and a doctorate is an assessment of your capability rather than of the document's quality.</p>
+        <p>Two boundary cases arise often and both have defensible answers. <strong>Language support for non-native speakers</strong> is generally acceptable and often explicitly permitted, on the same basis as human proofreading, provided the tool improves expression rather than generating content. Disclose it, since the disclosure costs nothing and protects you.</p>
+        <p><strong>Code generation</strong> is widely accepted, on the reasoning that a script is a means rather than the intellectual contribution, and that you must understand and verify it. Disclose the tool and the scope, and be able to explain what every line does, which is the same standard that applies to code you found in a forum.</p>
+        <div class="note"><strong>Note:</strong> When you cannot tell which tier a use falls into, the safe test is whether you would state it plainly in your methodology. If the honest sentence describing what you did sounds like a problem, it is one.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>طبقات الاستخدام الأربع</h2>
+        <p class="lead">السياسات المؤسسية تختلف في التفاصيل وتتلاقى على بنية متشابهة عمومًا. وأربع طبقات تصف أين تقع الاستخدامات عادةً.</p>
+        <svg viewBox="0 0 700 256" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">١</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">مسموح عادةً</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">تحرير الإملاء والنحو والوضوح لنصك أنت</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٢</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">مسموح بإفصاح</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">توليد الشفرة والهيكلة والترجمة والتوجيه</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٣</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">مقيّد عادةً</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">توليد نص يظهر في الأطروحة</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="199.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٤</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">محظور عمومًا</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">إنتاج تحليل أو تفسير أو مراجع غير متحقّق منها</text><text x="350.0" y="245.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">أربع طبقات؛ وما يحكم هو أين تضع مؤسستك استخدامًا لا هذا الجدول</text></svg>
+        <p><strong>المسموح عادةً</strong> يغطي تحرير الإملاء والنحو والوضوح لنصّ كتبته. ويُعامل هذا مكافئًا لمدقق إملائي أو مراجع لغوي، وكلاهما كان مقبولًا دائمًا، ولا يُشترط الإفصاح عنه عمومًا. وبعض المؤسسات تشترط الإفصاح حتى هنا، وهذا سبب لقراءة السياسة.</p>
+        <p><strong>والمسموح بإفصاح</strong> هو الطبقة التي يجلس فيها معظم الاستخدام البحثي المشروع: توليدُ شفرة تقرؤها وتتحقق منها، وإعادةُ هيكلة ملاحظاتك، وترجمةُ نص تفحصه بعدها، وشرحُ مفاهيم لتوجيه قراءتك. فهذه ساعدت العمل جوهريًا دون إنتاج محتواه، والتوقعُ المعياري إعلانها.</p>
+        <p><strong>والمقيّد عادةً</strong> يغطي توليد نص يظهر في الأطروحة. والسياسات هنا الأكثر تباينًا: فبعضها يمنعه كليًا، وبعضها يجيزه بإفصاح عن المقاطع المحددة، وبعضها يجيزه لأقسام بعينها. وحيث تكون سياستك غير واضحة، فعامل النص المولّد غير مقبول، لأن كلفة الاحتراز غير اللازم لا شيء وكلفة العكس شديدة.</p>
+        <p><strong>والمحظور عمومًا</strong> يغطي إنتاج تحليل أو تفسير يُقدّم على أنه لك، وتوليد مراجع بلا تحقق، وجعل أداة تكتب محتوى جوهريًا تسلّمه. فهذه تخفق في مبدأ المسؤولية: فلا تستطيع الإجابة عن عمل لم تؤدّه، والدكتوراه تقييم لقدرتك لا لجودة الوثيقة.</p>
+        <p>وحالتان حدّيتان تنشآن كثيرًا ولكلتيهما إجابة قابلة للدفاع. <strong>الدعم اللغوي لغير الناطقين بالإنجليزية</strong> مقبول عمومًا ومسموح صراحةً غالبًا، على الأساس نفسه كالمراجعة اللغوية البشرية، شريطة أن تحسّن الأداة التعبير لا أن تولّد محتوى. أفصح عنه، فالإفصاح لا يكلّف شيئًا ويحميك.</p>
+        <p>و<strong>توليد الشفرة</strong> مقبول على نطاق واسع، بتعليل أن النص البرمجي وسيلة لا الإسهام الفكري، وأن عليك فهمه والتحقق منه. أفصح عن الأداة والنطاق، وكن قادرًا على شرح ما يفعله كل سطر، وهذا المعيار نفسه المنطبق على شفرة وجدتها في منتدى.</p>
+        <div class="note"><strong>ملاحظة:</strong> حين لا تستطيع معرفة أي طبقة يقع فيها استخدام، فالاختبار الآمن هل ستذكره بوضوح في منهجيتك. فإن كانت الجملة الصادقة التي تصف ما فعلت تبدو مشكلة، فهي مشكلة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="authorship">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Why a Tool Cannot Be an Author</h2>
+        <p class="lead">The publishing world settled this question quickly and unanimously, and the reasoning is worth understanding because it explains the whole disclosure framework.</p>
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#A32020"/><text x="195.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">What authorship requires</text><text x="195.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">substantial contribution, plus</text><text x="195.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">accountability for the work</text><rect x="360.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#8C8C8C"/><text x="505.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">What a tool can do</text><text x="505.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">produce text; it cannot be accountable for</text><text x="505.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">anything</text><rect x="140.0" y="168.0" width="420.0" height="26.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="185.0" text-anchor="middle" font-size="10.5" font-weight="600" fill="#2D2D2D">responsibility stays entirely with the named human authors</text><text x="350.0" y="236.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">a tool cannot be an author because it cannot answer for the work</text></svg>
+        <p>Authorship requires two things. A <strong>substantial contribution</strong> to the work, and <strong>accountability</strong> for it: the ability to answer for the content, to respond to challenges, and to take responsibility if something is wrong. A tool may satisfy the first in some sense; it cannot satisfy the second at all.</p>
+        <p>Three consequences follow directly. <strong>Tools are not listed as authors</strong>, and every major publisher and editorial body now states this explicitly. <strong>Tools are not cited as sources</strong>, because a source is something a reader can consult and a conversation with a system that produces different output each time is not consultable. And <strong>responsibility stays entirely with the human authors</strong>, including responsibility for anything a tool produced that turned out to be wrong.</p>
+        <p>That last point is the operative one for a doctoral researcher. An error introduced by a tool is your error in exactly the way an error introduced by a research assistant would be, and explaining where it came from does not transfer the responsibility. The document carries your name and the accountability is not divisible.</p>
+        <p>Two adjacent questions arise in doctoral work and both have clear answers. <strong>Can a tool be acknowledged?</strong> Acknowledgments credit contributions that did not rise to authorship, and disclosure of tool use in the methods or in a dedicated statement is the standard practice rather than an acknowledgment line, though some institutions prefer the latter. <strong>Should the exchange be included?</strong> Where a tool substantially shaped a specific part of the work, some policies require the prompts and outputs to be available, which is another reason to keep the log.</p>
+        <p>One further point matters specifically for a thesis by publication. If any of your papers were produced with tool assistance, the disclosure requirements of the journals apply in addition to those of your institution, and they may differ. Check both, and where they differ, meet the stricter one.</p>
+        <div class="note"><strong>Note:</strong> The question to ask about any contribution, human or otherwise, is whether the contributor could defend the work if challenged. That single test explains why supervisors are acknowledged rather than listed, why proofreaders are disclosed, and why tools are neither authors nor sources.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>لماذا لا تكون أداة مؤلفًا</h2>
+        <p class="lead">عالم النشر حسم هذا السؤال سريعًا وبإجماع، والتعليل يستحق الفهم لأنه يفسّر إطار الإفصاح كله.</p>
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#A32020"/><text x="195.0" y="80.1" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">ما يتطلبه التأليف</text><text x="195.0" y="94.1" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">إسهام جوهري، مع مساءلة عن العمل</text><rect x="360.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#8C8C8C"/><text x="505.0" y="80.1" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">ما تستطيعه أداة</text><text x="505.0" y="94.1" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">إنتاج نص؛ ولا تستطيع المساءلة عن شيء</text><rect x="140.0" y="168.0" width="420.0" height="26.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="185.0" text-anchor="middle" font-size="10.5" font-weight="600" fill="#2D2D2D">المسؤولية تبقى كليًا مع المؤلفين البشر المسمّين</text><text x="350.0" y="236.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">الأداة لا تكون مؤلفًا لأنها لا تستطيع الإجابة عن العمل</text></svg>
+        <p>والتأليف يتطلب شيئين. <strong>إسهامًا جوهريًا</strong> في العمل، و<strong>مساءلةً</strong> عنه: القدرة على الإجابة عن المحتوى، والاستجابة للتحديات، وتحمّل المسؤولية إن كان شيء خاطئًا. وقد تستوفي أداة الأول بمعنى ما؛ ولا تستطيع استيفاء الثاني البتة.</p>
+        <p>وثلاث نتائج تتبع مباشرةً. <strong>الأدوات لا تُدرج مؤلفين</strong>، وكل ناشر كبير وهيئة تحرير تذكر هذا صراحةً الآن. و<strong>الأدوات لا يُستشهد بها مصادر</strong>، لأن المصدر شيء يستطيع قارئ الرجوع إليه ومحادثة مع نظام يُنتج مخرجًا مختلفًا كل مرة ليست قابلة للرجوع. و<strong>المسؤولية تبقى كليًا مع المؤلفين البشر</strong>، بما فيها المسؤولية عن أي شيء أنتجته أداة وتبيّن أنه خاطئ.</p>
+        <p>وتلك النقطة الأخيرة هي العملية لباحث دكتوراه. فخطأ أدخلته أداة خطؤك بالضبط كما سيكون خطأ أدخله مساعد بحث، وشرحُ من أين جاء لا ينقل المسؤولية. فالوثيقة تحمل اسمك والمساءلة غير قابلة للقسمة.</p>
+        <p>وسؤالان مجاوران ينشآن في عمل الدكتوراه ولكليهما إجابة واضحة. <strong>هل يمكن شكر أداة؟</strong> فالشكر ينسب إسهامات لم ترق إلى التأليف، والإفصاحُ عن استخدام الأدوات في المناهج أو في عبارة مخصصة هو الممارسة المعيارية لا سطر شكر، وإن كانت بعض المؤسسات تفضّل الأخير. و<strong>هل يُدرج التبادل؟</strong> فحيث شكّلت أداة جزءًا بعينه من العمل جوهريًا، تشترط بعض السياسات إتاحة المطالبات والمخرجات، وهذا سبب آخر للاحتفاظ بالسجل.</p>
+        <p>ونقطة أخرى تهم تحديدًا لأطروحة بالنشر. فإن أُنتجت أيّ من أوراقك بمساعدة أدوات، فمتطلبات الإفصاح في المجلات تنطبق إضافةً إلى متطلبات مؤسستك، وقد تختلف. افحص الاثنين، وحيث تختلفان فاستوف الأشد.</p>
+        <div class="note"><strong>ملاحظة:</strong> السؤال الذي يُسأل عن أي إسهام، بشريًا كان أم غيره، هل يستطيع المسهم الدفاع عن العمل إن تُحدّي. وذلك الاختبار المفرد يفسّر لماذا يُشكر المشرفون لا يُدرجون، ولماذا يُفصح عن المراجعين اللغويين، ولماذا لا تكون الأدوات مؤلفين ولا مصادر.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="misconduct">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Where the Line Is Crossed</h2>
+        <p class="lead">Five uses cross from questionable into misconduct, and each does so for a stated reason rather than because a policy happens to list it.</p>
+        <p><strong>Submitting generated text as your own writing.</strong> This is the clearest case, because a thesis is a claim that the writing represents your understanding, and text you did not compose does not. Whether it was detected is irrelevant to whether it happened.</p>
+        <p><strong>Citing references you did not verify.</strong> A fabricated citation in a submitted document is a false statement about the literature, and citing a real paper you have not read for a claim it does not make is the same failure with a different mechanism. Both are detectable, and both are treated seriously because they corrupt the citation record that other researchers rely on.</p>
+        <p><strong>Presenting generated analysis or interpretation as your reasoning.</strong> A doctorate assesses your capacity to reason about evidence. Output accepted without being worked through is not your reasoning, and a viva makes this visible quickly, because you will be asked to explain the reasoning and will have nothing to explain.</p>
+        <p><strong>Concealing use that the policy requires you to disclose.</strong> This is a separate offence from the use itself: an otherwise permitted use becomes misconduct when it is required to be declared and is not, because the offence is the false account of the process.</p>
+        <p><strong>Putting confidential data into a tool.</strong> This breaches data protection and usually your ethics approval, and it is a serious matter independent of any question about authorship. It is also the one on this list that harms someone other than you.</p>
+        <p>Three defences that do not work are worth naming, because they are the ones people reach for. <strong>I did not know the policy</strong> is not accepted, since finding it is your responsibility. <strong>The tool made the error</strong> is not accepted, since you submitted the document. And <strong>everyone uses these tools</strong> is not a claim about whether a specific use was permitted, which is the only question at issue.</p>
+        <p>What does work is a documented, honest process: a policy you read, a use that falls within it, a record of what you did, verification you can describe, and a disclosure that matches what happened. That combination is not merely a defence; it is what responsible practice looks like, and the defence is a by-product of it.</p>
+        <div class="note"><strong>Note:</strong> Institutions increasingly ask candidates in the viva how AI tools were used. An honest, specific answer supported by a log is straightforward; an improvised one is not, and the difference is decided months earlier by whether you kept the record.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>أين يُعبر الحد</h2>
+        <p class="lead">خمسة استخدامات تعبر من المشكوك فيه إلى سوء السلوك، وكل واحد يفعل ذلك لسبب مذكور لا لأن سياسةً تصادف أن تسرده.</p>
+        <p><strong>تسليم نص مولّد بوصفه كتابتك.</strong> وهذه أوضح حالة، لأن الأطروحة ادّعاء بأن الكتابة تمثّل فهمك، والنصُّ الذي لم تؤلفه لا يمثّله. وهل اكتُشف أمر لا صلة له بهل وقع.</p>
+        <p><strong>الاستشهاد بمراجع لم تتحقق منها.</strong> فاستشهاد ملفّق في وثيقة مسلّمة عبارة كاذبة عن الأدبيات، والاستشهادُ بورقة حقيقية لم تقرأها لادّعاء لا تطلقه هو الإخفاق نفسه بآلية مختلفة. وكلاهما قابل للكشف، وكلاهما يُعامل بجدية لأنهما يُفسدان سجل الاستشهاد الذي يعتمد عليه باحثون آخرون.</p>
+        <p><strong>تقديم تحليل أو تفسير مولّد بوصفه تعليلك.</strong> فالدكتوراه تقيّم قدرتك على التعليل عن الأدلة. والمخرجُ المقبول دون العمل عليه ليس تعليلك، والمناقشةُ تجعل هذا مرئيًا سريعًا، لأنك ستُطلب شرح التعليل ولن يكون لديك ما تشرحه.</p>
+        <p><strong>إخفاء استخدام تشترط السياسة الإفصاح عنه.</strong> وهذه مخالفة منفصلة عن الاستخدام نفسه: فاستخدام مسموح لولا ذلك يصير سوء سلوك حين يُشترط إعلانه ولا يُعلن، لأن المخالفة هي العرض الكاذب للعملية.</p>
+        <p><strong>وضع بيانات سرية في أداة.</strong> وهذا يخرق حماية البيانات وإقرار أخلاقياتك عادةً، وهو مسألة جسيمة مستقلة عن أي سؤال عن التأليف. وهو أيضًا الوحيد في هذه القائمة الذي يضر بشخص غيرك.</p>
+        <p>وثلاثة دفوع لا تنجح تستحق التسمية، لأنها التي يلجأ إليها الناس. فـ<strong>لم أكن أعرف السياسة</strong> لا يُقبل، لأن إيجادها مسؤوليتك. و<strong>الأداة أخطأت</strong> لا يُقبل، لأنك سلّمت الوثيقة. و<strong>الجميع يستخدمون هذه الأدوات</strong> ليس ادّعاءً عن هل كان استخدام بعينه مسموحًا، وهذا السؤال الوحيد موضع النزاع.</p>
+        <p>وما ينجح عملية موثّقة صادقة: سياسة قرأتها، واستخدام يقع ضمنها، وسجلّ لما فعلت، وتحقق تستطيع وصفه، وإفصاح يطابق ما حدث. وذلك المزيج ليس دفاعًا فحسب؛ بل هو ما تبدو عليه الممارسة المسؤولة، والدفاعُ نتاج ثانوي له.</p>
+        <div class="note"><strong>ملاحظة:</strong> تسأل المؤسسات بازدياد المرشحين في المناقشة كيف استُخدمت أدوات الذكاء. والإجابةُ الصادقة المحددة المسنودة بسجل مباشرة؛ والمرتجلة ليست كذلك، والفرق يُحسم قبل أشهر بهل احتفظت بالسجل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="disclosure">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Writing a Disclosure Statement</h2>
+        <p class="lead">A disclosure statement is short, factual, and specific. Four elements cover it, and vagueness is the only way to get it wrong.</p>
+        <table>
+          <tr><th>Element</th><th>What to state</th></tr>
+          <tr><td>Which tools</td><td>Named, with versions where they are identifiable</td></tr>
+          <tr><td>For what</td><td>The specific tasks, not a general category</td></tr>
+          <tr><td>At what stage</td><td>Where in the process each use occurred</td></tr>
+          <tr><td>What you did with the output</td><td>How it was checked and how it was used</td></tr>
+        </table>
+        <p>A weak statement reads: AI tools were used to assist with this research. It discloses nothing, because it does not say what was done, and it invites the question it was meant to answer.</p>
+        <p>A usable statement reads: a named tool was used to draft and debug analysis scripts, which the researcher reviewed line by line and verified against manually computed results; the same tool was used to improve the clarity of drafted text, with every change checked against the original for altered meaning. No text produced by the tool appears in the thesis, and no references were obtained from it.</p>
+        <p>That statement does four things. It names the tool, it names the specific tasks, it says how the output was verified, and it states explicitly what was <strong>not</strong> done, which is often the most reassuring part for a reader.</p>
+        <p>Placement varies by institution. Common locations are a dedicated declaration near the front matter, a paragraph in the methodology, or a section in the acknowledgments, and your institution's template usually specifies one. Where it does not, the methodology is the most defensible location, because that is where a reader looks for an account of how the work was produced.</p>
+        <p>To write the statement accurately at submission you need a record kept along the way. <strong>Log each use</strong> with the date, the tool, the task, and what you did with the output. One line per exchange, in a single file. This takes seconds, it makes an accurate statement possible, and it is the only way to answer a follow-up question about a use that happened eighteen months ago.</p>
+        <p>Two closing points about the spirit of this. Disclosure is <strong>not an admission</strong>: it is a description of method, in the same register as saying which software you used for analysis, and a well-written statement reads as competence rather than as confession. And the underlying question, which no policy can settle for you, is whether the work is yours. If you can defend every claim, explain every method, and account for every source, it is, and the statement simply describes how you got there.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> integrity is a claim about origin, and three principles govern: you are responsible for everything you submit, contributions are attributed, and your account of the process must be accurate. Four tiers describe where uses fall, from ordinarily permitted clarity edits to generally prohibited generation of analysis. A tool cannot be an author, because authorship requires accountability, and it cannot be cited as a source. Write a disclosure that names the tools, the specific tasks, the stages, and how output was verified, and keep a one-line log of every use so the statement can be accurate.</div>
+        <div class="refs"><ul>
+          <li>Committee on Publication Ethics, <a href="https://publicationethics.org/guidance/guidelines" target="_blank" rel="noopener">Guidelines on Publication Integrity</a>.</li>
+          <li>American Psychological Association, <a href="https://apastyle.apa.org/products/publication-manual-7th-edition" target="_blank" rel="noopener">Publication Manual, Seventh Edition</a>.</li>
+          <li>University of Sydney, <a href="https://www.sydney.edu.au/study/help/advice/how-to-write-a-research-proposal.html" target="_blank" rel="noopener">How to Write a Research Proposal</a>.</li>
+          <li>Saunders, Lewis &amp; Thornhill, <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">Research Methods for Business Students</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>كتابة عبارة إفصاح</h2>
+        <p class="lead">عبارة الإفصاح قصيرة ووقائعية ومحددة. وأربعة عناصر تغطيها، والغموضُ هو السبيل الوحيد لإفسادها.</p>
+        <table>
+          <tr><th>العنصر</th><th>ما يُذكر</th></tr>
+          <tr><td>أي أدوات</td><td>مسمّاة، بإصداراتها حيث تكون قابلة للتحديد</td></tr>
+          <tr><td>لماذا</td><td>المهام المحددة، لا فئة عامة</td></tr>
+          <tr><td>في أي مرحلة</td><td>أين في العملية وقع كل استخدام</td></tr>
+          <tr><td>ماذا فعلت بالمخرج</td><td>كيف فُحص وكيف استُخدم</td></tr>
+        </table>
+        <p>والعبارة الضعيفة تقرأ: «استُخدمت أدوات ذكاء اصطناعي للمساعدة في هذا البحث». وهي لا تُفصح عن شيء، لأنها لا تقول ما الذي فُعل، وتستدعي السؤال الذي قُصد بها إجابته.</p>
+        <p>والعبارة الصالحة تقرأ: «استُخدمت أداة مسمّاة لتسويد نصوص التحليل البرمجية وتنقيحها، وراجعها الباحث سطرًا سطرًا وتحقق منها مقابل نتائج محسوبة يدويًا؛ واستُخدمت الأداة نفسها لتحسين وضوح نص مسوّد، مع فحص كل تغيير مقابل الأصل بحثًا عن تبدّل في المعنى. ولا يظهر في الأطروحة نصّ أنتجته الأداة، ولم تُحصّل منها مراجع».</p>
+        <p>وتلك العبارة تفعل أربعة أشياء. تسمّي الأداة، وتسمّي المهام المحددة، وتقول كيف تُحقّق من المخرج، وتذكر صراحةً ما <strong>لم</strong> يُفعل، وهذا غالبًا أكثر الأجزاء طمأنةً للقارئ.</p>
+        <p>والموضع يتباين بالمؤسسة. والمواقع الشائعة إقرار مخصص قرب المقدمات، أو فقرة في المنهجية، أو قسم في الشكر، وقالبُ مؤسستك يحدد واحدًا عادةً. وحيث لا يحدد، تكون المنهجية أقبل المواقع للدفاع، لأنها حيث ينظر القارئ بحثًا عن عرض لكيفية إنتاج العمل.</p>
+        <p>ولكتابة العبارة بدقة عند التسليم تحتاج سجلًا مُحتفظًا به في الطريق. <strong>سجّل كل استخدام</strong> بالتاريخ والأداة والمهمة وما فعلته بالمخرج. سطر لكل تبادل، في ملف واحد. وهذا يستغرق ثوان، ويجعل عبارةً دقيقة ممكنة، وهو السبيل الوحيد لإجابة سؤال متابعة عن استخدام وقع قبل ثمانية عشر شهرًا.</p>
+        <p>ونقطتان ختاميتان عن روح هذا. فالإفصاح <strong>ليس اعترافًا</strong>: بل وصف لمنهج، بالسجل نفسه كقول أي برمجية استخدمت للتحليل، والعبارةُ حسنة الكتابة تُقرأ كفاءةً لا اعترافًا. والسؤالُ الكامن، الذي لا تستطيع سياسة حسمه لك، هل العمل لك. فإن استطعت الدفاع عن كل ادّعاء وشرح كل منهج وبيان كل مصدر، فهو لك، والعبارةُ تصف ببساطة كيف وصلت إليه.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> النزاهة ادّعاء عن الأصل، وثلاثة مبادئ تحكم: أنت مسؤول عن كل ما تسلّمه، والإسهامات تُنسب، وعرضك للعملية يجب أن يكون دقيقًا. وأربع طبقات تصف أين تقع الاستخدامات، من تحريرات الوضوح المسموحة عادةً إلى توليد التحليل المحظور عمومًا. والأداة لا تكون مؤلفًا، لأن التأليف يتطلب مساءلة، ولا يُستشهد بها مصدرًا. اكتب إفصاحًا يسمّي الأدوات والمهام المحددة والمراحل وكيف تُحقّق من المخرج، واحتفظ بسجل من سطر لكل استخدام لتكون العبارة دقيقة.</div>
+        <div class="refs"><ul>
+          <li>لجنة أخلاقيات النشر، <a href="https://publicationethics.org/guidance/guidelines" target="_blank" rel="noopener">إرشادات نزاهة النشر</a>.</li>
+          <li>جمعية علم النفس الأمريكية، <a href="https://apastyle.apa.org/products/publication-manual-7th-edition" target="_blank" rel="noopener">دليل النشر، الطبعة السابعة</a>.</li>
+          <li>جامعة سيدني، <a href="https://www.sydney.edu.au/study/help/advice/how-to-write-a-research-proposal.html" target="_blank" rel="noopener">كيف تكتب مقترحًا بحثيًا</a>.</li>
+          <li>سوندرز ولويس وثورنهيل، <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">مناهج البحث لطلاب الأعمال</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="ai-verification.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Verifying AI Output</span><span data-lang="ar">التحقق من مخرجات الذكاء</span></a><a href="pres-designing.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Designing the Presentation</span><span data-lang="ar">تصميم العرض التقديمي</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="النزاهة والإفصاح";
+var TITLE_EN="Integrity and Disclosure";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Databases and Where to Search · Saif Alghamdi</title>
+<meta name="description" content="Choosing databases: the three tiers of source, what each covers, matching them to a business question, snowballing, and documenting coverage.">
+<link rel="canonical" href="https://saif3li-phd.github.io/phd/lit-databases.html">
+<meta name="author" content="Saif Ali Alghamdi">
+<meta name="theme-color" content="#2D2D2D">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saif Ali Alghamdi">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:url" content="https://saif3li-phd.github.io/phd/lit-databases.html">
+<meta property="og:title" content="Databases and Where to Search · Saif Alghamdi">
+<meta property="og:description" content="Choosing databases: the three tiers of source, what each covers, matching them to a business question, snowballing, and documenting coverage.">
+<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Databases and Where to Search · Saif Alghamdi">
+<meta name="twitter:description" content="Choosing databases: the three tiers of source, what each covers, matching them to a business question, snowballing, and documenting coverage.">
+<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Databases and Where to Search · Saif Alghamdi", "description": "Choosing databases: the three tiers of source, what each covers, matching them to a business question, snowballing, and documenting coverage.", "url": "https://saif3li-phd.github.io/phd/lit-databases.html", "inLanguage": "en", "author": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "publisher": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "image": "https://saif3li-phd.github.io/assets/og.jpg", "isPartOf": {"@type": "WebSite", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}}
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="0009a1c6-b533-4e1e-9dbc-8b20dbe29af9"></script>
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#foundation-of-business-research"><span data-lang="en">Foundation of Business Research</span><span data-lang="ar">أسس بحوث الأعمال</span></a><i>&rsaquo;</i><span data-lang="en">Literature review</span><span data-lang="ar">مراجعة الأدبيات</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">LITERATURE REVIEW · PhD</span><span data-lang="ar">مراجعة الأدبيات · دكتوراه</span></div>
+    <h1><span data-lang="en">Databases and Where to Search</span><span data-lang="ar">قواعد البيانات وأين تبحث</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Literature review</span><span data-lang="ar">مراجعة الأدبيات</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">10 min</span><span data-lang="ar">١٠ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذا الموضوع</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="tiers"><span data-lang="en">The three tiers</span><span data-lang="ar">الطبقات الثلاث</span></a></li><li><a data-id="choosing"><span data-lang="en">Choosing</span><span data-lang="ar">الاختيار</span></a></li><li><a data-id="snowball"><span data-lang="en">Snowballing</span><span data-lang="ar">كرة الثلج</span></a></li><li><a data-id="documenting"><span data-lang="en">Documenting</span><span data-lang="ar">التوثيق</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Which databases to search and how they differ</div>
+          <div><span>Covers:</span> The three tiers, what each covers, snowballing, and documenting coverage</div>
+          <div><span>Use:</span> Choosing sources you can justify and knowing what each one cannot see</div>
+          <div><span>Level:</span> Doctoral business research</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">No database contains the literature. Each contains a selection made by an organization with a policy, and the shape of that policy determines what your search can and cannot find. Choosing databases is therefore a substantive methodological decision rather than an administrative one, and it should be made and reported as such.</p>
+        <p>Two facts drive every choice. First, <strong>coverage differs sharply</strong>. A search run in two major citation indexes on the same string typically returns overlapping but far from identical sets, and the non-overlapping portion is often a third or more. A review searched in one database is a review with an unexamined blind spot. Second, <strong>structure differs</strong>. Some sources support Boolean strings, field tags, and clean exports; others support a search box and a scroll. The first kind can anchor a reproducible search; the second kind cannot, however much it finds.</p>
+        <p>The working rule that follows is straightforward. Run the systematic search in two or three <strong>structured</strong> sources, chosen for coverage of your field. Then use <strong>unstructured</strong> sources and <strong>citation chasing</strong> to catch what the structured search missed, and report both activities. This combination gives you a search that is reproducible at its core and comprehensive at its edges, which is what a doctoral examiner is looking for.</p>
+        <p>This framework covers the three tiers of source and what each is for, how to choose among them for a business topic, snowballing in both directions, the special problems of grey literature and non-English work, and how to document coverage honestly. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Access is not the same as coverage. A database your institution does not subscribe to still exists, and its absence from your search is a limitation to state rather than a fact to hide. Interlibrary services and author copies close most access gaps if you plan for the delay.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> أي قواعد البيانات تُبحَث وكيف تختلف</div>
+          <div><span>يغطّي:</span> الطبقات الثلاث، وما تغطيه كل واحدة، وكرة الثلج، وتوثيق التغطية</div>
+          <div><span>الاستخدام:</span> اختيار مصادر تستطيع تبريرها ومعرفة ما لا تراه كل واحدة</div>
+          <div><span>المستوى:</span> بحوث الأعمال لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">لا قاعدةَ بياناتٍ تحوي الأدبيات. فكل واحدة تحوي انتقاءً صنعته منظمة لها سياسة، وشكلُ تلك السياسة يحدد ما يستطيع بحثك أن يجده وما لا يستطيع. واختيار القواعد إذن قرارٌ منهجي جوهري لا إداري، وينبغي أن يُتَّخذ ويُبلَّغ عنه كذلك.</p>
+        <p>وحقيقتان تحكمان كل اختيار. أولًا، <strong>التغطية تختلف بحدّة</strong>. فبحثٌ يُشغَّل في فهرسي استشهاد كبيرين بالسلسلة نفسها يعيد عادةً مجموعتين متداخلتين وبعيدتين عن التطابق، والجزء غير المتداخل ثلثٌ أو أكثر غالبًا. والمراجعة المبحوثة في قاعدة واحدة مراجعةٌ ببقعة عمياء غير مفحوصة. وثانيًا، <strong>البنية تختلف</strong>. فبعض المصادر تدعم سلاسل بوول ووسوم الحقول والتصدير النظيف؛ وبعضها يدعم صندوق بحث وتمريرًا. والنوع الأول يستطيع تثبيت بحث قابل للتكرار؛ والثاني لا يستطيع مهما وجد.</p>
+        <p>والقاعدة العملية التالية مباشرة. شغّل البحث المنهجي في مصدرين أو ثلاثة <strong>مهيكَلة</strong>، مختارة لتغطية حقلك. ثم استخدم المصادر <strong>غير المهيكَلة</strong> و<strong>تتبّع الاستشهادات</strong> لالتقاط ما فات البحث المهيكَل، وأبلغ عن النشاطين. وهذا الجمع يمنحك بحثًا قابلًا للتكرار في جوهره وشاملًا في أطرافه، وهو ما يبحث عنه ممتحن الدكتوراه.</p>
+        <p>ويغطي هذا الإطار الطبقات الثلاث للمصادر ووظيفة كل واحدة، وكيف يُختار بينها لموضوع أعمال، وكرة الثلج في الاتجاهين، والمشكلات الخاصة بالأدبيات الرمادية والأعمال غير الإنجليزية، وكيف تُوثَّق التغطية بأمانة. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> الوصول ليس التغطية. فقاعدةٌ لا تشترك فيها مؤسستك ما زالت موجودة، وغيابها عن بحثك حدٌّ يُذكَر لا واقعٌ يُخفى. وخدمات الإعارة بين المكتبات ونسخ المؤلفين تسدّ معظم فجوات الوصول إن خطّطت للتأخير.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="tiers">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Three Tiers of Source</h2>
+        <p class="lead">Sources divide into three kinds by how they are built, and the kind determines the job each can do in your search.</p>
+        <svg viewBox="0 0 700 264" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="70.0" y="22.0" width="560.0" height="62.0" rx="4" fill="#A32020"/><text x="350.0" y="44.8" text-anchor="middle" font-size="13.5" font-weight="700" fill="#FFFFFF">Curated citation indexes</text><text x="350.0" y="58.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">selective, structured, reproducible: the backbone of a systematic search</text><rect x="70.0" y="92.0" width="560.0" height="62.0" rx="4" fill="#8C8C8C"/><text x="350.0" y="114.8" text-anchor="middle" font-size="13.5" font-weight="700" fill="#FFFFFF">Subject and publisher databases</text><text x="350.0" y="128.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">deep coverage of one discipline or one publisher's catalogue</text><rect x="70.0" y="162.0" width="560.0" height="62.0" rx="4" fill="#8C8C8C"/><text x="350.0" y="184.8" text-anchor="middle" font-size="13.5" font-weight="700" fill="#FFFFFF">Open aggregators and web indexes</text><text x="350.0" y="198.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">widest reach, weakest structure: use for discovery and chasing citations</text><text x="350.0" y="253.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">search the top tier systematically and use the lower tiers to catch what it missed</text></svg>
+        <p><strong>Curated citation indexes</strong> are selective: an editorial board decides which journals are included, and every record carries structured metadata including the references the paper cites and the papers that cite it. That citation layer is what makes forward searching possible and what bibliometric analysis runs on. The two long-established indexes in this tier are Scopus and the Web of Science Core Collection, and they are the natural home of the systematic search in business research. Their weakness is the flip side of their strength: selectivity means that regional journals, newer outlets, and book chapters may be absent, and absence from the index is invisible from inside it.</p>
+        <p><strong>Subject and publisher databases</strong> go deep rather than wide. In business the familiar examples are the management and economics collections offered by the large publishers and the business-specific aggregators that combine journals with company and market data. They are worth searching when your topic sits squarely inside one discipline, when you need full text rather than records, or when the index tier's coverage of your subfield is thin. Their limitation is that a publisher database contains that publisher's catalogue, which is a commercial boundary rather than an intellectual one.</p>
+        <p><strong>Open aggregators and web indexes</strong> are the widest and the least structured. They index preprints, theses, reports, book chapters, and working papers alongside journal articles, which is exactly the material the curated tier omits. They are indispensable for discovery, for finding the open version of a paywalled paper, and for forward citation chasing. They are unsuitable as the sole basis of a systematic search because their Boolean support is limited, their result counts are unstable between runs, and their coverage policy is not published, which means a search in them is not reproducible in the strict sense.</p>
+        <p>The practical combination for a business doctorate is therefore two structured indexes for the systematic search, one subject database if your field has an obvious home, and open tools used deliberately for snowballing and for grey literature. Naming the combination and its rationale in one paragraph of the methodology is what converts an ordinary search into a defensible one.</p>
+        <div class="note"><strong>Note:</strong> Before choosing, run the same three-block string in each candidate database and compare the counts and the top twenty titles. Twenty minutes of comparison tells you more about fit than any general description, including this one.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>ثلاث طبقات من المصادر</h2>
+        <p class="lead">تنقسم المصادر ثلاثة أنواع بحسب كيفية بنائها، والنوع يحدد الوظيفة التي تستطيع كل واحدة أداءها في بحثك.</p>
+        <svg viewBox="0 0 700 264" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="70.0" y="22.0" width="560.0" height="62.0" rx="4" fill="#A32020"/><text x="350.0" y="44.8" text-anchor="middle" font-size="13.5" font-weight="700" fill="#FFFFFF">فهارس الاستشهاد المنسّقة</text><text x="350.0" y="58.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">انتقائية ومهيكَلة وقابلة للتكرار: العمود الفقري للبحث المنهجي</text><rect x="70.0" y="92.0" width="560.0" height="62.0" rx="4" fill="#8C8C8C"/><text x="350.0" y="114.8" text-anchor="middle" font-size="13.5" font-weight="700" fill="#FFFFFF">قواعد التخصصات والناشرين</text><text x="350.0" y="128.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">تغطية عميقة لتخصص واحد أو لكتالوج ناشر واحد</text><rect x="70.0" y="162.0" width="560.0" height="62.0" rx="4" fill="#8C8C8C"/><text x="350.0" y="184.8" text-anchor="middle" font-size="13.5" font-weight="700" fill="#FFFFFF">المجمِّعات المفتوحة وفهارس الوب</text><text x="350.0" y="198.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">أوسع مدى وأضعف بنية: للاكتشاف وتتبّع الاستشهادات</text><text x="350.0" y="253.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">ابحث في الطبقة العليا منهجيًا واستخدم الطبقات الأدنى لالتقاط ما فاتها</text></svg>
+        <p>و<strong>فهارس الاستشهاد المنسّقة</strong> انتقائية: هيئة تحرير تقرر أي المجلات مُدرَجة، وكل سجل يحمل بيانات وصفية مهيكَلة تشمل المراجع التي تستشهد بها الورقة والأوراق التي تستشهد بها. وتلك الطبقة الاستشهادية هي ما يجعل البحث الأمامي ممكنًا وما يعمل عليه التحليل الببليومتري. والفهرسان الراسخان في هذه الطبقة هما سكوبس والمجموعة الأساسية لويب أوف ساينس، وهما الموطن الطبيعي للبحث المنهجي في بحوث الأعمال. وضعفهما هو الوجه الآخر لقوتهما: فالانتقائية تعني أن المجلات الإقليمية والمنافذ الأحدث وفصول الكتب قد تكون غائبة، والغياب عن الفهرس غير مرئي من داخله.</p>
+        <p>و<strong>قواعد التخصصات والناشرين</strong> تذهب عميقًا لا عريضًا. وفي الأعمال، الأمثلة المألوفة مجموعات الإدارة والاقتصاد التي يعرضها كبار الناشرين والمجمِّعات الخاصة بالأعمال التي تجمع المجلات مع بيانات الشركات والأسواق. وتستحق البحث حين يجلس موضوعك في قلب تخصص واحد، أو حين تحتاج النص الكامل لا السجلات، أو حين تكون تغطية طبقة الفهارس لتخصصك الفرعي ضحلة. وحدّها أن قاعدة الناشر تحوي كتالوج ذلك الناشر، وهذا حدٌّ تجاري لا فكري.</p>
+        <p>و<strong>المجمِّعات المفتوحة وفهارس الوب</strong> أوسعها وأقلها بنيةً. فهي تفهرس المسوّدات الأولية والأطروحات والتقارير وفصول الكتب وأوراق العمل إلى جانب مقالات المجلات، وهذه بالضبط المادة التي تُغفلها الطبقة المنسّقة. وهي لا غنى عنها للاكتشاف، ولإيجاد النسخة المفتوحة لورقة خلف جدار دفع، ولتتبّع الاستشهادات الأمامي. وهي غير صالحة أساسًا وحيدًا لبحث منهجي لأن دعمها لبوول محدود، وأعداد نتائجها غير مستقرة بين التشغيلات، وسياسة تغطيتها غير منشورة، ما يعني أن البحث فيها غير قابل للتكرار بالمعنى الدقيق.</p>
+        <p>والجمع العملي لدكتوراه في الأعمال إذن فهرسان مهيكَلان للبحث المنهجي، وقاعدة تخصص واحدة إن كان لحقلك موطن بيّن، وأدوات مفتوحة تُستخدَم عن قصد لكرة الثلج وللأدبيات الرمادية. وتسمية هذا الجمع ومسوّغه في فقرة واحدة من المنهجية هو ما يحوّل بحثًا عاديًا إلى بحث قابل للدفاع.</p>
+        <div class="note"><strong>ملاحظة:</strong> قبل الاختيار، شغّل سلسلة الكتل الثلاث نفسها في كل قاعدة مرشحة وقارن الأعداد والعناوين العشرين الأولى. فعشرون دقيقة من المقارنة تخبرك عن الملاءمة أكثر من أي وصف عام، بما فيه هذا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="choosing">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Choosing for a Business Topic</h2>
+        <p class="lead">The right set of sources depends on what kind of business question you are asking. Four common shapes, and what each needs.</p>
+        <table>
+          <tr><th>Question shape</th><th>Structured core</th><th>Additional sources</th></tr>
+          <tr><td>Organizational behaviour and human resources</td><td>Two citation indexes</td><td>A psychology database, because the constructs originate there</td></tr>
+          <tr><td>Technology adoption and information systems</td><td>Two citation indexes</td><td>A computing index and conference proceedings, which carry the newest work</td></tr>
+          <tr><td>Finance, accounting, and economics</td><td>Two citation indexes</td><td>An economics working-paper repository, since results circulate before publication</td></tr>
+          <tr><td>Marketing and consumer behaviour</td><td>Two citation indexes</td><td>A business aggregator with trade press, for practice framing only</td></tr>
+        </table>
+        <p>Three cross-cutting considerations apply whatever the shape. <strong>Conference proceedings</strong> matter far more in some fields than others. In information systems and operations research a substantial part of the serious work appears first, and sometimes only, in proceedings, so a search excluding document type conference paper will systematically miss the recent frontier. In organizational behaviour the opposite holds and proceedings are largely superseded by later journal versions.</p>
+        <p><strong>Books and chapters</strong> are poorly covered by citation indexes and are disproportionately important for theory. If your review needs to establish a construct's origin or trace a theoretical tradition, the index tier will not give it to you, and a library catalogue plus the reference lists of recent review articles will. This is a coverage gap to notice rather than a reason to skip theory.</p>
+        <p><strong>Language and region</strong> deserve an explicit decision in any study of a non-Anglophone context. Citation indexes are heavily weighted towards English-language journals, so a study of a regional phenomenon may find that the relevant local scholarship is invisible from the index tier entirely. The remedy is to search a regional index or repository as well, to say in the methodology that you did, and to state plainly which languages you could read. A stated language limit is a limitation; an unstated one is a claim of coverage you did not have.</p>
+        <p>Finally, decide the number of sources by <strong>marginal yield</strong> rather than by a rule. Run your string in a third database and count how many genuinely new relevant records appear. If the answer is a handful, add it and say so. If the answer is none after screening, you have evidence that your two-database core was sufficient, and that evidence is worth a sentence in the chapter.</p>
+        <div class="note"><strong>Note:</strong> Databases change ownership, names, and interfaces. Record the platform name and the date of each search rather than a brand name alone, because a reader three years later may know the collection under a different label.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الاختيار لموضوع أعمال</h2>
+        <p class="lead">مجموعة المصادر الصحيحة تعتمد على أي نوع من أسئلة الأعمال تسأل. أربعة أشكال شائعة، وما تحتاجه كل واحدة.</p>
+        <table>
+          <tr><th>شكل السؤال</th><th>النواة المهيكَلة</th><th>مصادر إضافية</th></tr>
+          <tr><td>السلوك التنظيمي والموارد البشرية</td><td>فهرسا استشهاد</td><td>قاعدة علم نفس، لأن البناءات نشأت هناك</td></tr>
+          <tr><td>تبنّي التقنية ونظم المعلومات</td><td>فهرسا استشهاد</td><td>فهرس حوسبة ووقائع مؤتمرات، تحمل أحدث الأعمال</td></tr>
+          <tr><td>التمويل والمحاسبة والاقتصاد</td><td>فهرسا استشهاد</td><td>مستودع أوراق عمل اقتصادية، فالنتائج تنتشر قبل النشر</td></tr>
+          <tr><td>التسويق وسلوك المستهلك</td><td>فهرسا استشهاد</td><td>مجمِّع أعمال مع الصحافة التجارية، لتأطير الممارسة فقط</td></tr>
+        </table>
+        <p>وثلاثة اعتبارات عابرة تنطبق أيًّا كان الشكل. <strong>وقائع المؤتمرات</strong> تهم في بعض الحقول أكثر بكثير من غيرها. ففي نظم المعلومات وبحوث العمليات يظهر جزء كبير من العمل الجاد أولًا، وأحيانًا حصريًا، في الوقائع، فالبحث الذي يستبعد نوع الوثيقة «ورقة مؤتمر» سيُفوّت الجبهة الحديثة منهجيًا. وفي السلوك التنظيمي يصح العكس وتتجاوز نسخُ المجلات اللاحقة الوقائعَ إلى حد بعيد.</p>
+        <p>و<strong>الكتب والفصول</strong> ضعيفة التغطية في فهارس الاستشهاد ومهمة بقدر غير متناسب للنظرية. فإن احتاجت مراجعتك إثبات أصل بناء أو تتبّع تقليد نظري، فلن تعطيك إياه طبقة الفهارس، بل سيعطيك إياه كتالوج مكتبة مع قوائم مراجع مقالات مراجعة حديثة. وهذه فجوة تغطية تُلاحَظ لا سببٌ لتخطّي النظرية.</p>
+        <p>و<strong>اللغة والإقليم</strong> يستحقان قرارًا صريحًا في أي دراسة لسياق غير ناطق بالإنجليزية. ففهارس الاستشهاد مرجَّحة بشدة نحو مجلات اللغة الإنجليزية، فقد تجد دراسةٌ لظاهرة إقليمية أن العلم المحلي ذا الصلة غير مرئي من طبقة الفهارس كليًا. والعلاج بحثُ فهرس أو مستودع إقليمي أيضًا، وقولُ ذلك في المنهجية، وذكرُ اللغات التي تستطيع قراءتها بصراحة. فحدّ اللغة المذكور حدٌّ؛ وغير المذكور ادّعاءُ تغطيةٍ لم تكن لديك.</p>
+        <p>وأخيرًا، قرّر عدد المصادر بـ<strong>العائد الحدّي</strong> لا بقاعدة. شغّل سلسلتك في قاعدة ثالثة وعُدّ كم سجلًا جديدًا ذا صلة ظهر فعلًا. فإن كانت الإجابة حفنة، فأضفها وقُل ذلك. وإن كانت الإجابة لا شيء بعد الفرز، فلديك دليل على أن نواتك ذات القاعدتين كانت كافية، وذلك الدليل يستحق جملة في الفصل.</p>
+        <div class="note"><strong>ملاحظة:</strong> القواعد تتغير ملكيتها وأسماؤها وواجهاتها. سجّل اسم المنصة وتاريخ كل بحث لا الاسم التجاري وحده، لأن قارئًا بعد ثلاث سنوات قد يعرف المجموعة بلصاقة مختلفة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="snowball">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Snowballing in Both Directions</h2>
+        <p class="lead">Database searching finds papers that used your words. Snowballing finds papers that your papers thought were relevant, which is a different and complementary criterion.</p>
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#A32020"/><text x="195.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">Backward snowballing</text><text x="195.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">read the reference lists of your key papers</text><text x="195.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">to reach their ancestors</text><rect x="360.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#8C8C8C"/><text x="505.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">Forward snowballing</text><text x="505.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">read the papers that cite your key papers to</text><text x="505.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">reach their descendants</text><rect x="140.0" y="168.0" width="420.0" height="26.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="185.0" text-anchor="middle" font-size="10.5" font-weight="600" fill="#2D2D2D">backward finds foundations, forward finds what happened since</text><text x="350.0" y="236.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">two directions on the same citation network, and both are needed</text></svg>
+        <p><strong>Backward snowballing</strong> means taking your most relevant papers, reading their reference lists, and following anything that looks central. It is cheap, it works even when your vocabulary was wrong, and it reliably surfaces the foundational works that a keyword search misses because those works predate the current terminology. The systematic version restricts attention to references cited in the introduction and theory sections, since those are where a paper names its intellectual ancestors, and skips the methods citations unless method is your subject.</p>
+        <p><strong>Forward snowballing</strong> means finding the papers that cite your key papers, which is possible because citation indexes and open scholarly tools both expose the citing relationship. It answers a question no keyword search can: what has happened to this idea since. It is particularly valuable when your foundational paper is a decade old, because the citing set is exactly the current conversation about it.</p>
+        <p>The procedure is bounded rather than infinite. Choose five to ten <strong>key papers</strong>, meaning the ones your review depends on most. Run both directions on each. Screen the results against your inclusion criteria as you would any other search output. Then stop: a second round of snowballing on the newly found papers has a much lower yield and is worth doing only if the first round produced many genuinely new items, which is itself a signal that the database search was too narrow.</p>
+        <p>Two failure modes are worth naming. <strong>Citation bias</strong> means that snowballing propagates the reading habits of the authors you started from, so a set assembled entirely by snowballing will inherit their blind spots and their preferred school. This is why snowballing supplements a keyword search rather than replacing it. And <strong>volume collapse</strong> means that a heavily cited paper may have thousands of citing works, at which point forward snowballing on it is not feasible; the workable response is to restrict the citing set by year or by your own concept terms, and to say that you did.</p>
+        <p>Report snowballing in the methodology alongside the database searches, with the number of key papers used, the directions run, and the number of additional records it contributed. In a flow diagram those records enter as an additional identification source, which is precisely what they are.</p>
+        <div class="note"><strong>Note:</strong> Snowballing is the fastest available test of whether your database search was adequate. If it turns up many highly relevant papers your string missed, the string has a hole, and finding the missing term is more valuable than the papers themselves.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>كرة الثلج في الاتجاهين</h2>
+        <p class="lead">البحث في القواعد يجد أوراقًا استخدمت كلماتك. وكرة الثلج تجد أوراقًا رأت أوراقُك أنها ذات صلة، وهذا معيار مختلف ومكمّل.</p>
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#A32020"/><text x="195.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">كرة الثلج الخلفية</text><text x="195.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">اقرأ قوائم مراجع أوراقك المفتاحية لتبلغ</text><text x="195.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">أسلافها</text><rect x="360.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#8C8C8C"/><text x="505.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">كرة الثلج الأمامية</text><text x="505.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">اقرأ الأوراق المستشهدة بأوراقك المفتاحية</text><text x="505.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">لتبلغ أخلافها</text><rect x="140.0" y="168.0" width="420.0" height="26.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="185.0" text-anchor="middle" font-size="10.5" font-weight="600" fill="#2D2D2D">الخلفية تجد الأسس، والأمامية تجد ما حدث بعدها</text><text x="350.0" y="236.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">اتجاهان على شبكة الاستشهاد نفسها، وكلاهما لازم</text></svg>
+        <p>و<strong>كرة الثلج الخلفية</strong> تعني أخذ أوثق أوراقك صلةً، وقراءة قوائم مراجعها، وتتبّع كل ما يبدو مركزيًا. وهي رخيصة، وتعمل حتى حين تكون مفرداتك خاطئة، وتُظهر بثبات الأعمالَ التأسيسية التي يفوتها البحث بالكلمات المفتاحية لأن تلك الأعمال تسبق المصطلحات الحالية. والنسخة المنهجية تقصر الانتباه على المراجع المستشهد بها في أقسام المقدمة والنظرية، لأن هناك تسمّي الورقة أسلافها الفكريين، وتتخطى استشهادات المناهج ما لم يكن المنهج موضوعك.</p>
+        <p>و<strong>كرة الثلج الأمامية</strong> تعني إيجاد الأوراق المستشهدة بأوراقك المفتاحية، وهذا ممكن لأن فهارس الاستشهاد والأدوات العلمية المفتوحة كلتيهما تكشف علاقة الاستشهاد. وهي تجيب سؤالًا لا يجيبه أي بحث بالكلمات المفتاحية: ماذا جرى لهذه الفكرة منذ ذلك الحين. وهي ثمينة خاصةً حين تكون ورقتك التأسيسية عمرها عقد، لأن المجموعة المستشهِدة هي بالضبط الحوار الحالي عنها.</p>
+        <p>والإجراء محدود لا لا نهائي. اختر خمسًا إلى عشر <strong>أوراق مفتاحية</strong>، أي التي تعتمد عليها مراجعتك أكثر من غيرها. وشغّل الاتجاهين على كل واحدة. وافرز النتائج بمعايير إدراجك كما تفعل بأي مخرَج بحثٍ آخر. ثم توقّف: فجولة ثانية من كرة الثلج على الأوراق المكتشَفة حديثًا عائدها أدنى بكثير ولا تستحق إلا إن أنتجت الجولة الأولى كثيرًا من العناصر الجديدة فعلًا، وهذا نفسه إشارةٌ إلى أن البحث في القواعد كان ضيقًا جدًا.</p>
+        <p>ونمطا إخفاق يستحقان التسمية. <strong>تحيّز الاستشهاد</strong> يعني أن كرة الثلج تنشر عادات القراءة لدى المؤلفين الذين انطلقت منهم، فمجموعةٌ مجمَّعة كليًا بكرة الثلج سترث بقعهم العمياء ومدرستهم المفضلة. ولهذا تكمّل كرة الثلج البحثَ بالكلمات المفتاحية لا تحلّ محله. و<strong>انهيار الحجم</strong> يعني أن ورقةً كثيرة الاستشهاد قد يكون لها آلاف الأعمال المستشهِدة، وعندها لا تكون كرة الثلج الأمامية عليها ممكنة؛ والاستجابة العملية تقييد المجموعة المستشهِدة بالسنة أو بمصطلحات مفهومك، وقول أنك فعلت.</p>
+        <p>وأبلغ عن كرة الثلج في المنهجية إلى جانب عمليات البحث في القواعد، مع عدد الأوراق المفتاحية المستخدَمة والاتجاهات المشغَّلة وعدد السجلات الإضافية التي أسهمت بها. وفي مخطط التدفق تدخل تلك السجلات مصدرَ تعرّفٍ إضافيًا، وهو بالضبط ما هي.</p>
+        <div class="note"><strong>ملاحظة:</strong> كرة الثلج أسرع اختبار متاح لكفاية بحثك في القواعد. فإن أظهرت كثيرًا من الأوراق شديدة الصلة التي فاتت سلسلتك، ففي السلسلة ثغرة، وإيجاد المصطلح الناقص أثمن من الأوراق نفسها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="documenting">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Documenting Coverage Honestly</h2>
+        <p class="lead">The methodology paragraph that reports your search is short, formulaic, and read closely. Six elements belong in it, and omitting any one of them invites a question.</p>
+        <p><strong>One: the databases</strong>, named individually with the platform and a one-line reason for the selection. <strong>Two: the exact search string</strong>, reproduced in full, usually in an appendix if it is long, with any per-database syntax variants noted. <strong>Three: the fields searched</strong>, since the same string over title-abstract-keyword and over full text are different searches. <strong>Four: the limits applied</strong>, meaning years, document types, and languages, each with its reason.</p>
+        <p><strong>Five: the dates the searches were run</strong>, and the date of any rerun before submission. <strong>Six: the counts</strong>, meaning records retrieved per database, records after deduplication, and records entering screening. Those numbers are the top of the flow diagram, and a reader who can follow the arithmetic from retrieval to inclusion is a reader who trusts the review.</p>
+        <p>Two additions raise the standard further. Report the <strong>supplementary methods</strong> separately, meaning snowballing, hand-searching of specific journals, and grey literature sources, with the records each contributed. And report the <strong>overlap</strong> between databases if you can, because a large non-overlap is evidence that searching multiple sources was necessary, and a small non-overlap is evidence that your core was sufficient. Either finding strengthens the chapter.</p>
+        <p>The honest disclosures matter as much as the numbers. If you could search only the databases your institution subscribes to, say so. If you read only two languages, say so. If a database was searched later than the others because access arrived late, say so and give both dates. None of these weakens a review in the eyes of an experienced reader, because every review has such constraints; what weakens a review is the impression that constraints were concealed, and that impression is formed by silence rather than by disclosure.</p>
+        <p>A last practical note. Store the exported record files, one per database per run, with the date in the filename. They cost nothing to keep, they let you recompute any count that turns out to be wrong, and they are the only way to reconstruct a search whose interface has changed since you ran it. This single habit has rescued more theses at the final stage than any other in the search workflow.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> no database holds the literature, so choose deliberately. Run the systematic search in two or three structured citation indexes chosen for your field, add a subject database where the discipline has an obvious home, and use open tools and citation chasing to reach what the structured tier omits. Snowball backward for foundations and forward for what happened since, on five to ten key papers. Then document six things: databases, exact strings, fields, limits, dates, and counts, with supplementary methods reported separately and every constraint stated rather than implied.</div>
+        <div class="refs"><ul>
+          <li>Saunders, Lewis &amp; Thornhill, <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">Research Methods for Business Students</a>.</li>
+          <li>Elsevier, <a href="https://www.elsevier.com/products/scopus" target="_blank" rel="noopener">Scopus Abstract and Citation Database</a>.</li>
+          <li>Clarivate, <a href="https://clarivate.com/academia-government/scientific-and-academic-research/research-discovery-and-referencing/web-of-science/" target="_blank" rel="noopener">Web of Science Core Collection</a>.</li>
+          <li>The Lens, <a href="https://www.lens.org/" target="_blank" rel="noopener">Open Scholarly and Patent Discovery</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>توثيق التغطية بأمانة</h2>
+        <p class="lead">فقرة المنهجية التي تُبلغ عن بحثك قصيرة ونمطية وتُقرأ بإمعان. وستة عناصر مكانها فيها، وإغفال أي واحد يستدعي سؤالًا.</p>
+        <p><strong>واحد: القواعد</strong>، مسمّاة فرادى مع المنصة وسبب من سطر للاختيار. و<strong>اثنان: سلسلة البحث بالضبط</strong>، منقولة كاملةً، في ملحق عادةً إن كانت طويلة، مع الإشارة إلى تنويعات الصياغة لكل قاعدة. و<strong>ثلاثة: الحقول المبحوثة</strong>، لأن السلسلة نفسها على «العنوان والملخص والكلمات» وعلى النص الكامل بحثان مختلفان. و<strong>أربعة: القيود المطبَّقة</strong>، أي السنوات وأنواع الوثائق واللغات، كلٌّ بسببه.</p>
+        <p>و<strong>خمسة: تواريخ تشغيل عمليات البحث</strong>، وتاريخ أي إعادة تشغيل قبل التسليم. و<strong>ستة: الأعداد</strong>، أي السجلات المسترجَعة لكل قاعدة، والسجلات بعد إزالة التكرار، والسجلات الداخلة إلى الفرز. فتلك الأرقام رأس مخطط التدفق، والقارئ الذي يستطيع متابعة الحساب من الاسترجاع إلى الإدراج قارئٌ يثق بالمراجعة.</p>
+        <p>وإضافتان ترفعان المعيار أكثر. أبلغ عن <strong>الطرق التكميلية</strong> منفصلةً، أي كرة الثلج والبحث اليدوي في مجلات بعينها ومصادر الأدبيات الرمادية، مع السجلات التي أسهمت بها كل واحدة. وأبلغ عن <strong>التداخل</strong> بين القواعد إن استطعت، لأن عدم تداخل كبير دليلٌ على أن بحث مصادر متعددة كان لازمًا، وعدم تداخل صغير دليلٌ على أن نواتك كانت كافية. وأي النتيجتين تقوّي الفصل.</p>
+        <p>والإفصاحات الصادقة تهم بقدر الأرقام. فإن لم تستطع بحث سوى القواعد التي تشترك فيها مؤسستك، فقُل ذلك. وإن كنت تقرأ لغتين فقط، فقُل ذلك. وإن بُحثت قاعدة متأخرًا عن غيرها لأن الوصول وصل متأخرًا، فقُل ذلك واذكر التاريخين. ولا شيء من هذا يُضعف مراجعةً في عين قارئ خبير، لأن لكل مراجعة قيودًا كهذه؛ وما يُضعف المراجعة هو الانطباع بأن القيود أُخفيت، وذلك الانطباع يتكوّن من الصمت لا من الإفصاح.</p>
+        <p>وملاحظة عملية أخيرة. احفظ ملفات السجلات المصدَّرة، واحدًا لكل قاعدة لكل تشغيل، مع التاريخ في اسم الملف. فحفظها لا يكلّف شيئًا، وتتيح لك إعادة حساب أي عدد يتبيّن أنه خاطئ، وهي الطريقة الوحيدة لإعادة بناء بحثٍ تغيّرت واجهته منذ تشغيلك له. وهذه العادة وحدها أنقذت من الأطروحات في المرحلة النهائية أكثر من أي عادة أخرى في سير عمل البحث.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> لا قاعدةَ تحوي الأدبيات، فاختر عن قصد. شغّل البحث المنهجي في فهرسين أو ثلاثة استشهاد مهيكَلة مختارة لحقلك، وأضف قاعدة تخصص حيث للتخصص موطن بيّن، واستخدم الأدوات المفتوحة وتتبّع الاستشهادات لبلوغ ما تُغفله الطبقة المهيكَلة. وتتبّع كرة الثلج خلفًا للأسس وأمامًا لما جرى بعد، على خمس إلى عشر أوراق مفتاحية. ثم وثّق ستة أشياء: القواعد، والسلاسل بالضبط، والحقول، والقيود، والتواريخ، والأعداد، مع الإبلاغ عن الطرق التكميلية منفصلةً وذكرِ كل قيد صراحةً لا تلميحًا.</div>
+        <div class="refs"><ul>
+          <li>سوندرز ولويس وثورنهيل، <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">مناهج البحث لطلاب الأعمال</a>.</li>
+          <li>إلزيفير، <a href="https://www.elsevier.com/products/scopus" target="_blank" rel="noopener">سكوبس، قاعدة الملخصات والاستشهادات</a>.</li>
+          <li>كلاريفيت، <a href="https://clarivate.com/academia-government/scientific-and-academic-research/research-discovery-and-referencing/web-of-science/" target="_blank" rel="noopener">المجموعة الأساسية لويب أوف ساينس</a>.</li>
+          <li>ذا لينز، <a href="https://www.lens.org/" target="_blank" rel="noopener">الاكتشاف العلمي وبراءات الاختراع المفتوح</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="lit-boolean-search.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Boolean Logic and Search Strings</span><span data-lang="ar">منطق بوول وسلاسل البحث</span></a><a href="lit-screening.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Screening: Inclusion and Exclusion</span><span data-lang="ar">الفرز: الإدراج والاستبعاد</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="قواعد البيانات وأين تبحث";
+var TITLE_EN="Databases and Where to Search";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

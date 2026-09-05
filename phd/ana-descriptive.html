@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Descriptive Statistics · Saif Alghamdi</title>
+<meta name="description" content="Descriptive statistics: the four questions about a variable, choosing central tendency and dispersion, distribution shape, describing pairs, and reporting.">
+<link rel="canonical" href="https://saif3li-phd.github.io/phd/ana-descriptive.html">
+<meta name="author" content="Saif Ali Alghamdi">
+<meta name="theme-color" content="#2D2D2D">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saif Ali Alghamdi">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:url" content="https://saif3li-phd.github.io/phd/ana-descriptive.html">
+<meta property="og:title" content="Descriptive Statistics · Saif Alghamdi">
+<meta property="og:description" content="Descriptive statistics: the four questions about a variable, choosing central tendency and dispersion, distribution shape, describing pairs, and reporting.">
+<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Descriptive Statistics · Saif Alghamdi">
+<meta name="twitter:description" content="Descriptive statistics: the four questions about a variable, choosing central tendency and dispersion, distribution shape, describing pairs, and reporting.">
+<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Descriptive Statistics · Saif Alghamdi", "description": "Descriptive statistics: the four questions about a variable, choosing central tendency and dispersion, distribution shape, describing pairs, and reporting.", "url": "https://saif3li-phd.github.io/phd/ana-descriptive.html", "inLanguage": "en", "author": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "publisher": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "image": "https://saif3li-phd.github.io/assets/og.jpg", "isPartOf": {"@type": "WebSite", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}}
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="0009a1c6-b533-4e1e-9dbc-8b20dbe29af9"></script>
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#foundation-of-business-research"><span data-lang="en">Foundation of Business Research</span><span data-lang="ar">أسس بحوث الأعمال</span></a><i>&rsaquo;</i><span data-lang="en">Results and discussion</span><span data-lang="ar">النتائج والمناقشة</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">RESULTS AND DISCUSSION · PhD</span><span data-lang="ar">النتائج والمناقشة · دكتوراه</span></div>
+    <h1><span data-lang="en">Descriptive Statistics</span><span data-lang="ar">الإحصاء الوصفي</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Results and discussion</span><span data-lang="ar">النتائج والمناقشة</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">11 min</span><span data-lang="ar">١١ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذا الموضوع</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="four"><span data-lang="en">Four questions</span><span data-lang="ar">أربعة أسئلة</span></a></li><li><a data-id="central"><span data-lang="en">Central tendency</span><span data-lang="ar">النزعة المركزية</span></a></li><li><a data-id="shape"><span data-lang="en">Shape and pairs</span><span data-lang="ar">الشكل والأزواج</span></a></li><li><a data-id="reporting"><span data-lang="en">Reporting</span><span data-lang="ar">الإبلاغ</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Describing a dataset before testing anything with it</div>
+          <div><span>Covers:</span> The four descriptive questions, central tendency, dispersion, shape, and reporting</div>
+          <div><span>Use:</span> Understanding your own data and presenting it so a reader can too</div>
+          <div><span>Level:</span> Doctoral business research</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Descriptive statistics summarise what is in a dataset. They make no claim beyond the cases you observed, which is exactly why they are the necessary first stage: you cannot sensibly test a relationship between two variables you have not looked at.</p>
+        <p>The distinction that organizes the field is simple. <strong>Descriptive statistics describe the sample.</strong> The mean tenure of these two hundred respondents is 4.3 years, and that statement is exactly true of these two hundred people and makes no claim about anyone else. <strong>Inferential statistics generalise to the population</strong> and carry uncertainty as a result. Descriptive statistics are true by construction; inferential ones are probabilistic, which is why they are reported with intervals and p values and descriptive ones are not.</p>
+        <p>Most students under-report descriptives, treating them as preliminary material to be got through before the real analysis. That is a mistake for three reasons. Descriptives are how you find the errors that survived data preparation. They are how a reader judges whether your sample resembles the population you claim it represents. And a substantial number of business research questions are genuinely descriptive, so for those studies this is not preliminary work but the finding itself.</p>
+        <p>This framework covers the four questions descriptives answer, the three measures of central tendency and which the data permit, dispersion and why it matters as much as the mean, distribution shape, bivariate description, and how to present all of it. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Look at every variable's distribution before computing anything from it. Five minutes of plotting catches errors that survive every automated check, because the human eye recognises impossible shapes that no threshold rule anticipates.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> وصف مجموعة بيانات قبل اختبار أي شيء بها</div>
+          <div><span>يغطّي:</span> الأسئلة الوصفية الأربعة، والنزعة المركزية، والتشتت، والشكل، والإبلاغ</div>
+          <div><span>الاستخدام:</span> فهم بياناتك وعرضها ليفهمها القارئ أيضًا</div>
+          <div><span>المستوى:</span> بحوث الأعمال لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الإحصاء الوصفي يلخّص ما في مجموعة بيانات. ولا يطلق ادّعاءً يتجاوز الحالات التي لاحظتها، وهذا بالضبط لماذا هو المرحلة الأولى اللازمة: فلا يمكنك اختبار علاقة بين متغيرين لم تنظر فيهما بشكل معقول.</p>
+        <p>والتمييز الذي ينظّم الحقل بسيط. <strong>الإحصاء الوصفي يصف العيّنة.</strong> فمتوسط مدة خدمة هؤلاء المئتي مستجيب 4.3 سنوات، وتلك العبارة صحيحة بالضبط عن هؤلاء المئتين ولا تطلق ادّعاءً عن أي أحد آخر. و<strong>الإحصاء الاستدلالي يعمّم على المجتمع</strong> ويحمل عدم يقين نتيجةً لذلك. فالإحصاء الوصفي صحيح بالبناء؛ والاستدلالي احتمالي، ولهذا يُبلَّغ عنه بفترات وقيم احتمالية ولا يُبلَّغ عن الوصفي كذلك.</p>
+        <p>ومعظم الطلاب يقصّرون في الإبلاغ عن الوصفيات، معاملين إياها مادةً تمهيدية تُجتاز قبل التحليل الحقيقي. وهذا خطأ لثلاثة أسباب. فالوصفيات هي كيف تجد الأخطاء التي نجت من إعداد البيانات. وهي كيف يحكم القارئ هل تشبه عيّنتك المجتمع الذي تدّعي أنها تمثّله. وعددٌ كبير من أسئلة بحوث الأعمال وصفي فعلًا، فلتلك الدراسات هذا ليس عملًا تمهيديًا بل النتيجة نفسها.</p>
+        <p>ويغطي هذا الإطار الأسئلة الأربعة التي تجيبها الوصفيات، ومقاييس النزعة المركزية الثلاثة وأيها تجيزه البيانات، والتشتت ولماذا يهم بقدر المتوسط، وشكل التوزيع، والوصف الثنائي، وكيف يُعرَض هذا كله. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> انظر في توزيع كل متغير قبل حساب أي شيء منه. فخمس دقائق من الرسم تلتقط أخطاءً تنجو من كل فحص آلي، لأن العين البشرية تتعرف على أشكال مستحيلة لا تستبقها أي قاعدة عتبة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="four">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Four Questions About a Variable</h2>
+        <p class="lead">A single variable is described by answering four questions. Reporting the mean alone answers one of them, which is why a table of means with no dispersion tells a reader very little.</p>
+        <svg viewBox="0 0 700 256" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">1</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Frequency</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">how many cases fall in each category or range</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">2</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Central tendency</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">where the middle of the distribution sits</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">3</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Dispersion</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">how spread out the values are around that middle</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="199.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">4</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Shape</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">whether the distribution is symmetric, skewed, or peaked</text><text x="350.0" y="245.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">four questions about one variable; a mean alone answers only the second</text></svg>
+        <p><strong>Frequency</strong> is the count and percentage in each category. It is the whole of the description for a nominal variable, and it is what demographic tables report. Give both the count and the percentage, since a percentage without its base is uninterpretable and a count without a percentage is hard to compare across groups.</p>
+        <p><strong>Central tendency</strong> locates the middle. Which measure is legitimate depends on the measurement level, and this is the most frequently violated rule in student analysis: a mean computed on a nominal variable is arithmetic performed on category codes and means nothing whatever.</p>
+        <p><strong>Dispersion</strong> describes how spread out the values are, and it carries at least as much information as the middle. Two departments with the same mean satisfaction score are very different places if one has a standard deviation of 0.3 and the other of 1.4: the first is uniformly moderate and the second contains both very satisfied and very dissatisfied people. A finding of no difference in means between groups is frequently accompanied by a large difference in variance, which is a finding in its own right and is invisible if only means are reported.</p>
+        <p><strong>Shape</strong> concerns whether the distribution is symmetric or skewed and whether it is flatter or more peaked than a normal curve. Skewness matters practically because it determines whether the mean is a fair summary: in a right-skewed distribution such as income or firm size, the mean sits well above the typical value and reporting it alone misleads. This is why income and revenue are conventionally described with the median.</p>
+        <p>The practical rule is to report all four for every variable that matters to your argument. For continuous variables that is the mean, the standard deviation, the minimum, and the maximum at minimum, with the median added wherever the distribution is skewed. For categorical variables it is the count and percentage per category. Anything less forces the reader to trust a summary they cannot inspect.</p>
+        <div class="note"><strong>Note:</strong> Report the number of valid cases for every statistic. After missing value handling, different variables often rest on different numbers of cases, and a table whose statistics silently rest on different sample sizes is misleading even when every individual number is correct.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الأسئلة الأربعة عن متغير</h2>
+        <p class="lead">المتغير المفرد يُوصَف بإجابة أربعة أسئلة. والإبلاغ بالمتوسط وحده يجيب واحدًا منها، ولهذا فجدولُ متوسطات بلا تشتت يخبر القارئ قليلًا جدًا.</p>
+        <svg viewBox="0 0 700 256" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">١</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">التكرار</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">كم حالة تقع في كل فئة أو مدى</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٢</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">النزعة المركزية</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">أين يجلس وسط التوزيع</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٣</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">التشتت</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">كم تنتشر القيم حول ذلك الوسط</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="199.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٤</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">الشكل</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">هل التوزيع متماثل أو ملتوٍ أو مدبَّب</text><text x="350.0" y="245.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">أربعة أسئلة عن متغير واحد؛ والمتوسط وحده يجيب الثاني فقط</text></svg>
+        <p>و<strong>التكرار</strong> هو العدد والنسبة في كل فئة. وهو الوصف كله لمتغير اسمي، وهو ما تُبلغ به الجداول الديموغرافية. أعطِ العدد والنسبة معًا، لأن النسبة بلا أساسها غير قابلة للتفسير والعدد بلا نسبة صعب المقارنة عبر المجموعات.</p>
+        <p>و<strong>النزعة المركزية</strong> تحدد موقع الوسط. وأي مقياس مشروع يعتمد على مستوى القياس، وهذه أكثر القواعد انتهاكًا في تحليل الطلاب: فمتوسطٌ محسوب على متغير اسمي حسابٌ يُجرى على رموز فئات ولا يعني شيئًا البتة.</p>
+        <p>و<strong>التشتت</strong> يصف كم تنتشر القيم، ويحمل معلومة لا تقل عن الوسط. فقسمان بمتوسط درجة رضا واحد مكانان مختلفان جدًا إن كان لأحدهما انحراف معياري 0.3 وللآخر 1.4: فالأول معتدل بانتظام والثاني يحوي راضين جدًا وغير راضين جدًا معًا. ونتيجةُ «لا فرق في المتوسطات بين المجموعات» كثيرًا ما يرافقها فرق كبير في التباين، وهذه نتيجة بذاتها وهي غير مرئية إن لم يُبلَّغ إلا بالمتوسطات.</p>
+        <p>و<strong>الشكل</strong> يخص هل التوزيع متماثل أم ملتوٍ وهل هو أبطح أم أشد تدبّبًا من المنحنى الاعتدالي. والالتواء يهم عمليًا لأنه يحدد هل المتوسط ملخصٌ منصف: ففي توزيع ملتوٍ يمينًا كالدخل أو حجم المنشأة، يجلس المتوسط فوق القيمة النموذجية بكثير والإبلاغ به وحده مضلِّل. ولهذا يُوصَف الدخل والإيراد عرفًا بالوسيط.</p>
+        <p>والقاعدة العملية أن تُبلغ بالأربعة كلها لكل متغير يهم حجتك. فللمتغيرات المتصلة هذا المتوسط والانحراف المعياري والأدنى والأقصى كحد أدنى، مع إضافة الوسيط حيثما كان التوزيع ملتويًا. وللمتغيرات الفئوية هو العدد والنسبة لكل فئة. وأي أقل من ذلك يُجبر القارئ على الوثوق بملخص لا يستطيع فحصه.</p>
+        <div class="note"><strong>ملاحظة:</strong> أبلغ بعدد الحالات الصالحة لكل إحصاءة. فبعد معالجة القيم المفقودة، كثيرًا ما تقوم متغيرات مختلفة على أعداد حالات مختلفة، والجدول الذي تقوم إحصاءاته بصمت على أحجام عيّنات مختلفة مضلِّل حتى حين يكون كل رقم مفرد صحيحًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="central">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Central Tendency and Dispersion</h2>
+        <p class="lead">Three measures locate the middle and three describe the spread. Choosing among them is decided by the measurement level and by the shape of the distribution.</p>
+        <svg viewBox="0 0 700 242" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="24.0" width="190.7" height="40.0" rx="4" fill="#8C8C8C"/><text x="145.3" y="49.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">Mean</text><rect x="254.7" y="24.0" width="190.7" height="40.0" rx="4" fill="#A32020"/><text x="350.0" y="49.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">Median</text><rect x="459.3" y="24.0" width="190.7" height="40.0" rx="4" fill="#8C8C8C"/><text x="554.7" y="49.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">Mode</text><rect x="50.0" y="70.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="145.3" y="94.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">the arithmetic average</text><rect x="254.7" y="70.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="94.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">the middle value when ordered</text><rect x="459.3" y="70.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="554.7" y="94.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">the most frequent value</text><rect x="50.0" y="116.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="145.3" y="140.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">interval and ratio data</text><rect x="254.7" y="116.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="133.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">ordinal data or skewed</text><text x="350.0" y="147.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">distributions</text><rect x="459.3" y="116.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="554.7" y="140.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">nominal data</text><rect x="50.0" y="162.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="145.3" y="186.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">pulled by extreme values</text><rect x="254.7" y="162.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="186.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">resistant to extremes</text><rect x="459.3" y="162.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="554.7" y="186.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">may not be unique</text><text x="350.0" y="230.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">three measures of the middle; the data's level decides which is legitimate</text></svg>
+        <p>The <strong>mean</strong> uses every value and is the basis of most inferential statistics, which is why it is the default for interval and ratio data. Its weakness is sensitivity to extremes: one firm with revenue a hundred times the others moves the mean substantially and the median not at all. The <strong>median</strong> is the middle value when the data are ordered, is legitimate for ordinal data, and is the honest summary for any skewed distribution. The <strong>mode</strong> is the most frequent value and is the only central tendency available for nominal data.</p>
+        <p>The practical rule for business data: report the mean for scale variables that are roughly symmetric, and report both the mean and the median for anything involving money, size, tenure, or counts, because those variables are almost always right-skewed. Where the two differ substantially, say so, since the difference itself tells the reader about the distribution.</p>
+        <p>For <strong>dispersion</strong>, three measures matter. The <strong>range</strong>, meaning maximum minus minimum, is the crudest and is most useful as a check on data errors rather than as a summary. The <strong>interquartile range</strong>, the distance between the twenty-fifth and seventy-fifth percentiles, describes the middle half of the data and is the companion to the median. The <strong>standard deviation</strong> is the average distance of values from the mean and is the companion to the mean, and is also what most inferential procedures are built on.</p>
+        <p>Interpreting a standard deviation requires context, because its size depends on the scale's units. On a five-point agreement scale, a standard deviation around 0.5 indicates high agreement among respondents, around 1.0 is typical, and above 1.3 indicates a genuinely divided sample, which is often more interesting than the mean. For unbounded variables such as revenue, the <strong>coefficient of variation</strong>, meaning the standard deviation divided by the mean, allows comparison of variability across variables measured in different units.</p>
+        <p>Two habits improve every descriptive section. Report central tendency and dispersion <strong>together, always</strong>, since either alone is half a description. And where you compare groups, report both for each group rather than only the means, because two groups can share a mean and differ entirely in how their members are distributed around it.</p>
+        <div class="note"><strong>Note:</strong> A standard deviation larger than the mean, on a variable that cannot be negative, is a signal of extreme right skew. It is common for revenue, firm size, and counts of events, and it means the mean should not be used as the summary.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>النزعة المركزية والتشتت</h2>
+        <p class="lead">ثلاثة مقاييس تحدد الوسط وثلاثة تصف الانتشار. والاختيار بينها يقرره مستوى القياس وشكل التوزيع.</p>
+        <svg viewBox="0 0 700 242" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="24.0" width="190.7" height="40.0" rx="4" fill="#8C8C8C"/><text x="145.3" y="49.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">المتوسط</text><rect x="254.7" y="24.0" width="190.7" height="40.0" rx="4" fill="#A32020"/><text x="350.0" y="49.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">الوسيط</text><rect x="459.3" y="24.0" width="190.7" height="40.0" rx="4" fill="#8C8C8C"/><text x="554.7" y="49.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">المنوال</text><rect x="50.0" y="70.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="145.3" y="94.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">المعدل الحسابي</text><rect x="254.7" y="70.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="94.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">القيمة الوسطى عند الترتيب</text><rect x="459.3" y="70.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="554.7" y="94.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">القيمة الأكثر تكرارًا</text><rect x="50.0" y="116.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="145.3" y="140.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">البيانات الفترية والنسبية</text><rect x="254.7" y="116.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="133.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">البيانات الرتبية أو التوزيعات</text><text x="350.0" y="147.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">الملتوية</text><rect x="459.3" y="116.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="554.7" y="140.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">البيانات الاسمية</text><rect x="50.0" y="162.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="145.3" y="186.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">تجذبه القيم المتطرفة</text><rect x="254.7" y="162.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="186.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">مقاوم للمتطرفات</text><rect x="459.3" y="162.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="554.7" y="186.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">قد لا يكون فريدًا</text><text x="350.0" y="230.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">ثلاثة مقاييس للوسط؛ ومستوى البيانات يقرر أيها مشروع</text></svg>
+        <p>و<strong>المتوسط</strong> يستخدم كل قيمة وهو أساس معظم الإحصاء الاستدلالي، ولهذا هو الافتراضي للبيانات الفترية والنسبية. وضعفه الحساسية للمتطرفات: فمنشأة واحدة بإيراد مئة ضعف الأخريات تحرّك المتوسط كثيرًا ولا تحرّك الوسيط البتة. و<strong>الوسيط</strong> القيمةُ الوسطى حين تُرتَّب البيانات، وهو مشروع للبيانات الرتبية، وهو الملخص الصادق لأي توزيع ملتوٍ. و<strong>المنوال</strong> القيمةُ الأكثر تكرارًا وهو النزعة المركزية الوحيدة المتاحة للبيانات الاسمية.</p>
+        <p>والقاعدة العملية لبيانات الأعمال: أبلغ بالمتوسط للمتغيرات المقياسية المتماثلة تقريبًا، وأبلغ بالمتوسط والوسيط معًا لأي شيء يتعلق بالمال أو الحجم أو مدة الخدمة أو الأعداد، لأن تلك المتغيرات ملتوية يمينًا شبه دائمًا. وحيث يختلف الاثنان كثيرًا، فقُل ذلك، لأن الفرق نفسه يخبر القارئ عن التوزيع.</p>
+        <p>وللـ<strong>تشتت</strong>، ثلاثة مقاييس تهم. فـ<strong>المدى</strong>، أي الأقصى ناقص الأدنى، أخشنها وأنفعها فحصًا لأخطاء البيانات لا ملخصًا. و<strong>المدى الربيعي</strong>، المسافة بين المئين الخامس والعشرين والخامس والسبعين، يصف النصف الأوسط من البيانات وهو رفيق الوسيط. و<strong>الانحراف المعياري</strong> متوسطُ مسافة القيم عن المتوسط وهو رفيق المتوسط، وهو أيضًا ما تُبنى عليه معظم الإجراءات الاستدلالية.</p>
+        <p>وتفسير الانحراف المعياري يتطلب سياقًا، لأن حجمه يعتمد على وحدات المقياس. فعلى مقياس موافقة خماسي، يشير انحراف معياري نحو 0.5 إلى اتفاق عالٍ بين المستجيبين، ونحو 1.0 نموذجي، وفوق 1.3 يشير إلى عيّنة منقسمة فعلًا، وهذا كثيرًا ما يكون أطرف من المتوسط. وللمتغيرات غير المحدودة كالإيراد، يتيح <strong>معامل الاختلاف</strong>، أي الانحراف المعياري مقسومًا على المتوسط، مقارنة التقلب عبر متغيرات مقيسة بوحدات مختلفة.</p>
+        <p>وعادتان تحسّنان كل قسم وصفي. أبلغ بالنزعة المركزية والتشتت <strong>معًا، دائمًا</strong>، لأن أيًّا منهما وحده نصفُ وصف. وحيث تقارن مجموعات، أبلغ بالاثنين لكل مجموعة لا بالمتوسطات وحدها، لأن مجموعتين قد تتشاركان متوسطًا وتختلفان كليًا في كيفية توزع أفرادهما حوله.</p>
+        <div class="note"><strong>ملاحظة:</strong> انحرافٌ معياري أكبر من المتوسط، على متغير لا يمكن أن يكون سالبًا، إشارةٌ إلى التواء يميني شديد. وهذا شائع للإيراد وحجم المنشأة وأعداد الأحداث، ويعني ألا يُستخدَم المتوسط ملخصًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="shape">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Distribution Shape and Describing Pairs</h2>
+        <p class="lead">Shape determines which summaries are honest, and it also determines which inferential tests are available, which is why it is checked before rather than after.</p>
+        <table>
+          <tr><th>Feature</th><th>What it means</th><th>What to do</th></tr>
+          <tr><td>Right skew</td><td>A long tail of high values; mean above median</td><td>Report the median; consider a log transformation</td></tr>
+          <tr><td>Left skew</td><td>A long tail of low values; mean below median</td><td>Report the median; check for a ceiling effect</td></tr>
+          <tr><td>Ceiling or floor effect</td><td>Many cases at the top or bottom of the scale</td><td>The measure may not discriminate at that end</td></tr>
+          <tr><td>Bimodality</td><td>Two peaks in the distribution</td><td>Look for a grouping variable that explains it</td></tr>
+          <tr><td>Heavy tails</td><td>More extreme values than a normal curve</td><td>Robust methods, or report with and without extremes</td></tr>
+        </table>
+        <p><strong>Bimodality</strong> is the most informative shape and the most often missed, because a mean computed on a bimodal distribution describes a value that almost nobody holds. Two peaks usually mean two populations are mixed, and finding the variable that separates them, often a department, a role, or a tenure band, converts an odd-looking histogram into a substantive finding.</p>
+        <p><strong>Ceiling effects</strong> matter particularly in business surveys of attitudes, where items about a socially approved practice frequently produce distributions crushed against the top of the scale. When eighty percent of respondents choose four or five, the measure cannot distinguish among them, and a null result for that variable may reflect the measure rather than the world.</p>
+        <p><strong>Describing pairs</strong> extends the same logic to two variables. For two categorical variables, a <strong>cross-tabulation</strong> with row or column percentages is the description; choose the percentage direction that matches the question, since the percentage of women who are managers and the percentage of managers who are women are different numbers answering different questions.</p>
+        <p>For two continuous variables, a <strong>scatterplot</strong> is the description and should be produced before any correlation is computed. The correlation coefficient summarises a linear relationship in a single number, and it reports a curved relationship as weak, an outlier-driven relationship as strong, and two distinct subgroups as a moderate association that describes neither. All three are visible in a scatterplot and invisible in the coefficient.</p>
+        <p>For one categorical and one continuous variable, the description is the continuous variable's central tendency and dispersion <strong>within each category</strong>, presented as a table or a boxplot. This is the descriptive form of a group comparison, and it should always precede the significance test, because a difference of 0.1 on a five-point scale can be statistically significant in a large sample and is not worth discussing.</p>
+        <div class="note"><strong>Note:</strong> Produce a correlation matrix of all your main variables early and read it before modelling. It reveals the strong relationships, the surprising nulls, and any pair correlating so highly that they are probably the same construct measured twice.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>شكل التوزيع ووصف الأزواج</h2>
+        <p class="lead">الشكل يحدد أي الملخصات صادقة، ويحدد أيضًا أي الاختبارات الاستدلالية متاحة، ولهذا يُفحَص قبل لا بعد.</p>
+        <table>
+          <tr><th>السمة</th><th>ما تعنيه</th><th>ما يُفعَل</th></tr>
+          <tr><td>التواء يميني</td><td>ذيل طويل من القيم العالية؛ المتوسط فوق الوسيط</td><td>أبلغ بالوسيط؛ وفكّر في تحويل لوغاريتمي</td></tr>
+          <tr><td>التواء يساري</td><td>ذيل طويل من القيم المنخفضة؛ المتوسط دون الوسيط</td><td>أبلغ بالوسيط؛ وافحص أثر السقف</td></tr>
+          <tr><td>أثر السقف أو الأرضية</td><td>حالات كثيرة عند أعلى المقياس أو أدناه</td><td>قد لا يميّز المقياس عند ذلك الطرف</td></tr>
+          <tr><td>ثنائية المنوال</td><td>قمتان في التوزيع</td><td>ابحث عن متغير تجميع يفسّرها</td></tr>
+          <tr><td>ذيول ثقيلة</td><td>قيم متطرفة أكثر من منحنى اعتدالي</td><td>طرق متينة، أو الإبلاغ مع المتطرفات وبدونها</td></tr>
+        </table>
+        <p>و<strong>ثنائية المنوال</strong> أكثر الأشكال إفادةً وأكثرها إغفالًا، لأن متوسطًا محسوبًا على توزيع ثنائي المنوال يصف قيمةً لا يحملها أحد تقريبًا. والقمتان تعنيان عادةً أن مجتمعين مختلطان، وإيجادُ المتغير الذي يفصلهما، وهو غالبًا قسم أو دور أو فئة مدة خدمة، يحوّل رسمًا بيانيًا غريب المظهر إلى نتيجة جوهرية.</p>
+        <p>و<strong>آثار السقف</strong> تهم خاصةً في مسوح الأعمال للاتجاهات، حيث تُنتج البنود عن ممارسة مستحسَنة اجتماعيًا توزيعات مضغوطة على أعلى المقياس. فحين يختار ثمانون بالمئة من المستجيبين أربعة أو خمسة، لا يستطيع المقياس التمييز بينهم، وقد تعكس نتيجةٌ صفرية لذلك المتغير المقياسَ لا العالم.</p>
+        <p>و<strong>وصف الأزواج</strong> يمدّ المنطق نفسه إلى متغيرين. فلمتغيرين فئويين، يكون <strong>الجدول المتقاطع</strong> بنسب الصفوف أو الأعمدة هو الوصف؛ واختر اتجاه النسبة الذي يطابق السؤال، لأن نسبة النساء اللواتي هن مديرات ونسبة المديرين الذين هم نساء رقمان مختلفان يجيبان سؤالين مختلفين.</p>
+        <p>ولمتغيرين متصلين، يكون <strong>رسم الانتشار</strong> هو الوصف وينبغي إنتاجه قبل حساب أي ارتباط. فمعامل الارتباط يلخّص علاقة خطية في رقم واحد، وهو يُبلغ عن علاقة منحنية ضعيفةً، وعن علاقة تقودها قيمة شاذة قويةً، وعن فئتين فرعيتين متمايزتين ارتباطًا متوسطًا لا يصف أيًّا منهما. والثلاثة كلها مرئية في رسم الانتشار وغير مرئية في المعامل.</p>
+        <p>ولمتغير فئوي وآخر متصل، يكون الوصف نزعةَ المتغير المتصل المركزية وتشتته <strong>داخل كل فئة</strong>، معروضًا جدولًا أو رسمًا صندوقيًا. وهذه الصيغة الوصفية لمقارنة مجموعات، وينبغي أن تسبق اختبار الدلالة دائمًا، لأن فرقًا قدره 0.1 على مقياس خماسي قد يكون دالًا إحصائيًا في عيّنة كبيرة ولا يستحق النقاش.</p>
+        <div class="note"><strong>ملاحظة:</strong> أنتج مصفوفة ارتباط لكل متغيراتك الرئيسة مبكرًا واقرأها قبل النمذجة. فهي تكشف العلاقات القوية والصفريات المفاجئة وأي زوج يرتبط بدرجة عالية جدًا بحيث يكونان على الأرجح البناء نفسه مقيسًا مرتين.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="reporting">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Reporting Descriptives</h2>
+        <p class="lead">The descriptive section of a results chapter has a conventional structure. Following it lets a reader find what they are looking for without hunting.</p>
+        <p><strong>Start with the response and sample profile.</strong> How many were approached, how many responded, the response rate, and how many cases entered analysis after screening. Then the demographic composition as a table of counts and percentages, and, where possible, a comparison with the population, since a sample that matches the population on observable characteristics is evidence against non-response bias and takes one row of a table to demonstrate.</p>
+        <p><strong>Then the main variables.</strong> One table with a row per variable and columns for the number of valid cases, the mean, the standard deviation, the minimum, and the maximum, with the median added for skewed variables and the scale reliability where relevant. This single table is often the most-consulted page in a thesis, since every later result is interpreted against it.</p>
+        <p><strong>Then the correlation matrix</strong> among the main variables, which serves two purposes: it is the bivariate description, and it is the diagnostic that shows whether any predictors are collinear. Conventional practice is to report the correlations below the diagonal, with significance marked, and to place the mean and standard deviation in the first two columns so the table is self-contained.</p>
+        <p><strong>Then group comparisons</strong> where your questions involve them, descriptively before inferentially: means and standard deviations by group, so the reader sees the size of the difference before being told whether it is statistically significant.</p>
+        <p>Four reporting conventions are worth following. Use a <strong>consistent number of decimal places</strong>, usually two for means and standard deviations and two or three for correlations, since varying precision across a table looks careless. Report <strong>exact percentages with their base</strong>. Do not report a mean to three decimals from a five-point scale, which implies a precision the measurement does not have. And <strong>describe in the text what the table shows</strong>, in two or three sentences pointing at what matters, because a table presented without interpretation has handed the reader your job.</p>
+        <p>Finally, keep the description free of inference. The descriptive section reports what is in the sample; it does not say that a difference is significant, that a relationship holds in the population, or that one group is better than another. Those are claims for the sections that follow, and mixing them into the description is the most common structural error in a results chapter.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> descriptives describe the sample and claim nothing beyond it, and they are how you find errors and how a reader judges your sample. Answer four questions for every variable: frequency, central tendency, dispersion, and shape. Choose the central tendency the measurement level permits, report the median alongside the mean for money, size, tenure, and counts, and always pair a middle with a spread. Plot before computing, since bimodality, ceiling effects, and outlier-driven correlations are visible in a picture and invisible in a coefficient. Report sample profile, a variable table, a correlation matrix, and group descriptives, and keep inference out of the description.</div>
+        <div class="refs"><ul>
+          <li>Sekaran &amp; Bougie, <a href="https://www.wiley.com/en-us/Research+Methods+For+Business%3A+A+Skill+Building+Approach%2C+8th+Edition-p-9781119561224" target="_blank" rel="noopener">Research Methods for Business: A Skill-Building Approach</a>.</li>
+          <li>Saunders, Lewis &amp; Thornhill, <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">Research Methods for Business Students</a>.</li>
+          <li>American Psychological Association, <a href="https://apastyle.apa.org/products/publication-manual-7th-edition" target="_blank" rel="noopener">Publication Manual, Seventh Edition</a>.</li>
+          <li>Kumar, <a href="https://uk.sagepub.com/en-gb/eur/research-methodology/book270131" target="_blank" rel="noopener">Research Methodology: A Step-by-Step Guide for Beginners</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الإبلاغ بالوصفيات</h2>
+        <p class="lead">القسم الوصفي من فصل النتائج له بنية متعارفة. واتباعها يتيح للقارئ إيجاد ما يبحث عنه دون تنقيب.</p>
+        <p><strong>ابدأ بالاستجابة وملف العيّنة.</strong> كم جرى التواصل معهم، وكم استجابوا، ومعدل الاستجابة، وكم حالةً دخلت التحليل بعد الفرز. ثم التركيب الديموغرافي جدولَ أعداد ونسب، وحيثما أمكن، مقارنةً بالمجتمع، لأن عيّنةً تطابق المجتمع في الخصائص الملحوظة دليلٌ ضد تحيّز عدم الاستجابة ويستغرق إظهاره صفًا واحدًا من جدول.</p>
+        <p><strong>ثم المتغيرات الرئيسة.</strong> جدولٌ واحد بصف لكل متغير وأعمدة لعدد الحالات الصالحة والمتوسط والانحراف المعياري والأدنى والأقصى، مع إضافة الوسيط للمتغيرات الملتوية والثبات حيثما كان ذا صلة. وهذا الجدول الواحد كثيرًا ما يكون أكثر صفحات الأطروحة مراجعةً، لأن كل نتيجة لاحقة تُفسَّر مقابله.</p>
+        <p><strong>ثم مصفوفة الارتباط</strong> بين المتغيرات الرئيسة، وهي تخدم غرضين: فهي الوصف الثنائي، وهي التشخيص الذي يُظهر هل أي متنبئات متعددة الخطية. والممارسة المتعارفة الإبلاغُ بالارتباطات تحت القطر، مع تعليم الدلالة، ووضعُ المتوسط والانحراف المعياري في العمودين الأولين ليكون الجدول قائمًا بذاته.</p>
+        <p><strong>ثم مقارنات المجموعات</strong> حيث تتضمنها أسئلتك، وصفيًا قبل استدلاليًا: متوسطات وانحرافات معيارية بحسب المجموعة، ليرى القارئ حجم الفرق قبل أن يُخبَر هل هو دال إحصائيًا.</p>
+        <p>وأربعة أعراف إبلاغ تستحق الاتباع. استخدم <strong>عددًا متسقًا من المنازل العشرية</strong>، منزلتين للمتوسطات والانحرافات ومنزلتين أو ثلاثًا للارتباطات عادةً، لأن تباين الدقة عبر جدول يبدو مهملًا. وأبلغ بـ<strong>نسب دقيقة بأساسها</strong>. ولا تُبلغ بمتوسط بثلاث منازل عشرية من مقياس خماسي، فهذا يوحي بدقة لا يملكها القياس. و<strong>صِف في النص ما يُظهره الجدول</strong>، في جملتين أو ثلاث تشير إلى ما يهم، لأن جدولًا معروضًا بلا تفسير قد سلّم القارئ وظيفتك.</p>
+        <p>وأخيرًا، أبقِ الوصف خاليًا من الاستدلال. فالقسم الوصفي يُبلغ بما في العيّنة؛ ولا يقول إن فرقًا دال، ولا إن علاقةً تصح في المجتمع، ولا إن مجموعةً خير من أخرى. فتلك ادّعاءات للأقسام التالية، وخلطها في الوصف أشيع خطأ بنيوي في فصل نتائج.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الوصفيات تصف العيّنة ولا تدّعي شيئًا وراءها، وهي كيف تجد الأخطاء وكيف يحكم القارئ على عيّنتك. أجب أربعة أسئلة لكل متغير: التكرار، والنزعة المركزية، والتشتت، والشكل. واختر النزعة المركزية التي يجيزها مستوى القياس، وأبلغ بالوسيط إلى جانب المتوسط للمال والحجم ومدة الخدمة والأعداد، واقرن دائمًا وسطًا بانتشار. وارسم قبل أن تحسب، لأن ثنائية المنوال وآثار السقف والارتباطات التي تقودها الشواذ مرئية في صورة وغير مرئية في معامل. وأبلغ بملف العيّنة وجدول المتغيرات ومصفوفة الارتباط ووصفيات المجموعات، وأبقِ الاستدلال خارج الوصف.</div>
+        <div class="refs"><ul>
+          <li>سيكاران وبوجي، <a href="https://www.wiley.com/en-us/Research+Methods+For+Business%3A+A+Skill+Building+Approach%2C+8th+Edition-p-9781119561224" target="_blank" rel="noopener">مناهج البحث للأعمال: مقاربة بناء المهارات</a>.</li>
+          <li>سوندرز ولويس وثورنهيل، <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">مناهج البحث لطلاب الأعمال</a>.</li>
+          <li>جمعية علم النفس الأمريكية، <a href="https://apastyle.apa.org/products/publication-manual-7th-edition" target="_blank" rel="noopener">دليل النشر، الطبعة السابعة</a>.</li>
+          <li>كومار، <a href="https://uk.sagepub.com/en-gb/eur/research-methodology/book270131" target="_blank" rel="noopener">منهجية البحث: دليل خطوة بخطوة للمبتدئين</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="ana-data-preparation.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Preparing the Data</span><span data-lang="ar">إعداد البيانات</span></a><a href="ana-inferential.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Inferential Statistics</span><span data-lang="ar">الإحصاء الاستدلالي</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="الإحصاء الوصفي";
+var TITLE_EN="Descriptive Statistics";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

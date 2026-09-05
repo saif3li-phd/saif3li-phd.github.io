@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bibliometric Analysis · Saif Alghamdi</title>
+<meta name="description" content="Bibliometric analysis: performance analysis and science mapping, building a defensible corpus, the standard indicators, and the limits on interpretation.">
+<link rel="canonical" href="https://saif3li-phd.github.io/phd/craft-bibliometrics.html">
+<meta name="author" content="Saif Ali Alghamdi">
+<meta name="theme-color" content="#2D2D2D">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saif Ali Alghamdi">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:url" content="https://saif3li-phd.github.io/phd/craft-bibliometrics.html">
+<meta property="og:title" content="Bibliometric Analysis · Saif Alghamdi">
+<meta property="og:description" content="Bibliometric analysis: performance analysis and science mapping, building a defensible corpus, the standard indicators, and the limits on interpretation.">
+<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bibliometric Analysis · Saif Alghamdi">
+<meta name="twitter:description" content="Bibliometric analysis: performance analysis and science mapping, building a defensible corpus, the standard indicators, and the limits on interpretation.">
+<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Bibliometric Analysis · Saif Alghamdi", "description": "Bibliometric analysis: performance analysis and science mapping, building a defensible corpus, the standard indicators, and the limits on interpretation.", "url": "https://saif3li-phd.github.io/phd/craft-bibliometrics.html", "inLanguage": "en", "author": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "publisher": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "image": "https://saif3li-phd.github.io/assets/og.jpg", "isPartOf": {"@type": "WebSite", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}}
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="0009a1c6-b533-4e1e-9dbc-8b20dbe29af9"></script>
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#foundation-of-business-research"><span data-lang="en">Foundation of Business Research</span><span data-lang="ar">أسس بحوث الأعمال</span></a><i>&rsaquo;</i><span data-lang="en">Craft and tools</span><span data-lang="ar">الحرفة والأدوات</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">CRAFT AND TOOLS · PhD</span><span data-lang="ar">الحرفة والأدوات · دكتوراه</span></div>
+    <h1><span data-lang="en">Bibliometric Analysis</span><span data-lang="ar">التحليل الببليومتري</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Craft and tools</span><span data-lang="ar">الحرفة والأدوات</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">10 min</span><span data-lang="ar">١٠ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذا الموضوع</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="families"><span data-lang="en">Two families</span><span data-lang="ar">عائلتان</span></a></li><li><a data-id="corpus"><span data-lang="en">The corpus</span><span data-lang="ar">المدونة</span></a></li><li><a data-id="indicators"><span data-lang="en">Indicators</span><span data-lang="ar">المؤشرات</span></a></li><li><a data-id="limits"><span data-lang="en">Limits</span><span data-lang="ar">الحدود</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Bibliometric analysis of a research field</div>
+          <div><span>Covers:</span> What it is, the two families, building a corpus, the standard indicators, and its limits</div>
+          <div><span>Use:</span> Describing the structure of a literature at a scale reading cannot reach</div>
+          <div><span>Level:</span> Doctoral business research</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Bibliometric analysis treats the publication record as data. Instead of reading papers to learn what they say, it counts and relates them to learn how a field is structured: who publishes, what is cited, which topics cluster, and how all of that has changed.</p>
+        <p>It answers a different question from a literature review, and the distinction matters. A review asks <strong>what is known about a phenomenon</strong>. A bibliometric analysis asks <strong>what the field looks like</strong>: its size, growth, concentration, intellectual groupings, and boundaries. Both are legitimate; using one where the other is needed is not.</p>
+        <p>Its advantage is scale. A researcher can read two hundred papers carefully; a bibliometric analysis can describe the structure of eight thousand, and it can identify the clusters within them from the data rather than from the researcher's prior categories. That last property is a real defence against the criticism that a review reproduced its author's assumptions.</p>
+        <p>Its limitation is equally clear and must be stated: <strong>it measures citation behaviour, not content</strong>. Papers cited together are related in some way, and the software cannot tell you in what way. Every bibliometric finding requires a reader to go and look at the papers before it means anything, and analyses that skip that step produce diagrams rather than knowledge.</p>
+        <p>This framework covers the two families of technique, building a defensible corpus, the standard performance indicators and what each does and does not measure, and the limits that govern interpretation. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Bibliometric analysis complements a literature review; it does not replace one. A thesis whose chapter two is entirely a bibliometric map has described a field without engaging with what it found, and an examiner will ask what the papers actually say.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> التحليل الببليومتري لحقل بحثي</div>
+          <div><span>يغطّي:</span> ما هو، والعائلتان، وبناء مدونة، والمؤشرات المعيارية، وحدوده</div>
+          <div><span>الاستخدام:</span> وصف بنية أدبيات بمقياس لا تبلغه القراءة</div>
+          <div><span>المستوى:</span> بحوث الأعمال لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">التحليل الببليومتري يعامل سجل النشر بوصفه بيانات. فبدل قراءة الأوراق لمعرفة ما تقول، يَعُدّها ويربطها لمعرفة كيف يتبنّى حقل: من ينشر، وما يُستشهَد به، وأي موضوعات تتعنقد، وكيف تغيّر ذلك كله.</p>
+        <p>وهو يجيب سؤالًا مختلفًا عن مراجعة الأدبيات، والتمييز يهم. فالمراجعة تسأل <strong>ما المعروف عن ظاهرة</strong>. والتحليل الببليومتري يسأل <strong>كيف يبدو الحقل</strong>: حجمه ونموه وتركّزه وتجمعاته الفكرية وحدوده. وكلاهما مشروع؛ واستخدام أحدهما حيث يلزم الآخر ليس كذلك.</p>
+        <p>وميزته الحجم. فالباحث يستطيع قراءة مئتَي ورقة بعناية؛ والتحليل الببليومتري يستطيع وصف بنية ثمانية آلاف، ويستطيع تحديد العناقيد داخلها من البيانات لا من فئات الباحث المسبقة. وتلك الخاصية الأخيرة دفاعٌ حقيقي ضد نقدٍ مفاده أن المراجعة أعادت إنتاج افتراضات مؤلفها.</p>
+        <p>وحدّه واضح بالقدر نفسه ويجب ذكره: <strong>إنه يقيس سلوك الاستشهاد لا المحتوى</strong>. فالأوراق المستشهَد بها معًا مرتبطة بطريقة ما، والبرمجية لا تستطيع إخبارك بأي طريقة. وكل نتيجة ببليومترية تتطلب أن يذهب قارئ وينظر في الأوراق قبل أن تعني شيئًا، والتحليلات التي تتخطى تلك الخطوة تُنتج مخططات لا معرفة.</p>
+        <p>ويغطي هذا الإطار عائلتَي التقنيات، وبناء مدونة قابلة للدفاع، ومؤشرات الأداء المعيارية وما يقيسه كلٌّ وما لا يقيسه، والحدود التي تحكم التفسير. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> التحليل الببليومتري يكمّل مراجعة الأدبيات؛ ولا يحل محلها. فأطروحةٌ فصلها الثاني خريطةٌ ببليومترية كليًا قد وصفت حقلًا دون التعامل مع ما وجدته، والممتحن سيسأل ماذا تقول الأوراق فعلًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="families">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Two Families of Technique</h2>
+        <p class="lead">Everything in bibliometrics is either counting or relating. Knowing which family a technique belongs to tells you what its output can support.</p>
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#A32020"/><text x="195.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">Performance analysis</text><text x="195.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">counting: who published what, where, and how</text><text x="195.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">often it was cited</text><rect x="360.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#8C8C8C"/><text x="505.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">Science mapping</text><text x="505.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">relating: which works, authors, and terms</text><text x="505.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">cluster together</text><rect x="140.0" y="168.0" width="420.0" height="26.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="185.0" text-anchor="middle" font-size="10.5" font-weight="600" fill="#2D2D2D">most studies use both, in that order</text><text x="350.0" y="236.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">the first describes activity; the second describes structure</text></svg>
+        <p><strong>Performance analysis</strong> counts. Its outputs are the number of publications per year, the most productive authors, institutions, and countries, the most cited papers, the journals publishing most in the area, and the various indices combining productivity with impact. These describe activity, and they are descriptive statistics of a literature rather than findings about a phenomenon.</p>
+        <p>Their value in a thesis is contextual and real: establishing that a field is growing, that it is concentrated in a few outlets, that it is dominated by work from particular regions, or that a topic has emerged recently. All of these are things a reader would otherwise have to take on trust, and each takes one sentence supported by a count.</p>
+        <p><strong>Science mapping</strong> relates. It uses the connections between records, which are citations and shared terms, to identify structure. Its outputs are clusters of works or authors that belong together, maps showing how those clusters relate, and views of how the structure has changed over time. This family is treated in detail in the next framework in this track.</p>
+        <p>Four mapping techniques recur and each answers a different question. <strong>Co-citation</strong> groups works that are cited together, revealing the intellectual foundations a field shares. <strong>Bibliographic coupling</strong> groups works that cite the same sources, revealing current research fronts. <strong>Co-word analysis</strong> groups terms that appear together, revealing thematic structure. And <strong>co-authorship</strong> maps collaboration between researchers, institutions, or countries.</p>
+        <p>The practical sequence for a thesis is to run performance analysis first, which is quick and gives you the field's shape, and then one or two mapping analyses chosen because they answer a question you actually have. Running all four because the software offers them produces four diagrams and no argument.</p>
+        <div class="note"><strong>Note:</strong> Decide the question before opening the software. What is the intellectual structure of this field is a question; what does the software produce is not, and the difference is visible in the resulting chapter.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>عائلتا التقنيات</h2>
+        <p class="lead">كل ما في الببليومتريا إما عدٌّ أو ربط. ومعرفةُ أي عائلة تنتمي إليها تقنية تخبرك بما يستطيع مخرَجها إسناده.</p>
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#A32020"/><text x="195.0" y="80.1" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">تحليل الأداء</text><text x="195.0" y="94.1" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">العدّ: من نشر ماذا وأين وكم مرة استُشهد به</text><rect x="360.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#8C8C8C"/><text x="505.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">رسم خرائط العلم</text><text x="505.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">الربط: أي أعمال ومؤلفين ومصطلحات تتعنقد</text><text x="505.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">معًا</text><rect x="140.0" y="168.0" width="420.0" height="26.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="185.0" text-anchor="middle" font-size="10.5" font-weight="600" fill="#2D2D2D">معظم الدراسات تستخدم الاثنين، بذلك الترتيب</text><text x="350.0" y="236.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">الأول يصف النشاط؛ والثاني يصف البنية</text></svg>
+        <p>و<strong>تحليل الأداء</strong> يَعُدّ. ومخرجاته عدد المنشورات في السنة، وأكثر المؤلفين والمؤسسات والبلدان إنتاجًا، وأكثر الأوراق استشهادًا، والمجلات الأكثر نشرًا في المجال، والمؤشرات المتنوعة التي تجمع الإنتاجية بالأثر. وهذه تصف نشاطًا، وهي إحصاءات وصفية لأدبيات لا نتائج عن ظاهرة.</p>
+        <p>وقيمتها في أطروحة سياقية وحقيقية: إثباتُ أن حقلًا ينمو، أو أنه متركّز في منافذ قليلة، أو أن أعمالًا من مناطق بعينها تهيمن عليه، أو أن موضوعًا ظهر حديثًا. وكل هذه أشياء كان القارئ سيضطر إلى قبولها ثقةً لولا ذلك، وكلٌّ يستغرق جملةً يسندها عدد.</p>
+        <p>و<strong>رسم خرائط العلم</strong> يربط. فهو يستخدم الصلات بين السجلات، وهي الاستشهادات والمصطلحات المشتركة، لتحديد البنية. ومخرجاته عناقيدُ أعمال أو مؤلفين ينتمون معًا، وخرائط تُظهر كيف ترتبط تلك العناقيد، وعروضٌ لكيف تغيّرت البنية عبر الزمن. وتُعالَج هذه العائلة بالتفصيل في الإطار التالي من هذا المسار.</p>
+        <p>وأربع تقنيات رسم تتكرر وكلٌّ تجيب سؤالًا مختلفًا. <strong>الاستشهاد المشترك</strong> يجمّع الأعمال المستشهَد بها معًا، كاشفًا الأسس الفكرية التي يتشاركها حقل. و<strong>الاقتران الببليوغرافي</strong> يجمّع الأعمال التي تستشهد بالمصادر نفسها، كاشفًا جبهات البحث الحالية. و<strong>تحليل الكلمات المشتركة</strong> يجمّع المصطلحات التي تظهر معًا، كاشفًا البنية الموضوعية. و<strong>التأليف المشترك</strong> يرسم التعاون بين الباحثين أو المؤسسات أو البلدان.</p>
+        <p>والتسلسل العملي لأطروحة تشغيلُ تحليل الأداء أولًا، وهو سريع ويعطيك شكل الحقل، ثم تحليل رسم أو تحليلين مختارين لأنهما يجيبان سؤالًا تملكه فعلًا. وتشغيلُ الأربعة لأن البرمجية تعرضها يُنتج أربعة مخططات ولا حجة.</p>
+        <div class="note"><strong>ملاحظة:</strong> قرّر السؤال قبل فتح البرمجية. فـ«ما البنية الفكرية لهذا الحقل» سؤال؛ و«ماذا تُنتج البرمجية» ليس سؤالًا، والفرق مرئي في الفصل الناتج.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="corpus">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Building a Defensible Corpus</h2>
+        <p class="lead">Everything in a bibliometric analysis follows from the corpus. A badly defined corpus produces confident results about the wrong literature.</p>
+        <svg viewBox="0 0 700 308" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">1</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Define the corpus</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">the search string, the database, the filters, and the date</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">2</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Export the records</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">with references and keywords, in the software's format</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">3</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Clean</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">merge author name variants and synonymous keywords</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="199.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">4</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Analyse</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">performance counts, then the network analyses you planned</text><rect x="52.0" y="224.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="251.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">5</text><rect x="104.0" y="224.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="251.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Interpret</text><rect x="312.0" y="224.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="251.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">read the central papers, since the map is not the content</text><text x="350.0" y="297.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">five steps; step three is the one that determines whether the results mean anything</text></svg>
+        <p><strong>Define the corpus</strong> exactly as you would a systematic search: the database, the search string, the fields searched, the years, the document types, and the date of extraction. All six must be reported, because a bibliometric analysis is entirely determined by them and cannot be evaluated without them.</p>
+        <p>Two choices matter more here than in an ordinary search. <strong>Use one database, not several.</strong> Bibliometric analysis needs the citation relationships to be internally consistent, and merging records from two indexes creates duplicate and mismatched citation links that corrupt the network analyses. Choose the index with the better coverage of your field, say so, and note the coverage limitation.</p>
+        <p><strong>Export the full records</strong>, including cited references and author keywords, not just the bibliographic details. Most of the mapping techniques need the reference lists, and an export without them will run only the counting analyses.</p>
+        <p><strong>Cleaning</strong> is the step that determines whether the results mean anything, and it is the step most often skipped. Three problems recur. <strong>Author name variants:</strong> the same person appearing as J. Smith, John Smith, and Smith J, which splits their output across three nodes. <strong>Keyword synonyms:</strong> SME, SMEs, and small and medium enterprises counted as three distinct terms. And <strong>institution name variants</strong>, which are worse than author names because organizations rename and merge.</p>
+        <p>The tools support cleaning through a thesaurus file mapping variants to a canonical form. Building one takes a few hours for a corpus of a few thousand records, and it is not optional: an uncleaned analysis reports that the most common keyword is a term whose variants are scattered across six nodes, which is a finding about your data preparation rather than about the field.</p>
+        <p>Finally, <strong>report the corpus in the methodology</strong> with the same detail as a systematic search, including the numbers before and after each filter. A bibliometric chapter without a reproducible corpus definition cannot be checked, and it is the first thing a reader who knows the method will look for.</p>
+        <div class="note"><strong>Note:</strong> Databases are updated continuously, so record the extraction date and expect that a rerun months later returns a different corpus. That is normal and must be explainable, which it is only if the date was recorded.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>بناء مدونة قابلة للدفاع</h2>
+        <p class="lead">كل ما في التحليل الببليومتري يتبع من المدونة. والمدونةُ سيئة التعريف تُنتج نتائج واثقة عن الأدبيات الخطأ.</p>
+        <svg viewBox="0 0 700 308" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">١</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">عرّف المدونة</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">سلسلة البحث والقاعدة والمرشِّحات والتاريخ</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٢</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">صدّر السجلات</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">بالمراجع والكلمات المفتاحية، بصيغة البرمجية</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٣</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">نظّف</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">ادمج تنويعات أسماء المؤلفين والكلمات المترادفة</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="199.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٤</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">حلّل</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">أعداد الأداء، ثم تحليلات الشبكة التي خططت لها</text><rect x="52.0" y="224.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="251.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٥</text><rect x="104.0" y="224.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="251.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">فسّر</text><rect x="312.0" y="224.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="251.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">اقرأ الأوراق المركزية، فالخريطة ليست المحتوى</text><text x="350.0" y="297.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">خمس خطوات؛ والثالثة هي التي تحدد هل تعني النتائج شيئًا</text></svg>
+        <p><strong>عرّف المدونة</strong> بالضبط كما تعرّف بحثًا منهجيًا: القاعدة، وسلسلة البحث، والحقول المبحوثة، والسنوات، وأنواع الوثائق، وتاريخ الاستخراج. والستة كلها يجب الإبلاغ بها، لأن التحليل الببليومتري تحدده كليًا ولا يمكن تقييمه بدونها.</p>
+        <p>وخياران يهمان هنا أكثر مما يهمان في بحث عادي. <strong>استخدم قاعدة واحدة لا عدة.</strong> فالتحليل الببليومتري يحتاج أن تكون علاقات الاستشهاد متسقة داخليًا، ودمجُ سجلات من فهرسين يخلق روابط استشهاد مكررة وغير متطابقة تُفسد تحليلات الشبكة. اختر الفهرس الأفضل تغطيةً لحقلك، وقُل ذلك، ودوّن حدّ التغطية.</p>
+        <p><strong>صدّر السجلات كاملةً</strong>، بما فيها المراجع المستشهَد بها والكلمات المفتاحية للمؤلفين، لا البيانات الببليوغرافية فقط. فمعظم تقنيات الرسم تحتاج قوائم المراجع، والتصديرُ بدونها سيشغّل تحليلات العدّ فقط.</p>
+        <p>و<strong>التنظيف</strong> هو الخطوة التي تحدد هل تعني النتائج شيئًا، وهي الخطوة الأكثر تخطّيًا. وثلاث مشكلات تتكرر. <strong>تنويعات أسماء المؤلفين:</strong> الشخص نفسه يظهر بثلاث صيغ، وهذا يقسّم إنتاجه على ثلاث عقد. و<strong>مترادفات الكلمات المفتاحية:</strong> «منشأة صغيرة ومتوسطة» ومختصرها ومفردها تُعَدّ ثلاثة مصطلحات متمايزة. و<strong>تنويعات أسماء المؤسسات</strong>، وهي أسوأ من أسماء المؤلفين لأن المنظمات تُعاد تسميتها وتندمج.</p>
+        <p>والأدوات تسند التنظيف عبر ملف مكنز يربط التنويعات بصيغة معيارية. وبناؤه يستغرق ساعات قليلة لمدونة من بضعة آلاف سجل، وهو ليس اختياريًا: فتحليلٌ غير منظَّف يُبلغ بأن أشيع كلمة مفتاحية مصطلحٌ تتناثر تنويعاته على ست عقد، وهذه نتيجةٌ عن إعدادك للبيانات لا عن الحقل.</p>
+        <p>وأخيرًا، <strong>أبلغ بالمدونة في المنهجية</strong> بالتفصيل نفسه كبحث منهجي، بما فيه الأعداد قبل كل مرشِّح وبعده. فالفصل الببليومتري بلا تعريف مدونة قابل للتكرار لا يمكن فحصه، وهو أول ما سيبحث عنه قارئ يعرف المنهج.</p>
+        <div class="note"><strong>ملاحظة:</strong> القواعد تُحدَّث باستمرار، فسجّل تاريخ الاستخراج وتوقّع أن تعيد إعادةُ تشغيل بعد أشهر مدونةً مختلفة. وهذا طبيعي ويجب أن يكون قابلًا للتفسير، وهو كذلك فقط إن سُجِّل التاريخ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="indicators">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>The Standard Indicators</h2>
+        <p class="lead">Performance indicators are simple to compute and easy to misread. Each measures something specific, and none measures quality.</p>
+        <table>
+          <tr><th>Indicator</th><th>What it measures</th><th>What it does not</th></tr>
+          <tr><td>Publication count</td><td>Volume of output</td><td>Whether any of it mattered</td></tr>
+          <tr><td>Citation count</td><td>How often a work was referred to</td><td>Whether it was cited approvingly</td></tr>
+          <tr><td>Citations per publication</td><td>Average reach of an author's work</td><td>Distribution; one paper can carry the mean</td></tr>
+          <tr><td>The h-index</td><td>Sustained output with sustained citation</td><td>Career stage differences; it only rises</td></tr>
+          <tr><td>Journal impact measures</td><td>The average citation rate of a journal</td><td>The impact of any individual paper in it</td></tr>
+          <tr><td>Growth rate</td><td>How fast publication volume is changing</td><td>Whether the field is advancing</td></tr>
+        </table>
+        <p>Four cautions govern their use. <strong>Citations accumulate over time</strong>, so a paper from 2010 has had a decade to gather them and one from 2023 has not. Any comparison across years must normalise for this, and a top-cited list is always a list of older papers unless it is age-adjusted.</p>
+        <p><strong>Citation practices differ by field</strong>, dramatically. A highly cited paper in one discipline would be unremarkable in another, so counts are comparable within a field and meaningless across fields.</p>
+        <p><strong>Citation is not endorsement.</strong> Papers are cited to be criticised, to be corrected, and as examples of what not to do. A high count means a work was engaged with, which is a real signal, and it is not a quality measure.</p>
+        <p><strong>Journal-level measures do not transfer to papers.</strong> The distribution of citations within any journal is highly skewed, so a paper in a high-impact journal may have no citations at all, and using the journal's number as a proxy for the paper is a well-documented error.</p>
+        <p>For a thesis, the honest and useful applications are contextual. Establishing the <strong>size and growth</strong> of a literature justifies a claim that a topic is emerging or established. Identifying the <strong>most cited works</strong> gives you a defensible list of papers to read closely, which is the most practical use of the whole method. Identifying the <strong>main outlets</strong> tells you where to search and where to publish. And identifying <strong>geographic or sectoral concentration</strong> can itself be the gap: a field studied almost entirely in one region is a field with an untested boundary.</p>
+        <div class="note"><strong>Note:</strong> Use bibliometric indicators to describe the literature, never to evaluate individuals. Ranking authors by an index in a thesis chapter is both methodologically weak and professionally inappropriate, and it adds nothing to an argument about a phenomenon.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>المؤشرات المعيارية</h2>
+        <p class="lead">مؤشرات الأداء بسيطة الحساب وسهلة الإساءة في القراءة. وكلٌّ يقيس شيئًا محددًا، ولا واحد يقيس الجودة.</p>
+        <table>
+          <tr><th>المؤشر</th><th>ما يقيسه</th><th>ما لا يقيسه</th></tr>
+          <tr><td>عدد المنشورات</td><td>حجم الإنتاج</td><td>هل كان أيٌّ منه مهمًا</td></tr>
+          <tr><td>عدد الاستشهادات</td><td>كم مرة أُشير إلى عمل</td><td>هل استُشهد به موافقةً</td></tr>
+          <tr><td>الاستشهادات لكل منشور</td><td>متوسط مدى عمل مؤلف</td><td>التوزيع؛ فورقة واحدة قد تحمل المتوسط</td></tr>
+          <tr><td>مؤشر هيرش</td><td>إنتاج مستدام باستشهاد مستدام</td><td>فروق مرحلة المسيرة؛ فهو يرتفع فقط</td></tr>
+          <tr><td>مقاييس أثر المجلات</td><td>متوسط معدل استشهاد مجلة</td><td>أثر أي ورقة مفردة فيها</td></tr>
+          <tr><td>معدل النمو</td><td>كم يتغير حجم النشر بسرعة</td><td>هل يتقدم الحقل</td></tr>
+        </table>
+        <p>وأربعة تحذيرات تحكم استخدامها. <strong>الاستشهادات تتراكم عبر الزمن</strong>، فورقةٌ من 2010 كان لديها عقدٌ لجمعها وورقةٌ من 2023 لم يكن لديها. وأي مقارنة عبر السنوات يجب أن تعيّر لهذا، وقائمةُ الأكثر استشهادًا دائمًا قائمةُ أوراق أقدم ما لم تُعدَّل بالعمر.</p>
+        <p>و<strong>ممارسات الاستشهاد تختلف بالحقل</strong>، بدرجة كبيرة. فورقةٌ كثيرة الاستشهاد في تخصص ستكون عادية في آخر، فالأعداد قابلة للمقارنة داخل حقل وبلا معنى عبر الحقول.</p>
+        <p>و<strong>الاستشهاد ليس تأييدًا.</strong> فالأوراق يُستشهَد بها للنقد وللتصحيح ومثالًا على ما لا يُفعَل. والعددُ العالي يعني أن عملًا جرى التعامل معه، وهذه إشارة حقيقية، وهو ليس مقياس جودة.</p>
+        <p>و<strong>مقاييس مستوى المجلة لا تنتقل إلى الأوراق.</strong> فتوزيع الاستشهادات داخل أي مجلة ملتوٍ بشدة، فقد لا يكون لورقة في مجلة عالية الأثر استشهادات البتة، واستخدامُ رقم المجلة وكيلًا عن الورقة خطأٌ موثَّق جيدًا.</p>
+        <p>وللأطروحة، التطبيقات الصادقة والنافعة سياقية. فإثباتُ <strong>حجم أدبيات ونموها</strong> يبرّر ادّعاءً بأن موضوعًا ناشئ أو راسخ. وتحديدُ <strong>أكثر الأعمال استشهادًا</strong> يعطيك قائمة أوراق قابلة للدفاع لقراءتها بإمعان، وهذا أعمل استخدام للمنهج كله. وتحديدُ <strong>المنافذ الرئيسة</strong> يخبرك أين تبحث وأين تنشر. وتحديدُ <strong>التركّز الجغرافي أو القطاعي</strong> قد يكون هو الفجوة نفسها: فحقلٌ يُدرَس كليًا تقريبًا في منطقة واحدة حقلٌ بحدّ غير مختبَر.</p>
+        <div class="note"><strong>ملاحظة:</strong> استخدم المؤشرات الببليومترية لوصف الأدبيات، لا لتقييم الأفراد أبدًا. فترتيبُ المؤلفين بمؤشر في فصل أطروحة ضعيفٌ منهجيًا وغير ملائم مهنيًا معًا، ولا يضيف شيئًا إلى حجة عن ظاهرة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="limits">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Limits and Honest Reporting</h2>
+        <p class="lead">Bibliometric analysis produces confident-looking output from data that carries systematic biases. Six limits govern interpretation and all should be stated.</p>
+        <p><strong>Database coverage.</strong> The analysis describes what the index contains, not the literature. Curated indexes under-represent regional journals, non-English work, books, and newer outlets, so a map built from one is a map of the indexed literature. State which index and acknowledge what it omits.</p>
+        <p><strong>Language bias.</strong> English-language work is over-represented in every major index. For a study of a regionally specific phenomenon this can be severe, and the honest response is to say so and, where possible, to complement the analysis with a regional source.</p>
+        <p><strong>Time lags.</strong> Recent papers have not accumulated citations, so any citation-based analysis systematically undervalues the newest work, which is often the work most relevant to an emerging topic. Bibliographic coupling, which uses reference lists rather than received citations, avoids this and is the better choice for identifying current fronts.</p>
+        <p><strong>The Matthew effect.</strong> Highly cited papers attract further citations partly because they are visible, so citation counts partly measure prior visibility rather than merit. This is well documented and means top-cited lists are conservative: they reliably identify what a field considers foundational and are poor at identifying what is currently important.</p>
+        <p><strong>Self-citation and citation circles</strong> inflate counts for some authors and groups. Most software can exclude self-citations and doing so is worth reporting.</p>
+        <p><strong>And the central limit: citation is not content.</strong> Two papers cited together are related somehow, and the analysis cannot say how. A cluster is a hypothesis about intellectual structure, and it becomes a finding only when you read the central papers in it and can describe what they share.</p>
+        <p>For a thesis, three practices make bibliometric work defensible. <strong>Report the corpus fully</strong>, with the search string, database, filters, dates, and counts. <strong>Report the parameters</strong>: the software and version, the thresholds used, the clustering settings, and the cleaning performed, since different thresholds produce different maps from the same data. And <strong>read the papers</strong>: identify the most central works in each cluster and describe what they actually argue, because that reading is what converts a diagram into a contribution.</p>
+        <p>Used this way, bibliometrics is a genuine addition to a doctoral literature review: it establishes the field's shape objectively, it identifies the papers worth close reading from the data rather than from your prior expectations, and it can reveal a structural gap that reading alone would not surface. Used as a substitute for reading, it produces a chapter full of maps and empty of argument.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> bibliometric analysis treats the publication record as data and answers what a field looks like rather than what is known about a phenomenon. Two families: performance analysis counts, science mapping relates. Build the corpus from one database with a reported string, export full records with references, and clean author and keyword variants before analysing. Read indicators for what they measure and never as quality, remembering that citations accumulate with age and differ by field. State the coverage, language, and time-lag limits, report every parameter, and read the central papers, because a cluster is a hypothesis until someone reads it.</div>
+        <div class="refs"><ul>
+          <li>Aria &amp; Cuccurullo, <a href="https://www.bibliometrix.org/" target="_blank" rel="noopener">Bibliometrix: An R Tool for Comprehensive Science Mapping</a>.</li>
+          <li>Elsevier, <a href="https://www.elsevier.com/products/scopus" target="_blank" rel="noopener">Scopus Abstract and Citation Database</a>.</li>
+          <li>Clarivate, <a href="https://clarivate.com/academia-government/scientific-and-academic-research/research-discovery-and-referencing/web-of-science/" target="_blank" rel="noopener">Web of Science Core Collection</a>.</li>
+          <li>Saunders, Lewis &amp; Thornhill, <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">Research Methods for Business Students</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الحدود والإبلاغ الصادق</h2>
+        <p class="lead">التحليل الببليومتري يُنتج مخرَجًا يبدو واثقًا من بيانات تحمل تحيّزات منهجية. وستة حدود تحكم التفسير وكلها ينبغي ذكرها.</p>
+        <p><strong>تغطية القاعدة.</strong> فالتحليل يصف ما يحويه الفهرس، لا الأدبيات. والفهارس المنسّقة تقصّر في تمثيل المجلات الإقليمية والأعمال غير الإنجليزية والكتب والمنافذ الأحدث، فخريطةٌ مبنيّة من واحد خريطةٌ للأدبيات المفهرَسة. اذكر أي فهرس وأقرّ بما يُغفله.</p>
+        <p><strong>تحيّز اللغة.</strong> فالأعمال بالإنجليزية ممثَّلة بإفراط في كل فهرس كبير. ولدراسة ظاهرة خاصة بإقليم قد يكون هذا شديدًا، والاستجابة الصادقة قولُ ذلك، وحيثما أمكن، تكميلُ التحليل بمصدر إقليمي.</p>
+        <p><strong>الفوارق الزمنية.</strong> فالأوراق الحديثة لم تراكم استشهادات، فأي تحليل قائم على الاستشهاد يبخس منهجيًا أحدث الأعمال، وهي غالبًا الأعمال الأوثق صلةً بموضوع ناشئ. والاقتران الببليوغرافي، الذي يستخدم قوائم المراجع لا الاستشهادات المتلقاة، يتجنب هذا وهو الخيار الأفضل لتحديد الجبهات الحالية.</p>
+        <p><strong>أثر ماثيو.</strong> فالأوراق كثيرة الاستشهاد تجتذب استشهادات أخرى جزئيًا لأنها مرئية، فأعدادُ الاستشهادات تقيس جزئيًا بروزًا سابقًا لا استحقاقًا. وهذا موثَّق جيدًا ويعني أن قوائم الأكثر استشهادًا محافظة: فهي تحدد بثبات ما يعدّه حقلٌ تأسيسيًا وهي ضعيفة في تحديد ما هو مهم حاليًا.</p>
+        <p>و<strong>الاستشهاد الذاتي ودوائر الاستشهاد</strong> تضخّم الأعداد لبعض المؤلفين والمجموعات. ومعظم البرمجيات تستطيع استبعاد الاستشهادات الذاتية وفعلُ ذلك يستحق الإبلاغ.</p>
+        <p><strong>والحد المركزي: الاستشهاد ليس محتوى.</strong> فورقتان مستشهَد بهما معًا مرتبطتان بطريقةٍ ما، ولا يستطيع التحليل قول كيف. والعنقود فرضيةٌ عن بنية فكرية، ويصير نتيجةً فقط حين تقرأ الأوراق المركزية فيه وتستطيع وصف ما تتشاركه.</p>
+        <p>وللأطروحة، ثلاث ممارسات تجعل العمل الببليومتري قابلًا للدفاع. <strong>أبلغ بالمدونة كاملةً</strong>، بسلسلة البحث والقاعدة والمرشِّحات والتواريخ والأعداد. و<strong>أبلغ بالمعاملات</strong>: البرمجية وإصدارها، والعتبات المستخدَمة، وإعدادات العنقدة، والتنظيف المُجرى، لأن عتبات مختلفة تُنتج خرائط مختلفة من البيانات نفسها. و<strong>اقرأ الأوراق</strong>: حدّد أكثر الأعمال مركزيةً في كل عنقود وصِف ماذا تحاجّ به فعلًا، لأن تلك القراءة هي ما يحوّل مخططًا إلى إسهام.</p>
+        <p>ومستخدَمةً هكذا، تكون الببليومتريا إضافةً حقيقية لمراجعة أدبيات في الدكتوراه: فهي تثبّت شكل الحقل موضوعيًا، وتحدد الأوراق التي تستحق القراءة المتأنية من البيانات لا من توقعاتك المسبقة، وتستطيع كشف فجوة بنيوية لم تكن القراءة وحدها لتُظهرها. ومستخدَمةً بديلًا عن القراءة، تُنتج فصلًا مليئًا بالخرائط خاليًا من الحجة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> التحليل الببليومتري يعامل سجل النشر بيانات ويجيب كيف يبدو حقل لا ما المعروف عن ظاهرة. وعائلتان: تحليل الأداء يَعُدّ، ورسم خرائط العلم يربط. ابنِ المدونة من قاعدة واحدة بسلسلة مُبلَّغ عنها، وصدّر السجلات كاملةً بالمراجع، ونظّف تنويعات المؤلفين والكلمات قبل التحليل. واقرأ المؤشرات لما تقيسه ولا تقرأها جودةً أبدًا، متذكرًا أن الاستشهادات تتراكم بالعمر وتختلف بالحقل. واذكر حدود التغطية واللغة والفارق الزمني، وأبلغ بكل معامل، واقرأ الأوراق المركزية، فالعنقود فرضيةٌ حتى يقرأه أحد.</div>
+        <div class="refs"><ul>
+          <li>أريا وكوكورولو، <a href="https://www.bibliometrix.org/" target="_blank" rel="noopener">بيبليومتريكس: أداة R لرسم خرائط العلم</a>.</li>
+          <li>إلزيفير، <a href="https://www.elsevier.com/products/scopus" target="_blank" rel="noopener">سكوبس، قاعدة الملخصات والاستشهادات</a>.</li>
+          <li>كلاريفيت، <a href="https://clarivate.com/academia-government/scientific-and-academic-research/research-discovery-and-referencing/web-of-science/" target="_blank" rel="noopener">المجموعة الأساسية لويب أوف ساينس</a>.</li>
+          <li>سوندرز ولويس وثورنهيل، <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">مناهج البحث لطلاب الأعمال</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="craft-latex-tables.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Tables, Figures and Cross-References</span><span data-lang="ar">الجداول والأشكال والإحالات</span></a><a href="craft-science-mapping.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Science Mapping</span><span data-lang="ar">رسم خرائط العلم</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="التحليل الببليومتري";
+var TITLE_EN="Bibliometric Analysis";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

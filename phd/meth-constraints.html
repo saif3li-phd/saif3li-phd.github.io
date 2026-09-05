@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Constraints and Limitations · Saif Alghamdi</title>
+<meta name="description" content="Constraints and limitations: separating delimitations, limitations and assumptions, the four-part form for writing one, and the failures to avoid.">
+<link rel="canonical" href="https://saif3li-phd.github.io/phd/meth-constraints.html">
+<meta name="author" content="Saif Ali Alghamdi">
+<meta name="theme-color" content="#2D2D2D">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saif Ali Alghamdi">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:url" content="https://saif3li-phd.github.io/phd/meth-constraints.html">
+<meta property="og:title" content="Constraints and Limitations · Saif Alghamdi">
+<meta property="og:description" content="Constraints and limitations: separating delimitations, limitations and assumptions, the four-part form for writing one, and the failures to avoid.">
+<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Constraints and Limitations · Saif Alghamdi">
+<meta name="twitter:description" content="Constraints and limitations: separating delimitations, limitations and assumptions, the four-part form for writing one, and the failures to avoid.">
+<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Constraints and Limitations · Saif Alghamdi", "description": "Constraints and limitations: separating delimitations, limitations and assumptions, the four-part form for writing one, and the failures to avoid.", "url": "https://saif3li-phd.github.io/phd/meth-constraints.html", "inLanguage": "en", "author": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "publisher": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "image": "https://saif3li-phd.github.io/assets/og.jpg", "isPartOf": {"@type": "WebSite", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}}
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="0009a1c6-b533-4e1e-9dbc-8b20dbe29af9"></script>
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#foundation-of-business-research"><span data-lang="en">Foundation of Business Research</span><span data-lang="ar">أسس بحوث الأعمال</span></a><i>&rsaquo;</i><span data-lang="en">Research methodology</span><span data-lang="ar">منهجية البحث</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">RESEARCH METHODOLOGY · PhD</span><span data-lang="ar">منهجية البحث · دكتوراه</span></div>
+    <h1><span data-lang="en">Constraints and Limitations</span><span data-lang="ar">القيود والحدود</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Research methodology</span><span data-lang="ar">منهجية البحث</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">10 min</span><span data-lang="ar">١٠ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذا الموضوع</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="three"><span data-lang="en">Three categories</span><span data-lang="ar">ثلاث فئات</span></a></li><li><a data-id="writing"><span data-lang="en">How to write one</span><span data-lang="ar">كيف يُكتب</span></a></li><li><a data-id="common"><span data-lang="en">The common ones</span><span data-lang="ar">الحدود الشائعة</span></a></li><li><a data-id="failures"><span data-lang="en">Failures</span><span data-lang="ar">الإخفاقات</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Constraints, limitations, delimitations, and assumptions</div>
+          <div><span>Covers:</span> The three distinct categories, where each belongs, how to write them, and what not to do</div>
+          <div><span>Use:</span> Bounding your claims before a reader has to bound them for you</div>
+          <div><span>Level:</span> Doctoral business research</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Every study has boundaries. The question a reader is asking is not whether your study has them but whether you know where they are, and the section that answers it is short, specific, and read closely.</p>
+        <p>Three different things are routinely put under one heading and should not be. <strong>Delimitations</strong> are boundaries you chose: the sector you selected, the period you covered, the theory you applied. They are design decisions and they are not weaknesses. <strong>Limitations</strong> are weaknesses imposed on you by circumstance: the sample you could reach, the data that existed, the time you had. <strong>Assumptions</strong> are things taken as true without proof and on which the design rests: that respondents answered honestly, that the construct is stable over the study period, that the archival records are accurate.</p>
+        <p>Separating them matters because they are read differently. A delimitation presented as a limitation makes a deliberate design decision look like a failure. A limitation presented as a delimitation looks like an attempt to conceal one. And an unstated assumption is the thing an examiner will name in the first ten minutes, because assumptions are where a design is most vulnerable and least defended.</p>
+        <p>The governing principle is that <strong>stating a limitation costs you a claim you could not defend anyway and buys credibility for every claim you can</strong>. A thesis that names four specific limitations with their effects reads as the work of someone who understands their own design. A thesis with no limitations section, or one containing only generic statements, reads as the work of someone who has not looked.</p>
+        <p>This framework covers the three categories and where each belongs in the document, the four-part form for writing a limitation, the ones that recur in business research, and the failures that make the section counterproductive. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Write this section before data collection, not after. At that point it is a list of design risks you can still mitigate; afterwards it is a list of things you can only disclose.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> القيود والحدود والمحدّدات والافتراضات</div>
+          <div><span>يغطّي:</span> الفئات الثلاث المتمايزة، وأين ينتمي كلّ، وكيف تُكتب، وما لا يُفعل</div>
+          <div><span>الاستخدام:</span> تحديد ادّعاءاتك قبل أن يضطر القارئ إلى تحديدها لك</div>
+          <div><span>المستوى:</span> بحوث الأعمال لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">لكل دراسة حدود. والسؤال الذي يسأله القارئ ليس هل لدراستك حدود بل هل تعرف أين هي، والقسم الذي يجيبه قصير ومحدد ويُقرأ بإمعان.</p>
+        <p>وثلاثة أشياء مختلفة تُوضع روتينيًا تحت عنوان واحد ولا ينبغي. <strong>المحدّدات</strong> حدود اخترتها: القطاع الذي انتقيته، والحقبة التي غطيتها، والنظرية التي طبّقتها. وهي قرارات تصميم وليست ضعفًا. و<strong>الحدود</strong> ضعف فرضته عليك الظروف: العيّنة التي استطعت بلوغها، والبيانات التي وُجدت، والوقت الذي ملكته. و<strong>الافتراضات</strong> أشياء تُؤخذ صحيحةً بلا برهان ويقوم عليها التصميم: أن المستجيبين أجابوا بصدق، وأن البناء مستقر عبر فترة الدراسة، وأن السجلات الأرشيفية دقيقة.</p>
+        <p>وفصلها مهم لأنها تُقرأ بطرق مختلفة. فمحدّد يُقدّم حدًّا يجعل قرار تصميم متعمّدًا يبدو إخفاقًا. وحدّ يُقدّم محدّدًا يبدو محاولة إخفاء. والافتراض غير المذكور هو ما سيسمّيه الممتحن في الدقائق العشر الأولى، لأن الافتراضات حيث يكون التصميم أضعف وأقل دفاعًا.</p>
+        <p>والمبدأ الحاكم أن <strong>ذكر حدّ يكلّفك ادّعاءً ما كنت لتدافع عنه أصلًا ويشتري مصداقيةً لكل ادّعاء تستطيعه</strong>. فالأطروحة التي تسمّي أربعة حدود محددة بآثارها تُقرأ عمل من يفهم تصميمه. والأطروحة بلا قسم حدود، أو بقسم يحوي عبارات عامة فقط، تُقرأ عمل من لم ينظر.</p>
+        <p>ويغطي هذا الإطار الفئات الثلاث وأين ينتمي كلّ في الوثيقة، والصيغة الرباعية لكتابة حدّ، والحدود المتكررة في بحوث الأعمال، والإخفاقات التي تجعل القسم مضادًّا لغرضه. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> اكتب هذا القسم قبل جمع البيانات لا بعده. فهو عندئذ قائمةُ مخاطر تصميم ما زلت تستطيع تخفيفها؛ وبعدها قائمةُ أشياء لا تستطيع إلا الإفصاح عنها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="three">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Three Categories, Three Sections</h2>
+        <p class="lead">The distinction is easy once stated and is violated in most theses. Each category belongs in a different place in the document.</p>
+        <svg viewBox="0 0 700 204" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">1</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Delimitations</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">boundaries you chose: what the study deliberately excludes</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">2</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Limitations</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">weaknesses imposed on you that affect what can be claimed</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">3</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Assumptions</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">things taken as true without proof, on which the design rests</text><text x="350.0" y="193.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">three different things, three different sections, and only the middle one is a weakness</text></svg>
+        <p><strong>Delimitations</strong> answer what the study is and is not about. They belong in the introduction or in the design section of the methodology, because they are part of the definition of the study rather than a comment on its quality. Write them positively: the study examines manufacturing firms of fifty to two hundred and fifty employees, and does not address service firms or micro-enterprises. Give a reason where the boundary is not obvious, since a delimitation with a rationale reads as focus and one without reads as arbitrariness.</p>
+        <p>The scope-related delimitations worth stating are the population studied, the geographic and sector boundary, the period covered, the theoretical framework applied and the alternatives not applied, and the aspects of the phenomenon addressed and not addressed. Five sentences cover them.</p>
+        <p><strong>Limitations</strong> answer what weakens the conclusions. They belong in the methodology, so that a reader encounters them alongside the design decisions they qualify, and are then briefly revisited in the conclusion chapter in relation to the specific findings they bear on. Putting them only at the very end of the thesis makes them look like an afterthought, and putting them only in the methodology means the reader has forgotten them by the time the claims are made.</p>
+        <p><strong>Assumptions</strong> answer what the design takes for granted. They belong in the methodology, immediately before or after the limitations. Business studies typically rest on four: that participants answered honestly and understood the items as intended, that the sample is adequately representative of the population for the claims being made, that the constructs are stable over the study period, and that any secondary data are accurate for the purpose used.</p>
+        <p>Each assumption should be paired with whatever supports it. Anonymity and the absence of any incentive to misreport support the honesty assumption. A comparison of sample composition with the frame supports the representativeness assumption. Stating an assumption without any supporting sentence identifies a vulnerability without defending it, which is worse than either stating it with support or acknowledging that it rests on convention.</p>
+        <div class="note"><strong>Note:</strong> A quick test for the difference: if you could have chosen otherwise and did not want to, it is a delimitation. If you would have chosen otherwise and could not, it is a limitation.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>ثلاث فئات وثلاثة أقسام</h2>
+        <p class="lead">التمييز سهل متى ذُكر ويُنتهك في معظم الأطروحات. وكل فئة تنتمي إلى موضع مختلف في الوثيقة.</p>
+        <svg viewBox="0 0 700 204" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">١</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">المحدّدات</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">حدود اخترتها: ما تستبعده الدراسة عمدًا</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٢</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">الحدود</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">ضعف مفروض عليك يؤثر فيما يمكن ادّعاؤه</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٣</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">الافتراضات</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">أشياء تُؤخذ صحيحةً بلا برهان، ويقوم عليها التصميم</text><text x="350.0" y="193.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">ثلاثة أشياء مختلفة، وثلاثة أقسام مختلفة، والأوسط وحده ضعف</text></svg>
+        <p>و<strong>المحدّدات</strong> تجيب عمّ الدراسة وعمّ ليست. ومكانها المقدمة أو قسم التصميم من المنهجية، لأنها جزء من تعريف الدراسة لا تعليق على جودتها. اكتبها إيجابيًا: «تفحص الدراسة منشآت التصنيع من خمسين إلى مئتين وخمسين موظفًا، ولا تعالج منشآت الخدمات ولا المنشآت متناهية الصغر». وأعط سببًا حيث لا يكون الحدّ بيّنًا، فالمحدّد بمسوّغ يُقرأ تركيزًا وبلا مسوّغ يُقرأ اعتباطًا.</p>
+        <p>والمحدّدات المتعلقة بالنطاق التي تستحق الذكر: المجتمع المدروس، والحد الجغرافي والقطاعي، والحقبة المغطّاة، والإطار النظري المطبّق والبدائل غير المطبّقة، وجوانب الظاهرة المعالجة وغير المعالجة. وخمس جمل تغطيها.</p>
+        <p>و<strong>الحدود</strong> تجيب ما الذي يُضعف الخلاصات. ومكانها المنهجية، ليصادفها القارئ إلى جانب قرارات التصميم التي تقيّدها، ثم يُعاد إليها بإيجاز في فصل الخاتمة في علاقتها بالنتائج التي تمسّها. فوضعها في نهاية الأطروحة فقط يجعلها تبدو خاطرًا لاحقًا، ووضعها في المنهجية فقط يعني أن القارئ نسيها حين تُطلق الادّعاءات.</p>
+        <p>و<strong>الافتراضات</strong> تجيب ما الذي يسلّم به التصميم. ومكانها المنهجية، قبل الحدود مباشرةً أو بعدها. ودراسات الأعمال تقوم عادةً على أربعة: أن المشاركين أجابوا بصدق وفهموا البنود كما قُصدت، وأن العيّنة ممثّلة بما يكفي للمجتمع للادّعاءات المطلقة، وأن البناءات مستقرة عبر فترة الدراسة، وأن أي بيانات ثانوية دقيقة للغرض المستخدمة له.</p>
+        <p>وكل افتراض ينبغي أن يُقرن بما يسنده. فإخفاء الهوية وانعدام أي حافز للإبلاغ الخاطئ يسندان افتراض الصدق. ومقارنةُ تركيب العيّنة بالإطار تسند افتراض التمثيل. وذكرُ افتراض بلا أي جملة مساندة يحدد نقطة ضعف دون الدفاع عنها، وهذا أسوأ من ذكره بسند أو من الإقرار بأنه يقوم على عُرف.</p>
+        <div class="note"><strong>ملاحظة:</strong> اختبار سريع للفرق: إن كنت تستطيع الاختيار خلاف ذلك ولم ترد، فهو محدّد. وإن كنت ستختار خلاف ذلك ولم تستطع، فهو حدّ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="writing">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Four-Part Form</h2>
+        <p class="lead">A limitation written in four clauses strengthens the thesis. The same limitation written in one clause weakens it. The difference is entirely in the writing.</p>
+        <svg viewBox="0 0 700 175" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="118.2" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">Name it</text><text x="118.2" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">state the</text><text x="118.2" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">limitation plainly</text><text x="118.2" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">and specifically</text><line x1="188.5" y1="78.0" x2="199.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M202.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="204.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="272.8" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">Say why</text><text x="272.8" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">the constraint that</text><text x="272.8" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">produced it,</text><text x="272.8" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">without apology</text><line x1="343.0" y1="78.0" x2="354.0" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M357.0 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="359.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="427.2" y="63.5" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">Say the effect</text><text x="427.2" y="77.5" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">what it means the</text><text x="427.2" y="90.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">study cannot claim</text><line x1="497.5" y1="78.0" x2="508.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M511.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="513.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="581.8" y="57.2" text-anchor="middle" font-size="12.0" font-weight="700" fill="#FFFFFF">Say the response</text><text x="581.8" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">what you did about</text><text x="581.8" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">it, or what should</text><text x="581.8" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">be done next</text><text x="350.0" y="158.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">four clauses; a limitation written this way strengthens the thesis rather than weakening it</text></svg>
+        <p>Compare two versions of the same fact. <strong>Weak:</strong> a limitation of this study is the small sample size. <strong>Strong:</strong> the achieved sample of 118 responses, constrained by the size of the accessible population, provides adequate power to detect medium effects but not small ones, so the non-significant result for the moderating variable should be read as inconclusive rather than as evidence of no effect; a larger multi-organization sample would settle it.</p>
+        <p>The second version does four things. It <strong>names</strong> the limitation with a number rather than an adjective. It <strong>explains the cause</strong> without apology, in a way that shows the constraint was external. It <strong>states the effect precisely</strong>, identifying which specific finding is affected and how a reader should interpret it. And it <strong>points forward</strong>, saying what would resolve it.</p>
+        <p>The third clause is the one that matters most and is almost always missing. A limitation with no stated effect leaves the reader to decide how bad it is, and readers assume the worst. A limitation whose effect is specified is bounded: the reader knows exactly which claim is affected and can accept the rest.</p>
+        <p><strong>Do not apologise.</strong> Phrases like unfortunately, regrettably, and due to the researcher's inexperience change nothing about the evidence and make the author appear to lack confidence in work that may be perfectly sound. State the constraint neutrally: access was restricted to one organization; the available data began in 2016.</p>
+        <p><strong>Do not over-apologise either,</strong> which takes the form of listing so many limitations that the reader concludes nothing can be believed. Four to six substantive limitations is the right number for a doctoral thesis. Listing twelve, most of them trivial, dilutes the important ones and suggests the author cannot tell them apart.</p>
+        <p><strong>Do not include limitations that are not limitations.</strong> The most common is time and resource constraints, which is true of every study ever conducted and therefore conveys nothing. If time constrained something specific, say what: the design is cross-sectional because a longitudinal design would not have fitted the programme timetable, which means causal direction cannot be established.</p>
+        <div class="note"><strong>Note:</strong> Every limitation you name should map to a claim you have moderated somewhere in the findings or discussion. A limitation acknowledged in one chapter and ignored in another is worse than not acknowledging it, because it shows you knew.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الصيغة الرباعية</h2>
+        <p class="lead">الحدّ المكتوب في أربع عبارات يقوّي الأطروحة. والحد نفسه مكتوبًا في عبارة واحدة يُضعفها. والفرق كله في الكتابة.</p>
+        <svg viewBox="0 0 700 175" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="118.2" y="63.5" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">سمّه</text><text x="118.2" y="77.5" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">اذكر الحد بوضوح</text><text x="118.2" y="90.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">وتحديد</text><line x1="188.5" y1="78.0" x2="199.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M202.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="204.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="272.8" y="63.5" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">قُل لماذا</text><text x="272.8" y="77.5" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">القيد الذي أنتجه،</text><text x="272.8" y="90.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">بلا اعتذار</text><line x1="343.0" y1="78.0" x2="354.0" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M357.0 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="359.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="427.2" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">قُل الأثر</text><text x="427.2" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">ما يعنيه من عجز</text><text x="427.2" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">الدراسة عن</text><text x="427.2" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">الادّعاء</text><line x1="497.5" y1="78.0" x2="508.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M511.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="513.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="581.8" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">قُل الاستجابة</text><text x="581.8" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">ما فعلته حياله، أو</text><text x="581.8" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">ما ينبغي فعله</text><text x="581.8" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">تاليًا</text><text x="350.0" y="158.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">أربع عبارات؛ والحد المكتوب هكذا يقوّي الأطروحة لا يُضعفها</text></svg>
+        <p>قارن نسختين للواقعة نفسها. <strong>ضعيفة:</strong> «من حدود هذه الدراسة صغرُ حجم العيّنة». <strong>قوية:</strong> «العيّنة المتحققة البالغة 118 استجابة، المقيّدة بحجم المجتمع المتاح، تقدّم قوةً كافية لكشف الآثار المتوسطة لا الصغيرة، فالنتيجةُ غير الدالة للمتغير المعدّل ينبغي أن تُقرأ غير حاسمة لا دليلًا على انعدام أثر؛ وعيّنة أكبر متعددة المنظمات ستحسمها».</p>
+        <p>والنسخة الثانية تفعل أربعة أشياء. فهي <strong>تسمّي</strong> الحد برقم لا بصفة. و<strong>تفسّر السبب</strong> بلا اعتذار، بطريقة تُظهر أن القيد كان خارجيًا. و<strong>تذكر الأثر بدقة</strong>، محددةً أي نتيجة بعينها تأثرت وكيف ينبغي للقارئ تفسيرها. و<strong>تشير إلى الأمام</strong>، قائلةً ما الذي سيحلّها.</p>
+        <p>والعبارة الثالثة هي الأهم وهي الغائبة شبه دائمًا. فالحد بلا أثر مذكور يترك للقارئ تقرير كم هو سيئ، والقرّاء يفترضون الأسوأ. والحد المحدّد أثره محدود: فالقارئ يعرف بالضبط أي ادّعاء تأثر ويستطيع قبول الباقي.</p>
+        <p><strong>لا تعتذر.</strong> فعبارات مثل «للأسف» و«مع الأسف» و«بسبب قلة خبرة الباحث» لا تغيّر شيئًا في الأدلة وتجعل المؤلف يبدو مفتقرًا للثقة في عمل قد يكون سليمًا تمامًا. اذكر القيد محايدًا: «اقتُصر الوصول على منظمة واحدة؛ وبدأت البيانات المتاحة في 2016».</p>
+        <p><strong>ولا تفرط في الاعتذار أيضًا،</strong> وهذا يتخذ صيغة سرد حدود كثيرة إلى حد يستنتج معه القارئ أنه لا يمكن تصديق شيء. وأربعة إلى ستة حدود جوهرية هو العدد الصحيح لأطروحة دكتوراه. وسردُ اثني عشر، معظمها تافه، يمدّد المهمة ويوحي بأن المؤلف لا يميّز بينها.</p>
+        <p><strong>ولا تُدرج حدودًا ليست حدودًا.</strong> وأشيعها «قيود الوقت والموارد»، وهذا صحيح لكل دراسة أُجريت يومًا ولذلك لا ينقل شيئًا. فإن قيّد الوقت شيئًا بعينه، فقُل ماذا: «التصميم مقطعي لأن تصميمًا طوليًا لم يكن ليلائم جدول البرنامج، وهذا يعني أن الاتجاه السببي لا يمكن إثباته».</p>
+        <div class="note"><strong>ملاحظة:</strong> كل حدّ تسمّيه ينبغي أن ينطبق على ادّعاء عدّلته في موضع ما من النتائج أو المناقشة. فالحد المُقرّ به في فصل والمتجاهل في آخر أسوأ من عدم الإقرار به، لأنه يُظهر أنك كنت تعلم.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="common">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Limitations That Recur in Business Research</h2>
+        <p class="lead">Eight limitations account for the large majority in business theses. Each has a standard effect on claims and a standard forward-looking response.</p>
+        <table>
+          <tr><th>Limitation</th><th>Effect on claims</th><th>Forward response</th></tr>
+          <tr><td>Cross-sectional design</td><td>Association only; no causal direction</td><td>A time-lagged or longitudinal replication</td></tr>
+          <tr><td>Single organization or sector</td><td>Findings bounded to that context</td><td>Multi-site replication across sectors</td></tr>
+          <tr><td>Self-report from one source</td><td>Common method variance may inflate relations</td><td>Objective or supervisor-rated outcomes</td></tr>
+          <tr><td>Convenience or volunteer sample</td><td>No statistical generalisation to a population</td><td>Probability sampling from a defined frame</td></tr>
+          <tr><td>Modest response rate</td><td>Non-response bias cannot be excluded</td><td>Follow-up of non-respondents; incentives</td></tr>
+          <tr><td>Sample size and power</td><td>Small effects and interactions undetectable</td><td>A larger or pooled sample</td></tr>
+          <tr><td>Adapted or translated instrument</td><td>Comparability with prior studies reduced</td><td>Full validation of the adapted version</td></tr>
+          <tr><td>Period effects</td><td>Findings may be specific to conditions then</td><td>Replication in a different period</td></tr>
+        </table>
+        <p>Three of these deserve particular care in the writing. <strong>The single-context limitation</strong> is frequently overstated into an apology, when in fact context-bounded findings are the normal output of business research and the useful response is thick description: describe the setting well enough that a reader can judge transfer, then say that is what you are offering.</p>
+        <p><strong>The self-report limitation</strong> should be paired with whatever you did about it. If you separated measurement in time, guaranteed anonymity, or used any objective outcome, say so, because a limitation acknowledged alongside its mitigation is a different statement from one acknowledged alone.</p>
+        <p><strong>The response rate limitation</strong> should be accompanied by the non-response analysis you ran, even when the result is inconclusive. A study that compared respondents with the frame and found no difference on observable characteristics has done what could be done, and saying so converts an open threat into a bounded one.</p>
+        <p>Two further limitations are worth considering and are rarely stated. <strong>Researcher position</strong>, which matters in qualitative work and in any study where the researcher had a prior relationship with the setting: it is a limitation in positivist framing and a disclosure requirement in interpretive framing, and it should appear either way. And <strong>construct coverage</strong>, meaning that your measure captured some dimensions of a multidimensional construct and not others, which is extremely common and almost never disclosed.</p>
+        <div class="note"><strong>Note:</strong> Order your limitations by seriousness, most consequential first. A reader assumes the first item is the biggest problem, so leading with a minor one makes the section look evasive when it is merely unordered.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>حدود متكررة في بحوث الأعمال</h2>
+        <p class="lead">ثمانية حدود تفسّر الغالبية العظمى في أطروحات الأعمال. ولكلّ أثر معياري على الادّعاءات واستجابة معيارية استشرافية.</p>
+        <table>
+          <tr><th>الحد</th><th>الأثر في الادّعاءات</th><th>الاستجابة الاستشرافية</th></tr>
+          <tr><td>تصميم مقطعي</td><td>ارتباط فقط؛ ولا اتجاه سببي</td><td>تكرار متباعد زمنيًا أو طولي</td></tr>
+          <tr><td>منظمة أو قطاع واحد</td><td>النتائج محدودة بذلك السياق</td><td>تكرار متعدد المواقع عبر القطاعات</td></tr>
+          <tr><td>إبلاغ ذاتي من مصدر واحد</td><td>تباين المنهج المشترك قد يضخّم العلاقات</td><td>مخرجات موضوعية أو مقدّرة من المشرف</td></tr>
+          <tr><td>عيّنة ميسّرة أو تطوّعية</td><td>لا تعميم إحصائي على مجتمع</td><td>معاينة احتمالية من إطار معرّف</td></tr>
+          <tr><td>معدل استجابة متواضع</td><td>لا يمكن استبعاد تحيّز عدم الاستجابة</td><td>متابعة غير المستجيبين؛ وحوافز</td></tr>
+          <tr><td>حجم العيّنة والقوة</td><td>الآثار الصغيرة والتفاعلات غير قابلة للكشف</td><td>عيّنة أكبر أو مجمّعة</td></tr>
+          <tr><td>أداة مكيّفة أو مترجمة</td><td>تقلّ القابلية للمقارنة بدراسات سابقة</td><td>تصديق كامل للنسخة المكيّفة</td></tr>
+          <tr><td>آثار الحقبة</td><td>قد تكون النتائج خاصة بظروف تلك الفترة</td><td>تكرار في حقبة مختلفة</td></tr>
+        </table>
+        <p>وثلاثة منها تستحق عنايةً خاصة في الكتابة. <strong>حدّ السياق الواحد</strong> كثيرًا ما يُبالغ فيه حتى يصير اعتذارًا، بينما النتائج المحدودة بالسياق هي المخرج الطبيعي لبحوث الأعمال والاستجابة النافعة وصف كثيف: صف الموقع جيدًا بما يكفي ليحكم القارئ على النقل، ثم قُل إن هذا ما تقدّمه.</p>
+        <p>و<strong>حدّ الإبلاغ الذاتي</strong> ينبغي أن يُقرن بما فعلته حياله. فإن فصلت القياس زمنيًا، أو ضمنت إخفاء الهوية، أو استخدمت أي مخرج موضوعي، فقُل ذلك، لأن حدًّا مُقرًّا به إلى جانب تخفيفه عبارة غير الحد المُقرّ به وحده.</p>
+        <p>و<strong>حدّ معدل الاستجابة</strong> ينبغي أن يرافقه تحليل عدم الاستجابة الذي أجريته، حتى حين تكون النتيجة غير حاسمة. فالدراسة التي قارنت المستجيبين بالإطار ولم تجد فرقًا في الخصائص الملحوظة فعلت ما يمكن فعله، وقولُ ذلك يحوّل تهديدًا مفتوحًا إلى محدود.</p>
+        <p>وحدّان آخران يستحقان النظر ونادرًا ما يُذكران. <strong>موقع الباحث</strong>، ويهم في العمل النوعي وفي أي دراسة كانت للباحث فيها علاقة سابقة بالموقع: وهو حدّ في التأطير الوضعي ومطلبُ إفصاح في التأطير التأويلي، وينبغي أن يظهر في الحالتين. و<strong>تغطية البناء</strong>، أي أن مقياسك التقط بعض أبعاد بناء متعدد الأبعاد لا كلها، وهذا شائع للغاية ولا يكاد يُفصح عنه أبدًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> رتّب حدودك بالخطورة، الأشد أثرًا أولًا. فالقارئ يفترض أن البند الأول أكبر مشكلة، فالبدء بحدّ ثانوي يجعل القسم يبدو مراوغًا وهو مجرد غير مرتّب.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="failures">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>What Makes the Section Counterproductive</h2>
+        <p class="lead">A limitations section can damage a thesis, and it does so in five recognisable ways. All five are avoidable in revision.</p>
+        <p><strong>The generic list.</strong> Time constraints, sample size, and resource limitations, stated in one line each with no specifics and no effects. This tells a reader nothing except that the author knows a limitations section is expected. Every item should contain a number, a name, or a specific consequence.</p>
+        <p><strong>The disguised delimitation.</strong> Presenting a deliberate scope decision as a weakness: a limitation of this study is that it examined only manufacturing firms. If the study was designed to examine manufacturing firms, that is a delimitation and belongs in the design section stated positively. Moving it into limitations gives away a strength.</p>
+        <p><strong>The undermined thesis.</strong> Limitations so severe or so numerous that they invalidate the findings the thesis has just reported. If a limitation genuinely means a finding cannot be trusted, the finding should be reframed rather than reported and then withdrawn. The limitations section bounds claims; it does not retract them.</p>
+        <p><strong>The unaddressed obvious.</strong> A cross-sectional design whose limitations section does not mention causal inference. An examiner reaches this section looking for the two or three things they have been noting since chapter three, and their absence suggests either that the author did not see them or chose not to say. The first is a competence concern and the second is worse.</p>
+        <p><strong>The orphaned limitation.</strong> A limitation stated in the methodology and then contradicted in the discussion, where causal language appears despite the acknowledged inability to establish direction. This is the failure examiners notice most reliably, because it is visible from the two chapters side by side.</p>
+        <p>The revision procedure that catches all five takes an hour. List your limitations. For each, check that it contains a specific detail rather than an adjective, that it is genuinely imposed rather than chosen, that its effect on a specific claim is stated, and that the corresponding claim in the discussion is worded consistently with it. Then read the methodology as a sceptic and ask what you would attack; anything on that list not in the section should be added.</p>
+        <p>One last consideration. This section is where a reader forms a judgement about the author's self-awareness, which colours how they read everything else. A thesis that identifies its own four most serious weaknesses precisely, states what each means, and says what would resolve them, is a thesis whose remaining claims are easier to believe. That is the actual function of the section, and it is why writing it well is worth more than the page it occupies.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> separate delimitations, which are chosen boundaries belonging in the design section, from limitations, which are imposed weaknesses, from assumptions, which are unproven premises the design rests on. Write each limitation in four clauses: name it specifically, state the constraint without apology, state precisely which claim it affects and how, and say what would resolve it. Include four to six substantive limitations ordered by seriousness, pair each with any mitigation you applied, and make sure the discussion's wording is consistent with every limitation you acknowledged.</div>
+        <div class="refs"><ul>
+          <li>Saunders, Lewis &amp; Thornhill, <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">Research Methods for Business Students</a>.</li>
+          <li>Sekaran &amp; Bougie, <a href="https://www.wiley.com/en-us/Research+Methods+For+Business%3A+A+Skill+Building+Approach%2C+8th+Edition-p-9781119561224" target="_blank" rel="noopener">Research Methods for Business: A Skill-Building Approach</a>.</li>
+          <li>Kumar, <a href="https://uk.sagepub.com/en-gb/eur/research-methodology/book270131" target="_blank" rel="noopener">Research Methodology: A Step-by-Step Guide for Beginners</a>.</li>
+          <li>University of Sydney, <a href="https://www.sydney.edu.au/study/help/advice/how-to-write-a-research-proposal.html" target="_blank" rel="noopener">How to Write a Research Proposal</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>ما يجعل القسم مضادًّا لغرضه</h2>
+        <p class="lead">قسم الحدود قد يُضر أطروحةً، ويفعل ذلك بخمس طرق معروفة. وكلها قابلة للتجنّب في المراجعة.</p>
+        <p><strong>القائمة العامة.</strong> «قيود الوقت، وحجم العيّنة، وحدود الموارد»، مذكورة في سطر لكلّ بلا تفاصيل ولا آثار. وهذا لا يخبر القارئ شيئًا إلا أن المؤلف يعرف أن قسم حدود متوقّع. وكل بند ينبغي أن يحوي رقمًا أو اسمًا أو نتيجةً محددة.</p>
+        <p><strong>المحدّد المتنكّر.</strong> تقديمُ قرار نطاق متعمّد ضعفًا: «من حدود هذه الدراسة أنها فحصت منشآت التصنيع فقط». فإن كانت الدراسة مصمّمة لفحص منشآت التصنيع، فذلك محدّد ومكانه قسم التصميم مذكورًا إيجابيًا. ونقلُه إلى الحدود يتنازل عن قوة.</p>
+        <p><strong>الأطروحة المقوّضة.</strong> حدود من الشدة أو الكثرة بحيث تُبطل النتائج التي أبلغت بها الأطروحة للتو. فإن كان حدّ يعني فعلًا أن نتيجةً لا يُوثق بها، فينبغي إعادة تأطير النتيجة لا الإبلاغ بها ثم سحبها. فقسم الحدود يحدّ الادّعاءات؛ ولا يتراجع عنها.</p>
+        <p><strong>البيّن غير المعالج.</strong> تصميم مقطعي لا يذكر قسم حدوده الاستدلال السببي. فالممتحن يصل إلى هذا القسم باحثًا عن الشيئين أو الثلاثة التي كان يدوّنها منذ الفصل الثالث، وغيابها يوحي إما أن المؤلف لم يرها أو اختار ألا يقول. والأول شاغلُ كفاءة والثاني أسوأ.</p>
+        <p><strong>الحد اليتيم.</strong> حدّ مذكور في المنهجية ثم مناقض في المناقشة، حيث تظهر لغة سببية رغم العجز المُقرّ به عن إثبات الاتجاه. وهذا الإخفاق الذي يلاحظه الممتحنون بأشد ثبات، لأنه مرئي من الفصلين جنبًا إلى جنب.</p>
+        <p>وإجراء المراجعة الذي يلتقط الخمسة يستغرق ساعة. اسرد حدودك. ولكلّ، افحص أنه يحوي تفصيلًا محددًا لا صفة، وأنه مفروض فعلًا لا مختار، وأن أثره في ادّعاء بعينه مذكور، وأن الادّعاء المقابل في المناقشة مصاغ متسقًا معه. ثم اقرأ المنهجية بعين متشكك واسأل ما الذي كنت ستهاجمه؛ وكل ما في تلك القائمة وليس في القسم ينبغي إضافته.</p>
+        <p>واعتبار أخير. هذا القسم حيث يكوّن القارئ حكمًا عن وعي المؤلف بذاته، وهذا يلوّن كيف يقرأ كل ما عداه. فالأطروحة التي تحدد أخطر أربعة نقاط ضعف فيها بدقة، وتذكر ما يعنيه كل منها، وتقول ما الذي سيحلّها، أطروحة يسهل تصديق ادّعاءاتها الباقية. وتلك هي الوظيفة الفعلية للقسم، ولهذا تستحق كتابته جيدًا أكثر من الصفحة التي يشغلها.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> افصل المحدّدات، وهي حدود مختارة مكانها قسم التصميم، عن الحدود، وهي ضعف مفروض، عن الافتراضات، وهي مقدمات غير مبرهنة يقوم عليها التصميم. واكتب كل حدّ في أربع عبارات: سمّه تحديدًا، واذكر القيد بلا اعتذار، واذكر بدقة أي ادّعاء يتأثر وكيف، وقُل ما الذي سيحلّه. وأدرج أربعة إلى ستة حدود جوهرية مرتّبة بالخطورة، واقرن كلًّا بأي تخفيف طبّقته، وتأكد أن صياغة المناقشة متسقة مع كل حدّ أقررت به.</div>
+        <div class="refs"><ul>
+          <li>سوندرز ولويس وثورنهيل، <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">مناهج البحث لطلاب الأعمال</a>.</li>
+          <li>سيكاران وبوجي، <a href="https://www.wiley.com/en-us/Research+Methods+For+Business%3A+A+Skill+Building+Approach%2C+8th+Edition-p-9781119561224" target="_blank" rel="noopener">مناهج البحث للأعمال: مقاربة بناء المهارات</a>.</li>
+          <li>كومار، <a href="https://uk.sagepub.com/en-gb/eur/research-methodology/book270131" target="_blank" rel="noopener">منهجية البحث: دليل خطوة بخطوة للمبتدئين</a>.</li>
+          <li>جامعة سيدني، <a href="https://www.sydney.edu.au/study/help/advice/how-to-write-a-research-proposal.html" target="_blank" rel="noopener">كيف تكتب مقترحًا بحثيًا</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="meth-validity-reliability.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Validity and Reliability</span><span data-lang="ar">الصدق والثبات</span></a><a href="meth-ethics.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Ethical Considerations</span><span data-lang="ar">الاعتبارات الأخلاقية</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="القيود والحدود";
+var TITLE_EN="Constraints and Limitations";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Screening: Inclusion and Exclusion · Saif Alghamdi</title>
+<meta name="description" content="Screening search results: writing applicable criteria, deduplication, the fast and strict passes, borderline cases, and reporting a flow that reconciles.">
+<link rel="canonical" href="https://saif3li-phd.github.io/phd/lit-screening.html">
+<meta name="author" content="Saif Ali Alghamdi">
+<meta name="theme-color" content="#2D2D2D">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saif Ali Alghamdi">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:url" content="https://saif3li-phd.github.io/phd/lit-screening.html">
+<meta property="og:title" content="Screening: Inclusion and Exclusion · Saif Alghamdi">
+<meta property="og:description" content="Screening search results: writing applicable criteria, deduplication, the fast and strict passes, borderline cases, and reporting a flow that reconciles.">
+<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Screening: Inclusion and Exclusion · Saif Alghamdi">
+<meta name="twitter:description" content="Screening search results: writing applicable criteria, deduplication, the fast and strict passes, borderline cases, and reporting a flow that reconciles.">
+<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Screening: Inclusion and Exclusion · Saif Alghamdi", "description": "Screening search results: writing applicable criteria, deduplication, the fast and strict passes, borderline cases, and reporting a flow that reconciles.", "url": "https://saif3li-phd.github.io/phd/lit-screening.html", "inLanguage": "en", "author": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "publisher": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "image": "https://saif3li-phd.github.io/assets/og.jpg", "isPartOf": {"@type": "WebSite", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}}
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="0009a1c6-b533-4e1e-9dbc-8b20dbe29af9"></script>
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#foundation-of-business-research"><span data-lang="en">Foundation of Business Research</span><span data-lang="ar">أسس بحوث الأعمال</span></a><i>&rsaquo;</i><span data-lang="en">Literature review</span><span data-lang="ar">مراجعة الأدبيات</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">LITERATURE REVIEW · PhD</span><span data-lang="ar">مراجعة الأدبيات · دكتوراه</span></div>
+    <h1><span data-lang="en">Screening: Inclusion and Exclusion</span><span data-lang="ar">الفرز: الإدراج والاستبعاد</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Literature review</span><span data-lang="ar">مراجعة الأدبيات</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">10 min</span><span data-lang="ar">١٠ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذا الموضوع</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="criteria"><span data-lang="en">Writing criteria</span><span data-lang="ar">كتابة المعايير</span></a></li><li><a data-id="dedupe"><span data-lang="en">Deduplication</span><span data-lang="ar">إزالة التكرار</span></a></li><li><a data-id="passes"><span data-lang="en">The two passes</span><span data-lang="ar">المروران</span></a></li><li><a data-id="flow"><span data-lang="en">Reporting the flow</span><span data-lang="ar">الإبلاغ عن التدفق</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Screening search results into an included set</div>
+          <div><span>Covers:</span> Writing criteria, deduplication, the two screening passes, and reporting the flow</div>
+          <div><span>Use:</span> Turning hundreds of records into a defensible set of studies</div>
+          <div><span>Level:</span> Doctoral business research</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Screening is the step where a search becomes a review. Search decides what you look at; screening decides what counts. It is also the step where most of the intellectual honesty of a review lives, because every decision to exclude a paper is a decision that shapes the conclusion, and those decisions are made privately unless you write them down.</p>
+        <p>The core discipline is that <strong>criteria are written before screening starts</strong>. Criteria invented while reading are criteria fitted to the papers you found, which is a way of guaranteeing that the evidence agrees with you. Criteria written in advance can still be revised, and revision is normal, but a revision that is recorded as a deviation is transparent while an undocumented drift is not.</p>
+        <p>The second discipline is that <strong>screening happens in two passes with different standards</strong>. The first pass reads titles and abstracts, is fast, and errs towards inclusion, because the cost of wrongly keeping a paper is fifteen minutes and the cost of wrongly discarding one is a hole in the review. The second pass reads full texts, is slow, applies every criterion, and records a reason for each exclusion. Collapsing these into one pass is the most common procedural error in student reviews and produces a set nobody can reconstruct.</p>
+        <p>This framework covers how to write criteria that can actually be applied, how to deduplicate records across databases, how to run each of the two passes, how to handle disagreement and borderline cases, and how to report the flow so a reader can follow the arithmetic. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Record an exclusion reason for every paper you reject at full text, using a short fixed vocabulary such as wrong population or no primary data. The list of reasons is what you report, and reconstructing it from memory afterwards is not possible.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> فرز نتائج البحث إلى مجموعة مدرجة</div>
+          <div><span>يغطّي:</span> كتابة المعايير، وإزالة التكرار، ومروري الفرز، والإبلاغ عن التدفق</div>
+          <div><span>الاستخدام:</span> تحويل مئات السجلات إلى مجموعة دراسات قابلة للدفاع</div>
+          <div><span>المستوى:</span> بحوث الأعمال لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الفرز هو الخطوة التي يصير فيها البحثُ مراجعةً. فالبحث يقرر ما تنظر فيه؛ والفرز يقرر ما يُعتدّ به. وهو أيضًا الخطوة التي تسكن فيها معظم النزاهة الفكرية للمراجعة، لأن كل قرار باستبعاد ورقة قرارٌ يشكّل الخاتمة، وتلك القرارات تُتّخذ سرًّا ما لم تكتبها.</p>
+        <p>والانضباط الجوهري أن <strong>المعايير تُكتب قبل بدء الفرز</strong>. فالمعايير المبتكَرة أثناء القراءة معايير مُفصَّلة على الأوراق التي وجدتها، وهذا طريقٌ لضمان أن توافقك الأدلة. أما المعايير المكتوبة سلفًا فيمكن تنقيحها، والتنقيح طبيعي، لكن التنقيح المسجّل انحرافًا شفافٌ والانجراف غير الموثَّق ليس كذلك.</p>
+        <p>والانضباط الثاني أن <strong>الفرز يقع في مرورين بمعيارين مختلفين</strong>. فالمرور الأول يقرأ العناوين والملخصات، وهو سريع، ويميل إلى الإدراج، لأن كلفة إبقاء ورقة خطأً خمس عشرة دقيقة وكلفة إسقاط واحدة خطأً ثغرةٌ في المراجعة. والمرور الثاني يقرأ النصوص الكاملة، وهو بطيء، ويطبّق كل معيار، ويسجّل سببًا لكل استبعاد. وطيّهما في مرور واحد أشيع خطأ إجرائي في مراجعات الطلاب وينتج مجموعةً لا يستطيع أحد إعادة بنائها.</p>
+        <p>ويغطي هذا الإطار كيف تُكتب معايير يمكن تطبيقها فعلًا، وكيف تُزال السجلات المكررة عبر القواعد، وكيف يُشغَّل كل من المرورين، وكيف تُعالَج الاختلافات والحالات الحدّية، وكيف يُبلّغ عن التدفق ليتابع القارئ الحساب. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> سجّل سبب استبعاد لكل ورقة ترفضها في النص الكامل، بمفردات ثابتة قصيرة مثل «مجتمع خطأ» أو «لا بيانات أولية». فقائمة الأسباب هي ما تُبلغ عنه، وإعادة بنائها من الذاكرة لاحقًا غير ممكنة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="criteria">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Criteria You Can Actually Apply</h2>
+        <p class="lead">A criterion is usable when two people applying it to the same abstract reach the same decision. Most criteria students write fail that test, and the failure is always the same: the criterion describes a preference rather than a rule.</p>
+        <table>
+          <tr><th>Unusable</th><th>Usable</th><th>Why the second works</th></tr>
+          <tr><td>High-quality studies only</td><td>Peer-reviewed empirical studies with a described method</td><td>Quality is judged later; presence of a method is observable now</td></tr>
+          <tr><td>Recent work</td><td>Published from 2015 onward, when the practice became widespread</td><td>A date is checkable and the reason is stated</td></tr>
+          <tr><td>Relevant to my topic</td><td>Reports an outcome measure of employee retention or turnover</td><td>Names the observable feature rather than the judgement</td></tr>
+          <tr><td>Business context</td><td>Sample drawn from private-sector firms with fewer than 250 staff</td><td>A boundary anyone can apply identically</td></tr>
+          <tr><td>Sufficient detail</td><td>Reports sample size and data collection procedure</td><td>Two facts to look for rather than an impression</td></tr>
+        </table>
+        <p>Criteria come in two kinds and both are needed. <strong>Inclusion criteria</strong> state the positive conditions a study must meet: the population, the phenomenon, the outcome, the design, the publication type, the date range, the language. <strong>Exclusion criteria</strong> state the conditions that disqualify a study even when it meets the inclusion conditions: no primary data, a duplicate report of an earlier dataset, an editorial or commentary rather than a study, full text unobtainable.</p>
+        <p>Keep the list short. Six to eight criteria in total is typical and manageable; fifteen is a sign that judgements have been smuggled in as rules. Every criterion must be applicable from what a paper reports, which means a criterion such as studies with adequate statistical power cannot be applied at screening because the information usually is not in the abstract and sometimes is not in the paper.</p>
+        <p>Write the criteria as a numbered list and give each a short code, because the codes become your exclusion reasons at the full-text stage. A list such as E1 wrong population, E2 no outcome measure, E3 not empirical, E4 full text unavailable, E5 not in an accessible language turns the reporting task into counting rather than remembering.</p>
+        <p>Finally, decide the <strong>quality threshold</strong> separately from the relevance criteria, and say whether you are applying one at all. Some reviews include everything relevant and discuss quality as a moderator of the findings. Others exclude studies below a stated threshold. Both are defensible; what is not defensible is excluding weak studies silently, because that is where reviewer bias does its quietest work.</p>
+        <div class="note"><strong>Note:</strong> Pilot your criteria on twenty records before running the full screen. If you find yourself hesitating on more than three of the twenty, a criterion is ambiguous, and fixing it now costs minutes rather than days.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>معايير يمكن تطبيقها فعلًا</h2>
+        <p class="lead">المعيار صالح للاستعمال حين يصل شخصان يطبّقانه على الملخص نفسه إلى القرار نفسه. ومعظم المعايير التي يكتبها الطلاب تخفق في ذلك الاختبار، والإخفاق واحد دائمًا: المعيار يصف تفضيلًا لا قاعدة.</p>
+        <table>
+          <tr><th>غير صالح</th><th>صالح</th><th>لماذا ينجح الثاني</th></tr>
+          <tr><td>الدراسات عالية الجودة فقط</td><td>دراسات تجريبية محكَّمة بمنهج موصوف</td><td>الجودة يُحكَم عليها لاحقًا؛ ووجود منهج ملحوظ الآن</td></tr>
+          <tr><td>الأعمال الحديثة</td><td>المنشور من 2015 فصاعدًا، حين شاعت الممارسة</td><td>التاريخ قابل للفحص والسبب مذكور</td></tr>
+          <tr><td>ذو صلة بموضوعي</td><td>يُبلغ عن مقياس مخرج للبقاء أو الدوران</td><td>يسمّي السمة الملحوظة لا الحكم</td></tr>
+          <tr><td>سياق أعمال</td><td>عيّنة من منشآت قطاع خاص دون 250 موظفًا</td><td>حدٌّ يطبّقه أي أحد بالطريقة نفسها</td></tr>
+          <tr><td>تفصيل كافٍ</td><td>يُبلغ عن حجم العيّنة وإجراء جمع البيانات</td><td>واقعتان تُبحَثان لا انطباع</td></tr>
+        </table>
+        <p>والمعايير نوعان وكلاهما لازم. <strong>معايير الإدراج</strong> تذكر الشروط الإيجابية التي يجب أن تستوفيها الدراسة: المجتمع، والظاهرة، والمخرج، والتصميم، ونوع النشر، ومدى التاريخ، واللغة. و<strong>معايير الاستبعاد</strong> تذكر الشروط التي تُسقط دراسةً حتى حين تستوفي شروط الإدراج: لا بيانات أولية، أو تقرير مكرر لمجموعة بيانات سابقة، أو افتتاحية أو تعليق لا دراسة، أو نص كامل متعذّر.</p>
+        <p>وأبقِ القائمة قصيرة. فستة إلى ثمانية معايير إجمالًا نموذجيٌّ وقابل للإدارة؛ وخمسة عشر علامةٌ على تهريب أحكام بوصفها قواعد. وكل معيار يجب أن يكون قابلًا للتطبيق مما تُبلغ عنه الورقة، ما يعني أن معيارًا مثل «دراسات ذات قوة إحصائية كافية» لا يمكن تطبيقه عند الفرز لأن المعلومة ليست في الملخص عادةً وليست في الورقة أحيانًا.</p>
+        <p>واكتب المعايير قائمةً مرقّمة وأعطِ كلًّا رمزًا قصيرًا، لأن الرموز تصير أسباب استبعادك في مرحلة النص الكامل. فقائمةٌ مثل «س١ مجتمع خطأ، س٢ لا مقياس مخرج، س٣ ليست تجريبية، س٤ النص الكامل غير متاح، س٥ ليست بلغة متاحة» تحوّل مهمة الإبلاغ إلى عدٍّ لا تذكّر.</p>
+        <p>وأخيرًا، قرّر <strong>عتبة الجودة</strong> منفصلةً عن معايير الصلة، وقُل هل تطبّق واحدة أصلًا. فبعض المراجعات تُدرج كل ذي صلة وتناقش الجودة معدِّلًا للنتائج. وبعضها يستبعد الدراسات دون عتبة مذكورة. وكلاهما قابل للدفاع؛ وما لا يُدافَع عنه استبعادُ الدراسات الضعيفة بصمت، فهناك يؤدي تحيّز المراجع أهدأ عمله.</p>
+        <div class="note"><strong>ملاحظة:</strong> جرّب معاييرك على عشرين سجلًا قبل تشغيل الفرز الكامل. فإن وجدت نفسك متردّدًا في أكثر من ثلاثة من العشرين، فثمة معيار ملتبس، وإصلاحه الآن يكلّف دقائق لا أيامًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="dedupe">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Deduplication Before Anything Else</h2>
+        <p class="lead">Searching three databases returns the same study several times. Removing duplicates is the first operation after export, and doing it badly corrupts every count that follows.</p>
+        <p>The mechanics are simple in outline. Import every exported file into one reference manager library, then run its duplicate detection, then review the proposed merges rather than accepting them blindly. Most tools match on a combination of title, author, year, and identifier, and most get the large majority right and a stubborn minority wrong in both directions.</p>
+        <p><strong>False positives</strong>, meaning two different studies flagged as the same, arise when a research team publishes several similar papers from one project with near-identical titles. Merging them silently loses a study. <strong>False negatives</strong>, meaning the same study not detected, arise from punctuation differences, an author listed with initials in one database and full names in another, a preprint and the published version, or a title indexed with a subtitle in one place and without it in another.</p>
+        <p>The reliable identifier is the <strong>digital object identifier</strong>, which is unique per published item and is exported by every major database. Sort by it first and every record sharing a DOI is a genuine duplicate. What remains after that pass are the records without one, which is where the manual review is actually needed and where it is quick because the set is small.</p>
+        <p>One distinction matters for the counts. A <strong>duplicate record</strong> is the same publication retrieved twice; a <strong>duplicate study</strong> is one piece of research reported in two publications, such as a conference paper later expanded into an article, or a large dataset yielding three papers on different outcomes. The first is removed at deduplication and reduces the record count. The second is not a duplicate record at all and must be handled at screening, by identifying the linked publications and treating them as one study with several reports, so that a single dataset does not enter your synthesis three times as though it were independent evidence.</p>
+        <p>Record the number removed. The flow diagram needs records identified, duplicates removed, and records screened, and those three numbers must be arithmetically consistent, which is the first thing a careful reader checks.</p>
+        <div class="note"><strong>Note:</strong> Deduplicate before screening, never after. Screening the same abstract twice wastes time; worse, screening it twice and reaching different decisions produces an inconsistency you will not notice until the counts fail to add up.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>إزالة التكرار قبل كل شيء</h2>
+        <p class="lead">البحث في ثلاث قواعد يعيد الدراسة نفسها مرات. وإزالة التكرار أول عملية بعد التصدير، وأداؤها سيئًا يُفسد كل عدد يليها.</p>
+        <p>والآليات بسيطة في الخطوط العامة. استورد كل ملف مصدَّر إلى مكتبة مدير مراجع واحدة، ثم شغّل كشف التكرار فيها، ثم راجع عمليات الدمج المقترَحة بدل قبولها عمياءً. فمعظم الأدوات تطابق بمزيج من العنوان والمؤلف والسنة والمعرّف، ومعظمها يصيب الغالبية العظمى ويخطئ أقليةً عنيدة في الاتجاهين.</p>
+        <p>و<strong>الإيجابيات الكاذبة</strong>، أي دراستان مختلفتان تُعلَّمان بوصفهما واحدة، تنشأ حين ينشر فريق بحثي أوراقًا متشابهة عدة من مشروع واحد بعناوين شبه متطابقة. ودمجها بصمت يُفقد دراسةً. و<strong>السلبيات الكاذبة</strong>، أي الدراسة نفسها لا تُكتشَف، تنشأ من فروق الترقيم، أو مؤلف مُدرَج بالأحرف الأولى في قاعدة وبالأسماء الكاملة في أخرى، أو مسوّدة أولية والنسخة المنشورة، أو عنوان مفهرَس بعنوان فرعي في موضع وبدونه في آخر.</p>
+        <p>والمعرّف الموثوق هو <strong>معرّف الكائن الرقمي</strong>، وهو فريد لكل عنصر منشور وتصدّره كل القواعد الكبرى. افرز به أولًا وكل سجل يشارك معرّفًا يكون تكرارًا حقيقيًا. وما يبقى بعد ذلك المرور هو السجلات بلا معرّف، وهناك تُحتاج المراجعة اليدوية فعلًا وهناك تكون سريعة لأن المجموعة صغيرة.</p>
+        <p>وتمييز واحد يهم للأعداد. فـ<strong>السجل المكرر</strong> هو المنشور نفسه مسترجعًا مرتين؛ و<strong>الدراسة المكررة</strong> بحثٌ واحد مُبلّغ عنه في منشورين، كورقة مؤتمر وُسّعت لاحقًا مقالةً، أو مجموعة بيانات كبيرة أنتجت ثلاث أوراق عن مخرجات مختلفة. والأول يُزال عند إزالة التكرار ويخفّض عدد السجلات. والثاني ليس سجلًا مكررًا أصلًا ويجب معالجته عند الفرز، بتحديد المنشورات المرتبطة ومعاملتها دراسةً واحدة بتقارير عدة، كي لا تدخل مجموعة بيانات واحدة تركيبك ثلاث مرات وكأنها دليل مستقل.</p>
+        <p>وسجّل العدد المزال. فمخطط التدفق يحتاج السجلات المعرّفة والتكرارات المزالة والسجلات المفروزة، وتلك الأرقام الثلاثة يجب أن تتسق حسابيًا، وهذا أول ما يفحصه قارئ متأنٍّ.</p>
+        <div class="note"><strong>ملاحظة:</strong> أزل التكرار قبل الفرز لا بعده. ففرز الملخص نفسه مرتين يهدر الوقت؛ والأسوأ أن فرزه مرتين والوصولَ إلى قرارين مختلفين يُنتج تناقضًا لن تلاحظه حتى تعجز الأعداد عن الجمع.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="passes">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Running the Two Passes</h2>
+        <p class="lead">The two passes have different questions, different speeds, and different error tolerances. Running them as if they were the same is what produces an unreconstructable set.</p>
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#A32020"/><text x="195.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">Title and abstract screen</text><text x="195.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">fast, generous, one question: could this</text><text x="195.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">possibly qualify?</text><rect x="360.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#8C8C8C"/><text x="505.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">Full-text screen</text><text x="505.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">slow, strict, every criterion checked and</text><text x="505.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">the reason recorded</text><rect x="140.0" y="168.0" width="420.0" height="26.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="185.0" text-anchor="middle" font-size="10.5" font-weight="600" fill="#2D2D2D">when in doubt at stage one, keep it; at stage two, decide</text><text x="350.0" y="236.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">screening is two passes with different standards, not one pass done twice</text></svg>
+        <p><strong>Pass one: title and abstract.</strong> The question is whether the record could plausibly meet the criteria, not whether it does. Work fast, ten to twenty seconds per record, and decide include, exclude, or uncertain. Treat uncertain as include, because the whole point of the two-stage design is that stage two catches what stage one waves through. Do not record reasons at this stage; the volume makes it impractical and the reasons are not reported for stage one exclusions anyway.</p>
+        <p>Two practical rules make pass one reliable. Screen on the abstract alone even when you recognise the paper, because recognition is where inconsistency enters. And take breaks: screening accuracy falls measurably after about an hour, and a session of four hundred abstracts in one sitting will have a different standard at the end than at the beginning.</p>
+        <p><strong>Pass two: full text.</strong> Obtain the full text of everything that survived, and note the ones you cannot obtain, since unobtainable full text is an exclusion reason that must be reported. Read enough of each paper to check every criterion, which usually means the abstract, the methods section, and the sample description. Decide include or exclude, and for every exclusion record the single criterion code that disqualified it, choosing the first criterion it fails rather than listing all of them.</p>
+        <p><strong>Borderline cases</strong> should be flagged rather than agonised over. Set them aside, finish the pass, then review the flagged set together. Deciding twenty borderline cases as a group produces a consistent standard, whereas deciding each one when you meet it produces twenty independent standards. If a borderline case genuinely could go either way, include it and note its marginality, since including a weak case transparently is safer than excluding it invisibly.</p>
+        <p>Where a second screener is available, the standard procedure is that both screen an overlapping sample independently, agreement is measured, disagreements are resolved by discussion, and the agreement statistic is reported. In a solo doctoral review this is often impossible, and the honest substitute is to <strong>re-screen a random sample of your own decisions after a week</strong> and report your own consistency. A researcher who disagrees with their own earlier decisions on one record in ten has learned something important about their criteria.</p>
+        <div class="note"><strong>Note:</strong> Keep the excluded records rather than deleting them. You will need the exclusion counts by reason, and occasionally a criterion changes and a previously excluded paper comes back in.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>تشغيل المرورين</h2>
+        <p class="lead">للمرورين سؤالان مختلفان وسرعتان مختلفتان وتحمّلان مختلفان للخطأ. وتشغيلهما وكأنهما واحد هو ما يُنتج مجموعةً لا تُعاد بناؤها.</p>
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#A32020"/><text x="195.0" y="80.1" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">فرز العنوان والملخص</text><text x="195.0" y="94.1" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">سريع وسخيّ، وسؤال واحد: هل يمكن أن تتأهل؟</text><rect x="360.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#8C8C8C"/><text x="505.0" y="80.1" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">فرز النص الكامل</text><text x="505.0" y="94.1" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">بطيء وصارم، كل معيار مفحوص والسبب مسجّل</text><rect x="140.0" y="168.0" width="420.0" height="26.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="185.0" text-anchor="middle" font-size="10.5" font-weight="600" fill="#2D2D2D">عند الشك في المرحلة الأولى أبقِها؛ وفي الثانية احسم</text><text x="350.0" y="236.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">الفرز مروران بمعيارين مختلفين، لا مرور واحد يُكرَّر</text></svg>
+        <p><strong>المرور الأول: العنوان والملخص.</strong> والسؤال هل يمكن أن يستوفي السجل المعايير، لا هل يستوفيها. اعمل سريعًا، عشر إلى عشرين ثانية للسجل، وقرّر: أُدرِج، أو أستبعد، أو غير متأكد. وعامل «غير متأكد» بوصفه إدراجًا، لأن كل مغزى التصميم ذي المرحلتين أن المرحلة الثانية تلتقط ما مرّرته الأولى. ولا تسجّل أسبابًا في هذه المرحلة؛ فالحجم يجعل ذلك غير عملي والأسباب لا يُبلّغ عنها لاستبعادات المرحلة الأولى أصلًا.</p>
+        <p>وقاعدتان عمليتان تجعلان المرور الأول موثوقًا. افرز على الملخص وحده حتى حين تتعرف على الورقة، لأن التعرف هو حيث يدخل عدم الاتساق. وخذ استراحات: فدقة الفرز تنخفض بقدر ملحوظ بعد ساعة تقريبًا، وجلسةٌ من أربعمئة ملخص في قعدة واحدة سيكون معيارها في النهاية غير معيارها في البداية.</p>
+        <p><strong>المرور الثاني: النص الكامل.</strong> احصل على النص الكامل لكل ما نجا، ودوّن ما لا تستطيع الحصول عليه، لأن تعذّر النص الكامل سبب استبعاد يجب الإبلاغ عنه. واقرأ من كل ورقة ما يكفي لفحص كل معيار، وهذا يعني عادةً الملخص وقسم المناهج ووصف العيّنة. وقرّر إدراجًا أو استبعادًا، ولكل استبعاد سجّل رمز المعيار الواحد الذي أسقطه، مختارًا أول معيار يخفق فيه لا سردَها كلها.</p>
+        <p>و<strong>الحالات الحدّية</strong> ينبغي تعليمها لا التعذّب بها. ضعها جانبًا، وأنهِ المرور، ثم راجع المجموعة المعلّمة معًا. فالبتّ في عشرين حالة حدّية بوصفها مجموعة يُنتج معيارًا متسقًا، بينما البتّ في كل واحدة حين تصادفها يُنتج عشرين معيارًا مستقلًا. وإن كانت الحالة الحدّية قد تذهب في أي اتجاه فعلًا، فأدرجها ودوّن هامشيّتها، لأن إدراج حالة ضعيفة بشفافية أأمن من استبعادها بلا رؤية.</p>
+        <p>وحيث يتوفر فارزٌ ثانٍ، فالإجراء المعياري أن يفرز الاثنان عيّنة متداخلة مستقلين، ويُقاس التوافق، وتُحَل الاختلافات بالنقاش، ويُبلّغ عن إحصاءة التوافق. وفي مراجعة دكتوراه فردية يتعذّر هذا غالبًا، والبديل الصادق أن <strong>تعيد فرز عيّنة عشوائية من قراراتك بعد أسبوع</strong> وتُبلغ عن اتساقك أنت. فالباحث الذي يخالف قراراته السابقة في سجل من عشرة قد تعلّم شيئًا مهمًا عن معاييره.</p>
+        <div class="note"><strong>ملاحظة:</strong> احتفظ بالسجلات المستبعدة ولا تحذفها. فستحتاج أعداد الاستبعاد بحسب السبب، وأحيانًا يتغير معيار فتعود ورقة مستبعَدة سابقًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="flow">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Reporting the Flow</h2>
+        <p class="lead">The flow report is four numbers and a short list of reasons. It is the single most scrutinised element of a review's method, because it is the only place where the reader can check the arithmetic.</p>
+        <svg viewBox="0 0 700 290" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="70.0" y="24.0" width="560.0" height="50.0" rx="4" fill="#8C8C8C"/><text x="350.0" y="41.1" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">Records identified</text><text x="350.0" y="55.1" text-anchor="middle" font-size="9.5" font-weight="400" fill="#FFFFFF">everything the searches and snowballing returned</text><rect x="130.0" y="82.0" width="440.0" height="50.0" rx="4" fill="#8C8C8C"/><text x="350.0" y="99.1" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">After duplicates removed</text><text x="350.0" y="113.1" text-anchor="middle" font-size="9.5" font-weight="400" fill="#FFFFFF">one record per study, across all databases</text><rect x="190.0" y="140.0" width="320.0" height="50.0" rx="4" fill="#8C8C8C"/><text x="350.0" y="157.1" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">After title and abstract screen</text><text x="350.0" y="171.1" text-anchor="middle" font-size="9.5" font-weight="400" fill="#FFFFFF">records that could plausibly meet the criteria</text><rect x="250.0" y="198.0" width="200.0" height="50.0" rx="4" fill="#A32020"/><text x="350.0" y="209.1" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">After full-text screen</text><text x="350.0" y="223.1" text-anchor="middle" font-size="9.5" font-weight="400" fill="#FFFFFF">studies that actually meet every</text><text x="350.0" y="235.0" text-anchor="middle" font-size="9.5" font-weight="400" fill="#FFFFFF">criterion</text><text x="350.0" y="278.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">four counts, each explained by the criterion that produced the drop</text></svg>
+        <p>The four counts must reconcile. Records identified, broken down by source, minus duplicates removed, equals records screened. Records screened minus records excluded at title and abstract equals full texts sought. Full texts sought minus full texts not obtained minus records excluded at full text equals studies included. If those subtractions do not work, a reader stops trusting everything downstream, and the failure is nearly always a bookkeeping error rather than a substantive one.</p>
+        <p>Alongside the counts, report the <strong>exclusion reasons at full text only</strong>, as a short list with a number against each: wrong population, no outcome measure, not empirical, duplicate report of an included study, full text unavailable. Do not report reasons for title and abstract exclusions; the convention exists because those decisions are made on incomplete information and reporting them implies more precision than the pass had.</p>
+        <p>The visual form of this report is a flow diagram, which is standard in systematic reviews and increasingly expected even in narrative ones. In a narrative review a short paragraph carrying the same numbers is acceptable, and it is better than a diagram whose numbers do not reconcile. The point is the arithmetic, not the picture.</p>
+        <p>Two further reporting habits distinguish a careful review. State the <strong>final included set</strong> explicitly and provide it, as a table or an appendix listing every included study with its key characteristics, because a reader who wants to check your synthesis needs to know what it was built from. And note the <strong>date the screening closed</strong>, separately from the search dates, since a reader can then tell whether an important paper published in the interval was missed by the search or by the calendar.</p>
+        <p>A last observation about honesty. Screening is where a reviewer's prior beliefs have the most room to operate, because every decision feels individually defensible and only the pattern reveals a bias. The defence is procedural rather than moral: write the criteria first, apply them to the abstract rather than to your memory of the paper, record reasons, and report the numbers. A review whose method allows a sceptical reader to reconstruct the set does not need to be trusted, which is exactly the property that makes it trustworthy.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> write six to eight applicable criteria before screening, each observable from what a paper reports. Deduplicate first, using identifiers, and distinguish duplicate records from duplicate studies. Screen in two passes: fast and generous on title and abstract, slow and strict on full text with a recorded reason for every exclusion. Batch the borderline cases and decide them together, and re-screen a sample of your own decisions to test consistency. Then report four reconciling counts and the full-text exclusion reasons, and list the included set.</div>
+        <div class="refs"><ul>
+          <li>PRISMA, <a href="https://www.prisma-statement.org/" target="_blank" rel="noopener">Preferred Reporting Items for Systematic Reviews and Meta-Analyses</a>.</li>
+          <li>Cochrane, <a href="https://training.cochrane.org/handbook" target="_blank" rel="noopener">Handbook for Systematic Reviews of Interventions</a>.</li>
+          <li>Saunders, Lewis &amp; Thornhill, <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">Research Methods for Business Students</a>.</li>
+          <li>Kumar, <a href="https://uk.sagepub.com/en-gb/eur/research-methodology/book270131" target="_blank" rel="noopener">Research Methodology: A Step-by-Step Guide for Beginners</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الإبلاغ عن التدفق</h2>
+        <p class="lead">تقرير التدفق أربعة أرقام وقائمة قصيرة من الأسباب. وهو أشد عناصر منهج المراجعة تدقيقًا، لأنه الموضع الوحيد الذي يستطيع فيه القارئ فحص الحساب.</p>
+        <svg viewBox="0 0 700 290" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="70.0" y="24.0" width="560.0" height="50.0" rx="4" fill="#8C8C8C"/><text x="350.0" y="41.1" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">السجلات المعرّفة</text><text x="350.0" y="55.1" text-anchor="middle" font-size="9.5" font-weight="400" fill="#FFFFFF">كل ما أعادته عمليات البحث وكرة الثلج</text><rect x="130.0" y="82.0" width="440.0" height="50.0" rx="4" fill="#8C8C8C"/><text x="350.0" y="99.1" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">بعد إزالة التكرار</text><text x="350.0" y="113.1" text-anchor="middle" font-size="9.5" font-weight="400" fill="#FFFFFF">سجل واحد لكل دراسة، عبر القواعد كلها</text><rect x="190.0" y="140.0" width="320.0" height="50.0" rx="4" fill="#8C8C8C"/><text x="350.0" y="157.1" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">بعد فرز العنوان والملخص</text><text x="350.0" y="171.1" text-anchor="middle" font-size="9.5" font-weight="400" fill="#FFFFFF">سجلات يُعقَل أن تستوفي المعايير</text><rect x="250.0" y="198.0" width="200.0" height="50.0" rx="4" fill="#A32020"/><text x="350.0" y="215.1" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">بعد فرز النص الكامل</text><text x="350.0" y="229.1" text-anchor="middle" font-size="9.5" font-weight="400" fill="#FFFFFF">دراسات تستوفي كل معيار فعلًا</text><text x="350.0" y="278.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">أربعة أعداد، كلٌّ مفسَّر بالمعيار الذي أنتج الانخفاض</text></svg>
+        <p>والأعداد الأربعة يجب أن تتوافق. السجلات المعرّفة، مفصّلةً بالمصدر، ناقص التكرارات المزالة، يساوي السجلات المفروزة. والسجلات المفروزة ناقص المستبعدة في العنوان والملخص يساوي النصوص الكاملة المطلوبة. والنصوص الكاملة المطلوبة ناقص غير المحصّلة ناقص المستبعدة في النص الكامل يساوي الدراسات المدرجة. فإن لم تنجح تلك الطرحات، توقف القارئ عن الثقة بكل ما بعدها، والإخفاق شبه دائمًا خطأ مسك دفاتر لا خطأ جوهري.</p>
+        <p>وإلى جانب الأعداد، أبلغ عن <strong>أسباب الاستبعاد في النص الكامل فقط</strong>، قائمةً قصيرة برقم أمام كل سبب: مجتمع خطأ، لا مقياس مخرج، ليست تجريبية، تقرير مكرر لدراسة مدرجة، نص كامل غير متاح. ولا تُبلغ عن أسباب استبعادات العنوان والملخص؛ فالعُرف قائم لأن تلك القرارات تُتّخذ على معلومات ناقصة والإبلاغ عنها يوحي بدقة لم يملكها المرور.</p>
+        <p>والصيغة البصرية لهذا التقرير مخطط تدفق، وهو معياري في المراجعات المنهجية ومتوقَّع بازدياد حتى في السردية. وفي مراجعة سردية تكفي فقرة قصيرة تحمل الأرقام نفسها، وهي خير من مخطط لا تتوافق أرقامه. فالمقصود الحساب لا الصورة.</p>
+        <p>وعادتا إبلاغ أخريان تميّزان مراجعةً متأنية. اذكر <strong>المجموعة المدرجة النهائية</strong> صراحةً وقدّمها، جدولًا أو ملحقًا يسرد كل دراسة مدرجة بخصائصها المفتاحية، لأن القارئ الذي يريد فحص تركيبك يحتاج معرفة مِمَّ بُني. ودوّن <strong>تاريخ إغلاق الفرز</strong>، منفصلًا عن تواريخ البحث، ليستطيع القارئ عندئذٍ معرفة هل فاتت ورقةٌ مهمة نُشرت في الفترة بسبب البحث أم بسبب التقويم.</p>
+        <p>وملاحظة أخيرة عن الأمانة. الفرز هو حيث تملك معتقدات المراجع السابقة أوسع مجال للعمل، لأن كل قرار يبدو قابلًا للدفاع منفردًا ولا يكشف التحيّزَ إلا النمط. والدفاع إجرائي لا أخلاقي: اكتب المعايير أولًا، وطبّقها على الملخص لا على ذاكرتك عن الورقة، وسجّل الأسباب، وأبلغ عن الأرقام. والمراجعة التي يتيح منهجها لقارئ متشكك إعادة بناء المجموعة لا تحتاج أن يُوثَق بها، وهذه بالضبط الخاصية التي تجعلها موثوقة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> اكتب ستة إلى ثمانية معايير قابلة للتطبيق قبل الفرز، كلٌّ ملحوظ مما تُبلغ عنه الورقة. وأزل التكرار أولًا بالمعرّفات، وميّز السجل المكرر عن الدراسة المكررة. وافرز في مرورين: سريعٍ سخيّ على العنوان والملخص، وبطيءٍ صارم على النص الكامل بسبب مسجّل لكل استبعاد. واجمع الحالات الحدّية وابتّ فيها معًا، وأعد فرز عيّنة من قراراتك لاختبار الاتساق. ثم أبلغ عن أربعة أعداد متوافقة وأسباب استبعاد النص الكامل، واسرد المجموعة المدرجة.</div>
+        <div class="refs"><ul>
+          <li>بريزما، <a href="https://www.prisma-statement.org/" target="_blank" rel="noopener">بنود الإبلاغ المفضّلة للمراجعات المنهجية والتحليل البعدي</a>.</li>
+          <li>كوكرين، <a href="https://training.cochrane.org/handbook" target="_blank" rel="noopener">دليل المراجعات المنهجية للتدخلات</a>.</li>
+          <li>سوندرز ولويس وثورنهيل، <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">مناهج البحث لطلاب الأعمال</a>.</li>
+          <li>كومار، <a href="https://uk.sagepub.com/en-gb/eur/research-methodology/book270131" target="_blank" rel="noopener">منهجية البحث: دليل خطوة بخطوة للمبتدئين</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="lit-databases.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Databases and Where to Search</span><span data-lang="ar">قواعد البيانات وأين تبحث</span></a><a href="lit-zotero.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Managing References with Zotero</span><span data-lang="ar">إدارة المراجع بزوتيرو</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="الفرز: الإدراج والاستبعاد";
+var TITLE_EN="Screening: Inclusion and Exclusion";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

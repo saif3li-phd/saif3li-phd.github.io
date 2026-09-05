@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prompting for Research Work · Saif Alghamdi</title>
+<meta name="description" content="Prompting for research: the five parts of a prompt, techniques that reliably improve output, iterating towards something usable, and what to record.">
+<link rel="canonical" href="https://saif3li-phd.github.io/phd/ai-prompting.html">
+<meta name="author" content="Saif Ali Alghamdi">
+<meta name="theme-color" content="#2D2D2D">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saif Ali Alghamdi">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:url" content="https://saif3li-phd.github.io/phd/ai-prompting.html">
+<meta property="og:title" content="Prompting for Research Work · Saif Alghamdi">
+<meta property="og:description" content="Prompting for research: the five parts of a prompt, techniques that reliably improve output, iterating towards something usable, and what to record.">
+<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Prompting for Research Work · Saif Alghamdi">
+<meta name="twitter:description" content="Prompting for research: the five parts of a prompt, techniques that reliably improve output, iterating towards something usable, and what to record.">
+<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Prompting for Research Work · Saif Alghamdi", "description": "Prompting for research: the five parts of a prompt, techniques that reliably improve output, iterating towards something usable, and what to record.", "url": "https://saif3li-phd.github.io/phd/ai-prompting.html", "inLanguage": "en", "author": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "publisher": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "image": "https://saif3li-phd.github.io/assets/og.jpg", "isPartOf": {"@type": "WebSite", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}}
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="0009a1c6-b533-4e1e-9dbc-8b20dbe29af9"></script>
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#foundation-of-business-research"><span data-lang="en">Foundation of Business Research</span><span data-lang="ar">أسس بحوث الأعمال</span></a><i>&rsaquo;</i><span data-lang="en">AI in research</span><span data-lang="ar">الذكاء الاصطناعي في البحث</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">AI IN RESEARCH · PhD</span><span data-lang="ar">الذكاء الاصطناعي في البحث · دكتوراه</span></div>
+    <h1><span data-lang="en">Prompting for Research Work</span><span data-lang="ar">المطالبات في العمل البحثي</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">AI in research</span><span data-lang="ar">الذكاء الاصطناعي في البحث</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">10 min</span><span data-lang="ar">١٠ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذا الموضوع</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="parts"><span data-lang="en">Five parts</span><span data-lang="ar">خمسة أجزاء</span></a></li><li><a data-id="techniques"><span data-lang="en">Techniques</span><span data-lang="ar">التقنيات</span></a></li><li><a data-id="patterns"><span data-lang="en">Research patterns</span><span data-lang="ar">أنماط بحثية</span></a></li><li><a data-id="iteration"><span data-lang="en">Iteration</span><span data-lang="ar">التكرار</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Writing prompts that produce useful output for research work</div>
+          <div><span>Covers:</span> The five parts of a prompt, techniques that work, iteration, and research-specific patterns</div>
+          <div><span>Use:</span> Getting specific, checkable output instead of generic prose</div>
+          <div><span>Level:</span> Doctoral business research</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">The quality of what these tools produce is largely determined by what you ask. A vague request produces generic output that sounds informed and says nothing; a specific request with your own material supplied produces something you can actually use.</p>
+        <p>The principle behind every technique in this framework is that <strong>the tool cannot supply what you did not give it</strong>. Asking for a summary of the literature on employee engagement produces a summary of the phrase, assembled from patterns. Pasting three abstracts and asking what they disagree about produces an answer about those three abstracts, which you can verify by reading them.</p>
+        <p>That difference is the whole subject. Prompts that supply material and ask for an operation on it are useful and checkable. Prompts that ask the tool to generate content from nothing are the ones that produce fabricated citations, plausible generalities, and confident errors.</p>
+        <p>A second principle governs the shape of a request: <strong>specificity in, specificity out</strong>. Every constraint you state, on length, on format, on what to exclude, narrows the space of likely outputs and moves it towards what you wanted. An unconstrained request is answered with the most generic plausible response, because that is what is most likely.</p>
+        <p>This framework covers the five parts of a well-formed prompt, the techniques that reliably improve output, how to iterate, and the specific patterns that suit research tasks. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> The best prompt for research work usually contains your own text. If you are not supplying material, ask whether the task is one where the output can be checked at all.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> كتابة مطالبات تُنتج مخرجًا نافعًا للعمل البحثي</div>
+          <div><span>يغطّي:</span> أجزاء المطالبة الخمسة، والتقنيات الناجحة، والتكرار، والأنماط الخاصة بالبحث</div>
+          <div><span>الاستخدام:</span> نيل مخرج محدد قابل للفحص بدل نثر عام</div>
+          <div><span>المستوى:</span> بحوث الأعمال لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">جودةُ ما تُنتجه هذه الأدوات يحددها إلى حد بعيد ما تسأله. فطلب غامض يُنتج مخرجًا عامًا يبدو مطّلعًا ولا يقول شيئًا؛ وطلب محدد بمادتك أنت مزوّدة يُنتج شيئًا تستطيع استخدامه فعلًا.</p>
+        <p>والمبدأ خلف كل تقنية في هذا الإطار أن <strong>الأداة لا تستطيع تزويد ما لم تعطها إياه</strong>. فطلبُ «ملخص لأدبيات اندماج الموظفين» يُنتج ملخصًا للعبارة، مجمّعًا من أنماط. ولصقُ ثلاثة ملخصات وسؤالُ «فيم تختلف» يُنتج إجابةً عن تلك الملخصات الثلاثة، تستطيع التحقق منها بقراءتها.</p>
+        <p>وذلك الفرق هو الموضوع كله. فالمطالبات التي تزوّد مادةً وتطلب عمليةً عليها نافعة وقابلة للفحص. والمطالبات التي تطلب من الأداة توليد محتوى من لا شيء هي التي تُنتج استشهادات ملفّقة وعموميات معقولة وأخطاءً واثقة.</p>
+        <p>ومبدأ ثان يحكم شكل الطلب: <strong>التحديد داخلًا، التحديد خارجًا</strong>. فكل قيد تذكره، في الطول أو الصيغة أو ما يُستبعد، يضيّق فضاء المخرجات المحتملة ويحرّكه نحو ما أردت. والطلبُ غير المقيّد يُجاب بأعمّ استجابة معقولة، لأن تلك هي الأرجح.</p>
+        <p>ويغطي هذا الإطار أجزاء المطالبة حسنة التكوين الخمسة، والتقنيات التي تحسّن المخرج بثبات، وكيف تكرر، والأنماط المحددة التي تلائم المهام البحثية. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> أفضل مطالبة للعمل البحثي تحوي عادةً نصك أنت. فإن لم تكن تزوّد مادة، فاسأل هل المهمة مما يمكن فحص مخرجه أصلًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="parts">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Five Parts of a Prompt</h2>
+        <p class="lead">A well-formed prompt has five components. Most weak prompts contain only the second, which is why they produce generic output.</p>
+        <svg viewBox="0 0 700 308" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">1</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Role</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">the perspective the answer should be written from</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">2</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Task</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">the single thing you want done, stated as a verb</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">3</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Context</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">the material the answer must work from</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="199.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">4</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Constraints</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">length, format, what to exclude, and what to assume</text><rect x="52.0" y="224.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="251.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">5</text><rect x="104.0" y="224.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="251.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Output shape</text><rect x="312.0" y="224.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="251.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">the structure the answer should take</text><text x="350.0" y="297.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">five parts; most weak prompts are missing the third and the fifth</text></svg>
+        <p><strong>Role</strong> sets the perspective. Asking for an answer as a methodologist reviewing a design, or as a sceptical examiner, changes the vocabulary and the emphasis of the response. It is the least important of the five and the most over-used, since a role without a task and context produces confident generic prose in a costume.</p>
+        <p><strong>Task</strong> is the single operation you want, stated as a verb: summarise, compare, list, critique, rewrite, explain, check. One task per prompt. A request containing three tasks produces an answer that does all three badly, and splitting them into three exchanges takes the same time and produces three usable answers.</p>
+        <p><strong>Context</strong> is the material the answer must work from, and it is the component that separates useful output from generic output. Paste the abstract, the paragraph, the code, the table, the outline. The rule is that any claim in the output should be traceable to something you supplied, and if you supplied nothing, nothing is traceable.</p>
+        <p><strong>Constraints</strong> narrow the answer: a word limit, a required format, a stated audience, an instruction about what to exclude, and an instruction about what to do when the answer is not determinable. That last one matters more than it appears: telling the tool to say when the supplied material does not answer the question is what produces an honest gap rather than an invented filler.</p>
+        <p><strong>Output shape</strong> states the structure: a table with named columns, a numbered list, three paragraphs, a single sentence. Specifying the shape improves usability enormously and also improves accuracy, because a table with a column headed evidence forces each row to have one.</p>
+        <p>A compact example combining all five: acting as a methodologist, review the design paragraph below and list, in a table with columns for the issue, why it matters, and a suggested fix, any mismatches between the stated research question and the described design; if the paragraph does not contain enough information to judge an issue, say so rather than assuming.</p>
+        <div class="note"><strong>Note:</strong> Always include an instruction about uncertainty: say when you cannot tell from what I have given you. Without it, the tool fills gaps with plausible content, and that content is indistinguishable from the rest.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>أجزاء المطالبة الخمسة</h2>
+        <p class="lead">للمطالبة حسنة التكوين خمسة مكونات. ومعظم المطالبات الضعيفة تحوي الثاني فقط، ولهذا تُنتج مخرجًا عامًا.</p>
+        <svg viewBox="0 0 700 308" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">١</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">الدور</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">المنظور الذي ينبغي أن تُكتب منه الإجابة</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٢</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">المهمة</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">الشيء الواحد الذي تريده مُنجزًا، مذكورًا فعلًا</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٣</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">السياق</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">المادة التي يجب أن تعمل منها الإجابة</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="199.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٤</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">القيود</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">الطول والصيغة وما يُستبعد وما يُفترض</text><rect x="52.0" y="224.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="251.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٥</text><rect x="104.0" y="224.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="251.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">شكل المخرج</text><rect x="312.0" y="224.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="251.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">البنية التي ينبغي أن تتخذها الإجابة</text><text x="350.0" y="297.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">خمسة أجزاء؛ ومعظم المطالبات الضعيفة تفتقد الثالث والخامس</text></svg>
+        <p>و<strong>الدور</strong> يضبط المنظور. فطلبُ إجابة «بوصفك منهجيًا يراجع تصميمًا» أو «بوصفك ممتحنًا متشككًا» يغيّر مفردات الاستجابة وتشديدها. وهو أقل الخمسة أهميةً وأكثرها إفراطًا في الاستعمال، لأن دورًا بلا مهمة وسياق يُنتج نثرًا عامًا واثقًا في زيّ.</p>
+        <p>و<strong>المهمة</strong> هي العملية الواحدة التي تريدها، مذكورةً فعلًا: لخّص، قارن، اسرد، انقد، أعد الصياغة، اشرح، افحص. ومهمة واحدة لكل مطالبة. فطلب يحوي ثلاث مهام يُنتج إجابةً تفعل الثلاث بسوء، وتقسيمها ثلاثة تبادلات يستغرق الوقت نفسه ويُنتج ثلاث إجابات صالحة.</p>
+        <p>و<strong>السياق</strong> هو المادة التي يجب أن تعمل منها الإجابة، وهو المكوّن الذي يفصل المخرج النافع عن العام. الصق الملخص أو الفقرة أو الشفرة أو الجدول أو المخطط. والقاعدة أن أي ادّعاء في المخرج ينبغي أن يكون قابلًا للتتبع إلى شيء زوّدته، وإن لم تزوّد شيئًا فلا شيء قابل للتتبع.</p>
+        <p>و<strong>القيود</strong> تضيّق الإجابة: حدُّ كلمات، وصيغة مطلوبة، وجمهور مذكور، وتعليمة عمّا يُستبعد، وتعليمة عمّا يُفعل حين لا تكون الإجابة قابلة للتحديد. وتلك الأخيرة تهم أكثر مما تبدو: فإخبارُ الأداة بأن تقول متى لا تجيب المادة المزوّدة السؤال هو ما يُنتج فجوةً صادقة لا حشوًا مخترعًا.</p>
+        <p>و<strong>شكل المخرج</strong> يذكر البنية: جدول بأعمدة مسمّاة، أو قائمة مرقّمة، أو ثلاث فقرات، أو جملة واحدة. وتحديدُ الشكل يحسّن القابلية للاستعمال هائلًا ويحسّن الدقة أيضًا، لأن جدولًا بعمود عنوانه «الدليل» يُجبر كل صف على امتلاك واحد.</p>
+        <p>ومثال مضغوط يجمع الخمسة: «بوصفك منهجيًا، راجع فقرة التصميم أدناه واسرد، في جدول بأعمدة للمسألة وسبب أهميتها وإصلاح مقترح، أي عدم تطابق بين سؤال البحث المذكور والتصميم الموصوف؛ وإن لم تحو الفقرة معلومات تكفي للحكم على مسألة، فقُل ذلك لا تفترض».</p>
+        <div class="note"><strong>ملاحظة:</strong> أدرج دائمًا تعليمةً عن عدم اليقين: «قُل متى لا تستطيع التحديد مما أعطيتك». فبدونها تملأ الأداة الفجوات بمحتوى معقول، وذلك المحتوى لا يتمايز عن البقية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="techniques">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Techniques That Reliably Help</h2>
+        <p class="lead">Six techniques improve output across almost any research task, and each takes one extra line in the prompt.</p>
+        <table>
+          <tr><th>Technique</th><th>What to write</th><th>Why it works</th></tr>
+          <tr><td>Supply the material</td><td>Paste the text and ask for an operation on it</td><td>Grounds the output in something checkable</td></tr>
+          <tr><td>Ask for reasoning</td><td>Explain the basis for each point</td><td>Makes weak claims visible instead of hidden</td></tr>
+          <tr><td>Give an example</td><td>Show one item done the way you want</td><td>Communicates format faster than description</td></tr>
+          <tr><td>Request alternatives</td><td>Give three different options</td><td>Prevents anchoring on the first plausible answer</td></tr>
+          <tr><td>Invite refusal</td><td>Say if you cannot answer from this</td><td>Converts invention into a stated gap</td></tr>
+          <tr><td>Ask for the counter-case</td><td>Now argue the opposite</td><td>Surfaces the objection you have not considered</td></tr>
+        </table>
+        <p><strong>Supplying the material</strong> is the most important and the most often skipped. It converts the task from generation to operation, and operations on supplied text are verifiable while generation is not.</p>
+        <p><strong>Asking for reasoning</strong> changes the character of the output. A list of points with no basis is a list of plausible-sounding assertions; the same list with the basis for each stated lets you evaluate them, and the ones with weak or circular reasoning become visible immediately.</p>
+        <p><strong>Requesting alternatives</strong> is particularly useful for research work, because the first answer is the most typical one and typical is rarely what a doctorate needs. Asking for three different framings of a research question, or three possible explanations for a finding, produces a set to choose among rather than a default to accept.</p>
+        <p><strong>Asking for the counter-case</strong> is the highest-value technique for a thesis. Having produced an argument or accepted a finding, ask what the strongest objection would be. The output is not content for your chapter; it is a checklist against which to test what you have written, and it reliably identifies the weak point you had stopped seeing.</p>
+        <p>Two techniques to avoid. <strong>Over-elaborate role instructions</strong> add length without improving substance, and a paragraph establishing a persona is a paragraph not spent on context. And <strong>asking for confidence ratings</strong> produces numbers with no grounding, since the system has no calibrated sense of its own reliability, and a stated ninety percent confidence is a text pattern rather than a measurement.</p>
+        <div class="note"><strong>Note:</strong> The single most useful line to add to almost any research prompt is: base your answer only on the text I have provided, and say clearly where that text does not answer the question.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>تقنيات تساعد بثبات</h2>
+        <p class="lead">ست تقنيات تحسّن المخرج عبر أي مهمة بحثية تقريبًا، وكلّ تستغرق سطرًا إضافيًا في المطالبة.</p>
+        <table>
+          <tr><th>التقنية</th><th>ما يُكتب</th><th>لماذا تنجح</th></tr>
+          <tr><td>زوّد المادة</td><td>الصق النص واطلب عمليةً عليه</td><td>تُجذّر المخرج في شيء قابل للفحص</td></tr>
+          <tr><td>اطلب التعليل</td><td>اشرح أساس كل نقطة</td><td>يجعل الادّعاءات الضعيفة مرئية لا مخفية</td></tr>
+          <tr><td>أعط مثالًا</td><td>أظهر عنصرًا واحدًا مُنجزًا كما تريد</td><td>يوصّل الصيغة أسرع من الوصف</td></tr>
+          <tr><td>اطلب بدائل</td><td>أعط ثلاثة خيارات مختلفة</td><td>يمنع التثبيت على أول إجابة معقولة</td></tr>
+          <tr><td>ادعُ إلى الامتناع</td><td>قُل إن لم تستطع الإجابة من هذا</td><td>يحوّل الاختراع إلى فجوة مذكورة</td></tr>
+          <tr><td>اطلب الحالة المضادة</td><td>الآن حاجّ بالعكس</td><td>يُظهر الاعتراض الذي لم تنظر فيه</td></tr>
+        </table>
+        <p>و<strong>تزويد المادة</strong> أهمها وأكثرها تخطّيًا. فهو يحوّل المهمة من توليد إلى عملية، والعمليات على نص مزوّد قابلة للتحقق والتوليدُ ليس كذلك.</p>
+        <p>و<strong>طلب التعليل</strong> يغيّر طابع المخرج. فقائمةُ نقاط بلا أساس قائمةُ جزوم تبدو معقولة؛ والقائمة نفسها بأساس كلّ مذكورًا تتيح لك تقييمها، والتي فيها تعليل ضعيف أو دائري تصير مرئية فورًا.</p>
+        <p>و<strong>طلب البدائل</strong> نافع خاصةً للعمل البحثي، لأن أول إجابة هي الأكثر نمطيةً والنمطي نادرًا ما تحتاجه دكتوراه. فطلبُ ثلاثة تأطيرات مختلفة لسؤال بحثي، أو ثلاثة تفسيرات ممكنة لنتيجة، يُنتج مجموعةً تختار منها لا افتراضيًا تقبله.</p>
+        <p>و<strong>طلب الحالة المضادة</strong> أعلى التقنيات قيمةً لأطروحة. فبعد إنتاج حجة أو قبول نتيجة، اسأل ما أقوى اعتراض. والمخرج ليس محتوى لفصلك؛ بل قائمةُ فحص تختبر بها ما كتبت، وهو يحدد بثبات نقطة الضعف التي توقفت عن رؤيتها.</p>
+        <p>وتقنيتان تُتجنّبان. <strong>تعليمات الدور المفرطة التفصيل</strong> تضيف طولًا بلا تحسين الجوهر، والفقرةُ التي تُنشئ شخصيةً فقرة لم تُنفق على السياق. و<strong>طلب تقديرات ثقة</strong> يُنتج أرقامًا بلا تجذير، فالنظام لا يملك حسًا معايرًا بموثوقيته، والثقةُ المذكورة بتسعين بالمئة نمط نصي لا قياس.</p>
+        <div class="note"><strong>ملاحظة:</strong> أنفع سطر مفرد يُضاف إلى أي مطالبة بحثية تقريبًا: «ابن إجابتك على النص الذي زوّدته فقط، وقُل بوضوح أين لا يجيب ذلك النص السؤال».</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="patterns">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Patterns for Specific Research Tasks</h2>
+        <p class="lead">Six patterns cover most of the research tasks where these tools genuinely help. Each supplies material and asks for a checkable operation.</p>
+        <p><strong>Understanding a paper.</strong> Paste the abstract and introduction and ask for the claimed gap, the question, and the answer in one sentence each, based only on the supplied text. This gives you an orientation before a close read and takes thirty seconds, and the paper itself is the check.</p>
+        <p><strong>Checking a construct definition.</strong> Paste your conceptual definition and your item list and ask which items do not clearly map to the definition and why. The output is a set of flags you evaluate against the definition, and any flag you disagree with is still worth a moment's thought about why.</p>
+        <p><strong>Reviewing a questionnaire.</strong> Paste the items and ask for any that are double-barrelled, leading, ambiguous, or that contain a hidden assumption, with the specific problem named for each. Every flag is checkable against the wording rule, which makes this one of the safest uses available.</p>
+        <p><strong>Debugging code.</strong> Paste the script and the error and ask what is causing it and what the fix does. Read the explanation, apply the fix yourself, and verify the output against a case you calculated by hand.</p>
+        <p><strong>Tightening a paragraph.</strong> Paste your paragraph and ask for it rewritten for clarity with the meaning unchanged, then compare the two sentence by sentence. Accept only the changes that improve clarity without altering a claim, which is usually most but never all of them.</p>
+        <p><strong>Stress-testing an argument.</strong> Paste your discussion paragraph and ask what a critical examiner would object to, with the strongest objection first. The output is a checklist for your own revision, and the objections you cannot answer are the ones to address before submission.</p>
+        <p>Two patterns to avoid completely. <strong>Asking for a literature summary on a topic</strong> produces generic assertions and, if references are requested, fabricated ones. And <strong>asking what the findings mean</strong> substitutes the interpretive work that is the point of your discussion chapter.</p>
+        <div class="note"><strong>Note:</strong> Every one of the six useful patterns supplies your own material and asks for an operation you can check, and every discouraged one asks for content you cannot verify.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>أنماط لمهام بحثية بعينها</h2>
+        <p class="lead">ستة أنماط تغطي معظم المهام البحثية التي تساعد فيها هذه الأدوات فعلًا. وكلّ يزوّد مادةً ويطلب عمليةً قابلة للفحص.</p>
+        <p><strong>فهم ورقة.</strong> الصق الملخص والمقدمة واطلب الفجوة المُدّعاة والسؤال والإجابة في جملة لكلّ، بناءً على النص المزوّد فقط. وهذا يعطيك توجيهًا قبل قراءة متأنية ويستغرق ثلاثين ثانية، والورقة نفسها هي الفحص.</p>
+        <p><strong>فحص تعريف بناء.</strong> الصق تعريفك المفاهيمي وقائمة بنودك واطلب أي البنود لا ينطبق بوضوح على التعريف ولماذا. والمخرج مجموعةُ تعليمات تقيّمها مقابل التعريف، وأي تعليم تخالفه يستحق مع ذلك لحظة تفكير في السبب.</p>
+        <p><strong>مراجعة استبانة.</strong> الصق البنود واطلب أيها مزدوج أو موجّه أو ملتبس أو يحوي افتراضًا مخفيًا، بتسمية المشكلة المحددة لكلّ. وكل تعليم قابل للفحص مقابل قاعدة الصياغة، وهذا يجعله أحد أأمن الاستخدامات المتاحة.</p>
+        <p><strong>تنقيح شفرة.</strong> الصق النص البرمجي والخطأ واسأل ما الذي يسبّبه وماذا يفعل الإصلاح. اقرأ الشرح، وطبّق الإصلاح بنفسك، وتحقق من المخرج مقابل حالة حسبتها يدويًا.</p>
+        <p><strong>إحكام فقرة.</strong> الصق فقرتك واطلب إعادة كتابتها للوضوح مع بقاء المعنى، ثم قارن الاثنتين جملةً جملة. واقبل التغييرات التي تحسّن الوضوح دون تبديل ادّعاء فقط، وهي عادةً معظمها لا كلها.</p>
+        <p><strong>اختبار متانة حجة.</strong> الصق فقرة مناقشتك واسأل ما الذي سيعترض عليه ممتحن ناقد، بأقوى اعتراض أولًا. والمخرج قائمةُ فحص لمراجعتك، والاعتراضات التي لا تستطيع إجابتها هي التي تُعالج قبل التسليم.</p>
+        <p>ونمطان يُتجنّبان كليًا. <strong>طلبُ ملخص أدبيات عن موضوع</strong> يُنتج جزومًا عامة، وإن طُلبت مراجع فملفّقة. و<strong>سؤالُ ما تعنيه النتائج</strong> يستبدل العمل التفسيري الذي هو مغزى فصل مناقشتك.</p>
+        <div class="note"><strong>ملاحظة:</strong> كل واحد من الأنماط النافعة الستة يزوّد مادتك ويطلب عمليةً تستطيع فحصها، وكل نمط غير مشجّع يطلب محتوى لا تستطيع التحقق منه.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="iteration">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Iterating Towards Something Useful</h2>
+        <p class="lead">The first answer is rarely the useful one. Treating the exchange as a conversation rather than a query is what produces output worth keeping.</p>
+        <svg viewBox="0 0 700 175" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="118.2" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">Ask</text><text x="118.2" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">a specific task</text><text x="118.2" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">with your own</text><text x="118.2" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">material supplied</text><line x1="188.5" y1="78.0" x2="199.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M202.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="204.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="272.8" y="57.2" text-anchor="middle" font-size="12.0" font-weight="700" fill="#FFFFFF">Read critically</text><text x="272.8" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">check every factual</text><text x="272.8" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">claim before using</text><text x="272.8" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">anything</text><line x1="343.0" y1="78.0" x2="354.0" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M357.0 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="359.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="427.2" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">Redirect</text><text x="427.2" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">say what was wrong</text><text x="427.2" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">and what you want</text><text x="427.2" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">instead</text><line x1="497.5" y1="78.0" x2="508.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M511.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="513.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="581.8" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">Extract</text><text x="581.8" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">take the part that</text><text x="581.8" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">is useful and</text><text x="581.8" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">discard the rest</text><text x="350.0" y="158.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">prompting is a conversation, and the second attempt is usually the useful one</text></svg>
+        <p><strong>Read critically before doing anything else.</strong> Check every factual claim, every citation, every statistic, and every attribution. Fluency is not evidence, and the most dangerous outputs are the ones that read well enough that you skip this step.</p>
+        <p><strong>Redirect specifically.</strong> A follow-up saying that is too general is less effective than one saying the third point is generic; give a concrete example from the text I supplied instead. Naming what was wrong and what you want moves the next answer substantially; expressing dissatisfaction does not.</p>
+        <p><strong>Extract rather than accept.</strong> A useful output usually contains one or two things worth keeping and a good deal of padding. Take the parts that survive checking, rewrite them in your own words, and verify them independently. Nothing should move from an output into a thesis unchanged.</p>
+        <p>Three follow-ups are worth having ready because they work across tasks. <strong>What did you assume that I did not tell you?</strong> This surfaces the invented context that fills gaps and is the fastest way to find where the output stopped being grounded in what you supplied. <strong>Which of these points is weakest and why?</strong> This produces a more useful self-assessment than asking for confidence, because it asks for reasoning rather than a number. And <strong>what would a critical reviewer object to?</strong> which is the counter-case technique applied to the output itself.</p>
+        <p>One structural point about long exchanges. These tools work from the visible conversation, so a long thread accumulates context that shapes later answers, sometimes usefully and sometimes by carrying forward an early misunderstanding. When answers begin drifting from what you want, starting a fresh exchange with a clean, well-formed prompt is usually faster than correcting the accumulated context.</p>
+        <p>Finally, <strong>keep a record</strong> of exchanges that fed into your work: the prompt, the relevant output, and what you did with it. This costs seconds, it makes an accurate disclosure statement possible, and it is the only way to answer a question about how a tool was used in a project spanning years.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> the tool cannot supply what you did not give it, so the strongest prompts contain your own material and ask for an operation on it. Include five parts: role, task, context, constraints, and output shape, with one task per prompt. Supply the text, ask for the reasoning behind each point, request alternatives rather than one answer, invite the tool to say when it cannot answer, and always ask for the counter-case. Read critically before using anything, redirect by naming what was wrong, extract only what survives checking, and keep a record of what you used.</div>
+        <div class="refs"><ul>
+          <li>Committee on Publication Ethics, <a href="https://publicationethics.org/guidance/guidelines" target="_blank" rel="noopener">Guidelines on Publication Integrity</a>.</li>
+          <li>Saunders, Lewis &amp; Thornhill, <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">Research Methods for Business Students</a>.</li>
+          <li>American Psychological Association, <a href="https://apastyle.apa.org/products/publication-manual-7th-edition" target="_blank" rel="noopener">Publication Manual, Seventh Edition</a>.</li>
+          <li>Kumar, <a href="https://uk.sagepub.com/en-gb/eur/research-methodology/book270131" target="_blank" rel="noopener">Research Methodology: A Step-by-Step Guide for Beginners</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>التكرار نحو شيء نافع</h2>
+        <p class="lead">أول إجابة نادرًا ما تكون النافعة. ومعاملةُ التبادل محادثةً لا استعلامًا هي ما يُنتج مخرجًا يستحق الاحتفاظ.</p>
+        <svg viewBox="0 0 700 175" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="118.2" y="63.5" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">اسأل</text><text x="118.2" y="77.5" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">مهمةً محددة بمادتك</text><text x="118.2" y="90.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">أنت مزوّدة</text><line x1="188.5" y1="78.0" x2="199.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M202.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="204.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="272.8" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">اقرأ بنقد</text><text x="272.8" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">افحص كل ادّعاء</text><text x="272.8" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">واقعي قبل استخدام</text><text x="272.8" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">أي شيء</text><line x1="343.0" y1="78.0" x2="354.0" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M357.0 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="359.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="427.2" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">أعد التوجيه</text><text x="427.2" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">قُل ما كان خاطئًا</text><text x="427.2" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">وما تريده بدلًا</text><text x="427.2" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">منه</text><line x1="497.5" y1="78.0" x2="508.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M511.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="513.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="581.8" y="63.5" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">استخرج</text><text x="581.8" y="77.5" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">خذ الجزء النافع</text><text x="581.8" y="90.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">واترك الباقي</text><text x="350.0" y="158.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">المطالبة محادثة، والمحاولة الثانية عادةً هي النافعة</text></svg>
+        <p><strong>اقرأ بنقد قبل فعل أي شيء آخر.</strong> افحص كل ادّعاء واقعي وكل استشهاد وكل إحصاءة وكل نسبة. فالسلاسة ليست دليلًا، وأخطر المخرجات هي التي تُقرأ جيدًا بما يكفي لتتخطى هذه الخطوة.</p>
+        <p><strong>أعد التوجيه تحديدًا.</strong> فمتابعة تقول «هذا عام جدًا» أقل نجاعةً من واحدة تقول «النقطة الثالثة عامة؛ أعط مثالًا محسوسًا من النص الذي زوّدته بدلًا منها». فتسميةُ ما كان خاطئًا وما تريده تحرّك الإجابة التالية كثيرًا؛ والتعبيرُ عن عدم الرضا لا يحرّكها.</p>
+        <p><strong>استخرج لا تقبل.</strong> فالمخرج النافع يحوي عادةً شيئًا أو شيئين يستحقان الاحتفاظ وقدرًا كبيرًا من الحشو. خذ الأجزاء التي تنجو من الفحص، وأعد كتابتها بكلماتك، وتحقق منها مستقلًا. ولا ينبغي أن ينتقل شيء من مخرج إلى أطروحة دون تغيير.</p>
+        <p>وثلاث متابعات تستحق التجهيز لأنها تنجح عبر المهام. <strong>ما الذي افترضته ولم أخبرك به؟</strong> وهذا يُظهر السياق المخترع الذي يملأ الفجوات وهو أسرع طريقة لإيجاد أين توقف المخرج عن التجذّر فيما زوّدته. و<strong>أي هذه النقاط أضعف ولماذا؟</strong> وهذا يُنتج تقييمًا ذاتيًا أنفع من طلب الثقة، لأنه يطلب تعليلًا لا رقمًا. و<strong>ما الذي سيعترض عليه محكّم ناقد؟</strong> وهي تقنية الحالة المضادة مطبّقةً على المخرج نفسه.</p>
+        <p>ونقطة بنيوية عن التبادلات الطويلة. فهذه الأدوات تعمل من المحادثة المرئية، فالخيطُ الطويل يراكم سياقًا يشكّل الإجابات اللاحقة، نافعًا أحيانًا وبحمل سوء فهم مبكر إلى الأمام أحيانًا. وحين تبدأ الإجابات بالانجراف عمّا تريد، يكون بدءُ تبادل جديد بمطالبة نظيفة حسنة التكوين أسرع عادةً من تصحيح السياق المتراكم.</p>
+        <p>وأخيرًا، <strong>احتفظ بسجل</strong> للتبادلات التي غذّت عملك: المطالبة، والمخرج ذو الصلة، وما فعلته به. وهذا يكلّف ثوان، ويجعل عبارة إفصاح دقيقة ممكنة، وهو السبيل الوحيد لإجابة سؤال عن كيفية استخدام أداة في مشروع يمتد سنوات.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الأداة لا تستطيع تزويد ما لم تعطها إياه، فأقوى المطالبات تحوي مادتك وتطلب عمليةً عليها. أدرج خمسة أجزاء: الدور والمهمة والسياق والقيود وشكل المخرج، بمهمة واحدة لكل مطالبة. وزوّد النص، واطلب التعليل خلف كل نقطة، واطلب بدائل لا إجابةً واحدة، وادعُ الأداة إلى قول متى لا تستطيع الإجابة، واطلب دائمًا الحالة المضادة. واقرأ بنقد قبل استخدام أي شيء، وأعد التوجيه بتسمية ما كان خاطئًا، واستخرج ما ينجو من الفحص فقط، واحتفظ بسجل بما استخدمت.</div>
+        <div class="refs"><ul>
+          <li>لجنة أخلاقيات النشر، <a href="https://publicationethics.org/guidance/guidelines" target="_blank" rel="noopener">إرشادات نزاهة النشر</a>.</li>
+          <li>سوندرز ولويس وثورنهيل، <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">مناهج البحث لطلاب الأعمال</a>.</li>
+          <li>جمعية علم النفس الأمريكية، <a href="https://apastyle.apa.org/products/publication-manual-7th-edition" target="_blank" rel="noopener">دليل النشر، الطبعة السابعة</a>.</li>
+          <li>كومار، <a href="https://uk.sagepub.com/en-gb/eur/research-methodology/book270131" target="_blank" rel="noopener">منهجية البحث: دليل خطوة بخطوة للمبتدئين</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="ai-generative-workflow.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Generative AI in the Research Workflow</span><span data-lang="ar">الذكاء التوليدي في سير البحث</span></a><a href="ai-literature-review.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">AI-Assisted Literature Work</span><span data-lang="ar">العمل بالأدبيات بمساعدة الذكاء</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="المطالبات في العمل البحثي";
+var TITLE_EN="Prompting for Research Work";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

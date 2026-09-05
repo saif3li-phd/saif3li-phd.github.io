@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preparing the Data · Saif Alghamdi</title>
+<meta name="description" content="Preparing data for analysis: the six steps, screening cases and outliers, the three missing data mechanisms, recoding, and assumption checks.">
+<link rel="canonical" href="https://saif3li-phd.github.io/phd/ana-data-preparation.html">
+<meta name="author" content="Saif Ali Alghamdi">
+<meta name="theme-color" content="#2D2D2D">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saif Ali Alghamdi">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:url" content="https://saif3li-phd.github.io/phd/ana-data-preparation.html">
+<meta property="og:title" content="Preparing the Data · Saif Alghamdi">
+<meta property="og:description" content="Preparing data for analysis: the six steps, screening cases and outliers, the three missing data mechanisms, recoding, and assumption checks.">
+<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Preparing the Data · Saif Alghamdi">
+<meta name="twitter:description" content="Preparing data for analysis: the six steps, screening cases and outliers, the three missing data mechanisms, recoding, and assumption checks.">
+<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Preparing the Data · Saif Alghamdi", "description": "Preparing data for analysis: the six steps, screening cases and outliers, the three missing data mechanisms, recoding, and assumption checks.", "url": "https://saif3li-phd.github.io/phd/ana-data-preparation.html", "inLanguage": "en", "author": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "publisher": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "image": "https://saif3li-phd.github.io/assets/og.jpg", "isPartOf": {"@type": "WebSite", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}}
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="0009a1c6-b533-4e1e-9dbc-8b20dbe29af9"></script>
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#foundation-of-business-research"><span data-lang="en">Foundation of Business Research</span><span data-lang="ar">أسس بحوث الأعمال</span></a><i>&rsaquo;</i><span data-lang="en">Results and discussion</span><span data-lang="ar">النتائج والمناقشة</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">RESULTS AND DISCUSSION · PhD</span><span data-lang="ar">النتائج والمناقشة · دكتوراه</span></div>
+    <h1><span data-lang="en">Preparing the Data</span><span data-lang="ar">إعداد البيانات</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Results and discussion</span><span data-lang="ar">النتائج والمناقشة</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">11 min</span><span data-lang="ar">١١ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذا الموضوع</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="steps"><span data-lang="en">Six steps</span><span data-lang="ar">ست خطوات</span></a></li><li><a data-id="screening"><span data-lang="en">Screening cases</span><span data-lang="ar">فرز الحالات</span></a></li><li><a data-id="missing"><span data-lang="en">Missing values</span><span data-lang="ar">القيم المفقودة</span></a></li><li><a data-id="recode"><span data-lang="en">Recoding and checks</span><span data-lang="ar">الترميز والفحوص</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Preparing raw data for analysis</div>
+          <div><span>Covers:</span> Screening cases, missing values, recoding, assumption checks, and documentation</div>
+          <div><span>Use:</span> Producing an analysis file you can defend and reproduce</div>
+          <div><span>Level:</span> Doctoral business research</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Between collecting data and analysing it sits a stage that gets almost no attention and determines much of what follows. Raw data are never analysable as they arrive: some responses are not real, some values are missing, some items need reversing, and some variables do not exist yet.</p>
+        <p>The stage matters for two reasons. The first is <strong>correctness</strong>: an analysis run on badly prepared data produces results that are precisely computed and wrong, and no reviewer can see the error because the error is upstream of everything reported. The second is <strong>defensibility</strong>: every preparation decision changes the dataset, and a decision made without a rule looks, in retrospect, like a decision made because of what it did to the results.</p>
+        <p>That second point is the governing principle of this whole stage. <strong>Decide the rules before looking at the outcomes.</strong> Whether to drop cases below a completion threshold, how to treat outliers, and how to handle missing values are all decisions that can move a coefficient across a significance threshold, and a researcher who chooses among them after seeing that effect is no longer testing a hypothesis. Writing the rules into the methodology in advance removes the problem entirely.</p>
+        <p>This framework covers the six steps in order, case screening and what counts as a non-response, the three missing data mechanisms and what each permits, recoding and scale construction, the assumption checks that precede any test, and how to document all of it. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Never edit the raw file. Keep it read-only, do all preparation in a script or a documented sequence of steps, and generate the analysis file from the raw one. If you cannot rebuild your analysis file from the raw data, you cannot answer the question of what you did to it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> إعداد البيانات الخام للتحليل</div>
+          <div><span>يغطّي:</span> فرز الحالات، والقيم المفقودة، وإعادة الترميز، وفحوص الافتراضات، والتوثيق</div>
+          <div><span>الاستخدام:</span> إنتاج ملف تحليل تستطيع الدفاع عنه وإعادة إنتاجه</div>
+          <div><span>المستوى:</span> بحوث الأعمال لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">بين جمع البيانات وتحليلها تجلس مرحلة لا تكاد تنال انتباهًا وتحدد كثيرًا مما يليها. فالبيانات الخام ليست قابلة للتحليل كما تصل أبدًا: فبعض الاستجابات ليست حقيقية، وبعض القيم مفقودة، وبعض البنود يحتاج عكسًا، وبعض المتغيرات لم يوجد بعد.</p>
+        <p>وتهم المرحلة لسببين. الأول <strong>الصحة</strong>: فتحليل يُشغَّل على بيانات سيئة الإعداد يُنتج نتائج محسوبة بدقة وخاطئة، ولا يستطيع محكّم رؤية الخطأ لأن الخطأ أعلى مجرى كل ما يُبلَّغ عنه. والثاني <strong>القابلية للدفاع</strong>: فكل قرار إعداد يغيّر مجموعة البيانات، والقرار المتخذ بلا قاعدة يبدو، بأثر رجعي، قرارًا اتُّخذ بسبب ما فعله بالنتائج.</p>
+        <p>وتلك النقطة الثانية هي المبدأ الحاكم لهذه المرحلة كلها. <strong>قرّر القواعد قبل النظر في المخرجات.</strong> فهل تُسقط الحالات دون عتبة إكمال، وكيف تُعامَل القيم الشاذة، وكيف يُعالَج المفقود، كلها قرارات تستطيع تحريك معامل عبر عتبة دلالة، والباحث الذي يختار بينها بعد رؤية ذلك الأثر لم يعد يختبر فرضية. وكتابةُ القواعد في المنهجية سلفًا تزيل المشكلة تمامًا.</p>
+        <p>ويغطي هذا الإطار الخطوات الست بالترتيب، وفرز الحالات وما يُعدّ عدم استجابة، وآليات الفقدان الثلاث وما يجيزه كلٌّ، وإعادة الترميز وبناء المقاييس، وفحوص الافتراضات السابقة لأي اختبار، وكيف يُوثَّق هذا كله. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> لا تحرر الملف الخام أبدًا. أبقِه للقراءة فقط، وأجرِ كل الإعداد في نص برمجي أو تسلسل خطوات موثَّق، وولّد ملف التحليل من الخام. فإن لم تستطع إعادة بناء ملف تحليلك من البيانات الخام، فلا تستطيع إجابة سؤال ماذا فعلت به.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="steps">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Six Steps in Order</h2>
+        <p class="lead">The order is not arbitrary. Each step assumes the previous one is done, and running them out of order produces errors that are hard to trace afterwards.</p>
+        <svg viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">1</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Import and inspect</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">get the raw file in, and look at it before touching it</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">2</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Screen cases</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">remove responses that are not real data</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">3</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Handle missing values</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">decide a rule, apply it, and report the effect</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="199.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">4</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Recode and score</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">reverse items, compute scale means, build derived variables</text><rect x="52.0" y="224.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="251.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">5</text><rect x="104.0" y="224.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="251.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Check assumptions</text><rect x="312.0" y="224.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="251.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">distributions, outliers, and what the planned tests require</text><rect x="52.0" y="276.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="303.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">6</text><rect x="104.0" y="276.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="303.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Freeze and document</text><rect x="312.0" y="276.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="303.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">lock the analysis file and record every step taken</text><text x="350.0" y="349.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">six steps, in this order; the last one is what makes the first five defensible</text></svg>
+        <p><strong>Import and inspect</strong> means getting the file into your software and looking at it before doing anything. Check that the number of rows matches what the collection platform reported, that every variable imported with the right type, that string fields did not become numbers or the reverse, and that the value labels survived the import. Print the minimum, maximum, and number of distinct values for every variable, and look for impossible values: a tenure of ninety-four years, a scale response of 7 on a five-point item, an age of 3.</p>
+        <p><strong>Screen cases</strong> removes responses that are not data. <strong>Recode and score</strong> constructs the variables you will actually analyse. <strong>Check assumptions</strong> establishes whether your planned tests are appropriate, and if they are not, that is a finding about the analysis plan rather than a licence to run them anyway.</p>
+        <p><strong>Freeze and document</strong> is the step that makes the rest defensible. When preparation is finished, save the analysis file with a version and a date, and stop changing it. Every subsequent result is then traceable to one file. If a later problem requires a change, make it in the preparation script, regenerate the file with a new version number, and rerun the analysis rather than editing the file in place.</p>
+        <p>Two practices support all six. Work in a <strong>script</strong> rather than by clicking, in whatever software you use, because a script is a record of what you did that a sequence of menu selections is not. And keep a <strong>preparation log</strong> alongside it, a plain document recording each decision, its rule, and its effect on the case count, because the script records what you did and the log records why.</p>
+        <div class="note"><strong>Note:</strong> The case count after every step is the arithmetic a reader will check. Start with the number of raw responses and end with the analysis sample, accounting for every case removed along the way, exactly as a flow diagram does for a literature search.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>الخطوات الست بالترتيب</h2>
+        <p class="lead">الترتيب ليس اعتباطيًا. فكل خطوة تفترض إنجاز سابقتها، وتشغيلها خارج الترتيب يُنتج أخطاءً يصعب تتبّعها لاحقًا.</p>
+        <svg viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">١</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">الاستيراد والفحص</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">أدخل الملف الخام، وانظر فيه قبل لمسه</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٢</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">فرز الحالات</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">أزل الاستجابات التي ليست بيانات حقيقية</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٣</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">معالجة المفقود</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">قرّر قاعدة، وطبّقها، وأبلغ بالأثر</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="199.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٤</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">إعادة الترميز والتسجيل</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="9.5" font-weight="400" fill="#2D2D2D">اعكس البنود، واحسب متوسطات المقاييس، وابنِ المتغيرات المشتقة</text><rect x="52.0" y="224.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="251.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٥</text><rect x="104.0" y="224.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="251.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">فحص الافتراضات</text><rect x="312.0" y="224.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="251.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">التوزيعات والقيم الشاذة وما تتطلبه الاختبارات المزمعة</text><rect x="52.0" y="276.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="303.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٦</text><rect x="104.0" y="276.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="303.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">التجميد والتوثيق</text><rect x="312.0" y="276.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="303.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">أقفل ملف التحليل وسجّل كل خطوة اتُّخذت</text><text x="350.0" y="349.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">ست خطوات بهذا الترتيب؛ والأخيرة هي ما يجعل الخمس الأولى قابلة للدفاع</text></svg>
+        <p>و<strong>الاستيراد والفحص</strong> يعني إدخال الملف إلى برمجيتك والنظر فيه قبل فعل أي شيء. افحص أن عدد الصفوف يطابق ما أبلغت به منصة الجمع، وأن كل متغير استُورد بالنوع الصحيح، وأن الحقول النصية لم تصر أرقامًا ولا العكس، وأن تسميات القيم نجت من الاستيراد. واطبع الأدنى والأقصى وعدد القيم المتمايزة لكل متغير، وابحث عن قيم مستحيلة: مدة خدمة أربع وتسعين سنة، واستجابة 7 على بند خماسي، وعمر 3.</p>
+        <p>و<strong>فرز الحالات</strong> يزيل الاستجابات التي ليست بيانات. و<strong>إعادة الترميز والتسجيل</strong> تبني المتغيرات التي ستحللها فعلًا. و<strong>فحص الافتراضات</strong> يثبّت هل الاختبارات المزمعة ملائمة، وإن لم تكن، فتلك نتيجة عن خطة التحليل لا إجازة لتشغيلها على أي حال.</p>
+        <p>و<strong>التجميد والتوثيق</strong> هي الخطوة التي تجعل الباقي قابلًا للدفاع. فحين ينتهي الإعداد، احفظ ملف التحليل بإصدار وتاريخ، وتوقف عن تغييره. وكل نتيجة لاحقة تصير عندئذ قابلة للتتبع إلى ملف واحد. وإن تطلبت مشكلة لاحقة تغييرًا، فأجرِه في نص الإعداد، وأعد توليد الملف برقم إصدار جديد، وأعد تشغيل التحليل بدل تحرير الملف في موضعه.</p>
+        <p>وممارستان تسندان الست جميعًا. اعمل في <strong>نص برمجي</strong> لا بالنقر، بأي برمجية تستخدم، لأن النص سجلٌّ لما فعلت وتسلسل اختيارات القوائم ليس كذلك. واحتفظ بـ<strong>سجل إعداد</strong> إلى جانبه، مستندٍ بسيط يسجّل كل قرار وقاعدته وأثره في عدد الحالات، لأن النص يسجّل ماذا فعلت والسجل يسجّل لماذا.</p>
+        <div class="note"><strong>ملاحظة:</strong> عدد الحالات بعد كل خطوة هو الحساب الذي سيفحصه القارئ. ابدأ بعدد الاستجابات الخام وانتهِ بعيّنة التحليل، محاسبًا عن كل حالة أُزيلت في الطريق، تمامًا كما يفعل مخطط التدفق لبحث في الأدبيات.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="screening">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Screening Cases and Outliers</h2>
+        <p class="lead">Some responses in every dataset are not data. Removing them improves the analysis; removing the wrong ones biases it. The difference is having a rule stated in advance.</p>
+        <table>
+          <tr><th>Problem</th><th>How to detect it</th><th>Standard rule</th></tr>
+          <tr><td>Incomplete responses</td><td>Proportion of items answered</td><td>Drop below a stated completion threshold</td></tr>
+          <tr><td>Straight-lining</td><td>Zero or near-zero variance across a long block</td><td>Drop where variance is zero across many items</td></tr>
+          <tr><td>Impossibly fast completion</td><td>Duration well below the pilot median</td><td>Drop below a stated fraction of median time</td></tr>
+          <tr><td>Failed attention check</td><td>An item instructing a specific response</td><td>Drop on failure, if planned in advance</td></tr>
+          <tr><td>Duplicate submissions</td><td>Identical response patterns and timestamps</td><td>Keep the first, drop the rest</td></tr>
+          <tr><td>Ineligible respondents</td><td>A screening question at the start</td><td>Drop, and report separately from non-response</td></tr>
+        </table>
+        <p>State the thresholds in the methodology before collection. Below eighty percent completion and below one third of the median completion time are common and defensible choices, but any threshold is defensible if it was fixed in advance and applied consistently. Report how many cases each rule removed, and check whether removed cases differ systematically from retained ones, because a rule that disproportionately removes one department or one seniority level has changed your sample.</p>
+        <p><strong>Outliers</strong> are a separate matter and are frequently mishandled. An outlier is an extreme value, and extreme is not the same as wrong. Three kinds occur and each has a different response. An <strong>error outlier</strong> is a data entry or coding mistake, and it should be corrected against the source or removed. An <strong>ineligible outlier</strong> comes from a case that does not belong in the population, such as a firm ten times larger than the size band you sampled, and it should be removed with the reason stated. A <strong>legitimate extreme value</strong> is a real observation from a real member of your population, and removing it because it is inconvenient is data manipulation.</p>
+        <p>For legitimate extremes, the defensible options are to retain them and report results with and without them, to use an analysis technique robust to extreme values, or to transform the variable. Reporting both sets of results is the strongest option because it lets a reader see how much the finding depends on a small number of cases, and if the finding disappears without them, that is itself important information.</p>
+        <p>Detect outliers with the methods appropriate to the analysis. For a single variable, values beyond about three standard deviations from the mean, or beyond one and a half times the interquartile range from the quartiles, are the conventional flags. For a regression, influence measures identify cases that change the coefficients disproportionately, and those are the ones that matter, since an extreme value on one variable that does not affect the model is not a problem.</p>
+        <div class="note"><strong>Note:</strong> Never remove a case because it weakens a result. If you find yourself considering it, that is the moment the rule you should have written in advance would have protected you, and the correct action now is to report the result with the case included.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>فرز الحالات والقيم الشاذة</h2>
+        <p class="lead">بعض الاستجابات في كل مجموعة بيانات ليست بيانات. وإزالتها تحسّن التحليل؛ وإزالة الخاطئة تحيّزه. والفرق وجودُ قاعدة مذكورة سلفًا.</p>
+        <table>
+          <tr><th>المشكلة</th><th>كيف تُكتشَف</th><th>القاعدة المعيارية</th></tr>
+          <tr><td>استجابات ناقصة</td><td>نسبة البنود المُجابة</td><td>أسقط ما دون عتبة إكمال مذكورة</td></tr>
+          <tr><td>الاستجابة المستقيمة</td><td>تباين صفري أو شبه صفري عبر كتلة طويلة</td><td>أسقط حيث التباين صفر عبر بنود كثيرة</td></tr>
+          <tr><td>إكمال سريع مستحيل</td><td>مدة أدنى بكثير من وسيط التجربة</td><td>أسقط دون كسر مذكور من الزمن الوسيط</td></tr>
+          <tr><td>إخفاق فحص الانتباه</td><td>بند يوجّه إلى استجابة بعينها</td><td>أسقط عند الإخفاق، إن خُطِّط سلفًا</td></tr>
+          <tr><td>استجابات مكررة</td><td>أنماط استجابة وأختام زمنية متطابقة</td><td>أبقِ الأولى وأسقط الباقي</td></tr>
+          <tr><td>مستجيبون غير مؤهلين</td><td>سؤال فرز في البداية</td><td>أسقط، وأبلغ منفصلًا عن عدم الاستجابة</td></tr>
+        </table>
+        <p>واذكر العتبات في المنهجية قبل الجمع. فدون ثمانين بالمئة إكمالًا ودون ثلث الزمن الوسيط للإكمال خياران شائعان وقابلان للدفاع، لكن أي عتبة قابلة للدفاع إن ثُبِّتت سلفًا وطُبِّقت باتساق. وأبلغ بكم حالةً أزالت كل قاعدة، وافحص هل تختلف الحالات المُزالة منهجيًا عن المبقاة، لأن قاعدةً تزيل بقدر غير متناسب قسمًا واحدًا أو مستوى درجة واحدًا قد غيّرت عيّنتك.</p>
+        <p>و<strong>القيم الشاذة</strong> مسألة منفصلة ويُساء التعامل معها كثيرًا. فالقيمة الشاذة قيمةٌ متطرفة، والمتطرف ليس الخطأ. وثلاثة أنواع تقع ولكلٍّ استجابة مختلفة. فـ<strong>الشاذة الخطأ</strong> غلطُ إدخال أو ترميز، وينبغي تصحيحها مقابل المصدر أو إزالتها. و<strong>الشاذة غير المؤهلة</strong> تأتي من حالة لا تنتمي إلى المجتمع، كمنشأة أكبر عشر مرات من فئة الحجم التي أخذت منها عيّنة، وينبغي إزالتها بذكر السبب. و<strong>القيمة المتطرفة المشروعة</strong> ملاحظةٌ حقيقية من عضو حقيقي في مجتمعك، وإزالتها لأنها غير مريحة تلاعبٌ بالبيانات.</p>
+        <p>وللمتطرفات المشروعة، الخيارات القابلة للدفاع إبقاؤها والإبلاغ بالنتائج معها وبدونها، أو استخدام تقنية تحليل متينة أمام القيم المتطرفة، أو تحويل المتغير. والإبلاغ بمجموعتي النتائج أقوى الخيارات لأنه يتيح للقارئ رؤية كم تعتمد النتيجة على عدد صغير من الحالات، وإن اختفت النتيجة بدونها فتلك نفسها معلومة مهمة.</p>
+        <p>واكتشف الشواذ بالطرق الملائمة للتحليل. فلمتغير مفرد، تكون القيم بعد نحو ثلاثة انحرافات معيارية عن المتوسط، أو بعد مرة ونصف المدى الربيعي عن الربيعيات، هي الأعلام المتعارَفة. وللانحدار، تحدد مقاييس التأثير الحالات التي تغيّر المعاملات بقدر غير متناسب، وتلك هي التي تهم، لأن قيمةً متطرفة على متغير لا تؤثر في النموذج ليست مشكلة.</p>
+        <div class="note"><strong>ملاحظة:</strong> لا تزل حالةً أبدًا لأنها تُضعف نتيجة. فإن وجدت نفسك تفكر في ذلك، فتلك اللحظة التي كانت القاعدة التي كان ينبغي كتابتها سلفًا ستحميك فيها، والفعل الصحيح الآن الإبلاغُ بالنتيجة مع إدراج الحالة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="missing">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Missing Values</h2>
+        <p class="lead">Missing data are not a nuisance to be cleared away. The pattern of what is missing is information, and the right treatment depends entirely on why the values are absent.</p>
+        <svg viewBox="0 0 700 196" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="24.0" width="190.7" height="40.0" rx="4" fill="#8C8C8C"/><text x="145.3" y="49.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">Completely at random</text><rect x="254.7" y="24.0" width="190.7" height="40.0" rx="4" fill="#8C8C8C"/><text x="350.0" y="49.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">At random</text><rect x="459.3" y="24.0" width="190.7" height="40.0" rx="4" fill="#A32020"/><text x="554.7" y="49.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">Not at random</text><rect x="50.0" y="70.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="145.3" y="87.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">missingness unrelated to</text><text x="145.3" y="101.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">anything</text><rect x="254.7" y="70.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="87.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">missingness explained by other</text><text x="350.0" y="101.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">variables you have</text><rect x="459.3" y="70.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="554.7" y="87.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">missingness depends on the</text><text x="554.7" y="101.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">missing value itself</text><rect x="50.0" y="116.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="145.3" y="140.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">dropping cases is unbiased</text><rect x="254.7" y="116.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="133.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">imputation can work if the</text><text x="350.0" y="147.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">predictors are in the data</text><rect x="459.3" y="116.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="554.7" y="133.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">no technique fixes it; it must be</text><text x="554.7" y="147.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">disclosed</text><text x="350.0" y="184.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">three mechanisms; only the third is fatal, and only reasoning identifies it</text></svg>
+        <p>Start by <strong>quantifying</strong>: the percentage missing per variable and per case, and whether missingness clusters. A variable missing on twenty percent of cases is a problem; a variable missing on two percent is not. Cases missing many values are usually better dropped than repaired.</p>
+        <p>Then <strong>reason about the mechanism</strong>, which cannot be determined statistically and must be argued. If income is missing more often among higher earners, missingness depends on the missing value itself and is not random in the technical sense. If a block of items is missing for everyone who took the survey on a mobile device, missingness is explained by a variable you have, and can be handled. If values are missing because of a transmission error, missingness is unrelated to anything.</p>
+        <p>The treatments follow from the mechanism. <strong>Listwise deletion</strong>, meaning dropping any case with a missing value on the analysis variables, is the default in most software and is unbiased only when data are missing completely at random. Its real cost is sample size: with ten variables each missing five percent, listwise deletion can remove a third of the sample. <strong>Pairwise deletion</strong> uses all available data for each computation and produces a correlation matrix in which different cells rest on different cases, which causes problems in multivariate techniques.</p>
+        <p><strong>Mean substitution</strong>, replacing a missing value with the variable's mean, is common in student work and is not recommended: it reduces variance artificially and weakens the very relationships you are testing. <strong>Regression or multiple imputation</strong> estimates missing values from the other variables and is the preferred modern approach when missingness is explained by variables you have. Multiple imputation additionally reflects the uncertainty of the estimate rather than pretending the imputed value is known.</p>
+        <p>Whatever you choose, <strong>report it</strong>: how much was missing, on which variables, what mechanism you judged it to be and why, what treatment you applied, and the analysis sample size that resulted. Where the mechanism may be non-random, say so and treat it as a limitation, since no technique repairs it and disclosure is the only honest response.</p>
+        <div class="note"><strong>Note:</strong> Missing data on the dependent variable are different from missing data on predictors. Cases with no outcome value contribute nothing to a regression and imputing the outcome imports assumptions into the thing you are trying to explain.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>القيم المفقودة</h2>
+        <p class="lead">البيانات المفقودة ليست إزعاجًا يُزاح. فنمط ما هو مفقود معلومة، والمعالجة الصحيحة تعتمد كليًا على لماذا غابت القيم.</p>
+        <svg viewBox="0 0 700 196" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="24.0" width="190.7" height="40.0" rx="4" fill="#8C8C8C"/><text x="145.3" y="49.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">مفقود عشوائيًا تمامًا</text><rect x="254.7" y="24.0" width="190.7" height="40.0" rx="4" fill="#8C8C8C"/><text x="350.0" y="49.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">مفقود عشوائيًا</text><rect x="459.3" y="24.0" width="190.7" height="40.0" rx="4" fill="#A32020"/><text x="554.7" y="49.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">مفقود لا عشوائيًا</text><rect x="50.0" y="70.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="145.3" y="94.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">الفقدان لا صلة له بأي شيء</text><rect x="254.7" y="70.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="87.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">الفقدان تفسّره متغيرات أخرى</text><text x="350.0" y="101.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">لديك</text><rect x="459.3" y="70.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="554.7" y="87.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">الفقدان يعتمد على القيمة</text><text x="554.7" y="101.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">المفقودة نفسها</text><rect x="50.0" y="116.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="145.3" y="140.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">إسقاط الحالات غير متحيّز</text><rect x="254.7" y="116.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="133.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">التعويض قد ينجح إن كانت</text><text x="350.0" y="147.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">المتنبئات في البيانات</text><rect x="459.3" y="116.0" width="190.7" height="40.0" rx="4" fill="#DEDEDE"/><text x="554.7" y="140.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">لا تقنية تصلحه؛ ويجب الإفصاح عنه</text><text x="350.0" y="184.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">ثلاث آليات؛ والثالثة وحدها قاتلة، والتعليل وحده يحددها</text></svg>
+        <p>ابدأ بـ<strong>التكميم</strong>: نسبة المفقود لكل متغير ولكل حالة، وهل يتعنقد الفقدان. فمتغيرٌ مفقود في عشرين بالمئة من الحالات مشكلة؛ ومتغيرٌ مفقود في اثنين بالمئة ليس كذلك. والحالات التي تفقد قيمًا كثيرة يُفضَّل إسقاطها على إصلاحها عادةً.</p>
+        <p>ثم <strong>علّل عن الآلية</strong>، وهي لا تُحدَّد إحصائيًا ويجب أن يُحاجّ بها. فإن كان الدخل مفقودًا أكثر لدى الأعلى دخلًا، فالفقدان يعتمد على القيمة المفقودة نفسها وليس عشوائيًا بالمعنى الفني. وإن كانت كتلة بنود مفقودة لكل من أخذ المسح على جهاز محمول، فالفقدان تفسّره متغير لديك، ويمكن معالجته. وإن غابت القيم بسبب خطأ إرسال، فالفقدان لا صلة له بشيء.</p>
+        <p>والمعالجات تتبع الآلية. <strong>الحذف القائمي</strong>، أي إسقاط أي حالة بقيمة مفقودة على متغيرات التحليل، هو الافتراضي في معظم البرمجيات وهو غير متحيّز فقط حين تكون البيانات مفقودة عشوائيًا تمامًا. وكلفته الحقيقية حجم العيّنة: فبعشرة متغيرات كلٌّ مفقود بخمسة بالمئة، قد يزيل الحذف القائمي ثلث العيّنة. و<strong>الحذف الزوجي</strong> يستخدم كل البيانات المتاحة لكل حساب وينتج مصفوفة ارتباط تقوم فيها خانات مختلفة على حالات مختلفة، وهذا يسبب مشكلات في التقنيات متعددة المتغيرات.</p>
+        <p>و<strong>إبدال المتوسط</strong>، أي استبدال متوسط المتغير بقيمة مفقودة، شائع في عمل الطلاب وغير موصى به: فهو يخفّض التباين صناعيًا ويُضعف العلاقات نفسها التي تختبرها. و<strong>التعويض الانحداري أو المتعدد</strong> يقدّر القيم المفقودة من المتغيرات الأخرى وهو المقاربة الحديثة المفضلة حين يفسّر الفقدانَ متغيراتٌ لديك. والتعويض المتعدد يعكس إضافةً إلى ذلك عدم يقين التقدير بدل التظاهر بأن القيمة المعوَّضة معلومة.</p>
+        <p>وأيًّا كان اختيارك، <strong>أبلغ به</strong>: كم كان المفقود، وعلى أي متغيرات، وأي آلية حكمت بأنها ولماذا، وأي معالجة طبّقت، وحجم عيّنة التحليل الناتج. وحيث قد تكون الآلية لا عشوائية، فقُل ذلك وعامله حدًّا، لأن لا تقنية تصلحه والإفصاح هو الاستجابة الصادقة الوحيدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> البيانات المفقودة على المتغير التابع غير المفقودة على المتنبئات. فالحالات بلا قيمة مخرَج لا تسهم بشيء في انحدار وتعويضُ المخرَج يُدخل افتراضات في الشيء الذي تحاول تفسيره.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="recode">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Recoding, Scoring, and Assumption Checks</h2>
+        <p class="lead">This step builds the variables you will actually analyse, and it is where a small mistake propagates silently into every result.</p>
+        <p><strong>Reverse-scored items</strong> must be reversed before any scale is computed. On a five-point scale the transformation is six minus the response. Forgetting this on one item of a five-item scale destroys the scale's reliability and, more dangerously, sometimes does not destroy it enough to be noticed. The check is to compute the correlation of each item with the scale total: an item correlating negatively has not been reversed.</p>
+        <p><strong>Scale scores</strong> are usually the mean of the constituent items rather than the sum, because the mean stays on the original response metric and is interpretable. Decide in advance how many missing items a participant may have and still receive a score; a common rule is that a mean is computed when at least eighty percent of items are answered.</p>
+        <p><strong>Derived variables</strong> should be built and checked one at a time. Categorical variables need dummy coding with a stated reference category. Interaction terms need their components centred if you intend to interpret the main effects. Any computed variable should be checked against a handful of cases by hand, because a formula error in a derived variable is invisible in the output and fatal to the conclusion.</p>
+        <p><strong>Assumption checks</strong> come before running any test, not after an unwelcome result. Which assumptions apply depends on the technique, and four recur. <strong>Normality</strong> of the residuals matters for parametric tests, and is checked with a plot rather than only with a significance test, since tests of normality reject trivial departures in large samples. <strong>Homogeneity of variance</strong> across groups matters for comparisons of means. <strong>Linearity</strong> matters for correlation and regression, and a scatterplot reveals a curved relationship that a coefficient reports as weak. And <strong>independence of observations</strong> matters for almost everything, and is a design property rather than something you can test after the fact.</p>
+        <p>For regression, add <strong>multicollinearity</strong>, which is checked with variance inflation factors and matters because highly correlated predictors produce unstable coefficients that change sign between samples. If two predictors correlate above about 0.80, they are probably measuring one thing, and the analytical response is to combine them or drop one rather than to report both.</p>
+        <p>Where an assumption fails, three responses are available and all are legitimate if stated: transform the variable, use a technique that does not require the assumption, or proceed and report the violation as a limitation. What is not legitimate is checking the assumption, finding it violated, and reporting the test as though it held.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> decide every preparation rule before looking at the outcomes, and never edit the raw file. Work in six steps: import and inspect, screen cases, handle missing values, recode and score, check assumptions, freeze and document. Screen with thresholds fixed in advance, and distinguish error outliers from ineligible ones from legitimate extremes, reporting results with and without the last kind. Reason about the missing data mechanism rather than defaulting to deletion, reverse items before computing scales, check derived variables by hand, and run assumption checks before the test rather than after the result.</div>
+        <div class="refs"><ul>
+          <li>Sekaran &amp; Bougie, <a href="https://www.wiley.com/en-us/Research+Methods+For+Business%3A+A+Skill+Building+Approach%2C+8th+Edition-p-9781119561224" target="_blank" rel="noopener">Research Methods for Business: A Skill-Building Approach</a>.</li>
+          <li>Saunders, Lewis &amp; Thornhill, <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">Research Methods for Business Students</a>.</li>
+          <li>Kumar, <a href="https://uk.sagepub.com/en-gb/eur/research-methodology/book270131" target="_blank" rel="noopener">Research Methodology: A Step-by-Step Guide for Beginners</a>.</li>
+          <li>American Psychological Association, <a href="https://apastyle.apa.org/products/publication-manual-7th-edition" target="_blank" rel="noopener">Publication Manual, Seventh Edition</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>إعادة الترميز والتسجيل وفحوص الافتراضات</h2>
+        <p class="lead">هذه الخطوة تبني المتغيرات التي ستحللها فعلًا، وهي حيث ينتشر خطأ صغير بصمت إلى كل نتيجة.</p>
+        <p>و<strong>البنود المعكوسة التسجيل</strong> يجب عكسها قبل حساب أي مقياس. وعلى مقياس خماسي يكون التحويل ستة ناقص الاستجابة. ونسيان هذا في بند واحد من مقياس خماسي يدمّر ثبات المقياس، والأخطر أنه أحيانًا لا يدمّره بما يكفي ليُلاحَظ. والفحص حسابُ ارتباط كل بند بمجموع المقياس: فالبند المرتبط سلبًا لم يُعكَس.</p>
+        <p>و<strong>درجات المقاييس</strong> تكون عادةً متوسط البنود المكوِّنة لا مجموعها، لأن المتوسط يبقى على مقياس الاستجابة الأصلي وهو قابل للتفسير. وقرّر سلفًا كم بندًا مفقودًا يجوز لمشارك أن يفقده ويظل يتلقى درجة؛ والقاعدة الشائعة أن يُحسَب المتوسط حين تُجاب ثمانون بالمئة من البنود على الأقل.</p>
+        <p>و<strong>المتغيرات المشتقة</strong> ينبغي بناؤها وفحصها واحدًا واحدًا. فالمتغيرات الفئوية تحتاج ترميزًا صوريًا بفئة مرجعية مذكورة. وحدود التفاعل تحتاج توسيط مكوناتها إن كنت تعتزم تفسير الآثار الرئيسة. وأي متغير محسوب ينبغي فحصه مقابل حفنة حالات يدويًا، لأن خطأ صيغة في متغير مشتق غير مرئي في المخرَج وقاتل للخاتمة.</p>
+        <p>و<strong>فحوص الافتراضات</strong> تأتي قبل تشغيل أي اختبار لا بعد نتيجة غير مرحَّب بها. وأي الافتراضات ينطبق يعتمد على التقنية، وأربعة تتكرر. <strong>الاعتدالية</strong> للبواقي تهم للاختبارات المعلمية، وتُفحَص برسم لا باختبار دلالة وحده، لأن اختبارات الاعتدالية ترفض انحرافات تافهة في العيّنات الكبيرة. و<strong>تجانس التباين</strong> عبر المجموعات يهم لمقارنات المتوسطات. و<strong>الخطية</strong> تهم للارتباط والانحدار، ورسمُ الانتشار يكشف علاقة منحنية يُبلغ عنها المعامل ضعيفةً. و<strong>استقلال الملاحظات</strong> يهم لكل شيء تقريبًا، وهو خاصية تصميم لا شيءٌ تستطيع اختباره بعد الوقوع.</p>
+        <p>وللانحدار، أضف <strong>التعدد الخطي</strong>، ويُفحَص بمعاملات تضخم التباين ويهم لأن المتنبئات عالية الارتباط تُنتج معاملات غير مستقرة تغيّر إشارتها بين العيّنات. فإن ارتبط متنبئان فوق نحو 0.80، فهما على الأرجح يقيسان شيئًا واحدًا، والاستجابة التحليلية دمجُهما أو إسقاط أحدهما لا الإبلاغ بكليهما.</p>
+        <p>وحيث يخفق افتراض، ثلاث استجابات متاحة وكلها مشروعة إن ذُكرت: حوّل المتغير، أو استخدم تقنية لا تتطلب الافتراض، أو امضِ وأبلغ بالانتهاك حدًّا. وما ليس مشروعًا فحصُ الافتراض ووجدانُه منتهَكًا والإبلاغُ بالاختبار وكأنه صحيح.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> قرّر كل قاعدة إعداد قبل النظر في المخرجات، ولا تحرر الملف الخام أبدًا. اعمل في ست خطوات: الاستيراد والفحص، وفرز الحالات، ومعالجة المفقود، وإعادة الترميز والتسجيل، وفحص الافتراضات، والتجميد والتوثيق. وافرز بعتبات مثبَّتة سلفًا، وميّز الشواذ الخطأ عن غير المؤهلة عن المتطرفات المشروعة، مُبلِغًا بالنتائج مع النوع الأخير وبدونه. وعلّل عن آلية الفقدان بدل التخلف إلى الحذف، واعكس البنود قبل حساب المقاييس، وافحص المتغيرات المشتقة يدويًا، وأجرِ فحوص الافتراضات قبل الاختبار لا بعد النتيجة.</div>
+        <div class="refs"><ul>
+          <li>سيكاران وبوجي، <a href="https://www.wiley.com/en-us/Research+Methods+For+Business%3A+A+Skill+Building+Approach%2C+8th+Edition-p-9781119561224" target="_blank" rel="noopener">مناهج البحث للأعمال: مقاربة بناء المهارات</a>.</li>
+          <li>سوندرز ولويس وثورنهيل، <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">مناهج البحث لطلاب الأعمال</a>.</li>
+          <li>كومار، <a href="https://uk.sagepub.com/en-gb/eur/research-methodology/book270131" target="_blank" rel="noopener">منهجية البحث: دليل خطوة بخطوة للمبتدئين</a>.</li>
+          <li>جمعية علم النفس الأمريكية، <a href="https://apastyle.apa.org/products/publication-manual-7th-edition" target="_blank" rel="noopener">دليل النشر، الطبعة السابعة</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="meth-ethics.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Ethical Considerations</span><span data-lang="ar">الاعتبارات الأخلاقية</span></a><a href="ana-descriptive.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Descriptive Statistics</span><span data-lang="ar">الإحصاء الوصفي</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="إعداد البيانات";
+var TITLE_EN="Preparing the Data";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

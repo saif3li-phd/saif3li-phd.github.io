@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inferential Statistics · Saif Alghamdi</title>
+<meta name="description" content="Inferential statistics: the logic of testing, the two error types, choosing a test, effect size and confidence intervals, and honest reporting.">
+<link rel="canonical" href="https://saif3li-phd.github.io/phd/ana-inferential.html">
+<meta name="author" content="Saif Ali Alghamdi">
+<meta name="theme-color" content="#2D2D2D">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saif Ali Alghamdi">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:url" content="https://saif3li-phd.github.io/phd/ana-inferential.html">
+<meta property="og:title" content="Inferential Statistics · Saif Alghamdi">
+<meta property="og:description" content="Inferential statistics: the logic of testing, the two error types, choosing a test, effect size and confidence intervals, and honest reporting.">
+<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Inferential Statistics · Saif Alghamdi">
+<meta name="twitter:description" content="Inferential statistics: the logic of testing, the two error types, choosing a test, effect size and confidence intervals, and honest reporting.">
+<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Inferential Statistics · Saif Alghamdi", "description": "Inferential statistics: the logic of testing, the two error types, choosing a test, effect size and confidence intervals, and honest reporting.", "url": "https://saif3li-phd.github.io/phd/ana-inferential.html", "inLanguage": "en", "author": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "publisher": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "image": "https://saif3li-phd.github.io/assets/og.jpg", "isPartOf": {"@type": "WebSite", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}}
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="0009a1c6-b533-4e1e-9dbc-8b20dbe29af9"></script>
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#foundation-of-business-research"><span data-lang="en">Foundation of Business Research</span><span data-lang="ar">أسس بحوث الأعمال</span></a><i>&rsaquo;</i><span data-lang="en">Results and discussion</span><span data-lang="ar">النتائج والمناقشة</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">RESULTS AND DISCUSSION · PhD</span><span data-lang="ar">النتائج والمناقشة · دكتوراه</span></div>
+    <h1><span data-lang="en">Inferential Statistics</span><span data-lang="ar">الإحصاء الاستدلالي</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Results and discussion</span><span data-lang="ar">النتائج والمناقشة</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">11 min</span><span data-lang="ar">١١ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذا الموضوع</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="logic"><span data-lang="en">The logic</span><span data-lang="ar">المنطق</span></a></li><li><a data-id="choosing"><span data-lang="en">Choosing a test</span><span data-lang="ar">اختيار الاختبار</span></a></li><li><a data-id="effect"><span data-lang="en">Effect size</span><span data-lang="ar">حجم الأثر</span></a></li><li><a data-id="reporting"><span data-lang="en">Reporting</span><span data-lang="ar">الإبلاغ</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Inferential statistics and what they can and cannot establish</div>
+          <div><span>Covers:</span> The logic of testing, choosing a test, effect size, and interpreting results honestly</div>
+          <div><span>Use:</span> Testing hypotheses and reporting the result in the language the evidence supports</div>
+          <div><span>Level:</span> Doctoral business research</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Inferential statistics answer one question: how confident can you be that a pattern in your sample reflects something in the population rather than the accident of who happened to be sampled? Everything technical follows from that question, and most misuse follows from forgetting it.</p>
+        <p>The logic is indirect and worth stating precisely, because the standard shorthand hides it. You assume there is <strong>no effect</strong> in the population, which is the null hypothesis. You then compute how likely a result as extreme as yours would be if that assumption were true. If it is sufficiently unlikely, you conclude the assumption is implausible and reject it. You never prove that an effect exists; you establish that its absence is an uncomfortable explanation for what you observed.</p>
+        <p>That indirectness generates the two errors most commonly made with p values. A p value is <strong>not</strong> the probability that the null hypothesis is true, and it is <strong>not</strong> a measure of how large or important the effect is. It is the probability of data at least this extreme under an assumption. A very small p value in a very large sample can accompany an effect too small to matter, which is why effect sizes are reported alongside and why a result that is statistically significant may be practically irrelevant.</p>
+        <p>This framework covers the logic of hypothesis testing and the two error types, how to choose the right test, effect size and confidence intervals, the main techniques in business research, and how to report results without overclaiming. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Choose your tests when you write the methodology, not when you have the data. A test selected after seeing which one gives a significant result is not a test of anything, and the practice has a name in the literature that no researcher wants applied to their work.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> الإحصاء الاستدلالي وما يستطيع إثباته وما لا يستطيع</div>
+          <div><span>يغطّي:</span> منطق الاختبار، واختيار اختبار، وحجم الأثر، وتفسير النتائج بأمانة</div>
+          <div><span>الاستخدام:</span> اختبار الفرضيات والإبلاغ بالنتيجة باللغة التي تسندها الأدلة</div>
+          <div><span>المستوى:</span> بحوث الأعمال لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الإحصاء الاستدلالي يجيب سؤالًا واحدًا: كم يمكنك أن تثق بأن نمطًا في عيّنتك يعكس شيئًا في المجتمع لا مصادفةَ من صادف أن أُخذت منهم العيّنة؟ وكل ما هو تقني يتبع من ذلك السؤال، ومعظم سوء الاستعمال يتبع من نسيانه.</p>
+        <p>والمنطق غير مباشر ويستحق الذكر بدقة، لأن الاختصار المعياري يخفيه. فأنت تفترض <strong>ألا أثر</strong> في المجتمع، وهذه الفرضية الصفرية. ثم تحسب كم يُحتمَل أن تظهر نتيجة بتطرف نتيجتك لو صحّ ذلك الافتراض. فإن كان الاحتمال ضئيلًا بما يكفي، تستنتج أن الافتراض غير معقول وترفضه. ولا تبرهن أبدًا على وجود أثر؛ بل تثبت أن غيابه تفسيرٌ غير مريح لما لاحظت.</p>
+        <p>وتلك اللامباشرة تولّد الخطأين الأشيع مع القيم الاحتمالية. فالقيمة الاحتمالية <strong>ليست</strong> احتمالَ أن تكون الفرضية الصفرية صحيحة، و<strong>ليست</strong> مقياسًا لكم الأثر كبير أو مهم. إنها احتمال بيانات بهذا التطرف على الأقل تحت افتراض. وقيمةٌ احتمالية صغيرة جدًا في عيّنة كبيرة جدًا قد يرافقها أثر أصغر من أن يهم، ولهذا يُبلَّغ بأحجام الأثر إلى جانبها ولهذا قد تكون نتيجةٌ دالة إحصائيًا غيرَ ذات صلة عمليًا.</p>
+        <p>ويغطي هذا الإطار منطق اختبار الفرضيات ونوعي الخطأ، وكيف يُختار الاختبار الصحيح، وحجم الأثر وفترات الثقة، والتقنيات الرئيسة في بحوث الأعمال، وكيف يُبلَّغ بالنتائج بلا ادّعاء زائد. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> اختر اختباراتك حين تكتب المنهجية لا حين تملك البيانات. فاختبارٌ يُنتقى بعد رؤية أيها يعطي نتيجة دالة ليس اختبارًا لأي شيء، وللممارسة اسم في الأدبيات لا يريد أي باحث تطبيقه على عمله.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="logic">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Logic of a Test</h2>
+        <p class="lead">Four steps, always the same, whatever the technique. Understanding them is what lets you interpret any test you have not met before.</p>
+        <svg viewBox="0 0 700 175" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="118.2" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">State the null</text><text x="118.2" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">assume there is no</text><text x="118.2" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">effect in the</text><text x="118.2" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">population</text><line x1="188.5" y1="78.0" x2="199.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M202.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="204.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="272.8" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">Compute</text><text x="272.8" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">how likely is a</text><text x="272.8" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">result this extreme</text><text x="272.8" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">if the null were</text><line x1="343.0" y1="78.0" x2="354.0" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M357.0 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="359.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="427.2" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">Compare</text><text x="427.2" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">that probability</text><text x="427.2" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">against a threshold</text><text x="427.2" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">fixed in advance</text><line x1="497.5" y1="78.0" x2="508.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M511.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="513.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="581.8" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">Decide</text><text x="581.8" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">reject the null, or</text><text x="581.8" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">fail to reject it,</text><text x="581.8" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">and report the size</text><text x="350.0" y="158.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">the p value answers one narrow question and is routinely asked to answer others</text></svg>
+        <p><strong>The null hypothesis</strong> states that there is no effect: no difference between the groups, no relationship between the variables, no association between the categories. The <strong>alternative hypothesis</strong> states that there is one. Note that these are statements about the population, not about your sample; your sample always shows some difference, and the question is whether it is larger than sampling variation would produce.</p>
+        <p><strong>The significance level</strong>, conventionally 0.05, is the threshold you fix in advance for how unlikely a result must be before you reject the null. It is a convention rather than a law of nature, and it encodes a tolerance: at 0.05, one test in twenty will produce a significant result when there is no effect at all. That fact has a consequence people often miss. Running twenty tests on data with no real effects produces, on average, one significant finding, and reporting that finding without mentioning the other nineteen is how spurious results enter the literature.</p>
+        <p><strong>Two errors</strong> are possible and they trade off. A <strong>Type I error</strong> is rejecting a true null, meaning claiming an effect that does not exist, and its rate is the significance level you chose. A <strong>Type II error</strong> is failing to reject a false null, meaning missing an effect that does exist, and its rate depends on the sample size, the effect size, and the significance level. Power, conventionally set at 0.80, is one minus the Type II error rate: an eighty percent chance of detecting an effect of the size you expect, if it is there.</p>
+        <p>Three consequences follow for interpretation. <strong>Failing to reject the null is not evidence of no effect.</strong> It means your data were consistent with no effect, which in a small sample they would be even if a substantial effect existed. The honest phrasing is that no significant relationship was found, not that no relationship exists.</p>
+        <p><strong>Significance depends on sample size.</strong> The same correlation of 0.15 is non-significant at n equals 100 and significant at n equals 500. Nothing about the world changed; only the precision of the estimate did. And <strong>one-tailed tests</strong>, which test for an effect in one direction only, are legitimate when the hypothesis is genuinely directional and stated before the analysis, and are a way of obtaining significance cheaply when they are not.</p>
+        <div class="note"><strong>Note:</strong> Report exact p values rather than only whether they crossed a threshold. A p of 0.048 and a p of 0.003 are very different pieces of evidence, and reporting both as significant discards the difference.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>منطق الاختبار</h2>
+        <p class="lead">أربع خطوات، هي نفسها دائمًا، أيًّا كانت التقنية. وفهمها هو ما يتيح لك تفسير أي اختبار لم تصادفه من قبل.</p>
+        <svg viewBox="0 0 700 175" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="118.2" y="63.5" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">اذكر الصفرية</text><text x="118.2" y="77.5" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">افترض ألا أثر في</text><text x="118.2" y="90.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">المجتمع</text><line x1="188.5" y1="78.0" x2="199.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M202.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="204.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="272.8" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">احسب</text><text x="272.8" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">كم يُحتمَل نتيجة</text><text x="272.8" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">بهذا التطرف لو</text><text x="272.8" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">صحّت الصفرية؟</text><line x1="343.0" y1="78.0" x2="354.0" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M357.0 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="359.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="427.2" y="63.5" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">قارن</text><text x="427.2" y="77.5" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">ذلك الاحتمال بعتبة</text><text x="427.2" y="90.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">مثبَّتة سلفًا</text><line x1="497.5" y1="78.0" x2="508.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M511.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="513.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="581.8" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">قرّر</text><text x="581.8" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">ارفض الصفرية أو</text><text x="581.8" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">أخفق في رفضها،</text><text x="581.8" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">وأبلغ بالحجم</text><text x="350.0" y="158.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">القيمة الاحتمالية تجيب سؤالًا ضيقًا واحدًا ويُطلَب منها روتينيًا إجابة غيره</text></svg>
+        <p>و<strong>الفرضية الصفرية</strong> تذكر ألا أثر: لا فرق بين المجموعات، ولا علاقة بين المتغيرات، ولا ارتباط بين الفئات. و<strong>الفرضية البديلة</strong> تذكر أن ثمة واحدًا. ولاحظ أن هاتين عبارتان عن المجتمع لا عن عيّنتك؛ فعيّنتك تُظهر فرقًا ما دائمًا، والسؤال هل هو أكبر مما ينتجه تباين المعاينة.</p>
+        <p>و<strong>مستوى الدلالة</strong>، وهو 0.05 عرفًا، عتبةٌ تثبّتها سلفًا لكم يجب أن تكون نتيجة غير محتملة قبل رفض الصفرية. وهو عُرف لا قانون طبيعة، ويرمّز تسامحًا: فعند 0.05، سيُنتج اختبارٌ من كل عشرين نتيجةً دالة حين لا أثر البتة. ولتلك الواقعة نتيجة يُغفلها الناس كثيرًا. فتشغيل عشرين اختبارًا على بيانات بلا آثار حقيقية يُنتج، وسطيًا، نتيجةً دالة واحدة، والإبلاغ بتلك النتيجة دون ذكر التسعة عشر الأخرى هو كيف تدخل النتائج الزائفة الأدبيات.</p>
+        <p>و<strong>خطآن</strong> ممكنان ويتقايضان. فـ<strong>خطأ النوع الأول</strong> رفضُ صفرية صحيحة، أي ادّعاءُ أثر غير موجود، ومعدله مستوى الدلالة الذي اخترت. و<strong>خطأ النوع الثاني</strong> الإخفاقُ في رفض صفرية خاطئة، أي تفويتُ أثر موجود، ومعدله يعتمد على حجم العيّنة وحجم الأثر ومستوى الدلالة. والقوة، المضبوطة عرفًا على 0.80، هي واحد ناقص معدل خطأ النوع الثاني: أي فرصة ثمانين بالمئة لكشف أثر بالحجم الذي تتوقعه، إن كان موجودًا.</p>
+        <p>وثلاث نتائج تتبع للتفسير. <strong>الإخفاق في رفض الصفرية ليس دليلًا على انعدام الأثر.</strong> بل يعني أن بياناتك كانت متسقة مع انعدام الأثر، وهذا ما ستكونه في عيّنة صغيرة حتى لو وُجد أثر كبير. والصياغة الصادقة أنه «لم يُوجَد ارتباط دال»، لا أنه «لا توجد علاقة».</p>
+        <p>و<strong>الدلالة تعتمد على حجم العيّنة.</strong> فالارتباط نفسه البالغ 0.15 غير دال عند 100 ودال عند 500. ولم يتغير شيء في العالم؛ بل تغيرت دقة التقدير فقط. و<strong>الاختبارات أحادية الذيل</strong>، التي تختبر أثرًا في اتجاه واحد فقط، مشروعة حين تكون الفرضية اتجاهية فعلًا ومذكورة قبل التحليل، وهي طريقة لنيل الدلالة برخص حين لا تكون كذلك.</p>
+        <div class="note"><strong>ملاحظة:</strong> أبلغ بقيم احتمالية دقيقة لا بمجرد هل عبرت عتبة. فقيمة 0.048 وقيمة 0.003 دليلان مختلفان جدًا، والإبلاغ بكليهما «دالًا» يُلقي الفرق.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="choosing">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Choosing the Right Test</h2>
+        <p class="lead">Three questions choose the test: what kind of question you are asking, what level your variables are measured at, and whether the parametric assumptions hold.</p>
+        <svg viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">1</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Two groups compared</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">independent samples t test, or its rank-based alternative</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">2</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Three or more groups</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">analysis of variance, with a post hoc comparison</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">3</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Two categorical variables</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">chi-square test of independence</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="199.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">4</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Two continuous variables</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">correlation, Pearson or Spearman by data level</text><rect x="52.0" y="224.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="251.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">5</text><rect x="104.0" y="224.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="251.0" text-anchor="middle" font-size="11.0" font-weight="700" fill="#2D2D2D">One outcome, several predictors</text><rect x="312.0" y="224.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="251.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">multiple regression</text><rect x="52.0" y="276.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="303.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">6</text><rect x="104.0" y="276.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="303.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">A binary outcome</text><rect x="312.0" y="276.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="303.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">logistic regression</text><text x="350.0" y="349.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">six situations cover most business analysis; the question and the data level choose</text></svg>
+        <p><strong>Comparing two groups</strong> on a continuous outcome uses an independent samples t test when the groups are separate people and a paired t test when the same people are measured twice. Where the outcome is ordinal or the distribution is badly skewed in small samples, the rank-based alternative is appropriate and should be named rather than described as a non-parametric test.</p>
+        <p><strong>Comparing three or more groups</strong> uses analysis of variance, which tests whether any of the group means differ. A significant result tells you that at least one pair differs and not which, which is why a post hoc comparison follows and must be reported. Running multiple t tests instead inflates the Type I error rate, which is precisely what the analysis of variance exists to control.</p>
+        <p><strong>Two categorical variables</strong> use the chi-square test of independence, which asks whether the distribution across one variable's categories depends on the other's. Its main requirement is adequate expected cell counts, and where cells are sparse the categories should be combined or an exact test used.</p>
+        <p><strong>Two continuous variables</strong> use correlation: Pearson for interval data with a roughly linear relationship, Spearman for ordinal data or monotonic but non-linear relationships. Correlation reports association and never direction, and the discipline of writing is associated with rather than affects belongs here more than anywhere.</p>
+        <p><strong>Multiple regression</strong> is the workhorse of quantitative business research. It estimates the relationship between each predictor and the outcome while holding the others constant, which is what allows a claim that an association is not explained by the control variables included. Its output is a coefficient per predictor, its significance, and an overall measure of how much variance the model explains. <strong>Logistic regression</strong> does the same when the outcome is binary, and its coefficients are interpreted as changes in odds rather than in the outcome itself.</p>
+        <p>Two rules govern all of this. <strong>The question chooses the test, not the reverse.</strong> Write each hypothesis, then name the test that addresses it, in a table with one row per hypothesis. And <strong>check the assumptions before running it</strong>, since a technique applied to data that violate its requirements produces output that looks identical to valid output.</p>
+        <div class="note"><strong>Note:</strong> Build a table with columns for the research question, the hypothesis, the variables and their measurement levels, the test, and the assumption checks. It belongs in the methodology chapter, it prevents the mismatch between question and technique, and it takes twenty minutes.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>اختيار الاختبار الصحيح</h2>
+        <p class="lead">ثلاثة أسئلة تختار الاختبار: أي نوع من الأسئلة تسأل، وبأي مستوى قيست متغيراتك، وهل تصح الافتراضات المعلمية.</p>
+        <svg viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">١</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">مجموعتان تُقارَنان</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">اختبار t لعيّنتين مستقلتين، أو بديله الرتبي</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٢</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">ثلاث مجموعات فأكثر</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">تحليل التباين، مع مقارنة بعدية</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٣</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">متغيران فئويان</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">اختبار مربع كاي للاستقلال</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="199.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٤</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">متغيران متصلان</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">الارتباط، بيرسون أو سبيرمان بحسب مستوى البيانات</text><rect x="52.0" y="224.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="251.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٥</text><rect x="104.0" y="224.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="251.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">مخرَج واحد وعدة متنبئات</text><rect x="312.0" y="224.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="251.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">الانحدار المتعدد</text><rect x="52.0" y="276.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="303.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٦</text><rect x="104.0" y="276.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="303.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">مخرَج ثنائي</text><rect x="312.0" y="276.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="303.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">الانحدار اللوجستي</text><text x="350.0" y="349.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">ست حالات تغطي معظم تحليل الأعمال؛ والسؤال ومستوى البيانات يختاران</text></svg>
+        <p>و<strong>مقارنة مجموعتين</strong> على مخرَج متصل تستخدم اختبار t لعيّنتين مستقلتين حين تكون المجموعتان أشخاصًا منفصلين واختبار t المزدوج حين يُقاس الأشخاص أنفسهم مرتين. وحيث يكون المخرَج رتبيًا أو التوزيع ملتويًا بشدة في عيّنات صغيرة، يلائم البديل الرتبي وينبغي تسميته لا وصفه بـ«اختبار لامعلمي».</p>
+        <p>و<strong>مقارنة ثلاث مجموعات فأكثر</strong> تستخدم تحليل التباين، الذي يختبر هل تختلف أي من متوسطات المجموعات. والنتيجة الدالة تخبرك أن زوجًا واحدًا على الأقل يختلف ولا تخبرك أيّها، ولهذا تتبعها مقارنة بعدية ويجب الإبلاغ بها. وتشغيل اختبارات t متعددة بدلًا من ذلك يضخّم معدل خطأ النوع الأول، وهذا بالضبط ما وُجد تحليل التباين لضبطه.</p>
+        <p>و<strong>متغيران فئويان</strong> يستخدمان اختبار مربع كاي للاستقلال، الذي يسأل هل يعتمد التوزيع عبر فئات متغير على الآخر. ومتطلبه الرئيس أعدادُ خانات متوقعة كافية، وحيث تكون الخانات نادرة ينبغي دمج الفئات أو استخدام اختبار دقيق.</p>
+        <p>و<strong>متغيران متصلان</strong> يستخدمان الارتباط: بيرسون للبيانات الفترية بعلاقة خطية تقريبًا، وسبيرمان للبيانات الرتبية أو للعلاقات الرتيبة غير الخطية. والارتباط يُبلغ بالاقتران ولا يُبلغ بالاتجاه أبدًا، وانضباطُ الكتابة «يرتبط بـ» لا «يؤثر في» ينتمي هنا أكثر من أي موضع.</p>
+        <p>و<strong>الانحدار المتعدد</strong> حصان عمل بحوث الأعمال الكمية. فهو يقدّر العلاقة بين كل متنبئ والمخرَج مع تثبيت الآخرين، وهذا ما يتيح ادّعاء أن اقترانًا لا تفسّره متغيرات الضبط المدرَجة. ومخرَجه معاملٌ لكل متنبئ ودلالته ومقياسٌ كلي لكم يفسّر النموذج من التباين. و<strong>الانحدار اللوجستي</strong> يفعل الشيء نفسه حين يكون المخرَج ثنائيًا، وتُفسَّر معاملاته تغيراتٍ في الأرجحية لا في المخرَج نفسه.</p>
+        <p>وقاعدتان تحكمان هذا كله. <strong>السؤال يختار الاختبار لا العكس.</strong> اكتب كل فرضية، ثم سمِّ الاختبار الذي يعالجها، في جدول بصف لكل فرضية. و<strong>افحص الافتراضات قبل تشغيله</strong>، لأن تقنيةً مطبَّقة على بيانات تنتهك متطلباتها تُنتج مخرَجًا يبدو مطابقًا للمخرَج الصحيح.</p>
+        <div class="note"><strong>ملاحظة:</strong> ابنِ جدولًا بأعمدة لسؤال البحث والفرضية والمتغيرات ومستويات قياسها والاختبار وفحوص الافتراضات. ومكانه فصل المنهجية، وهو يمنع عدم التطابق بين السؤال والتقنية، ويستغرق عشرين دقيقة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="effect">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Effect Size and Confidence Intervals</h2>
+        <p class="lead">The p value answers whether an effect is distinguishable from zero. The effect size answers how big it is, and that is usually the question a reader actually has.</p>
+        <table>
+          <tr><th>Test</th><th>Effect size measure</th><th>Rough interpretation</th></tr>
+          <tr><td>t test</td><td>Standardised mean difference</td><td>0.2 small, 0.5 medium, 0.8 large</td></tr>
+          <tr><td>Analysis of variance</td><td>Proportion of variance explained</td><td>0.01 small, 0.06 medium, 0.14 large</td></tr>
+          <tr><td>Correlation</td><td>The coefficient itself</td><td>0.1 small, 0.3 medium, 0.5 large</td></tr>
+          <tr><td>Chi-square</td><td>Association coefficient for tables</td><td>Interpreted relative to table size</td></tr>
+          <tr><td>Regression</td><td>Standardised coefficient; variance explained</td><td>Judged against comparable studies</td></tr>
+        </table>
+        <p>The conventional thresholds above are useful defaults and poor substitutes for judgement. Their author intended them for fields with no accumulated knowledge, and where your literature reports effect sizes for the same relationship, comparison with those is far more informative than comparison with a general convention. An effect half the size of every previous study is a finding; an effect described as medium tells the reader nothing they could not compute.</p>
+        <p><strong>Practical significance</strong> is a separate judgement and belongs in the discussion. A correlation of 0.15 between a training intervention and productivity may be statistically significant in a large sample, may be small by any convention, and may still be worth acting on if the intervention is cheap and the outcome is valuable. Conversely a large effect on a variable nobody can influence is interesting and useless. Making this judgement explicitly, in the language of the decision it bears on, is what turns statistics into research.</p>
+        <p><strong>Confidence intervals</strong> are more informative than p values and are increasingly expected. An interval gives the range of population values consistent with your data at a stated level of confidence, and it carries the p value's information plus the precision of the estimate. A correlation of 0.30 with an interval from 0.28 to 0.32 and one of 0.30 with an interval from 0.02 to 0.55 are both significant and are entirely different findings, and only the interval shows it.</p>
+        <p>Intervals also handle the null result well. A non-significant difference whose interval runs from a trivially small value to another trivially small value is evidence that any effect is small. A non-significant difference whose interval spans from a large negative to a large positive value is evidence of nothing at all, and calling both no effect conceals the difference between an informative null and an uninformative one.</p>
+        <p>Report, for every test: the test name, the test statistic with its degrees of freedom, the exact p value, the effect size, and where possible the confidence interval. That is one line per hypothesis and it is the reporting standard in most business journals.</p>
+        <div class="note"><strong>Note:</strong> Where a hypothesis is not supported, report the effect size and interval anyway. A well-estimated small effect is a contribution, and it is far more useful to the field than a sentence saying the hypothesis was rejected.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>حجم الأثر وفترات الثقة</h2>
+        <p class="lead">القيمة الاحتمالية تجيب هل الأثر مميَّز عن الصفر. وحجم الأثر يجيب كم هو كبير، وهذا عادةً السؤال الذي يملكه القارئ فعلًا.</p>
+        <table>
+          <tr><th>الاختبار</th><th>مقياس حجم الأثر</th><th>التفسير التقريبي</th></tr>
+          <tr><td>اختبار t</td><td>فرق المتوسطات المعياري</td><td>0.2 صغير، 0.5 متوسط، 0.8 كبير</td></tr>
+          <tr><td>تحليل التباين</td><td>نسبة التباين المفسَّر</td><td>0.01 صغير، 0.06 متوسط، 0.14 كبير</td></tr>
+          <tr><td>الارتباط</td><td>المعامل نفسه</td><td>0.1 صغير، 0.3 متوسط، 0.5 كبير</td></tr>
+          <tr><td>مربع كاي</td><td>معامل اقتران للجداول</td><td>يُفسَّر نسبةً إلى حجم الجدول</td></tr>
+          <tr><td>الانحدار</td><td>المعامل المعياري؛ والتباين المفسَّر</td><td>يُحكَم عليه مقابل دراسات مماثلة</td></tr>
+        </table>
+        <p>والعتبات المتعارفة أعلاه افتراضات نافعة وبدائل ضعيفة عن الحكم. فمؤلفها قصدها لحقول بلا معرفة متراكمة، وحيث تُبلغ أدبياتك بأحجام أثر للعلاقة نفسها، تكون المقارنة بها أكثر إفادةً بكثير من المقارنة بعُرف عام. فأثرٌ بنصف حجم كل دراسة سابقة نتيجة؛ وأثرٌ موصوف بـ«متوسط» لا يخبر القارئ شيئًا لم يكن ليحسبه.</p>
+        <p>و<strong>الدلالة العملية</strong> حكمٌ منفصل ومكانه المناقشة. فارتباطٌ قدره 0.15 بين تدخّل تدريبي والإنتاجية قد يكون دالًا إحصائيًا في عيّنة كبيرة، وقد يكون صغيرًا بأي عُرف، وقد يظل يستحق التصرف بناءً عليه إن كان التدخل رخيصًا والمخرَج ثمينًا. وبالعكس، أثرٌ كبير على متغير لا يستطيع أحد التأثير فيه مثيرٌ وعديم الفائدة. واتخاذ هذا الحكم صراحةً، بلغة القرار الذي يمسّه، هو ما يحوّل الإحصاء إلى بحث.</p>
+        <p>و<strong>فترات الثقة</strong> أكثر إفادةً من القيم الاحتمالية ومتوقَّعة بازدياد. فالفترة تعطي مدى قيم المجتمع المتسقة مع بياناتك بمستوى ثقة مذكور، وهي تحمل معلومة القيمة الاحتمالية مع دقة التقدير. فارتباطٌ 0.30 بفترة من 0.28 إلى 0.32 وارتباطٌ 0.30 بفترة من 0.02 إلى 0.55 كلاهما دال وهما نتيجتان مختلفتان تمامًا، والفترة وحدها تُظهر ذلك.</p>
+        <p>والفترات تعالج النتيجة الصفرية جيدًا أيضًا. ففرقٌ غير دال تمتد فترته من قيمة صغيرة تافهة إلى أخرى صغيرة تافهة دليلٌ على أن أي أثر صغير. وفرقٌ غير دال تمتد فترته من سالب كبير إلى موجب كبير دليلٌ على لا شيء البتة، وتسمية كليهما «لا أثر» تخفي الفرق بين صفرية مفيدة وأخرى غير مفيدة.</p>
+        <p>وأبلغ، لكل اختبار: باسم الاختبار، وإحصاءة الاختبار بدرجات حريتها، والقيمة الاحتمالية الدقيقة، وحجم الأثر، وحيثما أمكن فترة الثقة. وهذا سطرٌ واحد لكل فرضية وهو معيار الإبلاغ في معظم مجلات الأعمال.</p>
+        <div class="note"><strong>ملاحظة:</strong> حيث لا تُسنَد فرضية، أبلغ بحجم الأثر والفترة على أي حال. فأثرٌ صغير مقدَّر جيدًا إسهامٌ، وهو أنفع للحقل بكثير من جملة تقول إن الفرضية رُفضت.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="reporting">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Reporting Without Overclaiming</h2>
+        <p class="lead">Most inferential errors in business theses are errors of language rather than of computation. The statistics are right and the sentence claims more than the statistics support.</p>
+        <p><strong>Causal language from correlational designs.</strong> Increases, drives, leads to, improves, and causes all assert an ordering that a cross-sectional design cannot establish. The available verbs are is associated with, is related to, predicts in the statistical sense, and varies with. This is the single most frequent overreach in the field, and it is caught by searching your results chapter for causal verbs and checking each against the design.</p>
+        <p><strong>Accepting the null.</strong> No significant relationship was found is correct; there is no relationship is not. The second claims to have proven absence, which no test does. The distinction matters most in the discussion, where an unsupported hypothesis is frequently written up as a positive finding of no effect.</p>
+        <p><strong>Confusing statistical with practical significance.</strong> A significant result is not automatically an important one, and in a sample of a thousand, trivial differences reach significance routinely. State the effect size, and where it is small, say so rather than letting the word significant do work it was not intended for.</p>
+        <p><strong>Selective reporting.</strong> Running many tests and reporting the significant ones inflates the error rate invisibly. Report every test specified in the methodology, whatever it produced. Where you ran exploratory tests not planned in advance, label them exploratory and note that their p values are not protected against multiple comparisons.</p>
+        <p><strong>Interpreting a coefficient without its context.</strong> A regression coefficient is the estimated change in the outcome per unit change in the predictor, holding the other predictors constant. That last clause is essential and is routinely dropped, and it matters because the coefficient's meaning depends entirely on which other variables are in the model.</p>
+        <p>The structure of a results section follows from this. Restate the hypothesis. Report the descriptive picture. Report the test with statistic, degrees of freedom, exact p value, effect size, and interval. State in one sentence whether the hypothesis was supported. Then stop, because interpretation belongs in the discussion, and mixing the two makes it impossible for a reader who disagrees with your interpretation to accept your evidence.</p>
+        <p>One final discipline. Before submitting, read every sentence in the results chapter and ask what design would be required to support it. Any sentence requiring a design you did not use should be rewritten, and doing this pass will typically change eight or ten sentences in a way no reader ever notices, which is exactly the point.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> inferential statistics ask whether a sample pattern is distinguishable from sampling accident, and a p value is not the probability the null is true nor a measure of importance. Choose tests from the question and the measurement level, in a table written into the methodology, and check assumptions before running them. Report the test statistic, exact p value, effect size, and confidence interval for every hypothesis, supported or not. Write findings in the language the design supports, never accept a null, distinguish statistical from practical significance, and report every planned test.</div>
+        <div class="refs"><ul>
+          <li>Sekaran &amp; Bougie, <a href="https://www.wiley.com/en-us/Research+Methods+For+Business%3A+A+Skill+Building+Approach%2C+8th+Edition-p-9781119561224" target="_blank" rel="noopener">Research Methods for Business: A Skill-Building Approach</a>.</li>
+          <li>American Psychological Association, <a href="https://apastyle.apa.org/products/publication-manual-7th-edition" target="_blank" rel="noopener">Publication Manual, Seventh Edition</a>.</li>
+          <li>Saunders, Lewis &amp; Thornhill, <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">Research Methods for Business Students</a>.</li>
+          <li>Kumar, <a href="https://uk.sagepub.com/en-gb/eur/research-methodology/book270131" target="_blank" rel="noopener">Research Methodology: A Step-by-Step Guide for Beginners</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الإبلاغ بلا ادّعاء زائد</h2>
+        <p class="lead">معظم الأخطاء الاستدلالية في أطروحات الأعمال أخطاء لغة لا حساب. فالإحصاءات صحيحة والجملة تدّعي أكثر مما تسنده الإحصاءات.</p>
+        <p><strong>اللغة السببية من تصاميم ارتباطية.</strong> فـ«يزيد» و«يدفع» و«يؤدي إلى» و«يحسّن» و«يسبّب» كلها تجزم بترتيب لا يستطيع تصميم مقطعي إثباته. والأفعال المتاحة «يرتبط بـ» و«يتصل بـ» و«يتنبأ» بالمعنى الإحصائي و«يتباين مع». وهذا أشيع تجاوز في الحقل، ويُلتقَط بالبحث في فصل نتائجك عن الأفعال السببية وفحص كلٍّ مقابل التصميم.</p>
+        <p><strong>قبول الصفرية.</strong> فـ«لم يُوجَد ارتباط دال» صحيح؛ و«لا توجد علاقة» ليس كذلك. فالثانية تدّعي البرهنة على الغياب، وهذا لا يفعله أي اختبار. والتمييز يهم أكثر ما يهم في المناقشة، حيث تُكتَب فرضيةٌ غير مسنودة كثيرًا نتيجةً إيجابية بانعدام الأثر.</p>
+        <p><strong>الخلط بين الدلالة الإحصائية والعملية.</strong> فالنتيجة الدالة ليست تلقائيًا مهمة، وفي عيّنة من ألف تبلغ الفروق التافهة الدلالة روتينيًا. اذكر حجم الأثر، وحيث يكون صغيرًا فقُل ذلك بدل ترك كلمة «دال» تؤدي عملًا لم تُقصَد له.</p>
+        <p><strong>الإبلاغ الانتقائي.</strong> فتشغيل اختبارات كثيرة والإبلاغ بالدالة منها يضخّم معدل الخطأ بلا رؤية. أبلغ بكل اختبار محدَّد في المنهجية، أيًّا كان ما أنتجه. وحيث شغّلت اختبارات استكشافية غير مخطَّطة سلفًا، فسمِّها استكشافية ودوّن أن قيمها الاحتمالية غير محميّة من المقارنات المتعددة.</p>
+        <p><strong>تفسير معامل بلا سياقه.</strong> فمعامل الانحدار هو التغير المقدَّر في المخرَج لكل وحدة تغير في المتنبئ، مع تثبيت المتنبئات الأخرى. وتلك العبارة الأخيرة جوهرية وتُسقَط روتينيًا، وهي تهم لأن معنى المعامل يعتمد كليًا على أي المتغيرات الأخرى في النموذج.</p>
+        <p>وبنية قسم النتائج تتبع من هذا. أعد ذكر الفرضية. وأبلغ بالصورة الوصفية. وأبلغ بالاختبار بإحصاءته ودرجات حريته وقيمته الاحتمالية الدقيقة وحجم الأثر والفترة. واذكر في جملة هل سُنِدت الفرضية. ثم توقّف، لأن التفسير مكانه المناقشة، وخلط الاثنين يجعل من المستحيل على قارئ يخالف تفسيرك أن يقبل أدلتك.</p>
+        <p>وانضباط أخير. قبل التسليم، اقرأ كل جملة في فصل النتائج واسأل أي تصميم يلزم لإسنادها. وكل جملة تتطلب تصميمًا لم تستخدمه ينبغي إعادة كتابتها، وإجراء هذا المرور سيغيّر عادةً ثماني أو عشر جمل بطريقة لا يلاحظها أي قارئ، وهذا بالضبط المقصود.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الإحصاء الاستدلالي يسأل هل نمط العيّنة مميَّز عن مصادفة المعاينة، والقيمة الاحتمالية ليست احتمال صحة الصفرية ولا مقياسًا للأهمية. اختر الاختبارات من السؤال ومستوى القياس، في جدول مكتوب في المنهجية، وافحص الافتراضات قبل تشغيلها. وأبلغ بإحصاءة الاختبار والقيمة الاحتمالية الدقيقة وحجم الأثر وفترة الثقة لكل فرضية، مسنودةً كانت أم لا. واكتب النتائج باللغة التي يسندها التصميم، ولا تقبل صفرية أبدًا، وميّز الدلالة الإحصائية عن العملية، وأبلغ بكل اختبار مخطَّط.</div>
+        <div class="refs"><ul>
+          <li>سيكاران وبوجي، <a href="https://www.wiley.com/en-us/Research+Methods+For+Business%3A+A+Skill+Building+Approach%2C+8th+Edition-p-9781119561224" target="_blank" rel="noopener">مناهج البحث للأعمال: مقاربة بناء المهارات</a>.</li>
+          <li>جمعية علم النفس الأمريكية، <a href="https://apastyle.apa.org/products/publication-manual-7th-edition" target="_blank" rel="noopener">دليل النشر، الطبعة السابعة</a>.</li>
+          <li>سوندرز ولويس وثورنهيل، <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">مناهج البحث لطلاب الأعمال</a>.</li>
+          <li>كومار، <a href="https://uk.sagepub.com/en-gb/eur/research-methodology/book270131" target="_blank" rel="noopener">منهجية البحث: دليل خطوة بخطوة للمبتدئين</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="ana-descriptive.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Descriptive Statistics</span><span data-lang="ar">الإحصاء الوصفي</span></a><a href="ana-qualitative.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Qualitative Analysis</span><span data-lang="ar">التحليل النوعي</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="الإحصاء الاستدلالي";
+var TITLE_EN="Inferential Statistics";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

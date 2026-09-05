@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tables, Figures and Cross-References · Saif Alghamdi</title>
+<meta name="description" content="Tables, figures and cross-references: how floats work, caption and label rules, publication table design, importing figures, and automatic referencing.">
+<link rel="canonical" href="https://saif3li-phd.github.io/phd/craft-latex-tables.html">
+<meta name="author" content="Saif Ali Alghamdi">
+<meta name="theme-color" content="#2D2D2D">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saif Ali Alghamdi">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:url" content="https://saif3li-phd.github.io/phd/craft-latex-tables.html">
+<meta property="og:title" content="Tables, Figures and Cross-References · Saif Alghamdi">
+<meta property="og:description" content="Tables, figures and cross-references: how floats work, caption and label rules, publication table design, importing figures, and automatic referencing.">
+<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tables, Figures and Cross-References · Saif Alghamdi">
+<meta name="twitter:description" content="Tables, figures and cross-references: how floats work, caption and label rules, publication table design, importing figures, and automatic referencing.">
+<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Tables, Figures and Cross-References · Saif Alghamdi", "description": "Tables, figures and cross-references: how floats work, caption and label rules, publication table design, importing figures, and automatic referencing.", "url": "https://saif3li-phd.github.io/phd/craft-latex-tables.html", "inLanguage": "en", "author": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "publisher": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "image": "https://saif3li-phd.github.io/assets/og.jpg", "isPartOf": {"@type": "WebSite", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}}
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="0009a1c6-b533-4e1e-9dbc-8b20dbe29af9"></script>
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#foundation-of-business-research"><span data-lang="en">Foundation of Business Research</span><span data-lang="ar">أسس بحوث الأعمال</span></a><i>&rsaquo;</i><span data-lang="en">Craft and tools</span><span data-lang="ar">الحرفة والأدوات</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">CRAFT AND TOOLS · PhD</span><span data-lang="ar">الحرفة والأدوات · دكتوراه</span></div>
+    <h1><span data-lang="en">Tables, Figures and Cross-References</span><span data-lang="ar">الجداول والأشكال والإحالات</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Craft and tools</span><span data-lang="ar">الحرفة والأدوات</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">10 min</span><span data-lang="ar">١٠ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذا الموضوع</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="floats"><span data-lang="en">Floats</span><span data-lang="ar">العائمات</span></a></li><li><a data-id="tables"><span data-lang="en">Table design</span><span data-lang="ar">تصميم الجداول</span></a></li><li><a data-id="figures"><span data-lang="en">Figures</span><span data-lang="ar">الأشكال</span></a></li><li><a data-id="crossref"><span data-lang="en">Cross-references</span><span data-lang="ar">الإحالات</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Tables, figures, and cross-references in a long document</div>
+          <div><span>Covers:</span> Floats, captions and labels, table design, importing figures, and automatic referencing</div>
+          <div><span>Use:</span> Producing publication-quality tables and references that renumber themselves</div>
+          <div><span>Level:</span> Doctoral business research</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Tables and figures are where a long document most often breaks: numbering that no longer matches the text, a reference to Table 4.3 that is now Table 4.5, a table split across two pages with no header on the second. Every one of these is a symptom of manual work that should have been automatic.</p>
+        <p>Two mechanisms fix all of them. The first is the <strong>float</strong>, which is a container that carries a table or figure and is allowed to move to where it fits. The second is the <strong>label and reference pair</strong>: you give an item a name, refer to it by that name, and the system prints the correct number at compile time. Together they mean that inserting a new table renumbers everything and updates every reference to it, with no manual intervention.</p>
+        <p>Although this framework is written in terms of LaTeX, where these mechanisms are explicit, the same features exist in every serious word processor under different names. A word processor's caption and cross-reference tools do exactly the same job, and the reason theses break is that most writers type numbers by hand rather than using them.</p>
+        <p>This framework covers how floats work and how to place them, caption and label conventions, designing tables that look like publication tables rather than spreadsheet exports, importing and sizing figures, and the errors that recur. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Never type a table or figure number in your text. If your document contains the characters Table 4.3 typed by hand, that reference will eventually be wrong, and the only reliable fix is to use the cross-reference mechanism from the start.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> الجداول والأشكال والإحالات المتقاطعة في وثيقة طويلة</div>
+          <div><span>يغطّي:</span> العائمات، والتعليقات والوسوم، وتصميم الجداول، واستيراد الأشكال، والإحالة التلقائية</div>
+          <div><span>الاستخدام:</span> إنتاج جداول بجودة النشر وإحالات تعيد ترقيم نفسها</div>
+          <div><span>المستوى:</span> بحوث الأعمال لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الجداول والأشكال حيث تنكسر الوثيقة الطويلة أكثر ما تنكسر: ترقيمٌ لم يعد يطابق النص، وإحالةٌ إلى «الجدول 4-3» صار «الجدول 4-5»، وجدولٌ مقسَّم على صفحتين بلا رأس في الثانية. وكلٌّ من هذه عَرَضٌ لعمل يدوي كان ينبغي أن يكون تلقائيًا.</p>
+        <p>وآليتان تصلحانها كلها. الأولى <strong>العائم</strong>، وهو حاوٍ يحمل جدولًا أو شكلًا ويُسمَح له بالتحرك إلى حيث يلائم. والثانية <strong>زوج الوسم والإحالة</strong>: تعطي عنصرًا اسمًا، وتشير إليه بذلك الاسم، ويطبع النظام الرقم الصحيح عند الترجمة. وهما معًا تعنيان أن إدراج جدول جديد يعيد ترقيم كل شيء ويحدّث كل إحالة إليه، بلا تدخل يدوي.</p>
+        <p>ومع أن هذا الإطار مكتوب بعبارات لاتكس، حيث تكون هذه الآليات صريحة، فالمزايا نفسها موجودة في كل معالج نصوص جاد بأسماء مختلفة. فأدوات التعليق والإحالة المتقاطعة في معالج النصوص تؤدي العمل نفسه بالضبط، وسببُ انكسار الأطروحات أن معظم الكتّاب يكتبون الأرقام يدويًا بدل استخدامها.</p>
+        <p>ويغطي هذا الإطار كيف تعمل العائمات وكيف تُوضَع، وأعراف التعليق والوسم، وتصميم جداول تبدو جداول نشر لا تصديرات جداول حسابية، واستيراد الأشكال وتحجيمها، والأخطاء المتكررة. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> لا تكتب رقم جدول أو شكل في نصك أبدًا. فإن كانت وثيقتك تحوي محارف «الجدول 4-3» مكتوبةً يدويًا، فتلك الإحالة ستصير خاطئة في النهاية، والإصلاح الموثوق الوحيد استخدامُ آلية الإحالة المتقاطعة من البداية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="floats">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>How Floats Work</h2>
+        <p class="lead">A float is a container that the typesetting system may move. Understanding why it moves prevents the most common frustration beginners have.</p>
+        <svg viewBox="0 0 700 308" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">1</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">The float</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">the container that carries the item and lets it move</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">2</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">The content</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">the table body or the image itself</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">3</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">The caption</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">descriptive text, above tables and below figures</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="199.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">4</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">The label</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">a name you give the item so you can refer to it</text><rect x="52.0" y="224.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="251.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">5</text><rect x="104.0" y="224.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="251.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">The reference</text><rect x="312.0" y="224.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="251.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">a command elsewhere that prints the item's number</text><text x="350.0" y="297.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">five parts; the last two are what make numbering and referencing automatic</text></svg>
+        <p>A table or figure has a fixed height and cannot be split across a page break. If it were locked to the exact point in the text where you placed it, the system would have to leave a large blank space whenever the item did not fit in the remaining page. Floats solve this by letting the item move to the top or bottom of the current or a following page, wherever the typesetting works.</p>
+        <p>This is why <strong>a figure appears on the next page</strong> and why fighting that is usually the wrong response. The correct response is to <strong>refer to items by number rather than by position</strong>: as Table 4.3 shows, not as the table below shows. Once your text refers to numbers, it does not matter where the item lands, and the frustration disappears entirely.</p>
+        <p>The five parts of a float are worth naming because each has a rule. The <strong>float environment</strong> declares the item and takes a placement hint. The <strong>content</strong> is the table body or the included image. The <strong>caption</strong> is descriptive text. The <strong>label</strong> is a name you assign. The <strong>reference</strong> is a command elsewhere in the document that prints the item's number.</p>
+        <p>Two conventions about captions matter and they differ by item type. <strong>Table captions go above the table</strong> and <strong>figure captions go below the figure</strong>. This is the standard in the sciences and social sciences and is what most style guides specify. And the caption command must come <strong>before the label</strong>, since the label records whatever number the caption assigned; a label placed before the caption records the wrong number, which is a subtle and common bug.</p>
+        <p>Where a table genuinely will not fit on one page, use a table type designed to break across pages, which repeats the header on each new page. A long table split with an ordinary float loses its header and becomes unreadable on the second page.</p>
+        <div class="note"><strong>Note:</strong> If you find yourself adding page breaks to control where a float lands, stop. That approach breaks the moment you add a paragraph earlier in the chapter, and the resulting layout errors are extremely hard to find later.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>كيف تعمل العائمات</h2>
+        <p class="lead">العائم حاوٍ يجوز لنظام التنضيد تحريكه. وفهمُ لماذا يتحرك يمنع أشيع إحباط لدى المبتدئين.</p>
+        <svg viewBox="0 0 700 308" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">١</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">العائم</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">الحاوي الذي يحمل العنصر ويتيح له التحرك</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٢</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">المحتوى</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">متن الجدول أو الصورة نفسها</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٣</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">التعليق</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">نصٌ وصفي، فوق الجداول وتحت الأشكال</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="199.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٤</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">الوسم</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">اسمٌ تعطيه العنصر لتستطيع الإشارة إليه</text><rect x="52.0" y="224.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="251.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٥</text><rect x="104.0" y="224.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="251.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">الإحالة</text><rect x="312.0" y="224.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="251.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">أمرٌ في موضع آخر يطبع رقم العنصر</text><text x="350.0" y="297.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">خمسة أجزاء؛ والأخيران هما ما يجعل الترقيم والإحالة تلقائيين</text></svg>
+        <p>فللجدول أو الشكل ارتفاعٌ ثابت ولا يمكن تقسيمه عبر فاصل صفحة. ولو كان مقفلًا في النقطة الدقيقة من النص التي وضعته فيها، لاضطر النظام إلى ترك مساحة فارغة كبيرة كلما لم يتسع العنصر في بقية الصفحة. والعائمات تحل هذا بالسماح للعنصر بالانتقال إلى أعلى أو أسفل الصفحة الحالية أو صفحة تالية، حيثما ينجح التنضيد.</p>
+        <p>ولهذا <strong>يظهر شكلٌ في الصفحة التالية</strong> ولهذا تكون مقاومةُ ذلك عادةً الاستجابة الخاطئة. والاستجابة الصحيحة أن <strong>تشير إلى العناصر بالرقم لا بالموضع</strong>: «كما يُظهر الجدول 4-3»، لا «كما يُظهر الجدول أدناه». فمتى أشار نصك إلى الأرقام، لم يعد يهم أين يهبط العنصر، ويختفي الإحباط تمامًا.</p>
+        <p>وأجزاء العائم الخمسة تستحق التسمية لأن لكلٍّ قاعدة. فـ<strong>بيئة العائم</strong> تعلن العنصر وتأخذ تلميح موضع. و<strong>المحتوى</strong> متنُ الجدول أو الصورة المُدرَجة. و<strong>التعليق</strong> نصٌ وصفي. و<strong>الوسم</strong> اسمٌ تسنده. و<strong>الإحالة</strong> أمرٌ في موضع آخر من الوثيقة يطبع رقم العنصر.</p>
+        <p>وعُرفان عن التعليقات يهمان ويختلفان بنوع العنصر. <strong>تعليقات الجداول تذهب فوق الجدول</strong> و<strong>تعليقات الأشكال تذهب تحت الشكل</strong>. وهذا المعيار في العلوم والعلوم الاجتماعية وهو ما تحدده معظم أدلة الأسلوب. وأمرُ التعليق يجب أن يأتي <strong>قبل الوسم</strong>، لأن الوسم يسجّل أي رقم أسنده التعليق؛ والوسمُ الموضوع قبل التعليق يسجّل الرقم الخطأ، وهذه علة خفية وشائعة.</p>
+        <p>وحيث لا يتسع جدولٌ فعلًا في صفحة واحدة، استخدم نوع جدول مصمَّمًا للانكسار عبر الصفحات، يكرر الرأس في كل صفحة جديدة. فالجدول الطويل المقسَّم بعائم عادي يفقد رأسه ويصير غير مقروء في الصفحة الثانية.</p>
+        <div class="note"><strong>ملاحظة:</strong> إن وجدت نفسك تضيف فواصل صفحات للتحكم بأين يهبط عائم، فتوقف. فتلك المقاربة تنكسر لحظة إضافتك فقرةً أبكر في الفصل، وأخطاءُ التخطيط الناتجة صعبة الإيجاد جدًا لاحقًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="tables">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Designing a Publication Table</h2>
+        <p class="lead">A publication table looks nothing like a spreadsheet export. Five rules produce the difference, and all five are about removing things.</p>
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#A32020"/><text x="195.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">A word processor table</text><text x="195.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">borders everywhere, shaded headers, boxed</text><text x="195.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">cells</text><rect x="360.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#8C8C8C"/><text x="505.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">A publication table</text><text x="505.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">three horizontal rules, no vertical rules,</text><text x="505.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">white space</text><rect x="140.0" y="168.0" width="420.0" height="26.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="185.0" text-anchor="middle" font-size="10.5" font-weight="600" fill="#2D2D2D">the standard is a rule above, one below the header, and one at the foot</text><text x="350.0" y="236.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">vertical lines are almost never needed; alignment does their work</text></svg>
+        <p><strong>Use three horizontal rules and no vertical rules.</strong> One rule above the table, one below the header row, and one at the foot. Vertical lines are almost never needed, because alignment already separates columns, and their absence is the single most visible difference between an amateur and a professional table.</p>
+        <p><strong>Align numbers on the decimal point</strong>, or right-align them, so that magnitudes are comparable at a glance. Left-aligned numbers of different lengths cannot be compared visually, which defeats the purpose of putting them in a column.</p>
+        <p><strong>Use consistent decimal places</strong> within a column, and no more than the measurement justifies. A mean from a five-point scale reported to three decimals implies a precision the instrument does not have.</p>
+        <p><strong>Label rows and columns in words</strong>, not with variable names from your software. And <strong>put explanatory material in a note below the table</strong>, including the sample size, the meaning of any symbols, and the significance convention. That note is what makes the table readable without the surrounding text, which is the standard it must meet.</p>
+        <p>Two structural points. <strong>Set the column count by what the argument needs</strong>, not by what the software produced: a regression output has twenty columns and your table needs four. And where a table is genuinely wide, either rotate it to landscape on its own page or move it to an appendix, since a table shrunk to six-point type to fit the margins is a table nobody will read.</p>
+        <p>Two practical tools save considerable time. A <strong>table generator</strong>, of which several exist online, converts a spreadsheet or a pasted block into properly formatted markup, which removes the tedium of typing column specifications. And <strong>exporting tables directly from your statistical software</strong> into markup is possible in most packages and eliminates transcription errors, which are the most common source of a number in a thesis that does not match the analysis behind it.</p>
+        <div class="note"><strong>Note:</strong> After building a table, cover the surrounding text and read the table alone. If you cannot tell what the numbers are, what the sample was, or what a symbol means, add a note line. That test takes ten seconds and is the standard every table must meet.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>تصميم جدول نشر</h2>
+        <p class="lead">جدول النشر لا يشبه تصدير جدول حسابي في شيء. وخمس قواعد تُنتج الفرق، وكلها عن حذف أشياء.</p>
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#A32020"/><text x="195.0" y="80.1" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">جدول معالج النصوص</text><text x="195.0" y="94.1" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">حدود في كل مكان، ورؤوس مظللة، وخانات محاطة</text><rect x="360.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#8C8C8C"/><text x="505.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">جدول النشر</text><text x="505.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">ثلاثة خطوط أفقية، ولا خطوط رأسية، ومساحة</text><text x="505.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">بيضاء</text><rect x="140.0" y="168.0" width="420.0" height="26.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="185.0" text-anchor="middle" font-size="10.5" font-weight="600" fill="#2D2D2D">المعيار خطٌّ فوق، وواحد تحت الرأس، وواحد في القدم</text><text x="350.0" y="236.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">الخطوط الرأسية لا تلزم أبدًا تقريبًا؛ والمحاذاة تؤدي عملها</text></svg>
+        <p><strong>استخدم ثلاثة خطوط أفقية ولا خطوط رأسية.</strong> خطٌّ فوق الجدول، وخطٌّ تحت صف الرأس، وخطٌّ في القدم. فالخطوط الرأسية لا تلزم أبدًا تقريبًا، لأن المحاذاة تفصل الأعمدة سلفًا، وغيابها أوضح فرق مفرد بين جدول هاوٍ وجدول محترف.</p>
+        <p><strong>حاذِ الأرقام على الفاصلة العشرية</strong>، أو حاذِها يمينًا، لتكون المقادير قابلة للمقارنة بنظرة. فالأرقام المحاذاة يسارًا بأطوال مختلفة لا يمكن مقارنتها بصريًا، وهذا يُبطل غرض وضعها في عمود.</p>
+        <p><strong>استخدم منازل عشرية متسقة</strong> داخل العمود، ولا أكثر مما يبرّره القياس. فمتوسطٌ من مقياس خماسي مُبلَّغ عنه بثلاث منازل يوحي بدقة لا تملكها الأداة.</p>
+        <p><strong>سمِّ الصفوف والأعمدة بالكلمات</strong>، لا بأسماء المتغيرات من برمجيتك. و<strong>ضع المادة التوضيحية في ملاحظة تحت الجدول</strong>، بما فيها حجم العيّنة ومعنى أي رموز وعُرف الدلالة. وتلك الملاحظة هي ما يجعل الجدول مقروءًا بلا النص المحيط، وهذا المعيار الذي يجب أن يستوفيه.</p>
+        <p>ونقطتان بنيويتان. <strong>اضبط عدد الأعمدة بما تحتاجه الحجة</strong>، لا بما أنتجته البرمجية: فمخرَج انحدار له عشرون عمودًا وجدولك يحتاج أربعة. وحيث يكون جدول عريضًا فعلًا، فإما أدره إلى الوضع الأفقي في صفحته أو انقله إلى ملحق، لأن جدولًا مصغَّرًا إلى حجم ست نقاط ليتسع بين الهوامش جدولٌ لن يقرأه أحد.</p>
+        <p>وأداتان عمليتان توفّران وقتًا كبيرًا. فـ<strong>مولّد الجداول</strong>، وثمة عدة منها على الإنترنت، يحوّل جدولًا حسابيًا أو كتلةً ملصوقة إلى ترميز منسَّق صحيحًا، وهذا يزيل رتابة كتابة مواصفات الأعمدة. و<strong>تصدير الجداول مباشرةً من برمجيتك الإحصائية</strong> إلى ترميز ممكن في معظم الحزم ويزيل أخطاء النسخ، وهي أشيع مصدر لرقم في أطروحة لا يطابق التحليل خلفه.</p>
+        <div class="note"><strong>ملاحظة:</strong> بعد بناء جدول، غطِّ النص المحيط واقرأ الجدول وحده. فإن لم تستطع معرفة ما الأرقام، ولا ما كانت العيّنة، ولا ما يعنيه رمز، فأضف سطر ملاحظة. وذلك الاختبار يستغرق عشر ثوانٍ وهو المعيار الذي يجب أن يستوفيه كل جدول.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="figures">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Importing and Sizing Figures</h2>
+        <p class="lead">A figure is an image file placed inside a float. Three decisions determine whether it looks right: the format, the size, and where the file came from.</p>
+        <table>
+          <tr><th>Decision</th><th>Rule</th></tr>
+          <tr><td>File format</td><td>Vector for charts and diagrams; raster only for photographs</td></tr>
+          <tr><td>Sizing</td><td>Set width as a fraction of the text width, never as a fixed measure</td></tr>
+          <tr><td>Resolution</td><td>Raster images at least 300 dots per inch at final print size</td></tr>
+          <tr><td>Fonts in figures</td><td>Match the document's body font size as closely as possible</td></tr>
+          <tr><td>Source</td><td>Export from the analysis software; never screenshot</td></tr>
+          <tr><td>Colour</td><td>Check the figure works in greyscale, since theses are printed</td></tr>
+        </table>
+        <p><strong>Vector formats</strong> store a chart as instructions rather than as pixels, so they scale to any size without blurring and print sharply. Every statistical package and every plotting library can export in a vector format, and using it instead of a screen capture is the single largest visual improvement available in a thesis.</p>
+        <p><strong>Sizing by fraction of the text width</strong> rather than in centimetres means that if the document's margins change, every figure adjusts. It also guarantees that no figure overflows into the margin, which is the most common figure error and which a fixed measure permits.</p>
+        <p><strong>Font size inside figures</strong> is the most frequently missed detail. A chart designed at screen size and then shrunk to half the text width has axis labels at four or five points, which is unreadable in print. The correct approach is to set the figure's dimensions in the plotting software to the size it will appear at, so the fonts are rendered at the right size rather than scaled down afterwards.</p>
+        <p>Two workflow points support this. <strong>Regenerate figures from a script</strong> rather than saving them by hand, so that a change to the data or the analysis propagates to the document; this is the figure equivalent of the reproducibility principle. And <strong>keep the figure files in a folder within the project</strong>, referenced by name, so the document remains portable and a missing image is immediately obvious rather than silently absent.</p>
+        <p>Finally, note that <strong>subfigures</strong>, meaning several related panels within one numbered figure, are the correct structure when you want to compare views of the same thing. They share one caption and one number, with panel labels, which is cleaner than three separate figures a reader must hold in mind together.</p>
+        <div class="note"><strong>Note:</strong> Print one page containing your smallest figure and read it at arm's length. Screen viewing is at a magnification that hides unreadable labels, and print is the medium your examiner will use.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>استيراد الأشكال وتحجيمها</h2>
+        <p class="lead">الشكل ملفُ صورة يُوضَع داخل عائم. وثلاثة قرارات تحدد هل يبدو صحيحًا: الصيغة، والحجم، ومن أين جاء الملف.</p>
+        <table>
+          <tr><th>القرار</th><th>القاعدة</th></tr>
+          <tr><td>صيغة الملف</td><td>متجهية للرسوم والمخططات؛ ونقطية للصور الفوتوغرافية فقط</td></tr>
+          <tr><td>التحجيم</td><td>اضبط العرض كسرًا من عرض النص، لا مقياسًا ثابتًا أبدًا</td></tr>
+          <tr><td>الدقة</td><td>الصور النقطية 300 نقطة بالبوصة على الأقل بحجم الطباعة النهائي</td></tr>
+          <tr><td>الخطوط داخل الأشكال</td><td>طابق حجم خط متن الوثيقة بأقرب ما يمكن</td></tr>
+          <tr><td>المصدر</td><td>صدّر من برمجية التحليل؛ ولا تلتقط الشاشة أبدًا</td></tr>
+          <tr><td>اللون</td><td>افحص أن الشكل يعمل بتدرج رمادي، فالأطروحات تُطبَع</td></tr>
+        </table>
+        <p>و<strong>الصيغ المتجهية</strong> تخزّن رسمًا تعليماتٍ لا بكسلات، فتتحجّم إلى أي حجم دون ضبابية وتُطبَع حادة. وكل حزمة إحصائية وكل مكتبة رسم تستطيع التصدير بصيغة متجهية، واستخدامها بدل لقطة شاشة أكبر تحسّن بصري مفرد متاح في أطروحة.</p>
+        <p>و<strong>التحجيم بكسر من عرض النص</strong> لا بالسنتيمترات يعني أنه إن تغيّرت هوامش الوثيقة، تكيّف كل شكل. وهو يضمن أيضًا ألا يفيض شكل إلى الهامش، وهذا أشيع خطأ أشكال ويسمح به المقياس الثابت.</p>
+        <p>و<strong>حجم الخط داخل الأشكال</strong> أكثر التفاصيل إغفالًا. فرسمٌ صُمِّم بحجم الشاشة ثم صُغِّر إلى نصف عرض النص تكون لصاقات محاوره بأربع أو خمس نقاط، وهذا غير مقروء في الطباعة. والمقاربة الصحيحة ضبطُ أبعاد الشكل في برمجية الرسم على الحجم الذي سيظهر به، لتُصيَّر الخطوط بالحجم الصحيح لا أن تُصغَّر بعدها.</p>
+        <p>ونقطتا سير عمل تسندان هذا. <strong>أعد توليد الأشكال من نص برمجي</strong> بدل حفظها يدويًا، لينتشر تغييرٌ في البيانات أو التحليل إلى الوثيقة؛ وهذا مكافئ مبدأ إعادة الإنتاج للأشكال. و<strong>احتفظ بملفات الأشكال في مجلد داخل المشروع</strong>، مُشارًا إليها بالاسم، لتبقى الوثيقة محمولة ولتكون صورةٌ مفقودة بيّنة فورًا لا غائبة بصمت.</p>
+        <p>وأخيرًا، لاحظ أن <strong>الأشكال الفرعية</strong>، أي عدة لوحات مترابطة داخل شكل مرقَّم واحد، هي البنية الصحيحة حين تريد مقارنة عروض للشيء نفسه. فهي تتشارك تعليقًا واحدًا ورقمًا واحدًا، بلصاقات لوحات، وهذا أنظف من ثلاثة أشكال منفصلة على القارئ حفظها معًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> اطبع صفحةً تحوي أصغر أشكالك واقرأها على مدّ الذراع. فالعرض على الشاشة بتكبير يخفي اللصاقات غير المقروءة، والطباعة هي الوسيط الذي سيستخدمه ممتحنك.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="crossref">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Cross-References and the Errors They Prevent</h2>
+        <p class="lead">Cross-referencing is the feature that makes a long document maintainable, and it is the feature most often left unused.</p>
+        <p>The mechanism is two commands. One <strong>assigns a label</strong> to a numbered item: a chapter, a section, a table, a figure, an equation. The other <strong>prints that item's number</strong> wherever you use it. Because the number is computed at compile time, inserting a new table before an existing one renumbers both the table and every reference to it, everywhere in the document, correctly.</p>
+        <p>Four practices make it reliable. <strong>Use a consistent naming scheme</strong> for labels, with a prefix indicating the type: a prefix for tables, another for figures, another for sections. This prevents collisions and makes labels self-documenting when you meet one months later.</p>
+        <p><strong>Name labels by content, not by number.</strong> A label meaning the sample profile table survives being renumbered; a label meaning table four does not, and becomes actively misleading once the numbering changes. <strong>Place the label immediately after the caption</strong>, never before, since the label records the number the caption assigned.</p>
+        <p>And <strong>refer by number, never by position</strong>. Text saying the table below or the following figure breaks the moment the float moves, and floats move.</p>
+        <p>Five errors recur and each has a fixed diagnosis. <strong>Question marks instead of numbers</strong> mean the document needs another compilation pass, since references require two. <strong>A number that is wrong by one</strong> almost always means a label placed before its caption. <strong>Duplicate labels</strong> produce a warning and a wrong number, and arise from copying a table and forgetting to change its label.</p>
+        <p><strong>A reference to a deleted item</strong> produces an undefined reference warning, which is why warnings should be read rather than ignored. And <strong>a figure appearing pages away from its discussion</strong> is normal float behaviour, and the response is to refer by number rather than to force placement.</p>
+        <p>One broader point closes this. Every one of these mechanisms exists to remove manual bookkeeping from a document that will be revised twenty times. A thesis with hand-typed numbers is correct on the day it is typed and wrong from the next edit onwards, and the errors are invisible to the author because the author knows what the number was supposed to be. Using the automatic mechanisms costs nothing at the time and removes an entire category of error from the final document.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> tables and figures live in floats, which move because they cannot be split, so refer to them by number rather than by position. Table captions go above and figure captions below, and the label must follow the caption. Design tables with three horizontal rules and no vertical ones, align numbers, use consistent decimals, and add a note that makes the table readable alone. Export figures in vector format at the size they will appear, sized as a fraction of the text width. Label everything by content and reference automatically, because a hand-typed number is correct once and wrong thereafter.</div>
+        <div class="refs"><ul>
+          <li>Overleaf, <a href="https://www.overleaf.com/learn" target="_blank" rel="noopener">LaTeX Documentation and Tutorials</a>.</li>
+          <li>American Psychological Association, <a href="https://apastyle.apa.org/products/publication-manual-7th-edition" target="_blank" rel="noopener">Publication Manual, Seventh Edition</a>.</li>
+          <li>Sekaran &amp; Bougie, <a href="https://www.wiley.com/en-us/Research+Methods+For+Business%3A+A+Skill+Building+Approach%2C+8th+Edition-p-9781119561224" target="_blank" rel="noopener">Research Methods for Business: A Skill-Building Approach</a>.</li>
+          <li>Saunders, Lewis &amp; Thornhill, <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">Research Methods for Business Students</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الإحالات والأخطاء التي تمنعها</h2>
+        <p class="lead">الإحالة المتقاطعة هي الميزة التي تجعل وثيقةً طويلة قابلة للصيانة، وهي الميزة الأكثر تركًا دون استعمال.</p>
+        <p>والآلية أمران. أحدهما <strong>يُسند وسمًا</strong> إلى عنصر مرقَّم: فصل أو قسم أو جدول أو شكل أو معادلة. والآخر <strong>يطبع رقم ذلك العنصر</strong> حيثما استخدمته. ولأن الرقم يُحسَب عند الترجمة، فإدراجُ جدول جديد قبل جدول قائم يعيد ترقيم الجدول وكل إحالة إليه، في كل موضع من الوثيقة، صحيحًا.</p>
+        <p>وأربع ممارسات تجعلها موثوقة. <strong>استخدم مخطط تسمية متسقًا</strong> للوسوم، ببادئة تشير إلى النوع: بادئةٌ للجداول وأخرى للأشكال وأخرى للأقسام. وهذا يمنع التصادمات ويجعل الوسوم موثِّقةً لنفسها حين تصادف واحدًا بعد أشهر.</p>
+        <p><strong>وسمِّ الوسوم بالمحتوى لا بالرقم.</strong> فوسمٌ يعني «جدول ملف العيّنة» ينجو من إعادة الترقيم؛ ووسمٌ يعني «الجدول أربعة» لا ينجو، ويصير مضللًا فعليًا متى تغيّر الترقيم. و<strong>ضع الوسم مباشرةً بعد التعليق</strong>، لا قبله أبدًا، لأن الوسم يسجّل الرقم الذي أسنده التعليق.</p>
+        <p>و<strong>أشِر بالرقم لا بالموضع أبدًا</strong>. فنصٌّ يقول «الجدول أدناه» أو «الشكل التالي» ينكسر لحظة تحرك العائم، والعائمات تتحرك.</p>
+        <p>وخمسة أخطاء تتكرر ولكلٍّ تشخيصٌ ثابت. <strong>علامات الاستفهام بدل الأرقام</strong> تعني أن الوثيقة تحتاج مرور ترجمة آخر، فالإحالات تتطلب اثنين. و<strong>رقمٌ خاطئ بواحد</strong> يعني شبه دائمًا وسمًا وُضع قبل تعليقه. و<strong>الوسوم المكررة</strong> تُنتج تحذيرًا ورقمًا خاطئًا، وتنشأ من نسخ جدول ونسيان تغيير وسمه.</p>
+        <p>و<strong>إحالةٌ إلى عنصر محذوف</strong> تُنتج تحذير إحالة غير معرَّفة، ولهذا ينبغي قراءة التحذيرات لا تجاهلها. و<strong>ظهور شكل على بُعد صفحات من مناقشته</strong> سلوكُ عائم طبيعي، والاستجابة الإشارةُ بالرقم لا فرضُ الموضع.</p>
+        <p>ونقطة أوسع تختم هذا. فكل آلية من هذه موجودة لإزالة مسك الدفاتر اليدوي من وثيقة ستُنقَّح عشرين مرة. والأطروحة بأرقام مكتوبة يدويًا صحيحةٌ يوم كتابتها وخاطئةٌ من التحرير التالي فصاعدًا، والأخطاء غير مرئية للمؤلف لأن المؤلف يعرف ما كان الرقم يُفترَض أن يكون. واستخدام الآليات التلقائية لا يكلّف شيئًا حينها ويزيل فئة أخطاء كاملة من الوثيقة النهائية.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> الجداول والأشكال تسكن في عائمات، وهي تتحرك لأنها لا تُقسَّم، فأشِر إليها بالرقم لا بالموضع. وتعليقات الجداول فوق وتعليقات الأشكال تحت، والوسم يجب أن يتبع التعليق. وصمّم الجداول بثلاثة خطوط أفقية ولا رأسية، وحاذِ الأرقام، واستخدم منازل عشرية متسقة، وأضف ملاحظةً تجعل الجدول مقروءًا وحده. وصدّر الأشكال بصيغة متجهية بالحجم الذي ستظهر به، محجَّمةً كسرًا من عرض النص. ووسم كل شيء بالمحتوى وأحِل تلقائيًا، لأن رقمًا مكتوبًا يدويًا صحيحٌ مرةً وخاطئٌ بعدها.</div>
+        <div class="refs"><ul>
+          <li>أوفرليف، <a href="https://www.overleaf.com/learn" target="_blank" rel="noopener">توثيق ودروس لاتكس</a>.</li>
+          <li>جمعية علم النفس الأمريكية، <a href="https://apastyle.apa.org/products/publication-manual-7th-edition" target="_blank" rel="noopener">دليل النشر، الطبعة السابعة</a>.</li>
+          <li>سيكاران وبوجي، <a href="https://www.wiley.com/en-us/Research+Methods+For+Business%3A+A+Skill+Building+Approach%2C+8th+Edition-p-9781119561224" target="_blank" rel="noopener">مناهج البحث للأعمال: مقاربة بناء المهارات</a>.</li>
+          <li>سوندرز ولويس وثورنهيل، <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">مناهج البحث لطلاب الأعمال</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="craft-latex.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">LaTeX and Overleaf</span><span data-lang="ar">لاتكس وأوفرليف</span></a><a href="craft-bibliometrics.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Bibliometric Analysis</span><span data-lang="ar">التحليل الببليومتري</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="الجداول والأشكال والإحالات";
+var TITLE_EN="Tables, Figures and Cross-References";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Working with VOSviewer · Saif Alghamdi</title>
+<meta name="description" content="Working with VOSviewer: the four-step workflow, data export requirements, the three views, thesaurus files for cleaning, and what to report.">
+<link rel="canonical" href="https://saif3li-phd.github.io/phd/craft-vosviewer.html">
+<meta name="author" content="Saif Ali Alghamdi">
+<meta name="theme-color" content="#2D2D2D">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saif Ali Alghamdi">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:url" content="https://saif3li-phd.github.io/phd/craft-vosviewer.html">
+<meta property="og:title" content="Working with VOSviewer · Saif Alghamdi">
+<meta property="og:description" content="Working with VOSviewer: the four-step workflow, data export requirements, the three views, thesaurus files for cleaning, and what to report.">
+<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Working with VOSviewer · Saif Alghamdi">
+<meta name="twitter:description" content="Working with VOSviewer: the four-step workflow, data export requirements, the three views, thesaurus files for cleaning, and what to report.">
+<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Working with VOSviewer · Saif Alghamdi", "description": "Working with VOSviewer: the four-step workflow, data export requirements, the three views, thesaurus files for cleaning, and what to report.", "url": "https://saif3li-phd.github.io/phd/craft-vosviewer.html", "inLanguage": "en", "author": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "publisher": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "image": "https://saif3li-phd.github.io/assets/og.jpg", "isPartOf": {"@type": "WebSite", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}}
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="0009a1c6-b533-4e1e-9dbc-8b20dbe29af9"></script>
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#foundation-of-business-research"><span data-lang="en">Foundation of Business Research</span><span data-lang="ar">أسس بحوث الأعمال</span></a><i>&rsaquo;</i><span data-lang="en">Craft and tools</span><span data-lang="ar">الحرفة والأدوات</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">CRAFT AND TOOLS · PhD</span><span data-lang="ar">الحرفة والأدوات · دكتوراه</span></div>
+    <h1><span data-lang="en">Working with VOSviewer</span><span data-lang="ar">العمل بفوس فيور</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Craft and tools</span><span data-lang="ar">الحرفة والأدوات</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">10 min</span><span data-lang="ar">١٠ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذا الموضوع</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="workflow"><span data-lang="en">The workflow</span><span data-lang="ar">سير العمل</span></a></li><li><a data-id="views"><span data-lang="en">Three views</span><span data-lang="ar">ثلاثة عروض</span></a></li><li><a data-id="thesaurus"><span data-lang="en">Cleaning</span><span data-lang="ar">التنظيف</span></a></li><li><a data-id="reporting"><span data-lang="en">Reporting</span><span data-lang="ar">الإبلاغ</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Producing bibliometric maps with VOSviewer</div>
+          <div><span>Covers:</span> The workflow, data formats, the three views, thesaurus files, and reporting</div>
+          <div><span>Use:</span> Running a mapping analysis you can reproduce and defend</div>
+          <div><span>Level:</span> Doctoral business research</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">VOSviewer is free software for building and viewing bibliometric networks. It is the most widely used tool for this in business and management research, it runs on every platform, and a working map takes about twenty minutes once you have the data.</p>
+        <p>Its scope is worth stating so expectations are right. It <strong>builds and visualises networks</strong> from bibliographic data, and it does that well. It does not perform performance analysis, statistical testing, or text analysis beyond term extraction, and it does not clean your data for you. For counting indicators and time series you need a different tool, and many researchers use a scripting package alongside it for exactly that reason.</p>
+        <p>The workflow is short: export records from a citation index, create a map by choosing a data type and an analysis, set thresholds, and interpret. Everything difficult is in the first and last steps, which are the export you got wrong and the interpretation you have not done, and both are matters of research design rather than of software.</p>
+        <p>This framework covers the workflow step by step, the data formats and their differences, the three views and what each shows, thesaurus files for cleaning, the settings that matter, and what to report so the analysis is reproducible. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Software versions change menus and defaults. Treat the sequences here as the shape of the workflow rather than as exact instructions, and check the current documentation for the specific option names in your version.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> إنتاج خرائط ببليومترية بفوس فيور</div>
+          <div><span>يغطّي:</span> سير العمل، وصيغ البيانات، والعروض الثلاثة، وملفات المكنز، والإبلاغ</div>
+          <div><span>الاستخدام:</span> تشغيل تحليل رسم تستطيع إعادة إنتاجه والدفاع عنه</div>
+          <div><span>المستوى:</span> بحوث الأعمال لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">فوس فيور برمجية مجانية لبناء الشبكات الببليومترية وعرضها. وهي الأداة الأوسع استعمالًا لهذا في بحوث الأعمال والإدارة، وتعمل على كل منصة، وخريطةٌ عاملة تستغرق نحو عشرين دقيقة متى ملكت البيانات.</p>
+        <p>ونطاقها يستحق الذكر لتكون التوقعات صحيحة. فهي <strong>تبني الشبكات وتصوّرها</strong> من بيانات ببليوغرافية، وتفعل ذلك جيدًا. ولا تُجري تحليل أداء ولا اختبارًا إحصائيًا ولا تحليل نصوص وراء استخراج المصطلحات، ولا تنظّف بياناتك نيابةً عنك. ولمؤشرات العدّ والسلاسل الزمنية تحتاج أداةً أخرى، وباحثون كثيرون يستخدمون حزمة برمجة إلى جانبها لذلك السبب بالضبط.</p>
+        <p>وسير العمل قصير: صدّر سجلات من فهرس استشهاد، وأنشئ خريطة باختيار نوع بيانات وتحليل، واضبط العتبات، وفسّر. وكل ما هو صعب في الخطوتين الأولى والأخيرة، وهما التصدير الذي أخطأته والتفسير الذي لم تُنجزه، وكلتاهما مسألتا تصميم بحثي لا مسألتا برمجية.</p>
+        <p>ويغطي هذا الإطار سير العمل خطوةً خطوة، وصيغ البيانات وفروقها، والعروض الثلاثة وما يُظهره كلٌّ، وملفات المكنز للتنظيف، والإعدادات التي تهم، وما يُبلَّغ به ليكون التحليل قابلًا لإعادة الإنتاج. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> إصدارات البرمجيات تغيّر القوائم والافتراضات. عامل التسلسلات هنا شكلًا لسير العمل لا تعليمات دقيقة، وافحص التوثيق الحالي لأسماء الخيارات المحددة في إصدارك.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="workflow">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Workflow</h2>
+        <p class="lead">Four steps produce a map. The first determines what is possible and the last determines whether it means anything.</p>
+        <svg viewBox="0 0 700 175" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="118.2" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">Export</text><text x="118.2" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">records with cited</text><text x="118.2" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">references, in a</text><text x="118.2" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">supported format</text><line x1="188.5" y1="78.0" x2="199.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M202.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="204.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="272.8" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">Create map</text><text x="272.8" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">choose the data</text><text x="272.8" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">type, the analysis,</text><text x="272.8" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">and the counting</text><line x1="343.0" y1="78.0" x2="354.0" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M357.0 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="359.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="427.2" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">Set thresholds</text><text x="427.2" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">minimum</text><text x="427.2" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">occurrences and how</text><text x="427.2" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">many items to keep</text><line x1="497.5" y1="78.0" x2="508.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M511.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="513.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="581.8" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">Clean and read</text><text x="581.8" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">apply a thesaurus,</text><text x="581.8" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">then interpret the</text><text x="581.8" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">clusters</text><text x="350.0" y="158.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">four steps; the last one is where the analysis actually happens</text></svg>
+        <p><strong>Export.</strong> The software reads the export formats of the major citation indexes directly, and this is where most first attempts fail. The critical requirement is that <strong>the export must include cited references</strong>, which is usually an option you have to select rather than a default. Without them, citation-based analyses are unavailable and only co-word and co-authorship will run.</p>
+        <p>Two practical constraints apply. Indexes limit how many records can be exported at once, so a corpus of several thousand comes in batches, and the software accepts multiple files as one dataset. And the export must be the <strong>full record</strong> format rather than a brief one, since brief exports omit keywords and abstracts.</p>
+        <p><strong>Create the map.</strong> You choose three things in sequence. The <strong>data type</strong>, which is bibliographic data files for the standard workflow. The <strong>analysis</strong>, which is one of the four relations: co-citation, bibliographic coupling, co-word, or co-authorship. And the <strong>unit of analysis</strong>, meaning documents, sources, authors, organizations, countries, or terms.</p>
+        <p>Then the <strong>counting method</strong>, which is a choice most people accept as a default without knowing what it does. <strong>Full counting</strong> gives each co-occurrence equal weight. <strong>Fractional counting</strong> divides the weight of a document among its links, which reduces the influence of documents with very long reference lists or many authors. Fractional counting is generally preferable for co-authorship and for corpora containing review articles, and the choice must be reported either way.</p>
+        <p><strong>Set thresholds.</strong> The software asks for a minimum number of occurrences or citations and then shows how many items meet it, and you choose how many of those to keep. Both numbers must be reported, and both should be chosen from the distribution rather than accepted as defaults.</p>
+        <p><strong>Clean and read.</strong> Apply a thesaurus file, regenerate, and then do the interpretive work. This last step is the analysis; the first three are data preparation.</p>
+        <div class="note"><strong>Note:</strong> Save the map file, not just the image. The map file preserves the network and lets you regenerate views, change settings, and reproduce the analysis, while an exported image preserves nothing.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>سير العمل</h2>
+        <p class="lead">أربع خطوات تُنتج خريطة. والأولى تحدد ما هو ممكن والأخيرة تحدد هل يعني شيئًا.</p>
+        <svg viewBox="0 0 700 175" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="118.2" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">التصدير</text><text x="118.2" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">سجلات بالمراجع</text><text x="118.2" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">المستشهَد بها،</text><text x="118.2" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">بصيغة مدعومة</text><line x1="188.5" y1="78.0" x2="199.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M202.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="204.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="272.8" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">إنشاء خريطة</text><text x="272.8" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">اختر نوع البيانات</text><text x="272.8" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">والتحليل ومنهج</text><text x="272.8" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">العدّ</text><line x1="343.0" y1="78.0" x2="354.0" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M357.0 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="359.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="427.2" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">ضبط العتبات</text><text x="427.2" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">الحد الأدنى</text><text x="427.2" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">للتكرار وكم عنصرًا</text><text x="427.2" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">يُبقى</text><line x1="497.5" y1="78.0" x2="508.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M511.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="513.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="581.8" y="63.5" text-anchor="middle" font-size="11.0" font-weight="700" fill="#FFFFFF">التنظيف والقراءة</text><text x="581.8" y="77.5" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">طبّق مكنزًا، ثم</text><text x="581.8" y="90.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">فسّر العناقيد</text><text x="350.0" y="158.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">أربع خطوات؛ والأخيرة حيث يقع التحليل فعلًا</text></svg>
+        <p><strong>التصدير.</strong> البرمجية تقرأ صيغ تصدير فهارس الاستشهاد الكبرى مباشرةً، وهنا تخفق معظم المحاولات الأولى. والمتطلب الحاسم أن <strong>يشمل التصدير المراجع المستشهَد بها</strong>، وهذا عادةً خيارٌ عليك انتقاؤه لا افتراضي. وبدونها تكون التحليلات القائمة على الاستشهاد غير متاحة ولن يعمل إلا الكلمات المشتركة والتأليف المشترك.</p>
+        <p>وقيدان عمليان ينطبقان. فالفهارس تحدّ كم سجلًا يمكن تصديره دفعةً، فمدونةٌ من عدة آلاف تأتي دفعات، والبرمجية تقبل ملفات متعددة مجموعةَ بيانات واحدة. والتصدير يجب أن يكون صيغة <strong>السجل الكامل</strong> لا موجزةً، لأن التصديرات الموجزة تُغفل الكلمات المفتاحية والملخصات.</p>
+        <p><strong>إنشاء الخريطة.</strong> تختار ثلاثة أشياء بالتتابع. <strong>نوع البيانات</strong>، وهو ملفات بيانات ببليوغرافية لسير العمل المعياري. و<strong>التحليل</strong>، وهو واحدة من العلاقات الأربع: الاستشهاد المشترك أو الاقتران الببليوغرافي أو الكلمات المشتركة أو التأليف المشترك. و<strong>وحدة التحليل</strong>، أي وثائق أو مصادر أو مؤلفين أو منظمات أو بلدان أو مصطلحات.</p>
+        <p>ثم <strong>منهج العدّ</strong>، وهو خيار يقبله معظم الناس افتراضيًا دون معرفة ما يفعله. فـ<strong>العدّ الكامل</strong> يعطي كل تزامن وزنًا متساويًا. و<strong>العدّ الكسري</strong> يقسّم وزن وثيقة على روابطها، وهذا يخفّض تأثير الوثائق ذات قوائم المراجع الطويلة جدًا أو المؤلفين الكثيرين. والعدّ الكسري مفضَّل عمومًا للتأليف المشترك وللمدونات التي تحوي مقالات مراجعة، والخيار يجب الإبلاغ به في الحالتين.</p>
+        <p><strong>ضبط العتبات.</strong> تسأل البرمجية عن حد أدنى لعدد التكرارات أو الاستشهادات ثم تُظهر كم عنصرًا يستوفيه، وتختار أنت كم منها تُبقي. والرقمان يجب الإبلاغ بهما، وكلاهما ينبغي اختياره من التوزيع لا قبوله افتراضيًا.</p>
+        <p><strong>التنظيف والقراءة.</strong> طبّق ملف مكنز، وأعد التوليد، ثم أنجز العمل التفسيري. وهذه الخطوة الأخيرة هي التحليل؛ والثلاث الأولى إعدادُ بيانات.</p>
+        <div class="note"><strong>ملاحظة:</strong> احفظ ملف الخريطة لا الصورة فقط. فملف الخريطة يحفظ الشبكة ويتيح لك إعادة توليد العروض وتغيير الإعدادات وإعادة إنتاج التحليل، والصورةُ المصدَّرة لا تحفظ شيئًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="views">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>The Three Views</h2>
+        <p class="lead">One map, three ways of looking at it. Each answers a different question, and one of them is consistently underused.</p>
+        <svg viewBox="0 0 700 204" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">1</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Network view</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">nodes, edges, and clusters by colour: the structure</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">2</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Overlay view</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">nodes coloured by a variable, usually average year</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">3</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Density view</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">a heat map of where items concentrate</text><text x="350.0" y="193.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">three views of one map; the overlay is the most underused and often the most useful</text></svg>
+        <p><strong>The network view</strong> shows nodes coloured by cluster, sized by frequency, and positioned so that connected items sit close together. This is the standard image reproduced in papers and it answers the question of what the field's structure is. Its limitation is that with more than about a hundred labelled items it becomes unreadable, which is why threshold choice matters as much for communication as for analysis.</p>
+        <p><strong>The overlay view</strong> colours nodes by a variable, most usefully the average publication year of the documents in which each item appears. This produces a picture of the field's development: older parts of the structure in one colour, emerging parts in another. For a doctoral literature review this is frequently the single most useful output of the entire method, because it identifies which parts of a field are established and which are current, and that distinction directly supports a gap claim.</p>
+        <p>The overlay can also be driven by other variables, including average citation counts, which shows which parts of the structure are highly cited and which are not, and which is a different question from which parts are recent.</p>
+        <p><strong>The density view</strong> replaces the nodes with a heat map showing where items concentrate. It is useful for a quick view of a large map where labels are unreadable, and it hides the individual items, so it is a supplement rather than a substitute.</p>
+        <p>Two practical points about producing images for a thesis. <strong>Export at high resolution</strong> and check that labels are legible at print size, since the default screen export is usually too small. And <strong>consider showing two views of the same map</strong>, typically network and overlay, because they answer different questions and together they make an argument that either alone does not.</p>
+        <p>A note on colour. Cluster colours are assigned arbitrarily and carry no meaning across maps, so cluster one in one analysis has no relationship to cluster one in another. Say this in the caption if there is any chance of confusion, and check that the colours remain distinguishable in greyscale for the printed version.</p>
+        <div class="note"><strong>Note:</strong> Produce the overlay view even if you do not use it. Two minutes of looking at a field coloured by year frequently changes what you think the interesting question is, and that is worth the two minutes regardless of whether the image reaches the thesis.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>العروض الثلاثة</h2>
+        <p class="lead">خريطة واحدة، وثلاث طرق للنظر إليها. وكلٌّ تجيب سؤالًا مختلفًا، وواحدةٌ منها قليلة الاستعمال بثبات.</p>
+        <svg viewBox="0 0 700 204" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">١</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">عرض الشبكة</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">عقد وحواف وعناقيد باللون: البنية</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٢</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">العرض الطبقي</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">عقد ملوَّنة بمتغير، متوسط السنة عادةً</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٣</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">عرض الكثافة</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">خريطة حرارية لأين تتركّز العناصر</text><text x="350.0" y="193.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">ثلاثة عروض لخريطة واحدة؛ والطبقي أقلها استعمالًا وأنفعها غالبًا</text></svg>
+        <p>و<strong>عرض الشبكة</strong> يُظهر العقد ملوَّنة بالعنقود، ومحجَّمة بالتكرار، وموضوعةً بحيث تجلس العناصر المتصلة متقاربة. وهذه الصورة المعيارية المنقولة في الأوراق وهي تجيب سؤال ما بنية الحقل. وحدّها أنه بأكثر من نحو مئة عنصر مُسمّى تصير غير مقروءة، ولهذا يهم اختيار العتبة للتواصل بقدر ما يهم للتحليل.</p>
+        <p>و<strong>العرض الطبقي</strong> يلوّن العقد بمتغير، وأنفعه متوسط سنة نشر الوثائق التي يظهر فيها كل عنصر. وهذا يُنتج صورةً لتطور الحقل: أجزاء البنية الأقدم بلون، والناشئة بآخر. ولمراجعة أدبيات في الدكتوراه يكون هذا كثيرًا أنفع مخرَج مفرد للمنهج كله، لأنه يحدد أي أجزاء الحقل راسخة وأيها حالية، وذلك التمييز يسند مباشرةً ادّعاء فجوة.</p>
+        <p>والعرض الطبقي يمكن أن يقوده متغيرات أخرى أيضًا، بما فيها متوسط أعداد الاستشهاد، وهذا يُظهر أي أجزاء البنية كثيرة الاستشهاد وأيها ليست كذلك، وهذا سؤال غير سؤال أي الأجزاء حديثة.</p>
+        <p>و<strong>عرض الكثافة</strong> يستبدل بالعقد خريطةً حرارية تُظهر أين تتركّز العناصر. وهو نافع لعرض سريع لخريطة كبيرة تكون اللصاقات فيها غير مقروءة، وهو يخفي العناصر المفردة، فهو مكمّل لا بديل.</p>
+        <p>ونقطتان عمليتان عن إنتاج الصور لأطروحة. <strong>صدّر بدقة عالية</strong> وافحص أن اللصاقات مقروءة بحجم الطباعة، فالتصدير الافتراضي للشاشة صغير جدًا عادةً. و<strong>فكّر في عرض عرضين للخريطة نفسها</strong>، شبكةً وطبقيًا عادةً، لأنهما يجيبان سؤالين مختلفين ومعًا يصنعان حجةً لا يصنعها أيٌّ منهما وحده.</p>
+        <p>وملاحظة عن اللون. ألوان العناقيد تُسنَد اعتباطيًا ولا تحمل معنى عبر الخرائط، فالعنقود الأول في تحليل لا علاقة له بالعنقود الأول في آخر. قُل هذا في التعليق إن كان ثمة احتمال التباس، وافحص أن الألوان تبقى متمايزة بتدرج رمادي للنسخة المطبوعة.</p>
+        <div class="note"><strong>ملاحظة:</strong> أنتج العرض الطبقي حتى لو لم تستخدمه. فدقيقتان من النظر إلى حقل ملوَّن بالسنة كثيرًا ما تغيّران ما تظنه السؤال المثير، وهذا يستحق الدقيقتين بصرف النظر عن هل تصل الصورة الأطروحة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="thesaurus">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Thesaurus Files and Cleaning</h2>
+        <p class="lead">Cleaning is what separates a meaningful map from a picture of your data's inconsistencies. The mechanism is a thesaurus file, and building one is not optional.</p>
+        <table>
+          <tr><th>Problem</th><th>Example</th><th>Effect if uncleaned</th></tr>
+          <tr><td>Keyword synonyms</td><td>SME, SMEs, small and medium enterprise</td><td>One theme split across three nodes</td></tr>
+          <tr><td>Singular and plural</td><td>capability, capabilities</td><td>Both below threshold; the theme disappears</td></tr>
+          <tr><td>Spelling variants</td><td>organisation, organization</td><td>The field's central term fragmented</td></tr>
+          <tr><td>Author name forms</td><td>Smith J, Smith John, J Smith</td><td>One researcher's output split three ways</td></tr>
+          <tr><td>Institution variants</td><td>renamed or merged organizations</td><td>Misleading institutional rankings</td></tr>
+          <tr><td>Generic terms</td><td>study, research, paper, analysis</td><td>Meaningless hubs dominating the map</td></tr>
+        </table>
+        <p>A <strong>thesaurus file</strong> is a two-column list: the variant, and the label it should be replaced with. Leaving the replacement blank removes the item entirely, which is how you drop generic terms. The file is loaded when the map is created, and the same file can be reused across analyses of the same corpus.</p>
+        <p>Building one is a bounded task. Create the map without a thesaurus, export the item list, sort it, and work down it merging variants and marking terms for removal. For a corpus of a few thousand records this takes two to four hours and it is the highest-value time in the whole analysis, because every result downstream depends on it.</p>
+        <p>Three specific decisions arise. <strong>Generic terms</strong> such as study, research, results, and analysis appear in almost every record and produce large central nodes that mean nothing. Remove them, and say in the reporting that you did.</p>
+        <p><strong>Method terms</strong> such as survey, case study, and regression are a judgement call: in a map of a field's topics they are noise, and in a map intended to show methodological structure they are the point. Decide according to your question and state the decision.</p>
+        <p>And <strong>the unit of the concept</strong>: whether to merge a broad term with its narrower variants depends on whether the distinction matters for your question. Merging digital transformation with digitalisation may be right for a broad map and wrong for a study distinguishing them, and this is exactly the kind of decision that must be reported rather than made silently.</p>
+        <div class="note"><strong>Note:</strong> Keep the thesaurus file with your analysis files and include it in an appendix or a repository. It records the cleaning decisions, without which the analysis is not reproducible, and it is the item most often omitted from reporting.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>ملفات المكنز والتنظيف</h2>
+        <p class="lead">التنظيف هو ما يفصل خريطةً ذات معنى عن صورةٍ لعدم اتساق بياناتك. والآلية ملفُ مكنز، وبناؤه ليس اختياريًا.</p>
+        <table>
+          <tr><th>المشكلة</th><th>مثال</th><th>الأثر إن لم يُنظَّف</th></tr>
+          <tr><td>مترادفات الكلمات المفتاحية</td><td>المنشأة الصغيرة والمتوسطة ومختصرها وجمعها</td><td>موضوع واحد مقسَّم على ثلاث عقد</td></tr>
+          <tr><td>المفرد والجمع</td><td>قدرة، قدرات</td><td>كلاهما تحت العتبة؛ فيختفي الموضوع</td></tr>
+          <tr><td>تنويعات الهجاء</td><td>organisation وorganization</td><td>مصطلح الحقل المركزي مجزَّأ</td></tr>
+          <tr><td>صيغ أسماء المؤلفين</td><td>ثلاث صيغ للاسم نفسه</td><td>إنتاج باحث واحد مقسَّم ثلاث مرات</td></tr>
+          <tr><td>تنويعات المؤسسات</td><td>منظمات أُعيدت تسميتها أو اندمجت</td><td>ترتيبات مؤسسية مضللة</td></tr>
+          <tr><td>المصطلحات العامة</td><td>دراسة، بحث، ورقة، تحليل</td><td>محاور بلا معنى تهيمن على الخريطة</td></tr>
+        </table>
+        <p>و<strong>ملف المكنز</strong> قائمةٌ بعمودين: التنويعة، واللصاقة التي ينبغي استبدالها بها. وتركُ الاستبدال فارغًا يزيل العنصر كليًا، وهكذا تُسقط المصطلحات العامة. ويُحمَّل الملف عند إنشاء الخريطة، ويمكن إعادة استخدام الملف نفسه عبر تحليلات المدونة نفسها.</p>
+        <p>وبناؤه مهمةٌ محدودة. أنشئ الخريطة بلا مكنز، وصدّر قائمة العناصر، وافرزها، واعمل عليها نازلًا دامجًا التنويعات ومعلّمًا المصطلحات للإزالة. ولمدونة من بضعة آلاف سجل يستغرق هذا ساعتين إلى أربع وهو أعلى وقت قيمةً في التحليل كله، لأن كل نتيجة في المصبّ تعتمد عليه.</p>
+        <p>وثلاثة قرارات محددة تنشأ. <strong>المصطلحات العامة</strong> مثل «دراسة» و«بحث» و«نتائج» و«تحليل» تظهر في كل سجل تقريبًا وتُنتج عقدًا مركزية كبيرة لا تعني شيئًا. أزلها، وقُل في الإبلاغ أنك فعلت.</p>
+        <p>و<strong>مصطلحات المنهج</strong> مثل «مسح» و«دراسة حالة» و«انحدار» حكمٌ: ففي خريطة موضوعات حقل تكون ضوضاءً، وفي خريطة يُقصَد بها إظهار البنية المنهجية تكون هي المقصود. قرّر بحسب سؤالك واذكر القرار.</p>
+        <p>و<strong>وحدة المفهوم</strong>: فهل تدمج مصطلحًا عامًا بتنويعاته الأضيق يعتمد على هل يهم التمييز لسؤالك. فدمجُ «التحول الرقمي» بـ«الرقمنة» قد يصح لخريطة عريضة ويخطئ لدراسة تميّز بينهما، وهذا بالضبط نوع القرار الذي يجب الإبلاغ به لا اتخاذه صمتًا.</p>
+        <div class="note"><strong>ملاحظة:</strong> احتفظ بملف المكنز مع ملفات تحليلك وأدرجه في ملحق أو مستودع. فهو يسجّل قرارات التنظيف، وبدونها لا يكون التحليل قابلًا لإعادة الإنتاج، وهو العنصر الأكثر إغفالًا من الإبلاغ.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="reporting">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Reporting and Common Problems</h2>
+        <p class="lead">A mapping analysis is reproducible only if the parameters are reported. Eight items cover it and they take a paragraph.</p>
+        <p><strong>The corpus:</strong> database, search string, fields, filters, date of extraction, and the record count. <strong>The export:</strong> format and whether cited references were included. <strong>The software:</strong> name and version. <strong>The analysis:</strong> which relation, which unit of analysis, and the counting method.</p>
+        <p><strong>The thresholds:</strong> minimum occurrences or citations, how many items met the threshold, and how many were retained. <strong>The cleaning:</strong> that a thesaurus was used, how many merges it contained, and what categories of term were removed. <strong>The clustering:</strong> the resolution and any minimum cluster size. And <strong>the interpretation basis:</strong> which items you read in order to name each cluster.</p>
+        <p>That last item is the one that distinguishes a research contribution from a software output, and it is almost never reported. Saying that each cluster was named after reading its five most central documents tells a reader that interpretation happened, and its absence tells them it may not have.</p>
+        <p>Five problems recur in practice and each has a fixed cause. <strong>An empty or tiny map</strong> means the threshold is too high or the export lacked cited references; check the export first. <strong>An unreadable map</strong> means too many items; raise the threshold rather than shrinking the image.</p>
+        <p><strong>One enormous central node</strong> is almost always a generic term or an unmerged variant, and the thesaurus fixes it. <strong>Clusters that make no sense</strong> usually mean the corpus is too heterogeneous, because a search string that caught two unrelated literatures produces two unrelated clusters, which is a corpus problem rather than an analysis problem.</p>
+        <p>And <strong>results that change between runs</strong> are normal for the layout, which is partly stochastic, and are not normal for the clustering; if cluster membership changes substantially, the structure is unstable and that should be reported rather than resolved by picking a run.</p>
+        <p>A closing point about the tool's place in a thesis. VOSviewer produces a picture in twenty minutes, and that speed is exactly why it is misused: a chapter can be filled with maps without any of the interpretive work that makes them mean something. The discipline is to treat each map as a question rather than an answer, to read the central items in each cluster, and to write the prose that says what the structure is and what follows from it for your study. The software does the drawing; the contribution is entirely in the reading.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> VOSviewer builds and visualises bibliometric networks and does nothing else, so pair it with another tool for counts. Export full records including cited references, choose the relation and unit deliberately, and report the counting method. Build a thesaurus file before trusting any result, since unmerged variants and generic terms produce a map of your data's inconsistencies. Use all three views, especially the overlay by year. Report corpus, export, software, analysis, thresholds, cleaning, clustering, and which documents you read to name each cluster.</div>
+        <div class="refs"><ul>
+          <li>VOSviewer, <a href="https://www.vosviewer.com/" target="_blank" rel="noopener">Software for Constructing and Visualizing Bibliometric Networks</a>.</li>
+          <li>Aria &amp; Cuccurullo, <a href="https://www.bibliometrix.org/" target="_blank" rel="noopener">Bibliometrix: An R Tool for Comprehensive Science Mapping</a>.</li>
+          <li>Elsevier, <a href="https://www.elsevier.com/products/scopus" target="_blank" rel="noopener">Scopus Abstract and Citation Database</a>.</li>
+          <li>Saunders, Lewis &amp; Thornhill, <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">Research Methods for Business Students</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>الإبلاغ والمشكلات الشائعة</h2>
+        <p class="lead">تحليل الرسم قابل لإعادة الإنتاج فقط إن أُبلغ بالمعاملات. وثمانية بنود تغطيه وتستغرق فقرة.</p>
+        <p><strong>المدونة:</strong> القاعدة وسلسلة البحث والحقول والمرشِّحات وتاريخ الاستخراج وعدد السجلات. و<strong>التصدير:</strong> الصيغة وهل شملت المراجع المستشهَد بها. و<strong>البرمجية:</strong> الاسم والإصدار. و<strong>التحليل:</strong> أي علاقة وأي وحدة تحليل ومنهج العدّ.</p>
+        <p>و<strong>العتبات:</strong> الحد الأدنى للتكرارات أو الاستشهادات، وكم عنصرًا استوفى العتبة، وكم أُبقي. و<strong>التنظيف:</strong> أن مكنزًا استُخدم، وكم دمجًا حواه، وأي فئات مصطلحات أُزيلت. و<strong>العنقدة:</strong> الدقة وأي حد أدنى لحجم العنقود. و<strong>أساس التفسير:</strong> أي العناصر قرأتَ لتسمية كل عنقود.</p>
+        <p>وذلك البند الأخير هو ما يميّز إسهامًا بحثيًا عن مخرَج برمجية، ولا يكاد يُبلَّغ به أبدًا. فقولُ إن كل عنقود سُمِّي بعد قراءة أكثر خمس وثائق فيه مركزيةً يخبر القارئ أن تفسيرًا وقع، وغيابُه يخبره أنه قد لا يكون وقع.</p>
+        <p>وخمس مشكلات تتكرر عمليًا ولكلٍّ سببٌ ثابت. <strong>خريطةٌ فارغة أو ضئيلة</strong> تعني أن العتبة عالية جدًا أو أن التصدير افتقر إلى المراجع المستشهَد بها؛ افحص التصدير أولًا. و<strong>خريطةٌ غير مقروءة</strong> تعني عناصر كثيرة جدًا؛ ارفع العتبة لا تصغّر الصورة.</p>
+        <p>و<strong>عقدةٌ مركزية هائلة واحدة</strong> شبه دائمًا مصطلحٌ عام أو تنويعةٌ غير مدموجة، والمكنز يصلحها. و<strong>عناقيد لا معنى لها</strong> تعني عادةً أن المدونة مفرطة التباين، لأن سلسلة بحث التقطت أدبيتين غير مترابطتين تُنتج عنقودين غير مترابطين، وهذه مشكلة مدونة لا مشكلة تحليل.</p>
+        <p>و<strong>نتائج تتغير بين التشغيلات</strong> طبيعيةٌ للتخطيط، وهو عشوائي جزئيًا، وليست طبيعية للعنقدة؛ فإن تغيّرت عضوية العناقيد كثيرًا، فالبنية غير مستقرة وينبغي الإبلاغ بذلك لا حلّه بانتقاء تشغيلة.</p>
+        <p>ونقطة ختامية عن موضع الأداة في أطروحة. فوس فيور يُنتج صورةً في عشرين دقيقة، وتلك السرعة بالضبط لماذا يُساء استخدامه: فيمكن ملء فصل بالخرائط بلا أي من العمل التفسيري الذي يجعلها تعني شيئًا. والانضباط معاملةُ كل خريطة سؤالًا لا إجابة، وقراءةُ العناصر المركزية في كل عنقود، وكتابةُ النثر الذي يقول ما البنية وما يترتب عليها لدراستك. فالبرمجية تؤدي الرسم؛ والإسهام كله في القراءة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> فوس فيور يبني الشبكات الببليومترية ويصوّرها ولا يفعل غير ذلك، فاقرنه بأداة أخرى للأعداد. وصدّر سجلات كاملة بما فيها المراجع المستشهَد بها، واختر العلاقة والوحدة عن قصد، وأبلغ بمنهج العدّ. وابنِ ملف مكنز قبل الوثوق بأي نتيجة، لأن التنويعات غير المدموجة والمصطلحات العامة تُنتج خريطةً لعدم اتساق بياناتك. واستخدم العروض الثلاثة كلها، وخاصةً الطبقي بالسنة. وأبلغ بالمدونة والتصدير والبرمجية والتحليل والعتبات والتنظيف والعنقدة وأي وثائق قرأت لتسمية كل عنقود.</div>
+        <div class="refs"><ul>
+          <li>فوس فيور، <a href="https://www.vosviewer.com/" target="_blank" rel="noopener">برمجية بناء الشبكات الببليومترية وتصويرها</a>.</li>
+          <li>أريا وكوكورولو، <a href="https://www.bibliometrix.org/" target="_blank" rel="noopener">بيبليومتريكس: أداة R لرسم خرائط العلم</a>.</li>
+          <li>إلزيفير، <a href="https://www.elsevier.com/products/scopus" target="_blank" rel="noopener">سكوبس، قاعدة الملخصات والاستشهادات</a>.</li>
+          <li>سوندرز ولويس وثورنهيل، <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">مناهج البحث لطلاب الأعمال</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="craft-science-mapping.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Science Mapping</span><span data-lang="ar">رسم خرائط العلم</span></a><a href="ai-generative-workflow.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Generative AI in the Research Workflow</span><span data-lang="ar">الذكاء التوليدي في سير البحث</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="العمل بفوس فيور";
+var TITLE_EN="Working with VOSviewer";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

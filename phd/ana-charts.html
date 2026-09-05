@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Charts and Graphs · Saif Alghamdi</title>
+<meta name="description" content="Charts and graphs: choosing a type from the purpose, design principles, the distortions to avoid, and figure conventions in a thesis.">
+<link rel="canonical" href="https://saif3li-phd.github.io/phd/ana-charts.html">
+<meta name="author" content="Saif Ali Alghamdi">
+<meta name="theme-color" content="#2D2D2D">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saif Ali Alghamdi">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:url" content="https://saif3li-phd.github.io/phd/ana-charts.html">
+<meta property="og:title" content="Charts and Graphs · Saif Alghamdi">
+<meta property="og:description" content="Charts and graphs: choosing a type from the purpose, design principles, the distortions to avoid, and figure conventions in a thesis.">
+<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Charts and Graphs · Saif Alghamdi">
+<meta name="twitter:description" content="Charts and graphs: choosing a type from the purpose, design principles, the distortions to avoid, and figure conventions in a thesis.">
+<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Charts and Graphs · Saif Alghamdi", "description": "Charts and graphs: choosing a type from the purpose, design principles, the distortions to avoid, and figure conventions in a thesis.", "url": "https://saif3li-phd.github.io/phd/ana-charts.html", "inLanguage": "en", "author": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "publisher": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "image": "https://saif3li-phd.github.io/assets/og.jpg", "isPartOf": {"@type": "WebSite", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}}
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="0009a1c6-b533-4e1e-9dbc-8b20dbe29af9"></script>
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#foundation-of-business-research"><span data-lang="en">Foundation of Business Research</span><span data-lang="ar">أسس بحوث الأعمال</span></a><i>&rsaquo;</i><span data-lang="en">Results and discussion</span><span data-lang="ar">النتائج والمناقشة</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">RESULTS AND DISCUSSION · PhD</span><span data-lang="ar">النتائج والمناقشة · دكتوراه</span></div>
+    <h1><span data-lang="en">Charts and Graphs</span><span data-lang="ar">الرسوم البيانية</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Results and discussion</span><span data-lang="ar">النتائج والمناقشة</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">10 min</span><span data-lang="ar">١٠ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذا الموضوع</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="choosing"><span data-lang="en">Choosing a type</span><span data-lang="ar">اختيار النوع</span></a></li><li><a data-id="design"><span data-lang="en">Design</span><span data-lang="ar">التصميم</span></a></li><li><a data-id="distortion"><span data-lang="en">Distortions</span><span data-lang="ar">التشويهات</span></a></li><li><a data-id="thesis"><span data-lang="en">In the thesis</span><span data-lang="ar">في الأطروحة</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Making charts that communicate rather than decorate</div>
+          <div><span>Covers:</span> Choosing a chart type, design principles, common distortions, and figure conventions</div>
+          <div><span>Use:</span> Presenting a finding visually when a picture communicates better than a table</div>
+          <div><span>Level:</span> Doctoral business research</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">A chart exists to make a pattern visible that a table would obscure. That is its only justification, and it settles two questions at once: whether to make a chart at all, and what kind to make.</p>
+        <p>The first question is asked too rarely. <strong>A chart is not automatically better than a table.</strong> Tables are better for exact values, for a small number of numbers, and for anything a reader will want to read off precisely. Charts are better for patterns, for comparisons across many categories, for change over time, and for distributions. Four means and their standard deviations belong in a sentence or a small table; the same means across twelve departments belong in a chart.</p>
+        <p>The second question follows from the purpose. Every chart type is built to show one kind of relationship well, and the most common failure in student work is choosing a chart type because the software offered it rather than because it matches the comparison being made.</p>
+        <p>Underlying both is one principle that governs everything else: <strong>the chart should make the intended comparison the easiest thing to see</strong>. A reader should not have to work out what to compare. If they do, the chart has failed regardless of how much information it contains.</p>
+        <p>This framework covers choosing a chart type from the purpose, the design principles that make a chart readable, the distortions that mislead readers, and the conventions for figures in a thesis. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Write the sentence the chart is meant to support before making the chart. If you cannot write it, the chart has no purpose yet, and a chart without a purpose is decoration that a reader has to process anyway.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> صنع رسوم توصِّل لا تزخرف</div>
+          <div><span>يغطّي:</span> اختيار نوع الرسم، ومبادئ التصميم، والتشويهات الشائعة، وأعراف الأشكال</div>
+          <div><span>الاستخدام:</span> عرض نتيجة بصريًا حين توصِّل الصورة أفضل من الجدول</div>
+          <div><span>المستوى:</span> بحوث الأعمال لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">الرسم موجود ليجعل نمطًا مرئيًا كان الجدول سيحجبه. وهذا تبريره الوحيد، وهو يحسم سؤالين معًا: هل يُصنَع رسم أصلًا، وأي نوع يُصنَع.</p>
+        <p>والسؤال الأول يُسأل نادرًا جدًا. <strong>فالرسم ليس تلقائيًا خيرًا من الجدول.</strong> فالجداول أفضل للقيم الدقيقة، ولعدد صغير من الأرقام، ولأي شيء سيريد القارئ قراءته بدقة. والرسوم أفضل للأنماط، وللمقارنات عبر فئات كثيرة، وللتغير عبر الزمن، وللتوزيعات. فأربعة متوسطات وانحرافاتها مكانها جملة أو جدول صغير؛ والمتوسطات نفسها عبر اثني عشر قسمًا مكانها رسم.</p>
+        <p>والسؤال الثاني يتبع من الغرض. فكل نوع رسم مبنيٌّ ليُظهر نوعًا واحدًا من العلاقات جيدًا، وأشيع إخفاق في عمل الطلاب اختيارُ نوع رسم لأن البرمجية عرضته لا لأنه يطابق المقارنة المُجراة.</p>
+        <p>ويكمن تحت الاثنين مبدأ يحكم كل ما عداه: <strong>ينبغي أن يجعل الرسمُ المقارنةَ المقصودة أسهل ما يُرى</strong>. فلا ينبغي أن يضطر القارئ إلى استنتاج ما الذي يقارن. وإن اضطر، فقد أخفق الرسم بصرف النظر عن كم يحوي من معلومات.</p>
+        <p>ويغطي هذا الإطار اختيار نوع الرسم من الغرض، ومبادئ التصميم التي تجعل رسمًا مقروءًا، والتشويهات التي تضلّل القرّاء، وأعراف الأشكال في أطروحة. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> اكتب الجملة التي يُقصَد بالرسم إسنادها قبل صنع الرسم. فإن لم تستطع كتابتها فلا غرض للرسم بعد، والرسم بلا غرض زخرفةٌ على القارئ معالجتها على أي حال.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="choosing">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>Choosing a Chart Type</h2>
+        <p class="lead">The purpose chooses the chart. Six purposes cover almost everything in business research, and each has a type that is built for it.</p>
+        <svg viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">1</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.0" font-weight="700" fill="#2D2D2D">Comparison across categories</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">bar chart, horizontal when labels are long</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">2</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Change over time</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">line chart, with time on the horizontal axis</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">3</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="10.0" font-weight="700" fill="#2D2D2D">Relationship between two variables</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">scatterplot, with a fitted line if justified</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="199.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">4</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Distribution of one variable</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">histogram, or a boxplot to compare groups</text><rect x="52.0" y="224.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="251.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">5</text><rect x="104.0" y="224.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="251.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Composition of a whole</text><rect x="312.0" y="224.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="251.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">stacked bar; almost never a pie chart</text><rect x="52.0" y="276.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="303.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">6</text><rect x="104.0" y="276.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="303.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Model results</text><rect x="312.0" y="276.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="303.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">coefficient plot with confidence intervals</text><text x="350.0" y="349.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">six purposes, six chart types; the purpose chooses, never the software default</text></svg>
+        <p><strong>Comparison across categories</strong> uses a bar chart, with bars starting at zero because the reader compares their lengths. Where category labels are long, which they usually are in business research, use horizontal bars so the labels are readable. Order the bars by value rather than alphabetically unless the categories have a natural order, since sorting by value is what makes the comparison immediate.</p>
+        <p><strong>Change over time</strong> uses a line chart with time on the horizontal axis. Lines imply continuity between points, which is why a line chart is wrong for unordered categories: connecting departments with a line suggests a progression that does not exist.</p>
+        <p><strong>A relationship between two continuous variables</strong> uses a scatterplot, and it should be produced during analysis rather than only for presentation, since it reveals curvature, clustering, and influential points that a correlation coefficient conceals. Add a fitted line only when a linear model is what you are claiming.</p>
+        <p><strong>A distribution</strong> uses a histogram for one variable and a boxplot for comparing distributions across groups. The boxplot is underused in business theses and is the single best chart for showing that two groups have similar means and very different spreads, which is a finding a bar chart of means cannot display at all.</p>
+        <p><strong>Composition</strong> uses a stacked bar chart. <strong>Pie charts</strong> should be avoided in a thesis: humans compare angles poorly, they cannot be read precisely, they fail with more than about four categories, and everything they do is done better by a bar chart. The one defensible use is a single proportion in a presentation, and even there a number in large type is usually better.</p>
+        <p><strong>Model results</strong> can be shown as a coefficient plot: each predictor a point with its confidence interval as a horizontal line, and a vertical line at zero. This communicates a regression far faster than a table for an audience, though the table remains necessary in the thesis for exact values.</p>
+        <div class="note"><strong>Note:</strong> Two charts of the same data in different forms is a signal that you have not decided what the point is. Decide the sentence, then choose the one chart that supports it.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>اختيار نوع الرسم</h2>
+        <p class="lead">الغرض يختار الرسم. وستة أغراض تغطي كل شيء تقريبًا في بحوث الأعمال، ولكلٍّ نوعٌ مبنيّ له.</p>
+        <svg viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">١</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">المقارنة عبر الفئات</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">رسم أعمدة، أفقي حين تطول اللصاقات</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٢</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">التغير عبر الزمن</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">رسم خطي، بالزمن على المحور الأفقي</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٣</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">العلاقة بين متغيرين</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">رسم انتشار، بخط ملائم إن كان مبرَّرًا</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="199.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٤</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">توزيع متغير واحد</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">مدرَّج تكراري، أو رسم صندوقي لمقارنة المجموعات</text><rect x="52.0" y="224.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="251.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٥</text><rect x="104.0" y="224.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="251.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">تركيب كل</text><rect x="312.0" y="224.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="251.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">أعمدة مكدَّسة؛ ونادرًا جدًا رسم دائري</text><rect x="52.0" y="276.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="303.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">٦</text><rect x="104.0" y="276.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="303.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">نتائج النموذج</text><rect x="312.0" y="276.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="303.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">رسم معاملات بفترات الثقة</text><text x="350.0" y="349.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">ستة أغراض وستة أنواع؛ والغرض يختار، لا الافتراضي في البرمجية أبدًا</text></svg>
+        <p>و<strong>المقارنة عبر الفئات</strong> تستخدم رسم أعمدة، بأعمدة تبدأ من الصفر لأن القارئ يقارن أطوالها. وحيث تطول لصاقات الفئات، وهي تطول عادةً في بحوث الأعمال، استخدم أعمدة أفقية لتكون اللصاقات مقروءة. ورتّب الأعمدة بالقيمة لا أبجديًا ما لم يكن للفئات ترتيب طبيعي، لأن الفرز بالقيمة هو ما يجعل المقارنة فورية.</p>
+        <p>و<strong>التغير عبر الزمن</strong> يستخدم رسمًا خطيًا بالزمن على المحور الأفقي. والخطوط توحي باتصال بين النقاط، ولهذا يكون الرسم الخطي خطأً للفئات غير المرتبة: فوصلُ الأقسام بخط يوحي بتدرج غير موجود.</p>
+        <p>و<strong>العلاقة بين متغيرين متصلين</strong> تستخدم رسم انتشار، وينبغي إنتاجه أثناء التحليل لا للعرض فقط، لأنه يكشف الانحناء والتعنقد والنقاط المؤثرة التي يخفيها معامل الارتباط. وأضف خطًا ملائمًا فقط حين يكون النموذج الخطي هو ما تدّعيه.</p>
+        <p>و<strong>التوزيع</strong> يستخدم مدرَّجًا تكراريًا لمتغير واحد ورسمًا صندوقيًا لمقارنة التوزيعات عبر المجموعات. والرسم الصندوقي قليل الاستعمال في أطروحات الأعمال وهو أفضل رسم مفرد لإظهار أن مجموعتين لهما متوسطات متشابهة وانتشاران مختلفان جدًا، وهذه نتيجة لا يستطيع رسمُ أعمدةٍ للمتوسطات عرضها البتة.</p>
+        <p>و<strong>التركيب</strong> يستخدم رسم أعمدة مكدَّسة. و<strong>الرسوم الدائرية</strong> ينبغي تجنبها في أطروحة: فالبشر يقارنون الزوايا بضعف، ولا يمكن قراءتها بدقة، وتخفق مع أكثر من نحو أربع فئات، وكل ما تفعله يفعله رسم الأعمدة أفضل. والاستخدام الوحيد القابل للدفاع نسبةٌ واحدة في عرض تقديمي، وحتى هناك يكون رقمٌ بخط كبير أفضل عادةً.</p>
+        <p>و<strong>نتائج النموذج</strong> يمكن إظهارها رسمَ معاملات: كل متنبئ نقطة بفترة ثقته خطًا أفقيًا، وخطٌّ رأسي عند الصفر. وهذا يوصّل انحدارًا أسرع بكثير من جدول لجمهور، وإن ظل الجدول لازمًا في الأطروحة للقيم الدقيقة.</p>
+        <div class="note"><strong>ملاحظة:</strong> رسمان للبيانات نفسها بصيغتين مختلفتين إشارةٌ إلى أنك لم تقرر ما النقطة. قرّر الجملة، ثم اختر الرسم الواحد الذي يسندها.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="design">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Design Principles</h2>
+        <p class="lead">Good charts are mostly the result of removing things. Five principles cover almost all of it.</p>
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#A32020"/><text x="195.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">Data ink</text><text x="195.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">every mark that carries information the</text><text x="195.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">reader needs</text><rect x="360.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#8C8C8C"/><text x="505.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">Decoration</text><text x="505.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">gridlines, shadows, gradients, and</text><text x="505.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">three-dimensional effects</text><rect x="140.0" y="168.0" width="420.0" height="26.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="185.0" text-anchor="middle" font-size="10.5" font-weight="600" fill="#2D2D2D">the goal is that only the data is visible</text><text x="350.0" y="236.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">remove anything that would not be missed, then remove a little more</text></svg>
+        <p><strong>Remove everything that does not carry information.</strong> Gridlines, backgrounds, borders, shadows, gradients, and three-dimensional effects all add visual noise and none adds meaning. Three-dimensional bars are worse than noise: they distort the comparison, because the reader cannot tell whether to read the front or the back of a bar. Default software charts arrive with several of these, and deleting them is usually the first and largest improvement available.</p>
+        <p><strong>Label directly rather than through a legend.</strong> A legend forces the reader to look back and forth between the key and the data, and every such movement costs attention. Where a chart has three or four lines, put each label at the end of its line. Reserve legends for cases with too many series to label directly, which are usually cases where the chart is too complex anyway.</p>
+        <p><strong>Use colour to carry meaning, not to fill space.</strong> If the categories have no meaningful difference, use one colour. If one category is the focus, colour it and grey the rest, which is the single most effective technique for directing attention. Check that the chart works in greyscale, since theses are printed, and check that it works for readers with colour vision deficiency, which rules out red-green contrasts as the only distinction.</p>
+        <p><strong>Start bar charts at zero.</strong> The length of a bar is what the reader compares, so a truncated axis exaggerates differences and is the most common distortion in business presentations. Line charts do not have this constraint, since the reader compares slopes rather than lengths, and truncating a line chart's axis to show variation is legitimate provided the axis is clearly labelled.</p>
+        <p><strong>Order categories meaningfully.</strong> By value for comparisons, by time for series, by the natural order where one exists. Alphabetical order is meaningful only when the reader will look up a specific category, which in a results chapter is rare.</p>
+        <p>One further habit improves nearly every chart: <strong>put the point in the title</strong>. A title reading Satisfaction is lowest in operations tells the reader what to see; a title reading Mean satisfaction by department makes them find it. In a thesis, where figure captions are conventionally descriptive, put the descriptive caption below and state the point in the text sentence that introduces the figure.</p>
+        <div class="note"><strong>Note:</strong> Show a draft chart to someone unfamiliar with the data and ask what it shows. If they describe something other than your intended point, redesign rather than explain, because the explanation will not be available to your readers.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>مبادئ التصميم</h2>
+        <p class="lead">الرسوم الجيدة نتيجةُ حذفِ أشياء في معظمها. وخمسة مبادئ تغطي كل ذلك تقريبًا.</p>
+        <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#A32020"/><text x="195.0" y="80.1" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">حبر البيانات</text><text x="195.0" y="94.1" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">كل علامة تحمل معلومة يحتاجها القارئ</text><rect x="360.0" y="24.0" width="290.0" height="130.0" rx="4" fill="#8C8C8C"/><text x="505.0" y="73.2" text-anchor="middle" font-size="15.0" font-weight="700" fill="#FFFFFF">الزخرفة</text><text x="505.0" y="87.2" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">خطوط الشبكة والظلال والتدرجات والتأثيرات</text><text x="505.0" y="101.0" text-anchor="middle" font-size="11.0" font-weight="400" fill="#FFFFFF">ثلاثية الأبعاد</text><rect x="140.0" y="168.0" width="420.0" height="26.0" rx="4" fill="#DEDEDE"/><text x="350.0" y="185.0" text-anchor="middle" font-size="10.5" font-weight="600" fill="#2D2D2D">الغاية أن تكون البيانات وحدها مرئية</text><text x="350.0" y="236.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">احذف كل ما لن يُفتقَد، ثم احذف قليلًا أكثر</text></svg>
+        <p><strong>احذف كل ما لا يحمل معلومة.</strong> فخطوط الشبكة والخلفيات والحدود والظلال والتدرجات والتأثيرات ثلاثية الأبعاد كلها تضيف ضوضاءً بصرية ولا واحدة تضيف معنى. والأعمدة ثلاثية الأبعاد أسوأ من الضوضاء: فهي تشوّه المقارنة، لأن القارئ لا يستطيع معرفة هل يقرأ مقدمة العمود أم مؤخرته. ورسوم البرمجيات الافتراضية تصل بعدة منها، وحذفها عادةً أول وأكبر تحسين متاح.</p>
+        <p><strong>سمِّ مباشرةً لا عبر مفتاح.</strong> فالمفتاح يُجبر القارئ على النظر ذهابًا وإيابًا بين المفتاح والبيانات، وكل حركة كهذه تكلّف انتباهًا. وحيث يكون في رسم ثلاثة خطوط أو أربعة، ضع كل لصاقة عند نهاية خطها. واحجز المفاتيح للحالات ذات السلاسل الكثيرة جدًا للتسمية المباشرة، وهي عادةً حالات يكون الرسم فيها معقدًا أكثر من اللازم أصلًا.</p>
+        <p><strong>استخدم اللون لحمل المعنى لا لملء المساحة.</strong> فإن لم يكن للفئات فرق ذو معنى، فاستخدم لونًا واحدًا. وإن كانت فئة واحدة هي البؤرة، فلوّنها ورمّد الباقي، وهذه أنجع تقنية مفردة لتوجيه الانتباه. وافحص أن الرسم يعمل بتدرج رمادي، فالأطروحات تُطبَع، وافحص أنه يعمل لقرّاء بقصور رؤية الألوان، وهذا يستبعد تباين الأحمر والأخضر تمييزًا وحيدًا.</p>
+        <p><strong>ابدأ رسوم الأعمدة من الصفر.</strong> فطول العمود هو ما يقارنه القارئ، فمحورٌ مبتور يضخّم الفروق وهو أشيع تشويه في عروض الأعمال. والرسوم الخطية لا تخضع لهذا القيد، لأن القارئ يقارن الميول لا الأطوال، وبترُ محور رسم خطي لإظهار التباين مشروع شريطة تسمية المحور بوضوح.</p>
+        <p><strong>رتّب الفئات بمعنى.</strong> بالقيمة للمقارنات، وبالزمن للسلاسل، وبالترتيب الطبيعي حيث يوجد. والترتيب الأبجدي ذو معنى فقط حين سيبحث القارئ عن فئة بعينها، وهذا نادر في فصل نتائج.</p>
+        <p>وعادة أخرى تحسّن كل رسم تقريبًا: <strong>ضع النقطة في العنوان</strong>. فعنوانٌ يقرأ «الرضا أدنى ما يكون في العمليات» يخبر القارئ بما يرى؛ وعنوانٌ يقرأ «متوسط الرضا بحسب القسم» يجعله يجده. وفي أطروحة، حيث تكون تعليقات الأشكال وصفية عرفًا، ضع التعليق الوصفي أسفل واذكر النقطة في جملة النص التي تقدّم الشكل.</p>
+        <div class="note"><strong>ملاحظة:</strong> أرِ رسمًا مسوَّدًا لشخص غير مطّلع على البيانات واسأله ماذا يُظهر. فإن وصف شيئًا غير نقطتك المقصودة، فأعد التصميم لا الشرح، لأن الشرح لن يكون متاحًا لقرّائك.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="distortion">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Distortions to Avoid</h2>
+        <p class="lead">Some chart choices mislead readers even when every number in them is correct. Most are made unintentionally, by accepting a software default.</p>
+        <table>
+          <tr><th>Distortion</th><th>What it does</th><th>Fix</th></tr>
+          <tr><td>Truncated bar axis</td><td>Exaggerates small differences</td><td>Start bars at zero, always</td></tr>
+          <tr><td>Three-dimensional effects</td><td>Makes lengths and areas unreadable</td><td>Use flat two-dimensional charts</td></tr>
+          <tr><td>Inconsistent axes across charts</td><td>Invites comparisons the scales do not support</td><td>Use the same scale when charts will be compared</td></tr>
+          <tr><td>Area scaled by one dimension</td><td>Doubling a radius quadruples the apparent value</td><td>Avoid bubble sizing, or scale by area explicitly</td></tr>
+          <tr><td>Dual vertical axes</td><td>Any relationship can be manufactured by rescaling</td><td>Use two charts stacked with a shared time axis</td></tr>
+          <tr><td>Missing data plotted as zero</td><td>Turns absence into a value</td><td>Break the line and note the gap</td></tr>
+          <tr><td>Cherry-picked range</td><td>A selected window shows a trend the full series does not</td><td>Plot the full available period, or justify the window</td></tr>
+        </table>
+        <p><strong>Dual axes</strong> deserve the strongest warning because they look sophisticated and are almost always misleading. Plotting two series against two independently scaled vertical axes lets you produce apparent co-movement between any two series by choosing the scales, and a reader has no way to judge whether the alignment means anything. Where two series must be compared, either index both to a common base or use two panels sharing a horizontal axis.</p>
+        <p><strong>Truncated axes</strong> are the most common and the easiest to fix. A bar chart of means from 3.8 to 4.1 on a scale starting at 3.7 makes a trivial difference look dramatic. If the difference is too small to see on a full axis, the honest conclusion is that the difference is small, and that conclusion belongs in the text rather than being visually manufactured.</p>
+        <p>Two further practices matter for honesty rather than for design. <strong>Show uncertainty where it exists</strong>: error bars on group means, or a shaded interval around a fitted line, communicate that estimates are imprecise, and their absence implies a precision the data do not have. Where you use error bars, state in the caption what they represent, since standard deviations, standard errors, and confidence intervals look identical and mean different things.</p>
+        <p>And <strong>plot the data, not only the summary</strong>. A bar chart of two group means hides everything about the distributions; a boxplot or a plot showing individual points alongside the summary shows the reader what the means are summarising. In small samples, showing the individual points is both more honest and more informative than any summary.</p>
+        <div class="note"><strong>Note:</strong> Every distortion in the table above can be produced by accepting a default. Look at each chart and ask what a sceptical reader would object to, since defaults are chosen for appearance rather than for accuracy.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>تشويهات تُتجنَّب</h2>
+        <p class="lead">بعض خيارات الرسم تضلّل القرّاء حتى حين يكون كل رقم فيها صحيحًا. ومعظمها يُتَّخذ دون قصد، بقبول افتراضي في برمجية.</p>
+        <table>
+          <tr><th>التشويه</th><th>ما يفعله</th><th>الإصلاح</th></tr>
+          <tr><td>محور أعمدة مبتور</td><td>يضخّم الفروق الصغيرة</td><td>ابدأ الأعمدة من الصفر، دائمًا</td></tr>
+          <tr><td>تأثيرات ثلاثية الأبعاد</td><td>تجعل الأطوال والمساحات غير مقروءة</td><td>استخدم رسومًا مسطحة ثنائية الأبعاد</td></tr>
+          <tr><td>محاور غير متسقة عبر الرسوم</td><td>تدعو إلى مقارنات لا تسندها المقاييس</td><td>استخدم المقياس نفسه حين ستُقارَن الرسوم</td></tr>
+          <tr><td>مساحة تُقاس ببُعد واحد</td><td>مضاعفة نصف القطر تُربّع القيمة الظاهرة</td><td>تجنّب تحجيم الفقاعات، أو حجّم بالمساحة صراحةً</td></tr>
+          <tr><td>محوران رأسيان</td><td>يمكن تصنيع أي علاقة بإعادة التحجيم</td><td>استخدم رسمين مكدَّسين بمحور زمن مشترك</td></tr>
+          <tr><td>بيانات مفقودة تُرسَم صفرًا</td><td>تحوّل الغياب إلى قيمة</td><td>اكسر الخط ودوّن الفجوة</td></tr>
+          <tr><td>مدى منتقى</td><td>نافذة مختارة تُظهر اتجاهًا لا تُظهره السلسلة كاملة</td><td>ارسم الفترة المتاحة كاملة، أو برّر النافذة</td></tr>
+        </table>
+        <p>و<strong>المحوران الرأسيان</strong> يستحقان أشد تحذير لأنهما يبدوان متطورين وهما مضللان شبه دائمًا. فرسمُ سلسلتين مقابل محورين رأسيين مقيسين مستقلين يتيح لك إنتاج تحرّك مشترك ظاهري بين أي سلسلتين باختيار المقياسين، ولا سبيل للقارئ للحكم هل يعني الاصطفاف شيئًا. وحيث يجب مقارنة سلسلتين، إما فهرِس كليهما إلى أساس مشترك أو استخدم لوحتين تتشاركان محورًا أفقيًا.</p>
+        <p>و<strong>المحاور المبتورة</strong> أشيعها وأسهلها إصلاحًا. فرسمُ أعمدةٍ لمتوسطات من 3.8 إلى 4.1 على مقياس يبدأ من 3.7 يجعل فرقًا تافهًا يبدو دراميًا. وإن كان الفرق أصغر من أن يُرى على محور كامل، فالخلاصة الصادقة أن الفرق صغير، وتلك الخلاصة مكانها النص لا أن تُصنَع بصريًا.</p>
+        <p>وممارستان أخريان تهمان للأمانة لا للتصميم. <strong>أظهر عدم اليقين حيث يوجد</strong>: فأشرطة الخطأ على متوسطات المجموعات، أو فترة مظللة حول خط ملائم، توصّل أن التقديرات غير دقيقة، وغيابها يوحي بدقة لا تملكها البيانات. وحيث تستخدم أشرطة خطأ، اذكر في التعليق ماذا تمثّل، لأن الانحرافات المعيارية والأخطاء المعيارية وفترات الثقة تبدو متطابقة وتعني أشياء مختلفة.</p>
+        <p>و<strong>ارسم البيانات لا الملخص وحده</strong>. فرسمُ أعمدةٍ لمتوسطَي مجموعتين يخفي كل شيء عن التوزيعين؛ ورسمٌ صندوقي أو رسمٌ يُظهر النقاط الفردية إلى جانب الملخص يُري القارئ ما تلخّصه المتوسطات. وفي العيّنات الصغيرة، إظهار النقاط الفردية أصدق وأكثر إفادةً من أي ملخص.</p>
+        <div class="note"><strong>ملاحظة:</strong> كل تشويه في الجدول أعلاه يمكن إنتاجه بقبول افتراضي. انظر في كل رسم واسأل ما الذي سيعترض عليه قارئ متشكك، لأن الافتراضات مختارة للمظهر لا للدقة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="thesis">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Figure Conventions in a Thesis</h2>
+        <p class="lead">Figures in a thesis follow conventions that differ from those in a presentation, and following them is part of the mechanical correctness an examiner checks.</p>
+        <p><strong>Number and caption every figure.</strong> Numbering runs sequentially, usually by chapter, and the caption goes below the figure, unlike a table caption which conventionally goes above. The caption is descriptive rather than argumentative: Mean job satisfaction by department, with 95 percent confidence intervals. The point the figure makes goes in the text.</p>
+        <p><strong>Reference every figure in the text</strong> before it appears, in the form as Figure 4.2 shows, or with the reference in parentheses. A figure nobody points at is a figure the reader does not know how to use. And ensure the figure appears after the sentence that first mentions it, never before.</p>
+        <p><strong>Make each figure readable at print size</strong>, which is smaller than the screen you designed it on. Ten-point text on a full-width figure is at the limit; anything smaller disappears. Print a page and look at it, since this catches problems that are invisible while zoomed in.</p>
+        <p><strong>Cite the source</strong> when the figure is not your own. A figure reproduced from a published source needs a citation and often permission, and a figure you built from someone else's data needs a note stating that. Your own figures need no source note, and their absence is how a reader knows the figure is yours.</p>
+        <p><strong>Keep figure style consistent</strong> across the thesis: the same fonts, the same colour treatment, the same axis conventions. A chapter where every chart looks different reads as assembled rather than written, and consistency costs nothing if the style is decided once at the start.</p>
+        <p>Two closing judgements. <strong>Use fewer figures than you are tempted to.</strong> Three or four well-chosen figures in a results chapter communicate more than twelve, because each additional one dilutes attention and the reader stops examining them carefully. Every figure should earn its place by making a specific point that a table or a sentence would make worse.</p>
+        <p>And <strong>make the figures during analysis, not after</strong>. Charts built to explore data are how you notice a curved relationship, a bimodal distribution, or an influential outlier, and the ones worth presenting are usually a cleaned-up version of a chart you made while thinking. A chart produced at the end, purely to illustrate a conclusion already reached, is decoration by construction.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> make a chart only when a picture shows a pattern a table would obscure, and let the purpose choose the type: bars for categories, lines for time, scatterplots for relationships, histograms and boxplots for distributions, stacked bars for composition, and coefficient plots for models. Never use pie charts or dual axes. Remove everything that carries no information, label directly, use colour for meaning, and start bars at zero. Show uncertainty, plot the data rather than only the summary, caption below and reference in the text, and use fewer figures than you are tempted to.</div>
+        <div class="refs"><ul>
+          <li>American Psychological Association, <a href="https://apastyle.apa.org/products/publication-manual-7th-edition" target="_blank" rel="noopener">Publication Manual, Seventh Edition</a>.</li>
+          <li>Saunders, Lewis &amp; Thornhill, <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">Research Methods for Business Students</a>.</li>
+          <li>Sekaran &amp; Bougie, <a href="https://www.wiley.com/en-us/Research+Methods+For+Business%3A+A+Skill+Building+Approach%2C+8th+Edition-p-9781119561224" target="_blank" rel="noopener">Research Methods for Business: A Skill-Building Approach</a>.</li>
+          <li>Kumar, <a href="https://uk.sagepub.com/en-gb/eur/research-methodology/book270131" target="_blank" rel="noopener">Research Methodology: A Step-by-Step Guide for Beginners</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>أعراف الأشكال في الأطروحة</h2>
+        <p class="lead">الأشكال في الأطروحة تتبع أعرافًا تختلف عن أعراف العرض التقديمي، واتباعها جزء من الصحة الآلية التي يفحصها الممتحن.</p>
+        <p><strong>رقّم كل شكل وعلّق عليه.</strong> فالترقيم يجري متتابعًا، بالفصل عادةً، والتعليق يذهب تحت الشكل، بخلاف تعليق الجدول الذي يذهب فوقه عرفًا. والتعليق وصفي لا حجاجي: «متوسط الرضا الوظيفي بحسب القسم، بفترات ثقة 95 بالمئة». والنقطة التي يطلقها الشكل تذهب في النص.</p>
+        <p><strong>أشِر إلى كل شكل في النص</strong> قبل ظهوره، بصيغة «كما يُظهر الشكل 4-2»، أو بالإشارة بين قوسين. فالشكل الذي لا يشير إليه أحد شكلٌ لا يعرف القارئ كيف يستخدمه. واحرص على ظهور الشكل بعد الجملة التي تذكره أول مرة لا قبلها.</p>
+        <p><strong>اجعل كل شكل مقروءًا بحجم الطباعة</strong>، وهو أصغر من الشاشة التي صمّمته عليها. فنصٌ بحجم عشر نقاط على شكل بعرض الصفحة عند الحد؛ وأي أصغر يختفي. اطبع صفحة وانظر إليها، فهذا يلتقط مشكلات غير مرئية أثناء التكبير.</p>
+        <p><strong>استشهد بالمصدر</strong> حين لا يكون الشكل لك. فشكلٌ منقول من مصدر منشور يحتاج استشهادًا وإذنًا غالبًا، وشكلٌ بنيته من بيانات غيرك يحتاج ملاحظةً تذكر ذلك. وأشكالك لا تحتاج ملاحظة مصدر، وغيابها هو كيف يعرف القارئ أن الشكل لك.</p>
+        <p><strong>أبقِ أسلوب الأشكال متسقًا</strong> عبر الأطروحة: الخطوط نفسها، ومعالجة الألوان نفسها، وأعراف المحاور نفسها. ففصلٌ يبدو فيه كل رسم مختلفًا يُقرأ مجمَّعًا لا مكتوبًا، والاتساق لا يكلّف شيئًا إن تقرر الأسلوب مرةً في البداية.</p>
+        <p>وحكمان ختاميان. <strong>استخدم أشكالًا أقل مما يغريك.</strong> فثلاثة أو أربعة أشكال مختارة جيدًا في فصل نتائج توصّل أكثر من اثني عشر، لأن كل واحد إضافي يمدد الانتباه ويتوقف القارئ عن فحصها بعناية. وكل شكل ينبغي أن يكسب مكانه بإطلاق نقطة بعينها كان جدولٌ أو جملة سيطلقها أسوأ.</p>
+        <p>و<strong>اصنع الأشكال أثناء التحليل لا بعده</strong>. فالرسوم المبنيّة لاستكشاف البيانات هي كيف تلاحظ علاقةً منحنية أو توزيعًا ثنائي المنوال أو قيمةً شاذة مؤثرة، والتي تستحق العرض هي عادةً نسخة منقّحة من رسم صنعته وأنت تفكر. والرسم المنتَج في النهاية، محضًا لتوضيح خاتمة بُلغت سلفًا، زخرفةٌ بالبناء.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> اصنع رسمًا فقط حين تُظهر الصورة نمطًا كان الجدول سيحجبه، ودع الغرض يختار النوع: أعمدة للفئات، وخطوط للزمن، ورسوم انتشار للعلاقات، ومدرَّجات ورسوم صندوقية للتوزيعات، وأعمدة مكدَّسة للتركيب، ورسوم معاملات للنماذج. ولا تستخدم أبدًا رسومًا دائرية ولا محورين رأسيين. واحذف كل ما لا يحمل معلومة، وسمِّ مباشرةً، واستخدم اللون للمعنى، وابدأ الأعمدة من الصفر. وأظهر عدم اليقين، وارسم البيانات لا الملخص وحده، وضع التعليق أسفل وأشِر في النص، واستخدم أشكالًا أقل مما يغريك.</div>
+        <div class="refs"><ul>
+          <li>جمعية علم النفس الأمريكية، <a href="https://apastyle.apa.org/products/publication-manual-7th-edition" target="_blank" rel="noopener">دليل النشر، الطبعة السابعة</a>.</li>
+          <li>سوندرز ولويس وثورنهيل، <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">مناهج البحث لطلاب الأعمال</a>.</li>
+          <li>سيكاران وبوجي، <a href="https://www.wiley.com/en-us/Research+Methods+For+Business%3A+A+Skill+Building+Approach%2C+8th+Edition-p-9781119561224" target="_blank" rel="noopener">مناهج البحث للأعمال: مقاربة بناء المهارات</a>.</li>
+          <li>كومار، <a href="https://uk.sagepub.com/en-gb/eur/research-methodology/book270131" target="_blank" rel="noopener">منهجية البحث: دليل خطوة بخطوة للمبتدئين</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="ana-presenting-results.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Presenting Results</span><span data-lang="ar">عرض النتائج</span></a><a href="ana-discussion.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Writing the Discussion</span><span data-lang="ar">كتابة المناقشة</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="الرسوم البيانية";
+var TITLE_EN="Charts and Graphs";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>

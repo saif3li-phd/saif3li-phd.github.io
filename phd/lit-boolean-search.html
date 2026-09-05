@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boolean Logic and Search Strings · Saif Alghamdi</title>
+<meta name="description" content="Boolean search strings: the five operators, brackets and precedence, phrase and truncation, field tags and limits, and how to debug a failing string.">
+<link rel="canonical" href="https://saif3li-phd.github.io/phd/lit-boolean-search.html">
+<meta name="author" content="Saif Ali Alghamdi">
+<meta name="theme-color" content="#2D2D2D">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saif Ali Alghamdi">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:url" content="https://saif3li-phd.github.io/phd/lit-boolean-search.html">
+<meta property="og:title" content="Boolean Logic and Search Strings · Saif Alghamdi">
+<meta property="og:description" content="Boolean search strings: the five operators, brackets and precedence, phrase and truncation, field tags and limits, and how to debug a failing string.">
+<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Boolean Logic and Search Strings · Saif Alghamdi">
+<meta name="twitter:description" content="Boolean search strings: the five operators, brackets and precedence, phrase and truncation, field tags and limits, and how to debug a failing string.">
+<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Boolean Logic and Search Strings · Saif Alghamdi", "description": "Boolean search strings: the five operators, brackets and precedence, phrase and truncation, field tags and limits, and how to debug a failing string.", "url": "https://saif3li-phd.github.io/phd/lit-boolean-search.html", "inLanguage": "en", "author": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "publisher": {"@type": "Person", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}, "image": "https://saif3li-phd.github.io/assets/og.jpg", "isPartOf": {"@type": "WebSite", "name": "Saif Ali Alghamdi", "url": "https://saif3li-phd.github.io/"}}
+</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="0009a1c6-b533-4e1e-9dbc-8b20dbe29af9"></script>
+<style>
+:root{--purple:#2D2D2D;--off:#FFFFFF;--khuzama:#A32020;--lav:#DEDEDE;--plat:#DEDEDE;
+ --ink:var(--purple);--bg:var(--off);--panel:#FFFFFF;--muted:#464646;--line:#DEDEDE;
+ --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
+ --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+.bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
+.b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
+.b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
+body:not(.en) [data-lang="en"]{display:none!important}
+body.en [data-lang="ar"]{display:none!important}
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);text-align:center;padding:18px 20px 12px}
+.topbar .tools{position:absolute;inset-inline-end:clamp(14px,4vw,34px);top:16px;display:flex;gap:8px;align-items:center}
+.topbar .seg{display:inline-flex;border:1px solid var(--khuzama);border-radius:999px;overflow:hidden;background:var(--panel)}
+.topbar .seg button{border:0;background:none;color:var(--khuzama);font-family:var(--body);font-size:12px;font-weight:600;padding:6px 12px;cursor:pointer}
+.topbar .seg button.on{background:var(--khuzama);color:#fff}
+.topbar .tbtn{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.lockup{display:inline-block;text-decoration:none;color:var(--ink);direction:ltr}
+.lk-name{display:block;font-family:var(--head);font-weight:700;font-size:clamp(22px,3.2vw,32px);letter-spacing:.01em;line-height:1.15;color:var(--ink)}
+.lk-tag{display:block;margin-top:8px;font-size:clamp(9.5px,1.2vw,11.5px);letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--khuzama)}
+.lk-tag i{font-style:normal;opacity:.45;margin:0 clamp(8px,1.4vw,14px)}
+.lk-tag em{font-style:normal;color:var(--muted)}
+.nav-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px auto 0;max-width:620px}
+.nav-sep .ln{flex:1;height:1px}
+.nav-sep .ln:first-child{background:linear-gradient(to right,transparent,var(--lav))}
+.nav-sep .ln:last-child{background:linear-gradient(to left,transparent,var(--lav))}
+.nav-sep i{width:8px;height:8px;background:var(--lav);transform:rotate(45deg);flex:none}
+.nav-sep i.s{width:6px;height:6px;background:var(--plat)}
+.nav-sep i.mid{width:11px;height:11px;background:var(--khuzama)}
+.topnav{margin:12px auto 0;display:inline-flex;gap:clamp(4px,1vw,10px);justify-content:center;flex-wrap:wrap;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--panel) 74%,transparent);box-shadow:0 6px 18px rgba(45,45,45,.06)}
+.topnav a{color:var(--khuzama);font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;padding:6px 13px;border-radius:999px}
+.topnav a:hover{color:var(--ink);background:color-mix(in srgb,var(--lav) 22%,transparent)}
+.topnav a.cur{color:#fff;background:var(--khuzama);font-weight:600}
+body.dark .topnav a.cur{color:var(--purple);background:var(--lav)}
+.art{position:relative;z-index:2;max-width:920px;margin:0 auto;padding:0 clamp(18px,4vw,32px) 30px}
+.cover{text-align:center;padding:48px 0 4px}
+.cover .sadu,footer .sadu{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.cover .sadu span,footer .sadu span{width:12px;height:12px;transform:rotate(45deg);background:var(--khuzama);display:inline-block}
+.kicker{font-size:12px;letter-spacing:.1em;color:var(--khuzama);font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.cover h1{font-family:var(--head);font-weight:700;font-size:clamp(26px,4.4vw,40px);line-height:1.35;margin-bottom:10px}
+.byline{color:var(--muted);font-size:13.5px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:26px 0 4px}
+.toc a{cursor:pointer;font-size:13px;color:var(--khuzama);text-decoration:none;border:1px solid var(--line);padding:6px 13px;border-radius:999px;transition:.2s}
+.toc a:hover{border-color:var(--khuzama)}
+.toc a.home{background:var(--khuzama);color:#fff;border-color:var(--khuzama)}
+.page{padding-top:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px clamp(18px,3vw,30px)}
+.card h2{font-family:var(--head);font-weight:700;font-size:21px;margin:8px 0 12px}
+.card h3{font-family:var(--head);font-weight:600;font-size:16.5px;margin:18px 0 8px}
+.card h4{font-family:var(--head);font-weight:600;font-size:15px;margin:14px 0 6px}
+.card p{color:var(--muted);font-size:14.5px;margin:8px 0}
+.card p.lead{color:var(--ink);font-size:15.5px}
+.card ul,.card ol{margin:8px 0;padding-inline-start:22px;color:var(--muted);font-size:14.5px}
+.card li{margin:5px 0}
+.card strong{color:var(--ink);font-weight:600}
+.card a{color:var(--khuzama)}
+.chip{display:none}
+.note{background:color-mix(in srgb,var(--lav) 14%,transparent);border-inline-start:3px solid var(--khuzama);border-radius:12px;padding:12px 16px;margin:14px 0;color:var(--muted);font-size:13.5px}
+.info-card{background:color-mix(in srgb,var(--lav) 10%,transparent);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:12px 0;font-size:13.5px;color:var(--muted)}
+.info-card div{margin:4px 0}
+.info-card span{color:var(--khuzama);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:14px 0}
+.stat{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.num{font-family:var(--head);font-weight:700;font-size:23px;color:var(--khuzama);display:block;direction:ltr}
+.lbl{color:var(--muted);font-size:12px}
+.refs ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.refs li{font-size:13.5px;color:var(--muted);padding-inline-start:18px;position:relative;margin:0}
+.refs li::before{content:"\25C6";font-size:7px;color:var(--khuzama);position:absolute;inset-inline-start:0;top:7px}
+.conclusion-final{background:linear-gradient(135deg,#2D2D2D,var(--purple));color:#fff;border-radius:18px;padding:22px 26px;margin:16px 0}
+body.dark .conclusion-final{background:linear-gradient(135deg,#3A3A3A,#1F1F1F)}
+.conclusion-final h2,.conclusion-final h3,.conclusion-final h4,.conclusion-final strong{color:#fff}
+.conclusion-final p,.conclusion-final li{color:rgba(255,255,255,.88)}
+.conclusion-final .chip{background:rgba(255,255,255,.16);color:#F4F4F4}
+.formula{background:color-mix(in srgb,var(--lav) 12%,transparent);border:1px dashed var(--khuzama);border-radius:12px;padding:12px 16px;margin:12px 0;direction:ltr;text-align:center;font-size:14px;color:var(--ink)}
+.card table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+.card th{background:color-mix(in srgb,var(--lav) 20%,transparent);color:var(--ink);font-weight:600;padding:9px 12px;text-align:start;border:1px solid var(--line)}
+.card td{padding:9px 12px;border:1px solid var(--line);color:var(--muted)}
+.card svg{display:block;margin:14px auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;max-width:100%;height:auto}
+.pager{display:flex;justify-content:space-between;gap:12px;margin:34px 0 0}
+.pager button{border:1px solid var(--line);background:var(--panel);color:var(--khuzama);font-family:var(--body);font-size:14px;border-radius:999px;padding:10px 22px;cursor:pointer;transition:.2s}
+.pager button:hover{border-color:var(--khuzama);color:var(--ink)}
+.art footer{border-top:1px solid var(--line);margin-top:44px;padding:30px 0 8px;text-align:center}
+.copy{color:var(--muted);font-size:13px;direction:ltr}
+.toc{position:sticky;top:150px;z-index:25;box-shadow:0 8px 22px rgba(45,45,45,.07)}
+@media print{
+ .topbar,.toc,.pager,.pdfwrap,.bloom,.nav-sep{display:none!important}
+ body,body.dark{--bg:#fff;--ink:#1a1a1a;--panel:#fff;--muted:#333;--line:#d8d8d8;background:#fff!important}
+ .art{max-width:100%;padding:0}
+ .cover{padding:6px 0 2px}
+ .page{padding-top:14px}
+ .card{border:1px solid #ddd;border-radius:8px;padding:16px}
+ .conclusion-final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .chip,.note,.info-card,.stat,.formula,.card th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .card a{text-decoration:none;color:inherit}
+ .refs a{color:#333}
+}
+.page{display:none}
+.page.act{display:block}
+.toc a.act{background:color-mix(in srgb,var(--lav) 30%,transparent);border-color:var(--khuzama);color:var(--ink);font-weight:600}
+.toc a.pdfchip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--lav) 24%,transparent);border-color:var(--khuzama);color:var(--khuzama);font-weight:600}
+.toc a.pdfchip:hover{background:var(--khuzama);color:#fff}
+@media print{.page{display:block!important}}
+.cover .sadu,footer .sadu{gap:12px;align-items:center}
+.cover .sadu span,footer .sadu span{width:8px;height:8px;background:var(--lav)}
+.cover .sadu span:nth-child(3),footer .sadu span:nth-child(3){width:11px;height:11px;background:var(--khuzama)}
+.cover .sadu span:nth-child(1),.cover .sadu span:nth-child(5),footer .sadu span:nth-child(1),footer .sadu span:nth-child(5){width:6px;height:6px;background:var(--plat)}
+body.dark .topbar .seg button.on{background:var(--lav);color:var(--purple)}
+body.dark .toc a.home{background:var(--lav);border-color:var(--lav);color:var(--purple)}
+body.dark .toc a.pdfchip{border-color:var(--lav);color:var(--lav);background:transparent}
+body.dark .toc a.pdfchip:hover{background:var(--lav);color:var(--purple)}
+body.dark .pager button{color:var(--lav)}
+
+/* ---- firm register ---- */
+*{border-radius:0!important}
+h1,h2,h3,h4{font-family:var(--head);font-weight:400;letter-spacing:0}
+.topbar{background:var(--panel);border-bottom:1px solid var(--line);box-shadow:none;backdrop-filter:none}
+.lockup{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none;flex:none}
+.mg{width:36px;height:36px;background:var(--purple);color:#fff;display:grid;place-items:center;
+ font-family:var(--head);font-weight:600;font-size:16px;line-height:1;flex:none;direction:ltr;
+ unicode-bidi:isolate;transition:background .22s ease}
+.lockup:hover .mg{background:var(--khuzama)}
+.lockup .lk-tx{display:block;line-height:1.15}
+.lk-name{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink);white-space:nowrap;display:block}
+.lockup .lk-tx i{font-style:normal;display:block;font-family:var(--body);font-weight:300;font-size:11px;
+ letter-spacing:.02em;color:var(--muted);margin-top:3px;direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+@media(max-width:640px){.lockup .lk-tx i{display:none}.mg{width:32px;height:32px;font-size:15px}}
+.seg{border:1px solid var(--line)}
+.seg button.on{background:var(--purple)!important;color:#fff!important;font-weight:500}
+.seg button:hover{color:var(--purple)}
+.cover h1{font-family:var(--head)}
+.kicker{color:var(--khuzama);font-weight:600}
+.toc{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.toc a.act,.toc a:hover{color:var(--khuzama)}
+.card,.info-card,.note,.refs,.chip{background:var(--panel);border:1px solid var(--line);box-shadow:none}
+.cta-top{background:var(--khuzama);color:#fff;border:0}
+.cta-top:hover{background:#9A1C1C}
+footer{background:transparent;color:var(--ink);border-top:1px solid var(--line);text-align:center}
+.copy{color:var(--muted)}
+.bloom,.nav-sep,.sadu,.tbtn{display:none!important}
+html[lang="ar"] .kicker,html[lang="ar"] .toc a,html[lang="ar"] .chip,
+html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
+
+/* ---- top bar: same layout as the rest of the site ---- */
+.topbar{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);
+ backdrop-filter:none;box-shadow:none;text-align:start;padding:0;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;
+ max-width:none;margin:0;padding:13px clamp(18px,4vw,32px)}
+.topbar .tools{position:static;inset:auto;top:auto;display:flex;gap:12px;align-items:center;flex:none}
+.topbar .seg{display:inline-flex;border:1px solid var(--line);background:var(--panel);overflow:visible}
+.topbar .seg button{border:0;background:none;color:var(--muted);font-family:var(--body);
+ font-size:11.5px;font-weight:500;padding:7px 11px;cursor:pointer}
+.topbar .seg button.on{background:var(--purple)!important;color:#fff!important}
+.topnav{margin:0;display:flex;gap:clamp(10px,2vw,28px);justify-content:center;flex-wrap:nowrap;
+ padding:0;border:0;background:none;box-shadow:none;flex:1}
+.topnav a{color:var(--ink);font-size:14px;text-decoration:none;padding:4px 0;background:none;
+ border-bottom:2px solid transparent;transition:border-color .2s ease;white-space:nowrap}
+.topnav a:hover{background:none;color:var(--ink);border-bottom-color:var(--khuzama)}
+.topnav a.cur{color:var(--ink)!important;background:none!important;font-weight:500;border-bottom:2px solid var(--khuzama)}
+.cta-top{background:var(--khuzama);color:#fff;border:0;text-decoration:none;font-size:13.5px;
+ font-weight:500;padding:10px 20px;white-space:nowrap;display:inline-block}
+.cta-top:hover{background:#9A1C1C;color:#fff}
+@media(max-width:860px){.topnav{display:none}}
+
+/* ---- header sits on the same 1200px column as the rest of the site ---- */
+.topbar{padding-inline:max(calc((100% - 1080px) / 2), clamp(20px,5vw,60px))!important;padding-block:15px!important;max-width:none;margin:0;min-height:81px;display:flex;align-items:center}
+.topbar .bar{max-width:none!important;margin:0!important;padding:0!important;min-height:0!important;width:100%;flex-wrap:nowrap;justify-content:space-between;gap:20px}
+
+/* ==================== reading system ==================== */
+/* one continuous document: no slides, no next buttons */
+.page{display:block!important;opacity:1!important;transform:none!important;
+ padding-block:clamp(26px,4vw,40px);border-top:1px solid var(--line);margin:0}
+.page:first-of-type{border-top:0;padding-top:0}
+.pager{display:none!important}
+
+/* progress hairline */
+#prog{position:fixed;inset-inline:0;top:0;height:2px;z-index:60;background:transparent;pointer-events:none}
+#prog i{display:block;height:2px;width:0;background:var(--khuzama);transition:width .1s linear}
+
+/* the two column reading grid: rail + column */
+.art{display:grid;grid-template-columns:230px minmax(0,1fr);column-gap:clamp(28px,5vw,68px);row-gap:0;
+ max-width:1080px;margin:0 auto;padding-inline:clamp(20px,5vw,60px);padding-block:clamp(30px,5vw,54px)}
+.cover{grid-column:1/-1}
+.colwrap{grid-column:2;min-width:0}
+.art > footer{grid-column:1/-1;width:100%}
+.toc{grid-column:1;grid-row:2;position:sticky;top:100px;align-self:start;
+ display:block!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;margin:0!important;max-width:none;overflow:visible}
+.toc:before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc .steps{list-style:none;counter-reset:s;border-inline-start:1px solid var(--line);margin:0;padding:0}
+.toc .steps li{counter-increment:s;margin:0}
+.toc a[data-id]{display:flex;gap:10px;align-items:baseline;padding:9px 0;padding-inline-start:16px;
+ font-size:13.5px;color:var(--muted);text-decoration:none;margin-inline-start:-1px;
+ border-inline-start:2px solid transparent;background:none!important;border-radius:0;transition:.2s ease}
+.toc a[data-id]:before{content:counter(s,decimal-leading-zero);font-family:var(--head);font-size:11.5px;
+ color:var(--line);flex:none;direction:ltr;unicode-bidi:isolate}
+.toc a[data-id]:hover{color:var(--ink);background:none!important}
+.toc a[data-id].act{color:var(--ink);border-inline-start-color:var(--khuzama);font-weight:500;background:none!important}
+.toc a[data-id].act:before{color:var(--khuzama)}
+.toc .util{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+.toc .util a{font-size:13px;color:var(--muted);text-decoration:none;padding:0;background:none!important;
+ border:0;display:block;cursor:pointer}
+.toc .util a:hover{color:var(--khuzama)}
+@media(max-width:900px){
+  .art{grid-template-columns:1fr;padding-block:clamp(24px,4vw,40px)}
+  .cover,.colwrap{grid-column:1}
+  .toc{position:static;grid-column:1;grid-row:auto;margin-bottom:26px!important;
+   border:1px solid var(--line)!important;padding:16px 18px!important}
+  .toc:before{margin-bottom:10px}
+}
+
+/* cover */
+.cover{text-align:start;padding:0 0 clamp(24px,4vw,38px);border-bottom:1px solid var(--line);margin-bottom:clamp(28px,4vw,44px)}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.crumb a{color:var(--khuzama);text-decoration:none}
+.crumb a:hover{text-decoration:underline}
+.crumb i{font-style:normal;margin-inline:8px;color:var(--line)}
+.cover h1{font-size:clamp(28px,3.8vw,44px);max-width:900px;text-align:start}
+.cover .kicker{display:none}
+.cover .byline{display:none}
+.cover .sadu{display:none}
+.covermeta{display:flex;flex-wrap:wrap;margin-top:24px;border:1px solid var(--line)}
+.covermeta div{padding:13px 18px;border-inline-start:1px solid var(--line);flex:1;min-width:150px}
+.covermeta div:first-child{border-inline-start:0}
+.covermeta b{display:block;font-size:11px;color:var(--muted);font-weight:500;margin-bottom:5px}
+.covermeta span{font-family:var(--head);font-size:15.5px}
+
+/* section headings carry their number */
+.page > h2:first-child,.page > h2{position:relative}
+.page{counter-increment:sec}
+.colwrap{counter-reset:sec}
+.page > h2:before{content:counter(sec,decimal-leading-zero);display:block;font-family:var(--head);
+ font-size:14px;color:var(--khuzama);margin-bottom:8px;direction:ltr;unicode-bidi:isolate}
+
+/* end of document */
+.endnav{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);
+ margin-top:clamp(30px,5vw,50px)}
+@media(max-width:640px){.endnav{grid-template-columns:1fr}}
+.endnav a{background:var(--panel);padding:20px 22px;text-decoration:none;color:inherit;display:block;transition:background .2s ease}
+.endnav a:hover{background:#F4F4F4}
+.endnav b{font-size:11px;color:var(--muted);font-weight:500;display:block;margin-bottom:6px}
+.endnav span{font-family:var(--head);font-size:17px;display:block;line-height:1.35}
+.endnav .empty{background:var(--panel);opacity:.4;pointer-events:none}
+.stamp{font-size:12.5px;color:var(--muted);margin-top:24px}
+@media print{#prog,.toc,.endnav,.topbar{display:none!important}.art{display:block;max-width:none}}
+
+/* ---- reading system, corrections ---- */
+/* the section wrapper stops being a card; nested cards stay boxes */
+.page > .card{background:transparent!important;border:0!important;box-shadow:none!important;
+ padding:0!important;border-radius:0!important}
+.colwrap{counter-reset:sec}
+.page{counter-increment:sec}
+.page > .card > [data-lang] > h2:first-of-type:before{content:counter(sec,decimal-leading-zero);
+ display:block;font-family:var(--head);font-size:14px;color:var(--khuzama);margin-bottom:8px;
+ unicode-bidi:isolate;font-weight:400;text-align:start}
+.page > .card > [data-lang] > h2:first-of-type{font-size:clamp(21px,2.6vw,27px);margin-bottom:16px}
+
+/* the rail is a list, not a row of pills */
+.toc:before{content:none!important}
+.railk{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-bottom:14px}
+.toc a[data-id]{border:0!important;border-inline-start:2px solid transparent!important;
+ border-radius:0!important;padding:9px 0!important;padding-inline-start:16px!important;
+ background:none!important;color:var(--muted)!important;font-weight:400!important}
+.toc a[data-id].act{border-inline-start-color:var(--khuzama)!important;color:var(--ink)!important;font-weight:500!important}
+.toc a[data-id]:hover{border-inline-start-color:var(--line)!important;color:var(--ink)!important}
+.toc .util a{border:0!important;border-radius:0!important;padding:0!important;background:none!important;
+ color:var(--muted)!important;font-weight:400!important}
+.toc .util a:hover{color:var(--khuzama)!important}
+
+.seg{direction:ltr}
+
+/* slim upright blocks: one height, tight widths */
+.mg{width:54px!important;height:54px!important;font-size:21px!important}
+.topbar .seg,.seg{height:54px;direction:ltr;border:1px solid var(--line);overflow:visible}
+.topbar .seg button,.seg button{height:100%;padding:0 11px!important;font-size:12px!important;font-weight:500!important;display:grid;place-items:center;letter-spacing:.03em;border:0;min-width:42px}
+.topbar .cta-top,.cta-top{height:54px;padding:0 20px!important;display:inline-flex!important;align-items:center;font-size:13.5px!important;font-weight:500!important}
+.topbar{padding-block:13px!important}
+.topbar .tools{gap:10px}
+@media(max-width:640px){.mg{width:44px!important;height:44px!important;font-size:17px!important}
+ .topbar .seg,.seg{height:44px}.topbar .seg button,.seg button{padding:0 9px!important;font-size:11px!important;min-width:34px}
+ .topbar .cta-top,.cta-top{height:44px;padding:0 15px!important;font-size:12.5px!important}}
+
+/* on a phone the call to action lives in the menu, so the bar never overflows */
+@media(max-width:620px){
+ .topbar{flex-wrap:wrap;min-height:0!important;padding-block:12px!important;row-gap:0}
+ .topbar .bar{flex-wrap:wrap;row-gap:0}
+ .topbar .cta-top{display:none!important}
+ .topbar .lockup{order:1}
+ .topbar .tools{order:2;margin-inline-start:auto}
+ .topbar .topnav{display:flex!important;flex:0 0 100%!important;width:100%!important;order:3;
+  flex-wrap:wrap;gap:18px;justify-content:flex-start;margin-top:12px;padding-top:12px;
+  border-top:1px solid var(--line)}}
+
+/* a lone neighbour takes the full width instead of leaving a blank half */
+.endnav{display:flex!important;flex-wrap:wrap;gap:1px}
+.endnav a{flex:1 1 220px}
+.endnav .empty{display:none!important}
+</style></head>
+<body dir="ltr">
+<div id="prog"><i></i></div>
+<header class="topbar">
+  <a class="lockup" href="../index.html"><span class="mg" aria-hidden="true">S3</span><span class="lk-tx"><span class="lk-name">Saif Ali Alghamdi</span><i>Transformation &amp; Growth Advisor</i></span></a>
+  <nav class="topnav">
+    <a href="../index.html?view=home#about" data-en="About">عني</a>
+    <a href="../index.html?view=services" data-en="Services">خدماتي</a>
+    <a href="../index.html?view=insights" data-en="Library">مكتبتي</a>
+    <a class="cur" href="../index.html?view=research" data-en="Research">أبحاثي</a>
+  </nav>
+  <div class="tools">
+    <div class="seg"><button id="langEn" class="on" onclick="setLang('en')">EN</button><button id="langAr" onclick="setLang('ar')">AR</button></div>
+    <a class="cta-top" href="../index.html?view=contact" data-en="Contact">تواصل</a>
+  </div>
+</header>
+<div class="art">
+
+  <header class="cover">
+    <div class="crumb"><a href="../index.html?view=research#foundation-of-business-research"><span data-lang="en">Foundation of Business Research</span><span data-lang="ar">أسس بحوث الأعمال</span></a><i>&rsaquo;</i><span data-lang="en">Literature review</span><span data-lang="ar">مراجعة الأدبيات</span></div>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="kicker"><span data-lang="en">LITERATURE REVIEW · PhD</span><span data-lang="ar">مراجعة الأدبيات · دكتوراه</span></div>
+    <h1><span data-lang="en">Boolean Logic and Search Strings</span><span data-lang="ar">منطق بوول وسلاسل البحث</span></h1>
+    <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
+  <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Literature review</span><span data-lang="ar">مراجعة الأدبيات</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">11 min</span><span data-lang="ar">١١ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
+
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذا الموضوع</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="operators"><span data-lang="en">The operators</span><span data-lang="ar">العوامل</span></a></li><li><a data-id="brackets"><span data-lang="en">Brackets</span><span data-lang="ar">الأقواس</span></a></li><li><a data-id="fields"><span data-lang="en">Fields and limits</span><span data-lang="ar">الحقول والقيود</span></a></li><li><a data-id="debug"><span data-lang="en">Debugging</span><span data-lang="ar">التنقيح</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=research#phd"><span data-lang="en">Back to the doctoral track</span><span data-lang="ar">إلى مسار الدكتوراه</span></a></div></nav>
+
+  <div class="colwrap">
+<section class="page" id="overview">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">One</span>
+        <h2>Overview</h2>
+        <div class="info-card">
+          <div><span>Topic:</span> Boolean operators and building a search string</div>
+          <div><span>Covers:</span> The operators, brackets and precedence, wildcards, field tags, and debugging a string</div>
+          <div><span>Use:</span> Turning a planned search into a query that actually retrieves the right set</div>
+          <div><span>Level:</span> Doctoral business research</div>
+          <div><span>By:</span> Saif Alghamdi</div>
+        </div>
+        <p class="lead">Boolean logic is the small set of rules by which a database decides whether a record matches your query. There are five things to learn and they take under an hour, after which the difference between a searcher who knows them and one who does not is roughly the difference between finding the literature and not finding it.</p>
+        <p>The reason it matters is that databases are literal. A search engine on the open web guesses at intent, corrects spelling, and quietly expands your terms. An academic database does none of that: it matches the characters you typed against the fields it indexed, and if your term is absent from those fields the record does not appear, however relevant it is. That literalness is a feature, because it is what makes a search reproducible, but it means the burden of expressing your intent falls entirely on the string.</p>
+        <p>The practical skill has two halves. The first is <strong>construction</strong>: turning concept blocks into a bracketed expression that says exactly what you mean. The second, less taught and more useful, is <strong>debugging</strong>: reading a result set that is too large, too small, or off-target and diagnosing which part of the string caused it. A researcher who can debug a string will converge on a good search in three attempts; one who cannot will change terms at random and conclude that the topic is under-researched.</p>
+        <p>This framework covers the operators and what each does to the result count, brackets and why they are not optional, phrase searching and truncation, field tags and limits, and a diagnostic procedure for strings that misbehave. It is my own synthesis, written in my own words and grounded in recognized scholarship.</p>
+        <div class="note"><strong>Note:</strong> Every database implements this slightly differently. The logic is universal; the syntax is local. Read the help page of each database once, and record the syntax quirks in your protocol so you are not rediscovering them at midnight.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الأول</span>
+        <h2>نظرة عامة</h2>
+        <div class="info-card">
+          <div><span>الموضوع:</span> عوامل بوول وبناء سلسلة البحث</div>
+          <div><span>يغطّي:</span> العوامل، والأقواس والأسبقية، ورموز البدل، ووسوم الحقول، وتنقيح السلسلة</div>
+          <div><span>الاستخدام:</span> تحويل بحث مخطَّط إلى استعلام يسترجع المجموعة الصحيحة فعلًا</div>
+          <div><span>المستوى:</span> بحوث الأعمال لمرحلة الدكتوراه</div>
+          <div><span>إعداد:</span> سيف الغامدي</div>
+        </div>
+        <p class="lead">منطق بوول مجموعةٌ صغيرة من القواعد تقرر بها قاعدةُ البيانات هل يطابق سجلٌّ استعلامك. وفيه خمسة أشياء تُتعلَّم في أقل من ساعة، وبعدها يكون الفرق بين باحث يعرفها وآخر لا يعرفها هو تقريبًا الفرق بين العثور على الأدبيات وعدم العثور عليها.</p>
+        <p>وسبب أهميته أن القواعد حرفية. فمحرك البحث على الوب المفتوح يخمّن القصد، ويصحح الهجاء، ويوسّع مصطلحاتك بهدوء. أما القاعدة الأكاديمية فلا تفعل شيئًا من ذلك: إنها تطابق المحارف التي كتبتها بالحقول التي فهرستها، وإن غاب مصطلحك عن تلك الحقول لم يظهر السجل مهما كان ذا صلة. وتلك الحرفية ميزة، لأنها ما يجعل البحث قابلًا للتكرار، لكنها تعني أن عبء التعبير عن قصدك يقع على السلسلة كاملًا.</p>
+        <p>والمهارة العملية نصفان. الأول <strong>البناء</strong>: تحويل كتل المفاهيم إلى تعبير مقوّس يقول ما تعنيه بالضبط. والثاني، وهو أقل تعليمًا وأكثر نفعًا، <strong>التنقيح</strong>: قراءة مجموعة نتائج كبيرة جدًا أو صغيرة جدًا أو خارج الهدف وتشخيص أي جزء من السلسلة سبّبها. فالباحث الذي يستطيع تنقيح سلسلة سيصل إلى بحث جيد في ثلاث محاولات؛ والذي لا يستطيع سيغيّر المصطلحات عشوائيًا ويستنتج أن الموضوع قليل البحث.</p>
+        <p>ويغطي هذا الإطار العوامل وما يفعله كلٌّ بعدد النتائج، والأقواس ولماذا ليست اختيارية، والبحث بالعبارة والبتر، ووسوم الحقول والقيود، وإجراءً تشخيصيًا للسلاسل التي تسيء التصرف. وقد أعددتُ هذا الإطار بنفسي وكتبتُه بأسلوبي، معتمدًا على المراجع العلمية المعتمدة.</p>
+        <div class="note"><strong>ملاحظة:</strong> كل قاعدة بيانات تطبّق هذا بطريقة مختلفة قليلًا. فالمنطق كوني؛ والصياغة محلية. اقرأ صفحة المساعدة لكل قاعدة مرة، وسجّل شذوذات الصياغة في بروتوكولك كي لا تعيد اكتشافها منتصف الليل.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="operators">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Two</span>
+        <h2>The Five Operators</h2>
+        <p class="lead">Three logical operators and two text operators cover almost everything. Each one has a predictable effect on the size of the result set, and knowing that effect is what makes debugging possible.</p>
+        <svg viewBox="0 0 700 308" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">AND</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Narrows</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">both must be present; every AND cuts the result set</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">OR</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Widens</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">any may be present; every OR grows the result set</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">NOT</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Excludes</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#2D2D2D">removes records containing a term, and removes them silently</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">Quote</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Phrase</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">the words must appear together in that order</text><rect x="52.0" y="224.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="251.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">Star</text><rect x="104.0" y="224.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="251.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">Truncation</text><rect x="312.0" y="224.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="251.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">matches every ending of the stem you typed</text><text x="350.0" y="297.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">AND and OR do almost all the work; NOT is the one that quietly loses papers</text></svg>
+        <p><strong>AND</strong> requires both terms and therefore always shrinks the set. It is the operator that joins concept blocks, because it expresses the idea that a relevant paper must be about all of your concepts rather than any of them. The practical warning is that each AND multiplies the restriction, so three ANDs on moderately common terms can take a set from thousands to single digits.</p>
+        <p><strong>OR</strong> accepts either term and therefore always grows the set. It is the operator that joins synonyms inside a block, and it is the operator most students under-use. A block with one term is a block that will miss every paper whose authors chose a different word for the same idea, which in business research is a large fraction of them.</p>
+        <p><strong>NOT</strong> excludes and is the operator to treat with suspicion. Excluding a term removes every record containing it anywhere in the indexed fields, including records that are highly relevant and merely mention the excluded term in passing. A paper on hospital staffing that contains one sentence comparing with schools will be removed by NOT schools. Use NOT rarely, and when you do, check what it removed by running the query with and without it and looking at the difference.</p>
+        <p><strong>Phrase searching</strong>, achieved with quotation marks in most systems, forces the words to appear adjacent and in order. Without it, a two-word term is treated as two separate words joined by an implicit operator, which in some databases is AND and in others is OR, and the difference in results is enormous. Any multi-word concept should be quoted: the phrase for corporate social responsibility, unquoted, retrieves papers about corporations, society, and responsibility in unrelated combinations.</p>
+        <p><strong>Truncation</strong>, usually an asterisk, matches every ending of a stem. Manag* retrieves manage, manages, managed, managing, management, manager, and managerial in one term. The risk is truncating too early: polic* retrieves policy and policies but also police and policing, and a stem of fewer than four or five characters usually catches more than intended. Some databases also offer a single-character wildcard, often a question mark, which handles spelling variants such as organi?ation.</p>
+        <div class="note"><strong>Note:</strong> Watch the result count after every change to the string. A change that should widen the set and instead shrinks it means the syntax was not interpreted the way you expected, and finding out immediately is much cheaper than finding out at the end.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثاني</span>
+        <h2>العوامل الخمسة</h2>
+        <p class="lead">ثلاثة عوامل منطقية وعاملان نصّيان يغطون كل شيء تقريبًا. ولكلٍّ أثر متوقَّع في حجم مجموعة النتائج، ومعرفة ذلك الأثر هي ما يجعل التنقيح ممكنًا.</p>
+        <svg viewBox="0 0 700 308" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="52.0" y="16.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="43.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">AND</text><rect x="104.0" y="16.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="43.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">يضيّق</text><rect x="312.0" y="16.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="43.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">يجب حضور الاثنين؛ وكل AND يقصّ مجموعة النتائج</text><rect x="52.0" y="68.0" width="44.0" height="44.0" rx="4" fill="#A32020"/><text x="74.0" y="95.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">OR</text><rect x="104.0" y="68.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="95.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">يوسّع</text><rect x="312.0" y="68.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="95.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">يكفي حضور أيٍّ؛ وكل OR يوسّع مجموعة النتائج</text><rect x="52.0" y="120.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="147.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">NOT</text><rect x="104.0" y="120.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="147.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">يستبعد</text><rect x="312.0" y="120.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="147.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">يزيل السجلات التي تحوي مصطلحًا، ويزيلها بصمت</text><rect x="52.0" y="172.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#FFFFFF">Quote</text><rect x="104.0" y="172.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="199.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">العبارة</text><rect x="312.0" y="172.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="199.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">يجب أن تظهر الكلمات معًا بذلك الترتيب</text><rect x="52.0" y="224.0" width="44.0" height="44.0" rx="4" fill="#8C8C8C"/><text x="74.0" y="251.0" text-anchor="middle" font-size="14.0" font-weight="700" fill="#FFFFFF">Star</text><rect x="104.0" y="224.0" width="200.0" height="44.0" rx="4" fill="#BFBFBF"/><text x="204.0" y="251.0" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2D2D2D">البتر</text><rect x="312.0" y="224.0" width="336.0" height="44.0" rx="4" fill="#DEDEDE"/><text x="480.0" y="251.0" text-anchor="middle" font-size="10.5" font-weight="400" fill="#2D2D2D">يطابق كل نهايات الجذر الذي كتبته</text><text x="350.0" y="297.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">AND وOR يؤديان العمل كله تقريبًا؛ وNOT هو الذي يُضيّع الأوراق بهدوء</text></svg>
+        <p>و<strong>AND</strong> يشترط المصطلحين ولذلك يقلّص المجموعة دائمًا. وهو العامل الذي يوصل كتل المفاهيم، لأنه يعبّر عن فكرة أن الورقة ذات الصلة يجب أن تكون عن مفاهيمك كلها لا عن أيٍّ منها. والتحذير العملي أن كل AND يضاعف التقييد، فثلاثة AND على مصطلحات شائعة نسبيًا قد تنقل مجموعةً من الآلاف إلى آحاد.</p>
+        <p>و<strong>OR</strong> يقبل أي المصطلحين ولذلك يوسّع المجموعة دائمًا. وهو العامل الذي يوصل المترادفات داخل الكتلة، وهو العامل الأكثر إهمالًا لدى الطلاب. فالكتلة ذات المصطلح الواحد كتلةٌ ستُفوّت كل ورقة اختار مؤلفوها كلمة مختلفة للفكرة نفسها، وهؤلاء في بحوث الأعمال كسرٌ كبير منهم.</p>
+        <p>و<strong>NOT</strong> يستبعد وهو العامل الذي يجب التعامل معه بريبة. فاستبعاد مصطلح يزيل كل سجل يحويه في أي موضع من الحقول المفهرَسة، بما فيها سجلات وثيقة الصلة تذكر المصطلح المستبعَد عَرَضًا فقط. فورقة عن ملاك المستشفيات فيها جملة واحدة تقارن بالمدارس سيزيلها NOT schools. استخدم NOT نادرًا، وحين تفعل، افحص ما أزاله بتشغيل الاستعلام معه وبدونه والنظر في الفرق.</p>
+        <p>و<strong>البحث بالعبارة</strong>، المتحقق بعلامتي التنصيص في معظم الأنظمة، يُلزم الكلمات بالتجاور والترتيب. وبدونه يُعامَل مصطلحٌ من كلمتين ككلمتين منفصلتين موصولتين بعامل ضمني، وهو في بعض القواعد AND وفي غيرها OR، والفرق في النتائج هائل. وأي مفهوم متعدد الكلمات ينبغي تنصيصه: فعبارة «المسؤولية الاجتماعية للشركات» بلا تنصيص تسترجع أوراقًا عن الشركات والمجتمع والمسؤولية في تركيبات لا صلة لها.</p>
+        <p>و<strong>البتر</strong>، وهو النجمة عادةً، يطابق كل نهايات جذر. فـmanag* يسترجع manage وmanages وmanaged وmanaging وmanagement وmanager وmanagerial بمصطلح واحد. والخطر هو البتر مبكرًا: فـpolic* يسترجع policy وpolicies وأيضًا police وpolicing، والجذر الأقصر من أربعة أو خمسة محارف يلتقط عادةً أكثر من المقصود. وبعض القواعد تعرض أيضًا رمز بدل لمحرف واحد، وهو علامة استفهام غالبًا، يعالج تنويعات الهجاء مثل organi?ation.</p>
+        <div class="note"><strong>ملاحظة:</strong> راقب عدد النتائج بعد كل تغيير في السلسلة. فتغييرٌ يُفترَض أن يوسّع المجموعة ثم يقلّصها يعني أن الصياغة لم تُفسَّر كما توقعت، ومعرفة ذلك فورًا أرخص كثيرًا من معرفته في النهاية.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="brackets">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Three</span>
+        <h2>Brackets, Precedence, and the Shape of a String</h2>
+        <p class="lead">Brackets are the single most common point of failure in a search string, and the failure is silent: the query runs, returns plausible numbers, and answers a question you did not ask.</p>
+        <svg viewBox="0 0 700 175" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="118.2" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">One block</text><text x="118.2" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">collect the</text><text x="118.2" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">synonyms for a</text><text x="118.2" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">single concept</text><line x1="188.5" y1="78.0" x2="199.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M202.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="204.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="272.8" y="63.5" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">Join with OR</text><text x="272.8" y="77.5" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">wrap the whole</text><text x="272.8" y="90.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">block in brackets</text><line x1="343.0" y1="78.0" x2="354.0" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M357.0 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="359.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="427.2" y="63.5" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">Add blocks</text><text x="427.2" y="77.5" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">join the bracketed</text><text x="427.2" y="90.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">blocks with AND</text><line x1="497.5" y1="78.0" x2="508.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M511.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="513.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="581.8" y="63.5" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">Add limits</text><text x="581.8" y="77.5" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">field tags, years,</text><text x="581.8" y="90.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">document types</text><text x="350.0" y="158.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">the brackets are not decoration: without them the engine reads the string wrongly</text></svg>
+        <p>Consider the difference between two strings. The first is <strong>remote work OR telework AND retention</strong>. Because AND binds more tightly than OR in most systems, the engine reads this as remote work OR (telework AND retention), which returns every paper mentioning remote work regardless of whether it is about retention at all. The second is <strong>(remote work OR telework) AND retention</strong>, which is what you meant. The two strings differ by two characters and by several thousand irrelevant results.</p>
+        <p>The rule is therefore mechanical: <strong>every OR block gets its own brackets</strong>, without exception, even when you are confident about precedence. This costs nothing and removes an entire class of error. The resulting shape is always the same and is worth memorising as a template: (block one terms joined by OR) AND (block two terms joined by OR) AND (block three terms joined by OR).</p>
+        <p>A worked example makes the shape concrete. For a study of whether flexible scheduling affects retention in small and medium enterprises, the string is (&#34;flexible work*&#34; OR &#34;flexible scheduling&#34; OR flexitime OR &#34;compressed week&#34;) AND (retention OR turnover OR attrition OR &#34;quit rate&#34;) AND (SME* OR &#34;small and medium&#34; OR &#34;small business*&#34;). Three blocks, each bracketed, each internally joined by OR, joined to each other by AND, with phrases quoted and stems truncated. Every good search string in every field looks like this.</p>
+        <p>Two refinements are worth knowing once the shape is habitual. <strong>Nested brackets</strong> handle a sub-concept inside a block, as in (retention OR turnover OR (&#34;intention to&#34; AND (leave OR quit))), which is occasionally necessary and often a sign that the block is doing too much. And <strong>proximity operators</strong>, written differently in each database but generally of the form NEAR/3 or W/5, require two terms to appear within a stated number of words of each other. Proximity is more precise than AND across a whole record and looser than a quoted phrase, and it is the right tool when two concepts must be related but the wording varies.</p>
+        <div class="note"><strong>Note:</strong> Build the string in a text file, not in the search box. You will run it in several databases with small syntax changes, you will need the exact text for the protocol, and a search box loses your work the moment the session expires.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الثالث</span>
+        <h2>الأقواس والأسبقية وشكل السلسلة</h2>
+        <p class="lead">الأقواس أشيع نقطة إخفاق في سلسلة البحث، والإخفاق صامت: يعمل الاستعلام، ويعيد أرقامًا معقولة، ويجيب سؤالًا لم تسأله.</p>
+        <svg viewBox="0 0 700 175" xmlns="http://www.w3.org/2000/svg" role="img" style="direction:ltr;font-family:&apos;Noto Sans Arabic&apos;,Helvetica,Arial,sans-serif;"><rect x="50.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="118.2" y="63.5" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">كتلة واحدة</text><text x="118.2" y="77.5" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">اجمع مترادفات</text><text x="118.2" y="90.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">مفهوم واحد</text><line x1="188.5" y1="78.0" x2="199.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M202.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="204.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="272.8" y="63.5" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">اوصل بـOR</text><text x="272.8" y="77.5" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">ضع الكتلة كلها بين</text><text x="272.8" y="90.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">قوسين</text><line x1="343.0" y1="78.0" x2="354.0" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M357.0 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="359.0" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="427.2" y="63.5" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">أضف كتلًا</text><text x="427.2" y="77.5" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">اوصل الكتل</text><text x="427.2" y="90.0" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">المقوّسة بـAND</text><line x1="497.5" y1="78.0" x2="508.5" y2="78.0" stroke="#8C8C8C" stroke-width="2"/><path d="M511.5 78.0 l-9 -5 l0 10 z" fill="#8C8C8C"/><rect x="513.5" y="30.0" width="136.5" height="96.0" rx="4" fill="#8C8C8C"/><text x="581.8" y="57.2" text-anchor="middle" font-size="13.0" font-weight="700" fill="#FFFFFF">أضف القيود</text><text x="581.8" y="71.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">وسوم الحقول</text><text x="581.8" y="83.8" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">والسنوات وأنواع</text><text x="581.8" y="96.2" text-anchor="middle" font-size="10.0" font-weight="400" fill="#FFFFFF">الوثائق</text><text x="350.0" y="158.0" text-anchor="middle" font-size="12" font-weight="400" fill="#A32020">الأقواس ليست زينة: بدونها يقرأ المحرك السلسلة قراءة خاطئة</text></svg>
+        <p>تأمل الفرق بين سلسلتين. الأولى <strong>remote work OR telework AND retention</strong>. ولأن AND أشدّ ارتباطًا من OR في معظم الأنظمة، يقرأ المحرك هذا بوصفه remote work OR (telework AND retention)، وهو ما يعيد كل ورقة تذكر العمل عن بُعد بصرف النظر عن كونها عن البقاء أصلًا. والثانية <strong>(remote work OR telework) AND retention</strong>، وهي ما قصدته. والسلسلتان تختلفان بمحرفين وبعدة آلاف من النتائج غير ذات الصلة.</p>
+        <p>والقاعدة إذن آلية: <strong>كل كتلة OR تأخذ أقواسها</strong>، بلا استثناء، حتى حين تكون واثقًا من الأسبقية. وهذا لا يكلّف شيئًا ويزيل صنفًا كاملًا من الخطأ. والشكل الناتج هو نفسه دائمًا ويستحق الحفظ قالبًا: (مصطلحات الكتلة الأولى موصولة بـOR) AND (مصطلحات الكتلة الثانية موصولة بـOR) AND (مصطلحات الكتلة الثالثة موصولة بـOR).</p>
+        <p>ومثال مشتغَل يجعل الشكل محسوسًا. لدراسة هل تؤثر الجدولة المرنة في البقاء لدى المنشآت الصغيرة والمتوسطة، تكون السلسلة (&#34;flexible work*&#34; OR &#34;flexible scheduling&#34; OR flexitime OR &#34;compressed week&#34;) AND (retention OR turnover OR attrition OR &#34;quit rate&#34;) AND (SME* OR &#34;small and medium&#34; OR &#34;small business*&#34;). ثلاث كتل، كلٌّ مقوّسة، وكلٌّ موصولة داخليًا بـOR، وموصولة ببعضها بـAND، مع تنصيص العبارات وبتر الجذور. وكل سلسلة بحث جيدة في كل حقل تبدو هكذا.</p>
+        <p>وتحسينان يستحقان المعرفة بعد أن يصير الشكل عادة. <strong>الأقواس المتداخلة</strong> تعالج مفهومًا فرعيًا داخل كتلة، كما في (retention OR turnover OR (&#34;intention to&#34; AND (leave OR quit)))، وهي ضرورية أحيانًا وعلامةٌ غالبًا على أن الكتلة تفعل أكثر من اللازم. و<strong>عوامل التجاور</strong>، المكتوبة بصيغة مختلفة في كل قاعدة لكنها عمومًا من صيغة NEAR/3 أو W/5، تشترط ظهور مصطلحين ضمن عدد مذكور من الكلمات أحدهما من الآخر. والتجاور أدق من AND عبر سجل كامل وأرخى من عبارة منصَّصة، وهو الأداة الصحيحة حين يجب أن يرتبط مفهومان مع تنوّع الصياغة.</p>
+        <div class="note"><strong>ملاحظة:</strong> ابنِ السلسلة في ملف نصي لا في صندوق البحث. فستشغّلها في قواعد عدة بتغييرات صياغة صغيرة، وستحتاج النص بالضبط للبروتوكول، وصندوق البحث يفقد عملك لحظة انتهاء الجلسة.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="fields">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Four</span>
+        <h2>Field Tags and Limits</h2>
+        <p class="lead">By default a database searches a mixture of fields. Telling it which fields to search is the most powerful precision tool available, and it is the one most searchers never touch.</p>
+        <table>
+          <tr><th>Field</th><th>What searching it does</th><th>When to use it</th></tr>
+          <tr><td>Title only</td><td>Very high precision, low recall</td><td>Scoping a topic, or when a term is far too common</td></tr>
+          <tr><td>Title and abstract</td><td>The standard working default</td><td>Almost every systematic search</td></tr>
+          <tr><td>Title, abstract, keywords</td><td>Slightly wider, catches author-assigned terms</td><td>When the concept is named in keywords more than in text</td></tr>
+          <tr><td>Subject terms</td><td>Indexer-assigned, catches unusual wording</td><td>Alongside free text, never instead of it</td></tr>
+          <tr><td>Full text</td><td>Very high recall, very low precision</td><td>Rarely; use to find a specific detail, not to build a set</td></tr>
+          <tr><td>Author or affiliation</td><td>Finds a person's or group's output</td><td>Following a research team's programme</td></tr>
+        </table>
+        <p>The near-universal default for a systematic search is <strong>title, abstract, and keywords</strong>, sometimes written as TS or TITLE-ABS-KEY depending on the database. It is the right default because those three fields are where a paper announces what it is about, whereas full text retrieves any paper that mentions your term once in a discussion section, which is how a set of two hundred becomes a set of nine thousand.</p>
+        <p><strong>Limits</strong> are applied after the logic and narrow the retrieved set by metadata rather than by content. The common ones are publication year, document type, language, subject area, and open access status. Two cautions apply. First, applying a document type limit of articles only will exclude review papers and conference proceedings, which may be exactly what you want or exactly what you needed, so decide rather than accept the default. Second, subject area limits are assigned by the database and are frequently wrong at the margins, so a subject limit can silently remove interdisciplinary work, which is often the most interesting work in a business topic.</p>
+        <p>A note on <strong>sorting and exporting</strong>. Sort by relevance for scoping, because the top twenty tell you quickly whether the string is on target. Sort by date when checking currency. Sort by citation count only to identify the field's landmarks, never as a screening criterion, because citation counts favour older papers and popular subfields rather than good work. Export everything you intend to screen in one operation to a reference manager rather than opening records individually, since the export carries the abstracts you will screen on and the identifiers you will need to deduplicate.</p>
+        <div class="note"><strong>Note:</strong> Record the field code you used in the protocol alongside the string. TS=(...) and TITLE-ABS-KEY(...) and ti,ab,kw all mean the same thing in different databases, and a string copied between systems without translating the field code often returns zero.</div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الرابع</span>
+        <h2>وسوم الحقول والقيود</h2>
+        <p class="lead">افتراضيًا تبحث القاعدة في خليط من الحقول. وإخبارها أي الحقول تبحث أقوى أداة دقة متاحة، وهي التي لا يلمسها معظم الباحثين قط.</p>
+        <table>
+          <tr><th>الحقل</th><th>ما يفعله البحث فيه</th><th>متى يُستخدَم</th></tr>
+          <tr><td>العنوان فقط</td><td>دقة عالية جدًا واسترجاع منخفض</td><td>مسح موضوع، أو حين يكون المصطلح شائعًا جدًا</td></tr>
+          <tr><td>العنوان والملخص</td><td>الافتراضي العملي المعياري</td><td>كل بحث منهجي تقريبًا</td></tr>
+          <tr><td>العنوان والملخص والكلمات</td><td>أوسع قليلًا، يلتقط مصطلحات المؤلف</td><td>حين يُسمّى المفهوم في الكلمات أكثر من النص</td></tr>
+          <tr><td>مصطلحات الموضوع</td><td>يسندها المفهرس، تلتقط الصياغة غير المعتادة</td><td>إلى جانب النص الحر، لا بدلًا عنه أبدًا</td></tr>
+          <tr><td>النص الكامل</td><td>استرجاع عالٍ جدًا ودقة منخفضة جدًا</td><td>نادرًا؛ لإيجاد تفصيل بعينه لا لبناء مجموعة</td></tr>
+          <tr><td>المؤلف أو الانتماء</td><td>يجد إنتاج شخص أو مجموعة</td><td>تتبّع برنامج فريق بحثي</td></tr>
+        </table>
+        <p>والافتراضي شبه الكوني للبحث المنهجي هو <strong>العنوان والملخص والكلمات المفتاحية</strong>، ويُكتَب أحيانًا TS أو TITLE-ABS-KEY بحسب القاعدة. وهو الافتراضي الصحيح لأن تلك الحقول الثلاثة هي حيث تعلن الورقة عمّا هي، بينما يسترجع النص الكامل أي ورقة تذكر مصطلحك مرة واحدة في قسم مناقشة، وهذا كيف تصير مجموعةٌ من مئتين مجموعةً من تسعة آلاف.</p>
+        <p>و<strong>القيود</strong> تُطبَّق بعد المنطق وتضيّق المجموعة المسترجَعة بالبيانات الوصفية لا بالمحتوى. والشائعة منها سنة النشر ونوع الوثيقة واللغة والمجال الموضوعي وحالة الوصول المفتوح. وتحذيران ينطبقان. أولًا، تطبيق قيد نوع الوثيقة على «المقالات فقط» سيستبعد أوراق المراجعة ووقائع المؤتمرات، وقد يكون هذا بالضبط ما تريد أو بالضبط ما احتجت، فقرّر ولا تقبل الافتراضي. وثانيًا، قيود المجال الموضوعي تسندها القاعدة وهي خاطئة كثيرًا عند الأطراف، فقد يزيل قيد الموضوع بصمت الأعمالَ البينية، وهي غالبًا أطرف الأعمال في موضوع أعمال.</p>
+        <p>وملاحظة عن <strong>الفرز والتصدير</strong>. افرز بالصلة عند المسح، لأن العشرين الأولى تخبرك سريعًا هل السلسلة على الهدف. وافرز بالتاريخ عند فحص الحداثة. وافرز بعدد الاستشهادات لتحديد معالم الحقل فقط، لا معيارَ فرزٍ أبدًا، لأن أعداد الاستشهادات تحابي الأوراق الأقدم والتخصصات الفرعية الرائجة لا العمل الجيد. وصدّر كل ما تنوي فرزه في عملية واحدة إلى مدير مراجع بدل فتح السجلات فرادى، لأن التصدير يحمل الملخصات التي ستفرز عليها والمعرّفات التي ستحتاجها لإزالة التكرار.</p>
+        <div class="note"><strong>ملاحظة:</strong> سجّل رمز الحقل الذي استخدمته في البروتوكول إلى جانب السلسلة. فـTS=(...) وTITLE-ABS-KEY(...) وti,ab,kw كلها تعني الشيء نفسه في قواعد مختلفة، والسلسلة المنسوخة بين أنظمة دون ترجمة رمز الحقل تعيد صفرًا غالبًا.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="debug">
+    <div class="card">
+      <div data-lang="en">
+        <span class="chip">Five</span>
+        <h2>Debugging a String That Misbehaves</h2>
+        <p class="lead">Three symptoms cover almost every failing search, and each has a short diagnostic path. Work through them in order rather than changing terms at random.</p>
+        <p><strong>Symptom one: far too many results.</strong> The usual cause is a block that is too broad, a field setting of full text, or a missing phrase quotation. Diagnose by running each block on its own and looking at the counts. A block returning hundreds of thousands is your culprit. The repairs, in order of preference, are: quote the multi-word terms, restrict the field to title and abstract, remove the weakest synonym from the offending block, and only then add a further AND block. Adding limits such as year is the last resort because it discards content rather than sharpening the question.</p>
+        <p><strong>Symptom two: far too few results.</strong> The usual cause is too many AND blocks, an over-narrow block with only one term, or a spelling or syntax error that silently matched nothing. Diagnose the same way, block by block. A block returning fewer than a hundred is either genuinely rare or misspelt, and the fastest check is to search that block's terms one at a time. If a term returns zero on its own, it is wrong, not rare. Then remove your least distinctive AND block and see whether the count becomes reasonable; if it does, that criterion belongs in screening rather than in the query.</p>
+        <p><strong>Symptom three: plenty of results, mostly irrelevant.</strong> This is a precision problem rather than a size problem, and it usually means one of your terms is ambiguous across fields. The classic cases are common words with technical meanings elsewhere. Diagnose by reading twenty titles and asking what the irrelevant ones have in common. If they share a discipline, add a subject limit or a NOT on a term unique to that discipline, checking what the NOT removes. If they share a sense of a word, replace the word with a longer phrase that disambiguates it.</p>
+        <p>Two habits prevent most of these problems in the first place. <strong>Build incrementally:</strong> run block one alone, note the count, add block two, note the count, add block three. A count that does not move when you add a block means the block is doing nothing, which is a syntax error most of the time. And <strong>keep a version history</strong> in the protocol file: string version one returned this many, version two changed this and returned that many. When an examiner asks why the search looks as it does, the version history is the answer, and reconstructing it later is not possible.</p>
+        <p>Finally, remember that a search string is a draft like any other piece of writing. The first version is never the one you use. Expect three or four iterations, expect the middle ones to be worse than the first, and stop when the string retrieves your five known-relevant papers and the first twenty results are mostly on target. That is a good search, and further polishing has rapidly diminishing returns.</p>
+        <div class="conclusion-final"><strong>Bottom line:</strong> databases are literal, so the string carries the whole burden of expressing intent. Join synonyms inside a block with OR, bracket every block, join blocks with AND, quote multi-word phrases, and truncate stems of five characters or more. Search title, abstract, and keywords by default, never full text for set-building, and treat NOT with suspicion because it removes silently. Build incrementally while watching the count, diagnose too many, too few, and off-target separately, and keep the string and its version history in the protocol.</div>
+        <div class="refs"><ul>
+          <li>Saunders, Lewis &amp; Thornhill, <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">Research Methods for Business Students</a>.</li>
+          <li>PRISMA, <a href="https://www.prisma-statement.org/" target="_blank" rel="noopener">Preferred Reporting Items for Systematic Reviews and Meta-Analyses</a>.</li>
+          <li>Elsevier, <a href="https://www.elsevier.com/products/scopus" target="_blank" rel="noopener">Scopus Abstract and Citation Database</a>.</li>
+          <li>Clarivate, <a href="https://clarivate.com/academia-government/scientific-and-academic-research/research-discovery-and-referencing/web-of-science/" target="_blank" rel="noopener">Web of Science Core Collection</a>.</li>
+        </ul></div>
+      </div>
+      <div data-lang="ar">
+        <span class="chip">الخامس</span>
+        <h2>تنقيح سلسلة تسيء التصرف</h2>
+        <p class="lead">ثلاثة أعراض تغطي كل بحث مخفق تقريبًا، ولكلٍّ مسار تشخيص قصير. اعمل عليها بالترتيب بدل تغيير المصطلحات عشوائيًا.</p>
+        <p><strong>العرض الأول: نتائج كثيرة جدًا.</strong> والسبب المعتاد كتلة واسعة أكثر من اللازم، أو ضبط الحقل على النص الكامل، أو تنصيص عبارة مفقود. شخّص بتشغيل كل كتلة وحدها والنظر في الأعداد. فالكتلة التي تعيد مئات الآلاف هي المسؤولة. والإصلاحات، بترتيب التفضيل: نصّص المصطلحات متعددة الكلمات، وقيّد الحقل إلى العنوان والملخص، واحذف أضعف مترادف من الكتلة المخالفة، وعندها فقط أضف كتلة AND أخرى. وإضافة قيود كالسنة ملاذٌ أخير لأنها تُلقي محتوى بدل شحذ السؤال.</p>
+        <p><strong>العرض الثاني: نتائج قليلة جدًا.</strong> والسبب المعتاد كتل AND كثيرة أكثر من اللازم، أو كتلة ضيقة جدًا بمصطلح واحد، أو خطأ هجاء أو صياغة لم يطابق شيئًا بصمت. شخّص بالطريقة نفسها، كتلةً كتلة. فالكتلة التي تعيد أقل من مئة إما نادرة فعلًا أو مكتوبة خطأً، وأسرع فحص هو البحث بمصطلحات تلك الكتلة واحدًا واحدًا. فإن أعاد مصطلح صفرًا وحده فهو خطأ لا نادر. ثم احذف أقل كتل AND تمييزًا وانظر هل يصير العدد معقولًا؛ فإن صار، فذلك المعيار مكانه الفرز لا الاستعلام.</p>
+        <p><strong>العرض الثالث: نتائج وافرة، معظمها غير ذي صلة.</strong> وهذه مشكلة دقة لا مشكلة حجم، وتعني عادةً أن أحد مصطلحاتك ملتبس عبر الحقول. والحالات الكلاسيكية كلماتٌ شائعة لها معانٍ تقنية في مواضع أخرى. شخّص بقراءة عشرين عنوانًا وسؤال ما المشترك بين غير ذات الصلة. فإن اشتركت في تخصص، أضف قيد موضوع أو NOT على مصطلح فريد لذلك التخصص، مع فحص ما يزيله الـNOT. وإن اشتركت في معنى لكلمة، فاستبدل بالكلمة عبارة أطول تزيل الالتباس.</p>
+        <p>وعادتان تمنعان معظم هذه المشكلات من الأساس. <strong>ابنِ تدريجيًا:</strong> شغّل الكتلة الأولى وحدها، ودوّن العدد، وأضف الثانية، ودوّن العدد، وأضف الثالثة. فعددٌ لا يتحرك حين تضيف كتلة يعني أن الكتلة لا تفعل شيئًا، وهذا خطأ صياغة في معظم الأحيان. و<strong>احتفظ بتاريخ نسخ</strong> في ملف البروتوكول: النسخة الأولى أعادت كذا، والثانية غيّرت كذا وأعادت كذا. فحين يسأل ممتحن لماذا يبدو البحث هكذا، يكون تاريخ النسخ هو الإجابة، وإعادة بنائه لاحقًا غير ممكنة.</p>
+        <p>وأخيرًا، تذكّر أن سلسلة البحث مسوّدة كأي كتابة أخرى. فالنسخة الأولى ليست أبدًا التي تستخدمها. توقّع ثلاث أو أربع دورات، وتوقّع أن تكون الوسطى أسوأ من الأولى، وتوقّف حين تسترجع السلسلة أوراقك الخمس المعلومة الصلة وتكون النتائج العشرون الأولى على الهدف في معظمها. فذلك بحث جيد، والمزيد من الصقل عائده متناقص بسرعة.</p>
+        <div class="conclusion-final"><strong>الخلاصة:</strong> القواعد حرفية، فالسلسلة تحمل عبء التعبير عن القصد كاملًا. اوصل المترادفات داخل الكتلة بـOR، وقوّس كل كتلة، واوصل الكتل بـAND، ونصّص العبارات متعددة الكلمات، وابتر الجذور من خمسة محارف فأكثر. وابحث في العنوان والملخص والكلمات افتراضيًا، ولا تبحث في النص الكامل لبناء مجموعة، وتعامل مع NOT بريبة لأنه يزيل بصمت. وابنِ تدريجيًا مراقبًا العدد، وشخّص «كثير جدًا» و«قليل جدًا» و«خارج الهدف» كلًّا على حدة، واحتفظ بالسلسلة وتاريخ نسخها في البروتوكول.</div>
+        <div class="refs"><ul>
+          <li>سوندرز ولويس وثورنهيل، <a href="https://www.pearson.com/en-gb/subject-catalog/p/research-methods-for-business-students/P200000010080/9781292741581" target="_blank" rel="noopener">مناهج البحث لطلاب الأعمال</a>.</li>
+          <li>بريزما، <a href="https://www.prisma-statement.org/" target="_blank" rel="noopener">بنود الإبلاغ المفضّلة للمراجعات المنهجية والتحليل البعدي</a>.</li>
+          <li>إلزيفير، <a href="https://www.elsevier.com/products/scopus" target="_blank" rel="noopener">سكوبس، قاعدة الملخصات والاستشهادات</a>.</li>
+          <li>كلاريفيت، <a href="https://clarivate.com/academia-government/scientific-and-academic-research/research-discovery-and-referencing/web-of-science/" target="_blank" rel="noopener">المجموعة الأساسية لويب أوف ساينس</a>.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pager" id="pager">
+    <button id="prevBtn"><span data-lang="en">&larr; Previous</span><span data-lang="ar">السابق</span></button>
+    <button id="nextBtn"><span data-lang="en">Next &rarr;</span><span data-lang="ar">التالي</span></button>
+  </div>
+
+  
+<div class="endnav"><a href="lit-planning-the-search.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">Planning the Search</span><span data-lang="ar">تخطيط البحث</span></a><a href="lit-databases.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">Databases and Where to Search</span><span data-lang="ar">قواعد البيانات وأين تبحث</span></a></div>
+</div>
+<footer>
+    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+  </footer>
+
+</div>
+<script>
+var TITLE_AR="منطق بوول وسلاسل البحث";
+var TITLE_EN="Boolean Logic and Search Strings";
+function setLang(l){
+  var en = l === 'en';
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ar === undefined){ el.dataset.ar = el.innerHTML; }
+    el.innerHTML = en ? el.dataset.en : el.dataset.ar;
+  });
+  var root = document.documentElement;
+  root.lang = en ? 'en' : 'ar';
+  root.dir = en ? 'ltr' : 'rtl';
+  document.body.dir = en ? 'ltr' : 'rtl';
+  document.body.classList.toggle('en', en);
+  document.getElementById('langAr').classList.toggle('on', !en);
+  document.getElementById('langEn').classList.toggle('on', en);
+  document.title = en ? (TITLE_EN + ' · Saif Alghamdi') : (TITLE_AR + ' · سيف الغامدي');
+  try{localStorage.setItem('lang', en?'en':'ar');}catch(e){}
+}
+var SLIDES=[].slice.call(document.querySelectorAll('section.page'));
+var TOCA=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+var CURS=0;
+function idxOf(id){for(var k=0;k<SLIDES.length;k++){if(SLIDES[k].id===id)return k;}return 0;}
+function showSlide(){}
+TOCA.forEach(function(a){a.addEventListener('click',function(){showSlide(idxOf(a.getAttribute('data-id')),true);});});
+(function(){
+  var pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');
+  if(pb)pb.addEventListener('click',function(){showSlide(CURS-1,true);});
+  if(nb)nb.addEventListener('click',function(){showSlide(CURS+1,true);});
+})();
+/* slides removed */
+(function(){var L='en';try{if(localStorage.getItem('lang')==='ar')L='ar';}catch(e){}setLang(L);})();
+(function(){
+  var toc=document.querySelector('.toc'),tb=document.querySelector('.topbar');
+  function place(){if(toc&&tb)toc.style.top=(tb.offsetHeight+10)+'px';}
+  window.addEventListener('resize',place);
+  window.addEventListener('load',place);
+  place();
+})();
+</script>
+<script>
+/* ---- reading system: progress, active section, no slides ---- */
+(function(){
+  var bar=document.querySelector('#prog i');
+  var secs=[].slice.call(document.querySelectorAll('section.page'));
+  var links=[].slice.call(document.querySelectorAll('.toc a[data-id]'));
+  function top(){return window.pageYOffset||document.documentElement.scrollTop;}
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(bar) bar.style.width=(h>0?Math.min(100,Math.max(0,top()/h*100)):0)+'%';
+    var y=top()+140, cur=secs[0];
+    for(var i=0;i<secs.length;i++){ if(secs[i].offsetTop<=y) cur=secs[i]; }
+    links.forEach(function(a){a.classList.toggle('act', cur && a.getAttribute('data-id')===cur.id);});
+  }
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var t=document.getElementById(a.getAttribute('data-id'));
+      if(!t) return;
+      var bar2=document.querySelector('.topbar');
+      var off=(bar2?bar2.offsetHeight:0)+18;
+      window.scrollTo({top:t.getBoundingClientRect().top+top()-off,behavior:'smooth'});
+    });
+  });
+  var cp=document.getElementById('copylink');
+  if(cp) cp.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=cp.textContent;
+    function done(){cp.textContent=(document.documentElement.lang==='ar')?'تم النسخ':'Link copied';
+      setTimeout(function(){cp.textContent=t;},1800);}
+    if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(done,function(){});}
+  });
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+</body></html>
