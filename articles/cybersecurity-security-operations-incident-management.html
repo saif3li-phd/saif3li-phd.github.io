@@ -374,7 +374,7 @@ html[lang="ar"] .chip,html[lang="ar"] .byline{letter-spacing:normal;text-transfo
     <div class="byline"><span data-lang="en">By: Saif Alghamdi</span><span data-lang="ar">إعداد: سيف الغامدي</span></div>
   <div class="covermeta"><div><b><span data-lang="en">Section</span><span data-lang="ar">القسم</span></b><span data-lang="en">Digital & Technology</span><span data-lang="ar">رقمي وتقنية</span></div><div><b><span data-lang="en">Reading time</span><span data-lang="ar">زمن القراءة</span></b><span data-lang="en">14 min</span><span data-lang="ar">١٤ دقيقة</span></div><div><b><span data-lang="en">By</span><span data-lang="ar">إعداد</span></b><span data-lang="en">Saif Alghamdi</span><span data-lang="ar">سيف الغامدي</span></div></div></header>
 
-  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذه المادة</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="model"><span data-lang="en">Operating Model</span><span data-lang="ar">نموذج التشغيل</span></a></li><li><a data-id="detection"><span data-lang="en">Detection</span><span data-lang="ar">الكشف</span></a></li><li><a data-id="triage"><span data-lang="en">Triage</span><span data-lang="ar">الفرز</span></a></li><li><a data-id="response"><span data-lang="en">Response Lifecycle</span><span data-lang="ar">دورة الاستجابة</span></a></li><li><a data-id="escalation"><span data-lang="en">Escalation</span><span data-lang="ar">التصعيد</span></a></li><li><a data-id="metrics"><span data-lang="en">Metrics &amp; SLAs</span><span data-lang="ar">المؤشرات</span></a></li><li><a data-id="improvement"><span data-lang="en">Improvement</span><span data-lang="ar">التحسين</span></a></li><li><a data-id="failure"><span data-lang="en">Failure Modes</span><span data-lang="ar">أنماط الفشل</span></a></li><li><a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=insights"><span data-lang="en">Back to the library</span><span data-lang="ar">إلى المكتبة</span></a></div></nav>
+  <nav class="toc" id="toc"><span class="railk"><span data-lang="en">In this piece</span><span data-lang="ar">في هذا الموضوع</span></span><ol class="steps"><li><a data-id="overview"><span data-lang="en">Overview</span><span data-lang="ar">نظرة عامة</span></a></li><li><a data-id="model"><span data-lang="en">Operating Model</span><span data-lang="ar">نموذج التشغيل</span></a></li><li><a data-id="detection"><span data-lang="en">Detection</span><span data-lang="ar">الكشف</span></a></li><li><a data-id="triage"><span data-lang="en">Triage</span><span data-lang="ar">الفرز</span></a></li><li><a data-id="response"><span data-lang="en">Response Lifecycle</span><span data-lang="ar">دورة الاستجابة</span></a></li><li><a data-id="escalation"><span data-lang="en">Escalation</span><span data-lang="ar">التصعيد</span></a></li><li><a data-id="metrics"><span data-lang="en">Metrics &amp; SLAs</span><span data-lang="ar">المؤشرات</span></a></li><li><a data-id="improvement"><span data-lang="en">Improvement</span><span data-lang="ar">التحسين</span></a></li><li><a data-id="failure"><span data-lang="en">Failure Modes</span><span data-lang="ar">أنماط الفشل</span></a></li><li><a data-id="takeaways"><span data-lang="en">Takeaways</span><span data-lang="ar">الخلاصات</span></a></li></ol><div class="util"><a href="#" onclick="window.print();return false;"><span data-lang="en">Print or save as PDF</span><span data-lang="ar">طباعة أو حفظ PDF</span></a><a href="#" id="copylink"><span data-lang="en">Copy link</span><span data-lang="ar">نسخ الرابط</span></a><a href="../index.html?view=insights"><span data-lang="en">Back to the library</span><span data-lang="ar">إلى المكتبة</span></a></div></nav>
 
   <div class="colwrap">
 <section class="page" id="overview">
@@ -426,14 +426,14 @@ html[lang="ar"] .chip,html[lang="ar"] .byline{letter-spacing:normal;text-transfo
         <h3>Coverage model</h3>
         <p>Continuous operations need a coverage model that names who is watching at every hour. A follow-the-sun model spreads shifts across regions, an on-call rotation keeps a responder reachable outside business hours, and a hybrid does both. Whichever you pick, the on-call schedule, the escalation contacts, and the authority to act must be written down and reachable in seconds, because an incident that starts with a hunt for a phone number has already lost time it cannot recover.</p>
         <p>The matrix below is a starting RACI for a mid-sized operation. Adapt the names to your structure, but keep the principle: exactly one accountable role per activity, because shared accountability is the same as none.</p>
-        <table>
+        <div style="overflow-x:auto"><table>
           <tbody><tr><th>Activity</th><th>Tier 1</th><th>Tier 2</th><th>Incident commander</th><th>Business owner</th></tr>
           <tr><td>Alert triage</td><td>Accountable</td><td>Consulted</td><td>Informed</td><td>Informed</td></tr>
           <tr><td>Investigation</td><td>Responsible</td><td>Accountable</td><td>Informed</td><td>Informed</td></tr>
           <tr><td>Containment decision</td><td>Informed</td><td>Responsible</td><td>Accountable</td><td>Consulted</td></tr>
           <tr><td>External communication</td><td>Informed</td><td>Informed</td><td>Responsible</td><td>Accountable</td></tr>
           <tr><td>Post-incident review</td><td>Consulted</td><td>Responsible</td><td>Accountable</td><td>Consulted</td></tr>
-        </tbody></table>
+        </tbody></table></div>
         <div class="note"><strong>Note:</strong> Roles are attached to activities, not to people. When someone is on leave, the role still exists and can be reassigned in seconds.</div>
       </div>
       <div data-lang="ar">
@@ -444,14 +444,14 @@ html[lang="ar"] .chip,html[lang="ar"] .byline{letter-spacing:normal;text-transfo
         <h3>نموذج التغطية</h3>
         <p>العمليات المستمرة تحتاج نموذج تغطية يسمّي مَن يراقب في كل ساعة. نموذج «تتبّع الشمس» يوزّع المناوبات عبر المناطق، ونوبة الاستدعاء تُبقي مستجيبًا قابلًا للوصول خارج الدوام، والهجين يجمع الاثنين. وأيًّا اخترت، يجب أن يكون جدول المناوبة وجهات التصعيد وصلاحية التصرّف مكتوبةً وقابلةً للوصول خلال ثوانٍ، لأن حادثةً تبدأ بالبحث عن رقم هاتف تكون قد خسرت وقتًا لا يُعوَّض.</p>
         <p>المصفوفة أدناه هي بداية RACI لعملية متوسطة الحجم. عدّل المسميات لهيكلك، لكن أبقِ المبدأ: دورٌ مساءَل واحد فقط لكل نشاط، لأن المساءلة المشتركة كعدمها.</p>
-        <table>
+        <div style="overflow-x:auto"><table>
           <tbody><tr><th>النشاط</th><th>الطبقة ١</th><th>الطبقة ٢</th><th>قائد الحادثة</th><th>مالك العمل</th></tr>
           <tr><td>فرز التنبيه</td><td>مساءَل</td><td>مُستشار</td><td>مُبلَّغ</td><td>مُبلَّغ</td></tr>
           <tr><td>التحقيق</td><td>منفّذ</td><td>مساءَل</td><td>مُبلَّغ</td><td>مُبلَّغ</td></tr>
           <tr><td>قرار الاحتواء</td><td>مُبلَّغ</td><td>منفّذ</td><td>مساءَل</td><td>مُستشار</td></tr>
           <tr><td>التواصل الخارجي</td><td>مُبلَّغ</td><td>مُبلَّغ</td><td>منفّذ</td><td>مساءَل</td></tr>
           <tr><td>مراجعة ما بعد الحادثة</td><td>مُستشار</td><td>منفّذ</td><td>مساءَل</td><td>مُستشار</td></tr>
-        </tbody></table>
+        </tbody></table></div>
         <div class="note"><strong>ملاحظة:</strong> الأدوار مرتبطة بالأنشطة لا بالأشخاص. حين يغيب شخص، يبقى الدور قائمًا ويُعاد إسناده في ثوانٍ.</div>
       </div>
     </div>
@@ -503,13 +503,13 @@ html[lang="ar"] .chip,html[lang="ar"] .byline{letter-spacing:normal;text-transfo
         <h2>Triage &amp; Classification</h2>
         <p class="lead">Triage is the moment an alert becomes a case, or is dismissed. Its job is to answer three questions quickly: is this real, how bad could it be, and who needs to act now. A consistent severity model turns that judgment from a personal opinion into a repeatable decision.</p>
         <p>Severity should be a function of two things: the potential business impact and the confidence that the activity is genuinely hostile. A high-impact, high-confidence alert deserves an immediate page, while a high-impact but low-confidence alert deserves fast investigation before anyone is woken up. Writing this down prevents both the fatigue of over-escalation and the danger of under-reaction. The model should be simple enough to apply under stress in under a minute, because a severity scheme that needs a spreadsheet will be skipped exactly when it matters.</p>
-        <table>
+        <div style="overflow-x:auto"><table>
           <tbody><tr><th>Severity</th><th>Meaning</th><th>Example</th><th>Target first action</th></tr>
           <tr><td>Critical (Sev 1)</td><td>Active, confirmed impact on core systems or data</td><td>Ransomware spreading, confirmed data theft</td><td>Immediate, 24/7</td></tr>
           <tr><td>High (Sev 2)</td><td>Confirmed compromise, contained blast radius</td><td>Single host compromise, credential misuse</td><td>Within the hour</td></tr>
           <tr><td>Medium (Sev 3)</td><td>Suspicious activity needing investigation</td><td>Unusual access pattern, policy violation</td><td>Same business day</td></tr>
           <tr><td>Low (Sev 4)</td><td>Low-confidence or informational signal</td><td>Isolated failed logins, hygiene finding</td><td>Next business day</td></tr>
-        </tbody></table>
+        </tbody></table></div>
         <p>The numbers in the last column are placeholders you set against your own risk appetite and staffing. What matters is that they exist and are agreed before the incident, so severity drives the clock automatically. Pair each severity with a default first responder and a default notification list, so classifying an alert also routes it.</p>
         <h4>Worked example</h4>
         <p>An alert fires for a successful login from an unusual country on an administrator account. Impact is high, because the account is privileged, and confidence is moderate, because legitimate travel is possible, so the model places it at high rather than critical: investigate within the hour, and page immediately if a second signal appears, such as a new mail-forwarding rule or a privilege change. Writing the rule this way means the analyst spends the first minute deciding and acting, not debating what the alert deserves.</p>
@@ -522,13 +522,13 @@ html[lang="ar"] .chip,html[lang="ar"] .byline{letter-spacing:normal;text-transfo
         <h2>الفرز والتصنيف</h2>
         <p class="lead">الفرز هو اللحظة التي يصبح فيها التنبيه حالةً أو يُستبعد. ومهمته الإجابة العاجلة عن ثلاثة أسئلة: هل هذا حقيقي، وكم قد يكون سيئًا، ومن يجب أن يتحرك الآن. ونموذج الشدّة المتّسق يحوّل هذا الحكم من رأي شخصي إلى قرار قابل للتكرار.</p>
         <p>ينبغي أن تكون الشدّة دالةً لأمرين: الأثر المحتمل على العمل، والثقة في أن النشاط عدائي فعلًا. فالتنبيه عالي الأثر عالي الثقة يستحق استدعاءً فوريًا، أما عالي الأثر منخفض الثقة فيستحق تحقيقًا عاجلًا قبل إيقاظ أحد. وتوثيق هذا يمنع إرهاق التصعيد الزائد وخطر التهاون معًا. وينبغي أن يكون النموذج بسيطًا بما يكفي لتطبيقه تحت الضغط في أقل من دقيقة، لأن مخطط شدّةٍ يحتاج جدولًا سيُتجاوَز في اللحظة التي يهمّ فيها بالضبط.</p>
-        <table>
+        <div style="overflow-x:auto"><table>
           <tbody><tr><th>الشدّة</th><th>المعنى</th><th>مثال</th><th>أول إجراء مستهدف</th></tr>
           <tr><td>حرجة (١)</td><td>أثر نشط مؤكَّد على أنظمة أو بيانات جوهرية</td><td>فدية تنتشر، سرقة بيانات مؤكَّدة</td><td>فوري، ٢٤/٧</td></tr>
           <tr><td>عالية (٢)</td><td>اختراق مؤكَّد بنطاق انتشار محتوى</td><td>اختراق مضيف واحد، إساءة استخدام بيانات دخول</td><td>خلال ساعة</td></tr>
           <tr><td>متوسطة (٣)</td><td>نشاط مشبوه يحتاج تحقيقًا</td><td>نمط وصول غير معتاد، مخالفة سياسة</td><td>خلال يوم العمل</td></tr>
           <tr><td>منخفضة (٤)</td><td>إشارة منخفضة الثقة أو تعريفية</td><td>محاولات دخول فاشلة معزولة، ملحوظة نظافة</td><td>يوم العمل التالي</td></tr>
-        </tbody></table>
+        </tbody></table></div>
         <p>الأرقام في العمود الأخير قيمٌ افتراضية تضبطها وفق شهيّتك للمخاطر وطاقتك البشرية. المهم أنها موجودة ومتّفق عليها قبل الحادثة، فتقود الشدّةُ الساعةَ تلقائيًا. واقرِن كل شدّة بمستجيبٍ أول افتراضي وقائمة إبلاغ افتراضية، فيصير تصنيف التنبيه توجيهًا له أيضًا.</p>
         <h4>مثال محلول</h4>
         <p>يشتعل تنبيهٌ لدخولٍ ناجح من دولةٍ غير معتادة على حسابٍ إداري. الأثر عالٍ لأن الحساب مميَّز، والثقة متوسطة لأن السفر المشروع ممكن، فيضعه النموذج عاليًا لا حرجًا: حقّق خلال ساعة، واستدعِ فورًا إن ظهرت إشارةٌ ثانية، كقاعدة إعادة توجيه بريدٍ جديدة أو تغيير صلاحية. وكتابة القاعدة هكذا تعني أن المحلّل يقضي الدقيقة الأولى في القرار والفعل، لا في الجدال حول ما يستحقه التنبيه.</p>
