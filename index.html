@@ -1075,6 +1075,14 @@ var PHD_ST={c:'',g:'',q:''};
 function ard(n){return ('0'+n).slice(-2).replace(/[0-9]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'[+d];});}
 /* numerals follow the language of the line they sit in */
 function num(n){return LANG==='en'?String(n):String(n).replace(/[0-9]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'[+d];});}
+/* Arabic counts a noun by how many there are: one, two, a few (3-10, plural),
+   then many (11+, accusative singular). A reader sees this mistake at once. */
+function arCount(n, one, two, few, many){
+  if(n===1) return one;
+  if(n===2) return two;
+  if(n>=3 && n<=10) return few;
+  return many;
+}
 /* a count is a number too: it follows the language of the page */
 function nb(n){return '<b>'+num(n)+'</b>';}
 function courseById(id){return PHD.courses.filter(function(c){return c.id===id;})[0];}
@@ -1105,8 +1113,8 @@ function renderPhd(){
         list.map(function(c,i){
           var n=phdItemsOf(c.id).length, gs=phdGroupsOf(c.id).length;
           var sub=n
-            ? '<div class="sub"><b>'+num(gs)+'</b> '+t(gs===1?'topic':'topics','محوراً')+
-              '<i class="sep">·</i><b>'+num(n)+'</b> '+t(n===1?'piece':'pieces','موضوعاً')+'</div>'
+            ? '<div class="sub"><b>'+num(gs)+'</b> '+t(gs===1?'topic':'topics',arCount(gs,'محور','محوران','محاور','محوراً'))+
+              '<i class="sep">·</i><b>'+num(n)+'</b> '+t(n===1?'piece':'pieces',arCount(n,'موضوع','موضوعان','مواضيع','موضوعاً'))+'</div>'
             : '';
           return '<button class="crs" data-open="'+esc(c.id)+'">'+
             '<span class="no">'+t('0'+(i+1),ard(i+1))+'</span>'+
