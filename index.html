@@ -12,18 +12,18 @@
 <meta property="og:title" content="Saif Ali Alghamdi · Transformation &amp; Growth Advisor">
 <meta property="og:description" content="Seventeen years from operations to strategy. Advisory, a working library, and a doctoral research track.">
 <meta property="og:url" content="https://saif3li-phd.github.io/">
-<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta property="og:image" content="https://saif3li-phd.github.io/assets/og.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Saif Ali Alghamdi, Transformation and Growth Advisor">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@saif3li_phd">
 <meta name="twitter:creator" content="@saif3li_phd">
-<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg">
+<meta name="twitter:image" content="https://saif3li-phd.github.io/assets/og.jpg?v=2">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script defer src="https://cloud.umami.is/script.js" data-website-id="0009a1c6-b533-4e1e-9dbc-8b20dbe29af9"></script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="0009a1c6-b533-4e1e-9dbc-8b20dbe29af9" data-domains="saif3li-phd.github.io"></script>
 <style>
 :root{
   --red:#A32020; --red-dark:#9A1C1C;
@@ -362,7 +362,9 @@ footer .g{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,48
 footer .mk{text-decoration:none;color:#fff;display:inline-flex;align-items:center;gap:13px}
 footer .mk .mg{background:var(--red)}
 footer .mk b{font-family:var(--serif);font-weight:600;font-size:20px;display:block;direction:ltr}
-footer .mk i{font-style:normal;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);display:block;margin-top:5px;direction:ltr}
+/* the mark's tagline is title case, never all caps, so it takes the header's
+   treatment on the dark ground rather than the tracked uppercase it had */
+footer .mk i{font-style:normal;font-size:11.5px;letter-spacing:.02em;text-transform:none;color:rgba(255,255,255,.6);display:block;margin-top:3px;direction:ltr}
 footer h4{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);font-family:var(--sans);font-weight:500;margin-bottom:14px}
 footer ul{list-style:none;display:flex;flex-direction:column;gap:10px}
 footer a{color:rgba(255,255,255,.82);text-decoration:none;font-size:14px}
@@ -967,7 +969,22 @@ function waLink(msg){return "https://wa.me/"+WA_NUM+"?text="+encodeURIComponent(
 /* Guarded: the page must work identically when the script is blocked. */
 /* Opening the file from disk is a preview, not a visit. Without this guard a
    local preview writes rows into the live analytics under a /Users/... path. */
-function track(name, data){ try{ if(!/^https?:$/.test(location.protocol)) return; if(window.umami) umami.track(name, data||{}); }catch(e){} }
+/* The umami script is deferred, so at boot it has not run yet and window.umami
+   is still undefined. An event fired then, such as a course arriving by deep
+   link, would be dropped. So hold events in a queue and flush them once the
+   script is up, for at most six seconds. */
+var TQ=[];
+function track(name, data){
+  try{
+    if(!/^https?:$/.test(location.protocol)) return;   /* a local preview is not a visit */
+    if(window.umami){ umami.track(name, data||{}); return; }
+    TQ.push([name, data||{}]);
+    if(TQ.length===1) (function wait(n){
+      if(window.umami){ TQ.forEach(function(a){ try{ umami.track(a[0],a[1]); }catch(e){} }); TQ=[]; return; }
+      if(n<40) setTimeout(function(){ wait(n+1); },150);
+    })(0);
+  }catch(e){}
+}
 
 /* ============ services: four doors ============ */
 /* The catalogue left the interface on 6 Sep 2026. Each door is one area and
@@ -1294,7 +1311,9 @@ function showView(v,hash,push){
     if(v==='research'&&courseBySlug(hash)){openTab('academic');
       PHD_ST.c=courseBySlug(hash).id;PHD_ST.g='';PHD_ST.q='';
       var pq=document.getElementById('phdq'); if(pq) pq.value='';
-      renderPhd();}
+      renderPhd();
+      /* a course opened by a shared link is still a course opened */
+      track('course',{course:courseBySlug(hash).slug});}
     if(v==='services'&&DOOR_IDS.indexOf(hash)>-1){openDoor(hash,false);}
     var target=(v==='services')?null:document.getElementById(hash==='pubs'?'phd':hash);
     setTimeout(function(){
