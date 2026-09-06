@@ -952,7 +952,9 @@ function waLink(msg){return "https://wa.me/"+WA_NUM+"?text="+encodeURIComponent(
 
 /* ============ analytics ============ */
 /* Guarded: the page must work identically when the script is blocked. */
-function track(name, data){ try{ if(window.umami) umami.track(name, data||{}); }catch(e){} }
+/* Opening the file from disk is a preview, not a visit. Without this guard a
+   local preview writes rows into the live analytics under a /Users/... path. */
+function track(name, data){ try{ if(!/^https?:$/.test(location.protocol)) return; if(window.umami) umami.track(name, data||{}); }catch(e){} }
 
 /* ============ services: four doors ============ */
 /* The catalogue left the interface on 6 Sep 2026. Each door is one area and
