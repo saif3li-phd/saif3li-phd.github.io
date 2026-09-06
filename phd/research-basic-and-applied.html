@@ -33,7 +33,7 @@
  --head:"Source Serif 4","Noto Naskh Arabic",Georgia,serif;
  --body:"Helvetica Neue",Helvetica,"Noto Sans Arabic",Arial,sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.85;overflow-x:hidden;transition:.3s;-webkit-font-smoothing:antialiased}
 .bloom{position:fixed;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
 .b1{width:440px;height:440px;background:var(--lav);opacity:.3;top:-130px;inset-inline-end:-80px}
 .b2{width:320px;height:320px;background:var(--khuzama);opacity:.14;top:700px;inset-inline-start:-90px}
@@ -305,6 +305,14 @@ html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
 .endnav a{flex:1 1 220px}
 .endnav .empty{display:none!important}
 
+/* ============ footer: the library's, verbatim ============ */
+footer .flinks{display:flex;flex-wrap:wrap;gap:22px;margin:22px 0 26px}
+footer .flinks a{color:var(--muted);text-decoration:none;font-size:13.5px;transition:color .25s cubic-bezier(.2,.7,.3,1)}
+footer .flinks a:hover{color:var(--khuzama)}
+footer .copy{padding-top:18px;border-top:1px solid var(--line);font-size:12.5px}
+.flinks{justify-content:center;margin:0 0 22px}
+.flinks a{color:var(--muted)}
+.flinks a:hover{color:var(--khuzama)}
 /* ============ header: the shell's, verbatim ============ */
 .bar{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--rule)}
 .bar .in{max-width:1200px;margin:0 auto;padding:13px clamp(20px,5vw,60px);display:flex;align-items:center;justify-content:space-between;gap:20px}
@@ -547,8 +555,12 @@ html[lang="ar"] .byline{letter-spacing:normal;text-transform:none}
 <div class="endnav"><a href="research-what-research-is.html"><b><span data-lang="en">Previous</span><span data-lang="ar">السابق</span></b><span data-lang="en">What Research Is</span><span data-lang="ar">ما هو البحث العلمي</span></a><a href="research-the-research-process.html"><b><span data-lang="en">Next</span><span data-lang="ar">التالي</span></b><span data-lang="en">The Research Process</span><span data-lang="ar">عملية البحث</span></a></div>
 </div>
 <footer>
-    <div class="sadu"><span></span><span></span><span></span><span></span><span></span></div>
-    <div class="copy">Copyright &copy; 2026 Saif Alghamdi</div>
+    <div class="flinks">
+      <a href="../index.html?view=research#phd" data-en="The doctoral track">مسار الدكتوراه</a>
+      <a href="../index.html?view=research" data-en="Research">أبحاثي</a>
+      <a href="../index.html?view=contact" data-en="Contact">تواصل</a>
+    </div>
+    <div class="copy">Copyright &#169; 2026 Saif Ali Alghamdi</div>
   </footer>
 
 </div>
